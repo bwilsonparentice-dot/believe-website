@@ -31,7 +31,7 @@ export function TableChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.24) 0%, transparent 34%, transparent 46%, rgba(239,230,211,0.94) 100%)' }} />
         <Dust n={14} seed={41} box={[16, 62, 10, 46]} />
         <Steam x="57%" y="30%" />
-        <div style={{ position: 'absolute', left: '50%', bottom: 0, transform: 'translateX(-50%)', width: 'min(780px,94%)', height: '48%', pointerEvents: 'none', background: 'radial-gradient(82% 92% at 50% 100%, rgba(22,16,9,0.58), rgba(22,16,9,0.26) 48%, transparent 76%)' }} />
+        <div style={{ position: 'absolute', left: '50%', bottom: 0, transform: 'translateX(-50%)', width: 'min(820px,96%)', height: '70%', pointerEvents: 'none', background: 'radial-gradient(78% 86% at 50% 86%, rgba(22,16,9,0.6), rgba(22,16,9,0.28) 52%, transparent 80%)' }} />
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(34px,6vh,70px)', textAlign: 'center', color: '#f6efe4', padding: '0 6vw' }}>
           <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(249,243,231,0.92)', marginBottom: '0.8em', textShadow: '0 1px 12px rgba(20,14,7,0.85), 0 2px 30px rgba(20,14,7,0.7)' }}>Where founders think together</div>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(40px,6.6vw,96px)', lineHeight: 1, margin: 0, textShadow: '0 2px 40px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.5)' }}>The Table</h2>
