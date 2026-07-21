@@ -69,9 +69,12 @@ Each move cites the Constitution section and the panel voice(s) behind it.
    one first step, and what comes back?*
 9. **A felt "you are here."** *(§12; Hospitality, First-timer).* Light sense of place
    and of how far the wander goes — whispered, not chrome.
-10. **Tighten the voice** *(§11; Exited founder).* **[F]** Manifesto from six lines to
-   two; remove ™ glyphs from all felt copy; strike "ecosystem/catalyst" and any
-   asserted endings. *Decision needed: the final two manifesto lines.*
+10. **Voice — resolved by the founder** *(§11).* ✓ The manifesto stands **whole (six
+   lines)** as an editorial centerpiece on *The House*; *ecosystem*, *catalyst*, and
+   *transformation* are **kept** as the house's chosen words; **`Founders Leading
+   Founders™` keeps its ™**. Remaining voice work is only: avoid *hollow* jargon and
+   don't narrate a visitor's ending for them. *(Built: The House chapter now carries
+   the full narrative.)*
 11. **Bring a founder's voice forward** *(§3, §4; First-timer, Exited).* Surface one
     real founder who "arrived exactly this lost" early in the wander, not only in the
     footer-linked Stories.
@@ -102,7 +105,8 @@ Each move cites the Constitution section and the panel voice(s) behind it.
   for captions and labels?
 - **[F] The first step** *(§12, move 8):* what is the one low-stakes way for a new
   founder to begin — and what do they receive back?
-- **[F] The two manifesto lines** *(§11, move 10).*
+- ~~**[F] The two manifesto lines**~~ — resolved: the manifesto stands whole (six
+  lines) as *The House*'s centerpiece; *catalyst*/*ecosystem*/™ kept.
 - **[F] The give-back mechanic** *(§14, move 12):* the real act at the heart of
   "Founders Leading Founders" — what is left, and how does a later founder receive it?
 - **Scope & sequence:** do you want P1 first as a focused pass, or a specific move

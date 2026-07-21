@@ -10,7 +10,7 @@ changes are needed; the `ImageSlot` component picks it up automatically.
 | File | Room / intended image |
 | --- | --- |
 | `photo-threshold.png` | The entry hall — oak door ajar, a brass key on the limestone floor |
-| `photo-founders.png` | The Founder's Room — a founder by a tall window, half in shadow *(needed)* |
+| `photo-founders.png` | The Founder's Room — the oak door with the brass key (and tassel) resting **in the door** *(needed)* |
 | `photo-fieldnotes.png` | Field Notes — an open handwritten journal, coffee, glasses, a page lifting |
 | `photo-library.png` | The Library — floor-to-ceiling oak shelves, a reading ladder *(current file is a plain room; a shelves image is needed)* |
 | `photo-table.png` | The Table — a long communal table, low morning light, empty chairs |

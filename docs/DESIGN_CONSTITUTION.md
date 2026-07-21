@@ -35,6 +35,20 @@ founder walking in three years later.
 stronger companies — and when their experience is shared, it can change the path for
 the founder coming next.*
 
+### 1a · The whole sentence
+
+For a while the house was called *"A House for Founders."* That is true, but it is not
+the whole sentence. The house is:
+
+> **A House Where Founders Become Guides.**
+
+Founders arrive needing support; they leave capable of supporting others. That is the
+transformation, the legacy, and the compounding wisdom — and it is why the physical
+metaphor of a *house* was the right instinct from the start. *"A House for Founders"*
+remains the public shorthand (the building's header); *"A House Where Founders Become
+Guides"* is what it means. The felt experience — especially The Stage and §14 — must
+make the second sentence true, not merely assert it.
+
 ---
 
 ## 2 · First Principles (immovable)
@@ -270,19 +284,32 @@ rather than separate pages. Sound is always dismissible and never required.
 The register is **witness and implication** — the "half in shadow" voice — everywhere,
 not only in captions. The house speaks plainly, warmly, and never sells.
 
-- **Ban consultant vocabulary from the felt experience:** "ecosystem," "catalyst,"
-  "transformation ecosystem," "solutions," "leverage," "unlock." Say the human thing a
-  tired founder would actually say.
-- **The manifesto is two lines, not six.** At six, belief becomes cadence. Keep the
-  two that cut deepest; retire the rest. Recommended survivors: *"We believe no
-  founder should build alone."* and *"We believe businesses don't grow until founders
-  grow."* (Final pair is the founder's to choose.)
-- **™ discipline.** No trademark glyphs in body copy, titles, or anything a guest
-  reads while wandering. "You don't ™ a philosophy you're asking me to believe is
-  sincere." Legal marks live in the footer and contracts.
-- **Don't assert the ending.** Copy must not tell a founder how their story ends
-  ("Every meaningful company eventually steps into the light" — says who?). Offer the
-  room; let them earn the arc.
+- **The house's chosen vocabulary is deliberate — honor it.** *Transformation*,
+  *ecosystem*, and *catalyst* are the founder's own words and carry real meaning here;
+  they are not the hollow consultant filler the door escapes. Keep them. What is banned
+  is *empty* jargon used without meaning — "solutions," "leverage," "unlock,"
+  "synergy" — and any phrase a tired founder would never actually say. Say the true
+  thing, in the house's language.
+  *(Founder's decision — this supersedes an earlier draft that banned "ecosystem" and
+  "catalyst" outright.)*
+- **The manifesto stands whole — six lines, as an editorial centerpiece.** It is not
+  cut to two, and it is never buried in a footer. Given room to breathe on *The House*
+  page — one "We believe…" at a time — the length *is* the cadence, and the cadence is
+  the point. *(Founder's decision — supersedes the earlier "two lines" draft.)*
+- **`Founders Leading Founders™` keeps its ™.** It is a named philosophy the house
+  owns; the mark is intentional and stays in the felt experience. Elsewhere, reserve ™
+  for genuinely trademarked names (*Believe Blueprint™*), not for ordinary copy.
+  *(Founder's decision — supersedes the earlier "no ™ in felt copy" draft.)*
+- **The three answers, not competing but complete.** The house answers three
+  questions and needs all three: **What is Believe? → A House for Founders.** ·
+  **Why does Believe exist? → To transform founders, so they build stronger companies
+  and eventually strengthen other founders.** · **What does Believe do? → We are a
+  catalyst for founders building brands that matter.**
+- **The arc may be *named*, but earn the *ending*.** The house may say plainly that
+  founders become guides — that is its thesis (§14, §1a). What copy must not do is
+  narrate an individual visitor's outcome for them ("Every meaningful company
+  eventually steps into the light" — says who?). Name the philosophy; let the person
+  earn their own arc.
 - Existing copy in the built house is strong and largely honored; these rules govern
   *edits and additions*, not a rewrite.
 
