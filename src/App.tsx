@@ -41,6 +41,7 @@ interface State {
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showKey: boolean
   facadeReady: boolean
+  birdLanded: boolean
 }
 
 // house preferences (the source's tweak props, with their defaults)
@@ -64,6 +65,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private tWelcome?: ReturnType<typeof setTimeout>
   private tAuto?: ReturnType<typeof setTimeout>
   private tRoom?: ReturnType<typeof setTimeout>
+  private tBird?: ReturnType<typeof setTimeout>
   private pending = false
   private leafPlayed = false
 
@@ -73,7 +75,7 @@ export class App extends React.Component<Record<string, never>, State> {
     showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
     showHouse: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showKey: false, facadeReady: false,
+    showKey: false, facadeReady: false, birdLanded: false,
   }
 
   constructor(props: Record<string, never>) {
@@ -108,6 +110,8 @@ export class App extends React.Component<Record<string, never>, State> {
     window.addEventListener('scroll', this.onScroll, { passive: true })
     // the arrival plays hands-free: accepted on its own after a beat
     this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 13000)
+    // the bird finishes crossing and perches in the olive tree (Scene 2)
+    this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
   }
   componentDidUpdate(_p: Record<string, never>, prev: State) {
     if (this.state.phase === 'map' && prev.phase === 'sketch') this.audio.fadeAmbient(2.6)
@@ -117,7 +121,7 @@ export class App extends React.Component<Record<string, never>, State> {
     window.removeEventListener('keydown', this.onKey)
     window.removeEventListener('pointerdown', this.onDown)
     window.removeEventListener('scroll', this.onScroll)
-    ;[this.tAccept, this.tDoor, this.tEnter, this.tWelcome, this.tAuto, this.tRoom].forEach((t) => t && clearTimeout(t))
+    ;[this.tAccept, this.tDoor, this.tEnter, this.tWelcome, this.tAuto, this.tRoom, this.tBird].forEach((t) => t && clearTimeout(t))
     this.breeze.dispose(); this.birds.dispose(); this.audio.dispose()
   }
 
@@ -155,7 +159,7 @@ export class App extends React.Component<Record<string, never>, State> {
       this.setState({ opening: true })
       if (this.tAccept) clearTimeout(this.tAccept)
       this.tAccept = setTimeout(() => this.toSketch(), 3200)
-    }, 420)
+    }, 280) // Scene 5 — nothing happens immediately; ~280ms later the handle turns
   }
   private skip = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -178,7 +182,12 @@ export class App extends React.Component<Record<string, never>, State> {
     if (this.tWelcome) clearTimeout(this.tWelcome)
     this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
-  private replay = () => { this.audio.fadeAmbient(1); this.setState({ phase: 'overture', opening: false, activeId: null, roomsRevealed: false }) }
+  private replay = () => {
+    this.audio.fadeAmbient(1)
+    this.setState({ phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false })
+    if (this.tBird) clearTimeout(this.tBird)
+    this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
+  }
   private revealRooms = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
     this.setState({ roomsRevealed: true })
@@ -274,12 +283,15 @@ export class App extends React.Component<Record<string, never>, State> {
 
   // ── OVERTURE — the limestone doorway, filled with morning light ────────
   private renderOverture(opening: boolean) {
+    const motionOn = motionAllowed(LIGHT_MOTION)
     const glowAnim = opening ? 'glowGrow 2600ms ease 200ms forwards' : 'none'
     const overtureFade = opening ? 'overtureOut 2400ms ease 900ms forwards' : 'none'
-    const sunShiftAnim = motionAllowed(LIGHT_MOTION) ? 'sunShift 170s ease-in-out infinite alternate' : 'none'
+    const sunShiftAnim = motionOn ? 'sunShift 170s ease-in-out infinite alternate' : 'none'
+    // Scene 7 — three quiet steps forward into the house (a walk, not a zoom)
+    const walk = opening && motionOn ? 'walkForward 3200ms cubic-bezier(.4,0,.3,1) 260ms forwards' : undefined
     return (
-      <div onClick={this.accept} style={{ position: 'fixed', inset: 0, zIndex: 40, overflow: 'hidden', background: '#e6dcc6', cursor: 'pointer', animation: overtureFade }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 80% at 30% 10%, rgba(255,246,224,0.92), transparent 55%), linear-gradient(180deg,#efe6d3,#e4d9c1 58%,#dbcfb3)' }}>
+      <div onClick={this.accept} style={{ position: 'fixed', inset: 0, zIndex: 40, overflow: 'hidden', background: '#0b0906', cursor: 'pointer', animation: overtureFade }}>
+        <div style={{ position: 'absolute', inset: 0, transformOrigin: '51% 46%', animation: walk, background: 'radial-gradient(120% 80% at 30% 10%, rgba(255,246,224,0.92), transparent 55%), linear-gradient(180deg,#efe6d3,#e4d9c1 58%,#dbcfb3)' }}>
           {/* the doorway itself — limestone arch, dark warm interior */}
           <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(30vh,60vw)', height: '66vh', maxHeight: 640, borderRadius: '999px 999px 10px 10px', background: 'linear-gradient(180deg, #2a2018 0%, #34271b 60%, #241a12)', boxShadow: 'inset 0 8px 60px rgba(10,6,3,0.8), inset 0 0 0 2px rgba(120,94,52,0.25)' }}>
             <div style={{ position: 'absolute', left: '51%', top: '54%', transform: 'translate(-50%,-50%)', width: '80%', height: '78%', borderRadius: '999px 999px 6px 6px', background: 'radial-gradient(closest-side, rgba(255,238,200,0.9), rgba(240,205,140,0.34) 55%, transparent 82%)', opacity: 0, mixBlendMode: 'screen', filter: 'blur(8px)', animation: glowAnim }} />
@@ -294,10 +306,10 @@ export class App extends React.Component<Record<string, never>, State> {
           <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(58% 50% at 42% 26%, rgba(255,240,205,0.55), rgba(255,240,205,0) 68%)', animation: sunShiftAnim }} />
           <Motes list={this.coverMotes} enabled={motionAllowed(LIGHT_MOTION)} />
 
-          {/* one bird flies in toward the doorway, wings out */}
-          <div style={{ position: 'absolute', left: '15%', top: '26%', zIndex: 2, pointerEvents: 'none', animation: 'birdArrive 4600ms cubic-bezier(.32,.5,.3,1) 1800ms both' }}>
-            <svg width="50" height="28" viewBox="0 0 80 44" style={{ display: 'block', overflow: 'visible', filter: 'drop-shadow(0 5px 6px rgba(40,28,10,0.28))' }}>
-              <g style={{ transformOrigin: '40px 25px', animation: 'birdFlap 300ms ease-in-out infinite' }}>
+          {/* Scene 2 — one bird crosses and lands in the olive tree, then perches */}
+          <div style={{ position: 'absolute', left: '13%', top: '30%', zIndex: 2, pointerEvents: 'none', animation: 'birdArrive 4600ms cubic-bezier(.32,.5,.3,1) 1800ms both' }}>
+            <svg width="46" height="26" viewBox="0 0 80 44" style={{ display: 'block', overflow: 'visible', filter: 'drop-shadow(0 5px 6px rgba(40,28,10,0.28))' }}>
+              <g style={{ transformOrigin: '40px 25px', animation: this.state.birdLanded ? 'birdSettle 6s ease-in-out infinite' : 'birdFlap 300ms ease-in-out infinite' }}>
                 <path d="M40 25 C31 12, 19 6, 3 3 C16 13, 28 19, 40 27 Z" fill="#243f5e" />
                 <path d="M40 25 C49 12, 61 6, 77 3 C64 13, 52 19, 40 27 Z" fill="#243f5e" />
                 <path d="M40 25 C33 15, 24 11, 12 7 C22 14, 31 18, 40 26 Z" fill="#b98a3c" opacity="0.7" />
@@ -322,6 +334,9 @@ export class App extends React.Component<Record<string, never>, State> {
             <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '70vh', height: '70vh', borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,246,224,1),rgba(230,196,132,0.45) 45%,transparent 72%)', animation: 'bloom 2600ms cubic-bezier(.4,.1,.2,1) forwards' }} />
           )}
         </div>
+
+        {/* Scene 1 — the arrival fades up from black (morning birds are heard first) */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 2400ms ease 150ms both' : 'blackReveal 700ms ease both' }} />
 
         <El onClick={this.skip} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 400ms ease', zIndex: 5 }} hover={{ color: 'rgba(43,39,35,0.7)' }}>Skip&nbsp;&rarr;</El>
       </div>

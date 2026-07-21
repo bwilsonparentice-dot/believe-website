@@ -53,6 +53,13 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
   const doorH = (DOOR_BOTTOM - DOOR_TOP) * rh
   const stepTop = offY + STEP_Y * rh
 
+  // the brass handle — a long vertical pull just left of the opening seam (Scenes 4–5)
+  const HX = 0.585, H_TOP = 0.42, H_BOT = 0.68
+  const hx = offX + HX * rw
+  const hTop = offY + H_TOP * rh
+  const hH = (H_BOT - H_TOP) * rh
+  const handleAnim = !motionOn ? 'none' : opening ? 'handleSheen 1000ms ease 260ms both' : eased ? 'handleRest 9s ease-in-out infinite' : 'none'
+
   // once ajar, the crack itself breathes wider and narrower (never during the arrival wash)
   const breath = motionOn && stage === 1 ? 'crackBreath 7s ease-in-out infinite' : 'none'
   const haloBreath = motionOn && stage === 1 ? 'crackHaloBreath 7s ease-in-out infinite' : 'none'
@@ -81,11 +88,23 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
     filter: 'blur(10px)', mixBlendMode: 'screen', opacity: poolOp, transition: T,
   }
 
+  // a soft warm spot that travels the handle — a slow glint at rest, a sheen on release
+  const handle: CSSProperties = {
+    position: 'absolute', left: hx, top: hTop, height: hH, width: 18,
+    transform: 'translateX(-50%)', overflow: 'hidden', mixBlendMode: 'screen', pointerEvents: 'none',
+  }
+  const handleSpot: CSSProperties = {
+    position: 'absolute', left: '50%', top: '50%', width: 12, height: Math.max(24, hH * 0.28), borderRadius: '50%',
+    background: 'radial-gradient(closest-side, rgba(255,247,216,0.95), rgba(255,232,172,0.25) 60%, transparent 82%)',
+    filter: 'blur(3px)', animation: handleAnim, opacity: 0,
+  }
+
   return (
     <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 3 }}>
       <div style={halo} />
       <div style={pool} />
       <div style={core} />
+      <div style={handle}><div style={handleSpot} /></div>
     </div>
   )
 }

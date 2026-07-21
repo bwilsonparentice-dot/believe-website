@@ -69,6 +69,21 @@ a:hover { color: #b08a4a; }
   0%,100% { opacity: 0.6; }
   50%     { opacity: 0.85; }
 }
+/* the arrival fades up from black — birds heard first, then the limestone revealed */
+@keyframes blackReveal { 0%,15% { opacity: 1; } 100% { opacity: 0; } }
+/* three quiet steps forward into the house (a walk, eased so it reads as approach) */
+@keyframes walkForward { 0% { transform: scale(1) translateY(0); } 100% { transform: scale(1.17) translateY(2.6%); } }
+/* the brass handle catches the light and, on arrival, a sheen falls as the latch releases */
+@keyframes handleSheen {
+  0% { opacity: 0; transform: translate(-50%,-130%); }
+  22% { opacity: 0.85; }
+  60% { opacity: 0.85; }
+  100% { opacity: 0; transform: translate(-50%,130%); }
+}
+@keyframes handleRest {
+  0%,100% { opacity: 0.28; transform: translate(-50%,-30%); }
+  50% { opacity: 0.6; transform: translate(-50%,20%); }
+}
 /* environmental "breathing" — occasional, unpredictable, almost imperceptible */
 @keyframes mote { 0% { opacity:0; transform:translate(0,0); } 18% { opacity:var(--op,0.22); } 50% { transform:translate(calc(var(--sx,6px)*0.6), -17%); } 82% { opacity:var(--op,0.22); } 100% { opacity:0; transform:translate(var(--sx,6px), -37%); } }
 @keyframes sunShift { 0% { transform:translate(0,0) scale(1); opacity:0.6; } 100% { transform:translate(3.5%,2.6%) scale(1.045); opacity:1; } }
