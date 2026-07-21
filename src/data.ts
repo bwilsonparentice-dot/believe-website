@@ -286,6 +286,20 @@ export const PEOPLE = [
   { first: 'Mona', name: 'Mona Wilson', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Mona in The Garden — olive trees, a stone path, morning light', belief: 'Mona believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
 ]
 
+/**
+ * Team portraits, keyed by each person's pid. Drop a file at the matching path
+ * under public/photos and it appears in The People of Believe Studio; until then
+ * the ImageSlot falls back gracefully to the art-direction placeholder. (Both
+ * .webp and .png inline into the self-contained preview.)
+ */
+export const PEOPLE_PHOTOS: Record<string, string> = {
+  'portrait-beth': '/photos/portrait-beth.webp',
+  'portrait-joy': '/photos/portrait-joy.webp',
+  'portrait-jillian': '/photos/portrait-jillian.webp',
+  'portrait-tiffany': '/photos/portrait-tiffany.webp',
+  'portrait-mona': '/photos/portrait-mona.webp',
+}
+
 export const STAGE_MOMENTS = [
   { k: 'A Founder’s First Yes', b: 'The buyer who believed first. The retailer that opened the first door. The moment possibility became real.' },
   { k: 'Around the Table', b: 'Founder dinners. Shared meals. Honest conversations. The moments that never appear in press releases — yet often change everything.' },

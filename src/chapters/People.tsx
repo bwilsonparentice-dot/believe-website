@@ -2,7 +2,7 @@ import React from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
-import { PEOPLE } from '../data'
+import { PEOPLE, PEOPLE_PHOTOS } from '../data'
 
 /** The People of Believe Studio — editorial portraits in arched niches, each an introduction. */
 export function PeopleChapter({ ctx }: { ctx: Ctx }) {
@@ -32,7 +32,7 @@ export function PeopleChapter({ ctx }: { ctx: Ctx }) {
             <div key={i} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(28px,5vw,72px)', flexDirection: p.dir as React.CSSProperties['flexDirection'], textAlign: 'left', opacity: 0, animation: 'riseFade 900ms ease both', animationTimeline: 'view()', animationRange: 'entry 6% cover 32%' } as React.CSSProperties}>
               <div style={{ flex: '0 1 360px', minWidth: 220, maxWidth: 380 }}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden', background: '#e6dcc6', boxShadow: '0 40px 80px -46px rgba(60,44,20,0.6)', borderRadius: 'clamp(90px,11vw,150px) clamp(90px,11vw,150px) 12px 12px' }}>
-                  <ImageSlot placeholder={p.portrait} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', filter: 'brightness(1.1) saturate(1.03)' }} />
+                  <ImageSlot src={PEOPLE_PHOTOS[p.pid]} alt={`Portrait of ${p.name}`} placeholder={p.portrait} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', filter: 'brightness(1.1) saturate(1.03)' }} />
                   <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 54% at 40% 26%, rgba(255,238,196,0.42), transparent 68%)' }} />
                 </div>
               </div>
