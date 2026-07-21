@@ -35,14 +35,14 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
   // three stages: closed (0) → ajar a crack (1) → opening on arrival (2)
   const stage = opening ? 2 : eased ? 1 : 0
   const pick = <T,>(a: T, b: T, c: T) => [a, b, c][stage] as T
-  const coreW = pick(3, 15, 30)
-  const coreOp = pick(0.85, 0.96, 1)
-  const coreBlur = pick(1.1, 2, 3)
-  const haloW = pick(64, 108, 190)
-  const haloOp = pick(0.42, 0.72, 0.92)
-  const poolW = pick(46, 104, 150)
-  const poolH = pick(26, 46, 60)
-  const poolOp = pick(0.4, 0.72, 0.9)
+  const coreW = pick(3, 22, 38)
+  const coreOp = pick(0.85, 0.97, 1)
+  const coreBlur = pick(1.1, 2.4, 3.4)
+  const haloW = pick(66, 150, 230)
+  const haloOp = pick(0.42, 0.8, 0.95)
+  const poolW = pick(46, 120, 160)
+  const poolH = pick(26, 52, 64)
+  const poolOp = pick(0.4, 0.8, 0.92)
 
   // object-fit: cover mapping from image fraction → screen px
   const scale = Math.max(vp.w / NW, vp.h / NH)
@@ -53,8 +53,9 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
   const doorH = (DOOR_BOTTOM - DOOR_TOP) * rh
   const stepTop = offY + STEP_Y * rh
 
-  // once ajar, the crack breathes almost imperceptibly (never during the arrival wash)
-  const breath = motionOn && stage === 1 ? 'crackBreath 6s ease-in-out infinite' : 'none'
+  // once ajar, the crack itself breathes wider and narrower (never during the arrival wash)
+  const breath = motionOn && stage === 1 ? 'crackBreath 7s ease-in-out infinite' : 'none'
+  const haloBreath = motionOn && stage === 1 ? 'crackHaloBreath 7s ease-in-out infinite' : 'none'
   const T = 'width 2400ms cubic-bezier(.4,.1,.2,1), height 2400ms cubic-bezier(.4,.1,.2,1), filter 2400ms ease, opacity 2400ms ease'
 
   // the bright core of the crack — a thin sliver closed, a widening band as it parts
@@ -70,7 +71,7 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
     position: 'absolute', left: x, top: top - doorH * 0.06, height: doorH * 1.12, width: haloW,
     transform: 'translateX(-50%)',
     background: 'radial-gradient(closest-side, rgba(255,236,190,0.9), rgba(255,224,160,0.28) 55%, transparent 78%)',
-    filter: 'blur(22px)', mixBlendMode: 'screen', opacity: haloOp, transition: T,
+    filter: 'blur(22px)', mixBlendMode: 'screen', opacity: haloOp, transition: T, animation: haloBreath,
   }
   // light pooling on the limestone step as the door parts
   const pool: CSSProperties = {

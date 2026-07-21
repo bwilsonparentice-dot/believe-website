@@ -59,8 +59,16 @@ a:hover { color: #b08a4a; }
 @keyframes letterLife { 0% { opacity:0; filter:blur(9px); transform:translateY(16px); } 13% { opacity:1; filter:blur(0); transform:translateY(0); } 60% { opacity:1; filter:blur(0); transform:translate(0,0) rotate(0deg) scale(1); } 100% { opacity:0; filter:blur(7px); transform:translate(var(--lx,4px), -72px) rotate(var(--lr,10deg)) scale(0.6); } }
 @keyframes cueBreath { 0%,100% { opacity:0.45; } 50% { opacity:1; } }
 @keyframes keyBreath { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-/* the façade door's crack of light, breathing almost imperceptibly at rest */
-@keyframes crackBreath { 0%,100% { opacity: 0.72; } 50% { opacity: 0.92; } }
+/* the façade door's crack of light — the crack itself widening and narrowing,
+   so the door reads as gently, continuously easing open */
+@keyframes crackBreath {
+  0%,100% { opacity: 0.78; transform: translateX(-50%) scaleX(1); }
+  50%     { opacity: 1;    transform: translateX(-50%) scaleX(1.75); }
+}
+@keyframes crackHaloBreath {
+  0%,100% { opacity: 0.6; }
+  50%     { opacity: 0.85; }
+}
 /* environmental "breathing" — occasional, unpredictable, almost imperceptible */
 @keyframes mote { 0% { opacity:0; transform:translate(0,0); } 18% { opacity:var(--op,0.22); } 50% { transform:translate(calc(var(--sx,6px)*0.6), -17%); } 82% { opacity:var(--op,0.22); } 100% { opacity:0; transform:translate(var(--sx,6px), -37%); } }
 @keyframes sunShift { 0% { transform:translate(0,0) scale(1); opacity:0.6; } 100% { transform:translate(3.5%,2.6%) scale(1.045); opacity:1; } }
