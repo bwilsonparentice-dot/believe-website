@@ -293,11 +293,11 @@ export const PEOPLE = [
  * .webp and .png inline into the self-contained preview.)
  */
 export const PEOPLE_PHOTOS: Record<string, string> = {
-  'portrait-beth': '/photos/portrait-beth.webp',
-  'portrait-joy': '/photos/portrait-joy.webp',
-  'portrait-jillian': '/photos/portrait-jillian.webp',
-  'portrait-tiffany': '/photos/portrait-tiffany.webp',
-  'portrait-mona': '/photos/portrait-mona.webp',
+  'portrait-beth': '/photos/portrait-beth.png',
+  'portrait-joy': '/photos/portrait-joy.png',
+  'portrait-jillian': '/photos/portrait-jillian.png',
+  'portrait-tiffany': '/photos/portrait-tiffany.png',
+  'portrait-mona': '/photos/portrait-mona.png',
 }
 
 export const STAGE_MOMENTS = [
