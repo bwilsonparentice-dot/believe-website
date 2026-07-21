@@ -4,6 +4,7 @@ import { HouseAudio } from './lib/audio'
 import { BreezeDriver, BirdFlock, motionAllowed } from './lib/motion'
 import { Motes, makeMotes, type Mote } from './components/Motes'
 import { ImageSlot } from './components/ImageSlot'
+import { FacadePhoto } from './components/FacadePhoto'
 import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
@@ -281,6 +282,9 @@ export class App extends React.Component<Record<string, never>, State> {
           <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(30vh,60vw)', height: '66vh', maxHeight: 640, borderRadius: '999px 999px 10px 10px', background: 'linear-gradient(180deg, #2a2018 0%, #34271b 60%, #241a12)', boxShadow: 'inset 0 8px 60px rgba(10,6,3,0.8), inset 0 0 0 2px rgba(120,94,52,0.25)' }}>
             <div style={{ position: 'absolute', left: '51%', top: '54%', transform: 'translate(-50%,-50%)', width: '80%', height: '78%', borderRadius: '999px 999px 6px 6px', background: 'radial-gradient(closest-side, rgba(255,238,200,0.9), rgba(240,205,140,0.34) 55%, transparent 82%)', opacity: 0, mixBlendMode: 'screen', filter: 'blur(8px)', animation: glowAnim }} />
           </div>
+          {/* the real arrival photograph, when present — covers the CSS doorway fallback */}
+          <FacadePhoto />
+
           {/* a soft limestone lintel shadow */}
           <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(58% 50% at 42% 26%, rgba(255,240,205,0.55), rgba(255,240,205,0) 68%)', animation: sunShiftAnim }} />
           <Motes list={this.coverMotes} enabled={motionAllowed(LIGHT_MOTION)} />
