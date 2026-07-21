@@ -81,8 +81,8 @@ a:hover { color: #b08a4a; }
   100% { opacity: 0; transform: translate(-50%,130%); }
 }
 @keyframes handleRest {
-  0%,100% { opacity: 0.28; transform: translate(-50%,-30%); }
-  50% { opacity: 0.6; transform: translate(-50%,20%); }
+  0%,100% { opacity: 0.16; transform: translate(-50%,-28%); }
+  50% { opacity: 0.4; transform: translate(-50%,18%); }
 }
 /* environmental "breathing" — occasional, unpredictable, almost imperceptible */
 @keyframes mote { 0% { opacity:0; transform:translate(0,0); } 18% { opacity:var(--op,0.22); } 50% { transform:translate(calc(var(--sx,6px)*0.6), -17%); } 82% { opacity:var(--op,0.22); } 100% { opacity:0; transform:translate(var(--sx,6px), -37%); } }

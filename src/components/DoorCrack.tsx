@@ -35,14 +35,14 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
   // three stages: closed (0) → ajar a crack (1) → opening on arrival (2)
   const stage = opening ? 2 : eased ? 1 : 0
   const pick = <T,>(a: T, b: T, c: T) => [a, b, c][stage] as T
-  const coreW = pick(3, 22, 38)
-  const coreOp = pick(0.85, 0.97, 1)
-  const coreBlur = pick(1.1, 2.4, 3.4)
-  const haloW = pick(66, 150, 230)
-  const haloOp = pick(0.42, 0.8, 0.95)
-  const poolW = pick(46, 120, 160)
-  const poolH = pick(26, 52, 64)
-  const poolOp = pick(0.4, 0.8, 0.92)
+  const coreW = pick(3, 11, 27)
+  const coreOp = pick(0.68, 0.72, 0.9)
+  const coreBlur = pick(1.3, 2.9, 3.8)
+  const haloW = pick(54, 94, 186)
+  const haloOp = pick(0.3, 0.42, 0.8)
+  const poolW = pick(42, 78, 138)
+  const poolH = pick(22, 34, 54)
+  const poolOp = pick(0.3, 0.42, 0.8)
 
   // object-fit: cover mapping from image fraction → screen px
   const scale = Math.max(vp.w / NW, vp.h / NH)
@@ -58,12 +58,16 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
   const hx = offX + HX * rw
   const hTop = offY + H_TOP * rh
   const hH = (H_BOT - H_TOP) * rh
-  const handleAnim = !motionOn ? 'none' : opening ? 'handleSheen 1000ms ease 260ms both' : eased ? 'handleRest 9s ease-in-out infinite' : 'none'
+  const handleAnim = !motionOn ? 'none' : opening ? 'handleSheen 1100ms ease 260ms both' : eased ? 'handleRest 15s ease-in-out infinite' : 'none'
 
-  // once ajar, the crack itself breathes wider and narrower (never during the arrival wash)
-  const breath = motionOn && stage === 1 ? 'crackBreath 7s ease-in-out infinite' : 'none'
-  const haloBreath = motionOn && stage === 1 ? 'crackHaloBreath 7s ease-in-out infinite' : 'none'
-  const T = 'width 2400ms cubic-bezier(.4,.1,.2,1), height 2400ms cubic-bezier(.4,.1,.2,1), filter 2400ms ease, opacity 2400ms ease'
+  // the door opens ONCE — slowly, then holds. No repeating loop, so it reads as a
+  // real door easing open rather than a pulsing light. The initial ajar is a long,
+  // gentle open (~5.4s); the click-open is weighted (~1.9s).
+  const breath = 'none'
+  const haloBreath = 'none'
+  const T = opening
+    ? 'width 1900ms cubic-bezier(.5,0,.28,1), height 1900ms cubic-bezier(.5,0,.28,1), filter 1900ms ease, opacity 1400ms ease'
+    : 'width 5400ms cubic-bezier(.26,0,.32,1), height 5400ms cubic-bezier(.26,0,.32,1), filter 5400ms ease, opacity 5400ms ease'
 
   // the bright core of the crack — a thin sliver closed, a widening band as it parts
   const core: CSSProperties = {
