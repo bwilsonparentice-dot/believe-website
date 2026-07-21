@@ -1,0 +1,31 @@
+import React from 'react'
+
+export type Handler = (e?: React.MouseEvent) => void
+
+/**
+ * Ctx — the house's navigation. Every door in the building and every chapter
+ * link routes through these. Chapters import their own copy from data.ts;
+ * Ctx carries only the ways to move between rooms.
+ */
+export interface Ctx {
+  openFounderRoom: Handler; closeFounderRoom: Handler
+  openBlueprint: Handler; closeBlueprint: Handler
+  openTable: Handler; closeTable: Handler
+  openLibrary: Handler; closeLibrary: Handler
+  openStudio: Handler; closeStudio: Handler
+  openAdvisory: Handler; closeAdvisory: Handler
+  openStage: Handler; closeStage: Handler
+  openPeople: Handler; closePeople: Handler
+  openStories: Handler; closeStories: Handler
+  openHouse: Handler; closeHouse: Handler
+  openHouses: Handler; closeHouses: Handler
+  openWork: Handler; closeWork: Handler
+  openFieldNotes: Handler; closeFieldNotes: Handler
+  receiveKey: Handler; askKey: Handler; closeKey: Handler
+  replay: Handler
+  /** scroll the building to a given room id (e.g. 'garden') */
+  gotoRoom: (id: string) => Handler
+  /** map a room key ('founders','library',…) to the handler that opens it */
+  goForRoomKey: (key: string) => Handler
+  hasKey: boolean
+}

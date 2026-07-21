@@ -1,0 +1,15 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# design reference (kept out of the build; source of truth lives in Claude Design)
+.design-reference
+
+# verification artifacts
+scratch-shots
+
+# build info
+tsconfig.tsbuildinfo
