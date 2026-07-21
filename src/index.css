@@ -81,6 +81,12 @@ a:hover { color: #b08a4a; }
 }
 /* the arrival fades up from black — birds heard first, then the limestone revealed */
 @keyframes blackReveal { 0%,15% { opacity: 1; } 100% { opacity: 0; } }
+/* the Blueprint, unfolding like an old architectural drawing */
+@keyframes blueprintUnfold {
+  0%   { opacity: 0; transform: scaleY(0.05) scaleX(0.92); filter: blur(3px); }
+  45%  { opacity: 1; }
+  100% { opacity: 1; transform: scaleY(1) scaleX(1); filter: blur(0); }
+}
 /* three quiet steps forward into the house (a walk, eased so it reads as approach) */
 @keyframes walkForward { 0% { transform: scale(1) translateY(0); } 100% { transform: scale(1.17) translateY(2.6%); } }
 /* the brass handle catches the light and, on arrival, a sheen falls as the latch releases */

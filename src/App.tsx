@@ -6,6 +6,7 @@ import { Motes, makeMotes, type Mote } from './components/Motes'
 import { ImageSlot } from './components/ImageSlot'
 import { FacadePhoto } from './components/FacadePhoto'
 import { RealDoor } from './components/RealDoor'
+import { Prologue } from './components/Prologue'
 import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
@@ -26,13 +27,14 @@ import { FieldNotesChapter } from './chapters/FieldNotes'
 import { HousesChapter } from './chapters/Houses'
 import { ReceiveKey } from './chapters/ReceiveKey'
 
-type Phase = 'overture' | 'sketch' | 'map'
+type Phase = 'overture' | 'sketch' | 'prologue' | 'map'
 
 interface State {
   phase: Phase
   opening: boolean
   roomsRevealed: boolean
   justEntered: boolean
+  prologueSeen: boolean
   activeId: string | null
   hasKey: boolean
   pendingRoom: string | null
@@ -70,7 +72,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private leafPlayed = false
 
   state: State = {
-    phase: 'overture', opening: false, roomsRevealed: false, justEntered: false,
+    phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: false,
     activeId: null, hasKey: false, pendingRoom: null,
     showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
     showHouse: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
@@ -114,7 +116,7 @@ export class App extends React.Component<Record<string, never>, State> {
     this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
   }
   componentDidUpdate(_p: Record<string, never>, prev: State) {
-    if (this.state.phase === 'map' && prev.phase === 'sketch') this.audio.fadeAmbient(2.6)
+    if (this.state.phase === 'map' && (prev.phase === 'sketch' || prev.phase === 'prologue')) this.audio.fadeAmbient(2.6)
     if (this.state.hasKey !== this.ctx.hasKey) this.ctx.hasKey = this.state.hasKey
   }
   componentWillUnmount() {
@@ -165,7 +167,7 @@ export class App extends React.Component<Record<string, never>, State> {
     if (e && e.stopPropagation) e.stopPropagation()
     if (this.tAccept) clearTimeout(this.tAccept)
     this.audio.fadeAmbient(1.4)
-    this.setState({ phase: 'map', opening: false })
+    this.setState({ phase: 'map', opening: false, prologueSeen: true })
   }
   private toSketch = () => {
     this.setState({ phase: 'sketch', activeId: null })
@@ -177,14 +179,19 @@ export class App extends React.Component<Record<string, never>, State> {
   }
   private enterBuilding = () => {
     if (this.tEnter) clearTimeout(this.tEnter)
+    // the guided walk plays once before the house opens; afterwards we go straight in
+    if (!this.state.prologueSeen) { this.audio.fadeAmbient(2.2); this.setState({ phase: 'prologue', activeId: null }); return }
+    this.enterHouse()
+  }
+  private enterHouse = () => {
     this.audio.fadeAmbient(1.6)
-    this.setState({ phase: 'map', activeId: null, justEntered: true, roomsRevealed: false })
+    this.setState({ phase: 'map', prologueSeen: true, activeId: null, justEntered: true, roomsRevealed: false })
     if (this.tWelcome) clearTimeout(this.tWelcome)
     this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
   private replay = () => {
     this.audio.fadeAmbient(1)
-    this.setState({ phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false })
+    this.setState({ phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false, prologueSeen: false })
     if (this.tBird) clearTimeout(this.tBird)
     this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
   }
@@ -260,6 +267,7 @@ export class App extends React.Component<Record<string, never>, State> {
       <>
         {phase === 'overture' && this.renderOverture(opening)}
         {phase === 'sketch' && this.renderSketch()}
+        {phase === 'prologue' && <Prologue onEnter={this.enterHouse} motionOn={alive} />}
         {phase === 'map' && this.renderBuilding(alive, sunShiftAnim)}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
 
