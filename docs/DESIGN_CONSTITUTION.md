@@ -55,6 +55,10 @@ the founder coming next.*
    shifts, paper lifts. Nothing spins, bounces, pops, or competes.
 8. **Slower and less noticeable is more luxurious.** When in doubt, remove, quiet,
    and slow down.
+9. **The world is quietly alive.** The exterior breathes on its own — a bird crosses
+   and briefly perches in the olive tree before going on its way; leaves stir; light
+   shifts. These moments are rare, unscripted, and never demand to be watched. Life
+   is glimpsed, never performed. (See §9a.)
 
 ---
 
@@ -218,6 +222,33 @@ metronome): word fade-in ~2.4s; door drawn over several seconds; slow zoom 18s; 
 - **`prefers-reduced-motion` is honored absolutely** — breeze, birds, dust, and light
   drift all cease. Stillness is a first-class rendering of the house, never a
   degraded one.
+
+### 9a · The Living World Principle
+
+The exterior environment should occasionally exhibit subtle signs of life — the
+house is set in a living world, not a photograph of one.
+
+- **The perch.** A small bird may cross the scene and briefly alight in the olive
+  tree by the door before flying away again. It arrives on its own schedule, chooses
+  its own branch, and leaves. It is never on a loop, never on a timer the visitor
+  could learn, never twice the same.
+- **Rare, unscripted, unnoticed.** These moments should feel *found*, not *staged* —
+  long, uneven silences between them (sometimes minutes, sometimes nothing at all),
+  varied paths and timing, no synchronized wingbeats. If a visitor never sees one,
+  the house is no poorer; if they do, it feels like luck.
+- **Never a distraction.** Life is glimpsed at the edge of attention. It must never
+  pull focus from the words, the threshold, or the guest's own thoughts — no bright
+  motion, no sound cue announcing it, nothing that says *look here*.
+- **Only where the world is.** Signs of life belong to the *exterior* — the arrival,
+  the olive tree, the sky over the building — not to the quiet interior rooms, where
+  stillness is the point.
+- **Gated like all motion.** Fully suppressed under `prefers-reduced-motion`, a hidden
+  tab, or the light-motion-off preference. Stillness remains a complete rendering.
+
+*The current build already lets distant birds cross the sky over the building on an
+unsynchronized, sometimes-absent cadence. The evolution is to give the arrival its
+olive tree and let a bird occasionally* **perch** *there — the single most alive
+gesture the house can make at its door.*
 
 ---
 
