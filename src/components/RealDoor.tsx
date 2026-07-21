@@ -42,9 +42,18 @@ export function RealDoor({ opening, motionOn, src = '/photos/facade.png' }: { op
   useEffect(() => {
     const onResize = () => setVp({ w: window.innerWidth, h: window.innerHeight })
     window.addEventListener('resize', onResize)
-    const t = motionOn ? setTimeout(() => setEased(true), 2300) : undefined
-    return () => { window.removeEventListener('resize', onResize); if (t) clearTimeout(t) }
-  }, [motionOn])
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  // The door holds shut for a beat, then swings open on its own — scheduled only
+  // once the leaf has been cropped and painted closed (deg 0), so the browser
+  // has a real "closed" frame to animate away from. Without this gate the leaf
+  // could mount already-open and the swing would never be seen.
+  useEffect(() => {
+    if (!leaf || !motionOn) return
+    const t = setTimeout(() => setEased(true), 1400)
+    return () => clearTimeout(t)
+  }, [leaf, motionOn])
 
   if (!leaf) return null
 
@@ -54,10 +63,12 @@ export function RealDoor({ opening, motionOn, src = '/photos/facade.png' }: { op
   const offX = (vp.w - rw) * POS_X, offY = (vp.h - rh) * POS_Y
   const box = { left: offX + L * rw, top: offY + T * rh, width: (R - L) * rw, height: (B - T) * rh }
 
-  // the swing: closed & aligned at rest → ajar (a real slow open) → wide on the click
-  const deg = opening ? -56 : eased ? -22 : -4
-  const dur = opening ? 2100 : 3600
-  const dim = 1 - Math.min(0.3, Math.abs(deg) / 190) // the leaf turns from the sun as it opens
+  // the swing: flush-shut at rest (deg 0, seamless over the façade) → a wide,
+  // watchable open on its own → wider still on the click. Large angles so the
+  // motion is unmistakable; slow easing so it still feels like a heavy door.
+  const deg = opening ? -74 : eased ? -46 : 0
+  const dur = opening ? 2000 : 2900
+  const dim = 1 - Math.min(0.34, Math.abs(deg) / 150) // the leaf turns from the sun as it opens
   // a heavy door has mass: it's slow to break from the latch, then swings freely,
   // then settles. This easing lingers at both ends and moves through the middle.
   const swingEase = 'cubic-bezier(.62,.02,.2,1)'
@@ -68,12 +79,14 @@ export function RealDoor({ opening, motionOn, src = '/photos/facade.png' }: { op
     position: 'absolute', ...box, perspective: '1500px', overflow: 'hidden',
     borderRadius: '47% 47% 3px 3px / 36% 36% 2px 2px', pointerEvents: 'none', zIndex: 3,
   }
-  // a warm morning interior — never black; brighter toward the opening (latch) side
+  // a warm hall glimpsed through the opening — golden light spilling from the
+  // latch (right) side, receding into a soft warm dark on the hinge (left) side,
+  // so the reveal reads as depth rather than a flat bright panel. Never white.
   const interior: CSSProperties = {
     position: 'absolute', inset: 0,
     background:
-      'linear-gradient(90deg, rgba(58,42,22,0) 46%, rgba(255,236,192,0.55) 82%, rgba(255,246,220,0.92) 97%, rgba(255,248,226,1) 100%),' +
-      'radial-gradient(135% 105% at 70% 56%, #f3d59a, #c79a56 26%, #7c5c34 58%, #4a3419 100%)',
+      'linear-gradient(90deg, rgba(34,23,11,0.62) 0%, rgba(70,50,26,0.12) 44%, rgba(206,162,98,0.5) 76%, rgba(240,204,140,0.82) 93%, rgba(247,220,166,0.94) 100%),' +
+      'radial-gradient(160% 130% at 82% 54%, #f2d494, #cca45e 28%, #8a6636 60%, #402d17 100%)',
   }
   const leafStyle: CSSProperties = {
     position: 'absolute', inset: 0, backgroundImage: `url('${leaf}')`, backgroundSize: '100% 100%',
