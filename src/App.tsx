@@ -5,7 +5,7 @@ import { BreezeDriver, BirdFlock, motionAllowed } from './lib/motion'
 import { Motes, makeMotes, type Mote } from './components/Motes'
 import { ImageSlot } from './components/ImageSlot'
 import { FacadePhoto } from './components/FacadePhoto'
-import { DoorCrack } from './components/DoorCrack'
+import { RealDoor } from './components/RealDoor'
 import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
@@ -299,8 +299,8 @@ export class App extends React.Component<Record<string, never>, State> {
           {/* the real arrival photograph, when present — covers the CSS doorway fallback */}
           <FacadePhoto onStatus={(present) => { if (present !== this.state.facadeReady) this.setState({ facadeReady: present }) }} />
 
-          {/* the wooden door eases open a crack — warm light widening on the real door */}
-          {this.state.facadeReady && <DoorCrack opening={opening} motionOn={motionAllowed(LIGHT_MOTION)} />}
+          {/* the wooden door actually swings open — the real leaf, cropped and hinged */}
+          {this.state.facadeReady && <RealDoor opening={opening} motionOn={motionAllowed(LIGHT_MOTION)} />}
 
           {/* a soft limestone lintel shadow */}
           <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(58% 50% at 42% 26%, rgba(255,240,205,0.55), rgba(255,240,205,0) 68%)', animation: sunShiftAnim }} />
