@@ -22,7 +22,9 @@ const files = readdirSync('public/photos').filter((f) => f.endsWith('.png'))
 const map = {}
 for (const f of files) {
   const b64 = readFileSync(`public/photos/${f}`).toString('base64')
-  const dataUri = await page.evaluate(async (src) => {
+  // the plaque sits on the dark footer and has transparency — composite over #161613
+  const bgFill = f === 'directory-plaque.png' ? '#161613' : null
+  const dataUri = await page.evaluate(async ([src, fill]) => {
     const img = new Image()
     img.src = src
     await img.decode()
@@ -31,16 +33,23 @@ for (const f of files) {
     const c = document.createElement('canvas')
     c.width = Math.round(img.naturalWidth * scale)
     c.height = Math.round(img.naturalHeight * scale)
-    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height)
+    const g = c.getContext('2d')
+    if (fill) { g.fillStyle = fill; g.fillRect(0, 0, c.width, c.height) }
+    g.drawImage(img, 0, 0, c.width, c.height)
     return c.toDataURL('image/jpeg', 0.72)
-  }, `data:image/png;base64,${b64}`)
+  }, [`data:image/png;base64,${b64}`, bgFill])
   map['/photos/' + f] = dataUri
   console.log(f, '→', Math.round(dataUri.length / 1024) + 'KB')
 }
 await browser.close()
 
-// shim: rewrite any <img src="/photos/..."> to the inlined data URI (initial + observed)
-const shim = `<script>(function(){var M=${JSON.stringify(map)};function fix(img){var s=img.getAttribute('src');if(s&&M[s]){img.src=M[s];}}function sweep(){document.querySelectorAll('img[src^="/photos/"]').forEach(fix);}new MutationObserver(function(muts){muts.forEach(function(m){(m.addedNodes||[]).forEach(function(n){if(n.tagName==='IMG')fix(n);else if(n.querySelectorAll)n.querySelectorAll('img[src^="/photos/"]').forEach(fix);});if(m.type==='attributes'&&m.target.tagName==='IMG')fix(m.target);});}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});document.addEventListener('DOMContentLoaded',sweep);sweep();})();</script>`
+// shim: rewrite runtime /photos/* references — both <img src> and CSS background-image
+const shim = `<script>(function(){var M=${JSON.stringify(map)};
+function fixImg(img){var s=img.getAttribute('src');if(s&&M[s])img.src=M[s];}
+function fixBg(el){var b=el.style&&el.style.backgroundImage;if(!b||b.indexOf('/photos/')<0)return;for(var k in M){if(b.indexOf(k)>=0){el.style.backgroundImage="url('"+M[k]+"')";break;}}}
+function sweep(){document.querySelectorAll('img[src^="/photos/"]').forEach(fixImg);document.querySelectorAll('[style*="/photos/"]').forEach(fixBg);}
+new MutationObserver(function(muts){muts.forEach(function(m){(m.addedNodes||[]).forEach(function(n){if(n.nodeType!==1)return;if(n.tagName==='IMG')fixImg(n);fixBg(n);if(n.querySelectorAll){n.querySelectorAll('img[src^="/photos/"]').forEach(fixImg);n.querySelectorAll('[style*="/photos/"]').forEach(fixBg);}});if(m.type==='attributes'&&m.target.nodeType===1){if(m.target.tagName==='IMG')fixImg(m.target);fixBg(m.target);}});}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['src','style']});
+document.addEventListener('DOMContentLoaded',sweep);sweep();})();</script>`
 
 const frag =
   '<title>Believe Studio — A House for Founders</title>\n' +
