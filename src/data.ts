@@ -323,7 +323,7 @@ export const PHOTOS: Record<string, string> = {
   stage: '/photos/photo-stage.png', advisory: '/photos/photo-advisory.png',
   // The Studio and The Founder's Room now show photographs (previously type-led).
   studio: '/photos/photo-studio.png', founders: '/photos/photo-founders.webp',
-  blueprint: '',
+  blueprint: '/photos/photo-blueprint.webp',
 }
 const LAYOUT: Record<string, { side: string; corner?: string }> = {
   threshold: { side: 'center' }, room: { side: 'left' }, founders: { side: 'center' },

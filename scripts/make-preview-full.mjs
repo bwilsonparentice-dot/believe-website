@@ -18,12 +18,13 @@ const exe = '/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless
 const browser = await chromium.launch({ executablePath: exe })
 const page = await browser.newPage()
 
-const files = readdirSync('public/photos').filter((f) => f.endsWith('.png'))
+const files = readdirSync('public/photos').filter((f) => /\.(png|webp|jpe?g)$/i.test(f))
 const map = {}
 for (const f of files) {
   const b64 = readFileSync(`public/photos/${f}`).toString('base64')
   // the plaque sits on the dark footer and has transparency — composite over #161613
   const bgFill = f === 'directory-plaque.png' ? '#161613' : null
+  const mime = /\.webp$/i.test(f) ? 'image/webp' : /\.jpe?g$/i.test(f) ? 'image/jpeg' : 'image/png'
   const dataUri = await page.evaluate(async ([src, fill]) => {
     const img = new Image()
     img.src = src
@@ -37,7 +38,7 @@ for (const f of files) {
     if (fill) { g.fillStyle = fill; g.fillRect(0, 0, c.width, c.height) }
     g.drawImage(img, 0, 0, c.width, c.height)
     return c.toDataURL('image/jpeg', 0.72)
-  }, [`data:image/png;base64,${b64}`, bgFill])
+  }, [`data:${mime};base64,${b64}`, bgFill])
   map['/photos/' + f] = dataUri
   console.log(f, '→', Math.round(dataUri.length / 1024) + 'KB')
 }

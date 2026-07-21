@@ -3,6 +3,7 @@ import type { Ctx } from '../lib/ctx'
 import { ChapterShell, ArchMark, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
 import { Keynote } from '../components/Living'
+import { PHOTOS } from '../data'
 
 /** Every founder begins with a Blueprint — the foundational room. */
 export function BlueprintChapter({ ctx }: { ctx: Ctx }) {
@@ -18,7 +19,7 @@ export function BlueprintChapter({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.82)', margin: '0 auto 1.6em' }}>Not a business plan.<br />A foundation.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', maxWidth: '30ch', margin: '0 auto clamp(48px,8vh,88px)' }}>Architecture gives buildings their structure.<br />Clarity gives founders the confidence to build theirs.</p>
 
-        <ImageSlot placeholder="The Believe Blueprint — an architect's original set of plans (drop the artifact image here)" style={{ display: 'block', width: 'min(90%,880px)', height: 'clamp(320px,54vh,640px)', margin: '0 auto', background: '#f3ecdd' }} />
+        <ImageSlot src={PHOTOS.blueprint} alt="The Believe Blueprint — an open journal, a fountain pen, and the architectural plans on the oak table" placeholder="The Believe Blueprint — an architect's original set of plans (drop the artifact image here)" style={{ display: 'block', width: 'min(90%,880px)', height: 'clamp(320px,54vh,640px)', margin: '0 auto', background: '#f3ecdd', borderRadius: '4px', boxShadow: '0 40px 90px -50px rgba(60,44,20,0.7)' }} />
 
         <Divider h="clamp(52px,9vh,96px)" m="clamp(56px,9vh,100px) auto clamp(40px,7vh,72px)" />
 

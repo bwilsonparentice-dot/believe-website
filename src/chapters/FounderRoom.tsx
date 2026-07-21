@@ -64,9 +64,11 @@ export function FounderRoomChapter({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.82)', margin: '0 auto clamp(48px,8vh,88px)' }}>Not a business plan.<br />A foundation.</p>
 
         <ImageSlot
-          fit="contain"
+          src={PHOTOS.blueprint}
+          fit="cover"
+          alt="The Believe Blueprint — an open journal, a fountain pen, and the architectural plans in morning light"
           placeholder="The Believe Blueprint — an architect's original set of plans"
-          style={{ display: 'block', width: 'min(88%,860px)', height: 'clamp(320px,52vh,620px)', margin: '0 auto', background: '#f3ecdd' }}
+          style={{ display: 'block', width: 'min(88%,860px)', height: 'clamp(320px,52vh,620px)', margin: '0 auto', background: '#f3ecdd', borderRadius: '4px', boxShadow: '0 40px 90px -50px rgba(60,44,20,0.7)' }}
         />
 
         <Divider m="clamp(56px,9vh,100px) auto clamp(40px,7vh,72px)" />
