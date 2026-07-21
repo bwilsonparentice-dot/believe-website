@@ -5,6 +5,7 @@ import { BreezeDriver, BirdFlock, motionAllowed } from './lib/motion'
 import { Motes, makeMotes, type Mote } from './components/Motes'
 import { ImageSlot } from './components/ImageSlot'
 import { FacadePhoto } from './components/FacadePhoto'
+import { DoorCrack } from './components/DoorCrack'
 import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
@@ -39,6 +40,7 @@ interface State {
   showHouse: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showKey: boolean
+  facadeReady: boolean
 }
 
 // house preferences (the source's tweak props, with their defaults)
@@ -71,7 +73,7 @@ export class App extends React.Component<Record<string, never>, State> {
     showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
     showHouse: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showKey: false,
+    showKey: false, facadeReady: false,
   }
 
   constructor(props: Record<string, never>) {
@@ -283,7 +285,10 @@ export class App extends React.Component<Record<string, never>, State> {
             <div style={{ position: 'absolute', left: '51%', top: '54%', transform: 'translate(-50%,-50%)', width: '80%', height: '78%', borderRadius: '999px 999px 6px 6px', background: 'radial-gradient(closest-side, rgba(255,238,200,0.9), rgba(240,205,140,0.34) 55%, transparent 82%)', opacity: 0, mixBlendMode: 'screen', filter: 'blur(8px)', animation: glowAnim }} />
           </div>
           {/* the real arrival photograph, when present — covers the CSS doorway fallback */}
-          <FacadePhoto />
+          <FacadePhoto onStatus={(present) => { if (present !== this.state.facadeReady) this.setState({ facadeReady: present }) }} />
+
+          {/* the wooden door eases open a crack — warm light widening on the real door */}
+          {this.state.facadeReady && <DoorCrack opening={opening} motionOn={motionAllowed(LIGHT_MOTION)} />}
 
           {/* a soft limestone lintel shadow */}
           <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(58% 50% at 42% 26%, rgba(255,240,205,0.55), rgba(255,240,205,0) 68%)', animation: sunShiftAnim }} />
