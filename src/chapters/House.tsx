@@ -141,6 +141,12 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
         </div>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.5, color: '#2b2723', margin: 'clamp(28px,5vh,48px) auto 0', maxWidth: '30ch' }}>Believe exists to help them do both.</p>
 
+        <Divider h="clamp(48px,8vh,88px)" m="clamp(56px,9vh,100px) auto" />
+
+        {/* the standard, kept quietly — the last thing the house says */}
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.7)', margin: '0 auto clamp(6px,1.5vh,14px)', maxWidth: '26ch', textWrap: balance }}>You may forget the door, the light, the small map that brought you here.</p>
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.28, color: '#2b2723', margin: '0 auto', maxWidth: '26ch', textWrap: balance }}>We hope you remember how it felt to be understood — and that, one day, you become the one who understands.</p>
+
         <Divider h="clamp(48px,8vh,88px)" m="clamp(56px,9vh,100px) auto clamp(40px,6vh,70px)" />
         <BackPill onClose={ctx.closeHouse} label="← Back into the house" />
       </div>

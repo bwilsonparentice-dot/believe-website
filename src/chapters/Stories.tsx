@@ -2,6 +2,7 @@ import React from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
+import { Keynote } from '../components/Living'
 import { STORIES } from '../data'
 
 /** The Stories — voices from the house, founders in their own words. */
@@ -9,6 +10,8 @@ export function StoriesChapter({ ctx }: { ctx: Ctx }) {
   return (
     <ChapterShell onClose={ctx.closeStories} background="#efe6d3">
       <div style={{ position: 'relative', maxWidth: 900, margin: '0 auto', padding: 'clamp(70px,14vh,180px) 6vw clamp(70px,14vh,180px)', textAlign: 'center', color: '#2b2723' }}>
+
+        <Keynote mark={false}>Wisdom, gathered one story at a time.</Keynote>
 
         <ArchMark width={2.4} margin="0 auto 1.4em" />
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginBottom: '1.1em' }}>Voices from the house</div>

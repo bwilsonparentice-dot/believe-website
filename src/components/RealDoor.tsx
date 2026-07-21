@@ -56,8 +56,13 @@ export function RealDoor({ opening, motionOn, src = '/photos/facade.png' }: { op
 
   // the swing: closed & aligned at rest → ajar (a real slow open) → wide on the click
   const deg = opening ? -56 : eased ? -22 : -4
-  const dur = opening ? 1900 : 3400
+  const dur = opening ? 2100 : 3600
   const dim = 1 - Math.min(0.3, Math.abs(deg) / 190) // the leaf turns from the sun as it opens
+  // a heavy door has mass: it's slow to break from the latch, then swings freely,
+  // then settles. This easing lingers at both ends and moves through the middle.
+  const swingEase = 'cubic-bezier(.62,.02,.2,1)'
+  // the brass pull catches the morning as the latch releases
+  const glint = motionOn && (opening || eased)
 
   const op: CSSProperties = {
     position: 'absolute', ...box, perspective: '1500px', overflow: 'hidden',
@@ -74,13 +79,28 @@ export function RealDoor({ opening, motionOn, src = '/photos/facade.png' }: { op
     position: 'absolute', inset: 0, backgroundImage: `url('${leaf}')`, backgroundSize: '100% 100%',
     transformOrigin: 'left center', transform: `rotateY(${deg}deg)`,
     boxShadow: '10px 0 34px rgba(20,12,4,0.5)', filter: `brightness(${dim.toFixed(3)})`,
-    transition: `transform ${dur}ms cubic-bezier(.34,0,.28,1), filter ${dur}ms ease`,
+    transition: `transform ${dur}ms ${swingEase}, filter ${dur}ms ease`,
+  }
+  // the brass pull sits on the latch (right) side of the leaf — a slow catch of
+  // light at rest, a sheen falling down its length as the door releases
+  const handleGlint: CSSProperties = {
+    position: 'absolute', top: '34%', height: '32%', left: '88.5%', width: '3.4%',
+    transform: 'translateX(-50%)', overflow: 'hidden', mixBlendMode: 'screen', pointerEvents: 'none',
+  }
+  const handleSpot: CSSProperties = {
+    position: 'absolute', left: '50%', top: '50%', width: '220%', height: '30%', borderRadius: '50%',
+    transform: 'translate(-50%,-50%)',
+    background: 'radial-gradient(closest-side, rgba(255,248,220,0.95), rgba(255,232,172,0.3) 58%, transparent 82%)',
+    filter: 'blur(2px)', opacity: 0,
+    animation: !glint ? 'none' : opening ? 'handleSheen 1200ms ease 260ms both' : 'handleRest 15s ease-in-out infinite',
   }
 
   return (
     <div aria-hidden="true" style={op}>
       <div style={interior} />
-      <div style={leafStyle} />
+      <div style={leafStyle}>
+        <div style={handleGlint}><div style={handleSpot} /></div>
+      </div>
     </div>
   )
 }

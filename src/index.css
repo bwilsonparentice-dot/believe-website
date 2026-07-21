@@ -98,6 +98,31 @@ a:hover { color: #b08a4a; }
 @keyframes mote { 0% { opacity:0; transform:translate(0,0); } 18% { opacity:var(--op,0.22); } 50% { transform:translate(calc(var(--sx,6px)*0.6), -17%); } 82% { opacity:var(--op,0.22); } 100% { opacity:0; transform:translate(var(--sx,6px), -37%); } }
 @keyframes sunShift { 0% { transform:translate(0,0) scale(1); opacity:0.6; } 100% { transform:translate(3.5%,2.6%) scale(1.045); opacity:1; } }
 
+/* ── the house, alive ────────────────────────────────────────────────────
+   Light that wanders as the hours turn; coffee steam that rises and dissolves;
+   a linen curtain breathing at a window; a page corner lifting for a moment.
+   Nothing here is meant to be noticed — only felt. */
+@keyframes lightWander {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(4.5%,3%) scale(1.06); }
+  100% { transform: translate(-3%,5%) scale(1.03); }
+}
+@keyframes steamRise {
+  0%   { opacity: 0; transform: translate(-50%,10%) scaleX(0.8); }
+  22%  { opacity: 0.7; }
+  55%  { opacity: 0.5; transform: translate(-50%,-70%) scaleX(1.5); }
+  100% { opacity: 0; transform: translate(-50%,-150%) scaleX(2.4); }
+}
+@keyframes drapeBreathe {
+  0%,100% { transform: translateX(0) skewX(0deg) scaleX(1); }
+  38%     { transform: translateX(2.2%) skewX(1.1deg) scaleX(1.03); }
+  70%     { transform: translateX(-1%) skewX(-0.5deg) scaleX(0.99); }
+}
+@keyframes pageCornerLift {
+  0%,100% { transform: rotate(0deg); box-shadow: none; }
+  46%     { transform: rotate(-0.5deg); }
+}
+
 /* Respect the visitor who asks for stillness. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

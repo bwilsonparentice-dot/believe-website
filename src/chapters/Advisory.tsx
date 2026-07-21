@@ -2,6 +2,7 @@ import React from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, Divider } from '../components/ChapterShell'
+import { Keynote } from '../components/Living'
 import { ADVISORY_SUBJECTS } from '../data'
 
 const eyebrow: React.CSSProperties = {
@@ -18,6 +19,8 @@ export function AdvisoryChapter({ ctx }: { ctx: Ctx }) {
   return (
     <ChapterShell onClose={ctx.closeAdvisory} background="#efe6d3">
       <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(110px,20vh,240px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723' }}>
+        <Keynote>Some things can only be said here.</Keynote>
+
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.55em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '2em' }}>Private Advisory</div>
         <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(34px,5.2vw,72px)', lineHeight: 1.08, margin: '0 auto', maxWidth: '16ch' }}>Trust isn’t announced. It’s earned quietly.</h2>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', maxWidth: '30ch', margin: '1.6em auto 0' }}>Some of the most important founder conversations are the ones no one else ever hears.</p>
@@ -28,6 +31,7 @@ export function AdvisoryChapter({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(20px,2.3vw,29px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.72)', maxWidth: '32ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Some conversations should never become case studies. Not every decision belongs in a board meeting. Not every question belongs on LinkedIn. Some of the most important moments in a founder’s journey happen quietly — before the announcement, before the funding, before the launch, before anyone else knows.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: '1.6em auto 0', maxWidth: '28ch' }}>Private Advisory exists for those moments — when the stakes are unusually high, when clarity matters more than speed, when you need someone who can hold both the business and the person building it.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: '1.4em auto 0' }}>No audience. No performance. No templates. Just thoughtful conversation, honest perspective, and decisions made with care.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.82)', maxWidth: '30ch', margin: '1.8em auto 0' }}>Plainly: what you say here stays here. It is never a pitch, and it is never used to sell you anything. It is a conversation between people — nothing more, and nothing less.</p>
 
         <Divider h="clamp(50px,9vh,100px)" m="clamp(56px,10vh,110px) auto" />
 

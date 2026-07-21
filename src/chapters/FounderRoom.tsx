@@ -2,7 +2,8 @@ import React from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
-import { FR_INCLUDES } from '../data'
+import { LightShift, Keynote } from '../components/Living'
+import { FR_INCLUDES, PHOTOS } from '../data'
 
 const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 
@@ -24,20 +25,26 @@ export function FounderRoomChapter({ ctx }: { ctx: Ctx }) {
       {/* a quiet interior: the founder's room */}
       <div style={{ position: 'relative', width: '100%', height: 'clamp(380px,66vh,780px)', overflow: 'hidden', borderRadius: '0 0 clamp(50px,8vw,150px) clamp(50px,8vw,150px)' }}>
         <ImageSlot
+          src={PHOTOS.founders}
+          alt="The Founder's Room — a quiet oak door with a brass key"
           fit="cover"
           placeholder="A quiet chair by a tall window, morning light, no desk and no technology — only space to think"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'slowZoom 20s ease-out both' }}
         />
+        <LightShift at="30% 30%" strength={0.4} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 54% at 32% 26%, rgba(255,226,178,0.34), transparent 68%)' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.08) 0%, transparent 34%, transparent 60%, rgba(20,14,7,0.42) 89%, rgba(239,230,211,0.9) 100%)' }} />
+        <div style={{ position: 'absolute', left: '50%', bottom: 0, transform: 'translateX(-50%)', width: 'min(820px,96%)', height: '50%', pointerEvents: 'none', background: 'radial-gradient(82% 92% at 50% 100%, rgba(20,14,7,0.5), rgba(20,14,7,0.24) 48%, transparent 76%)' }} />
         <div style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(34px,6vh,70px)', textAlign: 'center', color: '#f6efe4', padding: '0 6vw' }}>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(236,209,147,0.9)', marginBottom: '0.8em' }}>The most personal room in the house</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(249,243,231,0.92)', marginBottom: '0.8em', textShadow: '0 1px 12px rgba(20,14,7,0.85), 0 2px 30px rgba(20,14,7,0.7)' }}>The most personal room in the house</div>
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(40px,6.6vw,96px)', lineHeight: 1, margin: 0, textShadow: '0 1px 3px rgba(0,0,0,0.5), 0 2px 30px rgba(0,0,0,0.55)' }}>The Founder’s Room</h2>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.2vw,29px)', color: 'rgba(246,239,228,0.96)', marginTop: '0.5em', textShadow: '0 1px 3px rgba(0,0,0,0.5), 0 2px 18px rgba(0,0,0,0.5)' }}>Where founders remember who they are beneath the business.</div>
         </div>
       </div>
 
       <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: 'clamp(56px,10vh,120px) 6vw clamp(70px,14vh,170px)', textAlign: 'center', color: '#2b2723' }}>
+
+        <Keynote mark={false}>You don’t have to hold it all alone.</Keynote>
 
         <ArchMark width={2.4} margin="0 auto 1.6em" />
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginBottom: '1.3em' }}>The philosophy</div>

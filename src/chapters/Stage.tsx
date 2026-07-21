@@ -2,6 +2,7 @@ import React from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
+import { Keynote } from '../components/Living'
 import { STAGE_MOMENTS, STAGE_GALLERY } from '../data'
 
 /** The Stage — where the quiet work of the house meets the world. */
@@ -9,6 +10,8 @@ export function StageChapter({ ctx }: { ctx: Ctx }) {
   return (
     <ChapterShell onClose={ctx.closeStage} background="#efe6d3">
       <div style={{ position: 'relative', maxWidth: 820, margin: '0 auto', padding: 'clamp(100px,18vh,220px) 6vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723' }}>
+        <Keynote>Your quiet work becomes visible, in time.</Keynote>
+
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.55em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '2em' }}>The Stage</div>
         <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(34px,5.2vw,74px)', lineHeight: 1.08, margin: '0 auto', maxWidth: '22ch' }}>Every meaningful company eventually steps into the light.</h2>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: '1.4em auto 0', maxWidth: '28ch' }}>Not because it seeks attention. Because the work is ready to be seen.</p>

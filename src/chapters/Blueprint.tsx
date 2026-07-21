@@ -2,12 +2,15 @@ import React from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, ArchMark, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
+import { Keynote } from '../components/Living'
 
 /** Every founder begins with a Blueprint — the foundational room. */
 export function BlueprintChapter({ ctx }: { ctx: Ctx }) {
   return (
     <ChapterShell onClose={ctx.closeBlueprint} background="#efe6d3">
       <div style={{ position: 'relative', maxWidth: 940, margin: '0 auto', padding: 'clamp(90px,16vh,190px) 6vw clamp(70px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
+
+        <Keynote mark={false}>It begins when you see it clearly.</Keynote>
 
         <ArchMark />
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginBottom: '1.3em' }}>A foundational room</div>

@@ -317,7 +317,7 @@ export function roomKeyFor(room: string): string {
 }
 
 // ── the walk-through journey: merge DATA + EXTRAS + ARTIFACTS + PLANS + layout ──
-const PHOTOS: Record<string, string> = {
+export const PHOTOS: Record<string, string> = {
   threshold: '/photos/photo-threshold.png', room: '/photos/photo-room.png', table: '/photos/photo-table.png',
   garden: '/photos/photo-garden.png', library: '/photos/photo-library.png', fieldnotes: '/photos/photo-fieldnotes.png',
   stage: '/photos/photo-stage.png', advisory: '/photos/photo-advisory.png',
