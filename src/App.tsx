@@ -96,7 +96,8 @@ export class App extends React.Component<Record<string, never>, State> {
   constructor(props: Record<string, never>) {
     super(props)
     this.ctx = {
-      openFounderRoom: this.openChapter('showFounderRoom'), closeFounderRoom: this.closeChapter('showFounderRoom'),
+      // The Founder's Room now resolves to its dedicated experience page everywhere it's linked
+      openFounderRoom: this.openDoorway('founders-room'), closeFounderRoom: this.closeDoorway,
       openBlueprint: this.openChapter('showBlueprint'), closeBlueprint: this.closeChapter('showBlueprint'),
       openTable: this.openChapter('showTable'), closeTable: this.closeChapter('showTable'),
       openLibrary: this.openChapter('showLibrary'), closeLibrary: this.closeChapter('showLibrary'),
@@ -252,7 +253,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
   private goForRoomKey = (key: string): Handler => {
     switch (key) {
-      case 'founders': return this.ctx.openFounderRoom
+      case 'founders': return this.ctx.openDoorway('founders-room')
       case 'library': return this.ctx.openLibrary
       case 'table': return this.ctx.openTable
       case 'studio': return this.ctx.openStudio
@@ -489,6 +490,8 @@ export class App extends React.Component<Record<string, never>, State> {
     if (room.id === 'blueprint') return this.ctx.openBlueprint
     if (room.id === 'fieldnotes') return this.ctx.openFieldNotes
     if (room.id === 'library') return this.ctx.openLibrary
+    // The Founder's Room now opens its dedicated experience page — one room, one page
+    if (room.id === 'founders') return this.ctx.openDoorway('founders-room')
     return this.openRoom(room.id)
   }
 

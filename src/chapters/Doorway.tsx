@@ -170,7 +170,7 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
         </El>
 
         <Divider h="clamp(48px,7vh,80px)" m="clamp(52px,9vh,96px) auto clamp(36px,6vh,60px)" />
-        <BackPill onClose={ctx.closeDoorway} label="← Back to the doorways" />
+        <BackPill onClose={ctx.closeDoorway} label="← Back" />
       </div>
 
       {noteOpen && <ConversationNote onClose={() => setNoteOpen(false)} />}
