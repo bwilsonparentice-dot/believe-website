@@ -192,8 +192,6 @@ export const DATA: any[] = [
 export const STORIES = [
   { name: 'Michelle', of: 'Date Better', pid: 'story-michelle', dir: 'row', quote: 'Having Beth as an advisor has been a gift. Her warm, caring presence makes every conversation feel like a safe place to think big, be vulnerable, and get clear. If you’re lucky enough to work with her, say yes.' },
   { name: 'Snehee', of: 'Gallivant', pid: 'story-snehee', dir: 'row-reverse', quote: 'Beth came in at a pivotal time — she helped me get investor-ready, not just on paper, but in confidence, clarity, and how I showed up in the room. She turned complex brand language into simple, compelling stories.' },
-  { name: 'Lee', of: 'building quietly, for years', pid: 'story-lee', dir: 'row', quote: 'Nobody here tried to fix me. They just helped me hear myself think again.' },
-  { name: 'April', of: 'a founder, twice over', pid: 'story-april', dir: 'row-reverse', quote: 'I stopped performing certainty and started making better decisions. That changed everything.' },
 ]
 
 export const FR_RHYTHM = [
