@@ -50,6 +50,16 @@ interface State {
 const LIGHT_MOTION = true
 const VEIL_MOOD: 'Warm dusk' | 'Cool dawn' = 'Warm dusk'
 
+// The guided prologue plays only on a visitor's first arrival. We remember that
+// across visits so a returning founder walks straight into the house.
+const PROLOGUE_KEY = 'believe.prologueSeen'
+function hasSeenPrologue(): boolean {
+  try { return typeof localStorage !== 'undefined' && localStorage.getItem(PROLOGUE_KEY) === '1' } catch { return false }
+}
+function rememberPrologueSeen() {
+  try { localStorage.setItem(PROLOGUE_KEY, '1') } catch { /* private mode — fall back to session memory */ }
+}
+
 export class App extends React.Component<Record<string, never>, State> {
   private audio = new HouseAudio()
   private breeze = new BreezeDriver(motionAllowed(LIGHT_MOTION))
@@ -72,7 +82,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private leafPlayed = false
 
   state: State = {
-    phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: false,
+    phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: hasSeenPrologue(),
     activeId: null, hasKey: false, pendingRoom: null,
     showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
     showHouse: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
@@ -166,6 +176,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private skip = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
     if (this.tAccept) clearTimeout(this.tAccept)
+    rememberPrologueSeen()
     this.audio.fadeAmbient(1.4)
     this.setState({ phase: 'map', opening: false, prologueSeen: true })
   }
@@ -184,6 +195,7 @@ export class App extends React.Component<Record<string, never>, State> {
     this.enterHouse()
   }
   private enterHouse = () => {
+    rememberPrologueSeen()
     this.audio.fadeAmbient(1.6)
     this.setState({ phase: 'map', prologueSeen: true, activeId: null, justEntered: true, roomsRevealed: false })
     if (this.tWelcome) clearTimeout(this.tWelcome)
