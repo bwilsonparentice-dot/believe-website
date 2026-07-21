@@ -13,3 +13,6 @@ scratch-shots
 
 # build info
 tsconfig.tsbuildinfo
+
+# single-file preview build
+dist-preview
