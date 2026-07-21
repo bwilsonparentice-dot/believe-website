@@ -92,57 +92,74 @@ const reveal: React.CSSProperties = {
   animationRange: 'entry 3% cover 26%' as unknown as string,
 }
 
-/** A cluster of small olive leaves around a point — deterministic, so it's calm. */
-function leaves(cx: number, cy: number, n: number, seed: number) {
+/** A soft cloud of small olive leaves around a point — deterministic, so it's calm. */
+function leaves(cx: number, cy: number, n: number, seed: number, spread = 16) {
   let s = seed >>> 0
   const rnd = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296 }
   const out: React.ReactNode[] = []
   for (let i = 0; i < n; i++) {
-    const a = (i / n) * Math.PI * 2 + rnd() * 0.7
-    const r = 5 + rnd() * 12
-    const lx = cx + Math.cos(a) * r, ly = cy + Math.sin(a) * r * 0.9
-    const rot = (a * 180) / Math.PI + 90
-    out.push(<ellipse key={`${seed}-${i}`} cx={lx} cy={ly} rx={2.2 + rnd() * 1} ry={5 + rnd() * 2.4} transform={`rotate(${rot} ${lx} ${ly})`} fill="#7d8a53" opacity={0.5 + rnd() * 0.35} />)
+    const a = rnd() * Math.PI * 2
+    const r = Math.sqrt(rnd()) * spread
+    const lx = cx + Math.cos(a) * r, ly = cy + Math.sin(a) * r * 0.82
+    const rot = rnd() * 180
+    const silver = rnd() < 0.45
+    out.push(<ellipse key={`${seed}-${i}`} cx={lx} cy={ly} rx={1.8 + rnd() * 1} ry={4.2 + rnd() * 2.2} transform={`rotate(${rot} ${lx} ${ly})`} fill={silver ? '#9aa579' : '#6f7d48'} opacity={0.38 + rnd() * 0.34} />)
   }
   return out
 }
 
 /**
- * A Mediterranean olive tree — the shape of how Believe grows. Roots of belief,
- * a trunk of transformation, branches of growth, fruit that nourishes the
- * founders who come next. Drawn simply; never a diagram.
+ * A centuries-old Mediterranean olive tree — the truer symbol of Believe. A
+ * weathered, gnarled trunk of quiet strength; roots that grip; a low, wide
+ * canopy of silvered leaves. It looks as though it stood long before the studio
+ * and will stand long after. Roots of belief, trunk of transformation, branches
+ * of growth, fruit that nourishes the founders who come next. Never a diagram.
  */
 function OliveTree() {
-  const tips: [number, number, number, number][] = [
-    [84, 226, 8, 11], [224, 224, 8, 29], [112, 182, 7, 43], [196, 180, 7, 61],
-    [150, 162, 9, 79], [128, 150, 6, 97], [172, 150, 6, 113], [150, 200, 5, 131],
+  // fuller crown, still airy — clusters massed toward a low, spreading canopy
+  const canopy: [number, number, number, number, number][] = [
+    [150, 150, 20, 7, 30], [104, 172, 16, 23, 24], [198, 168, 16, 41, 24],
+    [128, 138, 13, 59, 20], [176, 140, 13, 71, 20], [78, 196, 12, 83, 20],
+    [224, 190, 12, 97, 20], [150, 118, 12, 109, 20], [150, 190, 10, 127, 18],
   ]
-  const olives: [number, number][] = [[90, 224], [220, 222], [150, 158], [116, 184], [194, 182], [150, 196]]
+  const olives: [number, number][] = [[112, 176], [196, 170], [150, 146], [86, 194], [220, 188], [150, 176], [132, 200]]
   return (
     <svg viewBox="0 0 300 430" width="100%" height="100%" style={{ display: 'block', overflow: 'visible' }} aria-hidden="true">
-      <g stroke="#8a6a3a" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        {/* roots */}
-        <g strokeWidth={2} opacity={0.85}>
-          <path d="M150 384 C128 398, 108 402, 92 416" />
-          <path d="M150 384 C172 398, 192 402, 210 416" />
-          <path d="M150 384 C144 402, 138 408, 128 420" />
-          <path d="M150 384 C156 402, 164 408, 176 420" />
+      {/* the weathered trunk — a wide, buttressed, gnarled silhouette of great age */}
+      <path
+        d="M100 420 C110 398, 96 384, 110 366 C120 353, 106 342, 120 328 C130 318, 120 308, 130 298 C138 290, 130 282, 140 273 C144 269, 147 266, 150 262 C153 266, 156 269, 160 273 C170 282, 162 290, 170 298 C180 308, 170 318, 180 328 C194 342, 180 353, 190 366 C204 384, 190 398, 200 420"
+        fill="#e7dcc3" stroke="#7a5e34" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round"
+      />
+      {/* the split heartwood, and fluting lines, for age */}
+      <path d="M150 414 C146 384, 156 356, 150 324 C146 306, 153 290, 150 268" fill="none" stroke="#7a5e34" strokeWidth={1.1} opacity={0.45} strokeLinecap="round" />
+      <path d="M128 404 C134 374, 124 350, 134 322 C140 306, 132 296, 138 286" fill="none" stroke="#7a5e34" strokeWidth={0.8} opacity={0.28} strokeLinecap="round" />
+      <path d="M172 404 C166 374, 176 350, 166 322" fill="none" stroke="#7a5e34" strokeWidth={0.8} opacity={0.28} strokeLinecap="round" />
+      <g stroke="#7a5e34" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        {/* buttress roots, gripping the ground */}
+        <g strokeWidth={1.8} opacity={0.85}>
+          <path d="M104 418 C80 410, 62 414, 44 426" />
+          <path d="M130 420 C120 427, 110 429, 98 432" />
+          <path d="M196 418 C220 410, 238 414, 256 426" />
+          <path d="M170 420 C180 427, 190 429, 202 432" />
         </g>
-        {/* trunk */}
-        <path d="M150 386 C144 340, 154 312, 150 260" strokeWidth={7} />
-        {/* branches */}
-        <g strokeWidth={2.6}>
-          <path d="M150 300 C122 282, 102 258, 86 230" />
-          <path d="M150 288 C180 270, 204 250, 222 228" />
-          <path d="M150 262 C134 238, 122 212, 114 186" />
-          <path d="M150 258 C168 234, 184 210, 194 184" />
-          <path d="M150 258 C150 224, 150 196, 150 166" />
+        {/* gnarled boughs — thick at the fork, tapering as they twist out */}
+        <g strokeWidth={3.4}>
+          <path d="M143 276 C126 260, 116 240, 108 220" />
+          <path d="M150 270 C150 246, 147 224, 150 202" />
+          <path d="M157 276 C176 260, 188 240, 196 220" />
+        </g>
+        <g strokeWidth={2} opacity={0.92}>
+          <path d="M108 220 C102 206, 92 196, 82 182" />
+          <path d="M150 202 C152 184, 148 168, 150 150" />
+          <path d="M196 220 C204 206, 214 196, 224 182" />
+          <path d="M132 250 C124 236, 118 222, 116 206" />
+          <path d="M168 250 C176 236, 182 222, 184 206" />
         </g>
       </g>
-      {/* foliage */}
-      <g>{tips.map(([x, y, n, seed]) => leaves(x, y, n, seed))}</g>
-      {/* olives */}
-      <g>{olives.map(([x, y], i) => <ellipse key={i} cx={x} cy={y} rx={2.6} ry={3.4} fill="#5b4a6b" opacity={0.8} />)}</g>
+      {/* the silvered canopy */}
+      <g>{canopy.map(([x, y, n, seed, sp]) => leaves(x, y, n, seed, sp))}</g>
+      {/* a few olives */}
+      <g>{olives.map(([x, y], i) => <ellipse key={i} cx={x} cy={y} rx={2.4} ry={3.2} fill="#4f4260" opacity={0.72} />)}</g>
     </svg>
   )
 }
