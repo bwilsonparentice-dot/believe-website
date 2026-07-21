@@ -300,6 +300,19 @@ export const PEOPLE_PHOTOS: Record<string, string> = {
   'portrait-mona': '/photos/portrait-mona.png',
 }
 
+/** The Stories header — a table in morning light, set for the conversation. */
+export const STORIES_HERO = '/photos/photo-the-people.png'
+
+/**
+ * Founder (client) story portraits, keyed by pid. Drop a file at the matching
+ * path and it appears in The Stories; until then the slot falls back to its
+ * placeholder. Lee and April are written anonymously and stay unphotographed.
+ */
+export const STORY_PHOTOS: Record<string, string> = {
+  'story-michelle': '/photos/portrait-michelle.png',
+  'story-snehee': '/photos/portrait-snehee.png',
+}
+
 export const STAGE_MOMENTS = [
   { k: 'A Founder’s First Yes', b: 'The buyer who believed first. The retailer that opened the first door. The moment possibility became real.' },
   { k: 'Around the Table', b: 'Founder dinners. Shared meals. Honest conversations. The moments that never appear in press releases — yet often change everything.' },
