@@ -349,6 +349,8 @@ export const PHOTOS: Record<string, string> = {
   // The Studio and The Founder's Room now show photographs (previously type-led).
   studio: '/photos/photo-studio.png', founders: '/photos/photo-founders.webp',
   blueprint: '/photos/photo-blueprint.webp',
+  // editorial imagery for the final room (the investment / doorways)
+  conversation: '/photos/photo-conversation.png', people: '/photos/photo-the-people.png',
 }
 const LAYOUT: Record<string, { side: string; corner?: string }> = {
   threshold: { side: 'center' }, room: { side: 'left' }, founders: { side: 'center' },
