@@ -320,7 +320,10 @@ export function roomKeyFor(room: string): string {
 const PHOTOS: Record<string, string> = {
   threshold: '/photos/photo-threshold.png', room: '/photos/photo-room.png', table: '/photos/photo-table.png',
   garden: '/photos/photo-garden.png', library: '/photos/photo-library.png', fieldnotes: '/photos/photo-fieldnotes.png',
-  stage: '/photos/photo-stage.png', advisory: '/photos/photo-advisory.png', blueprint: '',
+  stage: '/photos/photo-stage.png', advisory: '/photos/photo-advisory.png',
+  // The Studio and The Founder's Room now show photographs (previously type-led).
+  studio: '/photos/photo-studio.png', founders: '/photos/photo-founders.png',
+  blueprint: '',
 }
 const LAYOUT: Record<string, { side: string; corner?: string }> = {
   threshold: { side: 'center' }, room: { side: 'left' }, founders: { side: 'center' },

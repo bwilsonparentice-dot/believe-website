@@ -9,17 +9,18 @@ changes are needed; the `ImageSlot` component picks it up automatically.
 
 | File | Room / intended image |
 | --- | --- |
-| `photo-threshold.png` | A handcrafted oak door, morning light across the grain |
-| `photo-room.png` | An empty sunlit room, one chair, soft plaster walls |
-| `photo-library.png` | Floor-to-ceiling oak shelves, a reading ladder, low lamplight |
-| `photo-table.png` | A long communal table, low morning light, empty chairs |
-| `photo-fieldnotes.png` | A linen-bound notebook open on a walnut desk |
-| `photo-stage.png` | A modest wooden platform, chairs arranged in a circle |
-| `photo-advisory.png` | Two chairs, a closed door, a single lamp |
-| `photo-garden.png` | A stone courtyard, an olive tree, morning light |
+| `photo-threshold.png` | The entry hall — oak door ajar, a brass key on the limestone floor |
+| `photo-founders.png` | The Founder's Room — a founder by a tall window, half in shadow *(needed)* |
+| `photo-fieldnotes.png` | Field Notes — an open handwritten journal, coffee, glasses, a page lifting |
+| `photo-library.png` | The Library — floor-to-ceiling oak shelves, a reading ladder *(current file is a plain room; a shelves image is needed)* |
+| `photo-table.png` | The Table — a long communal table, low morning light, empty chairs |
+| `photo-studio.png` | The Studio — a workbench of prototypes, sketches pinned to the wall *(needed)* |
+| `photo-advisory.png` | Private Advisory — two linen chairs facing, two mugs and an open journal between |
+| `photo-stage.png` | The Stage — a modest wooden platform, chairs arranged, an empty podium |
+| `photo-garden.png` | The Garden — a stone courtyard, an olive tree, morning light |
 
-`The Founder's Room`, `The Studio`, and `The Believe Blueprint` intentionally have
-no room photograph in the walk-through — they lead with type.
+`The Believe Blueprint` leads with type and has no room photograph by design.
+`photo-room.png` is unused in the walk-through.
 
 ## Arrival
 
