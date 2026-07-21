@@ -111,9 +111,9 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
 
       {step === 1 && beat(1, (
         <>
-          <div style={{ ...eyebrow, marginBottom: 'clamp(26px,5vh,48px)' }}>Why this house exists</div>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.9vw,68px)', lineHeight: 1.1, color: '#2b2723', maxWidth: '17ch', margin: '0 auto clamp(30px,5vh,52px)', ...balance }}>Founders change the world <span style={{ fontStyle: 'italic' }}>when someone believes in them first.</span></p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.45, color: 'rgba(43,39,35,0.66)', maxWidth: '26ch', margin: '0 auto', ...balance }}>Believe is a founder transformation ecosystem, built on that single conviction.</p>
+          <div style={{ ...eyebrow, marginBottom: 'clamp(30px,6vh,58px)' }}>Why this house exists</div>
+          {/* the emotional center — allowed to breathe, never explained here */}
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.2vw,74px)', lineHeight: 1.1, color: '#2b2723', maxWidth: '16ch', margin: '0 auto', ...balance }}>Founders change the world <span style={{ fontStyle: 'italic' }}>when someone believes in them first.</span></p>
           <Continue onClick={next} />
         </>
       ))}

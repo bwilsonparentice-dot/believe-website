@@ -46,14 +46,19 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
 
         <Divider h="clamp(56px,10vh,120px)" m="clamp(64px,11vh,130px) auto" />
 
-        {/* Why Believe exists */}
-        <div style={{ ...label, marginBottom: '1.5em' }}>Why Believe exists</div>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.4, color: '#2b2723', maxWidth: '24ch', margin: '0 auto 1em', textWrap: balance }}>Believe is a founder transformation ecosystem.</p>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.8)', maxWidth: '46ch', margin: '0 auto', textWrap: pretty }}>Built on a simple conviction: when founders become stronger, they build stronger companies — and when their experience is shared, it can change the path for the founder coming next.</p>
+        {/* Why Believe exists — emotion, then conviction, then (quietly) definition */}
+        <div style={{ ...label, marginBottom: '1.6em' }}>Why Believe exists</div>
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,4.2vw,58px)', lineHeight: 1.1, color: '#2b2723', maxWidth: '17ch', margin: '0 auto', textWrap: balance }}>Founders change the world <span style={{ fontStyle: 'italic' }}>when someone believes in them first.</span></p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.8)', maxWidth: '46ch', margin: 'clamp(36px,6vh,64px) auto 0', textWrap: pretty }}>Believe was built on that conviction. When founders become stronger, they build stronger companies — and when they share what they’ve learned, they change the path for the founder coming next.</p>
 
         <div style={{ width: 1, height: 'clamp(40px,7vh,80px)', margin: 'clamp(46px,8vh,92px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(22px,2.7vw,36px)', lineHeight: 1.42, color: 'rgba(122,94,52,0.9)', maxWidth: '26ch', margin: '0 auto', textWrap: balance }}>We don’t simply help founders build businesses. We help founders become the leaders their businesses need them to become.</p>
+
+        <div style={{ width: 1, height: 'clamp(40px,7vh,80px)', margin: 'clamp(46px,8vh,92px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+
+        {/* the definition — arriving last, as explanation, not introduction */}
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.56)', maxWidth: '34ch', margin: '0 auto', textWrap: pretty }}>In the language of business, Believe is a founder transformation ecosystem. In the language of founders, it is simply the place where someone believes in you first.</p>
 
         <Divider h="clamp(56px,10vh,120px)" m="clamp(64px,11vh,130px) auto" />
 
