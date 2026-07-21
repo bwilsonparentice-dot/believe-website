@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #efe8da;
+    color: #2b2723;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  a { color: #7a5e34; text-decoration: none; transition: color 400ms ease; }
+  a:hover { color: #b08a4a; }
+  @keyframes entryUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background:radial-gradient(120% 80% at 50% 0%, #f6f0e3 0%, #efe8da 55%, #e7dfcf 100%); padding:clamp(56px,9vh,120px) clamp(24px,6vw,80px) clamp(80px,12vh,160px);">
+
+  <div style="max-width:820px; margin:0 auto;">
+
+    <header style="text-align:center; border-bottom:1px solid rgba(43,39,35,0.18); padding-bottom:clamp(36px,6vh,68px); margin-bottom:clamp(44px,7vh,84px);">
+      <div style="font-family:'Jost',sans-serif; font-weight:400; font-size:12px; letter-spacing:0.5em; text-transform:uppercase; color:rgba(43,39,35,0.55); margin-left:0.5em;">Believe Studio</div>
+      <h1 style="font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(38px,5.6vw,74px); line-height:1.05; margin:0.32em 0 0;">The Language of<br>Believe Studio</h1>
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(16px,1.6vw,21px); color:rgba(43,39,35,0.6); max-width:46ch; margin:1.3em auto 0; line-height:1.6;">Not copy. Not messaging. A living vocabulary — so that every decision we make, in every room, speaks the same quiet language.</p>
+    </header>
+
+    <sc-for list="{{ terms }}" as="term" hint-placeholder-count="10">
+      <article style="display:grid; grid-template-columns:minmax(0,1fr); gap:0.6em; padding:clamp(30px,4.5vh,52px) 0; border-bottom:1px solid rgba(43,39,35,0.13);">
+        <div style="display:flex; align-items:baseline; gap:0.8em; flex-wrap:wrap;">
+          <span style="font-family:'Jost',sans-serif; font-weight:400; font-size:12px; letter-spacing:0.3em; color:rgba(176,138,74,0.9);">{{term.roman}}</span>
+          <h2 style="font-family:'Cormorant Garamond',serif; font-weight:500; font-size:clamp(30px,4.2vw,52px); line-height:1; margin:0;">{{term.name}}</h2>
+        </div>
+        <p style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(18px,1.9vw,25px); line-height:1.5; color:rgba(43,39,35,0.78); margin:0; max-width:60ch;">{{term.def}}</p>
+      </article>
+    </sc-for>
+
+    <footer style="text-align:center; margin-top:clamp(48px,8vh,96px);">
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(16px,1.6vw,22px); color:rgba(43,39,35,0.6); max-width:48ch; margin:0 auto 2em; line-height:1.6;">A shared language is not decoration. It is how a place stays itself as it grows.</p>
+      <a href="Believe Studio - World Map.dc.html" style="font-family:'Jost',sans-serif; font-weight:400; font-size:13px; letter-spacing:0.28em; text-transform:uppercase;">&larr;&nbsp;Return to the Map of Becoming</a>
+    </footer>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:820,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      terms: [
+        { roman:'I',    name:'Threshold',         def:'The decision to begin — not a doorway, but the quiet choice to build differently.' },
+        { roman:'II',   name:'The Room',          def:'Where belief begins. The first still place, where a founder finally hears themselves think.' },
+        { roman:'III',  name:"The Founder's Room", def:'Where the founder becomes more important than the business, and confidence returns as perspective.' },
+        { roman:'IV',   name:'The Library',        def:'Borrowed wisdom. Not information, but perspective — lessons collected patiently from others.' },
+        { roman:'V',    name:'Field Notes',        def:'Ideas captured while they are still alive, before they harden into strategy or disappear.' },
+        { roman:'VI',   name:'The Table',          def:'Where brands are discussed, but founders are built. Belonging, not networking.' },
+        { roman:'VII',  name:'The Studio',         def:'Where ideas become tangible — craft, iteration, and the slow arrival of momentum.' },
+        { roman:'VIII', name:'Private Advisory',   def:'Trust made visible. The conversations that happen nowhere else.' },
+        { roman:'IX',   name:'The Garden',         def:'Where clarity returns after effort. A courtyard for pausing — the soul the building revolves around.' },
+        { roman:'X',    name:'The Stage',          def:'Where experience becomes contribution, and what was received is passed forward.' },
+        { roman:'\u00B7', name:'Catalyst',         def:'Someone who creates the conditions for transformation without becoming the center of it.' },
+        { roman:'\u00B7', name:'Becoming',         def:'The through-line of the map. Every room is not a service, but a stage in who a founder is turning into.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
