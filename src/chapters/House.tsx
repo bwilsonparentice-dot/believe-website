@@ -1,4 +1,5 @@
 import React from 'react'
+import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
 
@@ -140,6 +141,9 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(22px,2.7vw,34px)', lineHeight: 1.34, color: 'rgba(122,94,52,0.92)', margin: 0 }}>The greatest founders change other founders.</p>
         </div>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.5, color: '#2b2723', margin: 'clamp(28px,5vh,48px) auto 0', maxWidth: '30ch' }}>Believe exists to help them do both.</p>
+
+        {/* the institution has a founder, and the founder has a reason */}
+        <El onClick={ctx.openWhyBelieve} style={{ display: 'inline-block', margin: 'clamp(48px,8vh,90px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.35)', paddingBottom: 5, cursor: 'pointer', transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>Why I built Believe →</El>
 
         <Divider h="clamp(48px,8vh,88px)" m="clamp(56px,9vh,100px) auto" />
 

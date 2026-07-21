@@ -22,6 +22,7 @@ import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
 import { StoriesChapter } from './chapters/Stories'
 import { HouseChapter } from './chapters/House'
+import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
 import { FieldNotesChapter } from './chapters/FieldNotes'
 import { HousesChapter } from './chapters/Houses'
@@ -39,7 +40,7 @@ interface State {
   hasKey: boolean
   pendingRoom: string | null
   showHouses: boolean; showPeople: boolean; showStudio: boolean; showFounderRoom: boolean
-  showHouse: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
+  showHouse: boolean; showWhyBelieve: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showKey: boolean
   facadeReady: boolean
@@ -85,7 +86,7 @@ export class App extends React.Component<Record<string, never>, State> {
     phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: hasSeenPrologue(),
     activeId: null, hasKey: false, pendingRoom: null,
     showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
-    showHouse: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
+    showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
     showKey: false, facadeReady: false, birdLanded: false,
   }
@@ -103,6 +104,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openPeople: this.openChapter('showPeople'), closePeople: this.closeChapter('showPeople'),
       openStories: this.openChapter('showStories'), closeStories: this.closeChapter('showStories'),
       openHouse: this.openChapter('showHouse'), closeHouse: this.closeChapter('showHouse'),
+      openWhyBelieve: this.openChapter('showWhyBelieve'), closeWhyBelieve: this.closeChapter('showWhyBelieve'),
       openHouses: this.openChapter('showHouses'), closeHouses: this.closeChapter('showHouses'),
       openWork: this.openChapter('showWork'), closeWork: this.closeChapter('showWork'),
       openFieldNotes: this.openChapter('showFieldNotes'), closeFieldNotes: this.closeChapter('showFieldNotes'),
@@ -139,7 +141,7 @@ export class App extends React.Component<Record<string, never>, State> {
 
   private onKey = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
-      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showFounderRoom', 'showStudio', 'showPeople', 'showHouses', 'showKey']
+      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showFounderRoom', 'showStudio', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
     }
@@ -224,7 +226,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private closeRoom = () => this.setState({ activeId: null })
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false, showStories: false, showHouse: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false }
+    return { showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -293,6 +295,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showAdvisory && <AdvisoryChapter ctx={this.ctx} />}
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
         {this.state.showHouse && <HouseChapter ctx={this.ctx} />}
+        {this.state.showWhyBelieve && <WhyBelieveChapter ctx={this.ctx} />}
         {this.state.showPeople && <PeopleChapter ctx={this.ctx} />}
         {this.state.showStudio && <StudioChapter ctx={this.ctx} />}
         {this.state.showFounderRoom && <FounderRoomChapter ctx={this.ctx} />}

@@ -18,6 +18,7 @@ export interface Ctx {
   openPeople: Handler; closePeople: Handler
   openStories: Handler; closeStories: Handler
   openHouse: Handler; closeHouse: Handler
+  openWhyBelieve: Handler; closeWhyBelieve: Handler
   openHouses: Handler; closeHouses: Handler
   openWork: Handler; closeWork: Handler
   openFieldNotes: Handler; closeFieldNotes: Handler

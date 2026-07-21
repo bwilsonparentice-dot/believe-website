@@ -165,10 +165,9 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
     <ChapterShell onClose={ctx.closeWork} background="#efe6d3">
       <div style={{ position: 'relative', maxWidth: 780, margin: '0 auto', padding: 'clamp(100px,18vh,240px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
 
-        {/* ── opening: the emotional heading, then the reframe ────────── */}
-        <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>Investment</div>
-        <h1 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(38px,6vw,86px)', lineHeight: 1.04, margin: '0 auto clamp(30px,5vh,52px)', maxWidth: '15ch', ...balance }}>Every Journey Begins Somewhere.</h1>
-        <h2 style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.82)', margin: '0 auto', maxWidth: '22ch', ...balance }}>You’re not investing in a deliverable. You’re investing in becoming the leader your company needs you to become.</h2>
+        {/* ── opening: the word, then the reframe ─────────────────────── */}
+        <div style={{ ...label, marginBottom: 'clamp(30px,5vh,52px)' }}>Investment</div>
+        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.6vw,64px)', lineHeight: 1.14, margin: '0 auto', maxWidth: '20ch', ...balance }}>You’re not investing in a deliverable. You’re investing in becoming the leader your company needs you to become.</h2>
 
         <ArchLine m="clamp(80px,14vh,180px) auto" />
 
@@ -181,10 +180,10 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
 
         <ArchLine m="clamp(96px,17vh,210px) auto clamp(80px,14vh,170px)" />
 
-        {/* ── the doorways ────────────────────────────────────────────── */}
+        {/* ── choose your doorway ─────────────────────────────────────── */}
         <ArchMark width={2.2} margin="0 auto 1.6em" />
-        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.8vw,64px)', lineHeight: 1.06, margin: '0 0 0.5em', ...balance }}>Every founder enters Believe differently.</h2>
-        <p style={{ ...SUB, fontStyle: 'normal', fontWeight: 300, color: 'rgba(43,39,35,0.7)', fontSize: 'clamp(19px,2.1vw,27px)' }}>Choose the doorway that best reflects where you are today.</p>
+        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(36px,5.6vw,80px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>Choose Your Doorway</h2>
+        <p style={{ ...SUB, fontStyle: 'normal', fontWeight: 300, color: 'rgba(43,39,35,0.7)', fontSize: 'clamp(19px,2.1vw,27px)' }}>Every founder enters Believe differently. Choose the doorway that best reflects where you are today.</p>
 
         {/* Doorway One — The Founder Conversation */}
         <div style={{ ...reveal, marginTop: 'clamp(80px,15vh,180px)' }}>
@@ -211,7 +210,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.82)', margin: '1.2em auto 0', maxWidth: '26ch' }}>More than a strategy. The architectural plan for your next chapter.</p>
           <Included heading="What we architect together" items={['Business Reinvention', 'Brand Architecture', 'Opportunity Atlas™', 'Experience Channels™', 'Dream Accounts™', 'Growth Roadmap', 'Executive Debrief']} />
           <Investment>$3,995 <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>· a one-time strategic engagement</span></Investment>
-          <DoorButton onClick={talk}>Begin Your Blueprint</DoorButton>
+          <DoorButton onClick={talk}>Begin the Conversation</DoorButton>
         </div>
 
         <ArchLine />
@@ -224,7 +223,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>For founders who believe the best decisions are rarely made alone. Join a carefully curated group of founders committed to becoming stronger leaders while helping one another navigate the realities of building meaningful companies.</p>
           <Included heading="Membership includes" items={['Monthly Founder Gathering', 'Private Community', 'Ongoing Founder Discussions', 'One Individual Strategy Session', 'Shared Wisdom', 'Real Accountability']} />
           <Investment>$995 <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>/ month</span></Investment>
-          <DoorButton onClick={talk}>Join the Room</DoorButton>
+          <DoorButton onClick={talk}>Begin the Conversation</DoorButton>
         </div>
 
         <ArchLine />
@@ -236,7 +235,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={SUB}>Reserved for defining moments.</p>
           <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>Reserved for founders navigating meaningful periods of growth, leadership, transition, or transformation. Highly personalized advisory work, designed around your company, your leadership, and your biggest decisions.</p>
           <Investment><span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.85)' }}>By application.</span></Investment>
-          <DoorButton onClick={talk}>Request an Introduction</DoorButton>
+          <DoorButton onClick={talk}>Begin the Conversation</DoorButton>
         </div>
 
         <ArchLine />
@@ -276,10 +275,11 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         {/* ── the front porch — Visionary Collective ──────────────────── */}
         <ArchLine m="clamp(100px,18vh,220px) auto clamp(70px,12vh,150px)" />
         <div style={reveal}>
-          <div style={{ ...label, marginBottom: '1.6em' }}>Stay Connected</div>
-          <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)' }}>Visionary Collective<TM /></h3>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: '0.2em auto 1.5em', maxWidth: '30ch', ...balance }}>Not every founder is ready for a Blueprint, or for The Founder’s Room. That’s okay.</p>
-          <p style={{ ...P, margin: '0 auto', maxWidth: '42ch' }}>A place to stay connected, continue learning, and receive thoughtful insights as you build your company — among founders from around the world who believe meaningful businesses are built one thoughtful decision at a time.</p>
+          <div style={{ ...label, marginBottom: '1.8em' }}>The Front Porch</div>
+          <p style={{ ...P, margin: '0 auto', maxWidth: '28ch', fontSize: 'clamp(20px,2.3vw,29px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.82)' }}>Not every founder is ready to begin a Blueprint. Not every founder is looking for Private Advisory.</p>
+          <p style={{ ...P, margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '26ch', lineHeight: 2, color: 'rgba(43,39,35,0.66)' }}>Sometimes you simply want a place to return to.<br />A place to think.<br />A place to continue learning.<br />A place to remain connected to other founders building meaningful companies.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', color: 'rgba(122,94,52,0.72)', margin: 'clamp(44px,8vh,88px) auto 0.35em' }}>Welcome to the</p>
+          <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)', margin: 0 }}>Visionary Collective<TM /></h3>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(36px,6vw,80px)', maxWidth: 560, margin: 'clamp(40px,7vh,72px) auto 0' }}>
             <div style={{ flex: '0 1 200px' }}>
               <div style={{ ...label, letterSpacing: '0.4em', color: 'rgba(122,94,52,0.55)', marginBottom: '0.7em' }}>Founder</div>
