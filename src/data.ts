@@ -322,7 +322,7 @@ const PHOTOS: Record<string, string> = {
   garden: '/photos/photo-garden.png', library: '/photos/photo-library.png', fieldnotes: '/photos/photo-fieldnotes.png',
   stage: '/photos/photo-stage.png', advisory: '/photos/photo-advisory.png',
   // The Studio and The Founder's Room now show photographs (previously type-led).
-  studio: '/photos/photo-studio.png', founders: '/photos/photo-founders.png',
+  studio: '/photos/photo-studio.png', founders: '/photos/photo-founders.webp',
   blueprint: '',
 }
 const LAYOUT: Record<string, { side: string; corner?: string }> = {
