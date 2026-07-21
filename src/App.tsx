@@ -24,6 +24,7 @@ import { StoriesChapter } from './chapters/Stories'
 import { HouseChapter } from './chapters/House'
 import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
+import { DoorwayChapter } from './chapters/Doorway'
 import { FieldNotesChapter } from './chapters/FieldNotes'
 import { HousesChapter } from './chapters/Houses'
 import { ReceiveKey } from './chapters/ReceiveKey'
@@ -37,6 +38,7 @@ interface State {
   justEntered: boolean
   prologueSeen: boolean
   activeId: string | null
+  activeDoorway: string | null
   hasKey: boolean
   pendingRoom: string | null
   showHouses: boolean; showPeople: boolean; showStudio: boolean; showFounderRoom: boolean
@@ -84,7 +86,7 @@ export class App extends React.Component<Record<string, never>, State> {
 
   state: State = {
     phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: hasSeenPrologue(),
-    activeId: null, hasKey: false, pendingRoom: null,
+    activeId: null, activeDoorway: null, hasKey: false, pendingRoom: null,
     showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
     showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
@@ -108,6 +110,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openHouses: this.openChapter('showHouses'), closeHouses: this.closeChapter('showHouses'),
       openWork: this.openChapter('showWork'), closeWork: this.closeChapter('showWork'),
       openFieldNotes: this.openChapter('showFieldNotes'), closeFieldNotes: this.closeChapter('showFieldNotes'),
+      openDoorway: this.openDoorway, closeDoorway: this.closeDoorway,
       receiveKey: this.receiveKey, askKey: this.askKey, closeKey: this.closeKey,
       replay: this.replay,
       gotoRoom: this.gotoRoom,
@@ -141,6 +144,7 @@ export class App extends React.Component<Record<string, never>, State> {
 
   private onKey = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
+      if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
       const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showFounderRoom', 'showStudio', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
@@ -225,8 +229,15 @@ export class App extends React.Component<Record<string, never>, State> {
   }
   private closeRoom = () => this.setState({ activeId: null })
 
+  // a dedicated experience page — layered above the doorways it was opened from
+  private openDoorway = (id: string): Handler => (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    this.setState({ activeDoorway: id })
+  }
+  private closeDoorway = () => this.setState({ activeDoorway: null })
+
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false }
+    return { showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -292,6 +303,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showLibrary && <LibraryChapter ctx={this.ctx} />}
         {this.state.showTable && <TableChapter ctx={this.ctx} />}
         {this.state.showWork && <WorkChapter ctx={this.ctx} />}
+        {this.state.activeDoorway && <DoorwayChapter ctx={this.ctx} id={this.state.activeDoorway} />}
         {this.state.showAdvisory && <AdvisoryChapter ctx={this.ctx} />}
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
         {this.state.showHouse && <HouseChapter ctx={this.ctx} />}

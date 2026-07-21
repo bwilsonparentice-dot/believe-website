@@ -22,6 +22,8 @@ export interface Ctx {
   openHouses: Handler; closeHouses: Handler
   openWork: Handler; closeWork: Handler
   openFieldNotes: Handler; closeFieldNotes: Handler
+  /** open a dedicated experience page (e.g. 'founders-room') */
+  openDoorway: (id: string) => Handler; closeDoorway: Handler
   receiveKey: Handler; askKey: Handler; closeKey: Handler
   replay: Handler
   /** scroll the building to a given room id (e.g. 'garden') */

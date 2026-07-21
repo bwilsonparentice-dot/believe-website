@@ -214,6 +214,84 @@ export const FR_INCLUDES = [
   'Accountability', 'Access to resident expertise', 'Priority communication', 'Quarterly Blueprint refinement',
 ]
 
+/**
+ * EXPERIENCES — the dedicated editorial rooms behind each doorway.
+ * The site is organized around experiences, not services. Each page is the
+ * same quiet anatomy — what it is, who it's for, what's included, the
+ * particulars, what changes, the questions founders ask — so five different
+ * rooms still feel like one house. Every page ends the same way: a
+ * conversation, never a checkout.
+ */
+export type Faq = { q: string; a: string }
+export type Particular = { label: string; value: string }
+export type Experience = {
+  id: string
+  eyebrow: string        // a spatial descriptor — "the gathering room"
+  name: string
+  tm?: boolean
+  tagline: string        // the one-line promise
+  photo?: string         // a PHOTOS key
+  photoAlt?: string
+  whatIsIt: string[]     // paragraphs — quiet, never a pitch
+  whoFor: string        // who this room is for
+  whoNotFor?: string     // and, gently, who it isn't
+  includedHeading?: string
+  included: string[]
+  particulars: Particular[]   // group size · cadence · community · investment
+  changesLead: string    // the felt result, led by one line
+  changes: string[]      // the first-person aftermath — felt, not explained
+  faqs: Faq[]
+  closing: string        // the line that precedes "Begin the Conversation"
+}
+
+export const EXPERIENCES: Record<string, Experience> = {
+  'founders-room': {
+    id: 'founders-room',
+    eyebrow: 'The gathering room',
+    name: 'The Founder’s Room',
+    tm: true,
+    tagline: 'Grow beside other founders.',
+    photo: 'founders',
+    photoAlt: 'The Founder’s Room — a quiet circle of chairs by a tall window, morning light',
+    whatIsIt: [
+      'The Founder’s Room is an ongoing advisory circle for founders who believe the best decisions are rarely made alone.',
+      'Each month a small, carefully chosen group of founders gathers — to think out loud, to bring the real decision to the room, and to become stronger leaders alongside one another. Not a course. Not a mastermind. A room you can build a company inside of.',
+    ],
+    whoFor: 'For founders building meaningful companies who value thoughtful strategy over quick tactics, want a trusted circle to think beside, and are willing to do the work of becoming a better leader.',
+    whoNotFor: 'It’s probably not the room for those seeking shortcuts, passive courses, or someone else to build the company for them.',
+    includedHeading: 'What membership includes',
+    included: [
+      'A monthly founder gathering',
+      'A private founder community',
+      'Ongoing founder discussions',
+      'One individual strategy session',
+      'Founder Notes, kept over time',
+      'Real accountability',
+    ],
+    particulars: [
+      { label: 'Group size', value: 'A small, curated circle — never a crowd. Small enough that every founder is known.' },
+      { label: 'Meeting cadence', value: 'A live gathering each month, with the conversation continuing quietly between.' },
+      { label: 'Community', value: 'A private space for members, open between gatherings, in your own time.' },
+      { label: 'Investment', value: '$995 / month' },
+    ],
+    changesLead: 'Founders arrive carrying questions. They leave carrying clarity.',
+    changes: [
+      'I feel lighter.',
+      'I can see more clearly.',
+      'I know my next step.',
+      'I remembered why I started.',
+    ],
+    faqs: [
+      { q: 'How large is the room?', a: 'Intentionally small. The Founder’s Room is a curated circle, not an audience — small enough that every founder is known, and every voice is heard.' },
+      { q: 'How often do you meet?', a: 'Once a month, live, for a founder gathering. Between gatherings the conversation continues in the private community, in your own time — never a feed to keep up with.' },
+      { q: 'Is this a course or a curriculum?', a: 'No. There is no curriculum here. Each gathering begins with the real questions founders bring, and the room thinks through them together.' },
+      { q: 'What if I need help with a specific decision?', a: 'Membership includes an individual strategy session — and the room itself is built for exactly this: one founder, one real decision, the room’s full attention.' },
+      { q: 'How do I join?', a: 'The room opens by conversation. We begin with The Founder Conversation, so we can understand where you are and whether this is the right room for you now.' },
+    ],
+    closing: 'The best founders don’t build alone. They build beside others who understand.',
+  },
+}
+
 export type FieldNote = { n: string; obs: string; tilt: string; title?: string; hand?: string; to?: string }
 export const FIELD_NOTES: FieldNote[] = [
   { n: '014', obs: 'Growth usually creates new problems faster than confidence.', tilt: '-0.5deg' },
