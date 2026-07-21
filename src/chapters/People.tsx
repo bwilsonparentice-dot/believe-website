@@ -2,7 +2,7 @@ import React from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
-import { PEOPLE, PEOPLE_PHOTOS } from '../data'
+import { PEOPLE, PEOPLE_PHOTOS, PEOPLE_HERO } from '../data'
 
 /** The People of Believe Studio — editorial portraits in arched niches, each an introduction. */
 export function PeopleChapter({ ctx }: { ctx: Ctx }) {
@@ -10,7 +10,7 @@ export function PeopleChapter({ ctx }: { ctx: Ctx }) {
     <ChapterShell onClose={ctx.closePeople} background="#f4ede0">
       {/* one architectural photograph: the room ready for conversation */}
       <div style={{ position: 'relative', width: '100%', height: 'clamp(420px,74vh,880px)', overflow: 'hidden' }}>
-        <ImageSlot placeholder="an empty oak table in warm morning light, fresh coffee, open notebooks, several chairs waiting" style={{ position: 'absolute', top: '-2.5%', left: '-2.5%', width: '105%', height: '105%', animation: 'slowZoom 20s ease-out both' }} />
+        <ImageSlot src={PEOPLE_HERO} alt="An oak table in warm morning light, fresh coffee, open notebooks, chairs waiting" placeholder="an empty oak table in warm morning light, fresh coffee, open notebooks, several chairs waiting" style={{ position: 'absolute', top: '-2.5%', left: '-2.5%', width: '105%', height: '105%', animation: 'slowZoom 20s ease-out both' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(58% 52% at 40% 22%, rgba(255,238,196,0.5), transparent 66%)' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.24) 0%, transparent 30%, transparent 52%, rgba(244,237,224,0.9) 100%)' }} />
       </div>

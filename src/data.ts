@@ -300,8 +300,8 @@ export const PEOPLE_PHOTOS: Record<string, string> = {
   'portrait-mona': '/photos/portrait-mona.png',
 }
 
-/** The Stories header — a table in morning light, set for the conversation. */
-export const STORIES_HERO = '/photos/photo-the-people.png'
+/** The People header — a table in morning light, the room ready for conversation. */
+export const PEOPLE_HERO = '/photos/photo-the-people.png'
 
 /**
  * Founder (client) story portraits, keyed by pid. Drop a file at the matching
