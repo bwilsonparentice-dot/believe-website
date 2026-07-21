@@ -69,6 +69,16 @@ a:hover { color: #b08a4a; }
   0%,100% { opacity: 0.6; }
   50%     { opacity: 0.85; }
 }
+/* living light through the gap — a gentle, uneven shimmer of the glow only (never
+   the crack width), so the door feels alive without a mechanical pulse */
+@keyframes crackFlicker {
+  0%   { opacity: 0.50; }
+  24%  { opacity: 0.64; }
+  46%  { opacity: 0.55; }
+  68%  { opacity: 0.68; }
+  84%  { opacity: 0.58; }
+  100% { opacity: 0.50; }
+}
 /* the arrival fades up from black — birds heard first, then the limestone revealed */
 @keyframes blackReveal { 0%,15% { opacity: 1; } 100% { opacity: 0; } }
 /* three quiet steps forward into the house (a walk, eased so it reads as approach) */

@@ -28,21 +28,21 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
   useEffect(() => {
     const onResize = () => setVp({ w: window.innerWidth, h: window.innerHeight })
     window.addEventListener('resize', onResize)
-    const t = motionOn ? setTimeout(() => setEased(true), 1600) : undefined
+    const t = motionOn ? setTimeout(() => setEased(true), 2300) : undefined
     return () => { window.removeEventListener('resize', onResize); if (t) clearTimeout(t) }
   }, [motionOn])
 
   // three stages: closed (0) → ajar a crack (1) → opening on arrival (2)
   const stage = opening ? 2 : eased ? 1 : 0
   const pick = <T,>(a: T, b: T, c: T) => [a, b, c][stage] as T
-  const coreW = pick(3, 11, 27)
-  const coreOp = pick(0.68, 0.72, 0.9)
-  const coreBlur = pick(1.3, 2.9, 3.8)
-  const haloW = pick(54, 94, 186)
-  const haloOp = pick(0.3, 0.42, 0.8)
-  const poolW = pick(42, 78, 138)
-  const poolH = pick(22, 34, 54)
-  const poolOp = pick(0.3, 0.42, 0.8)
+  const coreW = pick(4, 21, 32)
+  const coreOp = pick(0.55, 0.85, 0.95)
+  const coreBlur = pick(1.4, 2.5, 3.6)
+  const haloW = pick(50, 128, 200)
+  const haloOp = pick(0.26, 0.58, 0.85)
+  const poolW = pick(38, 100, 146)
+  const poolH = pick(18, 42, 58)
+  const poolOp = pick(0.26, 0.58, 0.85)
 
   // object-fit: cover mapping from image fraction → screen px
   const scale = Math.max(vp.w / NW, vp.h / NH)
@@ -60,14 +60,15 @@ export function DoorCrack({ opening, motionOn }: { opening: boolean; motionOn: b
   const hH = (H_BOT - H_TOP) * rh
   const handleAnim = !motionOn ? 'none' : opening ? 'handleSheen 1100ms ease 260ms both' : eased ? 'handleRest 15s ease-in-out infinite' : 'none'
 
-  // the door opens ONCE — slowly, then holds. No repeating loop, so it reads as a
-  // real door easing open rather than a pulsing light. The initial ajar is a long,
-  // gentle open (~5.4s); the click-open is weighted (~1.9s).
+  // the door opens ONCE — a visible, watchable ease (~2.8s), timed just after the
+  // limestone is revealed so the visitor sees it part. Then it holds. The core light
+  // stays steady (no width pulse); only the soft halo shimmers, as light through a
+  // gap does when the air moves — living, not a mechanical repeat.
   const breath = 'none'
-  const haloBreath = 'none'
+  const haloBreath = motionOn && stage === 1 ? 'crackFlicker 9s ease-in-out infinite' : 'none'
   const T = opening
     ? 'width 1900ms cubic-bezier(.5,0,.28,1), height 1900ms cubic-bezier(.5,0,.28,1), filter 1900ms ease, opacity 1400ms ease'
-    : 'width 5400ms cubic-bezier(.26,0,.32,1), height 5400ms cubic-bezier(.26,0,.32,1), filter 5400ms ease, opacity 5400ms ease'
+    : 'width 2800ms cubic-bezier(.34,0,.28,1), height 2800ms cubic-bezier(.34,0,.28,1), filter 2800ms ease, opacity 2200ms ease'
 
   // the bright core of the crack — a thin sliver closed, a widening band as it parts
   const core: CSSProperties = {
