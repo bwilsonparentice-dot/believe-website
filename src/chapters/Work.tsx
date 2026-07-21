@@ -10,9 +10,9 @@ const sans = "'Jost',sans-serif"
 const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 const balance = { textWrap: 'balance' as React.CSSProperties['textWrap'] }
 
-// Beth's scheduling link for The Founder Conversation. Leave blank until the real
-// Calendly/scheduler URL is set; the note still shows, and the button waits.
-const FOUNDER_CALL_URL = ''
+// Beth's scheduling link for The Founder Conversation — reached only after the
+// transitional note, so the emotional tone is set before a time is ever chosen.
+const FOUNDER_CALL_URL = 'https://calendly.com/beth-believeagency/elite-brand-visibility-call-clone'
 
 /** A small ™ set in superscript. */
 function TM() {
@@ -92,6 +92,61 @@ const reveal: React.CSSProperties = {
   animationRange: 'entry 3% cover 26%' as unknown as string,
 }
 
+/** A cluster of small olive leaves around a point — deterministic, so it's calm. */
+function leaves(cx: number, cy: number, n: number, seed: number) {
+  let s = seed >>> 0
+  const rnd = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296 }
+  const out: React.ReactNode[] = []
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 + rnd() * 0.7
+    const r = 5 + rnd() * 12
+    const lx = cx + Math.cos(a) * r, ly = cy + Math.sin(a) * r * 0.9
+    const rot = (a * 180) / Math.PI + 90
+    out.push(<ellipse key={`${seed}-${i}`} cx={lx} cy={ly} rx={2.2 + rnd() * 1} ry={5 + rnd() * 2.4} transform={`rotate(${rot} ${lx} ${ly})`} fill="#7d8a53" opacity={0.5 + rnd() * 0.35} />)
+  }
+  return out
+}
+
+/**
+ * A Mediterranean olive tree — the shape of how Believe grows. Roots of belief,
+ * a trunk of transformation, branches of growth, fruit that nourishes the
+ * founders who come next. Drawn simply; never a diagram.
+ */
+function OliveTree() {
+  const tips: [number, number, number, number][] = [
+    [84, 226, 8, 11], [224, 224, 8, 29], [112, 182, 7, 43], [196, 180, 7, 61],
+    [150, 162, 9, 79], [128, 150, 6, 97], [172, 150, 6, 113], [150, 200, 5, 131],
+  ]
+  const olives: [number, number][] = [[90, 224], [220, 222], [150, 158], [116, 184], [194, 182], [150, 196]]
+  return (
+    <svg viewBox="0 0 300 430" width="100%" height="100%" style={{ display: 'block', overflow: 'visible' }} aria-hidden="true">
+      <g stroke="#8a6a3a" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        {/* roots */}
+        <g strokeWidth={2} opacity={0.85}>
+          <path d="M150 384 C128 398, 108 402, 92 416" />
+          <path d="M150 384 C172 398, 192 402, 210 416" />
+          <path d="M150 384 C144 402, 138 408, 128 420" />
+          <path d="M150 384 C156 402, 164 408, 176 420" />
+        </g>
+        {/* trunk */}
+        <path d="M150 386 C144 340, 154 312, 150 260" strokeWidth={7} />
+        {/* branches */}
+        <g strokeWidth={2.6}>
+          <path d="M150 300 C122 282, 102 258, 86 230" />
+          <path d="M150 288 C180 270, 204 250, 222 228" />
+          <path d="M150 262 C134 238, 122 212, 114 186" />
+          <path d="M150 258 C168 234, 184 210, 194 184" />
+          <path d="M150 258 C150 224, 150 196, 150 166" />
+        </g>
+      </g>
+      {/* foliage */}
+      <g>{tips.map(([x, y, n, seed]) => leaves(x, y, n, seed))}</g>
+      {/* olives */}
+      <g>{olives.map(([x, y], i) => <ellipse key={i} cx={x} cy={y} rx={2.6} ry={3.4} fill="#5b4a6b" opacity={0.8} />)}</g>
+    </svg>
+  )
+}
+
 /**
  * The final room — where a founder decides whether they are ready to begin.
  * Not a pricing page: an editorial passage that opens with the transformation,
@@ -110,9 +165,10 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
     <ChapterShell onClose={ctx.closeWork} background="#efe6d3">
       <div style={{ position: 'relative', maxWidth: 780, margin: '0 auto', padding: 'clamp(100px,18vh,240px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
 
-        {/* ── opening: the reframe ────────────────────────────────────── */}
-        <div style={{ ...label, marginBottom: 'clamp(30px,5vh,52px)' }}>Investment</div>
-        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.6vw,64px)', lineHeight: 1.12, margin: '0 auto', maxWidth: '20ch', ...balance }}>You’re not investing in a deliverable. You’re investing in becoming the leader your company needs you to become.</h2>
+        {/* ── opening: the emotional heading, then the reframe ────────── */}
+        <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>Investment</div>
+        <h1 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(38px,6vw,86px)', lineHeight: 1.04, margin: '0 auto clamp(30px,5vh,52px)', maxWidth: '15ch', ...balance }}>Every Journey Begins Somewhere.</h1>
+        <h2 style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.82)', margin: '0 auto', maxWidth: '22ch', ...balance }}>You’re not investing in a deliverable. You’re investing in becoming the leader your company needs you to become.</h2>
 
         <ArchLine m="clamp(80px,14vh,180px) auto" />
 
@@ -125,10 +181,10 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
 
         <ArchLine m="clamp(96px,17vh,210px) auto clamp(80px,14vh,170px)" />
 
-        {/* ── choose your doorway ─────────────────────────────────────── */}
+        {/* ── the doorways ────────────────────────────────────────────── */}
         <ArchMark width={2.2} margin="0 auto 1.6em" />
-        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(36px,5.6vw,80px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>Choose Your Doorway</h2>
-        <p style={{ ...SUB, fontStyle: 'normal', fontWeight: 300, color: 'rgba(43,39,35,0.7)', fontSize: 'clamp(19px,2.1vw,27px)' }}>Every founder enters Believe differently. Choose the doorway that best reflects where you are today.</p>
+        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.8vw,64px)', lineHeight: 1.06, margin: '0 0 0.5em', ...balance }}>Every founder enters Believe differently.</h2>
+        <p style={{ ...SUB, fontStyle: 'normal', fontWeight: 300, color: 'rgba(43,39,35,0.7)', fontSize: 'clamp(19px,2.1vw,27px)' }}>Choose the doorway that best reflects where you are today.</p>
 
         {/* Doorway One — The Founder Conversation */}
         <div style={{ ...reveal, marginTop: 'clamp(80px,15vh,180px)' }}>
@@ -194,6 +250,49 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <div style={{ display: 'inline-block', marginTop: 'clamp(30px,5vh,50px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', border: '1px solid rgba(122,94,52,0.3)', borderRadius: 2, padding: '12px 28px' }}>Coming Soon</div>
         </div>
 
+        {/* ── how Believe grows — the olive tree ──────────────────────── */}
+        <ArchLine m="clamp(100px,18vh,220px) auto clamp(70px,12vh,150px)" />
+        <div style={{ ...label, marginBottom: 'clamp(30px,5vh,52px)' }}>How Believe grows</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 'clamp(24px,5vw,72px)', maxWidth: 620, margin: '0 auto', ...reveal }}>
+          <div style={{ flex: '0 0 auto', width: 'clamp(190px,26vw,260px)', aspectRatio: '300/430' }}><OliveTree /></div>
+          {/* the branches, rising — Conversation at the root, guiding others at the crown */}
+          <div style={{ position: 'relative', display: 'flex', flexDirection: 'column-reverse', gap: 'clamp(14px,2.6vh,24px)', textAlign: 'left', paddingLeft: 22 }}>
+            <span aria-hidden="true" style={{ position: 'absolute', left: 5, top: '6%', bottom: '6%', width: 1, background: 'linear-gradient(180deg, rgba(125,138,83,0.55), rgba(122,94,52,0.3))' }} />
+            {['The Founder Conversation', 'The Believe Blueprint™', 'The Founder’s Room™', 'Private Advisory', 'Founder Fellowship™', 'Founders Leading Founders™'].map((s, i, arr) => {
+              const top = i === arr.length - 1
+              return (
+                <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: '0.7em' }}>
+                  <span aria-hidden="true" style={{ position: 'absolute', left: 2, width: 7, height: 7, borderRadius: '50%', background: top ? '#8a6a3a' : '#7d8a53', transform: 'translateX(-1px)' }} />
+                  <span style={{ fontFamily: serif, fontWeight: top ? 500 : 300, fontStyle: top ? 'italic' : 'normal', fontSize: top ? 'clamp(19px,2.2vw,27px)' : 'clamp(17px,1.9vw,23px)', lineHeight: 1.25, color: top ? 'rgba(122,94,52,0.95)' : 'rgba(43,39,35,0.74)' }}>{s}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.72)', maxWidth: '34ch', margin: 'clamp(40px,7vh,80px) auto 0', ...balance }}>The roots are belief. The trunk, transformation. The branches, growth. The fruit nourishes the founders who come next.</p>
+        <p style={{ ...P, margin: 'clamp(44px,8vh,90px) auto 0', maxWidth: '32ch', lineHeight: 1.9 }}>Every founder enters Believe differently. Some begin with a conversation. Some begin with a Blueprint. Some join The Founder’s Room. Over time, some become Founder Fellows.</p>
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.24, color: '#2b2723', maxWidth: '20ch', margin: 'clamp(32px,5.5vh,60px) auto 0', ...balance }}>The greatest founders don’t simply build successful companies. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)' }}>They help build stronger founders.</span></p>
+
+        {/* ── the front porch — Visionary Collective ──────────────────── */}
+        <ArchLine m="clamp(100px,18vh,220px) auto clamp(70px,12vh,150px)" />
+        <div style={reveal}>
+          <div style={{ ...label, marginBottom: '1.6em' }}>Stay Connected</div>
+          <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)' }}>Visionary Collective<TM /></h3>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: '0.2em auto 1.5em', maxWidth: '30ch', ...balance }}>Not every founder is ready for a Blueprint, or for The Founder’s Room. That’s okay.</p>
+          <p style={{ ...P, margin: '0 auto', maxWidth: '42ch' }}>A place to stay connected, continue learning, and receive thoughtful insights as you build your company — among founders from around the world who believe meaningful businesses are built one thoughtful decision at a time.</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(36px,6vw,80px)', maxWidth: 560, margin: 'clamp(40px,7vh,72px) auto 0' }}>
+            <div style={{ flex: '0 1 200px' }}>
+              <div style={{ ...label, letterSpacing: '0.4em', color: 'rgba(122,94,52,0.55)', marginBottom: '0.7em' }}>Founder</div>
+              <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.2vw,40px)', color: '#2b2723' }}>$98 <span style={{ fontStyle: 'italic', fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>/ year</span></div>
+            </div>
+            <div style={{ flex: '0 1 200px' }}>
+              <div style={{ ...label, letterSpacing: '0.4em', color: 'rgba(122,94,52,0.55)', marginBottom: '0.7em' }}>Legacy</div>
+              <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.2vw,40px)', color: '#2b2723' }}>$498 <span style={{ fontStyle: 'italic', fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>/ year</span></div>
+            </div>
+          </div>
+          <DoorButton onClick={talk}>Join the Collective</DoorButton>
+        </div>
+
         {/* ── closing ─────────────────────────────────────────────────── */}
         <div style={{ margin: 'clamp(110px,20vh,240px) auto clamp(48px,8vh,90px)', width: 'min(94%,760px)', ...reveal }}>
           <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 10', overflow: 'hidden', borderRadius: 'clamp(120px,22vw,300px) clamp(120px,22vw,300px) 8px 8px', boxShadow: '0 60px 110px -60px rgba(60,44,20,0.66)' }}>
@@ -238,29 +337,26 @@ function ConversationNote({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         style={{ position: 'relative', width: 'min(680px,100%)', maxHeight: '92vh', overflowY: 'auto', background: 'radial-gradient(120% 90% at 34% 18%, #fbf6ec, #f1e8d7 70%, #e9dfc9)', borderRadius: 4, boxShadow: '0 60px 120px -50px rgba(30,20,8,0.7)', padding: 'clamp(36px,5.5vw,72px) clamp(28px,5vw,68px)', textAlign: 'center', animation: 'contentFocus 800ms cubic-bezier(.2,.7,.2,1) both' }}
       >
-        <ArchMark width={2.2} margin="0 auto 1.4em" />
+        <ArchMark width={2.2} margin="0 auto 1.3em" />
+        <div style={{ ...label, fontSize: 10, letterSpacing: '0.44em', marginBottom: '1.4em' }}>The Founder Conversation<span style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</span></div>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(25px,3.2vw,42px)', lineHeight: 1.16, color: '#2b2723', margin: '0 auto clamp(22px,3.6vh,36px)', maxWidth: '20ch', ...balance }}>Every meaningful company begins with a conversation.</p>
-        <p style={{ ...line, color: 'rgba(43,39,35,0.72)', maxWidth: '34ch', margin: '0 auto clamp(26px,4.4vh,42px)', fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, ...pretty }}>Before we talk about strategy, growth, or opportunities, we want to understand you.</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px,1.5vh,15px)', maxWidth: '26ch', margin: '0 auto clamp(26px,4.4vh,42px)' }}>
-          <p style={line}>What are you building?</p>
-          <p style={line}>What’s changing?</p>
-          <p style={line}>What feels exciting?</p>
-          <p style={line}>What feels heavy?</p>
+        <p style={{ ...line, color: 'rgba(43,39,35,0.72)', maxWidth: '36ch', margin: '0 auto clamp(26px,4.4vh,42px)', fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, ...pretty }}>Before we talk about strategy, growth, or opportunities, we’d simply like to understand you.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(6px,1.2vh,13px)', maxWidth: '30ch', margin: '0 auto clamp(24px,4vh,38px)' }}>
+          <p style={{ ...line, fontSize: 'clamp(19px,2.2vw,28px)' }}>What are you building?</p>
+          <p style={{ ...line, fontSize: 'clamp(19px,2.2vw,28px)' }}>What feels exciting?</p>
+          <p style={{ ...line, fontSize: 'clamp(19px,2.2vw,28px)' }}>What feels uncertain?</p>
+          <p style={{ ...line, fontSize: 'clamp(19px,2.2vw,28px)' }}>What chapter are you entering?</p>
         </div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.85)', margin: '0 auto clamp(32px,5.4vh,52px)', maxWidth: '26ch', ...balance }}>This isn’t a sales call. It’s simply the beginning of a conversation between founders.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.85)', margin: '0 auto clamp(32px,5.4vh,52px)', maxWidth: '24ch', ...balance }}>This conversation isn’t about selling. It’s about listening.</p>
 
-        {FOUNDER_CALL_URL ? (
-          <a
-            href={FOUNDER_CALL_URL}
-            target="_blank"
-            rel="noreferrer"
-            style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: '#f6efe4', background: '#3a2f1e', border: '1px solid #3a2f1e', borderRadius: 2, padding: '16px 38px', cursor: 'pointer' }}
-          >
-            Continue to scheduling&nbsp;&rarr;
-          </a>
-        ) : (
-          <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(16px,1.8vw,22px)', color: 'rgba(122,94,52,0.7)', maxWidth: '28ch', margin: '0 auto' }}>Scheduling opens here soon. In the meantime, we’d love to hear from you.</div>
-        )}
+        <a
+          href={FOUNDER_CALL_URL}
+          target="_blank"
+          rel="noreferrer"
+          style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: '#f6efe4', background: '#3a2f1e', border: '1px solid #3a2f1e', borderRadius: 2, padding: '16px 40px', cursor: 'pointer' }}
+        >
+          Continue to Scheduling&nbsp;&rarr;
+        </a>
 
         <El onClick={onClose} style={{ display: 'block', margin: 'clamp(26px,4.4vh,42px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.4)', cursor: 'pointer', transition: 'color 400ms ease' }} hover={{ color: 'rgba(43,39,35,0.75)' }}>Not just now</El>
       </div>
