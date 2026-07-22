@@ -138,24 +138,27 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
     <ChapterShell onClose={ctx.closeDoorway} background="#ece5d1" z={130}>
       <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: 'clamp(120px,22vh,280px) 7vw clamp(80px,14vh,170px)', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
 
-        {/* ── opening — the folio, resting on the oak table ──────────────── */}
-        <div style={{ width: 'min(96%,820px)', margin: '0 auto', ...surface('entry 0% cover 18%') }}>
-          <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 10', overflow: 'hidden', borderRadius: '4px', boxShadow: '0 60px 110px -60px rgba(60,44,20,0.66)' }}>
+        {/* ── opening — the folio, resting on the oak table, in an arch ──── */}
+        <div style={{ width: 'min(90%,660px)', margin: '0 auto', ...surface('entry 0% cover 18%') }}>
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 2', overflow: 'hidden', borderRadius: '999px 999px 6px 6px', boxShadow: '0 60px 110px -60px rgba(60,44,20,0.66)' }}>
             <ImageSlot src={PHOTOS.blueprint} alt="The Believe Blueprint — an open journal and architectural plans resting on the oak table in morning light" fit="cover" placeholder="The Believe Blueprint resting on the oak table" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
-            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 60% at 38% 20%, rgba(255,232,180,0.5), transparent 68%)' }} />
+            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 60% at 40% 22%, rgba(255,232,180,0.5), transparent 68%)' }} />
           </div>
         </div>
 
+        {/* ── the heading, in the language of the other rooms ───────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(80px,14vh,170px)' }}>
-          <ArchMark width={2.2} margin="0 auto 1.6em" />
-          <div style={{ ...label, marginBottom: 'clamp(28px,5vh,48px)' }}>The Believe Blueprint<span style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</span></div>
-          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.4vw,78px)', lineHeight: 1.08, margin: '0 auto', maxWidth: '18ch', ...balance }}>We don’t build business plans. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)' }}>We reveal business architecture.</span></h2>
+          <ArchMark width={2.2} margin="0 auto 1.5em" />
+          <div style={{ ...label, marginBottom: '1.3em' }}>{x.eyebrow}</div>
+          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.4em' }}>{x.name}<span style={{ fontSize: '0.42em', verticalAlign: 'super', letterSpacing: 0 }}>™</span></h2>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>{x.tagline}</p>
         </div>
 
         <ArchRule m="clamp(96px,17vh,220px) auto" />
 
-        {/* ── the philosophy ────────────────────────────────────────────── */}
+        {/* ── the manifesto, then the philosophy ────────────────────────── */}
         <div style={{ textAlign: 'center' }}>
+          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.8vw,68px)', lineHeight: 1.1, margin: '0 auto clamp(48px,8vh,96px)', maxWidth: '18ch', ...balance }}>We don’t build business plans. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)' }}>We reveal business architecture.</span></h2>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.86)', maxWidth: '28ch', margin: '0 auto', ...balance }}>Business plans attempt to predict the future. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.9)' }}>Architecture creates structures capable of carrying it.</span></p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.72)', maxWidth: '46ch', margin: 'clamp(48px,8vh,90px) auto 0', ...pretty }}>The Believe Blueprint™ is not a template, a deck, or a collection of recommendations. It is the architectural plan for your next chapter — a thoughtful examination of your company, your opportunities, your leadership, and the decisions that will shape what comes next.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.82)', maxWidth: '32ch', margin: 'clamp(34px,6vh,60px) auto 0', ...balance }}>Every Blueprint is built from the ground up. Never templated. Never borrowed. Always designed around the founder and the company they are becoming.</p>
@@ -188,12 +191,15 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         <div style={{ ...surface() }}>
           <div style={{ ...label, textAlign: 'center', marginBottom: 'clamp(48px,8vh,90px)' }}>The particulars</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 'clamp(36px,4.5vw,64px)', maxWidth: 820, margin: '0 auto' }}>
-            {specs.map((p, i) => (
-              <div key={i} style={{ textAlign: 'left' }}>
-                <div style={{ ...label, fontSize: 10, letterSpacing: '0.34em', color: 'rgba(122,94,52,0.62)', marginBottom: '1em' }}>{p.label}</div>
-                <div style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.8)', ...pretty }}>{p.value}</div>
-              </div>
-            ))}
+            {specs.map((p, i) => {
+              const invest = p.label === 'Your investment'
+              return (
+                <div key={i} style={{ textAlign: 'left' }}>
+                  <div style={{ ...label, fontSize: 10, letterSpacing: '0.34em', color: 'rgba(122,94,52,0.62)', marginBottom: '1em' }}>{p.label}</div>
+                  <div style={{ fontFamily: serif, fontWeight: 400, fontSize: invest ? 'clamp(28px,3.4vw,44px)' : 'clamp(18px,2vw,24px)', lineHeight: invest ? 1.05 : 1.55, color: invest ? '#2b2723' : 'rgba(43,39,35,0.8)', ...pretty }}>{p.value}</div>
+                </div>
+              )
+            })}
           </div>
         </div>
 
