@@ -4,7 +4,10 @@ import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
-import { EXPERIENCES, PHOTOS, type Faq } from '../data'
+import { EXPERIENCES, PHOTOS, type Faq, type ArchiveNote } from '../data'
+
+// a fine, desaturated paper grain — cotton-paper texture, not printed onto it
+const paperGrain = "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23g)' opacity='0.55'/></svg>\")"
 
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
@@ -55,23 +58,31 @@ function Correspondence({ item, index, open, onToggle }: { item: Faq; index: num
 }
 
 /**
- * A quiet artifact — a single page from a founder's notebook, left resting on
- * the table. Not decoration: evidence that real conversations and real
- * decisions have already passed through this room. It isn't meant to be read.
+ * A page from the Believe Archive — one quiet observation, left resting inside
+ * the room. A warm-cream archival card with softly worn edges and cotton-paper
+ * grain, discovered rather than designed: evidence that real founders have
+ * already passed through. Each room keeps its own note, and its own collection.
  */
-function NotebookArtifact() {
+function ArchiveCard({ note }: { note: ArchiveNote }) {
+  const last = note.lines.length - 1
   return (
     <div style={{ display: 'flex', justifyContent: 'center', margin: 'clamp(84px,15vh,190px) auto', ...surface('entry 2% cover 26%') }}>
-      <div style={{ position: 'relative', width: 'min(78%,420px)', transform: 'rotate(-2.2deg)' }}>
-        <div style={{ position: 'relative', background: 'linear-gradient(178deg, #fdfaf2, #f4ecda)', borderRadius: 3, padding: 'clamp(30px,4.4vw,52px) clamp(28px,4vw,46px) clamp(38px,5vw,60px)', boxShadow: '0 34px 60px -34px rgba(60,44,20,0.5), 0 2px 4px rgba(60,44,20,0.12)' }}>
-          {/* the faint ruling of a notebook page */}
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 'clamp(30px,4.4vw,52px) 0', background: 'repeating-linear-gradient(180deg, transparent, transparent 33px, rgba(122,94,52,0.10) 33px, rgba(122,94,52,0.10) 34px)', opacity: 0.7, pointerEvents: 'none' }} />
-          <div style={{ position: 'relative', fontFamily: sans, fontWeight: 400, fontSize: 9, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.42)', marginBottom: '1.4em' }}>No. 027</div>
-          <p style={{ position: 'relative', fontFamily: hand, fontWeight: 400, fontSize: 'clamp(23px,2.8vw,32px)', lineHeight: 1.5, color: 'rgba(52,40,26,0.62)', margin: 0 }}>The founder wasn’t asking about packaging.</p>
-          <p style={{ position: 'relative', fontFamily: hand, fontWeight: 500, fontSize: 'clamp(23px,2.8vw,32px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.6)', margin: '0.35em 0 0' }}>She was asking for permission.</p>
-          <p style={{ position: 'relative', fontFamily: hand, fontWeight: 400, fontSize: 'clamp(18px,2vw,23px)', lineHeight: 1.5, color: 'rgba(52,40,26,0.4)', margin: '1.3em 0 0', textAlign: 'right' }}>— from The Founder’s Room</p>
+      <figure style={{ position: 'relative', width: 'min(80%,430px)', margin: 0, transform: 'rotate(-1.7deg)' }}>
+        <div style={{ position: 'relative', background: 'linear-gradient(176deg, #f9f3e4, #f1e8d3)', borderRadius: '3px 6px 3px 5px', padding: 'clamp(36px,4.8vw,60px) clamp(32px,4.4vw,52px) clamp(30px,4vw,46px)', boxShadow: '0 30px 56px -30px rgba(60,44,20,0.46), 0 2px 3px rgba(60,44,20,0.13)', overflow: 'hidden' }}>
+          {/* cotton-paper grain, and a softly worn edge */}
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, backgroundImage: paperGrain, backgroundSize: '180px 180px', mixBlendMode: 'multiply', opacity: 0.05, pointerEvents: 'none' }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, borderRadius: 'inherit', boxShadow: 'inset 0 0 0 1px rgba(122,94,52,0.09), inset 0 0 34px rgba(122,94,52,0.05)', pointerEvents: 'none' }} />
+
+          {/* the archival hand — a small catalog number over a hairline */}
+          <div style={{ position: 'relative', fontFamily: sans, fontWeight: 400, fontSize: 9, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)' }}>Archive No. {note.no}</div>
+          <div aria-hidden="true" style={{ position: 'relative', width: 30, height: 1, background: 'rgba(122,94,52,0.28)', margin: 'clamp(12px,1.8vh,18px) 0 clamp(22px,3vh,30px)' }} />
+
+          {note.lines.map((l, i) => (
+            <p key={i} style={{ position: 'relative', fontFamily: hand, fontWeight: i === last ? 500 : 400, fontSize: 'clamp(22px,2.7vw,31px)', lineHeight: 1.5, color: i === last ? 'rgba(122,94,52,0.62)' : 'rgba(52,40,26,0.58)', margin: i === 0 ? 0 : '0.3em 0 0' }}>{l}</p>
+          ))}
+          <figcaption style={{ position: 'relative', fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.6vw,19px)', color: 'rgba(52,40,26,0.4)', margin: 'clamp(24px,3.6vh,36px) 0 0', textAlign: 'right' }}>{note.source}</figcaption>
         </div>
-      </div>
+      </figure>
     </div>
   )
 }
@@ -139,8 +150,8 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
           </div>
         </section>
 
-        {/* a founder's notebook, left resting on the table */}
-        <NotebookArtifact />
+        {/* a page from the Believe Archive, left resting inside the room */}
+        {x.archive && <ArchiveCard note={x.archive} />}
 
         {/* ══ Chapter Four — the particulars · museum wall labels ══════════ */}
         <section style={{ margin: 'clamp(70px,12vh,150px) auto 0', ...surface() }}>

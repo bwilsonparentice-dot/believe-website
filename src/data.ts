@@ -224,6 +224,13 @@ export const FR_INCLUDES = [
  */
 export type Faq = { q: string; a: string }
 export type Particular = { label: string; value: string }
+/**
+ * A page from the Believe Archive — one quiet observation gathered from years
+ * of working with founders. Each room preserves its own: permission, clarity,
+ * belonging, transformation. Not a quote or a testimonial — evidence that real
+ * founders have already passed through, discovered rather than designed.
+ */
+export type ArchiveNote = { no: string; lines: string[]; source: string }
 export type Experience = {
   id: string
   eyebrow: string        // a spatial descriptor — "the gathering room"
@@ -246,6 +253,7 @@ export type Experience = {
   joinLead: string       // the large line that opens the invitation
   joinBody: string       // why we begin with a conversation
   closing: string        // the reflection that precedes "Begin the Conversation"
+  archive?: ArchiveNote  // the room's own page of the Believe Archive
 }
 
 export const EXPERIENCES: Record<string, Experience> = {
@@ -296,6 +304,11 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'The room opens through conversation.',
     joinBody: 'We begin with The Founder Conversation so we can understand where you are, what you’re building, and whether this is the right room for you today.',
     closing: 'The best founders don’t build alone. They build beside others who understand.',
+    archive: {
+      no: '027',
+      lines: ['The founder wasn’t asking about packaging.', 'She was asking for permission.'],
+      source: '— from the Founder Notes',
+    },
   },
 
   'founder-conversation': {
@@ -342,6 +355,11 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'There’s nothing to decide yet.',
     joinBody: 'Just a conversation — thirty minutes to understand where you are, what you’re building, and whether Believe is the right place to help.',
     closing: 'Every meaningful company begins with a single conversation.',
+    archive: {
+      no: '003',
+      lines: ['She expected us to ask about the numbers.', 'We asked about her instead.'],
+      source: '— from the Conversation Notes',
+    },
   },
 
   'believe-blueprint': {
@@ -391,6 +409,11 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'Every Blueprint begins with a conversation.',
     joinBody: 'Before we architect anything, we begin by understanding you — your company, your vision, and the chapter you’re entering.',
     closing: 'Just as an architect begins with a blueprint, every founder begins with clarity.',
+    archive: {
+      no: '031',
+      lines: ['Nothing about the company changed.', 'Only the founder’s ability to finally see it clearly.'],
+      source: '— from The Believe Blueprint™ Archive',
+    },
   },
 
   'private-advisory': {
@@ -437,6 +460,11 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'It begins with a conversation.',
     joinBody: 'We begin with The Founder Conversation, so we can understand the moment you’re in and whether Private Advisory is the right room for it.',
     closing: 'The biggest decisions are easier when you don’t make them alone.',
+    archive: {
+      no: '051',
+      lines: ['The breakthrough didn’t happen in the meeting.', 'It happened when she finally trusted herself.'],
+      source: '— from The Private Advisory Archive',
+    },
   },
 
   'visionary-collective': {
@@ -483,6 +511,11 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'Pull up a chair.',
     joinBody: 'The Collective is the simplest way to stay close to the house — to keep thinking, keep learning, and remain among founders building meaningful companies.',
     closing: 'Sometimes belonging is the first step. The rest can come later.',
+    archive: {
+      no: '072',
+      lines: ['She wasn’t ready to begin.', 'She only wanted to know the door would still be open.'],
+      source: '— from The Front Porch Archive',
+    },
   },
 }
 
