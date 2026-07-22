@@ -5,7 +5,8 @@ import { ChapterShell, BackPill, ArchMark, Divider } from '../components/Chapter
 import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
 import { ArchiveCard } from '../components/ArchiveCard'
-import { EXPERIENCES, PHOTOS, type Faq } from '../data'
+import { Correspondence } from '../components/Correspondence'
+import { EXPERIENCES, PHOTOS } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
@@ -30,31 +31,6 @@ const surface = (range = 'entry 4% cover 30%'): CSSProperties => ({
 })
 
 /**
- * One quiet question — the query typeset like a line of collected correspondence,
- * the reply unfolding beneath it like a page turning, not software opening.
- */
-function Correspondence({ item, index, open, onToggle }: { item: Faq; index: number; open: boolean; onToggle: () => void }) {
-  const roman = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii'][index] || String(index + 1)
-  return (
-    <div style={{ padding: 'clamp(22px,3.4vh,38px) 0' }}>
-      <El
-        onClick={onToggle}
-        style={{ display: 'grid', gridTemplateColumns: 'clamp(28px,4vw,52px) 1fr', gap: 'clamp(10px,2vw,22px)', alignItems: 'baseline', width: '100%', cursor: 'pointer', textAlign: 'left', color: open ? '#2b2723' : 'rgba(43,39,35,0.8)', transition: 'color 500ms ease' }}
-        hover={{ color: '#2b2723' }}
-      >
-        <span style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(15px,1.5vw,19px)', color: 'rgba(122,94,52,0.55)', lineHeight: 1.5 }}>{roman}.</span>
-        <span style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.4vw,30px)', lineHeight: 1.32, letterSpacing: '0.005em' }}>{item.q}</span>
-      </El>
-      <div style={{ display: 'grid', gridTemplateRows: open ? '1fr' : '0fr', transition: 'grid-template-rows 640ms cubic-bezier(.22,.7,.2,1)' }}>
-        <div style={{ overflow: 'hidden' }}>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.85vw,22px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.62)', margin: 'clamp(14px,2vh,20px) 0 0', marginLeft: 'clamp(38px,6vw,74px)', maxWidth: '48ch', opacity: open ? 1 : 0, transition: 'opacity 700ms ease 120ms', ...pretty }}>{item.a}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/**
  * A dedicated experience page — you step through a doorway and quietly learn
  * what happens in that room. Composed like eight pages of an architectural
  * journal: every section carries its own rhythm — centered, then columned, then
@@ -65,7 +41,6 @@ function Correspondence({ item, index, open, onToggle }: { item: Faq; index: num
 export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
   const x = EXPERIENCES[id]
   const [noteOpen, setNoteOpen] = useState(false)
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
   if (!x) return null
 
   return (
@@ -161,11 +136,7 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
         {/* ══ Chapter Seven — questions · quiet correspondence ════════════ */}
         <section style={{ margin: 'clamp(120px,22vh,260px) auto 0', maxWidth: 720, ...surface() }}>
           <div style={{ ...label, textAlign: 'center', marginBottom: 'clamp(40px,7vh,72px)' }}>Questions founders ask</div>
-          <div>
-            {x.faqs.map((f, i) => (
-              <Correspondence key={i} item={f} index={i} open={openFaq === i} onToggle={() => setOpenFaq(openFaq === i ? null : i)} />
-            ))}
-          </div>
+          <Correspondence items={x.faqs} />
         </section>
 
         {/* ══ Chapter Eight — joining · the words do the convincing ═══════ */}

@@ -235,6 +235,36 @@ export type Particular = { label: string; value: string }
  * founders have already passed through, discovered rather than designed.
  */
 export type ArchiveNote = { no: string; lines: string[]; source: string }
+
+/**
+ * The Seven Drawings — the Believe Blueprint presented as an architect's folio.
+ * Each is one sheet from the set: a numeral, a sheet number, the name, the one
+ * line of meaning, and a brief narrative. Not deliverables — drawings.
+ */
+export type Drawing = { numeral: string; sheet: string; name: string; meaning: string; narrative: string }
+export const BLUEPRINT_DRAWINGS: Drawing[] = [
+  { numeral: 'I', sheet: 'A-01', name: 'Business Reinvention',
+    meaning: 'The company you have built — and the company it must now become.',
+    narrative: 'We begin where every reinvention begins: an honest look at what you’ve created, and a clear-eyed view of what it’s ready to grow into.' },
+  { numeral: 'II', sheet: 'A-02', name: 'Brand Architecture',
+    meaning: 'The meaning your company is built to carry.',
+    narrative: 'Not a logo or a palette — the structure of belief beneath the brand. What it stands for, and why anyone should care.' },
+  { numeral: 'III', sheet: 'A-03', name: 'Opportunity Atlas',
+    meaning: 'A complete landscape of credible growth opportunities, prioritized by strategic fit rather than distraction.',
+    narrative: 'Every direction you could take, mapped in a single view — so you can pursue the few that matter and let go of the many that don’t.' },
+  { numeral: 'IV', sheet: 'A-04', name: 'Experience Channels',
+    meaning: 'Every place your brand can be experienced — not simply purchased.',
+    narrative: 'Where a founder sees sales, we map moments — each a chance for someone to feel the company long before they ever buy from it.' },
+  { numeral: 'V', sheet: 'A-05', name: 'Dream Accounts',
+    meaning: 'The relationships capable of changing the trajectory of your company.',
+    narrative: 'The handful of partners, retailers, and rooms that would change everything — named, and approached with intention rather than hope.' },
+  { numeral: 'VI', sheet: 'A-06', name: 'Growth Roadmap',
+    meaning: 'The sequence that converts possibility into meaningful movement.',
+    narrative: 'Not everything at once. The right order — the moves that make the next move easier — drawn as a path you can actually walk.' },
+  { numeral: 'VII', sheet: 'A-07', name: 'Executive Debrief',
+    meaning: 'A founder-to-founder perspective on what we see, what matters most, and what your next chapter asks of you.',
+    narrative: 'We close by stepping back — one founder to another — naming the truth of where you are, and what this chapter is quietly asking of you.' },
+]
 export type Experience = {
   id: string
   eyebrow: string        // a spatial descriptor — "the gathering room"
