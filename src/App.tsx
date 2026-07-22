@@ -98,11 +98,11 @@ export class App extends React.Component<Record<string, never>, State> {
     this.ctx = {
       // The Founder's Room now resolves to its dedicated experience page everywhere it's linked
       openFounderRoom: this.openDoorway('founders-room'), closeFounderRoom: this.closeDoorway,
-      openBlueprint: this.openChapter('showBlueprint'), closeBlueprint: this.closeChapter('showBlueprint'),
+      openBlueprint: this.openDoorway('believe-blueprint'), closeBlueprint: this.closeDoorway,
       openTable: this.openChapter('showTable'), closeTable: this.closeChapter('showTable'),
       openLibrary: this.openChapter('showLibrary'), closeLibrary: this.closeChapter('showLibrary'),
       openStudio: this.openChapter('showStudio'), closeStudio: this.closeChapter('showStudio'),
-      openAdvisory: this.openChapter('showAdvisory'), closeAdvisory: this.closeChapter('showAdvisory'),
+      openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openChapter('showPeople'), closePeople: this.closeChapter('showPeople'),
       openStories: this.openChapter('showStories'), closeStories: this.closeChapter('showStories'),
@@ -490,8 +490,9 @@ export class App extends React.Component<Record<string, never>, State> {
     if (room.id === 'blueprint') return this.ctx.openBlueprint
     if (room.id === 'fieldnotes') return this.ctx.openFieldNotes
     if (room.id === 'library') return this.ctx.openLibrary
-    // The Founder's Room now opens its dedicated experience page — one room, one page
+    // rooms with a dedicated experience page open it directly — one room, one page
     if (room.id === 'founders') return this.ctx.openDoorway('founders-room')
+    if (room.id === 'advisory') return this.ctx.openDoorway('private-advisory')
     return this.openRoom(room.id)
   }
 

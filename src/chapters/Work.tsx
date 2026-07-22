@@ -209,7 +209,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.82)', margin: '1.2em auto 0', maxWidth: '26ch' }}>This is not a sales call. It’s the beginning of a relationship.</p>
           <Included items={['30 minutes', 'Founder conversation', 'Growth discussion', 'No obligation']} />
           <Investment><span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.85)' }}>Complimentary.</span></Investment>
-          <DoorButton onClick={talk}>Begin the Conversation</DoorButton>
+          <DoorButton onClick={ctx.openDoorway('founder-conversation')}>Step Inside the Conversation</DoorButton>
         </div>
 
         <ArchLine />
@@ -224,7 +224,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.82)', margin: '1.2em auto 0', maxWidth: '26ch' }}>More than a strategy. The architectural plan for your next chapter.</p>
           <Included heading="What we architect together" items={['Business Reinvention', 'Brand Architecture', 'Opportunity Atlas™', 'Experience Channels™', 'Dream Accounts™', 'Growth Roadmap', 'Executive Debrief']} />
           <Investment>$3,995 <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>· a one-time strategic engagement</span></Investment>
-          <DoorButton onClick={talk}>Begin the Conversation</DoorButton>
+          <DoorButton onClick={ctx.openDoorway('believe-blueprint')}>Step Inside the Blueprint</DoorButton>
         </div>
 
         <ArchLine />
@@ -249,7 +249,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={SUB}>Reserved for defining moments.</p>
           <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>Reserved for founders navigating meaningful periods of growth, leadership, transition, or transformation. Highly personalized advisory work, designed around your company, your leadership, and your biggest decisions.</p>
           <Investment><span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.85)' }}>By application.</span></Investment>
-          <DoorButton onClick={talk}>Begin the Conversation</DoorButton>
+          <DoorButton onClick={ctx.openDoorway('private-advisory')}>Step Inside Private Advisory</DoorButton>
         </div>
 
         <ArchLine />
@@ -304,7 +304,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
               <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.2vw,40px)', color: '#2b2723' }}>$498 <span style={{ fontStyle: 'italic', fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>/ year</span></div>
             </div>
           </div>
-          <DoorButton onClick={talk}>Join the Collective</DoorButton>
+          <DoorButton onClick={ctx.openDoorway('visionary-collective')}>Step Onto the Porch</DoorButton>
         </div>
 
         {/* ── closing ─────────────────────────────────────────────────── */}
