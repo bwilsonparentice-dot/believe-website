@@ -625,7 +625,11 @@ export class App extends React.Component<Record<string, never>, State> {
           <div style={{ position: 'relative', left: '50%', right: '50%', width: '100vw', marginLeft: '-50vw', marginRight: '-50vw', background: 'transparent', padding: 'clamp(48px,9vh,110px) 6vw clamp(40px,7vh,90px)', marginTop: 'clamp(40px,7vh,90px)' }}>
             <div style={{ margin: '0 auto 0.2em', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.55em' }}>
               <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)', paddingLeft: '0.42em' }}>{active.principle} &middot; The artifact</div>
-              <svg width="19" height="22" viewBox="0 0 48 56" fill="none" style={{ display: 'block', opacity: 0.72 }}><path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth="2.4" strokeLinecap="round" /></svg>
+              {active.artifactImg ? (
+                <ImageSlot src={active.artifactImg} alt={active.artifact} fit="contain" style={{ display: 'block', height: 'clamp(120px,17vh,190px)', width: 'auto', maxWidth: 'min(80vw,320px)', margin: '0.3em auto 0.5em', filter: 'drop-shadow(0 24px 30px rgba(60,44,20,0.28))' }} />
+              ) : (
+                <svg width="19" height="22" viewBox="0 0 48 56" fill="none" style={{ display: 'block', opacity: 0.72 }}><path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth="2.4" strokeLinecap="round" /></svg>
+              )}
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(23px,2.5vw,32px)', lineHeight: 1.05, color: 'rgba(43,39,35,0.92)' }}>{active.artifact}</div>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(122,94,52,0.72)', maxWidth: '32ch' }}>{active.artifactNote}</div>
             </div>

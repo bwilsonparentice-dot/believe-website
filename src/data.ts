@@ -81,7 +81,7 @@ export const HOUSES = [
 
 // ── The Language of Believe Studio: one artifact, one principle, one verb per room ──
 export const ARTIFACTS: Record<string, any> = {
-  threshold: { principle: 'Arrival', artifact: 'The Key', artifactNote: 'The invitation was always enough.', continueLabel: 'Step further in', light: 'radial-gradient(56% 50% at 38% 22%, rgba(255,238,196,0.55), transparent 66%)' },
+  threshold: { principle: 'Arrival', artifact: 'The Key', artifactImg: '/photos/artifact-key.png', artifactNote: 'The invitation was always enough.', continueLabel: 'Step further in', light: 'radial-gradient(56% 50% at 38% 22%, rgba(255,238,196,0.55), transparent 66%)' },
   founders: { principle: 'Confidence', artifact: 'The Chair', artifactNote: 'Two chairs. One conversation. No agenda.', continueLabel: 'Continue', light: 'radial-gradient(60% 54% at 30% 26%, rgba(255,226,178,0.5), transparent 68%)' },
   library: { principle: 'Curiosity', artifact: 'The Ladder', artifactNote: 'For reaching what others left high on the shelf.', continueLabel: 'Take this with you', light: 'radial-gradient(50% 46% at 42% 30%, rgba(255,212,146,0.6), transparent 64%)' },
   fieldnotes: { principle: 'Curiosity', artifact: 'The Journal', artifactNote: 'Open. Already written in. Never pristine.', continueLabel: 'Keep noticing', light: 'radial-gradient(58% 52% at 40% 20%, rgba(224,238,255,0.44), transparent 66%)' },
