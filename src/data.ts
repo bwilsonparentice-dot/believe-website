@@ -357,8 +357,8 @@ export const EXPERIENCES: Record<string, Experience> = {
     photoAlt: 'A warm walnut table in morning light — coffee, an open notebook, chairs drawn close',
     background: '#f1e7d0',
     whatIsIt: [
-      'The Founder’s Table is where founders stop building alone. A standing invitation to sit down among others who understand — to think out loud, to be honest, and to leave in better company than you arrived.',
-      'Some conversations last twenty minutes. Some last three hours. Almost all of them change something — not because advice was given, but because someone finally understood.',
+      'The Founder’s Table is where founders stop building alone. A standing invitation to sit down beside others who understand — to think out loud, to be honest, and to leave in better company than you arrived.',
+      'Some conversations last twenty minutes; some last three hours. Around the table, founders help founders — not with advice handed down, but with the collective wisdom of people who have built what you are building now.',
     ],
     whoFor: 'For founders who’ve carried it alone long enough — who want a table of others building meaningful companies, and the kind of honesty that only comes from people who have been there.',
     whoNotFor: 'It isn’t a networking room, and it isn’t an audience. It’s a table.',

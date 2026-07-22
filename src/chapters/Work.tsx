@@ -199,68 +199,25 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(36px,5.6vw,80px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>Choose Your Doorway</h2>
         <p style={{ ...SUB, fontStyle: 'normal', fontWeight: 300, color: 'rgba(43,39,35,0.7)', fontSize: 'clamp(19px,2.1vw,27px)' }}>Every founder enters Believe differently. Choose the doorway that best reflects where you are today.</p>
 
-        {/* Doorway One — The Founder Conversation */}
-        <div style={{ ...reveal, marginTop: 'clamp(80px,15vh,180px)' }}>
-          <div style={{ ...label, color: 'rgba(122,94,52,0.5)', marginBottom: '1.4em' }}>Doorway One</div>
-          <h3 style={H3}>The Founder Conversation<TM /></h3>
-          <p style={SUB}>Sometimes the most valuable next step is simply a conversation.</p>
-          <DoorwayImage src={PHOTOS.conversation} alt="Two chairs drawn close around a small walnut table, coffee and an open journal in morning light" />
-          <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>A relaxed thirty-minute conversation to understand where you are, what you’re building, what you’re navigating, and whether Believe is the right place to support your journey.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.82)', margin: '1.2em auto 0', maxWidth: '26ch' }}>This is not a sales call. It’s the beginning of a relationship.</p>
-          <Included items={['30 minutes', 'Founder conversation', 'Growth discussion', 'No obligation']} />
-          <Investment><span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.85)' }}>Complimentary.</span></Investment>
-          <DoorButton onClick={ctx.openDoorway('founder-conversation')}>Step Inside the Conversation</DoorButton>
-        </div>
-
-        <ArchLine />
-
-        {/* Doorway Two — The Believe Blueprint */}
-        <div style={reveal}>
-          <div style={{ ...label, color: 'rgba(122,94,52,0.5)', marginBottom: '1.4em' }}>Doorway Two</div>
-          <h3 style={H3}>The Believe Blueprint<TM /></h3>
-          <p style={SUB}>Architect the next chapter of your company.</p>
-          <DoorwayImage src={PHOTOS.blueprint} alt="The Believe Blueprint — an open journal and architectural plans on the oak table in morning light" />
-          <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>Together we’ll bring founder strategy, brand architecture, growth opportunities, Experience Channels, Dream Accounts, and a practical roadmap into one comprehensive blueprint, designed specifically for your business.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.82)', margin: '1.2em auto 0', maxWidth: '26ch' }}>More than a strategy. The architectural plan for your next chapter.</p>
-          <Included heading="What we architect together" items={['Business Reinvention', 'Brand Architecture', 'Opportunity Atlas', 'Experience Channels', 'Dream Accounts', 'Growth Roadmap', 'Executive Debrief']} />
-          <Investment>$3,995 <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>· a one-time strategic engagement</span></Investment>
-          <DoorButton onClick={ctx.openDoorway('believe-blueprint')}>Step Inside the Blueprint</DoorButton>
-        </div>
-
-        <ArchLine />
-
-        {/* Doorway Three — The Founder's Room */}
-        <div style={reveal}>
-          <div style={{ ...label, color: 'rgba(122,94,52,0.5)', marginBottom: '1.4em' }}>Doorway Three</div>
-          <h3 style={H3}>The Founder’s Room<TM /></h3>
-          <p style={SUB}>A place where founders become stronger together.</p>
-          <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>For founders who believe the best decisions are rarely made alone. Join a carefully curated group of founders committed to becoming stronger leaders while helping one another navigate the realities of building meaningful companies.</p>
-          <Included heading="Membership includes" items={['Monthly Founder Gathering', 'Private Community', 'Ongoing Founder Discussions', 'One Individual Strategy Session', 'Shared Wisdom', 'Real Accountability']} />
-          <Investment>$995 <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>/ month</span></Investment>
-          <DoorButton onClick={ctx.openDoorway('founders-room')}>Step Inside The Founder’s Room</DoorButton>
-        </div>
-
-        <ArchLine />
-
-        {/* Doorway Four — Private Advisory */}
-        <div style={reveal}>
-          <div style={{ ...label, color: 'rgba(122,94,52,0.5)', marginBottom: '1.4em' }}>Doorway Four</div>
-          <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)' }}>Private Advisory</h3>
-          <p style={SUB}>Reserved for defining moments.</p>
-          <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>Reserved for founders navigating meaningful periods of growth, leadership, transition, or transformation. Highly personalized advisory work, designed around your company, your leadership, and your biggest decisions.</p>
-          <Investment><span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.85)' }}>By application.</span></Investment>
-          <DoorButton onClick={ctx.openDoorway('private-advisory')}>Step Inside Private Advisory</DoorButton>
-        </div>
-
-        <ArchLine />
-
-        {/* Doorway Five — Founder Fellowship (not yet open) */}
-        <div style={{ ...reveal, opacity: 0.74 }}>
-          <div style={{ ...label, color: 'rgba(122,94,52,0.5)', marginBottom: '1.4em' }}>Doorway Five</div>
-          <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)' }}>Founder Fellowship<TM /></h3>
-          <p style={SUB}>Some arrive seeking guidance. Others become guides.</p>
-          <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0', color: 'rgba(43,39,35,0.64)' }}>The Founder Fellowship is being thoughtfully created for experienced founders who feel called to help shape the next generation.</p>
-          <div style={{ display: 'inline-block', marginTop: 'clamp(30px,5vh,50px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', border: '1px solid rgba(122,94,52,0.3)', borderRadius: 2, padding: '12px 28px' }}>Coming Soon</div>
+        {/* the doorways — a quiet table of contents; curiosity does the rest */}
+        <div style={{ maxWidth: 640, margin: 'clamp(72px,13vh,160px) auto 0', textAlign: 'center', ...reveal }}>
+          {[
+            { id: 'founder-conversation', name: 'The Founder Conversation', tm: true, line: 'Where every journey begins.' },
+            { id: 'believe-blueprint', name: 'The Believe Blueprint', tm: true, line: 'See your company clearly.' },
+            { id: 'founders-room', name: 'The Founder’s Room', tm: true, line: 'Make your next decision with clarity.' },
+            { id: 'founders-table', name: 'The Founder’s Table', tm: true, line: 'Build beside founders who understand.' },
+            { id: 'private-advisory', name: 'Private Advisory', tm: false, line: 'For the decisions that define a company.' },
+          ].map((d, i) => (
+            <El
+              key={d.id}
+              onClick={ctx.openDoorway(d.id)}
+              style={{ display: 'block', cursor: 'pointer', padding: 'clamp(34px,6vh,66px) 0', borderTop: i === 0 ? 'none' : '1px solid rgba(122,94,52,0.18)', color: '#2b2723', transition: 'opacity 500ms ease' }}
+              hover={{ opacity: 0.6 }}
+            >
+              <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04 }}>{d.name}{d.tm && <TM />}</div>
+              <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.8)', marginTop: '0.55em' }}>{d.line}</div>
+            </El>
+          ))}
         </div>
 
         {/* ── how Believe grows — the olive tree ──────────────────────── */}

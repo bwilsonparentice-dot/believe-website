@@ -37,10 +37,10 @@ const MOMENTS = [
 
 // what is present in the room — each allowed to stand alone
 const INSIDE = [
-  'Founder conversations.',
+  'A trusted conversation.',
   'Strategic thinking.',
   'Decision architecture.',
-  'Peer perspective.',
+  'An outside perspective.',
   'Accountability.',
   'Clarity.',
   'Momentum.',
@@ -148,7 +148,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
             {TRANSFORM.map((t, i) => {
               const last = i === TRANSFORM.length - 1
               return (
-                <p key={i} style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: last ? 'clamp(28px,3.8vw,52px)' : 'clamp(24px,3.1vw,40px)', lineHeight: 1.26, color: last ? '#2b2723' : 'rgba(122,94,52,0.86)', margin: 0, maxWidth: '22ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>{t}</p>
+                <p key={i} style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: last ? 'clamp(28px,3.8vw,52px)' : 'clamp(24px,3.1vw,40px)', lineHeight: 1.26, color: last ? '#2b2723' : 'rgba(122,94,52,0.86)', margin: 0, maxWidth: '22ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>&ldquo;{t}&rdquo;</p>
               )
             })}
           </div>
