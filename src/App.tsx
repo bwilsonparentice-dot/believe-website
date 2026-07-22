@@ -25,6 +25,7 @@ import { HouseChapter } from './chapters/House'
 import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
 import { DoorwayChapter } from './chapters/Doorway'
+import { ArchiveCard } from './components/ArchiveCard'
 import { FieldNotesChapter } from './chapters/FieldNotes'
 import { HousesChapter } from './chapters/Houses'
 import { ReceiveKey } from './chapters/ReceiveKey'
@@ -586,13 +587,15 @@ export class App extends React.Component<Record<string, never>, State> {
             <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(22px,2.4vw,32px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.85)', maxWidth: '22ch', margin: '2em auto 2.4em' }}>{active.oneLine}</p>
           )}
 
-          {active.story && (
+          {active.story && !active.archive && (
             <div style={{ maxWidth: 460, margin: '2.6em auto 0', padding: '1.5em 1.7em 1.6em', background: '#efe6d3', border: '1px solid rgba(236,209,147,0.5)', textAlign: 'left', boxShadow: '0 24px 60px -36px rgba(60,44,20,0.55)' }}>
               <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '0.7em' }}>Left here &middot; {active.story.kind}</div>
               <p style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(22px,2.5vw,30px)', lineHeight: 1.25, color: 'rgba(43,39,35,0.92)', margin: '0 0 0.5em' }}>&ldquo;{active.story.text}&rdquo;</p>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(122,94,52,0.62)' }}>&mdash; {active.story.by}, {active.story.of}</div>
             </div>
           )}
+
+          {active.archive && <ArchiveCard note={active.archive} />}
 
           {active.person && (
             <div style={{ margin: '2.4em auto 0', maxWidth: 440 }}>

@@ -220,9 +220,9 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <h3 style={H3}>The Believe Blueprint<TM /></h3>
           <p style={SUB}>Architect the next chapter of your company.</p>
           <DoorwayImage src={PHOTOS.blueprint} alt="The Believe Blueprint — an open journal and architectural plans on the oak table in morning light" />
-          <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>Together we’ll bring founder strategy, brand architecture, growth opportunities, Experience Channels<TM />, Dream Accounts<TM />, and a practical roadmap into one comprehensive blueprint, designed specifically for your business.</p>
+          <p style={{ ...P, margin: 'clamp(28px,5vh,48px) auto 0' }}>Together we’ll bring founder strategy, brand architecture, growth opportunities, Experience Channels, Dream Accounts, and a practical roadmap into one comprehensive blueprint, designed specifically for your business.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.82)', margin: '1.2em auto 0', maxWidth: '26ch' }}>More than a strategy. The architectural plan for your next chapter.</p>
-          <Included heading="What we architect together" items={['Business Reinvention', 'Brand Architecture', 'Opportunity Atlas™', 'Experience Channels™', 'Dream Accounts™', 'Growth Roadmap', 'Executive Debrief']} />
+          <Included heading="What we architect together" items={['Business Reinvention', 'Brand Architecture', 'Opportunity Atlas', 'Experience Channels', 'Dream Accounts', 'Growth Roadmap', 'Executive Debrief']} />
           <Investment>$3,995 <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>· a one-time strategic engagement</span></Investment>
           <DoorButton onClick={ctx.openDoorway('believe-blueprint')}>Step Inside the Blueprint</DoorButton>
         </div>

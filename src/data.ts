@@ -125,7 +125,8 @@ export const DATA: any[] = [
     body: [
       'Not information — perspective. The lessons of others, collected patiently and offered without insistence. What is gathered here is meant to be reflected upon, not merely consumed.',
       'You may borrow what you need and leave the rest for the next founder who wanders in.',
-    ] },
+    ],
+    archive: { no: '012', lines: ['The answer wasn’t new.', 'It had simply waited for the right moment to be understood.'], source: '— from The Library Collection' } },
   { id: 'fieldnotes', roman: 'V', name: 'Field Notes', l: '21%', t: '6%', w: '13%', h: '19%',
     accent: 'oklch(0.6 0.085 200)', glow: 'oklch(0.6 0.085 200 / 0.22)',
     whisper: 'Catching ideas before they disappear.',
@@ -149,7 +150,8 @@ export const DATA: any[] = [
     body: [
       'There is a difference between talking about a company and sitting across from someone who helps you finally see it clearly. The Table exists for those conversations.',
       'Some last twenty minutes. Some last three hours. Almost all of them change something — not because advice was given, but because clarity arrived.',
-    ] },
+    ],
+    archive: { no: '044', lines: ['She arrived looking for advice.', 'She left realizing she wasn’t building alone.'], source: '— from The Founder’s Table Journal' } },
   { id: 'studio', roman: 'VII', name: 'The Studio', l: '66%', t: '30%', w: '30%', h: '31%',
     accent: 'oklch(0.63 0.09 92)', glow: 'oklch(0.63 0.09 92 / 0.22)',
     whisper: 'Where ideas become real.',
@@ -159,7 +161,8 @@ export const DATA: any[] = [
     body: [
       'Nothing enters this room finished. Ideas arrive as sketches, half-written notes, packaging mockups, questions scribbled in the margins — and leave a little clearer than when they came.',
       'This is where uncertainty quietly becomes momentum. You don’t have to arrive with all the answers. Only the willingness to begin.',
-    ] },
+    ],
+    archive: { no: '038', lines: ['She thought she needed a better idea.', 'She only needed to begin.'], source: '— from The Studio Notes' } },
   { id: 'advisory', roman: 'VIII', name: 'Private Advisory', l: '72%', t: '6%', w: '24%', h: '19%',
     accent: 'oklch(0.6 0.085 300)', glow: 'oklch(0.6 0.085 300 / 0.22)',
     whisper: 'Trust made visible.',
@@ -186,7 +189,8 @@ export const DATA: any[] = [
       'There comes a moment when the work no longer belongs only to you. After the Blueprint, after the conversations, after the difficult decisions, your ideas begin to travel farther than you ever could.',
       'Some founders publish books. Some mentor the next generation. Some stand on stages. Some simply build companies that quietly change lives.',
       'The Stage isn’t about being seen. It’s about creating something worth remembering.',
-    ] },
+    ],
+    archive: { no: '059', lines: ['She’d rehearsed it a hundred times alone.', 'It became real the moment she said it out loud.'], source: '— from The Stage Records' } },
 ]
 
 export const STORIES = [
@@ -380,9 +384,9 @@ export const EXPERIENCES: Record<string, Experience> = {
     included: [
       'Business Reinvention',
       'Brand Architecture',
-      'Opportunity Atlas™',
-      'Experience Channels™',
-      'Dream Accounts™',
+      'Opportunity Atlas',
+      'Experience Channels',
+      'Dream Accounts',
       'A Growth Roadmap',
       'An Executive Debrief',
     ],
