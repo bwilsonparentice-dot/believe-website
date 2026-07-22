@@ -626,7 +626,9 @@ export class App extends React.Component<Record<string, never>, State> {
             <div style={{ margin: '0 auto 0.2em', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.55em' }}>
               <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)', paddingLeft: '0.42em' }}>{active.principle} &middot; The artifact</div>
               {active.artifactImg ? (
-                <ImageSlot src={active.artifactImg} alt={active.artifact} fit="contain" style={{ display: 'block', height: 'clamp(120px,17vh,190px)', width: 'auto', maxWidth: 'min(80vw,320px)', margin: '0.3em auto 0.5em', filter: 'drop-shadow(0 24px 30px rgba(60,44,20,0.28))' }} />
+                <div style={{ width: 'min(86vw,380px)', margin: '0.5em auto 0.7em', borderRadius: '4px', overflow: 'hidden', boxShadow: '0 40px 70px -40px rgba(60,44,20,0.55), 0 2px 4px rgba(60,44,20,0.12)' }}>
+                  <ImageSlot src={active.artifactImg} alt={active.artifact} fit="cover" style={{ display: 'block', width: '100%', height: 'clamp(180px,26vh,280px)' }} />
+                </div>
               ) : (
                 <svg width="19" height="22" viewBox="0 0 48 56" fill="none" style={{ display: 'block', opacity: 0.72 }}><path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth="2.4" strokeLinecap="round" /></svg>
               )}

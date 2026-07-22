@@ -16,3 +16,7 @@ tsconfig.tsbuildinfo
 
 # single-file preview build
 dist-preview
+
+# uploaded working images (optimized copies live in public/photos)
+/*.png
+/*.webp

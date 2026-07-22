@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react'
+import { ImageSlot } from './ImageSlot'
 import type { ArchiveNote } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
@@ -26,6 +27,13 @@ export function ArchiveCard({ note, reveal = true }: { note: ArchiveNote; reveal
           {/* cotton-paper grain, and a softly worn edge */}
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, backgroundImage: paperGrain, backgroundSize: '180px 180px', mixBlendMode: 'multiply', opacity: 0.05, pointerEvents: 'none' }} />
           <div aria-hidden="true" style={{ position: 'absolute', inset: 0, borderRadius: 'inherit', boxShadow: 'inset 0 0 0 1px rgba(122,94,52,0.09), inset 0 0 34px rgba(122,94,52,0.05)', pointerEvents: 'none' }} />
+
+          {/* a photograph of the artifact itself, when the archive kept one */}
+          {note.image && (
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 2', overflow: 'hidden', borderRadius: 2, margin: '0 0 clamp(24px,3.4vw,34px)', boxShadow: '0 20px 34px -22px rgba(60,44,20,0.5)' }}>
+              <ImageSlot src={note.image} alt={`Archive No. ${note.no}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+            </div>
+          )}
 
           {/* the archival hand — a small catalog number over a hairline */}
           <div style={{ position: 'relative', fontFamily: sans, fontWeight: 400, fontSize: 9, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)' }}>Archive No. {note.no}</div>

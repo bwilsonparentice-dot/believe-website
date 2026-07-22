@@ -81,15 +81,15 @@ export const HOUSES = [
 
 // ── The Language of Believe Studio: one artifact, one principle, one verb per room ──
 export const ARTIFACTS: Record<string, any> = {
-  threshold: { principle: 'Arrival', artifact: 'The Key', artifactImg: '/photos/artifact-key.png', artifactNote: 'The invitation was always enough.', continueLabel: 'Step further in', light: 'radial-gradient(56% 50% at 38% 22%, rgba(255,238,196,0.55), transparent 66%)' },
+  threshold: { principle: 'Arrival', artifact: 'The Key', artifactImg: '/photos/artifact-key.webp', artifactNote: 'The invitation was always enough.', continueLabel: 'Step further in', light: 'radial-gradient(56% 50% at 38% 22%, rgba(255,238,196,0.55), transparent 66%)' },
   founders: { principle: 'Confidence', artifact: 'The Chair', artifactNote: 'Two chairs. One conversation. No agenda.', continueLabel: 'Continue', light: 'radial-gradient(60% 54% at 30% 26%, rgba(255,226,178,0.5), transparent 68%)' },
   library: { principle: 'Curiosity', artifact: 'The Ladder', artifactNote: 'For reaching what others left high on the shelf.', continueLabel: 'Take this with you', light: 'radial-gradient(50% 46% at 42% 30%, rgba(255,212,146,0.6), transparent 64%)' },
-  fieldnotes: { principle: 'Curiosity', artifact: 'The Journal', artifactNote: 'Open. Already written in. Never pristine.', continueLabel: 'Keep noticing', light: 'radial-gradient(58% 52% at 40% 20%, rgba(224,238,255,0.44), transparent 66%)' },
+  fieldnotes: { principle: 'Curiosity', artifact: 'The Journal', artifactImg: '/photos/artifact-journal.webp', artifactNote: 'Open. Already written in. Never pristine.', continueLabel: 'Keep noticing', light: 'radial-gradient(58% 52% at 40% 20%, rgba(224,238,255,0.44), transparent 66%)' },
   table: { principle: 'Belonging', artifact: 'The Empty Chair', artifactNote: 'Not reserved for experts. Reserved for honesty.', continueLabel: 'Come when you’re ready', light: 'radial-gradient(58% 52% at 40% 22%, rgba(255,231,186,0.52), transparent 66%)' },
   studio: { principle: 'Craftsmanship', artifact: 'The Worktable', artifactNote: 'Covered in the unfinished. That is the point.', continueLabel: 'Keep building', light: 'radial-gradient(62% 56% at 34% 18%, rgba(204,223,238,0.5), transparent 68%)' },
   advisory: { principle: 'Clarity', artifact: 'The Private Door', artifactNote: 'Closed. Heavy walnut. No explanation offered.', continueLabel: 'Continue', light: 'radial-gradient(46% 44% at 44% 34%, rgba(240,218,176,0.42), transparent 60%)' },
   garden: { principle: 'Clarity', artifact: 'The Stone Bench', artifactNote: 'Warm from the morning sun. Sit as long as you like.', continueLabel: 'Stay a while', light: 'radial-gradient(58% 52% at 38% 22%, rgba(224,240,194,0.5), transparent 66%)' },
-  stage: { principle: 'Belonging', artifact: 'The Podium', artifactNote: 'Empty. Waiting for what you have become.', continueLabel: 'Pass it forward', light: 'radial-gradient(56% 50% at 40% 22%, rgba(255,222,204,0.5), transparent 66%)' },
+  stage: { principle: 'Belonging', artifact: 'The Badge', artifactImg: '/photos/artifact-badge.webp', artifactNote: 'The first proof that someone was finally watching.', continueLabel: 'Pass it forward', light: 'radial-gradient(56% 50% at 40% 22%, rgba(255,222,204,0.5), transparent 66%)' },
 }
 
 export const DATA: any[] = [
@@ -234,7 +234,7 @@ export type Particular = { label: string; value: string }
  * belonging, transformation. Not a quote or a testimonial — evidence that real
  * founders have already passed through, discovered rather than designed.
  */
-export type ArchiveNote = { no: string; lines: string[]; source: string }
+export type ArchiveNote = { no: string; lines: string[]; source: string; image?: string }
 
 /**
  * The Seven Drawings — the Believe Blueprint presented as an architect's folio.
@@ -343,6 +343,7 @@ export const EXPERIENCES: Record<string, Experience> = {
       no: '027',
       lines: ['The founder wasn’t asking about packaging.', 'She was asking for permission.'],
       source: '— from The Founder’s Room Archive',
+      image: '/photos/artifact-buyernote.webp',
     },
   },
 
@@ -501,6 +502,7 @@ export const EXPERIENCES: Record<string, Experience> = {
       no: '031',
       lines: ['Nothing about the company changed.', 'Only the founder’s ability to finally see it clearly.'],
       source: '— from The Believe Blueprint™ Archive',
+      image: '/photos/artifact-sketch.webp',
     },
   },
 

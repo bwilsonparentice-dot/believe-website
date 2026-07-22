@@ -99,7 +99,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some conversations cannot happen in a boardroom.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some questions deserve more than quick answers.</p>
         </div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.28, color: '#2b2723', margin: 'clamp(56px,10vh,120px) auto 0', maxWidth: '20ch', ...balance, ...surface() }}>The Founder’s Room<span style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</span> exists for the moments that shape the next chapter.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.28, color: '#2b2723', margin: 'clamp(56px,10vh,120px) auto 0', maxWidth: '20ch', ...balance, ...surface() }}>The Founder’s Room exists for the moments that shape the next chapter.</p>
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.7)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>Not because founders lack intelligence. Because leadership becomes clearer when it is shared with someone who understands what building truly requires.</p>
 
         {/* ── what happens here — moments, as inscriptions ──────────────── */}
