@@ -26,6 +26,7 @@ import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
 import { DoorwayChapter } from './chapters/Doorway'
 import { BlueprintFolio } from './chapters/BlueprintFolio'
+import { FoundersRoom } from './chapters/FoundersRoom'
 import { ArchiveCard } from './components/ArchiveCard'
 import { FieldNotesChapter } from './chapters/FieldNotes'
 import { HousesChapter } from './chapters/Houses'
@@ -309,6 +310,8 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showWork && <WorkChapter ctx={this.ctx} />}
         {this.state.activeDoorway === 'believe-blueprint'
           ? <BlueprintFolio ctx={this.ctx} />
+          : this.state.activeDoorway === 'founders-room'
+          ? <FoundersRoom ctx={this.ctx} />
           : this.state.activeDoorway && <DoorwayChapter ctx={this.ctx} id={this.state.activeDoorway} />}
         {this.state.showAdvisory && <AdvisoryChapter ctx={this.ctx} />}
         {this.state.showStage && <StageChapter ctx={this.ctx} />}

@@ -331,11 +331,10 @@ export const EXPERIENCES: Record<string, Experience> = {
       'I remembered why I started.',
     ],
     faqs: [
-      { q: 'How large is the room?', a: 'Intentionally small. The Founder’s Room is a curated circle, not an audience — small enough that every founder is known, and every voice is heard.' },
-      { q: 'How often do you meet?', a: 'Once a month, live, for a founder gathering. Between gatherings the conversation continues in the private community, in your own time — never a feed to keep up with.' },
-      { q: 'Is this a course or a curriculum?', a: 'No. There is no curriculum here. Each gathering begins with the real questions founders bring, and the room thinks through them together.' },
-      { q: 'What if I need help with a specific decision?', a: 'Membership includes an individual strategy session — and the room itself is built for exactly this: one founder, one real decision, the room’s full attention.' },
-      { q: 'How do I join?', a: 'The room opens by conversation. We begin with The Founder Conversation, so we can understand where you are and whether this is the right room for you now.' },
+      { q: 'Is this coaching?', a: 'No. Coaching works on you; the Founder’s Room thinks with you. It’s a place to bring the real decision and find perspective before you make it.' },
+      { q: 'How often would we talk?', a: 'As the work asks. Some chapters need a standing rhythm; others, a conversation at exactly the right moment. The room is ongoing, not a set number of sessions.' },
+      { q: 'What kinds of decisions?', a: 'The ones that don’t belong in a boardroom — a pivot, a partnership, a hire, a season of doubt. The decisions that quietly shape the next chapter.' },
+      { q: 'How does it begin?', a: 'With a conversation, so we understand the chapter you’re in and whether this is the right room for it now.' },
     ],
     joinLead: 'The room opens through conversation.',
     joinBody: 'We begin with The Founder Conversation so we can understand where you are, what you’re building, and whether this is the right room for you today.',
@@ -343,7 +342,7 @@ export const EXPERIENCES: Record<string, Experience> = {
     archive: {
       no: '027',
       lines: ['The founder wasn’t asking about packaging.', 'She was asking for permission.'],
-      source: '— from the Founder Notes',
+      source: '— from The Founder’s Room Archive',
     },
   },
 

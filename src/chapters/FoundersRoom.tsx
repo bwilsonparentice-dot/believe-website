@@ -1,0 +1,184 @@
+import React, { useState, CSSProperties } from 'react'
+import { El } from '../lib/El'
+import type { Ctx } from '../lib/ctx'
+import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
+import { ImageSlot } from '../components/ImageSlot'
+import { ConversationNote } from '../components/ConversationNote'
+import { ArchiveCard } from '../components/ArchiveCard'
+import { Correspondence } from '../components/Correspondence'
+import { EXPERIENCES, PHOTOS } from '../data'
+
+const serif = "'Cormorant Garamond',serif"
+const sans = "'Jost',sans-serif"
+const pretty = { textWrap: 'pretty' as CSSProperties['textWrap'] }
+const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
+
+const label: CSSProperties = {
+  fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em',
+  textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)',
+}
+
+/** A gentle scroll-linked reveal — quieter than the other rooms, on purpose. */
+const surface = (range = 'entry 3% cover 26%'): CSSProperties => ({
+  animation: 'fadeUpSoft 1300ms ease both',
+  animationTimeline: 'view()' as unknown as string,
+  animationRange: range as unknown as string,
+})
+
+// the process, spoken as quiet inscriptions — verbs, not features
+const MOMENTS = [
+  'We slow the decision down.',
+  'We separate signal from noise.',
+  'We challenge assumptions.',
+  'We explore what the business is asking of you now.',
+  'We decide what deserves your attention.',
+  'Then we build.',
+]
+
+// what is present in the room — each allowed to stand alone
+const INSIDE = [
+  'Founder conversations.',
+  'Strategic thinking.',
+  'Decision architecture.',
+  'Peer perspective.',
+  'Accountability.',
+  'Clarity.',
+  'Momentum.',
+]
+
+const TRANSFORM = [
+  'I make decisions differently.',
+  'I don’t carry every answer alone.',
+  'My company became stronger because I became clearer.',
+  'The business didn’t need another strategy.',
+  'It needed a stronger founder.',
+]
+
+const SPECS = [
+  { label: 'Cadence', value: 'Ongoing — a standing room, not a set number of sessions.' },
+  { label: 'Membership', value: 'A private, continuing partnership, month to month.' },
+  { label: 'Gatherings', value: 'Founder conversations, in person and in between.' },
+  { label: 'Availability', value: 'A small number of founders at a time, so each is fully known.' },
+  { label: 'Investment', value: '$995 / month' },
+]
+
+/**
+ * The Founder's Room — the emotional center of Believe Studio, and the quietest
+ * room in the house. Where the Blueprint is paper and architecture, this is
+ * space and presence: an immersive room, soft light, and a great deal of
+ * silence. The visitor should feel themselves exhale. Not another artifact —
+ * another emotional state. (ctx.openDoorway('founders-room').)
+ */
+export function FoundersRoom({ ctx }: { ctx: Ctx }) {
+  const x = EXPERIENCES['founders-room']
+  const [noteOpen, setNoteOpen] = useState(false)
+
+  return (
+    <ChapterShell onClose={ctx.closeDoorway} background="#efe7d5" z={130}>
+      {/* the room's light — soft, slowly drifting, never quite noticed */}
+      <div aria-hidden="true" style={{ position: 'fixed', inset: '-20%', pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(42% 38% at 50% 6%, rgba(255,236,196,0.9), transparent 60%)', opacity: 0.66, animation: 'lightWander 90s ease-in-out infinite alternate' }} />
+
+      {/* the room itself — no explanation, only presence */}
+      <div style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', height: 'clamp(380px,68vh,760px)', overflow: 'hidden', ...surface('entry 0% cover 12%') }}>
+        <ImageSlot src={PHOTOS.founders} fit="cover" alt="The Founder’s Room — a quiet chair by a tall window in morning light" placeholder="a quiet chair by a tall window, morning light, only space to think" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'slowZoom 24s ease-out both' }} />
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(56% 52% at 34% 26%, rgba(255,226,178,0.34), transparent 68%)' }} />
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.08) 0%, transparent 30%, transparent 60%, rgba(239,231,213,0.7) 92%, #efe7d5 100%)' }} />
+      </div>
+
+      <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(72px,12vh,150px) 8vw clamp(90px,16vh,200px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
+
+        {/* ── the heading ───────────────────────────────────────────────── */}
+        <ArchMark width={2.2} margin="0 auto 1.5em" />
+        <div style={{ ...label, marginBottom: '1.4em' }}>The most personal room in the house</div>
+        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.45em' }}>The Founder’s Room<span style={{ fontSize: '0.42em', verticalAlign: 'super', letterSpacing: 0 }}>™</span></h2>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '22ch', ...balance }}>Every founder eventually needs a room like this.</p>
+
+        {/* ── the passage ───────────────────────────────────────────────── */}
+        <div style={{ marginTop: 'clamp(100px,18vh,220px)', display: 'flex', flexDirection: 'column', gap: 'clamp(14px,2.4vh,24px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some decisions shouldn’t be made in isolation.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some conversations cannot happen in a boardroom.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some questions deserve more than quick answers.</p>
+        </div>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.28, color: '#2b2723', margin: 'clamp(56px,10vh,120px) auto 0', maxWidth: '20ch', ...balance, ...surface() }}>The Founder’s Room<span style={{ fontSize: '0.5em', verticalAlign: 'super' }}>™</span> exists for the moments that shape the next chapter.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.7)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>Not because founders lack intelligence. Because leadership becomes clearer when it is shared with someone who understands what building truly requires.</p>
+
+        {/* ── what happens here — moments, as inscriptions ──────────────── */}
+        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+          <div style={{ ...label, marginBottom: 'clamp(56px,10vh,110px)', ...surface('entry 0% cover 22%') }}>What happens here</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(34px,6.5vh,84px)' }}>
+            {MOMENTS.map((m, i) => {
+              const last = i === MOMENTS.length - 1
+              return (
+                <p key={i} style={{ fontFamily: serif, fontStyle: last ? 'italic' : 'normal', fontWeight: last ? 400 : 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: last ? 'rgba(122,94,52,0.9)' : 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '20ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>{m}</p>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* ── inside the room ───────────────────────────────────────────── */}
+        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+          <div style={{ ...label, marginBottom: 'clamp(50px,9vh,100px)', ...surface('entry 0% cover 22%') }}>Inside the room</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(24px,4.5vh,52px)' }}>
+            {INSIDE.map((it, i) => (
+              <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.2, color: 'rgba(43,39,35,0.74)', margin: 0, ...surface('entry 0% cover 18%') }}>{it}</p>
+            ))}
+          </div>
+        </div>
+
+        {/* ── the archive note ──────────────────────────────────────────── */}
+        {x.archive && <ArchiveCard note={x.archive} />}
+
+        {/* ── the particulars — quiet, never transactional ──────────────── */}
+        <div style={{ marginTop: 'clamp(40px,7vh,90px)', ...surface() }}>
+          <div style={{ ...label, marginBottom: 'clamp(48px,8vh,90px)' }}>The particulars</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))', gap: 'clamp(38px,5vw,68px)', maxWidth: 780, margin: '0 auto', textAlign: 'left' }}>
+            {SPECS.map((p, i) => (
+              <div key={i}>
+                <div style={{ ...label, fontSize: 10, letterSpacing: '0.34em', marginBottom: '1em' }}>{p.label}</div>
+                <div style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.8)', ...pretty }}>{p.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── the transformation — one sentence at a time ───────────────── */}
+        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+          <div style={{ ...label, marginBottom: 'clamp(56px,10vh,110px)', ...surface('entry 0% cover 22%') }}>What changes</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(38px,7vh,90px)' }}>
+            {TRANSFORM.map((t, i) => {
+              const last = i === TRANSFORM.length - 1
+              return (
+                <p key={i} style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: last ? 'clamp(28px,3.8vw,52px)' : 'clamp(24px,3.1vw,40px)', lineHeight: 1.26, color: last ? '#2b2723' : 'rgba(122,94,52,0.86)', margin: 0, maxWidth: '22ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>{t}</p>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* ── questions ─────────────────────────────────────────────────── */}
+        <div style={{ marginTop: 'clamp(130px,24vh,300px)', maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', ...surface() }}>
+          <div style={{ ...label, marginBottom: 'clamp(40px,7vh,72px)' }}>Questions founders ask</div>
+          <Correspondence items={x.faqs} />
+        </div>
+
+        {/* ── the invitation — the quietest on the website ──────────────── */}
+        <div style={{ marginTop: 'clamp(140px,26vh,320px)' }}>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,50px)', lineHeight: 1.2, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance, ...surface('entry 2% cover 26%') }}>Every meaningful company eventually reaches a chapter that cannot be built alone.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: 'clamp(48px,9vh,100px) auto 0', ...surface() }}>When that chapter arrives…</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(28px,5vh,52px) auto 0', ...balance, ...surface() }}>The door is open.</p>
+
+          <El
+            onClick={() => setNoteOpen(true)}
+            style={{ display: 'inline-block', margin: 'clamp(56px,10vh,110px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', borderBottom: '1px solid rgba(122,94,52,0.5)', paddingBottom: 7, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
+            hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}
+          >
+            Enter the Founder’s Room
+          </El>
+        </div>
+
+        <div style={{ marginTop: 'clamp(110px,20vh,220px)' }}><BackPill onClose={ctx.closeDoorway} label="← Back" /></div>
+      </div>
+
+      {noteOpen && <ConversationNote onClose={() => setNoteOpen(false)} />}
+    </ChapterShell>
+  )
+}
