@@ -237,11 +237,15 @@ export type Experience = {
   whoNotFor?: string     // and, gently, who it isn't
   includedHeading?: string
   included: string[]
-  particulars: Particular[]   // group size · cadence · community · investment
+  particulars: Particular[]   // the museum labels — group size · cadence · community
+  investment: string          // its own moment — the figure alone
+  investmentNote: string      // one quiet supporting line, no sales language
   changesLead: string    // the felt result, led by one line
   changes: string[]      // the first-person aftermath — felt, not explained
   faqs: Faq[]
-  closing: string        // the line that precedes "Begin the Conversation"
+  joinLead: string       // the large line that opens the invitation
+  joinBody: string       // why we begin with a conversation
+  closing: string        // the reflection that precedes "Begin the Conversation"
 }
 
 export const EXPERIENCES: Record<string, Experience> = {
@@ -272,8 +276,9 @@ export const EXPERIENCES: Record<string, Experience> = {
       { label: 'Group size', value: 'A small, curated circle — never a crowd. Small enough that every founder is known.' },
       { label: 'Meeting cadence', value: 'A live gathering each month, with the conversation continuing quietly between.' },
       { label: 'Community', value: 'A private space for members, open between gatherings, in your own time.' },
-      { label: 'Investment', value: '$995 / month' },
     ],
+    investment: '$995 / month',
+    investmentNote: 'An investment in the founder your company needs you to become.',
     changesLead: 'Founders arrive carrying questions. They leave carrying clarity.',
     changes: [
       'I feel lighter.',
@@ -288,6 +293,8 @@ export const EXPERIENCES: Record<string, Experience> = {
       { q: 'What if I need help with a specific decision?', a: 'Membership includes an individual strategy session — and the room itself is built for exactly this: one founder, one real decision, the room’s full attention.' },
       { q: 'How do I join?', a: 'The room opens by conversation. We begin with The Founder Conversation, so we can understand where you are and whether this is the right room for you now.' },
     ],
+    joinLead: 'The room opens through conversation.',
+    joinBody: 'We begin with The Founder Conversation so we can understand where you are, what you’re building, and whether this is the right room for you today.',
     closing: 'The best founders don’t build alone. They build beside others who understand.',
   },
 }

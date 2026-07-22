@@ -83,6 +83,8 @@ a:hover { color: #b08a4a; }
 @keyframes blackReveal { 0%,15% { opacity: 1; } 100% { opacity: 0; } }
 /* each doorway arrives as if a door quietly opens — a soft rise into the light */
 @keyframes doorwayReveal { 0% { opacity: 0; transform: translateY(26px); } 100% { opacity: 1; transform: translateY(0); } }
+/* an almost imperceptible fade — for emotional statements that surface as you scroll */
+@keyframes fadeUpSoft { 0% { opacity: 0; transform: translateY(14px); } 100% { opacity: 1; transform: translateY(0); } }
 /* the Blueprint, unfolding like an old architectural drawing */
 @keyframes blueprintUnfold {
   0%   { opacity: 0; transform: scaleY(0.05) scaleX(0.92); filter: blur(3px); }
