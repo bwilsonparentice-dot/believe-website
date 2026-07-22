@@ -100,9 +100,10 @@ export class App extends React.Component<Record<string, never>, State> {
       // The Founder's Room now resolves to its dedicated experience page everywhere it's linked
       openFounderRoom: this.openDoorway('founders-room'), closeFounderRoom: this.closeDoorway,
       openBlueprint: this.openDoorway('believe-blueprint'), closeBlueprint: this.closeDoorway,
-      openTable: this.openChapter('showTable'), closeTable: this.closeChapter('showTable'),
+      openTable: this.openDoorway('founders-table'), closeTable: this.closeDoorway,
       openLibrary: this.openChapter('showLibrary'), closeLibrary: this.closeChapter('showLibrary'),
-      openStudio: this.openChapter('showStudio'), closeStudio: this.closeChapter('showStudio'),
+      // The Studio has merged into the Blueprint — every Studio link now opens it
+      openStudio: this.openDoorway('believe-blueprint'), closeStudio: this.closeDoorway,
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openChapter('showPeople'), closePeople: this.closeChapter('showPeople'),
@@ -494,6 +495,7 @@ export class App extends React.Component<Record<string, never>, State> {
     // rooms with a dedicated experience page open it directly — one room, one page
     if (room.id === 'founders') return this.ctx.openDoorway('founders-room')
     if (room.id === 'advisory') return this.ctx.openDoorway('private-advisory')
+    if (room.id === 'table') return this.ctx.openDoorway('founders-table')
     return this.openRoom(room.id)
   }
 

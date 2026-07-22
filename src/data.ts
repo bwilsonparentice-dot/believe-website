@@ -183,14 +183,14 @@ export const DATA: any[] = [
     ] },
   { id: 'stage', roman: 'X', name: 'The Stage', l: '66%', t: '64%', w: '30%', h: '24%',
     accent: 'oklch(0.62 0.09 22)', glow: 'oklch(0.62 0.09 22 / 0.22)',
-    whisper: 'When Belief Becomes Visible.',
-    keywords: ['Share', 'Teach', 'Inspire', 'Legacy'],
+    whisper: 'Where founders give back what they’ve learned.',
+    keywords: ['Share', 'Give', 'Mentor', 'Legacy'],
     body: [
-      'There comes a moment when the work no longer belongs only to you. After the Blueprint, after the conversations, after the difficult decisions, your ideas begin to travel farther than you ever could.',
-      'Some founders publish books. Some mentor the next generation. Some stand on stages. Some simply build companies that quietly change lives.',
-      'The Stage isn’t about being seen. It’s about creating something worth remembering.',
+      'There comes a moment when what you’ve learned no longer belongs only to you. Another founder needs to hear it.',
+      'The Stage is where founder stories are told and transformations are shared — not to be celebrated, but to light the way for the founder coming next. A gallery of contribution, never a trophy case.',
+      'It was never about being seen. It’s about what you leave behind.',
     ],
-    archive: { no: '059', lines: ['She’d rehearsed it a hundred times alone.', 'It became real the moment she said it out loud.'], source: '— from The Stage Records' } },
+    archive: { no: '058', lines: ['The applause wasn’t the reward.', 'Knowing someone else believed because of your story was.'], source: '— from The Stage' } },
 ]
 
 export const STORIES = [
@@ -258,6 +258,8 @@ export type Experience = {
   joinBody: string       // why we begin with a conversation
   closing: string        // the reflection that precedes "Begin the Conversation"
   archive?: ArchiveNote  // the room's own page of the Believe Archive
+  interlude?: string     // a warm pull-quote set between sections (used sparingly)
+  background?: string    // an optional warmer paper for rooms that ask for it
 }
 
 export const EXPERIENCES: Record<string, Experience> = {
@@ -312,6 +314,59 @@ export const EXPERIENCES: Record<string, Experience> = {
       no: '027',
       lines: ['The founder wasn’t asking about packaging.', 'She was asking for permission.'],
       source: '— from the Founder Notes',
+    },
+  },
+
+  'founders-table': {
+    id: 'founders-table',
+    eyebrow: 'The gathering table',
+    name: 'The Founder’s Table',
+    tm: true,
+    tagline: 'You’re not building alone.',
+    photo: 'table',
+    photoAlt: 'A warm walnut table in morning light — coffee, an open notebook, chairs drawn close',
+    background: '#f1e7d0',
+    whatIsIt: [
+      'The Founder’s Table is where founders stop building alone. A standing invitation to sit down among others who understand — to think out loud, to be honest, and to leave in better company than you arrived.',
+      'Some conversations last twenty minutes. Some last three hours. Almost all of them change something — not because advice was given, but because someone finally understood.',
+    ],
+    whoFor: 'For founders who’ve carried it alone long enough — who want a table of others building meaningful companies, and the kind of honesty that only comes from people who have been there.',
+    whoNotFor: 'It isn’t a networking room, and it isn’t an audience. It’s a table.',
+    includedHeading: 'What gathering holds',
+    included: [
+      'A standing seat at the table',
+      'Founders who understand',
+      'Conversations that become decisions',
+      'The quiet relief of not building alone',
+    ],
+    interlude: 'What decision have you already made… but haven’t admitted to yourself yet?',
+    particulars: [
+      { label: 'The table', value: 'Small and consistent — the same faces, growing familiar over time.' },
+      { label: 'How often', value: 'Regular gatherings, in person and in conversation, never rushed.' },
+      { label: 'The spirit', value: 'Honesty over polish. Belonging over programming.' },
+    ],
+    investment: 'By invitation',
+    investmentNote: 'A seat at the table is offered, not sold. We begin, as always, with a conversation.',
+    changesLead: 'Founders arrive carrying it alone. They leave knowing they never have to again.',
+    changes: [
+      'I’m not the only one.',
+      'I can be honest here.',
+      'I have people who understand.',
+      'I’m not building alone anymore.',
+    ],
+    faqs: [
+      { q: 'Is this networking?', a: 'No. Networking is transactional; the Table is relational. You won’t be pitching — you’ll be understood.' },
+      { q: 'How large is the table?', a: 'Small and consistent — the same founders, growing familiar over time, so honesty has room to happen.' },
+      { q: 'What actually happens?', a: 'Conversation. Real questions, real decisions, and the quiet relief of sitting among people who’ve been where you are.' },
+      { q: 'How do I pull up a chair?', a: 'With a conversation. We begin with The Founder Conversation, so the table stays a place where everyone truly belongs.' },
+    ],
+    joinLead: 'Pull up a chair.',
+    joinBody: 'The Table begins with a conversation — so that when you sit down, you’re already among founders who understand.',
+    closing: 'The best founders don’t build alone. They build beside others who understand.',
+    archive: {
+      no: '044',
+      lines: ['She arrived looking for advice.', 'She left realizing she wasn’t building alone.'],
+      source: '— from The Founder’s Table',
     },
   },
 
@@ -677,7 +732,9 @@ const sideStyle = (side: string) =>
     : side === 'right'
     ? { justify: 'flex-end', textAlign: 'right', scrim: 'linear-gradient(270deg, rgba(26,19,11,0.66), rgba(26,19,11,0.22) 44%, transparent 74%)' }
     : { justify: 'center', textAlign: 'center', scrim: 'radial-gradient(120% 100% at 50% 58%, rgba(26,19,11,0.6), rgba(26,19,11,0.18) 56%, transparent 80%)' }
-const ORDER = ['threshold', 'founders', 'blueprint', 'fieldnotes', 'library', 'table', 'studio', 'garden', 'advisory', 'stage']
+// the house now reads as a journey: arrival → see clearly → become stronger →
+// build beside others → continue. The Studio has merged into the Blueprint.
+const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'fieldnotes', 'library', 'garden', 'stage']
 const enterLabelMap: Record<string, string> = {
   table: 'Let’s think together.', studio: 'Let’s learn together.', advisory: 'Let’s decide together.',
   garden: 'Let’s gain perspective.', stage: 'Give your work to the world.', blueprint: 'Explore the Blueprint →',
@@ -699,7 +756,7 @@ export function buildRooms(): { all: Room[]; journey: Room[]; byId: (id: string)
     const ia = ORDER.indexOf(a.id), ib = ORDER.indexOf(b.id)
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib)
   })
-  const journey = all.filter((r) => r.id !== 'garden').map((r, i) => {
+  const journey = all.filter((r) => r.id !== 'garden' && r.id !== 'studio').map((r, i) => {
     const lo = LAYOUT[r.id] || { side: 'center' }
     const ss = sideStyle(lo.side)
     return {

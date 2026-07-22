@@ -69,7 +69,7 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
   if (!x) return null
 
   return (
-    <ChapterShell onClose={ctx.closeDoorway} background="#efe6d3" z={130}>
+    <ChapterShell onClose={ctx.closeDoorway} background={x.background || '#efe6d3'} z={130}>
       <div style={{ position: 'relative', maxWidth: 960, margin: '0 auto', padding: 'clamp(100px,18vh,230px) 7vw clamp(80px,14vh,170px)', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* ══ Chapter One — arrival & what it is · centered, calm ══════════ */}
@@ -119,6 +119,13 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
 
         {/* a page from the Believe Archive, left resting inside the room */}
         {x.archive && <ArchiveCard note={x.archive} />}
+
+        {/* a warm editorial breath — a pull-quote that slows the visitor down */}
+        {x.interlude && (
+          <blockquote style={{ margin: 'clamp(96px,17vh,220px) auto', maxWidth: 'min(640px,92%)', textAlign: 'center', ...surface('entry 0% cover 24%') }}>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(26px,3.5vw,46px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.85)', margin: 0, ...balance }}>{x.interlude}</p>
+          </blockquote>
+        )}
 
         {/* ══ Chapter Four — the particulars · museum wall labels ══════════ */}
         <section style={{ margin: 'clamp(70px,12vh,150px) auto 0', ...surface() }}>
