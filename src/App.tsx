@@ -502,6 +502,7 @@ export class App extends React.Component<Record<string, never>, State> {
     if (room.id === 'founders') return this.ctx.openDoorway('founders-room')
     if (room.id === 'advisory') return this.ctx.openDoorway('private-advisory')
     if (room.id === 'table') return this.ctx.openDoorway('founders-table')
+    if (room.id === 'stage') return this.ctx.openStage
     return this.openRoom(room.id)
   }
 

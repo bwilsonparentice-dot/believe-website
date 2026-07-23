@@ -190,7 +190,7 @@ export const DATA: any[] = [
       'The Stage is where founder stories are kept and passed on: the pivots, the quiet victories, the retail milestones, the lessons earned the hard way. Not a highlight reel — a gallery of contribution.',
       'Some founders speak. Some write. Some simply sit across from the next founder and say the thing no one told them. However it happens, the work stops being only yours. It was never about being seen — it’s about what you hand forward.',
     ],
-    archive: { no: '058', lines: ['The applause wasn’t the reward.', 'Knowing someone else believed because of your story was.'], source: '— from The Stage' } },
+    archive: { no: '058', lines: ['The applause wasn’t the reward.', 'Knowing another founder believed because of your story was.'], source: '— from The Stage Archive' } },
 ]
 
 export const STORIES = [

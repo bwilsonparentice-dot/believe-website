@@ -1,70 +1,118 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
+import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
-import { ChapterShell, BackPill, Divider } from '../components/ChapterShell'
-import { ImageSlot } from '../components/ImageSlot'
-import { Keynote } from '../components/Living'
-import { STAGE_MOMENTS, STAGE_GALLERY } from '../data'
+import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
+import { ArchiveCard } from '../components/ArchiveCard'
+import type { ArchiveNote } from '../data'
 
-/** The Stage — where the quiet work of the house meets the world. */
+const serif = "'Cormorant Garamond',serif"
+const sans = "'Jost',sans-serif"
+const pretty = { textWrap: 'pretty' as CSSProperties['textWrap'] }
+const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
+
+const label: CSSProperties = {
+  fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em',
+  textTransform: 'uppercase', color: 'rgba(122,94,52,0.66)',
+}
+
+const surface = (range = 'entry 2% cover 24%'): CSSProperties => ({
+  animation: 'fadeUpSoft 1300ms ease both',
+  animationTimeline: 'view()' as unknown as string,
+  animationRange: range as unknown as string,
+})
+
+// The evening light of a room after the applause — the wisdom, not the spotlight.
+const ARCHIVE: ArchiveNote = {
+  no: '058',
+  lines: ['The applause wasn’t the reward.', 'Knowing another founder believed because of your story was.'],
+  source: '— from The Stage Archive',
+}
+
+// What changes — not features. The slow accumulation of an institution's memory.
+const CHANGES = [
+  'One founder becomes many.',
+  'Experience becomes wisdom.',
+  'Stories become guidance.',
+  'Leadership becomes legacy.',
+  'The work continues long after the founder leaves the room.',
+]
+
+/**
+ * The Stage — where experience becomes legacy. Not public speaking; stewardship.
+ * The final movement of the house: a founder who once needed belief returns
+ * carrying it for the next. The quietest page — it honors what continues after
+ * the spotlight fades, and it names no one. (ctx.openStage.)
+ */
 export function StageChapter({ ctx }: { ctx: Ctx }) {
   return (
-    <ChapterShell onClose={ctx.closeStage} background="#efe6d3">
-      <div style={{ position: 'relative', maxWidth: 820, margin: '0 auto', padding: 'clamp(100px,18vh,220px) 6vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723' }}>
-        <Keynote>Your quiet work becomes visible, in time.</Keynote>
+    <ChapterShell onClose={ctx.closeStage} background="#ebe1cb">
+      {/* a soft evening light, wandering — the room after the lights go down */}
+      <div aria-hidden="true" style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, background: 'radial-gradient(58% 44% at 50% 16%, rgba(255,228,196,0.42), transparent 68%)', animation: 'lightWander 26s ease-in-out infinite alternate' }} />
 
-        <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.55em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '2em' }}>The Stage</div>
-        <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(34px,5.2vw,74px)', lineHeight: 1.08, margin: '0 auto', maxWidth: '22ch', color: '#2b2723' }}>Every meaningful company eventually steps into the light.</h2>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: '1.4em auto 0', maxWidth: '28ch' }}>Not because it seeks attention. Because the work is ready to be seen.</p>
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 780, margin: '0 auto', padding: 'clamp(104px,20vh,260px) 7vw clamp(90px,16vh,200px)', color: '#2b2723' }}>
 
-        <Divider h="clamp(56px,10vh,110px)" m="clamp(52px,9vh,100px) auto" />
-
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.68)', maxWidth: '32ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Some founders step onto a stage. Some onto a trade show floor. Some into a buyer’s office. Some behind a microphone. Some onto a retail shelf.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: '1.4em auto 0', maxWidth: '30ch' }}>Every milestone looks different. But each one begins long before anyone is watching.</p>
-
-        <Divider h="clamp(50px,9vh,100px)" m="clamp(52px,9vh,100px) auto" />
-
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>The Stage is where the quiet work inside Believe Studio meets the world. Where conversations become launches. Ideas become products. Introductions become partnerships. Belief becomes momentum. Some moments are celebrated publicly. Others are remembered quietly. Both belong here.</p>
-
-        <Divider h="clamp(56px,10vh,110px)" m="clamp(52px,9vh,100px) auto" />
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(52px,9vh,100px)' }}>
-          {STAGE_MOMENTS.map((m, i) => (
-            <div key={i} style={{ maxWidth: '34ch', margin: '0 auto' }}>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(28px,4vw,52px)', lineHeight: 1.06, margin: '0 0 0.4em' }}>{m.k}</h3>
-              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', margin: 0, textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>{m.b}</p>
-            </div>
-          ))}
+        {/* ── the opening — after the lights go out ─────────────────────── */}
+        <div style={{ textAlign: 'center' }}>
+          <ArchMark width={2.2} margin="0 auto 1.5em" />
+          <div style={{ ...label, fontSize: 11, marginBottom: '1.5em' }}>After the lights go out</div>
+          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(46px,7vw,104px)', lineHeight: 0.98, margin: '0 0 0.32em' }}>The Stage</h2>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,32px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>Where experience becomes legacy.</p>
         </div>
 
-        <Divider h="clamp(56px,10vh,110px)" m="clamp(52px,9vh,100px) auto" />
-
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.6vw,60px)', lineHeight: 1.16, color: 'rgba(43,39,35,0.94)', maxWidth: '18ch', margin: '0 auto' }}>Every founder deserves a stage. Not to perform. To be remembered.</p>
-
-        <Divider h="clamp(56px,10vh,110px)" m="clamp(52px,9vh,100px) auto" />
-
-        <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '1.2em' }}>The artifact</div>
-        <svg width="34" height="34" viewBox="0 0 60 60" fill="none" style={{ display: 'block', margin: '0 auto 1em', opacity: 0.7 }}>
-          <circle cx="30" cy="30" r="12" stroke="#9c7a3f" strokeWidth="2" />
-          <circle cx="30" cy="30" r="4" fill="#c8a24e" />
-        </svg>
-        <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.4vw,56px)', lineHeight: 1.04, margin: '0 0 0.4em' }}>The Spotlight</h3>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', color: 'rgba(122,94,52,0.8)', margin: '0 auto 1.2em', maxWidth: '26ch' }}>Not bright. Not theatrical. Just enough light to reveal what has quietly been built.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.85vw,23px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.62)', maxWidth: '32ch', margin: '0 auto' }}>Recognition is never the goal. It is simply what happens when meaningful work becomes impossible to overlook.</p>
-
-        <Divider h="clamp(56px,10vh,110px)" m="clamp(52px,9vh,100px) auto" />
-
-        <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '2em' }}>A gallery, still being filled</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 'clamp(18px,2.4vw,30px)', textAlign: 'left' }}>
-          {STAGE_GALLERY.map((g, i) => (
-            <ImageSlot key={i} placeholder={g} style={{ display: 'block', width: '100%', aspectRatio: '4 / 5', background: '#f5efe1', borderRadius: '120px 120px 4px 4px' }} />
-          ))}
+        {/* ── the passage ───────────────────────────────────────────────── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(110px,20vh,240px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.9)', maxWidth: '22ch', margin: '0 auto', ...balance }}>There comes a moment when what you’ve learned no longer belongs only to you.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.66)', maxWidth: '32ch', margin: 'clamp(44px,8vh,90px) auto 0', ...pretty }}>Another founder is standing where you once stood — carrying the same questions, the same uncertainty, the same hope, wondering whether someone else has walked this road before.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '24ch', ...balance }}>The Stage exists for that moment.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.62)', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0', ...balance }}>Not because every founder should stand before a crowd. Because every founder eventually carries something another founder needs.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>Some founders speak. Some write. Some mentor.<br />Some simply share the truth they wish someone had heard earlier.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '20ch', ...balance }}>The form matters less than the gift.</p>
         </div>
 
-        <Divider h="clamp(56px,10vh,110px)" m="clamp(52px,9vh,100px) auto" />
+        {/* ── what the Stage honors — lived experience, not recognition ─── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(120px,22vh,280px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,48px)', lineHeight: 1.2, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance }}>Leadership isn’t measured only by what we build.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(30px,5vh,56px) auto 0', maxWidth: '22ch', ...balance }}>It’s measured by what continues because we built it.</p>
 
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '22ch', margin: '0 auto 0.5em' }}>Long before anyone applauds, someone first has to believe.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', color: 'rgba(122,94,52,0.78)', margin: '0 auto clamp(44px,8vh,90px)', maxWidth: '28ch' }}>Everything inside this house exists to help founders reach that moment.</p>
-        <BackPill onClose={ctx.closeStage} label="See What’s Unfolding →" />
+          <div style={{ width: 1, height: 'clamp(56px,10vh,110px)', margin: 'clamp(64px,11vh,130px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+
+          <div style={{ ...label, fontSize: 10, marginBottom: '2em' }}>What the Stage honors</div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.7)', maxWidth: '30ch', margin: '0 auto', ...balance }}>Founder wisdom is often worth the most after the fact — after the success, the failure, the reinvention, sometimes even after the company has closed its doors.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: 'clamp(40px,7vh,78px) auto 0' }}>The Stage honors lived experience.<br />Not public recognition. Not titles. Not achievements.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '26ch', ...balance }}>A founder’s greatest contribution often begins after the spotlight fades.</p>
+        </div>
+
+        {/* ── the archive note — text only, universal ───────────────────── */}
+        <ArchiveCard note={ARCHIVE} />
+
+        {/* ── what changes — the institution's slow accumulation ────────── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(40px,7vh,90px)' }}>
+          <div style={{ ...label, fontSize: 10, marginBottom: '2.4em' }}>What changes</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(26px,4vh,44px)' }}>
+            {CHANGES.map((c, i) => {
+              const last = i === CHANGES.length - 1
+              return (
+                <p key={i} style={{ fontFamily: serif, fontWeight: last ? 400 : 300, fontStyle: last ? 'normal' : 'normal', fontSize: last ? 'clamp(22px,2.8vw,36px)' : 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: last ? '#2b2723' : 'rgba(43,39,35,0.72)', margin: '0 auto', maxWidth: last ? '20ch' : '26ch', ...balance, ...surface('entry 0% cover 20%') }}>{c}</p>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* ── the invitation — no urgency, the door left open ───────────── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.66)', maxWidth: '26ch', margin: '0 auto' }}>Some founders come to Believe looking for clarity.<br />Some stay because they find community.<br />Some eventually return carrying wisdom.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.32, color: '#2b2723', margin: 'clamp(48px,9vh,100px) auto 0', maxWidth: '20ch', ...balance }}>When that chapter arrives, the Stage will be here.</p>
+
+          <El
+            onClick={ctx.openStories}
+            style={{ display: 'inline-block', margin: 'clamp(56px,10vh,110px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.5)', borderBottom: '1px solid rgba(122,94,52,0.34)', paddingBottom: 6, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
+            hover={{ color: 'rgba(43,39,35,0.9)', borderColor: 'rgba(43,39,35,0.6)' }}
+          >
+            Read Founder Stories
+          </El>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: 'clamp(96px,16vh,190px)' }}><BackPill onClose={ctx.closeStage} label="← Back" /></div>
       </div>
     </ChapterShell>
   )
