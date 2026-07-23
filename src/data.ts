@@ -84,12 +84,12 @@ export const ARTIFACTS: Record<string, any> = {
   threshold: { principle: 'Arrival', artifact: 'The Key', artifactImg: '/photos/artifact-key.webp', artifactNote: 'The invitation was always enough.', continueLabel: 'Step further in', light: 'radial-gradient(56% 50% at 38% 22%, rgba(255,238,196,0.55), transparent 66%)' },
   founders: { principle: 'Confidence', artifact: 'The Chair', artifactNote: 'Two chairs. One conversation. No agenda.', continueLabel: 'Continue', light: 'radial-gradient(60% 54% at 30% 26%, rgba(255,226,178,0.5), transparent 68%)' },
   library: { principle: 'Curiosity', artifact: 'The Ladder', artifactNote: 'For reaching what others left high on the shelf.', continueLabel: 'Take this with you', light: 'radial-gradient(50% 46% at 42% 30%, rgba(255,212,146,0.6), transparent 64%)' },
-  fieldnotes: { principle: 'Curiosity', artifact: 'The Journal', artifactImg: '/photos/artifact-journal.webp', artifactNote: 'Open. Already written in. Never pristine.', continueLabel: 'Keep noticing', light: 'radial-gradient(58% 52% at 40% 20%, rgba(224,238,255,0.44), transparent 66%)' },
+  fieldnotes: { principle: 'Curiosity', artifact: 'The Journal', artifactNote: 'Open. Already written in. Never pristine.', continueLabel: 'Keep noticing', light: 'radial-gradient(58% 52% at 40% 20%, rgba(224,238,255,0.44), transparent 66%)' },
   table: { principle: 'Belonging', artifact: 'The Empty Chair', artifactNote: 'Not reserved for experts. Reserved for honesty.', continueLabel: 'Come when you’re ready', light: 'radial-gradient(58% 52% at 40% 22%, rgba(255,231,186,0.52), transparent 66%)' },
   studio: { principle: 'Craftsmanship', artifact: 'The Worktable', artifactNote: 'Covered in the unfinished. That is the point.', continueLabel: 'Keep building', light: 'radial-gradient(62% 56% at 34% 18%, rgba(204,223,238,0.5), transparent 68%)' },
   advisory: { principle: 'Clarity', artifact: 'The Private Door', artifactNote: 'Closed. Heavy walnut. No explanation offered.', continueLabel: 'Continue', light: 'radial-gradient(46% 44% at 44% 34%, rgba(240,218,176,0.42), transparent 60%)' },
   garden: { principle: 'Clarity', artifact: 'The Stone Bench', artifactNote: 'Warm from the morning sun. Sit as long as you like.', continueLabel: 'Stay a while', light: 'radial-gradient(58% 52% at 38% 22%, rgba(224,240,194,0.5), transparent 66%)' },
-  stage: { principle: 'Belonging', artifact: 'The Badge', artifactImg: '/photos/artifact-badge.webp', artifactNote: 'The first proof that someone was finally watching.', continueLabel: 'Pass it forward', light: 'radial-gradient(56% 50% at 40% 22%, rgba(255,222,204,0.5), transparent 66%)' },
+  stage: { principle: 'Belonging', artifact: 'The Badge', artifactImg: '/photos/artifact-badge.webp', artifactNote: 'Proof that the work had begun to travel.', continueLabel: 'Pass it forward', light: 'radial-gradient(56% 50% at 40% 22%, rgba(255,222,204,0.5), transparent 66%)' },
 }
 
 export const DATA: any[] = [
@@ -186,9 +186,9 @@ export const DATA: any[] = [
     whisper: 'Where founders give back what they’ve learned.',
     keywords: ['Share', 'Give', 'Mentor', 'Legacy'],
     body: [
-      'There comes a moment when what you’ve learned no longer belongs only to you. Another founder needs to hear it.',
-      'The Stage is where founder stories are told and transformations are shared — not to be celebrated, but to light the way for the founder coming next. A gallery of contribution, never a trophy case.',
-      'It was never about being seen. It’s about what you leave behind.',
+      'There comes a moment when what you’ve learned no longer belongs to you alone. Another founder needs to hear it — and you may be the only one who can say it plainly.',
+      'The Stage is where founder stories are kept and passed on: the pivots, the quiet victories, the retail milestones, the lessons earned the hard way. Not a highlight reel — a gallery of contribution.',
+      'Some founders speak. Some write. Some simply sit across from the next founder and say the thing no one told them. However it happens, the work stops being only yours. It was never about being seen — it’s about what you hand forward.',
     ],
     archive: { no: '058', lines: ['The applause wasn’t the reward.', 'Knowing someone else believed because of your story was.'], source: '— from The Stage' } },
 ]
@@ -397,6 +397,7 @@ export const EXPERIENCES: Record<string, Experience> = {
       no: '044',
       lines: ['She arrived looking for advice.', 'She left realizing she wasn’t building alone.'],
       source: '— from The Founder’s Table',
+      image: '/photos/artifact-journal.webp',
     },
   },
 
