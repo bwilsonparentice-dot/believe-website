@@ -59,23 +59,24 @@ export function StageChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,32px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>Where experience becomes legacy.</p>
         </div>
 
-        {/* ── the passage ───────────────────────────────────────────────── */}
+        {/* ── the passage — spare fragments, generous air between them ──── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(110px,20vh,240px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.9)', maxWidth: '22ch', margin: '0 auto', ...balance }}>There comes a moment when what you’ve learned no longer belongs only to you.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.66)', maxWidth: '32ch', margin: 'clamp(44px,8vh,90px) auto 0', ...pretty }}>Another founder is standing where you once stood — carrying the same questions, the same uncertainty, the same hope, wondering whether someone else has walked this road before.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '24ch', ...balance }}>The Stage exists for that moment.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.62)', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0', ...balance }}>Not because every founder should stand before a crowd. Because every founder eventually carries something another founder needs.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>Some founders speak. Some write. Some mentor.<br />Some simply share the truth they wish someone had heard earlier.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '20ch', ...balance }}>The form matters less than the gift.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.3vw,29px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.78)', maxWidth: '24ch', margin: 'clamp(56px,10vh,120px) auto 0', ...balance }}>Another founder is standing where you once stood.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 2, color: 'rgba(43,39,35,0.62)', maxWidth: '26ch', margin: 'clamp(36px,6vh,64px) auto 0' }}>Carrying the same questions.<br />The same uncertainty.<br />The same hope.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.62)', maxWidth: '28ch', margin: 'clamp(36px,6vh,64px) auto 0', ...balance }}>Wondering whether someone else has walked this road before.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,32px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.84)', margin: 'clamp(56px,10vh,120px) auto 0', maxWidth: '24ch', ...balance }}>The Stage exists for that moment.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.62)', maxWidth: '30ch', margin: 'clamp(48px,8vh,96px) auto 0', ...balance }}>Not because every founder should stand before a crowd. Because every founder eventually carries something another founder needs.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '30ch', margin: 'clamp(48px,8vh,96px) auto 0' }}>Some founders speak. Some write. Some mentor.<br />Some simply share the truth they wish someone had heard earlier.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(40px,7vh,76px) auto 0', maxWidth: '20ch', ...balance }}>The form matters less than the gift.</p>
+
+          {/* the couplet the whole passage has been reaching toward */}
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,48px)', lineHeight: 1.2, color: '#2b2723', maxWidth: '20ch', margin: 'clamp(90px,16vh,200px) auto 0', ...balance }}>Because leadership isn’t measured only by what we build.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(30px,5vh,56px) auto 0', maxWidth: '22ch', ...balance }}>It’s measured by what continues because we built it.</p>
         </div>
 
         {/* ── what the Stage honors — lived experience, not recognition ─── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(120px,22vh,280px)', ...surface() }}>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,48px)', lineHeight: 1.2, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance }}>Leadership isn’t measured only by what we build.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(30px,5vh,56px) auto 0', maxWidth: '22ch', ...balance }}>It’s measured by what continues because we built it.</p>
-
-          <div style={{ width: 1, height: 'clamp(56px,10vh,110px)', margin: 'clamp(64px,11vh,130px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
-
+        <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: '2em' }}>What the Stage honors</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.7)', maxWidth: '30ch', margin: '0 auto', ...balance }}>Founder wisdom is often worth the most after the fact — after the success, the failure, the reinvention, sometimes even after the company has closed its doors.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: 'clamp(40px,7vh,78px) auto 0' }}>The Stage honors lived experience.<br />Not public recognition. Not titles. Not achievements.</p>
@@ -85,14 +86,17 @@ export function StageChapter({ ctx }: { ctx: Ctx }) {
         {/* ── the archive note — text only, universal ───────────────────── */}
         <ArchiveCard note={ARCHIVE} />
 
-        {/* ── what changes — the institution's slow accumulation ────────── */}
+        {/* ── what changes — each statement falls to the next, generous air ── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(40px,7vh,90px)' }}>
-          <div style={{ ...label, fontSize: 10, marginBottom: '2.4em' }}>What changes</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(26px,4vh,44px)' }}>
+          <div style={{ ...label, fontSize: 10, marginBottom: '3em' }}>What changes</div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {CHANGES.map((c, i) => {
               const last = i === CHANGES.length - 1
               return (
-                <p key={i} style={{ fontFamily: serif, fontWeight: last ? 400 : 300, fontStyle: last ? 'normal' : 'normal', fontSize: last ? 'clamp(22px,2.8vw,36px)' : 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: last ? '#2b2723' : 'rgba(43,39,35,0.72)', margin: '0 auto', maxWidth: last ? '20ch' : '26ch', ...balance, ...surface('entry 0% cover 20%') }}>{c}</p>
+                <React.Fragment key={i}>
+                  <p style={{ fontFamily: serif, fontWeight: last ? 400 : 300, fontSize: last ? 'clamp(22px,2.8vw,36px)' : 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: last ? '#2b2723' : 'rgba(43,39,35,0.72)', margin: '0 auto', maxWidth: last ? '20ch' : '26ch', ...balance, ...surface('entry 0% cover 20%') }}>{c}</p>
+                  {!last && <div aria-hidden="true" style={{ width: 1, height: 'clamp(40px,7vh,72px)', margin: 'clamp(30px,5vh,52px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.34), rgba(122,94,52,0.06))' }} />}
+                </React.Fragment>
               )
             })}
           </div>
