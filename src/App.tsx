@@ -16,7 +16,7 @@ import { FounderRoomChapter } from './chapters/FounderRoom'
 import { BlueprintChapter } from './chapters/Blueprint'
 import { TableChapter } from './chapters/Table'
 import { LibraryChapter } from './chapters/Library'
-import { StudioChapter } from './chapters/Studio'
+import { InResidenceChapter } from './chapters/InResidence'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
@@ -104,8 +104,8 @@ export class App extends React.Component<Record<string, never>, State> {
       openBlueprint: this.openDoorway('believe-blueprint'), closeBlueprint: this.closeDoorway,
       openTable: this.openDoorway('founders-table'), closeTable: this.closeDoorway,
       openLibrary: this.openChapter('showLibrary'), closeLibrary: this.closeChapter('showLibrary'),
-      // The Studio has merged into the Blueprint — every Studio link now opens it
-      openStudio: this.openDoorway('believe-blueprint'), closeStudio: this.closeDoorway,
+      // "Resident Experts" is the doorway; In Residence is the room inside it
+      openStudio: this.openChapter('showStudio'), closeStudio: this.closeChapter('showStudio'),
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openChapter('showPeople'), closePeople: this.closeChapter('showPeople'),
@@ -318,7 +318,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showHouse && <HouseChapter ctx={this.ctx} />}
         {this.state.showWhyBelieve && <WhyBelieveChapter ctx={this.ctx} />}
         {this.state.showPeople && <PeopleChapter ctx={this.ctx} />}
-        {this.state.showStudio && <StudioChapter ctx={this.ctx} />}
+        {this.state.showStudio && <InResidenceChapter ctx={this.ctx} />}
         {this.state.showFounderRoom && <FounderRoomChapter ctx={this.ctx} />}
         {this.state.showStories && <StoriesChapter ctx={this.ctx} />}
       </>
