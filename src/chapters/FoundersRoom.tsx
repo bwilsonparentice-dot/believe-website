@@ -59,7 +59,6 @@ const SPECS = [
   { label: 'Belonging', value: 'A private, continuing partnership, month to month.' },
   { label: 'Gatherings', value: 'Founder conversations, in person and in between.' },
   { label: 'Founding Room', value: 'The Olive Room is intentionally limited to six to eight founders. Every founder is fully known. Every conversation matters. When the room is full, the next room quietly opens.' },
-  { label: 'Investment', value: '$995 / month' },
 ]
 
 // The rooms of the House. For now only the Olive Room is revealed — its founding
@@ -186,6 +185,12 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
                 <div style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.8)', ...pretty }}>{p.value}</div>
               </div>
             ))}
+          </div>
+
+          {/* the investment — given its own space and a quiet certainty */}
+          <div style={{ marginTop: 'clamp(64px,11vh,130px)', textAlign: 'center' }}>
+            <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '0.9em' }}>Investment</div>
+            <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.05, color: '#2b2723' }}>$995 <span style={{ fontStyle: 'italic', fontWeight: 300, fontSize: '0.46em', color: 'rgba(122,94,52,0.78)' }}>/ month</span></div>
           </div>
         </div>
 
