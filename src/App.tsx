@@ -17,6 +17,7 @@ import { BlueprintChapter } from './chapters/Blueprint'
 import { TableChapter } from './chapters/Table'
 import { LibraryChapter } from './chapters/Library'
 import { InResidenceChapter } from './chapters/InResidence'
+import { VisionaryCollectiveChapter } from './chapters/VisionaryCollective'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
@@ -312,6 +313,8 @@ export class App extends React.Component<Record<string, never>, State> {
           ? <BlueprintFolio ctx={this.ctx} />
           : this.state.activeDoorway === 'founders-room'
           ? <FoundersRoom ctx={this.ctx} />
+          : this.state.activeDoorway === 'visionary-collective'
+          ? <VisionaryCollectiveChapter ctx={this.ctx} />
           : this.state.activeDoorway && <DoorwayChapter ctx={this.ctx} id={this.state.activeDoorway} />}
         {this.state.showAdvisory && <AdvisoryChapter ctx={this.ctx} />}
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
