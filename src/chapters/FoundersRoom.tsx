@@ -55,12 +55,61 @@ const TRANSFORM = [
 ]
 
 const SPECS = [
-  { label: 'Cadence', value: 'Ongoing — a standing room, not a set number of sessions.' },
-  { label: 'Membership', value: 'A private, continuing partnership, month to month.' },
+  { label: 'Cadence', value: 'Ongoing — a standing room, not a fixed number of gatherings.' },
+  { label: 'Belonging', value: 'A private, continuing partnership, month to month.' },
   { label: 'Gatherings', value: 'Founder conversations, in person and in between.' },
-  { label: 'Availability', value: 'A small number of founders at a time, so each is fully known.' },
+  { label: 'Founding Room', value: 'The Olive Room is intentionally limited to six to eight founders. Every founder is fully known. Every conversation matters. When the room is full, the next room quietly opens.' },
   { label: 'Investment', value: '$995 / month' },
 ]
+
+// The rooms of the House. For now only the Olive Room is revealed — its founding
+// room. As the House genuinely grows, add the next plaque here (e.g. the Lantern
+// Room, 'Now welcoming founders.') and mark the Olive Room 'Currently full.' —
+// the layout already anticipates it; nothing else on the page needs to change.
+const ROOMS = [
+  { name: 'The Olive Room', status: 'Now welcoming its founding founders.' },
+]
+
+// A crafted olive sprig — the house draws its marks by hand, so the plaque does too.
+function OliveSprig() {
+  const green1 = '#7d7f55', green2 = '#6a6c46', olive = '#565a37', gold = 'rgba(184,147,78,0.9)'
+  const Leaf = ({ x, y, r, len = 23, w = 9, c }: { x: number; y: number; r: number; len?: number; w?: number; c: string }) => (
+    <g transform={`translate(${x} ${y}) rotate(${r})`}>
+      <path d={`M0 0 C ${len * 0.3} ${-w}, ${len * 0.7} ${-w}, ${len} 0 C ${len * 0.7} ${w}, ${len * 0.3} ${w}, 0 0 Z`} fill={c} />
+      <path d={`M2.5 0 L ${len - 2.5} 0`} stroke="rgba(255,250,240,0.4)" strokeWidth="0.7" />
+    </g>
+  )
+  return (
+    <svg viewBox="0 0 150 200" style={{ display: 'block', width: 'clamp(112px,22vw,164px)', height: 'auto', margin: '0 auto' }} aria-hidden="true">
+      <path d="M75 194 C 70 160, 82 138, 76 108 C 71 84, 84 52, 84 16" fill="none" stroke={gold} strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M76 122 C 66 120, 58 114, 52 106" fill="none" stroke={gold} strokeWidth="1.3" strokeLinecap="round" />
+      <Leaf x={84} y={16} r={-66} c={green1} />
+      <Leaf x={85} y={31} r={-18} c={green2} />
+      <Leaf x={80} y={45} r={-100} c={green2} />
+      <Leaf x={83} y={55} r={14} c={green1} />
+      <Leaf x={78} y={71} r={-54} c={green1} />
+      <Leaf x={81} y={85} r={42} c={green2} />
+      <Leaf x={74} y={101} r={-28} c={green1} />
+      <ellipse cx="47" cy="113" rx="9" ry="12" transform="rotate(-18 47 113)" fill={olive} />
+      <ellipse cx="60" cy="123" rx="9" ry="12" transform="rotate(-9 60 123)" fill={olive} />
+      <ellipse cx="44" cy="109" rx="2.3" ry="2.3" fill="rgba(255,250,240,0.3)" />
+    </svg>
+  )
+}
+
+// A brass plaque outside a private room — treated as architecture, not an icon.
+function RoomPlaque({ name, status }: { name: string; status: string }) {
+  return (
+    <div style={{ maxWidth: 380, margin: '0 auto', ...surface('entry 0% cover 20%') }}>
+      <div style={{ position: 'relative', border: '1px solid rgba(184,147,78,0.5)', borderRadius: 'clamp(130px,26vw,178px) clamp(130px,26vw,178px) 7px 7px', background: 'linear-gradient(180deg,#f8f1e3,#f1e9d6)', padding: 'clamp(48px,7vw,74px) clamp(34px,5vw,54px) clamp(42px,6vw,58px)', boxShadow: '0 46px 88px -54px rgba(60,44,20,0.42), inset 0 0 0 1px rgba(184,147,78,0.12)', textAlign: 'center' }}>
+        <OliveSprig />
+        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(15px,1.9vw,20px)', letterSpacing: '0.34em', textTransform: 'uppercase', color: '#2b2723', marginTop: 'clamp(30px,4.4vw,44px)' }}>{name}</div>
+        <div aria-hidden="true" style={{ width: 44, height: 1, background: 'rgba(184,147,78,0.7)', margin: 'clamp(18px,2.4vw,26px) auto' }} />
+        <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.85)' }}>{status}</div>
+      </div>
+    </div>
+  )
+}
 
 /**
  * The Founder's Room — the emotional center of Believe Studio, and the quietest
@@ -125,6 +174,34 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
+        {/* ── your room — not a cohort, a room ──────────────────────────── */}
+        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+          <div style={{ ...label, marginBottom: 'clamp(44px,8vh,90px)', ...surface('entry 0% cover 22%') }}>Your room</div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.24, color: '#2b2723', margin: '0 auto', maxWidth: '18ch', ...balance, ...surface() }}>Every founder belongs to a room.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', margin: 'clamp(32px,5vh,56px) auto 0', ...surface() }}>Not a cohort.<br />Not a forum.<br /><span style={{ color: '#2b2723' }}>A room.</span></p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '40ch', ...pretty, ...surface() }}>Each room is intentionally small — typically six to eight founders — so every conversation has space to breathe and every founder is truly known.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(32px,5vh,56px) auto 0', maxWidth: '36ch', ...pretty, ...surface() }}>Over time, each room develops its own rhythm, trust, and shared history.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.55, color: 'rgba(122,94,52,0.8)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '30ch', ...balance, ...surface() }}>Some founders stay together for years. Some eventually return to guide the founders who come after them.</p>
+
+          {/* the plaque — treated as architecture, given room to breathe */}
+          <div style={{ marginTop: 'clamp(90px,16vh,200px)' }}>
+            {ROOMS.map((r) => (
+              <RoomPlaque key={r.name} name={r.name} status={r.status} />
+            ))}
+          </div>
+
+          {/* the founding room, spoken plainly around the plaque */}
+          <div style={{ marginTop: 'clamp(52px,9vh,100px)', ...surface() }}>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: '0 auto 1em' }}>Our founding room.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: '#2b2723', margin: '0 auto', maxWidth: '26ch', ...balance }}>The Olive Room is where the first founders of Believe Studio will gather.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.95, color: 'rgba(43,39,35,0.64)', margin: 'clamp(40px,7vh,80px) auto 0' }}>Six to eight founders.<br />Monthly conversations.<br />Honest challenges.<br />Thoughtful accountability.<br />Shared experience.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.6)', margin: 'clamp(36px,6vh,64px) auto 0' }}>No recordings.<br />No performance.</p>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(21px,2.6vw,32px)', lineHeight: 1.36, color: '#2b2723', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '24ch', ...balance }}>Just founders helping one another build the next chapter.</p>
+          </div>
+
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.72)', margin: 'clamp(100px,18vh,220px) auto 0', maxWidth: '28ch', ...balance, ...surface() }}>As the House grows, new rooms will quietly open.</p>
+        </div>
+
         {/* ── the archive note ──────────────────────────────────────────── */}
         {x.archive && <ArchiveCard note={x.archive} />}
 
@@ -139,6 +216,15 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* ── the rhythm — real seasons, not a curriculum ───────────────── */}
+        <div style={{ marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+          <div style={{ ...label, marginBottom: 'clamp(48px,8vh,90px)' }}>The rhythm</div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.3, color: '#2b2723', margin: '0 auto', maxWidth: '22ch', ...balance }}>The Founder’s Room isn’t built around a curriculum.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(30px,5vh,56px) auto 0', maxWidth: '26ch', ...balance }}>It’s built around real businesses moving through real seasons.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.95, color: 'rgba(43,39,35,0.64)', margin: 'clamp(48px,8vh,96px) auto 0' }}>Monthly gatherings.<br />Conversations in between.<br />Private Resident hours throughout the year.<br />Occasional House Gatherings.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(40px,7vh,76px) auto 0', maxWidth: '22ch', ...balance }}>The work unfolds one decision at a time.</p>
         </div>
 
         {/* ── the transformation — one sentence at a time ───────────────── */}
@@ -164,7 +250,9 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         <div style={{ marginTop: 'clamp(140px,26vh,320px)' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,50px)', lineHeight: 1.2, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance, ...surface('entry 2% cover 26%') }}>Every meaningful company eventually reaches a chapter that cannot be built alone.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: 'clamp(48px,9vh,100px) auto 0', ...surface() }}>When that chapter arrives…</p>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(28px,5vh,52px) auto 0', ...balance, ...surface() }}>The door is open.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.66)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '34ch', ...pretty, ...surface() }}>When your conversation begins, we’ll thoughtfully place you alongside founders navigating a similar season of growth.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(24px,4vh,40px) auto 0', maxWidth: '24ch', ...balance, ...surface() }}>Because the right room changes the conversation.</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(48px,9vh,96px) auto 0', ...balance, ...surface() }}>The door is open.</p>
 
           <El
             onClick={() => setNoteOpen(true)}
