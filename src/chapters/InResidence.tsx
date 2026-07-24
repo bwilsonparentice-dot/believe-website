@@ -26,7 +26,13 @@ const surface = (range = 'entry 2% cover 26%'): CSSProperties => ({
 })
 
 // The House this month — one practitioner, one workshop, one artifact left behind.
-const RESIDENT = {
+// `team` residents belong to Believe (their link goes inward to The People);
+// outside residents instead carry a `website` that opens to their own work.
+const RESIDENT: {
+  month: string; name: string; role: string; line: string; portrait: string
+  workshopNo: string; workshopTitle: string; workshopSub: string; hook: string[]; artifact: string
+  team?: boolean; website?: string
+} = {
   month: 'August 2026',
   name: 'Mona',
   role: 'Resident AI Strategist',
@@ -37,6 +43,7 @@ const RESIDENT = {
   workshopSub: 'Five roles you can put to work this week.',
   hook: ['You have a spreadsheet you haven’t opened.', 'In ninety minutes we’ll hire someone to handle it.'],
   artifact: 'The AI Employee Handbook',
+  team: true, // Mona is the one resident who is also part of the Believe team
 }
 
 // the small museum-catalog line beneath the title — a pattern founders will
@@ -98,6 +105,13 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
             <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(46px,6.2vw,84px)', lineHeight: 0.98, margin: '0 0 0.32em', color: indigo }}>{RESIDENT.name}</h3>
             <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.3vw,29px)', color: 'rgba(122,94,52,0.82)', marginBottom: '1.2em' }}>{RESIDENT.role}</div>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: 0, ...pretty }}>{RESIDENT.line}</p>
+
+            {/* a resident from within Believe links inward; an outside one links out */}
+            {RESIDENT.team ? (
+              <El onClick={ctx.openPeople} style={{ display: 'inline-block', marginTop: 'clamp(20px,3vh,30px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 4, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: indigo, borderColor: indigoSoft }}>A member of the Believe team →</El>
+            ) : RESIDENT.website ? (
+              <a href={RESIDENT.website} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 'clamp(20px,3vh,30px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 4, textDecoration: 'none' }}>Visit {RESIDENT.name}’s work →</a>
+            ) : null}
           </div>
         </div>
 
