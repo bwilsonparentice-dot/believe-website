@@ -94,8 +94,8 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
 
         {/* ── the current resident — a magazine profile, no box ─────────── */}
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 'clamp(34px,5vw,72px)', margin: 'clamp(130px,24vh,300px) auto 0', ...surface() }}>
-          <div style={{ flex: '0 1 320px', minWidth: 220, maxWidth: 340 }}>
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden', background: '#e6dcc6', boxShadow: '0 44px 84px -48px rgba(40,44,70,0.5)', borderRadius: 'clamp(80px,10vw,140px) clamp(80px,10vw,140px) 10px 10px' }}>
+          <div style={{ flex: '0 1 240px', minWidth: 180, maxWidth: 248 }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden', background: '#e6dcc6', boxShadow: '0 36px 66px -46px rgba(40,44,70,0.5)', borderRadius: 'clamp(58px,7.5vw,104px) clamp(58px,7.5vw,104px) 8px 8px' }}>
               <ImageSlot src={RESIDENT.portrait} alt={`Portrait of ${RESIDENT.name}, Resident AI Strategist`} placeholder="Editorial portrait of the current resident in warm light" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', filter: 'brightness(1.05)' }} />
               <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 54% at 40% 26%, rgba(255,238,196,0.4), transparent 68%)' }} />
             </div>
@@ -115,18 +115,18 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* ── the current workshop — a printed journal, not a landing page ── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(120px,22vh,280px)', ...surface() }}>
-          <div style={{ ...label, fontSize: 10, marginBottom: '1.6em' }}>{RESIDENT.workshopNo}</div>
-          <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6vw,88px)', lineHeight: 1, margin: '0 0 0.5em', color: indigo }}>{RESIDENT.workshopTitle}</h3>
+        {/* ── the current workshop — kept close, so each resident reads as one unit ── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(72px,13vh,150px)', ...surface() }}>
+          <div style={{ ...label, fontSize: 10, marginBottom: '1.3em' }}>{RESIDENT.workshopNo}</div>
+          <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6vw,88px)', lineHeight: 1, margin: '0 0 0.4em', color: indigo }}>{RESIDENT.workshopTitle}</h3>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.3vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: '0 auto', maxWidth: '24ch', ...balance }}>{RESIDENT.workshopSub}</p>
 
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.4vw,46px)', lineHeight: 1.34, color: indigo, maxWidth: '20ch', margin: 'clamp(64px,12vh,150px) auto 0', ...balance }}>{RESIDENT.hook[0]}</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,34px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.66)', maxWidth: '24ch', margin: 'clamp(28px,4.5vh,48px) auto 0', ...balance }}>{RESIDENT.hook[1]}</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.4vw,46px)', lineHeight: 1.34, color: indigo, maxWidth: '20ch', margin: 'clamp(32px,5vh,60px) auto 0', ...balance }}>{RESIDENT.hook[0]}</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,34px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.66)', maxWidth: '24ch', margin: 'clamp(16px,2.6vh,30px) auto 0', ...balance }}>{RESIDENT.hook[1]}</p>
 
           <El
             onClick={() => setNoteOpen(true)}
-            style={{ display: 'inline-block', margin: 'clamp(64px,11vh,120px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', transition: 'background 400ms ease, color 400ms ease' }}
+            style={{ display: 'inline-block', margin: 'clamp(44px,7vh,84px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', transition: 'background 400ms ease, color 400ms ease' }}
             hover={{ background: 'transparent', color: indigo }}
           >
             Come in
