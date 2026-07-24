@@ -67,46 +67,17 @@ const SPECS = [
 // Room, 'Now welcoming founders.') and mark the Olive Room 'Currently full.' —
 // the layout already anticipates it; nothing else on the page needs to change.
 const ROOMS = [
-  { name: 'The Olive Room', status: 'Now welcoming its founding founders.' },
+  { name: 'The Olive Room', image: '/photos/olive-room-plaque.png', status: 'Now welcoming its founding founders.' },
 ]
 
-// A crafted olive sprig — the house draws its marks by hand, so the plaque does too.
-function OliveSprig() {
-  const green1 = '#7d7f55', green2 = '#6a6c46', olive = '#565a37', gold = 'rgba(184,147,78,0.9)'
-  const Leaf = ({ x, y, r, len = 23, w = 9, c }: { x: number; y: number; r: number; len?: number; w?: number; c: string }) => (
-    <g transform={`translate(${x} ${y}) rotate(${r})`}>
-      <path d={`M0 0 C ${len * 0.3} ${-w}, ${len * 0.7} ${-w}, ${len} 0 C ${len * 0.7} ${w}, ${len * 0.3} ${w}, 0 0 Z`} fill={c} />
-      <path d={`M2.5 0 L ${len - 2.5} 0`} stroke="rgba(255,250,240,0.4)" strokeWidth="0.7" />
-    </g>
-  )
+// A brass plaque outside a private room — Beth's own olive-branch artwork,
+// treated as architecture rather than an icon. Each room carries its own plaque,
+// so a future room simply arrives with its own (e.g. the Lantern Room).
+function RoomPlaque({ image, alt, status }: { image: string; alt: string; status: string }) {
   return (
-    <svg viewBox="0 0 150 200" style={{ display: 'block', width: 'clamp(112px,22vw,164px)', height: 'auto', margin: '0 auto' }} aria-hidden="true">
-      <path d="M75 194 C 70 160, 82 138, 76 108 C 71 84, 84 52, 84 16" fill="none" stroke={gold} strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M76 122 C 66 120, 58 114, 52 106" fill="none" stroke={gold} strokeWidth="1.3" strokeLinecap="round" />
-      <Leaf x={84} y={16} r={-66} c={green1} />
-      <Leaf x={85} y={31} r={-18} c={green2} />
-      <Leaf x={80} y={45} r={-100} c={green2} />
-      <Leaf x={83} y={55} r={14} c={green1} />
-      <Leaf x={78} y={71} r={-54} c={green1} />
-      <Leaf x={81} y={85} r={42} c={green2} />
-      <Leaf x={74} y={101} r={-28} c={green1} />
-      <ellipse cx="47" cy="113" rx="9" ry="12" transform="rotate(-18 47 113)" fill={olive} />
-      <ellipse cx="60" cy="123" rx="9" ry="12" transform="rotate(-9 60 123)" fill={olive} />
-      <ellipse cx="44" cy="109" rx="2.3" ry="2.3" fill="rgba(255,250,240,0.3)" />
-    </svg>
-  )
-}
-
-// A brass plaque outside a private room — treated as architecture, not an icon.
-function RoomPlaque({ name, status }: { name: string; status: string }) {
-  return (
-    <div style={{ maxWidth: 380, margin: '0 auto', ...surface('entry 0% cover 20%') }}>
-      <div style={{ position: 'relative', border: '1px solid rgba(184,147,78,0.5)', borderRadius: 'clamp(130px,26vw,178px) clamp(130px,26vw,178px) 7px 7px', background: 'linear-gradient(180deg,#f8f1e3,#f1e9d6)', padding: 'clamp(48px,7vw,74px) clamp(34px,5vw,54px) clamp(42px,6vw,58px)', boxShadow: '0 46px 88px -54px rgba(60,44,20,0.42), inset 0 0 0 1px rgba(184,147,78,0.12)', textAlign: 'center' }}>
-        <OliveSprig />
-        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(15px,1.9vw,20px)', letterSpacing: '0.34em', textTransform: 'uppercase', color: '#2b2723', marginTop: 'clamp(30px,4.4vw,44px)' }}>{name}</div>
-        <div aria-hidden="true" style={{ width: 44, height: 1, background: 'rgba(184,147,78,0.7)', margin: 'clamp(18px,2.4vw,26px) auto' }} />
-        <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.85)' }}>{status}</div>
-      </div>
+    <div style={{ maxWidth: 344, margin: '0 auto', ...surface('entry 0% cover 20%') }}>
+      <ImageSlot src={image} alt={alt} fit="contain" style={{ width: '100%', height: 'auto', borderRadius: 6, boxShadow: '0 54px 100px -60px rgba(60,44,20,0.4)' }} />
+      <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.85)', marginTop: 'clamp(28px,3.8vw,44px)', textAlign: 'center' }}>{status}</div>
     </div>
   )
 }
@@ -186,7 +157,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           {/* the plaque — treated as architecture, given room to breathe */}
           <div style={{ marginTop: 'clamp(90px,16vh,200px)' }}>
             {ROOMS.map((r) => (
-              <RoomPlaque key={r.name} name={r.name} status={r.status} />
+              <RoomPlaque key={r.name} image={r.image} alt={`${r.name} — an olive branch on a brass plaque`} status={r.status} />
             ))}
           </div>
 

@@ -251,16 +251,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ ...P, margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '26ch', lineHeight: 2, color: 'rgba(43,39,35,0.66)' }}>Sometimes you simply want a place to return to.<br />A place to think.<br />A place to continue learning.<br />A place to remain connected to other founders building meaningful companies.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', color: 'rgba(122,94,52,0.72)', margin: 'clamp(44px,8vh,88px) auto 0.35em' }}>Welcome to the</p>
           <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)', margin: 0 }}>Visionary Collective<TM /></h3>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(36px,6vw,80px)', maxWidth: 560, margin: 'clamp(40px,7vh,72px) auto 0' }}>
-            <div style={{ flex: '0 1 200px' }}>
-              <div style={{ ...label, letterSpacing: '0.4em', color: 'rgba(122,94,52,0.55)', marginBottom: '0.7em' }}>Founder</div>
-              <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.2vw,40px)', color: '#2b2723' }}>$98 <span style={{ fontStyle: 'italic', fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>/ year</span></div>
-            </div>
-            <div style={{ flex: '0 1 200px' }}>
-              <div style={{ ...label, letterSpacing: '0.4em', color: 'rgba(122,94,52,0.55)', marginBottom: '0.7em' }}>Legacy</div>
-              <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.2vw,40px)', color: '#2b2723' }}>$498 <span style={{ fontStyle: 'italic', fontSize: '0.5em', color: 'rgba(122,94,52,0.72)' }}>/ year</span></div>
-            </div>
-          </div>
+          <p style={{ ...P, margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '30ch', lineHeight: 1.6, color: 'rgba(43,39,35,0.66)' }}>The widest circle in the house — a way to stay close to the ideas, conversations and founders shaping Believe Studio.</p>
           <DoorButton onClick={ctx.openDoorway('visionary-collective')}>Step Onto the Porch</DoorButton>
         </div>
 
