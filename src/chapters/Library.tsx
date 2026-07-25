@@ -74,7 +74,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
             <div key={i} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(30px,5vw,70px)', flexDirection: o.dir as React.CSSProperties['flexDirection'] }}>
               <div style={{ flex: '1 1 300px', minWidth: 260 }}>
                 <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5', overflow: 'hidden', borderRadius: '999px 999px 6px 6px' }}>
-                  <ImageSlot placeholder={o.photo} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: '#f5efe1' }} />
+                  <ImageSlot src={o.src} placeholder={o.photo} alt={o.name} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: '#f5efe1' }} />
                 </div>
               </div>
               <div style={{ flex: '1 1 300px', minWidth: 260 }}>

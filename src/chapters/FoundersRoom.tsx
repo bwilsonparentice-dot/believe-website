@@ -74,8 +74,8 @@ const ROOMS = [
 // so a future room simply arrives with its own (e.g. the Lantern Room).
 function RoomPlaque({ image, alt, status }: { image: string; alt: string; status: string }) {
   return (
-    <div style={{ maxWidth: 344, margin: '0 auto', ...surface('entry 0% cover 20%') }}>
-      <ImageSlot src={image} alt={alt} fit="contain" style={{ width: '100%', height: 'auto', borderRadius: 6, boxShadow: '0 54px 100px -60px rgba(60,44,20,0.4)' }} />
+    <div style={{ maxWidth: 184, margin: '0 auto', ...surface('entry 0% cover 20%') }}>
+      <ImageSlot src={image} alt={alt} fit="contain" style={{ width: '100%', height: 'auto', borderRadius: 5, boxShadow: '0 34px 60px -40px rgba(60,44,20,0.38)' }} />
       <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.85)', marginTop: 'clamp(28px,3.8vw,44px)', textAlign: 'center' }}>{status}</div>
     </div>
   )

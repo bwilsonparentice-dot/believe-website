@@ -21,7 +21,6 @@ const ROOMS: { name: string; because: string }[] = [
   { name: 'The Founder’s Table', because: 'Because founders gather there.' },
   { name: 'The Library', because: 'Because wisdom lives there.' },
   { name: 'The Founder’s Room', because: 'Because transformation begins there.' },
-  { name: 'The Garden', because: 'Because leaders need places to think.' },
   { name: 'The Blueprint', because: 'Because every meaningful company deserves thoughtful architecture.' },
   { name: 'The Studio', because: 'Because ideas become reality there.' },
 ]
