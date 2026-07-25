@@ -92,7 +92,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
 
         {/* Founders Leading Founders */}
         <div style={{ ...label, marginBottom: '1.4em' }}>The philosophy of the house</div>
-        <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,6vw,84px)', lineHeight: 1.02, margin: '0 0 0.1em' }}>Founders Leading Founders<span style={{ fontSize: '0.34em', verticalAlign: 'super', letterSpacing: 0 }}>™</span></h3>
+        <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,6vw,84px)', lineHeight: 1.02, margin: '0 0 0.1em' }}>Founders Leading Founders</h3>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', color: 'rgba(122,94,52,0.7)', margin: '0.6em 0 0' }}>Not a program. A philosophy.</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9em', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.3vw,29px)', lineHeight: 1.4, color: '#2b2723', margin: 0 }}>Every founder arrives carrying questions.</p>

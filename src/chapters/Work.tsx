@@ -202,10 +202,10 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         {/* the doorways — a quiet table of contents; curiosity does the rest */}
         <div style={{ maxWidth: 640, margin: 'clamp(72px,13vh,160px) auto 0', textAlign: 'center', ...reveal }}>
           {[
-            { id: 'founder-conversation', name: 'The Founder Conversation', tm: true, line: 'Where every journey begins.' },
-            { id: 'believe-blueprint', name: 'The Believe Blueprint', tm: true, line: 'See your company clearly.' },
+            { id: 'founder-conversation', name: 'The Founder Conversation', tm: false, line: 'Where every journey begins.' },
+            { id: 'believe-blueprint', name: 'The Believe Blueprint', tm: false, line: 'See your company clearly.' },
             { id: 'founders-room', name: 'The Founder’s Room', tm: true, line: 'Make your next decision with clarity.' },
-            { id: 'founders-table', name: 'The Founder’s Table', tm: true, line: 'Build beside founders who understand.' },
+            { id: 'founders-table', name: 'The Founder’s Table', tm: false, line: 'Build beside founders who understand.' },
             { id: 'private-advisory', name: 'Private Advisory', tm: false, line: 'For the decisions that define a company.' },
           ].map((d, i) => (
             <El
@@ -228,7 +228,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           {/* the branches, rising — Conversation at the root, guiding others at the crown */}
           <div style={{ position: 'relative', display: 'flex', flexDirection: 'column-reverse', gap: 'clamp(14px,2.6vh,24px)', textAlign: 'left', paddingLeft: 22 }}>
             <span aria-hidden="true" style={{ position: 'absolute', left: 5, top: '6%', bottom: '6%', width: 1, background: 'linear-gradient(180deg, rgba(125,138,83,0.55), rgba(122,94,52,0.3))' }} />
-            {['The Founder Conversation', 'The Believe Blueprint™', 'The Founder’s Room™', 'Private Advisory', 'Founder Fellowship™', 'Founders Leading Founders™'].map((s, i, arr) => {
+            {['The Founder Conversation', 'The Believe Blueprint', 'The Founder’s Room™', 'Private Advisory', 'Founder Fellowship', 'Founders Leading Founders'].map((s, i, arr) => {
               const top = i === arr.length - 1
               return (
                 <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: '0.7em' }}>
@@ -250,7 +250,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ ...P, margin: '0 auto', maxWidth: '28ch', fontSize: 'clamp(20px,2.3vw,29px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.82)' }}>Not every founder is ready to begin a Blueprint. Not every founder is looking for Private Advisory.</p>
           <p style={{ ...P, margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '26ch', lineHeight: 2, color: 'rgba(43,39,35,0.66)' }}>Sometimes you simply want a place to return to.<br />A place to think.<br />A place to continue learning.<br />A place to remain connected to other founders building meaningful companies.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', color: 'rgba(122,94,52,0.72)', margin: 'clamp(44px,8vh,88px) auto 0.35em' }}>Welcome to the</p>
-          <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)', margin: 0 }}>Visionary Collective<TM /></h3>
+          <h3 style={{ ...H3, fontSize: 'clamp(32px,4.6vw,60px)', margin: 0 }}>Visionary Collective</h3>
           <p style={{ ...P, margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '30ch', lineHeight: 1.6, color: 'rgba(43,39,35,0.66)' }}>The widest circle in the house — a way to stay close to the ideas, conversations and founders shaping Believe Studio.</p>
           <DoorButton onClick={ctx.openDoorway('visionary-collective')}>Step Onto the Porch</DoorButton>
         </div>

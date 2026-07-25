@@ -7,11 +7,6 @@ import { FR_INCLUDES, PHOTOS } from '../data'
 
 const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 
-/** A small ™ set in superscript, as used beside "Believe Blueprint". */
-function Trade() {
-  return <span style={{ fontSize: '0.42em', verticalAlign: 'super', letterSpacing: 0 }}>™</span>
-}
-
 /**
  * The Founder's Room — the most personal room in the house, and the largest
  * chapter: philosophy, the promise, the Believe Blueprint (the hero artifact),
@@ -73,7 +68,7 @@ export function FounderRoomChapter({ ctx }: { ctx: Ctx }) {
 
         <Divider m="clamp(56px,9vh,100px) auto clamp(40px,7vh,72px)" />
 
-        <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginBottom: '1.4em' }}>A Believe Blueprint<Trade /></div>
+        <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginBottom: '1.4em' }}>A Believe Blueprint</div>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.8)', maxWidth: '56ch', margin: '0 auto 1.1em', ...pretty }}>Before strategy. Before growth. Before execution. We begin by understanding the architecture of what you’re building.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.68)', maxWidth: '58ch', margin: '0 auto 1.1em', ...pretty }}>Every Believe Blueprint is a living strategic document that captures the foundation of your company — your vision, priorities, opportunities, blind spots, decisions, and next chapter.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', maxWidth: '48ch', margin: '0 auto 0.6em' }}>Just as an architect begins with a blueprint before laying the first stone, every founder begins with clarity before building what comes next.</p>
@@ -202,7 +197,7 @@ export function FounderRoomChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginBottom: 'clamp(36px,6vh,60px)' }}>Investment</div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(40px,6.5vh,68px)', textAlign: 'center', maxWidth: 480, margin: '0 auto' }}>
           <div>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(22px,2.4vw,30px)' }}>Believe Blueprint<Trade /></div>
+            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(22px,2.4vw,30px)' }}>Believe Blueprint</div>
             <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(15px,1.6vw,20px)', lineHeight: 1.56, color: 'rgba(43,39,35,0.62)', maxWidth: '48ch', margin: '0.5em auto 0.7em' }}>A custom strategic foundation designed around your company, your vision, and your next chapter.</p>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(18px,1.9vw,24px)', color: 'rgba(122,94,52,0.82)' }}>Starting at $2,500</div>
           </div>

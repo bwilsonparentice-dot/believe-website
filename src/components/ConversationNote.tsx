@@ -35,7 +35,7 @@ export function ConversationNote({ onClose }: { onClose: () => void }) {
         style={{ position: 'relative', width: 'min(680px,100%)', maxHeight: '92vh', overflowY: 'auto', background: 'radial-gradient(120% 90% at 34% 18%, #fbf6ec, #f1e8d7 70%, #e9dfc9)', borderRadius: 4, boxShadow: '0 60px 120px -50px rgba(30,20,8,0.7)', padding: 'clamp(36px,5.5vw,72px) clamp(28px,5vw,68px)', textAlign: 'center', animation: 'contentFocus 800ms cubic-bezier(.2,.7,.2,1) both' }}
       >
         <ArchMark width={2.2} margin="0 auto 1.3em" />
-        <div style={{ ...label, fontSize: 10, letterSpacing: '0.44em', marginBottom: '1.4em' }}>The Founder Conversation<span style={{ fontSize: '0.7em', verticalAlign: 'super' }}>™</span></div>
+        <div style={{ ...label, fontSize: 10, letterSpacing: '0.44em', marginBottom: '1.4em' }}>The Founder Conversation</div>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(25px,3.2vw,42px)', lineHeight: 1.16, color: '#2b2723', margin: '0 auto clamp(22px,3.6vh,36px)', maxWidth: '20ch', ...balance }}>Every meaningful company begins with a conversation.</p>
         <p style={{ ...line, color: 'rgba(43,39,35,0.72)', maxWidth: '36ch', margin: '0 auto clamp(26px,4.4vh,42px)', fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, ...pretty }}>Before we talk about strategy, growth, or opportunities, we’d simply like to understand you.</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(6px,1.2vh,13px)', maxWidth: '30ch', margin: '0 auto clamp(24px,4vh,38px)' }}>

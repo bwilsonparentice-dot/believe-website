@@ -150,7 +150,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center', marginTop: 'clamp(80px,14vh,170px)' }}>
           <ArchMark width={2.2} margin="0 auto 1.5em" />
           <div style={{ ...label, marginBottom: '1.3em' }}>{x.eyebrow}</div>
-          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.4em' }}>{x.name}<span style={{ fontSize: '0.42em', verticalAlign: 'super', letterSpacing: 0 }}>™</span></h2>
+          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.4em' }}>{x.name}</h2>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>{x.tagline}</p>
         </div>
 
@@ -160,7 +160,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center' }}>
           <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.8vw,68px)', lineHeight: 1.1, margin: '0 auto clamp(48px,8vh,96px)', maxWidth: '18ch', ...balance }}>We don’t build business plans. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)' }}>We reveal business architecture.</span></h2>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.86)', maxWidth: '28ch', margin: '0 auto', ...balance }}>Business plans attempt to predict the future. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.9)' }}>Architecture creates structures capable of carrying it.</span></p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.72)', maxWidth: '46ch', margin: 'clamp(48px,8vh,90px) auto 0', ...pretty }}>The Believe Blueprint™ is not a template, a deck, or a collection of recommendations. It is the architectural plan for your next chapter — a thoughtful examination of your company, your opportunities, your leadership, and the decisions that will shape what comes next.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.72)', maxWidth: '46ch', margin: 'clamp(48px,8vh,90px) auto 0', ...pretty }}>The Believe Blueprint is not a template, a deck, or a collection of recommendations. It is the architectural plan for your next chapter — a thoughtful examination of your company, your opportunities, your leadership, and the decisions that will shape what comes next.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.82)', maxWidth: '32ch', margin: 'clamp(34px,6vh,60px) auto 0', ...balance }}>Every Blueprint is built from the ground up. Never templated. Never borrowed. Always designed around the founder and the company they are becoming.</p>
         </div>
 
@@ -168,7 +168,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         <ArchRule m="clamp(110px,20vh,240px) auto clamp(70px,12vh,150px)" />
         <div style={{ textAlign: 'center' }}>
           <div style={{ ...label, marginBottom: 'clamp(30px,5vh,52px)' }}>What we architect together</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.78)', maxWidth: '40ch', margin: '0 auto', ...pretty }}>Every meaningful building begins with a series of architectural drawings. The Believe Blueprint™ is built the same way — each drawing revealing another layer of your company’s architecture, until the complete picture comes into focus.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.78)', maxWidth: '40ch', margin: '0 auto', ...pretty }}>Every meaningful building begins with a series of architectural drawings. The Believe Blueprint is built the same way — each drawing revealing another layer of your company’s architecture, until the complete picture comes into focus.</p>
         </div>
 
         {/* ── the seven drawings — one folio sheet at a time ────────────── */}
