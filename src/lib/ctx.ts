@@ -13,6 +13,8 @@ export interface Ctx {
   openTable: Handler; closeTable: Handler
   openLibrary: Handler; closeLibrary: Handler
   openStudio: Handler; closeStudio: Handler
+  /** The Studio — the workshop page (distinct from In Residence / Resident Experts) */
+  openStudioPage: Handler; closeStudioPage: Handler
   openAdvisory: Handler; closeAdvisory: Handler
   openStage: Handler; closeStage: Handler
   openPeople: Handler; closePeople: Handler

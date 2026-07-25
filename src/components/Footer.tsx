@@ -16,7 +16,7 @@ export function Footer({ ctx, principles }: { ctx: Ctx; principles: string[] }) 
     { left: '17%', top: '45.5%', width: '22%', go: ctx.openBlueprint },
     { left: '17%', top: '51.5%', width: '22%', go: ctx.openTable },
     { left: '17%', top: '57.5%', width: '22%', go: ctx.openLibrary },
-    { left: '17%', top: '63.5%', width: '22%', go: ctx.openStudio },
+    { left: '17%', top: '63.5%', width: '22%', go: ctx.openStudioPage },
     { left: '17%', top: '69.5%', width: '22%', go: ctx.openStage },
     { left: '17%', top: '75.5%', width: '22%', go: ctx.openPeople },
   ]

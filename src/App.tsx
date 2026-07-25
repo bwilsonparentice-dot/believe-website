@@ -17,6 +17,7 @@ import { BlueprintChapter } from './chapters/Blueprint'
 import { TableChapter } from './chapters/Table'
 import { LibraryChapter } from './chapters/Library'
 import { InResidenceChapter } from './chapters/InResidence'
+import { StudioChapter } from './chapters/Studio'
 import { VisionaryCollectiveChapter } from './chapters/VisionaryCollective'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
@@ -48,6 +49,7 @@ interface State {
   showHouses: boolean; showPeople: boolean; showStudio: boolean; showFounderRoom: boolean
   showHouse: boolean; showWhyBelieve: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
+  showStudioPage: boolean
   showKey: boolean
   facadeReady: boolean
   birdLanded: boolean
@@ -94,6 +96,7 @@ export class App extends React.Component<Record<string, never>, State> {
     showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
     showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
+    showStudioPage: false,
     showKey: false, facadeReady: false, birdLanded: false,
   }
 
@@ -107,6 +110,8 @@ export class App extends React.Component<Record<string, never>, State> {
       openLibrary: this.openChapter('showLibrary'), closeLibrary: this.closeChapter('showLibrary'),
       // "Resident Experts" is the doorway; In Residence is the room inside it
       openStudio: this.openChapter('showStudio'), closeStudio: this.closeChapter('showStudio'),
+      // The Studio — the workshop page, reached from the brass directory
+      openStudioPage: this.openChapter('showStudioPage'), closeStudioPage: this.closeChapter('showStudioPage'),
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openChapter('showPeople'), closePeople: this.closeChapter('showPeople'),
@@ -151,7 +156,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private onKey = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
-      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showFounderRoom', 'showStudio', 'showPeople', 'showHouses', 'showKey']
+      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showFounderRoom', 'showStudio', 'showStudioPage', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
     }
@@ -243,7 +248,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private closeDoorway = () => this.setState({ activeDoorway: null })
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -261,7 +266,7 @@ export class App extends React.Component<Record<string, never>, State> {
       case 'founders': return this.ctx.openDoorway('founders-room')
       case 'library': return this.ctx.openLibrary
       case 'table': return this.ctx.openTable
-      case 'studio': return this.ctx.openStudio
+      case 'studio': return this.ctx.openStudioPage
       case 'advisory': return this.ctx.openAdvisory
       case 'stage': return this.ctx.openStage
       case 'garden': return this.gotoRoom('garden')
@@ -322,6 +327,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showWhyBelieve && <WhyBelieveChapter ctx={this.ctx} />}
         {this.state.showPeople && <PeopleChapter ctx={this.ctx} />}
         {this.state.showStudio && <InResidenceChapter ctx={this.ctx} />}
+        {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}
         {this.state.showFounderRoom && <FounderRoomChapter ctx={this.ctx} />}
         {this.state.showStories && <StoriesChapter ctx={this.ctx} />}
       </>
@@ -584,7 +590,7 @@ export class App extends React.Component<Record<string, never>, State> {
               </div>
               <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(18px,1.9vw,24px)', color: 'rgba(43,39,35,0.85)', margin: '0 0 1.8em' }}>{active.oneLine}</p>
               <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.85vw,23px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.6)', maxWidth: '34ch', margin: '0 auto 1.4em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Some ideas are shaped quietly at the worktable. Others become clearer through conversation.</p>
-              <El onClick={this.ctx.openStudio} style={{ display: 'inline-block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', cursor: 'pointer', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 3, transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>Step Inside the Studio &rarr;</El>
+              <El onClick={this.ctx.openStudioPage} style={{ display: 'inline-block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', cursor: 'pointer', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 3, transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>Step Inside the Studio &rarr;</El>
             </>
           )}
 
