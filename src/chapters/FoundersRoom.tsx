@@ -191,6 +191,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <div style={{ marginTop: 'clamp(64px,11vh,130px)', textAlign: 'center' }}>
             <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '0.9em' }}>Investment</div>
             <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.05, color: '#2b2723' }}>$995 <span style={{ fontStyle: 'italic', fontWeight: 300, fontSize: '0.46em', color: 'rgba(122,94,52,0.78)' }}>/ month</span></div>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.72)', margin: 'clamp(16px,2.4vh,26px) auto 0', maxWidth: '28ch', ...balance }}>Month to month, for as long as the room serves you.</p>
           </div>
         </div>
 
