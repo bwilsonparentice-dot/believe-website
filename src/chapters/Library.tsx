@@ -4,7 +4,8 @@ import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
 import { LightShift, Dust, Keynote } from '../components/Living'
-import { LIBRARY_BOOKS, LIBRARY_MARGINS, LIBRARY_OBJECTS, LIBRARY_NOTES, PHOTOS } from '../data'
+import { ArchivalRecord } from '../components/ArchivalRecord'
+import { LIBRARY_BOOKS, LIBRARY_MARGINS, LIBRARY_OBJECTS, LIBRARY_NOTES, RESIDENCY_RECORDS, PHOTOS } from '../data'
 
 /** The Library — borrowed wisdom, collected over years. */
 export function LibraryChapter({ ctx }: { ctx: Ctx }) {
@@ -33,7 +34,14 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.9)', maxWidth: '24ch', margin: '0 auto 1.4em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Every meaningful house eventually becomes a library.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 2, color: 'rgba(43,39,35,0.68)', maxWidth: '34ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Not because it collects books.<br />Because it collects wisdom.<br />Some of it printed.<br />Some of it spoken.<br />Some of it quietly left behind by the people who once sat here.</p>
 
-        <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(40px,6.5vh,80px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+        {/* the founding inscription of the Library — carved, permanent, inherited */}
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(28px,4.4vw,62px)', lineHeight: 1.16, color: 'rgba(52,40,26,0.82)', maxWidth: '18ch', margin: 'clamp(80px,14vh,180px) auto 0', letterSpacing: '0.005em', textWrap: 'balance' as React.CSSProperties['textWrap'], animation: 'fadeUpSoft 1200ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 4% cover 28%' as unknown as string }}>No founder should have to learn alone what another founder has already lived.</p>
+
+        {/* how wisdom enters, and how it stays */}
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', maxWidth: '28ch', margin: 'clamp(64px,11vh,130px) auto 0', textWrap: 'balance' as React.CSSProperties['textWrap'] }}>The workshops are how wisdom enters the House. The Library is how it stays.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '44ch', margin: 'clamp(34px,5.5vh,60px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Every Resident leaves something behind — a handbook, a dashboard, an audit, a framework, or another piece of hard-won wisdom. Long after the residency ends, that work remains here for founders they may never meet.</p>
+
+        <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,110px) auto clamp(40px,6.5vh,80px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
         {/* SHELF ONE — From the Shelf */}
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', marginBottom: '0.9em' }}>Shelf One</div>
@@ -119,6 +127,19 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>The House Archive</h3>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '36ch', margin: '0 auto clamp(44px,7vh,72px)' }}>Everything preserved. Nothing forgotten.</p>
         <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 2.1, color: 'rgba(43,39,35,0.6)', maxWidth: '30ch', margin: '0 auto' }}>Original Believe Blueprints<br />Letters<br />Sketches<br />Architectural drawings<br />Invitations<br />Historic photographs</div>
+
+        <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(40px,6.5vh,80px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+
+        {/* SHELF SEVEN — From the Residencies: workshops catalogued as records */}
+        <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', marginBottom: '0.9em' }}>Shelf Seven</div>
+        <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>From the Residencies</h3>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '34ch', margin: '0 auto clamp(48px,8vh,84px)' }}>What each Resident worked through with founders, and the one thing they left behind.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(44px,8vh,90px)' }}>
+          {RESIDENCY_RECORDS.map((r) => (
+            <ArchivalRecord key={r.no} record={r} />
+          ))}
+        </div>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', maxWidth: '28ch', margin: 'clamp(56px,9vh,110px) auto 0', textWrap: 'balance' as React.CSSProperties['textWrap'] }}>What one founder learns should not disappear when the room closes.</p>
 
         <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(40px,6.5vh,80px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 

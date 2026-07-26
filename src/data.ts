@@ -760,6 +760,32 @@ export const LIBRARY_KEEPERS = [
   { name: 'Tiffany Nilles', note: 'She keeps the shelf on finding the right rooms — and staying in them. The wisdom of knowing where a brand truly belongs before chasing where it doesn’t.' },
   { name: 'Jillian Rhys', note: 'She keeps the words founders leave behind, and the ones still forming. If a sentence in here stays with you, it likely passed through her hands first.' },
 ]
+
+// Residency records — what each Resident worked through and left in the Library.
+// A shared archival structure so every workshop is catalogued the same way, and
+// the Library reads as an archive of lived knowledge rather than a download page.
+export type ResidencyRecord = {
+  no: string
+  resident: string
+  workshop: string
+  carrying: string
+  decision: string
+  built: string
+  artifact: string
+  date: string
+}
+export const RESIDENCY_RECORDS: ResidencyRecord[] = [
+  {
+    no: '001',
+    resident: 'Mona',
+    workshop: 'Founder Workshop No. 001: Buy Back 20 Hours',
+    carrying: '“There’s only one of me.”',
+    decision: 'Which work to stop doing personally.',
+    built: 'The Follow-Up and The Scout.',
+    artifact: 'The AI Employee Handbook',
+    date: 'August 2026',
+  },
+]
 export const LIBRARY_NOTES = [
   'The best ideas arrive sideways.',
   'Don’t solve the wrong problem beautifully.',

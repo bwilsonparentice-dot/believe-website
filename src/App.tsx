@@ -483,7 +483,7 @@ export class App extends React.Component<Record<string, never>, State> {
           // room roughly two-thirds through, after the core rooms and before the
           // reflective ones. Not an About section; an inscription in the stone.
           if (room.id === 'advisory') {
-            return <React.Fragment key={room.id}>{section}{this.renderFounderWall()}</React.Fragment>
+            return <React.Fragment key={room.id}>{section}{this.renderFounderWall()}{this.renderHousePhilosophy()}</React.Fragment>
           }
           return section
         })}
@@ -549,6 +549,19 @@ export class App extends React.Component<Record<string, never>, State> {
             animationRange: 'entry 4% cover 26%' as unknown as string,
           }}
         />
+      </section>
+    )
+  }
+
+  /**
+   * A single quiet paragraph after the Founder Wall — the shared-wisdom idea in
+   * two or three sentences, introducing how the House works without becoming a
+   * manifesto. Reuses the wall's warm ground and gentle scroll reveal.
+   */
+  private renderHousePhilosophy() {
+    return (
+      <section aria-label="How the House works" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(90px,20vh,260px) clamp(24px,8vw,120px)', background: '#e2d7bf' }}>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(21px,2.7vw,36px)', lineHeight: 1.44, color: 'rgba(43,39,35,0.8)', maxWidth: '26ch', margin: 0, textAlign: 'center', textWrap: 'balance' as React.CSSProperties['textWrap'], animation: 'fadeUpSoft 1000ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 4% cover 28%' as unknown as string }}>Believe Studio is a house where founders bring what they have been carrying, work through it alongside people who understand, and leave something useful for the founders who come next.</p>
       </section>
     )
   }

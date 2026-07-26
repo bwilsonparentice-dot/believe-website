@@ -31,6 +31,7 @@ const surface = (range = 'entry 2% cover 26%'): CSSProperties => ({
 const RESIDENT: {
   month: string; name: string; role: string; line: string; portrait: string
   workshopNo: string; workshopTitle: string; workshopSub: string; hook: string[]; artifact: string
+  carrying: string; clarifies: string
   team?: boolean; website?: string
 } = {
   month: 'August 2026',
@@ -43,6 +44,8 @@ const RESIDENT: {
   workshopSub: 'Five roles you can put to work this week.',
   hook: ['You have a spreadsheet you haven’t opened.', 'In ninety minutes we’ll hire someone to handle it.'],
   artifact: 'The AI Employee Handbook',
+  carrying: '“There’s only one of me.”',
+  clarifies: 'Which work should no longer require the founder.',
   team: true, // Mona is the one resident who is also part of the Believe team
 }
 
@@ -71,7 +74,11 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center' }}>
           <ArchMark width={2.2} margin="0 auto 1.5em" />
           <div style={{ ...label, fontSize: 11, marginBottom: '1.6em' }}>The House this month</div>
-          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(46px,8vw,116px)', lineHeight: 0.96, letterSpacing: '0.02em', margin: '0 0 0.9em', color: indigo }}>In Residence</h2>
+          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(46px,8vw,116px)', lineHeight: 0.96, letterSpacing: '0.02em', margin: '0 0 0.5em', color: indigo }}>In Residence</h2>
+
+          {/* the residency philosophy — the distinction, then the exchange */}
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.22, color: indigo, margin: '0 auto 0.9em', maxWidth: '18ch', ...balance }}>The Resident changes.<br />The House remembers.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: '0 auto clamp(48px,8vh,90px)', maxWidth: '30ch', ...balance }}>Founders bring what they’ve been carrying alone. The House brings the wisdom to work it through.</p>
 
           {/* the museum-catalog line */}
           <div style={{ display: 'inline-flex', flexDirection: 'column', gap: '0.55em', textAlign: 'left', margin: '0 auto', paddingTop: '0.4em' }}>
@@ -87,9 +94,9 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         {/* ── what a residency is — discovered, not explained ───────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(110px,20vh,240px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: indigo, maxWidth: '24ch', margin: '0 auto', ...balance }}>A different practitioner enters the House each month.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.62)', maxWidth: '28ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>Not to give a presentation.<br />To work beside founders.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '32ch', margin: 'clamp(40px,7vh,80px) auto 0', ...pretty }}>A Resident is invited because they have lived something founders need — not simply studied it. During their month in the House they lead a Founder Workshop, work through something real with founders in the room, and leave one piece of hard-won wisdom in the Believe Library.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.62)', maxWidth: '26ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>Every Resident leaves something behind.<br /><span style={{ fontStyle: 'italic', color: indigoSoft }}>A framework. A handbook. A way of seeing.</span></p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '28ch', ...balance }}>Their work remains in the Library long after the room closes.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '26ch', ...balance }}>Residents visit. What they leave behind remains.</p>
         </div>
 
         {/* ── the current resident — a magazine profile, no box ─────────── */}
@@ -121,7 +128,23 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6vw,88px)', lineHeight: 1, margin: '0 0 0.4em', color: indigo }}>{RESIDENT.workshopTitle}</h3>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.3vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: '0 auto', maxWidth: '24ch', ...balance }}>{RESIDENT.workshopSub}</p>
 
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.4vw,46px)', lineHeight: 1.34, color: indigo, maxWidth: '20ch', margin: 'clamp(32px,5vh,60px) auto 0', ...balance }}>{RESIDENT.hook[0]}</p>
+          {/* how a workshop works — the shared shape of every residency */}
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>Every workshop begins with something real a founder is carrying. A Resident works through it live with the room — not as a presentation, but as shared work. What is learned becomes part of the Library, so its value reaches beyond the founders who were present.</p>
+
+          {/* the workshop, catalogued the way the Library will remember it */}
+          <div style={{ display: 'inline-flex', flexDirection: 'column', gap: 'clamp(20px,3vh,28px)', textAlign: 'left', margin: 'clamp(48px,8vh,96px) auto 0' }}>
+            {([['What founders are carrying', RESIDENT.carrying], ['The decision it clarifies', RESIDENT.clarifies], ['What will remain in the Library', RESIDENT.artifact]] as [string, string][]).map(([k, v]) => (
+              <div key={k}>
+                <div style={{ ...label, fontSize: 9, letterSpacing: '0.32em', marginBottom: '0.5em', color: 'rgba(122,94,52,0.6)' }}>{k}</div>
+                <div style={{ fontFamily: serif, fontStyle: k === 'What founders are carrying' ? 'italic' : 'normal', fontWeight: 400, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.32, color: indigo, maxWidth: '22ch' }}>{v}</div>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,3vw,40px)', lineHeight: 1.32, color: indigo, maxWidth: '20ch', margin: 'clamp(56px,9vh,110px) auto 0', ...balance }}>This workshop is not about AI. It is about what you would do with twenty hours.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(20px,3vh,32px) auto 0' }}>AI does the prep. You do the judgment.</p>
+
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.4vw,46px)', lineHeight: 1.34, color: indigo, maxWidth: '20ch', margin: 'clamp(48px,8vh,96px) auto 0', ...balance }}>{RESIDENT.hook[0]}</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,34px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.66)', maxWidth: '24ch', margin: 'clamp(16px,2.6vh,30px) auto 0', ...balance }}>{RESIDENT.hook[1]}</p>
 
           <El
@@ -160,6 +183,19 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
               <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.6vw,19px)', lineHeight: 1.6, color: 'rgba(52,40,26,0.5)', margin: 'clamp(24px,3.4vw,34px) 0 0' }}>Delivered after the workshop.<br />Eventually archived in the Believe Library.</p>
             </div>
           </figure>
+        </div>
+
+        {/* ── the residency principle — a permanent rule of the House ─────── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.9vw,40px)', lineHeight: 1.32, color: indigo, maxWidth: '22ch', margin: '0 auto', ...balance }}>Every Resident leaves something behind so founders they’ve never met can benefit years later.</p>
+        </div>
+
+        {/* ── who is invited in — the casting standard ──────────────────── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+          <div style={{ ...label, fontSize: 10, marginBottom: '2.4em' }}>Who is invited in</div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.42, color: indigo, maxWidth: '24ch', margin: '0 auto' }}>We do not invite people simply because they are experts.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.42, color: indigo, maxWidth: '24ch', margin: 'clamp(20px,3vh,32px) auto 0' }}>We invite people who have lived what they teach.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '26ch', ...balance }}>Frameworks are everywhere. Hard-won perspective is not.</p>
         </div>
 
         {/* ── looking ahead — anticipation, not a calendar ──────────────── */}

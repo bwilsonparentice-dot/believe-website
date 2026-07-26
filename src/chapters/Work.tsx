@@ -241,6 +241,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         </div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.72)', maxWidth: '34ch', margin: 'clamp(40px,7vh,80px) auto 0', ...balance }}>The roots are belief. The trunk, transformation. The branches, growth. The fruit nourishes the founders who come next.</p>
         <p style={{ ...P, margin: 'clamp(44px,8vh,90px) auto 0', maxWidth: '32ch', lineHeight: 1.9 }}>Every founder enters Believe differently. Some begin with a conversation. Some begin with a Blueprint. Some join The Founder’s Room. Over time, some become Founder Fellows.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.78)', maxWidth: '30ch', margin: 'clamp(24px,4vh,44px) auto 0', ...balance }}>Residents visit. Fellows belong. Founder Fellows have grown through the House, contributed to it, and help carry its wisdom forward.</p>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.24, color: '#2b2723', maxWidth: '20ch', margin: 'clamp(32px,5.5vh,60px) auto 0', ...balance }}>The greatest founders don’t simply build successful companies. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)' }}>They help build stronger founders.</span></p>
 
         {/* ── the front porch — Visionary Collective ──────────────────── */}

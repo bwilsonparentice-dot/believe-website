@@ -77,6 +77,7 @@ export function Footer({ ctx, principles }: { ctx: Ctx; principles: string[] }) 
 
       <div style={{ textAlign: 'center', marginTop: 'clamp(34px,6vh,66px)' }}>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(246,239,228,0.38)', margin: '0 auto' }}>The house is always open.</p>
+        <p style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(236,209,147,0.4)', margin: 'clamp(22px,4vh,40px) auto 0' }}>Built by belief.</p>
       </div>
     </footer>
   )
