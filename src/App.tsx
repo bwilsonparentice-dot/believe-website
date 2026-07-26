@@ -5,7 +5,7 @@ import { BreezeDriver, BirdFlock, motionAllowed } from './lib/motion'
 import { Motes, makeMotes, type Mote } from './components/Motes'
 import { ImageSlot } from './components/ImageSlot'
 import { FacadePhoto } from './components/FacadePhoto'
-import { RealDoor } from './components/RealDoor'
+import { DoorCrack } from './components/DoorCrack'
 import { Prologue } from './components/Prologue'
 import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
@@ -355,8 +355,9 @@ export class App extends React.Component<Record<string, never>, State> {
           {/* the real arrival photograph, when present — covers the CSS doorway fallback */}
           <FacadePhoto onStatus={(present) => { if (present !== this.state.facadeReady) this.setState({ facadeReady: present }) }} />
 
-          {/* the wooden door actually swings open — the real leaf, cropped and hinged */}
-          {this.state.facadeReady && <RealDoor opening={opening} motionOn={motionAllowed(LIGHT_MOTION)} />}
+          {/* the door eases open a crack — warm interior light spilling from the
+              real opening edge, aligned to the photograph's own doorway */}
+          {this.state.facadeReady && <DoorCrack opening={opening} motionOn={motionAllowed(LIGHT_MOTION)} />}
 
           {/* a soft limestone lintel shadow */}
           <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(58% 50% at 42% 26%, rgba(255,240,205,0.55), rgba(255,240,205,0) 68%)', animation: sunShiftAnim }} />
@@ -534,6 +535,15 @@ export class App extends React.Component<Record<string, never>, State> {
           style={{
             display: 'block', width: 'auto', height: 'auto',
             maxWidth: 'min(94vw, 900px)', maxHeight: '94vh', margin: '0 auto',
+            borderRadius: 'clamp(14px,2.4vw,30px)',
+            // feather all four edges so the wall dissolves into the page rather
+            // than sitting as a hard rectangle — it reads as part of the House
+            WebkitMaskImage:
+              'linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%)',
+            WebkitMaskComposite: 'source-in',
+            maskImage:
+              'linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%)',
+            maskComposite: 'intersect',
             animation: 'fadeUpSoft 950ms ease both',
             animationTimeline: 'view()' as unknown as string,
             animationRange: 'entry 4% cover 26%' as unknown as string,

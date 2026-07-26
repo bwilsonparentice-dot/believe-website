@@ -60,8 +60,21 @@ export function FounderArtifact({ artifact }: { artifact: FounderArtifactData })
     >
       <div style={{ maxWidth: 1440, margin: '0 auto' }}>
         <figure style={{ margin: 0, width: boxWidth, ...offset, ...reveal }}>
-          {/* the photograph itself — intrinsic ratio, no crop of the architecture */}
-          <div style={{ position: 'relative', width: '100%', aspectRatio }}>
+          {/* the photograph itself — intrinsic ratio, no crop of the architecture,
+              soft corners and feathered edges so it settles into the page rather
+              than reading as a hard rectangle floating on the cream */}
+          <div
+            style={{
+              position: 'relative', width: '100%', aspectRatio,
+              borderRadius: 'clamp(10px,1.6vw,22px)', overflow: 'hidden',
+              WebkitMaskImage:
+                'linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 3%, #000 97%, transparent 100%)',
+              WebkitMaskComposite: 'source-in',
+              maskImage:
+                'linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 3%, #000 97%, transparent 100%)',
+              maskComposite: 'intersect',
+            }}
+          >
             <ImageSlot
               src={image}
               alt={alt}
