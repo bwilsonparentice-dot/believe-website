@@ -9,7 +9,7 @@ import { useState, CSSProperties } from 'react'
  * into public/photos/facade.png and the arrival matches the design exactly, with
  * no code change.
  */
-export function FacadePhoto({ src = '/photos/facade.png', style, onStatus }: { src?: string; style?: CSSProperties; onStatus?: (present: boolean) => void }) {
+export function FacadePhoto({ src = '/photos/facade.webp', style, onStatus }: { src?: string; style?: CSSProperties; onStatus?: (present: boolean) => void }) {
   const [failed, setFailed] = useState(false)
   if (failed) return null
   return (

@@ -16,7 +16,7 @@ const NW = 1604, NH = 981
 const POS_X = 0.5, POS_Y = 0.46
 const L = 0.515, R = 0.648, T = 0.05, B = 0.828
 
-export function RealDoor({ opening, motionOn, src = '/photos/facade.png' }: { opening: boolean; motionOn: boolean; src?: string }) {
+export function RealDoor({ opening, motionOn, src = '/photos/facade.webp' }: { opening: boolean; motionOn: boolean; src?: string }) {
   const [leaf, setLeaf] = useState<string | null>(null)
   const [vp, setVp] = useState(() => ({ w: typeof window !== 'undefined' ? window.innerWidth : 1440, h: typeof window !== 'undefined' ? window.innerHeight : 900 }))
   const [eased, setEased] = useState(false)

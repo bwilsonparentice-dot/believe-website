@@ -37,7 +37,7 @@ const RESIDENT: {
   name: 'Mona',
   role: 'Resident AI Strategist',
   line: 'Helping founders build the first AI team they can actually manage.',
-  portrait: '/photos/portrait-mona.png',
+  portrait: '/photos/portrait-mona.webp',
   workshopNo: 'Founder Workshop No. 001',
   workshopTitle: 'Buy Back 20 Hours',
   workshopSub: 'Five roles you can put to work this week.',

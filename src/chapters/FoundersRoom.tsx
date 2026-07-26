@@ -66,7 +66,7 @@ const SPECS = [
 // Room, 'Now welcoming founders.') and mark the Olive Room 'Currently full.' —
 // the layout already anticipates it; nothing else on the page needs to change.
 const ROOMS = [
-  { name: 'The Olive Room', image: '/photos/olive-room-plaque.png', status: 'Now welcoming its founding founders.' },
+  { name: 'The Olive Room', image: '/photos/olive-room-plaque.webp', status: 'Now welcoming its founding founders.' },
 ]
 
 // A brass plaque outside a private room — Beth's own olive-branch artwork,

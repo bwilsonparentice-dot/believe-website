@@ -676,7 +676,7 @@ export const PEOPLE = [
   { first: 'Beth', name: 'Beth Wilson-Parentice', pid: 'portrait-beth', dir: 'row', room: 'The Founder’s Room', portrait: 'Editorial portrait of Beth in The Founder’s Room — morning light, a journal, coffee', belief: 'Beth created Believe Studio because she believes founders change the world when someone believes in them first. Her role isn’t to lecture — it’s to help founders see possibilities they couldn’t yet see themselves.', when: 'when you’re carrying a decision that feels too heavy to make alone.' },
   { first: 'Joy', name: 'Joy Mooiweer', pid: 'portrait-joy', dir: 'row-reverse', room: 'The Studio', portrait: 'Editorial portrait of Joy in The Studio — beautiful materials, packaging, paper, brass, warm oak', belief: 'Joy believes extraordinary hospitality is often invisible. The best experiences are the ones that simply feel right.', when: 'long before you realize she’s quietly orchestrated dozens of thoughtful details that made your experience feel effortless.' },
   { first: 'Jillian', name: 'Jillian Waun', pid: 'portrait-jillian', dir: 'row', room: 'The Library', portrait: 'Editorial portrait of Jillian in The Library — books, notes, window light', belief: 'Jillian believes thoughtful storytelling creates belonging.', when: 'through the stories you read, the words that stay with you, and the conversations that continue long after you’ve left.' },
-  { first: 'Tiffany', name: 'Tiffany Nilles', pid: 'portrait-tiffany', dir: 'row-reverse', room: 'The Table', portrait: 'Editorial portrait of Tiffany at The Table — an open notebook, conversation, coffee', belief: 'Tiffany believes clarity creates momentum. She quietly helps founders move from possibility to progress.', when: 'when ideas begin becoming organized into meaningful action.' },
+  { first: 'Tiffany', name: 'Tiffany Nilles', pid: 'portrait-tiffany', dir: 'row-reverse', room: 'The Table', role: 'Retail Strategy Advisor', portrait: 'Editorial portrait of Tiffany at The Table — an open notebook, conversation, coffee', belief: 'Tiffany believes clarity creates momentum. She quietly helps founders move from possibility to progress.', when: 'when ideas begin becoming organized into meaningful action.' },
   { first: 'Mona', name: 'Mona Wilson', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Mona in The Garden — olive trees, a stone path, morning light', belief: 'Mona believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
 ]
 
@@ -687,15 +687,15 @@ export const PEOPLE = [
  * .webp and .png inline into the self-contained preview.)
  */
 export const PEOPLE_PHOTOS: Record<string, string> = {
-  'portrait-beth': '/photos/portrait-beth.png',
-  'portrait-joy': '/photos/portrait-joy.png',
-  'portrait-jillian': '/photos/portrait-jillian.png',
-  'portrait-tiffany': '/photos/portrait-tiffany.png',
-  'portrait-mona': '/photos/portrait-mona.png',
+  'portrait-beth': '/photos/portrait-beth.webp',
+  'portrait-joy': '/photos/portrait-joy.webp',
+  'portrait-jillian': '/photos/portrait-jillian.webp',
+  'portrait-tiffany': '/photos/portrait-tiffany.webp',
+  'portrait-mona': '/photos/portrait-mona.webp',
 }
 
 /** The People header — a table in morning light, the room ready for conversation. */
-export const PEOPLE_HERO = '/photos/photo-the-people.png'
+export const PEOPLE_HERO = '/photos/photo-the-people.webp'
 
 /**
  * Founder (client) story portraits, keyed by pid. Drop a file at the matching
@@ -703,8 +703,8 @@ export const PEOPLE_HERO = '/photos/photo-the-people.png'
  * placeholder. Lee and April are written anonymously and stay unphotographed.
  */
 export const STORY_PHOTOS: Record<string, string> = {
-  'story-michelle': '/photos/portrait-michelle.png',
-  'story-snehee': '/photos/portrait-snehee.png',
+  'story-michelle': '/photos/portrait-michelle.webp',
+  'story-snehee': '/photos/portrait-snehee.webp',
 }
 
 export const STAGE_MOMENTS = [
@@ -739,14 +739,14 @@ export function roomKeyFor(room: string): string {
 
 // ── the walk-through journey: merge DATA + EXTRAS + ARTIFACTS + PLANS + layout ──
 export const PHOTOS: Record<string, string> = {
-  threshold: '/photos/photo-threshold.png', room: '/photos/photo-room.png', table: '/photos/photo-table.png',
-  garden: '/photos/photo-garden.png', library: '/photos/photo-library.png', fieldnotes: '/photos/photo-fieldnotes.png',
-  stage: '/photos/photo-stage.png', advisory: '/photos/photo-advisory.png',
+  threshold: '/photos/photo-threshold.webp', room: '/photos/photo-room.webp', table: '/photos/photo-table.webp',
+  garden: '/photos/photo-garden.webp', library: '/photos/photo-library.webp', fieldnotes: '/photos/photo-fieldnotes.webp',
+  stage: '/photos/photo-stage.webp', advisory: '/photos/photo-advisory.webp',
   // The Studio and The Founder's Room now show photographs (previously type-led).
-  studio: '/photos/photo-studio.png', founders: '/photos/photo-founders.webp',
+  studio: '/photos/photo-studio.webp', founders: '/photos/photo-founders.webp',
   blueprint: '/photos/photo-blueprint.webp',
   // editorial imagery for the final room (the investment / doorways)
-  conversation: '/photos/photo-conversation.png', people: '/photos/photo-the-people.png',
+  conversation: '/photos/photo-conversation.webp', people: '/photos/photo-the-people.webp',
 }
 const LAYOUT: Record<string, { side: string; corner?: string }> = {
   threshold: { side: 'center' }, room: { side: 'left' }, founders: { side: 'center' },

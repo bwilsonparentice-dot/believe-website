@@ -38,7 +38,10 @@ export function PeopleChapter({ ctx }: { ctx: Ctx }) {
               </div>
               <div style={{ flex: '1 1 340px', minWidth: 300 }}>
                 <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.55)', marginBottom: '0.7em' }}>You’ll probably meet</div>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(30px,3.6vw,50px)', lineHeight: 1.02, marginBottom: '0.7em' }}>{p.name}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(30px,3.6vw,50px)', lineHeight: 1.02, marginBottom: (p as { role?: string }).role ? '0.35em' : '0.7em' }}>{p.name}</div>
+                {(p as { role?: string }).role && (
+                  <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginBottom: '1.1em' }}>{(p as { role?: string }).role}</div>
+                )}
                 <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontStyle: 'italic', fontSize: 'clamp(23px,2.9vw,38px)', lineHeight: 1.26, color: '#2b2723', margin: '0 0 0.9em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>…{p.when}</p>
                 <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.85vw,22px)', lineHeight: 1.68, color: 'rgba(43,39,35,0.68)', maxWidth: '58ch', margin: 0, textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>{p.belief}</p>
               </div>

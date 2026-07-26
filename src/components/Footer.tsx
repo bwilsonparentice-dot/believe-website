@@ -52,7 +52,7 @@ export function Footer({ ctx, principles }: { ctx: Ctx; principles: string[] }) 
         <div
           style={{
             maxWidth: 1120, margin: '0 auto', position: 'relative', aspectRatio: '1920 / 1080',
-            backgroundImage: "url('/photos/directory-plaque.png')",
+            backgroundImage: "url('/photos/directory-plaque.webp')",
             backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
             filter: 'drop-shadow(0 40px 70px rgba(0,0,0,0.6))',
           }}
