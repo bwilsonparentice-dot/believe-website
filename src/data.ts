@@ -222,7 +222,7 @@ export const STORIES = [
 // The broader community — brands Believe has built beside, shown as quiet brass
 // nameplates between the portraits rather than a logo wall. Seeded from the
 // names Beth has associated with Believe; edit freely as the roster grows.
-export const GALLERY_BRANDS = ['Tamalitoz', 'Wizzie’s Tea', 'NIU', 'John Henry’s', 'AJI', 'Fizzy Wizzies', 'Bowlcut']
+export const GALLERY_BRANDS = ['NIU', 'John Henry’s', 'AJI', 'Fizzy Wizzies', 'Bowlcut']
 
 // The House Collection — a founder's story, once told, leaves an artifact behind:
 // a solid aged-brass plaque set into a shallow limestone recess, photographed as
@@ -247,6 +247,18 @@ export type FounderArtifact = {
 
 export const HOUSE_COLLECTION: FounderArtifact[] = [
   {
+    id: 'tamalitoz',
+    founder: 'Tamalitoz',
+    image: '/photos/plaque-tamalitoz.webp',
+    alt: 'A handcrafted aged-brass Tamalitoz by Sugarox plaque set into a stucco wall beside an open pantry doorway inside Believe Studio, warm morning light.',
+    caption: 'Tamalitoz',
+    secondaryCaption: 'Built beside Believe Studio.',
+    aspectRatio: '3 / 2',
+    alignment: 'left',
+    size: 'cinematic',
+    placeholder: 'An aged-brass Tamalitoz by Sugarox plaque set into a stucco wall beside an open pantry doorway, copper bowls and warm light within',
+  },
+  {
     id: 'peanut-butter-co',
     founder: 'Peanut Butter & Co.',
     image: '/photos/plaque-peanut-butter.webp',
@@ -257,6 +269,18 @@ export const HOUSE_COLLECTION: FounderArtifact[] = [
     alignment: 'right',
     size: 'cinematic',
     placeholder: 'An aged-brass Peanut Butter & Co. plaque — “Since 1998” — set into a shallow limestone recess, olive branches at the edge, warm afternoon light',
+  },
+  {
+    id: 'wizzies',
+    founder: 'Wizzie’s',
+    image: '/photos/plaque-wizzies.webp',
+    alt: 'A handcrafted round aged-brass Wizzie’s fresh brewed tea plaque set into a stucco wall beside an olive courtyard inside Believe Studio, warm afternoon light.',
+    caption: 'Wizzie’s',
+    secondaryCaption: 'Built beside Believe Studio.',
+    aspectRatio: '3 / 2',
+    alignment: 'center',
+    size: 'cinematic',
+    placeholder: 'A round aged-brass Wizzie’s fresh brewed tea plaque set into a stucco wall beside an olive courtyard, terracotta pots and warm light',
   },
 ]
 
