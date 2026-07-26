@@ -21,53 +21,83 @@ const surface = (range = 'entry 2% cover 22%'): CSSProperties => ({
   animationRange: range as unknown as string,
 })
 
+// A faint, per-sheet cotton-fibre grain — seeded by the note number so no two
+// sheets share a texture. Warm and almost invisible; multiplied over the ivory.
+function fibre(seed: number): string {
+  return "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='170' height='170'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.84' numOctaves='2' seed='" + seed + "' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='170' height='170' filter='url(%23f)' opacity='0.5'/></svg>\")"
+}
+
+// A wide strip of archival linen tape — warm translucent ivory, tiny fibres, ends
+// softened as if hand-torn, never quite centred or square to the page. Used on
+// only about a third of the notes; the rest simply rest on the wall.
+function Tape({ left, rot, w }: { left: string; rot: number; w: string }) {
+  const torn = 'linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%)'
+  return (
+    <div aria-hidden="true" style={{ position: 'absolute', top: -16, left, width: w, height: 36, transform: `rotate(${rot}deg)`, background: 'linear-gradient(180deg, rgba(241,233,214,0.66), rgba(226,214,187,0.48))', boxShadow: '0 3px 7px -4px rgba(60,44,20,0.26)', WebkitMaskImage: torn, maskImage: torn }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: fibre(7), backgroundSize: '70px 70px', mixBlendMode: 'multiply', opacity: 0.14 }} />
+      <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 1px 0 rgba(255,251,242,0.5), inset 0 -1px 0 rgba(120,96,54,0.16)' }} />
+    </div>
+  )
+}
+
 /**
- * A single page from the notebook — never uniform. Its width follows the length
- * of the thought, it sits a little off the center line, and it carries only what
- * a real page would: sometimes tape, sometimes a pencil rule, sometimes a faint
- * archival stamp. Gently imperfect. Nothing decorative — everything useful.
+ * A single sheet from the archive — never uniform. Its width follows the length
+ * of the thought; it sits a little off the centre line; its corners are cut a
+ * touch irregularly and its cotton grain is its own. It carries only what a real
+ * page would — sometimes a line in Beth's hand, sometimes what the conversation
+ * became, sometimes where it was collected — and, printed almost too lightly to
+ * notice, the Library's own archival mark. Evidence, not a quote card.
  */
 function Note({ fn, i }: { fn: FieldNote; i: number }) {
-  const long = fn.obs.length > 90
-  const width = long ? 'min(96%,600px)' : fn.obs.length > 46 ? 'min(90%,500px)' : 'min(82%,420px)'
+  const len = fn.obs.length
+  const long = len > 90
+  // ~13% more physical presence than before
+  const width = long ? 'min(96%,680px)' : len > 46 ? 'min(90%,570px)' : 'min(84%,480px)'
   const side = i % 2 === 0 ? { marginLeft: 0, marginRight: 'auto' } : { marginLeft: 'auto', marginRight: 0 }
-  const deco = i % 3 // 0 tape · 1 pencil rule · 2 archival stamp
+  const seed = parseInt(fn.n, 10) || i + 1
+  // corners cut a little unevenly — no two sheets the same
+  const radius = ['5px 8px 6px 7px', '7px 5px 8px 6px', '6px 7px 5px 8px', '8px 6px 7px 5px'][seed % 4]
+  const strips = fn.tape || 0
+  const followed = !!(fn.hand || fn.to || fn.trace || fn.where)
 
   return (
     <div style={{ ...surface(), width, ...side, position: 'relative', transform: `rotate(${fn.tilt})` }}>
-      <div style={{ position: 'relative', background: 'linear-gradient(157deg,#f7f1e3,#efe7d4 48%,#e6dcc5)', boxShadow: '0 30px 56px -42px rgba(60,44,20,0.7), inset 0 1px 0 rgba(255,252,244,0.6)', padding: 'clamp(30px,4vw,54px) clamp(28px,4vw,56px) clamp(30px,4vw,50px)', borderRadius: '3px 6px 4px 7px', textAlign: 'left', overflow: 'hidden' }}>
-        {/* the architect's grid, faint */}
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: deco === 1 ? 0.6 : 0.34, mixBlendMode: 'multiply', backgroundImage: 'repeating-linear-gradient(90deg, rgba(150,126,80,0.06) 0 1px, transparent 1px 22px), repeating-linear-gradient(0deg, rgba(150,126,80,0.06) 0 1px, transparent 1px 22px)' }} />
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit', boxShadow: 'inset 0 0 0 1px rgba(122,94,52,0.12), inset 0 0 26px -8px rgba(110,86,46,0.26)' }} />
+      {/* linen tape, only on some — one strip or two, a little crooked */}
+      {strips >= 1 && <Tape left={seed % 2 ? '13%' : '57%'} rot={seed % 2 ? -3.4 : 2.6} w="clamp(120px,17vw,196px)" />}
+      {strips >= 2 && <Tape left={seed % 2 ? '64%' : '19%'} rot={seed % 2 ? 2.8 : -2.4} w="clamp(108px,15vw,168px)" />}
 
-        {/* a strip of tape */}
-        {deco === 0 && (
-          <div aria-hidden="true" style={{ position: 'absolute', top: -9, left: i % 4 === 0 ? '16%' : '62%', width: 'clamp(64px,9vw,104px)', height: 22, transform: 'rotate(-2.4deg)', background: 'linear-gradient(180deg, rgba(220,204,162,0.55), rgba(198,180,132,0.34))', boxShadow: '0 2px 6px -2px rgba(60,44,20,0.4)', borderRadius: 1 }} />
-        )}
-        {/* a faint archival stamp in the corner */}
-        {deco === 2 && (
-          <div aria-hidden="true" style={{ position: 'absolute', top: 'clamp(14px,2vw,22px)', right: 'clamp(14px,2vw,22px)', width: 54, height: 54, borderRadius: '50%', border: '1px solid rgba(122,94,52,0.28)', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'rotate(-8deg)', opacity: 0.6 }}>
-            <span style={{ fontFamily: sans, fontWeight: 400, fontSize: 6.5, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', textAlign: 'center', lineHeight: 1.3 }}>Field<br />Notes</span>
-          </div>
-        )}
+      <div style={{ position: 'relative', background: 'linear-gradient(158deg,#f8f2e6,#f2ebda 52%,#ece3d0)', boxShadow: '0 1px 2px rgba(60,44,20,0.10), 0 10px 16px -12px rgba(60,44,20,0.18)', padding: 'clamp(40px,4.8vw,68px) clamp(36px,4.6vw,64px) clamp(54px,5.6vw,78px)', borderRadius: radius, textAlign: 'left', overflow: 'hidden' }}>
+        {/* this sheet's own cotton-fibre grain */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: fibre(seed), backgroundSize: '200px 200px', mixBlendMode: 'multiply', opacity: 0.05 }} />
+        {/* a whisper of handling: a soft inner edge and a faint pressure sheen */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', borderRadius: 'inherit', boxShadow: 'inset 0 0 0 1px rgba(122,94,52,0.07), inset 0 1px 0 rgba(255,252,245,0.6), inset 0 0 44px -16px rgba(110,86,46,0.15)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', top: '-10%', [seed % 2 ? 'left' : 'right']: '-8%', width: '46%', height: '54%', pointerEvents: 'none', background: 'radial-gradient(closest-side, rgba(255,253,247,0.5), transparent 72%)', mixBlendMode: 'soft-light' } as CSSProperties} />
 
-        <div style={{ position: 'relative', display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 'clamp(16px,2.4vw,26px)' }}>
-          <span style={{ ...label, fontSize: 9.5, color: 'rgba(122,94,52,0.66)' }}>No. {fn.n}</span>
-          {fn.title && <span style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(43,39,35,0.44)' }}>{fn.title}</span>}
+        {/* the label — FIELD NOTE / No. 014, tiny and widely tracked */}
+        <div style={{ position: 'relative', marginBottom: 'clamp(24px,3.2vw,38px)' }}>
+          <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 8.5, letterSpacing: '0.52em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)' }}>Field Note</div>
+          <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', marginTop: '0.55em' }}>No. {fn.n}</div>
+          {fn.title && <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(43,39,35,0.44)', marginTop: '0.7em' }}>{fn.title}</div>}
         </div>
 
-        <p style={{ position: 'relative', fontFamily: serif, fontWeight: 300, fontSize: long ? 'clamp(20px,2.3vw,30px)' : 'clamp(23px,2.8vw,36px)', lineHeight: 1.36, color: 'rgba(43,39,35,0.9)', margin: 0, ...pretty }}>{fn.obs}</p>
+        {/* the observation — the hero, given room to breathe */}
+        <p style={{ position: 'relative', fontFamily: serif, fontWeight: 300, fontSize: long ? 'clamp(23px,2.6vw,34px)' : 'clamp(26px,3.1vw,41px)', lineHeight: 1.46, color: 'rgba(43,39,35,0.9)', margin: 0, ...pretty }}>{fn.obs}</p>
 
-        {/* a pencil rule under the thought */}
-        {deco === 1 && (
-          <svg width="100%" height="8" viewBox="0 0 300 8" preserveAspectRatio="none" aria-hidden="true" style={{ display: 'block', margin: 'clamp(14px,2vh,20px) 0 0', opacity: 0.5 }}>
-            <path d="M2 5 C 60 2, 120 7, 180 4 S 280 3, 298 5" stroke="rgba(43,39,35,0.4)" strokeWidth="1.4" fill="none" strokeLinecap="round" />
-          </svg>
-        )}
+        {/* the reveal — the emotional truth beneath, in Beth's hand */}
+        {fn.hand && <p style={{ position: 'relative', fontFamily: hand, fontWeight: 500, fontSize: 'clamp(24px,2.9vw,36px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.82)', margin: 'clamp(18px,2.2vh,26px) 0 0' }}>{fn.hand}</p>}
 
-        {fn.hand && <p style={{ position: 'relative', fontFamily: hand, fontWeight: 500, fontSize: 'clamp(22px,2.6vw,32px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.78)', margin: 'clamp(12px,1.6vh,18px) 0 0' }}>{fn.hand}</p>}
+        {/* the trace — what the conversation became */}
+        {(fn.trace || fn.to) && <div style={{ position: 'relative', ...label, fontSize: 9, letterSpacing: '0.32em', color: 'rgba(122,94,52,0.56)', marginTop: 'clamp(28px,3.6vh,40px)' }}>{fn.trace || `This one became ${fn.to}.`}</div>}
 
-        {fn.to && <div style={{ position: 'relative', ...label, fontSize: 9, letterSpacing: '0.34em', color: 'rgba(122,94,52,0.55)', marginTop: 'clamp(22px,3vh,32px)' }}>This one became — {fn.to}</div>}
+        {/* provenance — a tiny archival caption, never explained */}
+        {fn.where && <div style={{ position: 'relative', fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(43,39,35,0.4)', marginTop: followed ? 'clamp(14px,1.8vh,22px)' : 'clamp(26px,3.2vh,36px)' }}>{fn.where}</div>}
+
+        {/* cataloged by the Library — printed almost too lightly to notice */}
+        <div aria-hidden="true" style={{ position: 'absolute', right: 'clamp(22px,3vw,36px)', bottom: 'clamp(18px,2.4vw,28px)', textAlign: 'right', opacity: 0.32, transform: 'rotate(-1.1deg)', pointerEvents: 'none' }}>
+          <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 6, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.9)' }}>Believe Studio Archive</div>
+          <div style={{ height: 1, background: 'rgba(122,94,52,0.42)', margin: '3px 0 3px auto', width: '100%' }} />
+          <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 6, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)' }}>Founder Note · {fn.n}</div>
+        </div>
       </div>
     </div>
   )

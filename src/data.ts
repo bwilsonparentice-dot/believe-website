@@ -720,20 +720,28 @@ export const EXPERIENCES: Record<string, Experience> = {
   },
 }
 
-export type FieldNote = { n: string; obs: string; tilt: string; title?: string; hand?: string; to?: string }
+// A Field Note is one conversation that refused to leave. Three quiet families:
+// an Observation (obs alone), a Reveal (obs + a line in Beth's hand), and a Trace
+// (what the conversation eventually became — `to`, or a full `trace` sentence).
+// `where` is a tiny archival provenance caption; `tape` (1 or 2) marks the ~third
+// of notes held to the wall with linen tape — the rest simply rest on the page.
+export type FieldNote = {
+  n: string; obs: string; tilt: string
+  title?: string; hand?: string; to?: string; trace?: string; where?: string; tape?: 1 | 2
+}
 export const FIELD_NOTES: FieldNote[] = [
   { n: '014', obs: 'Growth usually creates new problems faster than confidence.', tilt: '-0.5deg' },
-  { n: '027', obs: 'The founder wasn’t asking about packaging.', hand: 'She was asking for permission.', to: 'The Founder’s Room', tilt: '0.5deg' },
+  { n: '027', obs: 'The founder wasn’t asking about packaging.', hand: 'She was asking for permission.', to: 'The Founder’s Room', where: 'Conversation 184.', tape: 2, tilt: '0.5deg' },
   { n: '041', obs: 'Questions repeated three times are usually the real questions.', tilt: '0.4deg' },
-  { n: '056', obs: 'Most founders don’t need another framework. They need a room quiet enough to hear themselves think.', to: 'The House', tilt: '-0.6deg' },
-  { n: '063', obs: 'Retail rarely breaks companies.', hand: 'Confusion usually does.', tilt: '0.5deg' },
+  { n: '056', obs: 'Most founders don’t need another framework. They need a room quiet enough to hear themselves think.', to: 'The House', tape: 1, tilt: '-0.6deg' },
+  { n: '063', obs: 'Retail rarely breaks companies.', hand: 'Confusion usually does.', where: 'Outside Whole Foods.', tilt: '0.7deg' },
   { n: '071', title: 'On beginning', obs: 'Every meaningful company we’ve watched take shape began the same way — not with a plan, but with a better question.', to: 'The Believe Blueprint', tilt: '-0.4deg' },
-  { n: '084', obs: 'A founder can outgrow their positioning long before they outgrow their business.', tilt: '0.6deg' },
-  { n: '090', obs: 'The bravest thing said at the table is usually the quietest.', to: 'Inside the Studio', tilt: '-0.5deg' },
-  { n: '097', obs: 'Clarity is not the reward at the end of the work. It is the thing that makes the work possible.', tilt: '0.4deg' },
-  { n: '102', obs: 'Sometimes the next strategy begins with a better question.', tilt: '-0.5deg' },
-  { n: '118', title: 'Unfinished', obs: '— what if belief is the only asset that compounds without capital?', hand: '(left for later)', tilt: '0.6deg' },
-  { n: '126', obs: 'The founders who go on to build the most give the most away first.', to: 'The Stage', tilt: '-0.4deg' },
+  { n: '084', obs: 'A founder can outgrow their positioning long before they outgrow their business.', where: 'Collected after Expo West.', tape: 1, tilt: '0.6deg' },
+  { n: '090', obs: 'The bravest thing said at the table is usually the quietest.', trace: 'This conversation became our first workshop.', tilt: '-0.5deg' },
+  { n: '097', obs: 'Clarity is not the reward at the end of the work. It is the thing that makes the work possible.', where: 'Late Tuesday afternoon.', tilt: '0.4deg' },
+  { n: '102', obs: 'Sometimes the next strategy begins with a better question.', tape: 2, tilt: '-0.5deg' },
+  { n: '118', title: 'Unfinished', obs: '— what if belief is the only asset that compounds without capital?', hand: '(left for later)', tilt: '0.7deg' },
+  { n: '126', obs: 'The founders who go on to build the most give the most away first.', to: 'The Stage', where: 'From a founder in tears.', tilt: '-0.4deg' },
 ]
 
 export const LIBRARY_BOOKS = [
