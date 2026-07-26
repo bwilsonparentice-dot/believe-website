@@ -2,7 +2,6 @@ import React, { useState, CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
-import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
 
 const serif = "'Cormorant Garamond',serif"
@@ -28,13 +27,16 @@ const surface = (range = 'entry 2% cover 26%'): CSSProperties => ({
 // The current resident. Not an event listing — a practitioner invited into an
 // institution because of what they leave behind. Copy is philosophy-first;
 // credentials appear only as evidence. (Edit with the resident's real details.)
+// the workshop cover — the poster for Founder Workshop No. 001 (carries the
+// resident's name, the workshop title, and its promise in one designed image)
+const WORKSHOP_COVER = '/photos/workshop-buyback20.webp'
+
 const RESIDENT = {
   name: 'Mona',
-  fullName: 'Mona Wilson',
+  fullName: 'Chef MoWils',
   role: 'Resident AI Strategist',
   season: 'Summer 2026',
   month: 'August 2026',
-  portrait: '/photos/portrait-mona.webp',
   team: true,
 
   // why she belongs here — the qualities first, the résumé only as evidence
@@ -109,21 +111,12 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── why Mona is in residence — philosophy before credentials ──── */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 'clamp(36px,5.5vw,80px)', margin: 'clamp(140px,26vh,320px) auto 0', ...surface() }}>
-          <div style={{ flex: '0 1 270px', minWidth: 210, maxWidth: 300 }}>
-            {/* an editorial portrait — natural, warm, no badges */}
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden', background: '#e6dcc6', boxShadow: '0 40px 72px -48px rgba(40,44,70,0.5)', borderRadius: 'clamp(58px,7.5vw,110px) clamp(58px,7.5vw,110px) 8px 8px' }}>
-              <ImageSlot src={R.portrait} alt={`Editorial portrait of ${R.fullName}, ${R.role}, in warm light`} placeholder="Editorial portrait of the current resident in warm light" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', filter: 'brightness(1.05)' }} />
-              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 54% at 40% 26%, rgba(255,238,196,0.4), transparent 68%)' }} />
-            </div>
-          </div>
-          <div style={{ flex: '1 1 330px', minWidth: 290, textAlign: 'left' }}>
-            <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '1.4em' }}>Why Mona is in residence</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,2vh,22px)' }}>
-              {R.why.map((p, i) => (
-                <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: i === 0 ? 'clamp(21px,2.5vw,32px)' : 'clamp(17px,1.9vw,23px)', lineHeight: i === 0 ? 1.32 : 1.62, color: i === 0 ? indigo : 'rgba(43,39,35,0.72)', margin: 0, ...pretty }}>{p}</p>
-              ))}
-            </div>
+        <div style={{ textAlign: 'center', margin: 'clamp(140px,26vh,320px) auto 0', ...surface() }}>
+          <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: 'clamp(34px,6vh,64px)' }}>Why Mona is in residence</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3.6vh,38px)' }}>
+            {R.why.map((p, i) => (
+              <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: i === 0 ? 'clamp(24px,3.2vw,44px)' : 'clamp(18px,2.1vw,26px)', lineHeight: i === 0 ? 1.22 : 1.6, color: i === 0 ? indigo : 'rgba(43,39,35,0.76)', maxWidth: i === 0 ? '20ch' : '38ch', margin: '0 auto', ...(i === 0 ? balance : pretty) }}>{p}</p>
+            ))}
           </div>
         </div>
 
@@ -160,9 +153,15 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.42, color: indigo, maxWidth: '26ch', margin: '0 auto' }}>Every resident contributes something meaningful to the House.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', color: 'rgba(122,94,52,0.82)', margin: 'clamp(18px,2.6vh,28px) auto 0' }}>For Mona, that contribution begins here.</p>
 
-          <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', margin: 'clamp(64px,11vh,130px) auto 1.3em' }}>{R.workshopNo}</div>
-          <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6vw,88px)', lineHeight: 1, margin: '0 0 0.4em', color: indigo }}>{R.workshopTitle}</h3>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.3vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: '0 auto', maxWidth: '24ch', ...balance }}>{R.workshopSub}</p>
+          {/* the workshop cover — the poster carries the number, title, and promise */}
+          <figure style={{ width: 'min(90vw, 560px)', margin: 'clamp(64px,11vh,130px) auto 0' }}>
+            <img
+              src={WORKSHOP_COVER}
+              alt={`${R.workshopNo} — ${R.workshopTitle}. Five AI teammates. One founder. Twenty hours returned. In residence: ${R.fullName}, ${R.role}.`}
+              loading="lazy"
+              style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 'clamp(5px,0.9vw,11px)', boxShadow: '0 54px 96px -56px rgba(40,44,70,0.55)' }}
+            />
+          </figure>
 
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>The workshop begins with something real a founder is carrying. Mona works through it live with the room — not performed, but genuinely worked through together. What is learned enters the Library, so its value reaches beyond the founders who were present.</p>
 

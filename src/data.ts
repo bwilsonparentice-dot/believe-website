@@ -53,7 +53,7 @@ export const EXTRAS: Record<string, any> = {
   },
   studio: {
     photo: 'a workbench of prototypes, sketches pinned to the wall',
-    person: { name: 'Mona Wilson', first: 'Mona', role: 'She builds the systems, workflows, and automation that turn founder strategy into real-world momentum.' },
+    person: { name: 'Chef MoWils', first: 'Mona', role: 'She builds the systems, workflows, and automation that turn founder strategy into real-world momentum.' },
     story: { kind: 'a note', by: 'Snehee', of: 'Gallivant', text: 'You told me the unfinished version was worth showing. You were right. We shipped it Tuesday.' },
     door: { leaf: 'linear-gradient(100deg,#26282b,#34383c)', type: 'atelier', panel: '#15171a', handle: steel },
   },
@@ -821,7 +821,7 @@ export const PEOPLE = [
   { first: 'Joy', name: 'Joy Mooiweer', pid: 'portrait-joy', dir: 'row-reverse', room: 'The Studio', portrait: 'Editorial portrait of Joy in The Studio — beautiful materials, packaging, paper, brass, warm oak', belief: 'Joy believes extraordinary hospitality is often invisible. The best experiences are the ones that simply feel right.', when: 'long before you realize she’s quietly orchestrated dozens of thoughtful details that made your experience feel effortless.' },
   { first: 'Jillian', name: 'Jillian Waun', pid: 'portrait-jillian', dir: 'row', room: 'The Library', portrait: 'Editorial portrait of Jillian in The Library — books, notes, window light', belief: 'Jillian believes thoughtful storytelling creates belonging.', when: 'through the stories you read, the words that stay with you, and the conversations that continue long after you’ve left.' },
   { first: 'Tiffany', name: 'Tiffany Nilles', pid: 'portrait-tiffany', dir: 'row-reverse', room: 'The Table', role: 'Retail Strategy Advisor', portrait: 'Editorial portrait of Tiffany at The Table — an open notebook, conversation, coffee', belief: 'Tiffany believes clarity creates momentum. She quietly helps founders move from possibility to progress.', when: 'when ideas begin becoming organized into meaningful action.' },
-  { first: 'Mona', name: 'Mona Wilson', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Mona in The Garden — olive trees, a stone path, morning light', belief: 'Mona believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
+  { first: 'Mona', name: 'Chef MoWils', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Mona in The Garden — olive trees, a stone path, morning light', belief: 'Mona believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
 ]
 
 /**
