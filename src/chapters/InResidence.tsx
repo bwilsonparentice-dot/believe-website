@@ -31,6 +31,9 @@ const surface = (range = 'entry 2% cover 26%'): CSSProperties => ({
 // resident's name, the workshop title, and its promise in one designed image)
 const WORKSHOP_COVER = '/photos/workshop-buyback20.webp'
 
+// where founders reserve a seat at the workshop — the Luma event page
+const REGISTER_URL = 'https://luma.com/fubwg0mx'
+
 const RESIDENT = {
   name: 'Mona',
   fullName: 'Chef MoWils',
@@ -167,6 +170,17 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
 
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,3vw,40px)', lineHeight: 1.32, color: indigo, maxWidth: '20ch', margin: 'clamp(56px,9vh,110px) auto 0', ...balance }}>This workshop is not about AI. It is about what you would do with twenty hours.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(20px,3vh,32px) auto 0' }}>AI does the prep. You do the judgment.</p>
+
+          {/* reserve a seat — the workshop registration (Luma) */}
+          <div style={{ marginTop: 'clamp(56px,9vh,110px)' }}>
+            <div style={{ ...label, fontSize: 9.5, letterSpacing: '0.42em', marginBottom: '1.5em', color: 'rgba(122,94,52,0.62)' }}>{R.month}</div>
+            <El as="a" href={REGISTER_URL} target="_blank" rel="noopener noreferrer"
+              style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', textDecoration: 'none', transition: 'background 400ms ease, color 400ms ease' }}
+              hover={{ background: 'transparent', color: indigo }}
+            >
+              Reserve your seat
+            </El>
+          </div>
         </div>
 
         {/* ── what founders leave with — transformations, not features ──── */}
@@ -201,13 +215,22 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '30ch', margin: 'clamp(34px,5.5vh,60px) auto 0', ...pretty }}>Every founder leaves with something they didn’t have before. Sometimes that’s clarity. Sometimes it’s confidence. Sometimes it’s simply twenty hours they never thought they’d get back.</p>
 
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.8)', margin: 'clamp(48px,8vh,96px) auto 0' }}>{R.hook[0]} {R.hook[1]}</p>
-          <El
-            onClick={() => setNoteOpen(true)}
-            style={{ display: 'inline-block', margin: 'clamp(40px,7vh,80px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', transition: 'background 400ms ease, color 400ms ease' }}
-            hover={{ background: 'transparent', color: indigo }}
-          >
-            Come in
-          </El>
+          <div style={{ marginTop: 'clamp(40px,7vh,80px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(22px,3.4vh,34px)' }}>
+            <El as="a" href={REGISTER_URL} target="_blank" rel="noopener noreferrer"
+              style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', textDecoration: 'none', transition: 'background 400ms ease, color 400ms ease' }}
+              hover={{ background: 'transparent', color: indigo }}
+            >
+              Reserve your seat
+            </El>
+            {/* a quieter path — for founders who'd rather talk before they register */}
+            <El
+              onClick={() => setNoteOpen(true)}
+              style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.5)', borderBottom: '1px solid rgba(43,39,35,0.24)', paddingBottom: 4, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }}
+              hover={{ color: indigo, borderColor: indigoSoft }}
+            >
+              Or come in and say hello first
+            </El>
+          </div>
         </div>
 
         {/* ── while you're here — the Founder's Room, very quietly ───────── */}
