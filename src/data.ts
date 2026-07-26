@@ -222,7 +222,43 @@ export const STORIES = [
 // The broader community — brands Believe has built beside, shown as quiet brass
 // nameplates between the portraits rather than a logo wall. Seeded from the
 // names Beth has associated with Believe; edit freely as the roster grows.
-export const GALLERY_BRANDS = ['Tamalitoz', 'Wizzie’s Tea', 'NIU', 'John Henry’s', 'Peanut Butter & Co.', 'AJI', 'Fizzy Wizzies']
+export const GALLERY_BRANDS = ['Tamalitoz', 'Wizzie’s Tea', 'NIU', 'John Henry’s', 'AJI', 'Fizzy Wizzies', 'Bowlcut']
+
+// The House Collection — a founder's story, once told, leaves an artifact behind:
+// a solid aged-brass plaque set into a shallow limestone recess, photographed as
+// part of the House rather than as a product. Each plaque is unique in silhouette
+// and setting; cohesion comes from spacing, caption, and light — not identical
+// crops. Add future founders (Gallivant, Date Better, Bowlcut, NIU, Tamalitoz,
+// Fizzy Wizzies, John Henry's) here with their own image and proportions.
+export type FounderArtifact = {
+  id: string
+  founder: string
+  image: string
+  alt: string
+  caption?: string
+  secondaryCaption?: string
+  /** the plaque photo's intrinsic ratio, so nothing is cropped (e.g. '3 / 2') */
+  aspectRatio?: string
+  alignment?: 'left' | 'center' | 'right'
+  size?: 'intimate' | 'standard' | 'cinematic'
+  /** art-direction note shown until the real photograph is added */
+  placeholder?: string
+}
+
+export const HOUSE_COLLECTION: FounderArtifact[] = [
+  {
+    id: 'peanut-butter-co',
+    founder: 'Peanut Butter & Co.',
+    image: '/photos/plaque-peanut-butter.webp',
+    alt: 'A handcrafted aged-brass Peanut Butter & Co. plaque set within a shallow limestone recess, photographed in warm sunlight inside Believe Studio.',
+    caption: 'Peanut Butter & Co.',
+    secondaryCaption: 'Built beside Believe Studio.',
+    aspectRatio: '3 / 2',
+    alignment: 'right',
+    size: 'cinematic',
+    placeholder: 'An aged-brass Peanut Butter & Co. plaque — “Since 1998” — set into a shallow limestone recess, olive branches at the edge, warm afternoon light',
+  },
+]
 
 export const FR_RHYTHM = [
   { t: 'The weekly conversation', d: 'Ninety minutes to two hours, live. A different question each week — the same purpose always. No lecture, no slides. Just founders thinking out loud together.' },

@@ -19,6 +19,7 @@ export function ImageSlot({
   tint,
   fit = 'cover',
   showNote = false,
+  loading,
   style,
 }: {
   src?: string
@@ -29,6 +30,8 @@ export function ImageSlot({
   fit?: 'cover' | 'contain'
   /** show the art-direction note in the empty pane (off by default to keep heroes clean) */
   showNote?: boolean
+  /** native lazy/eager loading hint for the underlying <img> */
+  loading?: 'lazy' | 'eager'
   style?: CSSProperties
 }) {
   const [failed, setFailed] = useState(false)
@@ -39,6 +42,7 @@ export function ImageSlot({
       <img
         src={src}
         alt={alt || ''}
+        loading={loading}
         onError={() => setFailed(true)}
         style={{ objectFit: fit, objectPosition: 'center', ...style, display: 'block' }}
       />

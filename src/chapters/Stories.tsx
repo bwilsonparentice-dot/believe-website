@@ -3,7 +3,8 @@ import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
-import { STORIES, STORY_PHOTOS, GALLERY_BRANDS } from '../data'
+import { FounderArtifact } from '../components/FounderArtifact'
+import { STORIES, STORY_PHOTOS, GALLERY_BRANDS, HOUSE_COLLECTION } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
@@ -107,8 +108,7 @@ function PullQuote({ lines }: { lines: string[] }) {
  */
 export function StoriesChapter({ ctx }: { ctx: Ctx }) {
   const [snehee, michelle] = STORIES
-  const brandsA = GALLERY_BRANDS.slice(0, 4)
-  const brandsB = GALLERY_BRANDS.slice(4)
+  const peanutButter = HOUSE_COLLECTION[0]
 
   return (
     <ChapterShell onClose={ctx.closeStories} background="#efe6d3">
@@ -133,17 +133,23 @@ export function StoriesChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(120px,22vh,260px)', marginTop: 'clamp(120px,22vh,260px)' }}>
           <FounderStory s={snehee} />
 
-          <BrandPlaque title="Other founders we’ve had the privilege to build beside" brands={brandsA} />
+          <BrandPlaque
+            title="Other founders we’ve had the privilege to build beside"
+            intro="Every founder’s journey is different. Together, these brands represent thousands of conversations, countless decisions, and years spent building products that matter."
+            brands={GALLERY_BRANDS}
+          />
 
           <PullQuote lines={['The business didn’t need another strategy.', 'It needed a founder who believed again.']} />
 
           <FounderStory s={michelle} />
 
-          <BrandPlaque
-            title="Brands we’ve built beside"
-            intro="Every founder’s journey is different. Together, these brands represent thousands of conversations, countless decisions, and years spent building products that matter."
-            brands={brandsB}
-          />
+          {/* The House Collection — a plaque left behind, discovered in the stone */}
+          {peanutButter && (
+            <div>
+              <p style={{ ...label, fontSize: 10, letterSpacing: '0.42em', textAlign: 'center', margin: '0 auto clamp(48px,8vh,88px)', color: 'rgba(122,94,52,0.6)', ...surface('entry 0% cover 22%') }}>Every founder leaves something behind</p>
+              <FounderArtifact artifact={peanutButter} />
+            </div>
+          )}
 
           <PullQuote lines={['The best companies are rarely built alone.']} />
         </div>
