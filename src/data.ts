@@ -282,6 +282,30 @@ export const HOUSE_COLLECTION: FounderArtifact[] = [
     size: 'cinematic',
     placeholder: 'A round aged-brass Wizzie’s fresh brewed tea plaque set into a stucco wall beside an olive courtyard, terracotta pots and warm light',
   },
+  {
+    id: 'maia',
+    founder: 'Maia',
+    image: '/photos/plaque-maia.webp',
+    alt: 'A handcrafted square aged-brass maia plaque set into a stucco wall beside an open doorway inside Believe Studio, olive shadows and warm evening light.',
+    caption: 'Maia',
+    secondaryCaption: 'Built beside Believe Studio.',
+    aspectRatio: '4 / 5',
+    alignment: 'right',
+    size: 'cinematic',
+    placeholder: 'A square aged-brass maia plaque set into a stucco wall beside an open doorway, milk bottles and warm light within, olive shadows across the stone',
+  },
+  {
+    id: 'hormans',
+    founder: 'Horman’s Family Pickles',
+    image: '/photos/plaque-hormans.webp',
+    alt: 'A Horman’s Family Pickles mark, “Since 1898”, set into a stucco wall beside a weathered wooden door inside Believe Studio, an olive tree and crocks below in warm dusk light.',
+    caption: 'Horman’s Family Pickles',
+    secondaryCaption: 'Built beside Believe Studio.',
+    aspectRatio: '3 / 4',
+    alignment: 'left',
+    size: 'cinematic',
+    placeholder: 'A Horman’s Family Pickles mark — “Since 1898” — set into a stucco wall beside a weathered wooden door, an olive tree and pickle crocks in warm dusk light',
+  },
 ]
 
 export const FR_RHYTHM = [

@@ -21,9 +21,23 @@ const MAXW: Record<NonNullable<FounderArtifactData['size']>, number> = {
  * and its warm stone dissolves into the cream of the page. Reused for every
  * future founder; individuality lives in each unique photograph.
  */
+// target on-screen height per size, so portrait and landscape plaques share a
+// consistent presence rather than tall images dwarfing wide ones
+const MAXH_VH: Record<NonNullable<FounderArtifactData['size']>, number> = {
+  intimate: 66,
+  standard: 80,
+  cinematic: 88,
+}
+
 export function FounderArtifact({ artifact }: { artifact: FounderArtifactData }) {
   const { image, alt, caption, secondaryCaption, aspectRatio = '3 / 2', alignment = 'center', size = 'standard', placeholder, founder } = artifact
   const maxW = MAXW[size]
+
+  // the photo's width/height ratio, so we can cap by height too (a tall plaque
+  // would otherwise run far past the viewport at full cinematic width)
+  const [rw, rh] = aspectRatio.split('/').map((s) => parseFloat(s.trim()))
+  const ratio = rw && rh ? rw / rh : 1
+  const boxWidth = `min(92vw, ${maxW}px, ${(MAXH_VH[size] * ratio).toFixed(1)}vh)`
 
   // a quiet, composed asymmetry — never centered by default for every plaque
   const offset: CSSProperties =
@@ -45,7 +59,7 @@ export function FounderArtifact({ artifact }: { artifact: FounderArtifactData })
       style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', padding: '0 clamp(16px,5vw,90px)', boxSizing: 'border-box' }}
     >
       <div style={{ maxWidth: 1440, margin: '0 auto' }}>
-        <figure style={{ margin: 0, width: `min(90%, ${maxW}px)`, ...offset, ...reveal }}>
+        <figure style={{ margin: 0, width: boxWidth, ...offset, ...reveal }}>
           {/* the photograph itself — intrinsic ratio, no crop of the architecture */}
           <div style={{ position: 'relative', width: '100%', aspectRatio }}>
             <ImageSlot
