@@ -193,10 +193,36 @@ export const DATA: any[] = [
     archive: { no: '058', lines: ['The applause wasn’t the reward.', 'Knowing another founder believed because of your story was.'], source: '— from The Stage Archive' } },
 ]
 
+// The Gallery — founders framed like portraits on a gallery wall. Each carries
+// a quote, a short narrative, and an understated museum label of what changed.
+// `changed` is optional; a founder without verified milestones simply omits it.
+// Add future founders here (Fizzy Wizzies, NIU, Tamalitoz, John Henry's,
+// Peanut Butter & Co.) and the gallery grows with no redesign.
 export const STORIES = [
-  { name: 'Michelle', of: 'Date Better', pid: 'story-michelle', dir: 'row', quote: 'Having Beth as an advisor has been a gift. Her warm, caring presence makes every conversation feel like a safe place to think big, be vulnerable, and get clear. If you’re lucky enough to work with her, say yes.' },
-  { name: 'Snehee', of: 'Gallivant', pid: 'story-snehee', dir: 'row-reverse', quote: 'Beth came in at a pivotal time — she helped me get investor-ready, not just on paper, but in confidence, clarity, and how I showed up in the room. She turned complex brand language into simple, compelling stories.' },
+  {
+    name: 'Snehee', company: 'Founder, Gallivant', pid: 'story-snehee', dir: 'row',
+    quote: 'Beth helped me believe that our brand belonged in rooms we once thought were out of reach.',
+    narrative: [
+      'When Snehee first sat down with Beth, Gallivant was a brand she believed in — and a story she hadn’t yet found the words for.',
+      'Together they worked on clarity before growth: who Gallivant was for, why it mattered, and how a founder walks into a room and makes people believe. The confidence came first.',
+      'The doors followed.',
+    ],
+    changed: ['Walmart Open Call Golden Ticket', 'Expanded from 6 to 44 H-E-B stores', 'Whole Foods', 'Sprouts', 'Lunds & Byerlys'],
+  },
+  {
+    name: 'Michelle', company: 'Founder, Date Better Snacks', pid: 'story-michelle', dir: 'row-reverse',
+    quote: 'Having Beth as an advisor has been a gift. Her warm, caring presence makes every conversation feel like a safe place to think big, be vulnerable, and get clear.',
+    narrative: [
+      'Michelle came to the table with Date Better Snacks already in motion — and the particular loneliness of carrying every decision alone.',
+      'What she found wasn’t another strategy deck. It was a place to think out loud, to be honest about what was hard, and to leave each conversation a little clearer than she arrived.',
+    ],
+  },
 ]
+
+// The broader community — brands Believe has built beside, shown as quiet brass
+// nameplates between the portraits rather than a logo wall. Seeded from the
+// names Beth has associated with Believe; edit freely as the roster grows.
+export const GALLERY_BRANDS = ['Tamalitoz', 'Wizzie’s Tea', 'NIU', 'John Henry’s', 'Peanut Butter & Co.', 'AJI', 'Fizzy Wizzies']
 
 export const FR_RHYTHM = [
   { t: 'The weekly conversation', d: 'Ninety minutes to two hours, live. A different question each week — the same purpose always. No lecture, no slides. Just founders thinking out loud together.' },
