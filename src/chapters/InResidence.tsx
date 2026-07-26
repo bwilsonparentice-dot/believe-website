@@ -29,7 +29,7 @@ const surface = (range = 'entry 2% cover 26%'): CSSProperties => ({
 // `team` residents belong to Believe (their link goes inward to The People);
 // outside residents instead carry a `website` that opens to their own work.
 const RESIDENT: {
-  month: string; name: string; role: string; line: string; portrait: string
+  month: string; name: string; role: string; line: string; bio: string[]; portrait: string
   workshopNo: string; workshopTitle: string; workshopSub: string; hook: string[]; artifact: string
   carrying: string; clarifies: string
   team?: boolean; website?: string
@@ -38,6 +38,12 @@ const RESIDENT: {
   name: 'Mona',
   role: 'Resident AI Strategist',
   line: 'Helping founders build the first AI team they can actually manage.',
+  // a short, warm bio — enough to show she has lived this, not merely studied it.
+  // (edit with Mona's real details whenever you like.)
+  bio: [
+    'Mona spends her days where AI meets CPG — helping founders put new tools to work without losing the thread of why they started.',
+    'She isn’t here to explain the technology. She’s here to build it beside you, live, with real work on the table.',
+  ],
   portrait: '/photos/portrait-mona.webp',
   workshopNo: 'Founder Workshop No. 001',
   workshopTitle: 'Buy Back 20 Hours',
@@ -99,34 +105,39 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '26ch', ...balance }}>Residents visit. What they leave behind remains.</p>
         </div>
 
-        {/* ── the current resident — a magazine profile, no box ─────────── */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 'clamp(34px,5vw,72px)', margin: 'clamp(130px,24vh,300px) auto 0', ...surface() }}>
-          <div style={{ flex: '0 1 240px', minWidth: 180, maxWidth: 248 }}>
+        {/* ── this month's Resident, and the workshop she is leading ────── */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 'clamp(36px,5vw,74px)', margin: 'clamp(130px,24vh,300px) auto 0', ...surface() }}>
+          <div style={{ flex: '0 1 250px', minWidth: 200, maxWidth: 264 }}>
             <div style={{ position: 'relative', width: '100%', aspectRatio: '3/4', overflow: 'hidden', background: '#e6dcc6', boxShadow: '0 36px 66px -46px rgba(40,44,70,0.5)', borderRadius: 'clamp(58px,7.5vw,104px) clamp(58px,7.5vw,104px) 8px 8px' }}>
-              <ImageSlot src={RESIDENT.portrait} alt={`Portrait of ${RESIDENT.name}, Resident AI Strategist`} placeholder="Editorial portrait of the current resident in warm light" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', filter: 'brightness(1.05)' }} />
+              <ImageSlot src={RESIDENT.portrait} alt={`Portrait of ${RESIDENT.name}, ${RESIDENT.role}`} placeholder="Editorial portrait of the current resident in warm light" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', filter: 'brightness(1.05)' }} />
               <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 54% at 40% 26%, rgba(255,238,196,0.4), transparent 68%)' }} />
             </div>
           </div>
-          <div style={{ flex: '1 1 320px', minWidth: 280, textAlign: 'left' }}>
-            <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '1.1em' }}>{RESIDENT.month}</div>
-            <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(46px,6.2vw,84px)', lineHeight: 0.98, margin: '0 0 0.32em', color: indigo }}>{RESIDENT.name}</h3>
-            <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.3vw,29px)', color: 'rgba(122,94,52,0.82)', marginBottom: '1.2em' }}>{RESIDENT.role}</div>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: 0, ...pretty }}>{RESIDENT.line}</p>
+          <div style={{ flex: '1 1 330px', minWidth: 290, textAlign: 'left' }}>
+            <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '1em' }}>{RESIDENT.month}</div>
+            <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,5.4vw,72px)', lineHeight: 0.98, margin: '0 0 0.28em', color: indigo }}>{RESIDENT.name}</h3>
+            <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', color: 'rgba(122,94,52,0.82)', marginBottom: '1em' }}>{RESIDENT.role}</div>
+            {RESIDENT.bio.map((b, i) => (
+              <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.72)', maxWidth: '34ch', margin: i === 0 ? 0 : '0.7em 0 0', ...pretty }}>{b}</p>
+            ))}
 
             {/* a resident from within Believe links inward; an outside one links out */}
             {RESIDENT.team ? (
-              <El onClick={ctx.openPeople} style={{ display: 'inline-block', marginTop: 'clamp(20px,3vh,30px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 4, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: indigo, borderColor: indigoSoft }}>A member of the Believe team →</El>
+              <El onClick={ctx.openPeople} style={{ display: 'inline-block', marginTop: 'clamp(18px,2.6vh,26px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 4, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: indigo, borderColor: indigoSoft }}>A member of the Believe team →</El>
             ) : RESIDENT.website ? (
-              <a href={RESIDENT.website} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 'clamp(20px,3vh,30px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 4, textDecoration: 'none' }}>Visit {RESIDENT.name}’s work →</a>
+              <a href={RESIDENT.website} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: 'clamp(18px,2.6vh,26px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 4, textDecoration: 'none' }}>Visit {RESIDENT.name}’s work →</a>
             ) : null}
+
+            {/* the workshop she is leading — joined to her so they read as one */}
+            <div aria-hidden="true" style={{ width: 40, height: 1, background: 'rgba(122,94,52,0.3)', margin: 'clamp(28px,4.5vh,44px) 0' }} />
+            <div style={{ ...label, fontSize: 9.5, letterSpacing: '0.4em', marginBottom: '0.8em' }}>{RESIDENT.workshopNo}</div>
+            <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.7vw,48px)', lineHeight: 1.03, color: indigo, marginBottom: '0.35em' }}>{RESIDENT.workshopTitle}</div>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: 0, maxWidth: '26ch' }}>{RESIDENT.workshopSub}</p>
           </div>
         </div>
 
-        {/* ── the current workshop — kept close, so each resident reads as one unit ── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(72px,13vh,150px)', ...surface() }}>
-          <div style={{ ...label, fontSize: 10, marginBottom: '1.3em' }}>{RESIDENT.workshopNo}</div>
-          <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6vw,88px)', lineHeight: 1, margin: '0 0 0.4em', color: indigo }}>{RESIDENT.workshopTitle}</h3>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.3vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: '0 auto', maxWidth: '24ch', ...balance }}>{RESIDENT.workshopSub}</p>
+        {/* ── the workshop, worked through — the shape of the residency ──── */}
+        <div style={{ textAlign: 'center', marginTop: 'clamp(90px,15vh,180px)', ...surface() }}>
 
           {/* how a workshop works — the shared shape of every residency */}
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>Every workshop begins with something real a founder is carrying. A Resident works through it live with the room — not as a presentation, but as shared work. What is learned becomes part of the Library, so its value reaches beyond the founders who were present.</p>
