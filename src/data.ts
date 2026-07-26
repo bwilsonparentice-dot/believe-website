@@ -909,10 +909,11 @@ const sideStyle = (side: string) =>
     ? { justify: 'flex-end', textAlign: 'right', scrim: 'linear-gradient(270deg, rgba(26,19,11,0.66), rgba(26,19,11,0.22) 44%, transparent 74%)' }
     : { justify: 'center', textAlign: 'center', scrim: 'radial-gradient(120% 100% at 50% 58%, rgba(26,19,11,0.6), rgba(26,19,11,0.18) 56%, transparent 80%)' }
 // the house now reads as a journey: arrival → see clearly → become stronger →
-// build beside others → continue. The Studio has merged into the Blueprint.
-const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'fieldnotes', 'library', 'garden', 'stage']
+// decide → build → continue. The Studio sits after the Table: conversations
+// become decisions there, and the decisions get built here.
+const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'studio', 'advisory', 'fieldnotes', 'library', 'garden', 'stage']
 const enterLabelMap: Record<string, string> = {
-  table: 'Let’s think together.', studio: 'Let’s learn together.', advisory: 'Let’s decide together.',
+  table: 'Let’s think together.', studio: 'Step into the Studio →', advisory: 'Let’s decide together.',
   garden: 'Let’s gain perspective.', stage: 'Give your work to the world.', blueprint: 'Explore the Blueprint →',
   fieldnotes: 'Open the notebook.', library: 'Enter the Library.',
 }
@@ -932,7 +933,7 @@ export function buildRooms(): { all: Room[]; journey: Room[]; byId: (id: string)
     const ia = ORDER.indexOf(a.id), ib = ORDER.indexOf(b.id)
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib)
   })
-  const journey = all.filter((r) => r.id !== 'garden' && r.id !== 'studio').map((r, i) => {
+  const journey = all.filter((r) => r.id !== 'garden').map((r, i) => {
     const lo = LAYOUT[r.id] || { side: 'center' }
     const ss = sideStyle(lo.side)
     return {

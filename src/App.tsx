@@ -571,6 +571,8 @@ export class App extends React.Component<Record<string, never>, State> {
     if (room.id === 'blueprint') return this.ctx.openBlueprint
     if (room.id === 'fieldnotes') return this.ctx.openFieldNotes
     if (room.id === 'library') return this.ctx.openLibrary
+    // The Studio room opens its dedicated workshop page — one room, one page
+    if (room.id === 'studio') return this.ctx.openStudioPage
     // rooms with a dedicated experience page open it directly — one room, one page
     if (room.id === 'founders') return this.ctx.openDoorway('founders-room')
     if (room.id === 'advisory') return this.ctx.openDoorway('private-advisory')
