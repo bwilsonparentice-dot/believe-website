@@ -55,6 +55,9 @@ interface State {
   birdLanded: boolean
 }
 
+// the founder philosophy, engraved in stone — the House's emotional anchor
+const FOUNDER_WALL = '/photos/founder-wall.webp'
+
 // house preferences (the source's tweak props, with their defaults)
 const LIGHT_MOTION = true
 const VEIL_MOOD: 'Warm dusk' | 'Cool dawn' = 'Warm dusk'
@@ -473,7 +476,16 @@ export class App extends React.Component<Record<string, never>, State> {
           </div>
         </div>
 
-        {this.rooms.journey.map((room, i) => this.renderRoomSection(room, i, sunShiftAnim, alive))}
+        {this.rooms.journey.map((room, i) => {
+          const section = this.renderRoomSection(room, i, sunShiftAnim, alive)
+          // The Founder Wall — the philosophical center, discovered as a quiet
+          // room roughly two-thirds through, after the core rooms and before the
+          // reflective ones. Not an About section; an inscription in the stone.
+          if (room.id === 'advisory') {
+            return <React.Fragment key={room.id}>{section}{this.renderFounderWall()}</React.Fragment>
+          }
+          return section
+        })}
 
         <Footer ctx={this.ctx} principles={PRINCIPLES} />
       </div>
@@ -498,6 +510,35 @@ export class App extends React.Component<Record<string, never>, State> {
           <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.1vw,29px)', lineHeight: 1.4, color: 'rgba(246,239,228,0.9)', margin: '0.7em 0 0', whiteSpace: room.whisperWrap, textShadow: '0 1px 24px rgba(20,14,7,0.4)' }}>{room.whisper}</p>
           <El onClick={this.enterLabelHandler(room)} style={{ pointerEvents: 'auto', cursor: 'pointer', display: 'inline-block', marginTop: '1.7em', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.85)', borderBottom: '1px solid rgba(246,239,228,0.42)', paddingBottom: 5, transition: 'color 500ms ease, border-color 500ms ease' }} hover={{ color: '#fff', borderColor: '#fff' }}>{room.enterLabel}</El>
         </div>
+      </section>
+    )
+  }
+
+  /**
+   * The Founder Wall — the philosophical center of the House, met as a still,
+   * contemplative room roughly two-thirds through. Almost edge-to-edge, no
+   * frame, caption, shadow, overlay, or CTA — the page simply becomes this room.
+   * It reveals with a gentle fade and a small rise as it enters view; the global
+   * prefers-reduced-motion guard silences the motion. The image carries it all.
+   */
+  private renderFounderWall() {
+    return (
+      <section
+        aria-label="The founder philosophy, engraved in the stone of the House"
+        style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(130px,28vh,360px) clamp(16px,4vw,64px)', background: '#e2d7bf' }}
+      >
+        <img
+          src={FOUNDER_WALL}
+          alt="A hand-plastered limestone wall inside Believe Studio engraved with the founder philosophy beside a simple oak bench and brass key, illuminated by warm afternoon light."
+          loading="lazy"
+          style={{
+            display: 'block', width: 'auto', height: 'auto',
+            maxWidth: 'min(94vw, 900px)', maxHeight: '94vh', margin: '0 auto',
+            animation: 'fadeUpSoft 950ms ease both',
+            animationTimeline: 'view()' as unknown as string,
+            animationRange: 'entry 4% cover 26%' as unknown as string,
+          }}
+        />
       </section>
     )
   }
