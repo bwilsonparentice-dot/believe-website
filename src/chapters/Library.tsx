@@ -77,24 +77,34 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '30ch', margin: '0 auto 0.5em' }}>Not books. Artifacts.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.85vw,23px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.62)', maxWidth: '34ch', margin: '0 auto clamp(72px,12vh,150px)', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Every meaningful company leaves something behind. These are a few of ours.</p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(80px,15vh,180px)', textAlign: 'left', maxWidth: 820, margin: '0 auto' }}>
-          {LIBRARY_OBJECTS.map((o, i) => (
-            <div key={i} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(30px,5vw,70px)', flexDirection: o.dir as React.CSSProperties['flexDirection'] }}>
-              <div style={{ flex: '1 1 300px', minWidth: 260 }}>
-                <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5', overflow: 'hidden', borderRadius: '999px 999px 6px 6px' }}>
-                  <ImageSlot src={o.src} placeholder={o.photo} alt={o.name} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: '#f5efe1', objectPosition: (o as { pos?: string }).pos ?? 'center' }} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(58px,10vh,120px)', textAlign: 'left', maxWidth: 720, margin: '0 auto' }}>
+          {LIBRARY_OBJECTS.map((o, i) => {
+            // each snapshot placed a little differently — a scattered, handled feel
+            const flip = i % 2 === 1
+            const tilt = ['-2.6deg', '2deg', '-1.5deg', '2.7deg', '-2.2deg', '1.6deg'][i % 6]
+            const drop = ['0px', 'clamp(16px,3vw,42px)', 'clamp(6px,1.6vw,22px)'][i % 3]
+            return (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 'clamp(22px,4vw,54px)', flexDirection: flip ? 'row-reverse' : 'row' }}>
+                {/* a small archival snapshot — ivory print border, soft contact shadow */}
+                <figure style={{ flex: '0 0 auto', width: 'clamp(112px,19vw,168px)', margin: 0, marginTop: drop, transform: `rotate(${tilt})` }}>
+                  <div style={{ position: 'relative', background: 'linear-gradient(160deg,#fbf6ec,#f3ebd9)', padding: 'clamp(6px,1vw,9px)', borderRadius: 2, boxShadow: '0 1px 2px rgba(60,44,20,0.12), 0 12px 20px -14px rgba(60,44,20,0.32)' }}>
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5', overflow: 'hidden', borderRadius: 1 }}>
+                      <ImageSlot src={o.src} placeholder={o.photo} alt={o.name} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', background: '#f5efe1', objectPosition: (o as { pos?: string }).pos ?? 'center' }} />
+                    </div>
+                    <figcaption style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 8, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.55)', textAlign: 'center', marginTop: 'clamp(5px,0.9vw,8px)' }}>No. {o.no}</figcaption>
+                  </div>
+                </figure>
+                <div style={{ flex: '1 1 auto', minWidth: 0, paddingTop: 'clamp(2px,1vw,10px)' }}>
+                  <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 9, letterSpacing: '0.46em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.55)', marginBottom: '1em' }}>House Archive</div>
+                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(25px,3.2vw,40px)', lineHeight: 1.06, marginBottom: '0.5em' }}>{o.name}</div>
+                  <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.62, color: 'rgba(43,39,35,0.72)', margin: '0 0 1.2em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>{o.story}</p>
+                  <div style={{ borderTop: '1px solid rgba(122,94,52,0.24)', paddingTop: '1em' }}>
+                    <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,25px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.85)', margin: 0 }}>{o.lesson}</p>
+                  </div>
                 </div>
               </div>
-              <div style={{ flex: '1 1 300px', minWidth: 260 }}>
-                <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 9, letterSpacing: '0.46em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.55)', marginBottom: '1.2em', lineHeight: 2 }}>House Archive<br />Object No. {o.no}</div>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(28px,3.6vw,48px)', lineHeight: 1.04, marginBottom: '0.55em' }}>{o.name}</div>
-                <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.62, color: 'rgba(43,39,35,0.72)', margin: '0 0 1.3em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>{o.story}</p>
-                <div style={{ borderTop: '1px solid rgba(122,94,52,0.24)', paddingTop: '1.1em' }}>
-                  <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.85)', margin: 0 }}>{o.lesson}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.2vw,29px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.66)', maxWidth: '26ch', margin: 'clamp(80px,13vh,150px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>One day, an object of yours might rest here too.</p>
