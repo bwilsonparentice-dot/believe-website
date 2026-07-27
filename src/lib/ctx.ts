@@ -34,6 +34,8 @@ export interface Ctx {
   replay: Handler
   /** scroll the building to a given room id (e.g. 'garden') */
   gotoRoom: (id: string) => Handler
+  /** close overlays and scroll to any element id in the guided page (e.g. the Founding Wall) */
+  gotoAnchor: (elementId: string) => Handler
   /** map a room key ('founders','library',…) to the handler that opens it */
   goForRoomKey: (key: string) => Handler
   hasKey: boolean

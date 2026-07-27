@@ -220,6 +220,7 @@ export class App extends React.Component<Record<string, never>, State> {
       receiveKey: this.receiveKey, askKey: this.askKey, closeKey: this.closeKey,
       replay: this.replay,
       gotoRoom: this.gotoRoom,
+      gotoAnchor: this.gotoAnchor,
       goForRoomKey: this.goForRoomKey,
       hasKey: false,
     }
@@ -415,6 +416,13 @@ export class App extends React.Component<Record<string, never>, State> {
     if (e && e.stopPropagation) e.stopPropagation()
     this.setState({ ...this.closedChapters(), showHouses: false } as unknown as Pick<State, keyof State>)
     setTimeout(() => { const el = document.getElementById('room-' + id); if (el) window.scrollTo({ top: el.offsetTop, behavior: 'smooth' }) }, 60)
+  }
+  // close overlays and scroll to any anchor in the guided page (the Founding
+  // Wall, the Language) — used by the Directory's Foundation column
+  private gotoAnchor = (elementId: string): Handler => (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    this.setState({ ...this.closedChapters() } as unknown as Pick<State, keyof State>)
+    setTimeout(() => { const el = document.getElementById(elementId); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }) }, 60)
   }
   private goForRoomKey = (key: string): Handler => {
     switch (key) {
@@ -749,6 +757,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private renderFounderWall() {
     return (
       <section
+        id="founding-wall"
         aria-label="The founder philosophy, engraved in the stone of the House"
         style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(130px,28vh,360px) clamp(16px,4vw,64px)', background: '#e2d7bf' }}
       >

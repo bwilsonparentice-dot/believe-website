@@ -90,7 +90,7 @@ export function Community({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── The Language of the House ─────────────────────────────────── */}
-        <div style={{ marginTop: 'clamp(120px,22vh,300px)', ...reveal() }}>
+        <div id="the-language" style={{ marginTop: 'clamp(120px,22vh,300px)', ...reveal() }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ ...label, marginBottom: '1.7em' }}>The Language of the House</div>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.3vw,30px)', lineHeight: 1.44, color: ink, maxWidth: '30ch', margin: '0 auto clamp(56px,10vh,110px)', ...balance }}>Words shape what people believe is possible. Believe Studio uses language deliberately — not to sound different, but to behave differently.</p>
