@@ -130,7 +130,7 @@ export function VisionaryCollectiveChapter({ ctx }: { ctx: Ctx }) {
           <div style={{ ...label, fontSize: 11, letterSpacing: '0.46em', marginBottom: '2.4em' }}>Around the House</div>
 
           <div style={{ ...label, fontSize: 9, letterSpacing: '0.34em', color: 'rgba(122,94,52,0.55)', marginBottom: '0.7em' }}>This month</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', margin: '0 auto' }}>In Residence: <El onClick={ctx.openStudio} as="span" style={{ fontStyle: 'italic', cursor: 'pointer', borderBottom: '1px solid rgba(122,94,52,0.32)', transition: 'color 400ms ease' }} hover={{ color: 'rgba(122,94,52,0.95)' }}>Mona</El></p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', margin: '0 auto' }}>In Residence: <El onClick={ctx.openStudio} as="span" style={{ fontStyle: 'italic', cursor: 'pointer', borderBottom: '1px solid rgba(122,94,52,0.32)', transition: 'color 400ms ease' }} hover={{ color: 'rgba(122,94,52,0.95)' }}>Chef MoWils</El></p>
 
           <div style={{ width: 1, height: 'clamp(40px,7vh,72px)', margin: 'clamp(44px,7vh,80px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.34), transparent)' }} />
 

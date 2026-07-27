@@ -53,7 +53,7 @@ export const EXTRAS: Record<string, any> = {
   },
   studio: {
     photo: 'a workbench of prototypes, sketches pinned to the wall',
-    person: { name: 'Chef MoWils', first: 'Mona', role: 'She builds the systems, workflows, and automation that turn founder strategy into real-world momentum.' },
+    person: { name: 'Chef MoWils', first: 'Chef MoWils', role: 'She builds the systems, workflows, and automation that turn founder strategy into real-world momentum.' },
     story: { kind: 'a note', by: 'Snehee', of: 'Gallivant', text: 'You told me the unfinished version was worth showing. You were right. We shipped it Tuesday.' },
     door: { leaf: 'linear-gradient(100deg,#26282b,#34383c)', type: 'atelier', panel: '#15171a', handle: steel },
   },
@@ -207,7 +207,7 @@ export const STORIES = [
       'Together they worked on clarity before growth: who Gallivant was for, why it mattered, and how a founder walks into a room and makes people believe. The confidence came first.',
       'The doors followed.',
     ],
-    changed: ['Walmart Open Call Golden Ticket', 'Expanded from 6 to 44 H-E-B stores', 'Whole Foods', 'Sprouts', 'Lunds & Byerlys'],
+    changed: ['Walmart Open Call Golden Ticket', 'Expanded from 6 to 44 H-E-B stores', 'Whole Foods', 'Sprouts'],
   },
   {
     name: 'Michelle', company: 'Founder, Date Better Snacks', pid: 'story-michelle', dir: 'row-reverse',
@@ -785,7 +785,7 @@ export type ResidencyRecord = {
 export const RESIDENCY_RECORDS: ResidencyRecord[] = [
   {
     no: '001',
-    resident: 'Mona',
+    resident: 'Chef MoWils',
     workshop: 'Founder Workshop No. 001: Buy Back 20 Hours',
     carrying: '“There’s only one of me.”',
     decision: 'Which work to stop doing personally.',
@@ -821,7 +821,7 @@ export const PEOPLE = [
   { first: 'Joy', name: 'Joy Mooiweer', pid: 'portrait-joy', dir: 'row-reverse', room: 'The Studio', portrait: 'Editorial portrait of Joy in The Studio — beautiful materials, packaging, paper, brass, warm oak', belief: 'Joy believes extraordinary hospitality is often invisible. The best experiences are the ones that simply feel right.', when: 'long before you realize she’s quietly orchestrated dozens of thoughtful details that made your experience feel effortless.' },
   { first: 'Jillian', name: 'Jillian Waun', pid: 'portrait-jillian', dir: 'row', room: 'The Library', portrait: 'Editorial portrait of Jillian in The Library — books, notes, window light', belief: 'Jillian believes thoughtful storytelling creates belonging.', when: 'through the stories you read, the words that stay with you, and the conversations that continue long after you’ve left.' },
   { first: 'Tiffany', name: 'Tiffany Nilles', pid: 'portrait-tiffany', dir: 'row-reverse', room: 'The Table', role: 'Retail Strategy Advisor', portrait: 'Editorial portrait of Tiffany at The Table — an open notebook, conversation, coffee', belief: 'Tiffany believes clarity creates momentum. She quietly helps founders move from possibility to progress.', when: 'when ideas begin becoming organized into meaningful action.' },
-  { first: 'Mona', name: 'Chef MoWils', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Mona in The Garden — olive trees, a stone path, morning light', belief: 'Mona believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
+  { first: 'Chef MoWils', name: 'Chef MoWils', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Chef MoWils in The Garden — olive trees, a stone path, morning light', belief: 'Chef MoWils believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
 ]
 
 /**
@@ -859,7 +859,7 @@ export const STAGE_MOMENTS = [
 ]
 export const STAGE_GALLERY = [
   'A founder beside their product, first time on shelf', 'Fancy Food Show installation', 'A Founder Table dinner',
-  'Chef Mona, mid-demonstration', 'A retail launch', 'A keynote, mid-sentence', 'Editorial founder portrait', 'A community dinner, late evening',
+  'Chef MoWils, mid-demonstration', 'A retail launch', 'A keynote, mid-sentence', 'Editorial founder portrait', 'A community dinner, late evening',
 ]
 export const ADVISORY_SUBJECTS = [
   'Founder Clarity', 'Brand Positioning', 'Revenue Strategy', 'Retail Expansion', 'AI Discoverability',

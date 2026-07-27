@@ -35,7 +35,7 @@ const WORKSHOP_COVER = '/photos/workshop-buyback20.webp'
 const REGISTER_URL = 'https://luma.com/fubwg0mx'
 
 const RESIDENT = {
-  name: 'Mona',
+  name: 'Chef MoWils',
   fullName: 'Chef MoWils',
   role: 'Resident AI Strategist',
   season: 'Summer 2026',
@@ -44,7 +44,7 @@ const RESIDENT = {
 
   // why she belongs here — the qualities first, the résumé only as evidence
   why: [
-    'Mona has spent a career refusing to accept that things must be done the way they have always been done.',
+    'Chef MoWils has spent a career refusing to accept that things must be done the way they have always been done.',
     'Long before AI, she was inventing categories that didn’t yet exist — turning one unlikely idea, the savory cupcake, into a company, It’s A CupCake!, and a story that reached Food Network, People, and Food & Wine.',
     'What made her a remarkable entrepreneur is exactly what makes her a remarkable resident: curiosity, a willingness to experiment, the discipline to actually ship, and the resilience to keep going when the map runs out.',
     'Those were the qualities we wanted for the House’s first AI residency — not a technologist, but a builder who has lived the founder’s road and now helps others walk it with new tools in hand.',
@@ -52,7 +52,7 @@ const RESIDENT = {
 
   // a concise, warm biography — judgment over technology
   about: [
-    'Mona is Believe Studio’s Resident AI Strategist. She helps founders use AI the way a seasoned operator would — thoughtfully, practically, and always in service of the business, never for its own sake.',
+    'Chef MoWils is Believe Studio’s Resident AI Strategist. She helps founders use AI the way a seasoned operator would — thoughtfully, practically, and always in service of the business, never for its own sake.',
     'Her focus is judgment, not technology. She is far less interested in what a tool can do than in what a founder should do with the hours it hands back.',
     'People over software. Capacity over automation. The aim is never to take the founder out of the work that matters — only out of the work that never should have required them.',
   ],
@@ -113,9 +113,9 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* ── why Mona is in residence — philosophy before credentials ──── */}
+        {/* ── why Chef MoWils is in residence — philosophy before credentials ──── */}
         <div style={{ textAlign: 'center', margin: 'clamp(140px,26vh,320px) auto 0', ...surface() }}>
-          <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: 'clamp(34px,6vh,64px)' }}>Why Mona is in residence</div>
+          <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: 'clamp(34px,6vh,64px)' }}>Why Chef MoWils is in residence</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3.6vh,38px)' }}>
             {R.why.map((p, i) => (
               <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: i === 0 ? 'clamp(24px,3.2vw,44px)' : 'clamp(18px,2.1vw,26px)', lineHeight: i === 0 ? 1.22 : 1.6, color: i === 0 ? indigo : 'rgba(43,39,35,0.76)', maxWidth: i === 0 ? '20ch' : '38ch', margin: '0 auto', ...(i === 0 ? balance : pretty) }}>{p}</p>
@@ -123,9 +123,9 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* ── about Mona — concise, warm, human ─────────────────────────── */}
+        {/* ── about Chef MoWils — concise, warm, human ─────────────────────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
-          <div style={{ ...label, fontSize: 10, marginBottom: 'clamp(40px,7vh,80px)' }}>About Mona</div>
+          <div style={{ ...label, fontSize: 10, marginBottom: 'clamp(40px,7vh,80px)' }}>About Chef MoWils</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(24px,4vh,44px)' }}>
             {R.about.map((p, i) => (
               <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.78)', maxWidth: '38ch', margin: '0 auto', ...pretty }}>{p}</p>
@@ -154,7 +154,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center', marginTop: 'clamp(140px,26vh,320px)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: 'clamp(30px,5vh,56px)' }}>The current contribution</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.42, color: indigo, maxWidth: '26ch', margin: '0 auto' }}>Every resident contributes something meaningful to the House.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', color: 'rgba(122,94,52,0.82)', margin: 'clamp(18px,2.6vh,28px) auto 0' }}>For Mona, that contribution begins here.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', color: 'rgba(122,94,52,0.82)', margin: 'clamp(18px,2.6vh,28px) auto 0' }}>For Chef MoWils, that contribution begins here.</p>
 
           {/* the workshop cover — the poster carries the number, title, and promise */}
           <figure style={{ width: 'min(90vw, 560px)', margin: 'clamp(64px,11vh,130px) auto 0' }}>
@@ -166,7 +166,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
             />
           </figure>
 
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>The workshop begins with something real a founder is carrying. Mona works through it live with the room — not performed, but genuinely worked through together. What is learned enters the Library, so its value reaches beyond the founders who were present.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>The workshop begins with something real a founder is carrying. Chef MoWils works through it live with the room — not performed, but genuinely worked through together. What is learned enters the Library, so its value reaches beyond the founders who were present.</p>
 
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,3vw,40px)', lineHeight: 1.32, color: indigo, maxWidth: '20ch', margin: 'clamp(56px,9vh,110px) auto 0', ...balance }}>This workshop is not about AI. It is about what you would do with twenty hours.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(20px,3vh,32px) auto 0' }}>AI does the prep. You do the judgment.</p>
@@ -193,14 +193,14 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* ── what Mona leaves behind — the permanent artifact, into the Library ── */}
+        {/* ── what Chef MoWils leaves behind — the permanent artifact, into the Library ── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(140px,26vh,320px)', ...surface() }}>
-          <div style={{ ...label, fontSize: 11, letterSpacing: '0.46em', marginBottom: '1.6em' }}>What Mona leaves behind</div>
+          <div style={{ ...label, fontSize: 11, letterSpacing: '0.46em', marginBottom: '1.6em' }}>What Chef MoWils leaves behind</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.72)', maxWidth: '26ch', margin: '0 auto clamp(56px,10vh,110px)', ...balance }}>Every resident contributes one permanent artifact to the House.</p>
 
           <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5vw,66px)', lineHeight: 1.04, margin: '0 0 0.6em', color: indigo }}>{R.artifact}</h3>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.74)', maxWidth: '36ch', margin: '0 auto', ...pretty }}>A practical handbook documenting the AI employees every founder can begin building immediately.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.62)', maxWidth: '38ch', margin: 'clamp(28px,4.5vh,44px) auto 0', ...pretty }}>It becomes part of the Believe Library, so founders Mona may never meet can keep learning from her residency long after it ends.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.62)', maxWidth: '38ch', margin: 'clamp(28px,4.5vh,44px) auto 0', ...pretty }}>It becomes part of the Believe Library, so founders Chef MoWils may never meet can keep learning from her residency long after it ends.</p>
 
           {/* a small archival marker — added to the Library */}
           <El onClick={ctx.openLibrary} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8em', margin: 'clamp(40px,7vh,80px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', border: '1px solid rgba(122,94,52,0.32)', borderRadius: 2, padding: '10px 20px', cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: indigo, borderColor: indigoSoft }}>
