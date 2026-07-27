@@ -912,10 +912,11 @@ const sideStyle = (side: string) =>
 //   Clarity   — threshold → blueprint → founders
 //   Decisions — table → advisory
 //   Building  — studio → library
-//   (then the Founding Wall, the philosophical hinge, is inserted after library)
-//   Living    — fieldnotes → stage
-// The Founding Wall is placed in App after 'library', so it sits between what
-// the House does and why the House exists — never between the primary rooms.
+// After the Library comes the Founding Wall (the philosophical hinge), then the
+// Living House chapter (In Residence, Stories, Field Notes, Visionary Collective)
+// — a quieter editorial section, not more cinematic room blocks. Field Notes and
+// the Stage therefore leave the guided room scroll: Field Notes is featured in
+// the Living House, and the Stage stays reachable through the House Directory.
 const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'studio', 'library', 'fieldnotes', 'stage', 'garden']
 const enterLabelMap: Record<string, string> = {
   table: 'Let’s think together.', studio: 'Step into the Studio →', advisory: 'Let’s decide together.',
@@ -938,7 +939,7 @@ export function buildRooms(): { all: Room[]; journey: Room[]; byId: (id: string)
     const ia = ORDER.indexOf(a.id), ib = ORDER.indexOf(b.id)
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib)
   })
-  const journey = all.filter((r) => r.id !== 'garden').map((r, i) => {
+  const journey = all.filter((r) => r.id !== 'garden' && r.id !== 'fieldnotes' && r.id !== 'stage').map((r, i) => {
     const lo = LAYOUT[r.id] || { side: 'center' }
     const ss = sideStyle(lo.side)
     return {

@@ -11,6 +11,7 @@ import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
 import { DirectoryOverlay } from './components/DirectoryOverlay'
+import { LivingHouse } from './components/LivingHouse'
 
 // chapters
 import { FounderRoomChapter } from './chapters/FounderRoom'
@@ -509,18 +510,19 @@ export class App extends React.Component<Record<string, never>, State> {
           </El>
         )}
 
-        {this.rooms.journey.map((room, i) => {
-          const section = this.renderRoomSection(room, i, sunShiftAnim, alive)
-          // The Founding Wall — the philosophical hinge of the House. It comes
-          // after the primary working rooms (…Studio, Library) and before the
-          // living parts (Field Notes, the Stage), so it sits between what the
-          // House does and why the House exists. Not an About section, not a
-          // destination card — an inscription encountered in a quiet courtyard.
-          if (room.id === 'library') {
-            return <React.Fragment key={room.id}>{section}{this.renderFounderWall()}{this.renderHousePhilosophy()}</React.Fragment>
-          }
-          return section
-        })}
+        {this.rooms.journey.map((room, i) => this.renderRoomSection(room, i, sunShiftAnim, alive))}
+
+        {/* The Founding Wall — the philosophical hinge of the House. It comes
+            after the primary working rooms (…Studio, Library) and before the
+            Living House, so it sits between what the House does and why the
+            House exists. Not an About section, not a destination card — an
+            inscription encountered in a quiet courtyard. */}
+        {this.renderFounderWall()}
+        {this.renderHousePhilosophy()}
+
+        {/* The Living House — the evolving, editorial chapter that follows the
+            wall: the current resident, stories, field notes, and the Collective. */}
+        <LivingHouse ctx={this.ctx} />
 
         <Footer ctx={this.ctx} principles={PRINCIPLES} />
       </div>
