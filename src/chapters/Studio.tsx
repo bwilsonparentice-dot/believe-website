@@ -1,7 +1,8 @@
 import React, { CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
-import { ChapterShell, BackPill } from '../components/ChapterShell'
+import { ChapterShell } from '../components/ChapterShell'
+import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
 import { PHOTOS } from '../data'
 
@@ -204,7 +205,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         <div style={{ width: 1, height: 'clamp(52px,9vh,96px)', margin: 'clamp(80px,14vh,160px) auto clamp(36px,6vh,60px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
-        <div style={{ textAlign: 'center' }}><BackPill onClose={ctx.closeStudioPage} /></div>
+        <div style={{ textAlign: 'center' }}><RoomNav ctx={ctx} slug="studio" /></div>
       </div>
     </ChapterShell>
   )

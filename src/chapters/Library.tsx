@@ -1,7 +1,8 @@
 import React from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
-import { ChapterShell, BackPill } from '../components/ChapterShell'
+import { ChapterShell } from '../components/ChapterShell'
+import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
 import { LightShift, Dust, Keynote } from '../components/Living'
 import { ArchivalRecord } from '../components/ArchivalRecord'
@@ -164,7 +165,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         {/* quiet ending */}
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(24px,3vw,40px)', lineHeight: 1.35, color: '#2b2723', maxWidth: '22ch', margin: '0 auto 0.6em' }}>Take this with you.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.62)', maxWidth: '34ch', margin: '0 auto clamp(40px,7vh,72px)', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Sometimes you’ll leave with a book.<br />Sometimes with a question.<br />Sometimes with the courage to keep building.<br /><br />Close the book. Keep building.</p>
-        <BackPill onClose={ctx.closeLibrary} />
+        <RoomNav ctx={ctx} slug="library" />
       </div>
     </ChapterShell>
   )

@@ -1,7 +1,8 @@
 import React, { useState, CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
-import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
+import { ChapterShell, ArchMark } from '../components/ChapterShell'
+import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
 import { ArchiveCard } from '../components/ArchiveCard'
@@ -245,7 +246,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           </El>
         </div>
 
-        <div style={{ marginTop: 'clamp(110px,20vh,220px)' }}><BackPill onClose={ctx.closeDoorway} label="← Back" /></div>
+        <div style={{ marginTop: 'clamp(110px,20vh,220px)', textAlign: 'center' }}><RoomNav ctx={ctx} slug="founders-room" /></div>
       </div>
 
       {noteOpen && <ConversationNote onClose={() => setNoteOpen(false)} />}

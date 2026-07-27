@@ -1,7 +1,8 @@
 import React, { useState, CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
-import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
+import { ChapterShell, ArchMark, Divider } from '../components/ChapterShell'
+import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
 import { ArchiveCard } from '../components/ArchiveCard'
@@ -156,7 +157,7 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
         </section>
 
         <Divider h="clamp(48px,7vh,80px)" m="clamp(96px,16vh,190px) auto clamp(36px,6vh,60px)" />
-        <div style={{ textAlign: 'center' }}><BackPill onClose={ctx.closeDoorway} label="← Back" /></div>
+        <div style={{ textAlign: 'center' }}><RoomNav ctx={ctx} slug={id === 'founders-table' ? 'table' : id === 'private-advisory' ? 'private-advisory' : ''} /></div>
       </div>
 
       {noteOpen && <ConversationNote onClose={() => setNoteOpen(false)} />}

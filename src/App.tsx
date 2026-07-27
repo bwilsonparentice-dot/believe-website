@@ -202,6 +202,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openFieldNotes: this.openChapter('showFieldNotes'), closeFieldNotes: this.closeChapter('showFieldNotes'),
       openDoorway: this.openDoorway, closeDoorway: this.closeDoorway,
       openDirectory: this.openDirectory, closeDirectory: this.closeDirectory,
+      toBuilding: this.toBuilding,
       receiveKey: this.receiveKey, askKey: this.askKey, closeKey: this.closeKey,
       replay: this.replay,
       gotoRoom: this.gotoRoom,
@@ -369,12 +370,17 @@ export class App extends React.Component<Record<string, never>, State> {
   }
   private closeRoom = () => this.setState({ activeId: null })
 
-  // a dedicated experience page — layered above the doorways it was opened from
+  // a dedicated experience page — opening one closes any other open overlay so
+  // moving room-to-room (or jumping in from the Directory) never stacks two
   private openDoorway = (id: string): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
-    this.setState({ activeDoorway: id })
+    this.setState({ ...this.closedChapters(), activeDoorway: id } as unknown as Pick<State, keyof State>)
   }
   private closeDoorway = () => this.setState({ activeDoorway: null })
+
+  // close every overlay and return to the building — used by the room-to-room
+  // nav's "Continue through the House" at the end of the guided walk
+  private toBuilding = (e?: React.MouseEvent) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ ...this.closedChapters() } as unknown as Pick<State, keyof State>) }
 
   // The House Directory — the brass plaque, openable as a warm overlay from the
   // persistent control anywhere in the House. Closing returns the visitor to
