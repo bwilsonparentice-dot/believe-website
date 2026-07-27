@@ -12,6 +12,7 @@ import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
 import { DirectoryOverlay } from './components/DirectoryOverlay'
 import { LivingHouse } from './components/LivingHouse'
+import { Community } from './components/Community'
 
 // chapters
 import { FounderRoomChapter } from './chapters/FounderRoom'
@@ -649,6 +650,10 @@ export class App extends React.Component<Record<string, never>, State> {
         {/* The Living House — the evolving, editorial chapter that follows the
             wall: the current resident, stories, field notes, and the Collective. */}
         <LivingHouse ctx={this.ctx} />
+
+        {/* The Community — the human chapter: the People, the Houses to come,
+            and the language the House keeps. Belonging and future. */}
+        <Community ctx={this.ctx} />
 
         <Footer ctx={this.ctx} principles={PRINCIPLES} />
       </div>
