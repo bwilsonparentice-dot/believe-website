@@ -26,6 +26,8 @@ export interface Ctx {
   openFieldNotes: Handler; closeFieldNotes: Handler
   /** open a dedicated experience page (e.g. 'founders-room') */
   openDoorway: (id: string) => Handler; closeDoorway: Handler
+  /** The House Directory — the brass plaque, openable as an overlay from anywhere */
+  openDirectory: Handler; closeDirectory: Handler
   receiveKey: Handler; askKey: Handler; closeKey: Handler
   replay: Handler
   /** scroll the building to a given room id (e.g. 'garden') */

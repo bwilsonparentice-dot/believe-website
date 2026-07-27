@@ -10,6 +10,7 @@ import { Prologue } from './components/Prologue'
 import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
+import { DirectoryOverlay } from './components/DirectoryOverlay'
 
 // chapters
 import { FounderRoomChapter } from './chapters/FounderRoom'
@@ -50,6 +51,7 @@ interface State {
   showHouse: boolean; showWhyBelieve: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showStudioPage: boolean
+  showDirectory: boolean
   showKey: boolean
   facadeReady: boolean
   birdLanded: boolean
@@ -100,6 +102,7 @@ export class App extends React.Component<Record<string, never>, State> {
     showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
     showStudioPage: false,
+    showDirectory: false,
     showKey: false, facadeReady: false, birdLanded: false,
   }
 
@@ -125,6 +128,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openWork: this.openChapter('showWork'), closeWork: this.closeChapter('showWork'),
       openFieldNotes: this.openChapter('showFieldNotes'), closeFieldNotes: this.closeChapter('showFieldNotes'),
       openDoorway: this.openDoorway, closeDoorway: this.closeDoorway,
+      openDirectory: this.openDirectory, closeDirectory: this.closeDirectory,
       receiveKey: this.receiveKey, askKey: this.askKey, closeKey: this.closeKey,
       replay: this.replay,
       gotoRoom: this.gotoRoom,
@@ -158,6 +162,7 @@ export class App extends React.Component<Record<string, never>, State> {
 
   private onKey = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
+      if (this.state.showDirectory) { this.setState({ showDirectory: false }); return }
       if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
       const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showFounderRoom', 'showStudio', 'showStudioPage', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
@@ -250,8 +255,14 @@ export class App extends React.Component<Record<string, never>, State> {
   }
   private closeDoorway = () => this.setState({ activeDoorway: null })
 
+  // The House Directory — the brass plaque, openable as a warm overlay from the
+  // persistent control anywhere in the House. Closing returns the visitor to
+  // exactly where they were; it never navigates away on its own.
+  private openDirectory = (e?: React.MouseEvent) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ showDirectory: true }) }
+  private closeDirectory = () => this.setState({ showDirectory: false })
+
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showDirectory: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -333,6 +344,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}
         {this.state.showFounderRoom && <FounderRoomChapter ctx={this.ctx} />}
         {this.state.showStories && <StoriesChapter ctx={this.ctx} />}
+        {this.state.showDirectory && <DirectoryOverlay ctx={this.ctx} onClose={this.closeDirectory} />}
       </>
     )
   }
@@ -477,12 +489,34 @@ export class App extends React.Component<Record<string, never>, State> {
           </div>
         </div>
 
+        {/* the persistent House Directory control — discreet aged brass, top
+            right, appearing once the guided journey has begun so the Door and
+            Threshold stay ceremonial. Opens the plaque as an overlay from
+            anywhere; returns the visitor to exactly where they were. */}
+        {this.state.roomsRevealed && (
+          <El
+            as="button"
+            onClick={this.openDirectory}
+            aria-label="Open the House Directory"
+            title="Open the House Directory"
+            style={{ position: 'fixed', top: 'clamp(16px,3vh,28px)', right: 'clamp(16px,3vw,34px)', zIndex: 22, display: 'inline-flex', alignItems: 'center', gap: '0.7em', padding: '9px 14px', borderRadius: 3, border: '1px solid rgba(236,209,147,0.34)', background: 'rgba(20,15,9,0.28)', cursor: 'pointer', WebkitBackdropFilter: 'blur(3px)', backdropFilter: 'blur(3px)', transition: 'border-color 350ms ease, background 350ms ease' }}
+            hover={{ borderColor: 'rgba(236,209,147,0.72)', background: 'rgba(20,15,9,0.42)' }}
+          >
+            <svg width="13" height="15" viewBox="0 0 48 56" fill="none" aria-hidden="true" style={{ display: 'block' }}>
+              <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="rgba(236,209,147,0.9)" strokeWidth="3" strokeLinecap="round" />
+            </svg>
+            <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.36em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.82)' }}>Directory</span>
+          </El>
+        )}
+
         {this.rooms.journey.map((room, i) => {
           const section = this.renderRoomSection(room, i, sunShiftAnim, alive)
-          // The Founder Wall — the philosophical center, discovered as a quiet
-          // room roughly two-thirds through, after the core rooms and before the
-          // reflective ones. Not an About section; an inscription in the stone.
-          if (room.id === 'advisory') {
+          // The Founding Wall — the philosophical hinge of the House. It comes
+          // after the primary working rooms (…Studio, Library) and before the
+          // living parts (Field Notes, the Stage), so it sits between what the
+          // House does and why the House exists. Not an About section, not a
+          // destination card — an inscription encountered in a quiet courtyard.
+          if (room.id === 'library') {
             return <React.Fragment key={room.id}>{section}{this.renderFounderWall()}{this.renderHousePhilosophy()}</React.Fragment>
           }
           return section

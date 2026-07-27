@@ -908,10 +908,15 @@ const sideStyle = (side: string) =>
     : side === 'right'
     ? { justify: 'flex-end', textAlign: 'right', scrim: 'linear-gradient(270deg, rgba(26,19,11,0.66), rgba(26,19,11,0.22) 44%, transparent 74%)' }
     : { justify: 'center', textAlign: 'center', scrim: 'radial-gradient(120% 100% at 50% 58%, rgba(26,19,11,0.6), rgba(26,19,11,0.18) 56%, transparent 80%)' }
-// the house now reads as a journey: arrival → see clearly → become stronger →
-// decide → build → continue. The Studio sits after the Table: conversations
-// become decisions there, and the decisions get built here.
-const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'studio', 'advisory', 'fieldnotes', 'library', 'garden', 'stage']
+// the house reads as an emotional sequence, grouped into chapters:
+//   Clarity   — threshold → blueprint → founders
+//   Decisions — table → advisory
+//   Building  — studio → library
+//   (then the Founding Wall, the philosophical hinge, is inserted after library)
+//   Living    — fieldnotes → stage
+// The Founding Wall is placed in App after 'library', so it sits between what
+// the House does and why the House exists — never between the primary rooms.
+const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'studio', 'library', 'fieldnotes', 'stage', 'garden']
 const enterLabelMap: Record<string, string> = {
   table: 'Let’s think together.', studio: 'Step into the Studio →', advisory: 'Let’s decide together.',
   garden: 'Let’s gain perspective.', stage: 'Give your work to the world.', blueprint: 'Explore the Blueprint →',
