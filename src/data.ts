@@ -222,7 +222,7 @@ export const STORIES = [
 // The broader community — brands Believe has built beside, shown as quiet brass
 // nameplates between the portraits rather than a logo wall. Seeded from the
 // names Beth has associated with Believe; edit freely as the roster grows.
-export const GALLERY_BRANDS = ['NIU', 'John Henry’s', 'AJI', 'Fizzy Wizzies', 'Bowlcut']
+export const GALLERY_BRANDS = ['NIU', 'AJI', 'Fizzy Wizzies', 'Bowlcut']
 
 // The House Collection — a founder's story, once told, leaves an artifact behind:
 // a solid aged-brass plaque set into a shallow limestone recess, photographed as
