@@ -75,6 +75,83 @@ function rememberPrologueSeen() {
   try { localStorage.setItem(PROLOGUE_KEY, '1') } catch { /* private mode — fall back to session memory */ }
 }
 
+// ── shareable routes ────────────────────────────────────────────────────────
+// A thin URL layer over the state machine. Opening a room reflects into the
+// path; the browser back/forward buttons move between rooms; and a direct link
+// (e.g. /in-residence) opens that room without walking through the Door. Scroll
+// position is preserved for free — the building stays mounted beneath the fixed
+// room overlays, so closing a room reveals it exactly where it was left.
+const DOORWAY_SLUG: Record<string, string> = {
+  'believe-blueprint': 'blueprint',
+  'founders-room': 'founders-room',
+  'founders-table': 'table',
+  'private-advisory': 'private-advisory',
+  'visionary-collective': 'visionary-collective',
+}
+const FLAG_SLUG: Partial<Record<keyof State, string>> = {
+  showStudioPage: 'studio',
+  showStudio: 'in-residence',
+  showLibrary: 'library',
+  showStories: 'stories',
+  showFieldNotes: 'field-notes',
+  showPeople: 'people',
+  showHouses: 'houses',
+  showStage: 'stage',
+}
+const SLUG_TO_DOORWAY: Record<string, string> = Object.fromEntries(Object.entries(DOORWAY_SLUG).map(([id, s]) => [s, id]))
+const SLUG_TO_FLAG: Record<string, keyof State> = Object.fromEntries(Object.entries(FLAG_SLUG).map(([k, s]) => [s as string, k as keyof State]))
+const ALL_ROUTE_SLUGS = new Set<string>([...Object.keys(SLUG_TO_DOORWAY), ...Object.keys(SLUG_TO_FLAG)])
+// in-building scroll targets (not overlays) — links into the guided journey
+const BUILDING_ANCHORS = new Set(['threshold', 'founding-wall'])
+
+const rawPath = (pathname: string) => pathname.replace(/^\/+|\/+$/g, '')
+
+/** the slug for the overlay currently open, or null for the building itself */
+function overlaySlugOf(s: State): string | null {
+  if (s.activeDoorway && DOORWAY_SLUG[s.activeDoorway]) return DOORWAY_SLUG[s.activeDoorway]
+  for (const key of Object.keys(FLAG_SLUG) as (keyof State)[]) { if (s[key]) return FLAG_SLUG[key]! }
+  return null
+}
+/** the overlay slug named by a path, or null if the path is the building/unknown */
+function overlaySlugFromPath(pathname: string): string | null {
+  const raw = rawPath(pathname)
+  return ALL_ROUTE_SLUGS.has(raw) ? raw : null
+}
+
+// every overlay flag/doorway, closed — the neutral ground a route opens from
+const CLOSED_OVERLAYS: Partial<State> = {
+  showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showFounderRoom: false,
+  showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
+  showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
+  showDirectory: false, activeDoorway: null,
+}
+/** the state that opens the overlay a slug names (all others closed) */
+function openStateForSlug(slug: string): Partial<State> {
+  const base: Partial<State> = { ...CLOSED_OVERLAYS }
+  if (SLUG_TO_DOORWAY[slug]) base.activeDoorway = SLUG_TO_DOORWAY[slug]
+  else if (SLUG_TO_FLAG[slug]) (base as Record<string, unknown>)[SLUG_TO_FLAG[slug] as string] = true
+  return base
+}
+
+/** the base state, honoring a deep link so /in-residence opens the House directly */
+function makeInitialState(): State {
+  const base: State = {
+    phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: hasSeenPrologue(),
+    activeId: null, activeDoorway: null, hasKey: false, pendingRoom: null,
+    showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
+    showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
+    showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
+    showStudioPage: false, showDirectory: false,
+    showKey: false, facadeReady: false, birdLanded: false,
+  }
+  if (typeof window === 'undefined') return base
+  const path = window.location.pathname
+  const slug = overlaySlugFromPath(path)
+  if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) }
+  if (BUILDING_ANCHORS.has(rawPath(path))) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
+  return base
+}
+
 export class App extends React.Component<Record<string, never>, State> {
   private audio = new HouseAudio()
   private breeze = new BreezeDriver(motionAllowed(LIGHT_MOTION))
@@ -95,17 +172,12 @@ export class App extends React.Component<Record<string, never>, State> {
   private tBird?: ReturnType<typeof setTimeout>
   private pending = false
   private leafPlayed = false
+  // routing: the overlay slug currently reflected in the URL, and a guard so
+  // popstate-driven state changes don't push a redundant history entry back.
+  private lastSlug: string | null = null
+  private suppressPush = false
 
-  state: State = {
-    phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: hasSeenPrologue(),
-    activeId: null, activeDoorway: null, hasKey: false, pendingRoom: null,
-    showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
-    showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
-    showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showStudioPage: false,
-    showDirectory: false,
-    showKey: false, facadeReady: false, birdLanded: false,
-  }
+  state: State = makeInitialState()
 
   constructor(props: Record<string, never>) {
     super(props)
@@ -144,19 +216,62 @@ export class App extends React.Component<Record<string, never>, State> {
     window.addEventListener('keydown', this.onKey)
     window.addEventListener('pointerdown', this.onDown)
     window.addEventListener('scroll', this.onScroll, { passive: true })
-    // the arrival plays hands-free: accepted on its own after a beat
-    this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 13000)
-    // the bird finishes crossing and perches in the olive tree (Scene 2)
-    this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
+    window.addEventListener('popstate', this.onPopState)
+
+    // reflect the entry URL, and honor a deep link into a specific room
+    this.lastSlug = overlaySlugOf(this.state)
+    try { window.history.replaceState({ slug: this.lastSlug }, '', window.location.pathname) } catch { /* ignore */ }
+    const deepLinked = this.state.phase === 'map'
+    if (deepLinked && BUILDING_ANCHORS.has(rawPath(window.location.pathname)) && rawPath(window.location.pathname) === 'founding-wall') {
+      setTimeout(() => this.scrollToWall(), 320)
+    }
+
+    // the Door ritual only runs when we actually begin at the Door
+    if (!deepLinked) {
+      // the arrival plays hands-free: accepted on its own after a beat
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 13000)
+      // the bird finishes crossing and perches in the olive tree (Scene 2)
+      this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
+    }
   }
   componentDidUpdate(_p: Record<string, never>, prev: State) {
     if (this.state.phase === 'map' && (prev.phase === 'sketch' || prev.phase === 'prologue')) this.audio.fadeAmbient(2.6)
     if (this.state.hasKey !== this.ctx.hasKey) this.ctx.hasKey = this.state.hasKey
+    this.syncUrl()
   }
+
+  // keep the URL in step with the open room, so links are shareable and the
+  // browser back/forward buttons walk between rooms as the visitor expects.
+  private syncUrl() {
+    if (typeof window === 'undefined' || this.state.phase !== 'map') return
+    const slug = overlaySlugOf(this.state)
+    if (slug === this.lastSlug) return
+    this.lastSlug = slug
+    if (this.suppressPush) return
+    const path = slug ? '/' + slug : '/'
+    if (window.location.pathname !== path) {
+      try { window.history.pushState({ slug }, '', path) } catch { /* ignore */ }
+    }
+  }
+  // the browser back/forward buttons: mirror the URL back into open/closed state
+  private onPopState = () => {
+    const slug = overlaySlugFromPath(window.location.pathname)
+    this.lastSlug = slug
+    this.suppressPush = true
+    const done = () => { this.suppressPush = false }
+    if (slug) this.setState({ phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) } as unknown as Pick<State, keyof State>, done)
+    else this.setState({ ...this.closedChapters() } as unknown as Pick<State, keyof State>, done)
+  }
+  private scrollToWall() {
+    const el = document.querySelector('section[aria-label^="The founder philosophy"]') as HTMLElement | null
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKey)
     window.removeEventListener('pointerdown', this.onDown)
     window.removeEventListener('scroll', this.onScroll)
+    window.removeEventListener('popstate', this.onPopState)
     ;[this.tAccept, this.tDoor, this.tEnter, this.tWelcome, this.tAuto, this.tRoom, this.tBird].forEach((t) => t && clearTimeout(t))
     this.breeze.dispose(); this.birds.dispose(); this.audio.dispose()
   }
@@ -229,7 +344,12 @@ export class App extends React.Component<Record<string, never>, State> {
   }
   private replay = () => {
     this.audio.fadeAmbient(1)
-    this.setState({ phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false, prologueSeen: false })
+    this.setState({ ...this.closedChapters(), phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false, prologueSeen: false } as unknown as Pick<State, keyof State>)
+    // returning to the Door resets the path to the root
+    this.lastSlug = null
+    if (typeof window !== 'undefined' && rawPath(window.location.pathname) !== '') {
+      try { window.history.pushState({ slug: null }, '', '/') } catch { /* ignore */ }
+    }
     if (this.tBird) clearTimeout(this.tBird)
     this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
   }
