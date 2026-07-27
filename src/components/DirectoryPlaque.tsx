@@ -22,14 +22,14 @@ export function DirectoryPlaque({ ctx, onNavigate }: { ctx: Ctx; onNavigate?: ()
 
   // the four engraved columns, by their left edge and text width
   const COL = {
-    rooms: { left: '12.4%', width: '21%' },
-    living: { left: '34.2%', width: '17%' },
-    people: { left: '55%', width: '15%' },
-    foundation: { left: '75.2%', width: '17%' },
+    rooms: { left: '8%', width: '20%' },
+    living: { left: '31.5%', width: '17%' },
+    people: { left: '53.8%', width: '18%' },
+    foundation: { left: '77.4%', width: '15%' },
   }
-  // engraved rows, top edge for a ~4.6% tall line
-  const R = ['37.4%', '42.1%', '46.7%', '51.4%', '56.1%', '60.7%', '65.3%']
-  const H = '4.6%'
+  // engraved rows, top edge for a ~5.6% tall line
+  const R = ['36.3%', '42.2%', '48.2%', '54%', '60.2%', '66.1%', '72.5%']
+  const H = '5.6%'
 
   const rooms: Spot[] = [
     { ...COL.rooms, top: R[0], height: H, go: ctx.openBlueprint, label: 'The Believe Blueprint' },
@@ -54,14 +54,14 @@ export function DirectoryPlaque({ ctx, onNavigate }: { ctx: Ctx; onNavigate?: ()
     { ...COL.foundation, top: R[0], height: H, go: ctx.gotoAnchor('room-threshold'), label: 'Threshold' },
     { ...COL.foundation, top: R[1], height: H, go: ctx.gotoAnchor('founding-wall'), label: 'The Founding Wall' },
     // "The Language of the House" wraps onto two engraved lines — a taller hotspot
-    { ...COL.foundation, top: R[2], height: '9.2%', go: ctx.gotoAnchor('the-language'), label: 'The Language of the House' },
+    { ...COL.foundation, top: R[2], height: '11.4%', go: ctx.gotoAnchor('the-language'), label: 'The Language of the House' },
   ]
   const all = [...rooms, ...living, ...people, ...foundation]
 
   return (
     <div
       style={{
-        maxWidth: 1120, margin: '0 auto', position: 'relative', aspectRatio: '1536 / 1024',
+        maxWidth: 1120, margin: '0 auto', position: 'relative', aspectRatio: '1455 / 795',
         backgroundImage: "url('/photos/directory-plaque.webp')",
         backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
         filter: 'drop-shadow(0 40px 70px rgba(0,0,0,0.6))',
@@ -85,7 +85,7 @@ export function DirectoryPlaque({ ctx, onNavigate }: { ctx: Ctx; onNavigate?: ()
         onClick={wrap(ctx.replay)}
         aria-label="Return to the door"
         title="Return to the door"
-        style={{ position: 'absolute', left: '38%', top: '68.5%', width: '24%', height: '7.5%', cursor: 'pointer', borderRadius: 4, border: 'none', background: 'transparent', padding: 0, transition: 'background 350ms ease' }}
+        style={{ position: 'absolute', left: '40%', top: '76.3%', width: '19%', height: '7%', cursor: 'pointer', borderRadius: 4, border: 'none', background: 'transparent', padding: 0, transition: 'background 350ms ease' }}
         hover={{ background: 'radial-gradient(closest-side, rgba(255,240,205,0.18), transparent 82%)' }}
       />
     </div>
