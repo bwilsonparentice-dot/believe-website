@@ -76,6 +76,16 @@ function rememberPrologueSeen() {
   try { localStorage.setItem(PROLOGUE_KEY, '1') } catch { /* private mode — fall back to session memory */ }
 }
 
+// Whether the visitor has entered the House before — used only to offer a
+// graceful "Enter the House" shortcut at the Door, never to skip it for them.
+const VISITED_KEY = 'believe.visited'
+function hasVisited(): boolean {
+  try { return typeof localStorage !== 'undefined' && localStorage.getItem(VISITED_KEY) === '1' } catch { return false }
+}
+function rememberVisited() {
+  try { localStorage.setItem(VISITED_KEY, '1') } catch { /* ignore */ }
+}
+
 // ── shareable routes ────────────────────────────────────────────────────────
 // A thin URL layer over the state machine. Opening a room reflects into the
 // path; the browser back/forward buttons move between rooms; and a direct link
@@ -173,6 +183,9 @@ export class App extends React.Component<Record<string, never>, State> {
   private tBird?: ReturnType<typeof setTimeout>
   private pending = false
   private leafPlayed = false
+  // captured once at construction — a returning visitor is offered a graceful
+  // "Enter the House" shortcut at the Door (the ritual is never forced away)
+  private returning = hasVisited()
   // routing: the overlay slug currently reflected in the URL, and a guard so
   // popstate-driven state changes don't push a redundant history entry back.
   private lastSlug: string | null = null
@@ -319,7 +332,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private skip = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
     if (this.tAccept) clearTimeout(this.tAccept)
-    rememberPrologueSeen()
+    rememberPrologueSeen(); rememberVisited()
     this.audio.fadeAmbient(1.4)
     this.setState({ phase: 'map', opening: false, prologueSeen: true })
   }
@@ -338,7 +351,7 @@ export class App extends React.Component<Record<string, never>, State> {
     this.enterHouse()
   }
   private enterHouse = () => {
-    rememberPrologueSeen()
+    rememberPrologueSeen(); rememberVisited()
     this.audio.fadeAmbient(1.6)
     this.setState({ phase: 'map', prologueSeen: true, activeId: null, justEntered: true, roomsRevealed: false })
     if (this.tWelcome) clearTimeout(this.tWelcome)
@@ -535,6 +548,15 @@ export class App extends React.Component<Record<string, never>, State> {
 
         {/* Scene 1 — the arrival fades up from black (morning birds are heard first) */}
         <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 2400ms ease 150ms both' : 'blackReveal 700ms ease both' }} />
+
+        {/* a graceful shortcut for a returning visitor — the Door still opens on
+            its own; this simply lets them step straight in if they'd rather */}
+        {this.returning && (
+          <div style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(58px,11vh,120px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 1500ms ease 800ms both' }}>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.44em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.62)', marginBottom: '1.3em', textShadow: '0 1px 12px rgba(20,14,7,0.8)' }}>Welcome back</div>
+            <El onClick={this.skip} style={{ pointerEvents: 'auto', display: 'inline-block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: '#f6efe4', background: 'rgba(20,15,9,0.28)', border: '1px solid rgba(246,239,228,0.5)', borderRadius: 2, padding: '13px 30px', cursor: 'pointer', WebkitBackdropFilter: 'blur(2px)', backdropFilter: 'blur(2px)', transition: 'background 400ms ease, border-color 400ms ease', textShadow: '0 1px 10px rgba(20,14,7,0.7)' }} hover={{ background: 'rgba(246,239,228,0.14)', borderColor: 'rgba(246,239,228,0.85)' }}>Enter the House&nbsp;&rarr;</El>
+          </div>
+        )}
 
         <El onClick={this.skip} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 400ms ease', zIndex: 5 }} hover={{ color: 'rgba(43,39,35,0.7)' }}>Skip&nbsp;&rarr;</El>
       </div>
