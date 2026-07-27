@@ -661,6 +661,11 @@ export class App extends React.Component<Record<string, never>, State> {
 
         {this.rooms.journey.map((room, i) => this.renderRoomSection(room, i, sunShiftAnim, alive))}
 
+        {/* A pause before the Founding Wall — leaving the active rooms and
+            entering a quiet courtyard. The reflective line and the six
+            principles slow the visitor down before the inscription. */}
+        {this.renderWallTransition()}
+
         {/* The Founding Wall — the philosophical hinge of the House. It comes
             after the primary working rooms (…Studio, Library) and before the
             Living House, so it sits between what the House does and why the
@@ -677,7 +682,7 @@ export class App extends React.Component<Record<string, never>, State> {
             and the language the House keeps. Belonging and future. */}
         <Community ctx={this.ctx} />
 
-        <Footer ctx={this.ctx} principles={PRINCIPLES} />
+        <Footer ctx={this.ctx} />
       </div>
     )
   }
@@ -699,6 +704,27 @@ export class App extends React.Component<Record<string, never>, State> {
           <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(46px,7vw,104px)', lineHeight: 0.98, margin: 0, textShadow: '0 2px 40px rgba(20,14,7,0.35)' }}>{room.name}</h2>
           <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.1vw,29px)', lineHeight: 1.4, color: 'rgba(246,239,228,0.9)', margin: '0.7em 0 0', whiteSpace: room.whisperWrap, textShadow: '0 1px 24px rgba(20,14,7,0.4)' }}>{room.whisper}</p>
           <El onClick={this.enterLabelHandler(room)} style={{ pointerEvents: 'auto', cursor: 'pointer', display: 'inline-block', marginTop: '1.7em', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.85)', borderBottom: '1px solid rgba(246,239,228,0.42)', paddingBottom: 5, transition: 'color 500ms ease, border-color 500ms ease' }} hover={{ color: '#fff', borderColor: '#fff' }}>{room.enterLabel}</El>
+        </div>
+      </section>
+    )
+  }
+
+  /**
+   * A quiet courtyard before the Founding Wall — the reflective line and the six
+   * principles, on a slightly deeper stone-warm ground, so the visitor slows
+   * from the active rooms into the inscription. (This copy used to close the
+   * footer; it belongs here, as the lead-in to why the House exists.)
+   */
+  private renderWallTransition() {
+    const reveal = (range: string): React.CSSProperties => ({ animation: 'fadeUpSoft 1100ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: range as unknown as string })
+    return (
+      <section aria-label="A pause before the Founding Wall" style={{ position: 'relative', background: '#dccfb2', padding: 'clamp(120px,26vh,340px) clamp(24px,8vw,120px)', textAlign: 'center' }}>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px,3.4vw,48px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.86)', maxWidth: '26ch', margin: '0 auto', textWrap: 'balance' as React.CSSProperties['textWrap'], ...reveal('entry 4% cover 28%') }}>No founder walks the same path &mdash; yet every room leads toward greater clarity.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(16px,1.9vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.6)', maxWidth: '32ch', margin: 'clamp(28px,5vh,52px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'], ...reveal('entry 2% cover 26%') }}>Come in. We&rsquo;ve been expecting you. The door has never been locked.</p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5em 2.6em', alignItems: 'baseline', justifyContent: 'center', margin: 'clamp(52px,9vh,120px) auto 0', ...reveal('entry 0% cover 24%') }}>
+          {PRINCIPLES.map((pr) => (
+            <span key={pr} style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.52em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.66)' }}>{pr}</span>
+          ))}
         </div>
       </section>
     )
