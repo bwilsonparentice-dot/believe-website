@@ -669,14 +669,17 @@ export class App extends React.Component<Record<string, never>, State> {
         {/* The Founding Wall — the philosophical hinge of the House. It comes
             after the primary working rooms (…Studio, Library) and before the
             Living House, so it sits between what the House does and why the
-            House exists. Not an About section, not a destination card — an
-            inscription encountered in a quiet courtyard. */}
+            House exists. It stands alone: no paragraph explains it afterward —
+            the inscription is allowed to echo into the next chapter. */}
         {this.renderFounderWall()}
-        {this.renderHousePhilosophy()}
 
         {/* The Living House — the evolving, editorial chapter that follows the
             wall: the current resident, stories, field notes, and the Collective. */}
         <LivingHouse ctx={this.ctx} />
+
+        {/* a breath between the two editorial chapters — turning the page from
+            what the House is doing to the people who make it */}
+        {this.renderChapterBreath()}
 
         {/* The Community — the human chapter: the People, the Houses to come,
             and the language the House keeps. Belonging and future. */}
@@ -697,6 +700,12 @@ export class App extends React.Component<Record<string, never>, State> {
           <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: room.scrim }} />
           {room.isStage && (
             <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(70% 60% at 50% 42%, rgba(255,232,182,0.85), rgba(255,214,150,0.3) 55%, transparent 80%)', opacity: 0, animation: 'stageWarm linear both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 8% cover 55%' as unknown as string }} />
+          )}
+          {/* Private Advisory is the quietest, smallest room — deepen it into
+              shadow so it reads as hushed and intimate, not another bright
+              daylit conversation like The Table just before it. */}
+          {room.id === 'advisory' && (
+            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(88% 78% at 50% 50%, rgba(16,11,6,0.16), rgba(16,11,6,0.52) 68%, rgba(10,7,4,0.74))' }} />
           )}
         </div>
 
@@ -769,15 +778,18 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   /**
-   * A single quiet paragraph after the Founder Wall — the shared-wisdom idea in
-   * two or three sentences, introducing how the House works without becoming a
-   * manifesto. Reuses the wall's warm ground and gentle scroll reveal.
+   * A breath between the Living House and the Community — a quiet page-turn,
+   * not a section. Generous vertical space and a single small brass arch on a
+   * ground that bridges the two chapters' tones, so they read as distinct
+   * chapters rather than one continuous feed of features.
    */
-  private renderHousePhilosophy() {
+  private renderChapterBreath() {
     return (
-      <section aria-label="How the House works" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(90px,20vh,260px) clamp(24px,8vw,120px)', background: '#e2d7bf' }}>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(21px,2.7vw,36px)', lineHeight: 1.44, color: 'rgba(43,39,35,0.8)', maxWidth: '26ch', margin: 0, textAlign: 'center', textWrap: 'balance' as React.CSSProperties['textWrap'], animation: 'fadeUpSoft 1000ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 4% cover 28%' as unknown as string }}>Believe Studio is a house where founders bring what they have been carrying, work through it alongside people who understand, and leave something useful for the founders who come next.</p>
-      </section>
+      <div aria-hidden="true" style={{ background: '#e8dfcd', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(74px,15vh,190px) 0' }}>
+        <svg width="22" height="26" viewBox="0 0 48 56" fill="none" style={{ display: 'block', opacity: 0.55 }}>
+          <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="rgba(122,94,52,0.5)" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </div>
     )
   }
 

@@ -39,8 +39,8 @@ export function Footer({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(15px,1.7vw,21px)', lineHeight: 1.6, color: 'rgba(246,239,228,0.5)', margin: 'clamp(16px,2.6vh,26px) auto 0' }}>Return whenever you need clarity.</p>
         <El
           onClick={ctx.replay}
-          style={{ display: 'inline-block', margin: 'clamp(34px,6vh,60px) auto 0', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(236,209,147,0.7)', borderBottom: '1px solid rgba(236,209,147,0.32)', paddingBottom: 5, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }}
-          hover={{ color: 'rgba(246,239,228,0.95)', borderColor: 'rgba(246,239,228,0.7)' }}
+          style={{ display: 'inline-block', margin: 'clamp(60px,11vh,132px) auto 0', fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.38em', textTransform: 'uppercase', color: 'rgba(236,209,147,0.45)', borderBottom: '1px solid transparent', paddingBottom: 5, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
+          hover={{ color: 'rgba(246,239,228,0.9)', borderColor: 'rgba(236,209,147,0.5)' }}
         >
           Return to the Door
         </El>
