@@ -241,11 +241,11 @@ export class App extends React.Component<Record<string, never>, State> {
 
     // the Door ritual only runs when we actually begin at the Door
     if (!deepLinked) {
-      // the arrival plays hands-free: accepted on its own a beat after the
-      // second line has landed (a shorter wait than before, so a first-time
-      // visitor who doesn't realize the screen is theirs to touch isn't left
-      // on a near-still frame long enough to leave)
-      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 10500)
+      // the arrival plays hands-free, unhurried — the slowness is part of the
+      // emotional experience, so we let it breathe. The faint "Step inside" cue
+      // (below) is what reassures a first-time visitor the screen is theirs to
+      // touch, without shortening the moment.
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 13000)
       // the bird finishes crossing and perches in the olive tree (Scene 2)
       this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
     }
