@@ -3,6 +3,27 @@
    from the design source of truth. Motion through restraint. */
 
 * { box-sizing: border-box; }
+
+/* ── the vertical rhythm ─────────────────────────────────────────────────
+   One spacing scale for the whole House, so the same gap is spelled the same
+   way everywhere. Values are fluid (clamp) so the rhythm holds from phone to
+   wall display. Migrate literals to these opportunistically; the three steps
+   that carry meaning are named plainly:
+     --space-lg      the calm "between short blocks" step
+     --space-xl      the generous room-to-room gap
+     --space-sacred  reserved for the Threshold, the Key, and the Founding
+                     Wall — the emotional beats. Never tighten these. */
+:root {
+  --space-3xs: clamp(8px, 1.5vh, 18px);
+  --space-2xs: clamp(14px, 2.4vh, 24px);
+  --space-xs:  clamp(24px, 4vh, 44px);
+  --space-sm:  clamp(40px, 7vh, 80px);
+  --space-md:  clamp(70px, 12vh, 150px);
+  --space-lg:  clamp(100px, 18vh, 220px);
+  --space-xl:  clamp(130px, 24vh, 300px);
+  --space-sacred: clamp(130px, 28vh, 360px);
+}
+
 html, body { margin: 0; padding: 0; }
 body {
   background: #efe8da;

@@ -123,7 +123,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.7)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>Not because founders lack intelligence. Because leadership becomes clearer when it is shared with someone who understands what building truly requires.</p>
 
         {/* ── what happens here — moments, as inscriptions ──────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(56px,10vh,110px)', ...surface('entry 0% cover 22%') }}>What happens here</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(34px,6.5vh,84px)' }}>
             {MOMENTS.map((m, i) => {
@@ -136,7 +136,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── inside the room ───────────────────────────────────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(50px,9vh,100px)', ...surface('entry 0% cover 22%') }}>Inside the room</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(24px,4.5vh,52px)' }}>
             {INSIDE.map((it, i) => (
@@ -146,7 +146,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── your room — not a cohort, a room ──────────────────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(44px,8vh,90px)', ...surface('entry 0% cover 22%') }}>Your room</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.24, color: '#2b2723', margin: '0 auto', maxWidth: '18ch', ...balance, ...surface() }}>Every founder belongs to a room.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', margin: 'clamp(32px,5vh,56px) auto 0', ...surface() }}>Not a cohort.<br />Not a forum.<br /><span style={{ color: '#2b2723' }}>A room.</span></p>
@@ -198,7 +198,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── the rhythm — real seasons, not a curriculum ───────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+        <div style={{ marginTop: 'var(--space-lg)', ...surface() }}>
           <div style={{ ...label, marginBottom: 'clamp(48px,8vh,90px)' }}>The rhythm</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.3, color: '#2b2723', margin: '0 auto', maxWidth: '22ch', ...balance }}>The Founder’s Room isn’t built around a curriculum.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(30px,5vh,56px) auto 0', maxWidth: '26ch', ...balance }}>It’s built around real businesses moving through real seasons.</p>
@@ -207,7 +207,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── the transformation — one sentence at a time ───────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(56px,10vh,110px)', ...surface('entry 0% cover 22%') }}>What changes</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(38px,7vh,90px)' }}>
             {TRANSFORM.map((t, i) => {
@@ -220,13 +220,13 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── questions ─────────────────────────────────────────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)', maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', ...surface() }}>
+        <div style={{ marginTop: 'var(--space-lg)', maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', ...surface() }}>
           <div style={{ ...label, marginBottom: 'clamp(40px,7vh,72px)' }}>Questions founders ask</div>
           <Correspondence items={x.faqs} />
         </div>
 
         {/* ── the invitation — the quietest on the website ──────────────── */}
-        <div style={{ marginTop: 'clamp(140px,26vh,320px)' }}>
+        <div style={{ marginTop: 'var(--space-xl)' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,50px)', lineHeight: 1.2, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance, ...surface('entry 2% cover 26%') }}>Every meaningful company eventually reaches a chapter that cannot be built alone.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: 'clamp(48px,9vh,100px) auto 0', ...surface() }}>When that chapter arrives…</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.66)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '34ch', ...pretty, ...surface() }}>When your conversation begins, we’ll thoughtfully place you alongside founders navigating a similar season of growth.</p>

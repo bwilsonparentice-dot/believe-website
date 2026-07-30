@@ -114,7 +114,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── why Chef MoWils is in residence — philosophy before credentials ──── */}
-        <div style={{ textAlign: 'center', margin: 'clamp(140px,26vh,320px) auto 0', ...surface() }}>
+        <div style={{ textAlign: 'center', margin: 'var(--space-lg) auto 0', ...surface() }}>
           <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: 'clamp(34px,6vh,64px)' }}>Why Chef MoWils is in residence</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3.6vh,38px)' }}>
             {R.why.map((p, i) => (
@@ -124,7 +124,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── about Chef MoWils — concise, warm, human ─────────────────────────── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+        <div style={{ textAlign: 'center', marginTop: 'var(--space-lg)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: 'clamp(40px,7vh,80px)' }}>About Chef MoWils</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(24px,4vh,44px)' }}>
             {R.about.map((p, i) => (
@@ -151,7 +151,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         </figure>
 
         {/* ── the current contribution — the work of the residency ──────── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(140px,26vh,320px)', ...surface() }}>
+        <div style={{ textAlign: 'center', marginTop: 'var(--space-lg)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: 'clamp(30px,5vh,56px)' }}>The current contribution</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.42, color: indigo, maxWidth: '26ch', margin: '0 auto' }}>Every resident contributes something meaningful to the House.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', color: 'rgba(122,94,52,0.82)', margin: 'clamp(18px,2.6vh,28px) auto 0' }}>For Chef MoWils, that contribution begins here.</p>
@@ -184,7 +184,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── what founders leave with — transformations, not features ──── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+        <div style={{ textAlign: 'center', marginTop: 'var(--space-lg)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: 'clamp(48px,8vh,96px)' }}>What founders leave with</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(30px,5vh,58px)' }}>
             {R.leaveWith.map((t, i) => (
@@ -194,7 +194,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── what Chef MoWils leaves behind — the permanent artifact, into the Library ── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(140px,26vh,320px)', ...surface() }}>
+        <div style={{ textAlign: 'center', marginTop: 'var(--space-lg)', ...surface() }}>
           <div style={{ ...label, fontSize: 11, letterSpacing: '0.46em', marginBottom: '1.6em' }}>What Chef MoWils leaves behind</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.72)', maxWidth: '26ch', margin: '0 auto clamp(56px,10vh,110px)', ...balance }}>Every resident contributes one permanent artifact to the House.</p>
 
@@ -210,7 +210,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── the closing — a quiet reflection, then the door ───────────── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(140px,26vh,320px)', ...surface() }}>
+        <div style={{ textAlign: 'center', marginTop: 'var(--space-lg)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.36, color: indigo, maxWidth: '24ch', margin: '0 auto', ...balance }}>Every residency leaves the House a little richer.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '30ch', margin: 'clamp(34px,5.5vh,60px) auto 0', ...pretty }}>Every founder leaves with something they didn’t have before. Sometimes that’s clarity. Sometimes it’s confidence. Sometimes it’s simply twenty hours they never thought they’d get back.</p>
 

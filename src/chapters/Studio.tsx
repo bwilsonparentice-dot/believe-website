@@ -131,7 +131,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── on the workbench — each project named by its question ──────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(30px,5vh,56px)', ...surface('entry 0% cover 22%') }}>On the workbench</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.64)', margin: '0 auto', ...surface() }}>Each project begins the same way.<br />Not with features.<br /><span style={{ color: '#2b2723' }}>With the founder’s question.</span></p>
         </div>
@@ -149,7 +149,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── where the projects came from — three notes kept only here ──── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.5, color: '#2b2723', margin: '0 auto', maxWidth: '20ch', ...balance, ...surface('entry 0% cover 22%') }}>Every project begins somewhere.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', color: 'rgba(122,94,52,0.8)', margin: 'clamp(18px,2.6vh,28px) auto 0', ...surface('entry 0% cover 22%') }}>Usually here. A conversation.</p>
 
@@ -167,7 +167,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── still taking shape — handwritten project cards ────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
+        <div style={{ marginTop: 'var(--space-lg)', ...surface() }}>
           <div style={{ ...label, marginBottom: 'clamp(20px,3.5vh,40px)' }}>Still taking shape</div>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.72)', margin: '0 auto clamp(56px,10vh,110px)' }}>Questions we’re still sitting with.</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(24px,3.5vw,44px)' }}>
@@ -181,7 +181,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── recently left the workbench — into the Library ────────────── */}
-        <div style={{ marginTop: 'clamp(130px,24vh,300px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(30px,5vh,56px)', ...surface('entry 0% cover 22%') }}>Recently left the workbench</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.64)', margin: '0 auto clamp(48px,8vh,90px)', maxWidth: '26ch', ...balance, ...surface() }}>Not every project stays in the Studio forever. Some eventually leave.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,2.4vh,24px)', ...surface() }}>
@@ -195,7 +195,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── the quiet thread — discovered, never announced ────────────── */}
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.7)', margin: 'clamp(130px,24vh,300px) auto 0', maxWidth: '30ch', ...balance, ...surface() }}>Believe Studio exists so that no founder has to learn alone what another founder has already lived.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.7)', margin: 'var(--space-lg) auto 0', maxWidth: '30ch', ...balance, ...surface() }}>Believe Studio exists so that no founder has to learn alone what another founder has already lived.</p>
 
         {/* ── the closing ───────────────────────────────────────────────── */}
         <div style={{ marginTop: 'clamp(110px,20vh,240px)', ...surface() }}>
