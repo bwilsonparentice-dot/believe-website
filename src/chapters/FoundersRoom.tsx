@@ -121,6 +121,14 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         </div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.28, color: '#2b2723', margin: 'clamp(56px,10vh,120px) auto 0', maxWidth: '20ch', ...balance, ...surface() }}>The Founder’s Room exists for the moments that shape the next chapter.</p>
 
+        {/* A small framed line, hanging here before you arrived — no name, no
+            date, no explanation. It rewards the visitor who slows down enough to
+            read it, and quietly implies the room has held meetings that mattered
+            long before this one. Nothing to click; it is simply on the wall. */}
+        <figure style={{ margin: 'clamp(88px,15vh,190px) auto 0', width: 'min(72vw,238px)', padding: 'clamp(20px,2.6vw,30px) clamp(18px,2.2vw,26px)', background: '#efe7d5', border: '1px solid rgba(122,94,52,0.26)', boxShadow: 'inset 0 0 0 4px rgba(255,251,242,0.55), 0 24px 50px -34px rgba(60,44,20,0.55)', transform: 'rotate(-0.7deg)', ...surface() }}>
+          <blockquote style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(20px,2.4vw,27px)', lineHeight: 1.32, color: 'rgba(43,39,35,0.78)', margin: 0 }}>The meeting that changed everything happened here.</blockquote>
+        </figure>
+
         {/* ── what happens here — moments, as inscriptions ──────────────── */}
         <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(56px,10vh,110px)', ...surface('entry 0% cover 22%') }}>What happens here</div>

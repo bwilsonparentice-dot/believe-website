@@ -144,7 +144,17 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         {/* SHELF SEVEN — From the Residencies: workshops catalogued as records */}
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', marginBottom: '0.9em' }}>Shelf Seven</div>
         <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>From the Residencies</h3>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '34ch', margin: '0 auto clamp(48px,8vh,84px)' }}>What each Resident worked through with founders, and the one thing they left behind.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '34ch', margin: '0 auto clamp(40px,6vh,64px)' }}>What each Resident worked through with founders, and the one thing they left behind.</p>
+
+        {/* A small engraved brass plate on the spine of the bound ledger these
+            records are transcribed from. Not interactive, not highlighted — it
+            simply reads Volume VII, and the observant visitor wonders, quietly,
+            where I–VI are. Evidence that the House was keeping records long
+            before they arrived. */}
+        <div aria-hidden="true" style={{ display: 'inline-block', margin: '0 auto clamp(52px,9vh,100px)', padding: '9px 19px', background: 'linear-gradient(152deg,#c1a468,#93763f 54%,#af9256)', borderRadius: 2, boxShadow: 'inset 0 1px 0 rgba(255,248,226,0.55), inset 0 -1px 0 rgba(52,38,16,0.5), 0 9px 20px -13px rgba(60,44,20,0.55)' }}>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(40,29,13,0.72)', textShadow: '0 1px 0 rgba(255,248,226,0.4)' }}>Residency Log · Volume VII</div>
+        </div>
+
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(44px,8vh,90px)' }}>
           {RESIDENCY_RECORDS.map((r) => (
             <ArchivalRecord key={r.no} record={r} />
