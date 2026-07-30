@@ -144,10 +144,15 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
         </>
       ))}
 
-      {/* always a quiet way straight in — the guided walk is an invitation, never a gate */}
-      <El onClick={onEnter} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: sans, fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 400ms ease' }} hover={{ color: 'rgba(43,39,35,0.7)' }}>
-        Enter the house&nbsp;&rarr;
-      </El>
+      {/* a quiet way straight in on the earlier beats — the guided walk is an
+          invitation, never a gate. On the final beat the Continue cue already
+          reads "Enter the house", so this corner exit steps aside to avoid two
+          identical ways out on the same screen. */}
+      {step < LAST && (
+        <El onClick={onEnter} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: sans, fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 400ms ease' }} hover={{ color: 'rgba(43,39,35,0.7)' }}>
+          Enter the house&nbsp;&rarr;
+        </El>
+      )}
     </div>
   )
 }

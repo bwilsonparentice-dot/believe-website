@@ -241,8 +241,11 @@ export class App extends React.Component<Record<string, never>, State> {
 
     // the Door ritual only runs when we actually begin at the Door
     if (!deepLinked) {
-      // the arrival plays hands-free: accepted on its own after a beat
-      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 13000)
+      // the arrival plays hands-free: accepted on its own a beat after the
+      // second line has landed (a shorter wait than before, so a first-time
+      // visitor who doesn't realize the screen is theirs to touch isn't left
+      // on a near-still frame long enough to leave)
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 10500)
       // the bird finishes crossing and perches in the olive tree (Scene 2)
       this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
     }
@@ -553,6 +556,18 @@ export class App extends React.Component<Record<string, never>, State> {
 
         {/* Scene 1 — the arrival fades up from black (morning birds are heard first) */}
         <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 2400ms ease 150ms both' : 'blackReveal 700ms ease both' }} />
+
+        {/* a quiet cue that the arrival is theirs to touch — eased in only after
+            the second line has landed, so the words are never rushed, and gone
+            the moment the visitor steps in */}
+        {!opening && (
+          <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(52px,10vh,112px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 2200ms ease 6800ms both' }}>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.56)', marginBottom: '1em', textShadow: '0 1px 12px rgba(20,14,7,0.85)' }}>Step inside</div>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ margin: '0 auto', opacity: 0.7, animation: motionOn ? 'hint 3.4s ease-in-out infinite' : 'none' }}>
+              <path d="M2 3 L8 9 L14 3" stroke="rgba(246,239,228,0.72)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            </svg>
+          </div>
+        )}
 
         {/* One quiet way past the arrival for anyone genuinely impatient — never
             a prominent shortcut, and never shown for returning visitors, so the
