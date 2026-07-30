@@ -1,5 +1,4 @@
 import React from 'react'
-import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, Divider } from '../components/ChapterShell'
 import { Keynote } from '../components/Living'
@@ -75,16 +74,13 @@ export function AdvisoryChapter({ ctx }: { ctx: Ctx }) {
         {/* the close */}
         <div style={{ ...eyebrow, marginBottom: '1.4em' }}>Begin</div>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(20px,2.3vw,30px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.72)', maxWidth: '26ch', margin: '0 auto 0.5em' }}>Every private advisory relationship begins the same way. A conversation.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(18px,2vw,25px)', color: 'rgba(122,94,52,0.78)', margin: '0 auto clamp(44px,8vh,90px)', maxWidth: '28ch' }}>No proposal. No presentation. No pressure. Just enough time to discover whether we’re the right people to build together.</p>
-        <El
-          onClick={ctx.closeAdvisory}
-          style={{ display: 'inline-block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', border: '1px solid rgba(43,39,35,0.3)', borderRadius: 2, padding: '13px 30px', cursor: 'pointer' }}
-          hover={{ borderColor: 'rgba(43,39,35,0.8)', color: '#2b2723' }}
-        >
-          Request a Private Conversation →
-        </El>
+        {/* The Held Silence ends quietly. This room's discretion is its whole
+            claim, so it closes on the promise itself — no button to press, no
+            ask. A private conversation is begun the way everything here is: by
+            being known, not by a form. The BackPill is the only quiet way out. */}
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(18px,2vw,25px)', color: 'rgba(122,94,52,0.78)', margin: '0 auto', maxWidth: '28ch' }}>No proposal. No presentation. No pressure. Just enough time to discover whether we’re the right people to build together.</p>
 
-        <div style={{ marginTop: 'clamp(30px,5vh,56px)' }}>
+        <div style={{ marginTop: 'clamp(52px,9vh,104px)' }}>
           <BackPill onClose={ctx.closeAdvisory} />
         </div>
       </div>

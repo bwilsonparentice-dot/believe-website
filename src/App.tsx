@@ -962,9 +962,15 @@ export class App extends React.Component<Record<string, never>, State> {
               </div>
             )}
 
-            <El onClick={this.ctx.openWork} style={{ margin: '0.4em auto 0', display: 'inline-block', cursor: 'pointer' }}>
-              <span style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(16px,1.7vw,22px)', color: 'rgba(122,94,52,0.8)', borderBottom: '1px solid rgba(122,94,52,0.35)', paddingBottom: 2 }}>Ready to begin? Explore how founders work with Believe Studio &rarr;</span>
-            </El>
+            {/* The Threshold is the cinematic open — a held breath, not a sales
+                floor. It ends on the Key artifact and the soft "Step further in",
+                never a transactional ask; the House hasn't earned one yet. Every
+                other room keeps the invitation to see how founders work. */}
+            {active.id !== 'threshold' && (
+              <El onClick={this.ctx.openWork} style={{ margin: '0.4em auto 0', display: 'inline-block', cursor: 'pointer' }}>
+                <span style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(16px,1.7vw,22px)', color: 'rgba(122,94,52,0.8)', borderBottom: '1px solid rgba(122,94,52,0.35)', paddingBottom: 2 }}>Ready to begin? Explore how founders work with Believe Studio &rarr;</span>
+              </El>
+            )}
 
             <El onClick={this.closeRoom} style={{ marginTop: '2.4em', display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 12, cursor: 'pointer' }} hover={{}}>
               <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.6)', transition: 'color 500ms ease' }}>{active.continueLabel}</span>
