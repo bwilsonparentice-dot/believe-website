@@ -27,17 +27,21 @@ const surface = (range = 'entry 3% cover 26%'): CSSProperties => ({
 
 const TRANSFORM = [
   'You start to make decisions differently.',
-  'You stop carrying every answer alone.',
+  'You stop carrying every decision alone.',
   'You grow clearer — and the company grows stronger for it.',
-  'The business never needed another strategy.',
-  'It needed a stronger founder.',
 ]
 
+// The practical architecture of the room — each element given its own line to
+// breathe, answering a real question a founder asks once they can imagine
+// themselves here. The monthly rhythm lives in Gatherings; Cadence carries the
+// standing, ongoing nature; growth lives in Rooms.
 const SPECS = [
-  { label: 'Cadence', value: 'Ongoing — a standing room, not a fixed number of gatherings.' },
-  { label: 'Belonging', value: 'A private, continuing partnership, month to month.' },
-  { label: 'Gatherings', value: 'Founder conversations, in person and in between.' },
-  { label: 'Founding Room', value: 'The Olive Room gathers up to eight founders around one table — kept intentionally small, so every founder is fully known and every conversation matters. When the room is full, the next room quietly opens.' },
+  { label: 'Cadence', value: 'A standing room, not a fixed-length program.' },
+  { label: 'Gatherings', value: 'A monthly gathering in person, and the conversations that continue between them.' },
+  { label: 'Belonging', value: 'Month to month, for as long as the room serves you.' },
+  { label: 'Room Size', value: 'Up to eight founders around one table.' },
+  { label: 'Placement', value: 'At the start, we place you alongside founders in a similar season of growth.' },
+  { label: 'Rooms', value: 'When the Olive Room fills, the next quietly opens.' },
 ]
 
 // The rooms of the House. For now only the Olive Room is revealed — its founding
@@ -106,26 +110,15 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         {/* ── the passage ───────────────────────────────────────────────── */}
         <div style={{ marginTop: 'clamp(100px,18vh,220px)', display: 'flex', flexDirection: 'column', gap: 'clamp(14px,2.4vh,24px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some decisions shouldn’t be made in isolation.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some conversations cannot happen in a boardroom.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some questions deserve more than quick answers.</p>
         </div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.28, color: '#2b2723', margin: 'clamp(56px,10vh,120px) auto 0', maxWidth: '20ch', ...balance, ...surface() }}>The Founder’s Room exists for the moments that shape the next chapter.</p>
 
-        {/* ── relief — the hinge: from "I am seen" to "I am not the only one" ─
-            Recognition is solitary; relief is communal. The turn from "you" to
-            "founders like you" is where the isolation actually cracks, and where
-            the House's governing belief — you don't have to carry this alone —
-            first becomes true rather than promised. Two muted lines name the
-            solitary habit; the room answers; the line lands in the House accent. */}
-        <div style={{ marginTop: 'clamp(96px,17vh,210px)', display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vh,22px)', ...surface() }}>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.6)', margin: 0, maxWidth: '26ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>By now, you ask these questions only of yourself &mdash;</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.6)', margin: 0, maxWidth: '26ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>you carry them into the meeting, and out again, unspoken.</p>
-        </div>
-        <div style={{ marginTop: 'clamp(44px,8vh,92px)', display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.6vh,18px)', ...surface() }}>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>These are the questions this room is here to hold &mdash;</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '25ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>the ones every founder carries behind the same certain face.</p>
-        </div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(25px,3.3vw,45px)', lineHeight: 1.28, color: 'rgba(122,94,52,0.9)', margin: 'clamp(44px,8vh,92px) auto 0', maxWidth: '18ch', ...balance, ...surface() }}>You were never the only one carrying this.</p>
+        {/* ── the turn — the single communal payoff of the alone→not-alone spine.
+            Recognition names the carrying; the passage names the room; this line
+            answers both. The relief section that used to restate the carrying is
+            gone, so the turn lands directly. */}
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(25px,3.3vw,45px)', lineHeight: 1.28, color: 'rgba(122,94,52,0.9)', margin: 'clamp(72px,13vh,150px) auto 0', maxWidth: '18ch', ...balance, ...surface() }}>You were never the only one carrying this.</p>
 
         {/* ── the first page — an honest beginning, not invented residue ──────
             The House has no history yet, and does not pretend to. Where a
@@ -158,7 +151,12 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '23ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>Noise is set aside. The assumption beneath the question is named out loud.</p>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(122,94,52,0.9)', margin: 0, maxWidth: '20ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>And you leave holding one true next move.</p>
           </div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(56px,10vh,112px) auto 0', maxWidth: '34ch', ...pretty, ...surface() }}>What the room holds: a trusted conversation, an outside perspective that owes you honesty, and the accountability to actually move.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', color: 'rgba(122,94,52,0.7)', margin: 'clamp(56px,10vh,112px) auto 0', ...surface() }}>What the room holds &mdash;</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px,3vh,30px)', marginTop: 'clamp(24px,4vh,44px)' }}>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.82)', margin: 0, ...balance, ...surface() }}>A trusted conversation.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface() }}>An outside perspective that owes you honesty.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.82)', margin: 0, ...balance, ...surface() }}>The accountability to actually move.</p>
+          </div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '24ch', ...balance, ...surface() }}>Not a curriculum &mdash; real businesses, moving through real seasons.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '22ch', ...balance, ...surface() }}>The work unfolds one decision at a time.</p>
         </div>
@@ -168,8 +166,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <div style={{ ...label, marginBottom: 'clamp(44px,8vh,90px)', ...surface('entry 0% cover 22%') }}>Your room</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.24, color: '#2b2723', margin: '0 auto', maxWidth: '18ch', ...balance, ...surface() }}>Every founder belongs to a room.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', margin: 'clamp(32px,5vh,56px) auto 0', ...surface() }}>Not a cohort.<br />Not a forum.<br /><span style={{ color: '#2b2723' }}>A room.</span></p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>The Founder’s Room gathers up to eight founders around one table, returning to the same conversation over time. Not to perform. Not to collect more information. To work through what is actually in front of them, alongside people who understand what the decision carries.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '28ch', ...balance, ...surface() }}>What has been carried alone can be worked through together.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>The Founder’s Room gathers up to eight founders around one table, returning to the same conversation over time &mdash; to work through what is actually in front of them, alongside people who understand what the decision carries.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '36ch', ...pretty, ...surface() }}>In time, some founders will stay together for years. Some will return to guide the founders who come after them.</p>
 
           {/* the plaque — treated as architecture, given room to breathe */}
@@ -181,23 +178,21 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
 
           {/* the founding room, spoken plainly around the plaque */}
           <div style={{ marginTop: 'clamp(52px,9vh,100px)', ...surface() }}>
-            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: '0 auto 1em' }}>Our founding room.</p>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: '#2b2723', margin: '0 auto', maxWidth: '26ch', ...balance }}>The Olive Room is where the first founders of Believe Studio will gather.</p>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.6)', margin: 'clamp(48px,8vh,96px) auto 0' }}>No recordings.<br />No performance.</p>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(21px,2.6vw,32px)', lineHeight: 1.36, color: '#2b2723', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '24ch', ...balance }}>Just founders helping one another build the next chapter.</p>
           </div>
 
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.72)', margin: 'clamp(100px,18vh,220px) auto 0', maxWidth: '28ch', ...balance, ...surface() }}>As the House grows, new rooms will quietly open.</p>
         </div>
 
         {/* ── the particulars — quiet, never transactional ──────────────── */}
         <div style={{ marginTop: 'clamp(40px,7vh,90px)', ...surface() }}>
-          <div style={{ ...label, marginBottom: 'clamp(48px,8vh,90px)' }}>The particulars</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))', gap: 'clamp(38px,5vw,68px)', maxWidth: 780, margin: '0 auto', textAlign: 'left' }}>
+          <div style={{ ...label, marginBottom: 'clamp(48px,8vh,90px)' }}>In practice</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(40px,7vh,72px)', maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
             {SPECS.map((p, i) => (
               <div key={i}>
-                <div style={{ ...label, fontSize: 10, letterSpacing: '0.34em', marginBottom: '1em' }}>{p.label}</div>
-                <div style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.8)', ...pretty }}>{p.value}</div>
+                <div style={{ ...label, fontSize: 10, letterSpacing: '0.4em', marginBottom: '0.9em' }}>{p.label}</div>
+                <div style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.82)', maxWidth: '32ch', margin: '0 auto', ...balance }}>{p.value}</div>
               </div>
             ))}
           </div>
@@ -206,7 +201,6 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <div style={{ marginTop: 'clamp(64px,11vh,130px)', textAlign: 'center' }}>
             <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '0.9em' }}>Investment</div>
             <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.05, color: '#2b2723' }}>$995 <span style={{ fontStyle: 'italic', fontWeight: 300, fontSize: '0.46em', color: 'rgba(122,94,52,0.78)' }}>/ month</span></div>
-            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.72)', margin: 'clamp(16px,2.4vh,26px) auto 0', maxWidth: '28ch', ...balance }}>Month to month, for as long as the room serves you.</p>
           </div>
         </div>
 
@@ -231,15 +225,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
 
         {/* ── the invitation — the quietest on the website ──────────────── */}
         <div style={{ marginTop: 'var(--space-xl)' }}>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,50px)', lineHeight: 1.2, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance, ...surface('entry 2% cover 26%') }}>Every meaningful company eventually reaches a chapter that cannot be built alone.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.8)', margin: 'clamp(48px,9vh,100px) auto 0', ...surface() }}>When that chapter arrives…</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.66)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '34ch', ...pretty, ...surface() }}>When your conversation begins, we’ll thoughtfully place you alongside founders navigating a similar season of growth.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(24px,4vh,40px) auto 0', maxWidth: '24ch', ...balance, ...surface() }}>Because the right room changes the conversation.</p>
-
-          {/* the standard, said plainly — what the room is for */}
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(24px,3.2vw,42px)', lineHeight: 1.24, color: '#2b2723', margin: 'clamp(64px,11vh,130px) auto 0', maxWidth: '16ch', ...balance, ...surface() }}>A clearer decision.<br />A founder less alone.</p>
-
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(64px,11vh,130px) auto 0', maxWidth: '30ch', ...pretty, ...surface() }}>This room isn&rsquo;t here to tell you what Believe Studio has become.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: '0 auto', maxWidth: '30ch', ...pretty, ...surface('entry 2% cover 26%') }}>This room isn&rsquo;t here to tell you what Believe Studio has become.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.34, color: 'rgba(122,94,52,0.9)', margin: 'clamp(28px,5vh,52px) auto 0', maxWidth: '26ch', ...balance, ...surface() }}>It&rsquo;s here to invite you to help shape what it will become.</p>
 
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(48px,9vh,96px) auto 0', ...balance, ...surface() }}>The door is open.</p>
