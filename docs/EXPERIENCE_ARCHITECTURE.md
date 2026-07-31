@@ -91,7 +91,7 @@ others.
    Collective / House Membership" — the double-named tier becomes one true thing:
    a seat at the Table.)*
 
-2. **The Founder's Room** — *you do the work with peers.* Six to eight founders,
+2. **The Founder's Room** — *you do the work with peers.* Up to eight founders,
    ongoing. The engine of the relationship — where a founder becomes stronger, one
    decision at a time, alongside people who understand what the decision carries.
 

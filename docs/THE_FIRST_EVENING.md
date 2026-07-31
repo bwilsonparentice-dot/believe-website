@@ -19,7 +19,7 @@ Eight chairs and a ninth for the host, all the same chair. Candles already lit,
 because a room should be warm before its guests arrive, not lit in front of them.
 Low light. A window with the last of the evening in it.
 
-No screen. No projector. No easel. No name cards — in a room of eight, no one
+No screen. No projector. No easel. No name cards — in a room this small, no one
 should need a label, and the absence of one quietly says *you are already known
 here.* By the door, a shallow bowl. Its purpose becomes clear later.
 
@@ -40,8 +40,8 @@ like it should: a single bound book, blank. We will come back to it.
 
 Founders do not check in. There is no table with a clipboard, no lanyard, no one
 asking their name to find it on a list. **Beth meets each of them at the door
-herself** — by name, because she already knows it, because there are only eight
-and being known is the entire point.
+herself** — by name, because she already knows it. The room is intentionally
+limited to up to eight founders, because being known is the entire point.
 
 The first thing a founder notices is that it does not feel like an event. It
 feels like being let into someone's home on a night that was kept clear for them.
@@ -211,6 +211,16 @@ page by page, instead of borrowing it.
 > *Has the House earned this book's contents?* Only the first page, and only after
 > 8:00. That is exactly right. It is the one place a history is allowed to exist —
 > because it was lived, not written in advance.
+
+**A note on how often the book opens.** If every founder writes every month, the
+ritual becomes ordinary — and an ordinary ritual is a contradiction in terms. The
+book should open only when something genuinely worth remembering has happened, so
+that opening it is itself an event: the inaugural gathering, without question;
+perhaps the last gathering of a year, a founder crossing a milestone the room
+witnessed, a House weekend. This is not ours to settle tonight — it is for the
+House to earn over time. But the principle holds from the first page: **the book is
+a record of what mattered, not a habit.** What earns its way onto a page is what
+future founders will one day read to understand who came before them.
 
 ---
 
