@@ -113,6 +113,18 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.45em' }}>The Founder’s Room<span style={{ fontSize: '0.42em', verticalAlign: 'super', letterSpacing: 0 }}>™</span></h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '22ch', ...balance }}>Every founder eventually needs a room like this.</p>
 
+        {/* ── recognition — before any explanation, the room sees you ─────────
+            Three quiet second-person lines name the weight a founder has
+            learned to carry alone, then set it down. The room's whole purpose
+            is that the visitor exhales; this is where that begins, in the first
+            moments, so everything after lands on someone who feels understood. */}
+        <div style={{ marginTop: 'clamp(84px,15vh,180px)', display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.8vh,20px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: 0, maxWidth: '27ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>By now, you have learned to carry it quietly &mdash;</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: 0, maxWidth: '27ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>to sound certain in the meeting when you weren&rsquo;t,</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: 0, maxWidth: '27ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>to make the hardest call alone, and live with it alone.</p>
+        </div>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.28, color: '#2b2723', margin: 'clamp(44px,8vh,92px) auto 0', maxWidth: '16ch', ...balance, ...surface() }}>Here, you set it down.</p>
+
         {/* ── the passage ───────────────────────────────────────────────── */}
         <div style={{ marginTop: 'clamp(100px,18vh,220px)', display: 'flex', flexDirection: 'column', gap: 'clamp(14px,2.4vh,24px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>Some decisions shouldn’t be made in isolation.</p>
