@@ -246,6 +246,31 @@ sequence is:
 5. **The Stage** (5) — remove.
 6. **Business register & over-explaining** (3, 4) — the long tail; room by room.
 
+## Pass Two — locked decisions (for execution)
+
+- **Provenance, not portfolio.** The House has no history; its founder does, and the
+  two must never be confused. Remove any implication that brands were built inside or
+  by Believe Studio — *"Built beside Believe Studio"* goes; it isn't literally true.
+  Real experience is reframed as provenance, in Beth's voice, not a résumé.
+- **One home for the provenance:** *Why Believe* becomes the founder's letter (*"Why
+  I Built This House"*), absorbing the decades-of-experience story so a founder
+  understands *who built the House and why* — credibility without the House claiming a
+  history it hasn't lived.
+- **Retire the scattered credibility surfaces** once the letter carries the
+  provenance: the Stories client-showcase, the House Collection *"built beside"*
+  framing, and the brand logo-wall.
+- **"The First Page" relocates** from the Founder's Room to the *close* of that
+  founder's letter (provenance → a blank first page → you). Its subject is the House,
+  not the room. Leave it in the room until the letter exists, so the line is never
+  homeless — it moves once, into the place where its subject already lives.
+- **Buckets 1 & 2:** remove all fabricated institutional memory (invented archive
+  notes, first-person testimonials/outcomes, the Library's manufactured age, Studio's
+  2022–2026 spine, the "Around the House" feed, "For a while we said," "Founder
+  Fellows have grown," field-note numbering); reframe genuinely forthcoming things
+  (the first resident) as forthcoming, not archived.
+
+---
+
 Every proposed cut is measured against two questions we've already agreed on:
 
 > *Would this make the next founder's experience more meaningful?*
