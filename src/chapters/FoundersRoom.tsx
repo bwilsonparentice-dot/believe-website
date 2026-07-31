@@ -37,9 +37,9 @@ const TRANSFORM = [
 // standing, ongoing nature; growth lives in Rooms.
 const SPECS = [
   { label: 'Cadence', value: 'A standing room, not a fixed-length program.' },
-  { label: 'Gatherings', value: 'A monthly gathering in person, and the conversations that continue between them.' },
+  { label: 'Gatherings', value: 'A monthly virtual gathering, and the conversations that continue between them.' },
   { label: 'Belonging', value: 'Month to month, for as long as the room serves you.' },
-  { label: 'Room Size', value: 'Up to eight founders around one table.' },
+  { label: 'Room Size', value: 'Up to eight founders — kept intentionally small, so every founder is known and every conversation matters.' },
   { label: 'Placement', value: 'At the start, we place you alongside founders in a similar season of growth.' },
   { label: 'Rooms', value: 'When the Olive Room fills, the next quietly opens.' },
 ]
@@ -166,7 +166,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <div style={{ ...label, marginBottom: 'clamp(44px,8vh,90px)', ...surface('entry 0% cover 22%') }}>Your room</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.24, color: '#2b2723', margin: '0 auto', maxWidth: '18ch', ...balance, ...surface() }}>Every founder belongs to a room.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', margin: 'clamp(32px,5vh,56px) auto 0', ...surface() }}>Not a cohort.<br />Not a forum.<br /><span style={{ color: '#2b2723' }}>A room.</span></p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>The Founder’s Room gathers up to eight founders around one table, returning to the same conversation over time &mdash; to work through what is actually in front of them, alongside people who understand what the decision carries.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>The Founder’s Room gathers up to eight founders who return to the same conversation over time &mdash; to work through what is actually in front of them, alongside people who understand what the decision carries.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '36ch', ...pretty, ...surface() }}>In time, some founders will stay together for years. Some will return to guide the founders who come after them.</p>
 
           {/* the plaque — treated as architecture, given room to breathe */}
