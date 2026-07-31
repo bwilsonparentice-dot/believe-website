@@ -26,27 +26,6 @@ const surface = (range = 'entry 3% cover 26%'): CSSProperties => ({
   animationRange: range as unknown as string,
 })
 
-// the process, spoken as quiet inscriptions — verbs, not features
-const MOMENTS = [
-  'We slow the decision down.',
-  'We separate signal from noise.',
-  'We challenge assumptions.',
-  'We explore what the business is asking of you now.',
-  'We decide what deserves your attention.',
-  'Then we build.',
-]
-
-// what is present in the room — each allowed to stand alone
-const INSIDE = [
-  'A trusted conversation.',
-  'Strategic thinking.',
-  'Decision architecture.',
-  'An outside perspective.',
-  'Accountability.',
-  'Clarity.',
-  'Momentum.',
-]
-
 const TRANSFORM = [
   'I make decisions differently.',
   'I don’t carry every answer alone.',
@@ -183,27 +162,24 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* ── what happens here — moments, as inscriptions ──────────────── */}
+        {/* ── what happens here — the room, as it is actually lived ────────
+            Consolidates the former "What happens here" (process verbs), "Inside
+            the room" (feature nouns), and "The rhythm" into one walk-through:
+            not a list, but a single real conversation — from the decision a
+            founder walks in with to the one move they leave holding. Her
+            strongest lines are kept ("real businesses… real seasons", "one
+            decision at a time"); the redundancy is gone. */}
         <div style={{ marginTop: 'var(--space-lg)' }}>
           <div style={{ ...label, marginBottom: 'clamp(56px,10vh,110px)', ...surface('entry 0% cover 22%') }}>What happens here</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(34px,6.5vh,84px)' }}>
-            {MOMENTS.map((m, i) => {
-              const last = i === MOMENTS.length - 1
-              return (
-                <p key={i} style={{ fontFamily: serif, fontStyle: last ? 'italic' : 'normal', fontWeight: last ? 400 : 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: last ? 'rgba(122,94,52,0.9)' : 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '20ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>{m}</p>
-              )
-            })}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(32px,6vh,78px)' }}>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '20ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>You bring the decision you&rsquo;ve been circling for weeks.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '20ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>The room slows it down.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '23ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>Noise is set aside. The assumption beneath the question is named out loud.</p>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(122,94,52,0.9)', margin: 0, maxWidth: '20ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>And you leave holding one true next move.</p>
           </div>
-        </div>
-
-        {/* ── inside the room ───────────────────────────────────────────── */}
-        <div style={{ marginTop: 'var(--space-lg)' }}>
-          <div style={{ ...label, marginBottom: 'clamp(50px,9vh,100px)', ...surface('entry 0% cover 22%') }}>Inside the room</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(24px,4.5vh,52px)' }}>
-            {INSIDE.map((it, i) => (
-              <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.2, color: 'rgba(43,39,35,0.74)', margin: 0, ...surface('entry 0% cover 18%') }}>{it}</p>
-            ))}
-          </div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(56px,10vh,112px) auto 0', maxWidth: '34ch', ...pretty, ...surface() }}>What the room holds: a trusted conversation, an outside perspective that owes you honesty, and the accountability to actually move.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '24ch', ...balance, ...surface() }}>Not a curriculum &mdash; real businesses, moving through real seasons.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '22ch', ...balance, ...surface() }}>The work unfolds one decision at a time.</p>
         </div>
 
         {/* ── your room — not a cohort, a room ──────────────────────────── */}
@@ -254,15 +230,6 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
             <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.05, color: '#2b2723' }}>$995 <span style={{ fontStyle: 'italic', fontWeight: 300, fontSize: '0.46em', color: 'rgba(122,94,52,0.78)' }}>/ month</span></div>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.72)', margin: 'clamp(16px,2.4vh,26px) auto 0', maxWidth: '28ch', ...balance }}>Month to month, for as long as the room serves you.</p>
           </div>
-        </div>
-
-        {/* ── the rhythm — real seasons, not a curriculum ───────────────── */}
-        <div style={{ marginTop: 'var(--space-lg)', ...surface() }}>
-          <div style={{ ...label, marginBottom: 'clamp(48px,8vh,90px)' }}>The rhythm</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.3, color: '#2b2723', margin: '0 auto', maxWidth: '22ch', ...balance }}>The Founder’s Room isn’t built around a curriculum.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(30px,5vh,56px) auto 0', maxWidth: '26ch', ...balance }}>It’s built around real businesses moving through real seasons.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.95, color: 'rgba(43,39,35,0.64)', margin: 'clamp(48px,8vh,96px) auto 0' }}>Monthly gatherings.<br />Conversations in between.<br />Private Resident hours throughout the year.<br />Occasional House Gatherings.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(40px,7vh,76px) auto 0', maxWidth: '22ch', ...balance }}>The work unfolds one decision at a time.</p>
         </div>
 
         {/* ── the transformation — one sentence at a time ───────────────── */}
