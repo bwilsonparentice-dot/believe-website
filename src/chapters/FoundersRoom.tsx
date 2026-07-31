@@ -70,6 +70,18 @@ const ROOMS = [
   { name: 'The Olive Room', image: '/photos/olive-room-plaque.webp', status: 'Now welcoming its founding founders.' },
 ]
 
+// Evidence of presence — not testimonials, and nothing invented as a quotation
+// from a real person. Anonymized fragments left in the room, in the House's own
+// "left here" convention: the residue of real conversations, so the room reads
+// as genuinely lived in rather than proven. The aim is not "people like Believe
+// Studio" but "meaningful founder conversations happen here." Placeholder wording
+// in the House's voice — replace with true fragments as founders leave them.
+const LEFT_HERE = [
+  { t: 'Said the thing out loud for the first time. The room didn’t flinch.', rot: '0.8deg' },
+  { t: 'Turned out three of us had been awake at 3am over the same decision.', rot: '-0.6deg' },
+  { t: 'Left with one decision instead of forty.', rot: '0.5deg' },
+]
+
 // A brass plaque outside a private room — Beth's own olive-branch artwork,
 // treated as architecture rather than an icon. Each room carries its own plaque,
 // so a future room simply arrives with its own (e.g. the Lantern Room).
@@ -133,13 +145,43 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         </div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.28, color: '#2b2723', margin: 'clamp(56px,10vh,120px) auto 0', maxWidth: '20ch', ...balance, ...surface() }}>The Founder’s Room exists for the moments that shape the next chapter.</p>
 
-        {/* A small framed line, hanging here before you arrived — no name, no
-            date, no explanation. It rewards the visitor who slows down enough to
-            read it, and quietly implies the room has held meetings that mattered
-            long before this one. Nothing to click; it is simply on the wall. */}
-        <figure style={{ margin: 'clamp(88px,15vh,190px) auto 0', width: 'min(72vw,238px)', padding: 'clamp(20px,2.6vw,30px) clamp(18px,2.2vw,26px)', background: '#efe7d5', border: '1px solid rgba(122,94,52,0.26)', boxShadow: 'inset 0 0 0 4px rgba(255,251,242,0.55), 0 24px 50px -34px rgba(60,44,20,0.55)', transform: 'rotate(-0.7deg)', ...surface() }}>
-          <blockquote style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(20px,2.4vw,27px)', lineHeight: 1.32, color: 'rgba(43,39,35,0.78)', margin: 0 }}>The meeting that changed everything happened here.</blockquote>
-        </figure>
+        {/* ── relief — the hinge: from "I am seen" to "I am not the only one" ─
+            Recognition is solitary; relief is communal. The turn from "you" to
+            "founders like you" is where the isolation actually cracks, and where
+            the House's governing belief — you don't have to carry this alone —
+            first becomes true rather than promised. Two muted lines name the
+            solitary habit; the room answers; the line lands in the House accent. */}
+        <div style={{ marginTop: 'clamp(96px,17vh,210px)', display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vh,22px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.6)', margin: 0, maxWidth: '26ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>By now, you ask these questions only of yourself &mdash;</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.6)', margin: 0, maxWidth: '26ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>you carry them into the meeting, and out again, unspoken.</p>
+        </div>
+        <div style={{ marginTop: 'clamp(44px,8vh,92px)', display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.6vh,18px)', ...surface() }}>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>They are the same questions asked in this room every month,</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>by founders who look as certain as you do.</p>
+        </div>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(25px,3.3vw,45px)', lineHeight: 1.28, color: 'rgba(122,94,52,0.9)', margin: 'clamp(44px,8vh,92px) auto 0', maxWidth: '18ch', ...balance, ...surface() }}>You were never the only one carrying this.</p>
+
+        {/* ── evidence of presence — the room, lived in ──────────────────────
+            Not testimonials and nothing invented as a real person's quotation:
+            anonymized fragments left in the room, in the House's "left here"
+            convention. The framed line has held this wall alone; now a few more
+            fragments join it, so the room reads as one where real conversations
+            have happened. (See LEFT_HERE — placeholder wording, easily swapped.) */}
+        <div style={{ marginTop: 'clamp(88px,15vh,190px)' }}>
+          <div style={{ ...label, marginBottom: 'clamp(40px,7vh,80px)', ...surface('entry 0% cover 22%') }}>Left in the room</div>
+
+          <figure style={{ margin: '0 auto', width: 'min(72vw,252px)', padding: 'clamp(22px,2.8vw,32px) clamp(18px,2.2vw,28px)', background: '#efe7d5', border: '1px solid rgba(122,94,52,0.26)', boxShadow: 'inset 0 0 0 4px rgba(255,251,242,0.55), 0 24px 50px -34px rgba(60,44,20,0.55)', transform: 'rotate(-0.7deg)', ...surface() }}>
+            <blockquote style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(21px,2.5vw,28px)', lineHeight: 1.32, color: 'rgba(43,39,35,0.8)', margin: 0 }}>The meeting that changed everything happened here.</blockquote>
+          </figure>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(20px,3vw,40px)', justifyContent: 'center', margin: 'clamp(36px,6vh,64px) auto 0', maxWidth: 640 }}>
+            {LEFT_HERE.map((n, i) => (
+              <figure key={i} style={{ margin: 0, width: 'min(64vw,232px)', padding: 'clamp(18px,2.2vw,26px) clamp(16px,2vw,24px)', background: '#efe7d5', border: '1px solid rgba(122,94,52,0.22)', boxShadow: 'inset 0 0 0 4px rgba(255,251,242,0.5), 0 20px 44px -32px rgba(60,44,20,0.5)', transform: `rotate(${n.rot})`, ...surface('entry 0% cover 20%') }}>
+                <blockquote style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(19px,2.3vw,25px)', lineHeight: 1.32, color: 'rgba(43,39,35,0.76)', margin: 0 }}>{n.t}</blockquote>
+              </figure>
+            ))}
+          </div>
+        </div>
 
         {/* ── what happens here — moments, as inscriptions ──────────────── */}
         <div style={{ marginTop: 'var(--space-lg)' }}>
