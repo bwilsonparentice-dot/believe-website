@@ -2,8 +2,6 @@ import React, { CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
-import { ArchiveCard } from '../components/ArchiveCard'
-import type { ArchiveNote } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
@@ -22,11 +20,6 @@ const surface = (range = 'entry 2% cover 24%'): CSSProperties => ({
 })
 
 // The evening light of a room after the applause — the wisdom, not the spotlight.
-const ARCHIVE: ArchiveNote = {
-  no: '058',
-  lines: ['The applause wasn’t the reward.', 'Knowing another founder believed because of your story was.'],
-  source: '— from The Stage Archive',
-}
 
 // What changes — not features. The slow accumulation of an institution's memory.
 const CHANGES = [
@@ -82,9 +75,6 @@ export function StageChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: 'clamp(40px,7vh,78px) auto 0' }}>The Stage honors lived experience.<br />Not public recognition. Not titles. Not achievements.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '26ch', ...balance }}>A founder’s greatest contribution often begins after the spotlight fades.</p>
         </div>
-
-        {/* ── the archive note — text only, universal ───────────────────── */}
-        <ArchiveCard note={ARCHIVE} />
 
         {/* ── what changes — each statement falls to the next, generous air ── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(40px,7vh,90px)' }}>

@@ -125,8 +125,7 @@ export const DATA: any[] = [
     body: [
       'Not information — perspective. The lessons of others, collected patiently and offered without insistence. What is gathered here is meant to be reflected upon, not merely consumed.',
       'You may borrow what you need and leave the rest for the next founder who wanders in.',
-    ],
-    archive: { no: '012', lines: ['The answer wasn’t new.', 'It had simply waited for the right moment to be understood.'], source: '— from The Library Collection' } },
+    ] },
   { id: 'fieldnotes', roman: 'V', name: 'Field Notes', l: '21%', t: '6%', w: '13%', h: '19%',
     accent: 'oklch(0.6 0.085 200)', glow: 'oklch(0.6 0.085 200 / 0.22)',
     whisper: 'Catching ideas before they disappear.',
@@ -150,8 +149,7 @@ export const DATA: any[] = [
     body: [
       'There is a difference between talking about a company and sitting across from someone who helps you finally see it clearly. The Table exists for those conversations.',
       'Some last twenty minutes. Some last three hours. Almost all of them change something — not because advice was given, but because clarity arrived.',
-    ],
-    archive: { no: '044', lines: ['She arrived looking for advice.', 'She left realizing she wasn’t building alone.'], source: '— from The Founder’s Table Journal' } },
+    ] },
   { id: 'studio', roman: 'VII', name: 'The Studio', l: '66%', t: '30%', w: '30%', h: '31%',
     accent: 'oklch(0.63 0.09 92)', glow: 'oklch(0.63 0.09 92 / 0.22)',
     whisper: 'Where ideas become real.',
@@ -161,8 +159,7 @@ export const DATA: any[] = [
     body: [
       'Nothing enters this room finished. Ideas arrive as sketches, half-written notes, packaging mockups, questions scribbled in the margins — and leave a little clearer than when they came.',
       'This is where uncertainty quietly becomes momentum. You don’t have to arrive with all the answers. Only the willingness to begin.',
-    ],
-    archive: { no: '038', lines: ['She thought she needed a better idea.', 'She only needed to begin.'], source: '— from The Studio Notes' } },
+    ] },
   { id: 'advisory', roman: 'VIII', name: 'Private Advisory', l: '72%', t: '6%', w: '24%', h: '19%',
     accent: 'oklch(0.6 0.085 300)', glow: 'oklch(0.6 0.085 300 / 0.22)',
     whisper: 'Trust made visible.',
@@ -189,8 +186,7 @@ export const DATA: any[] = [
       'There comes a moment when what you’ve learned no longer belongs to you alone. Another founder needs to hear it — and you may be the only one who can say it plainly.',
       'The Stage is where founder stories are kept and passed on: the pivots, the quiet victories, the retail milestones, the lessons earned the hard way. Not a highlight reel — a gallery of contribution.',
       'Some founders speak. Some write. Some simply sit across from the next founder and say the thing no one told them. However it happens, the work stops being only yours. It was never about being seen — it’s about what you hand forward.',
-    ],
-    archive: { no: '058', lines: ['The applause wasn’t the reward.', 'Knowing another founder believed because of your story was.'], source: '— from The Stage Archive' } },
+    ] },
 ]
 
 // The Gallery — founders framed like portraits on a gallery wall. Each carries
@@ -346,21 +342,6 @@ export type Particular = { label: string; value: string }
  */
 export type ArchiveNote = { no: string; lines: string[]; source: string; image?: string }
 
-// ── Held out of the live experience — Pass Two (borrowed history) ─────────────
-// Fabricated "archive" notes: invented institutional memory the House has not
-// earned. As each is removed from its experience's live data, it is moved here —
-// inert, never imported into any render — preserved verbatim so nothing is
-// destroyed and a future, honestly-sourced archive could recompose from it.
-// Keyed by experience/room id. Do not wire these back into the live experience.
-export const HELD_ARCHIVE_NOTES: Record<string, ArchiveNote> = {
-  'believe-blueprint': {
-    no: '031',
-    lines: ['Nothing about the company changed.', 'Only the founder’s ability to finally see it clearly.'],
-    source: '— from The Believe Blueprint Archive',
-    image: '/photos/artifact-sketch.webp',
-  },
-}
-
 /**
  * The Seven Drawings — the Believe Blueprint presented as an architect's folio.
  * Each is one sheet from the set: a numeral, a sheet number, the name, the one
@@ -464,12 +445,6 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'The room opens through conversation.',
     joinBody: 'We begin with The Founder Conversation so we can understand where you are, what you’re building, and whether this is the right room for you today.',
     closing: 'The best founders don’t build alone. They build beside others who understand.',
-    archive: {
-      no: '027',
-      lines: ['The founder wasn’t asking about packaging.', 'She was asking for permission.'],
-      source: '— from The Founder’s Room Archive',
-      image: '/photos/artifact-buyernote.webp',
-    },
   },
 
   'founders-table': {
@@ -518,12 +493,6 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'Pull up a chair.',
     joinBody: 'The Table begins with a conversation — so that when you sit down, you’re already among founders who understand.',
     closing: 'The best founders don’t build alone. They build beside others who understand.',
-    archive: {
-      no: '044',
-      lines: ['She arrived looking for advice.', 'She left realizing she wasn’t building alone.'],
-      source: '— from The Founder’s Table',
-      image: '/photos/artifact-journal.webp',
-    },
   },
 
   'founder-conversation': {
@@ -570,11 +539,6 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'There’s nothing to decide yet.',
     joinBody: 'Just a conversation — thirty minutes to understand where you are, what you’re building, and whether Believe is the right place to help.',
     closing: 'Every meaningful company begins with a single conversation.',
-    archive: {
-      no: '003',
-      lines: ['She expected us to ask about the numbers.', 'We asked about her instead.'],
-      source: '— from the Conversation Notes',
-    },
   },
 
   'believe-blueprint': {
@@ -670,11 +634,6 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'It begins with a conversation.',
     joinBody: 'We begin with The Founder Conversation, so we can understand the moment you’re in and whether Private Advisory is the right room for it.',
     closing: 'The biggest decisions are easier when you don’t make them alone.',
-    archive: {
-      no: '051',
-      lines: ['The breakthrough didn’t happen in the meeting.', 'It happened when she finally trusted herself.'],
-      source: '— from The Private Advisory Archive',
-    },
   },
 
   'visionary-collective': {
@@ -721,11 +680,6 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'Pull up a chair.',
     joinBody: 'The Collective is the simplest way to stay close to the house — to keep thinking, keep learning, and remain among founders building meaningful companies.',
     closing: 'Sometimes belonging is the first step. The rest can come later.',
-    archive: {
-      no: '072',
-      lines: ['She wasn’t ready to begin.', 'She only wanted to know the door would still be open.'],
-      source: '— from The Front Porch Archive',
-    },
   },
 }
 
