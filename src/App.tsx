@@ -637,6 +637,14 @@ export class App extends React.Component<Record<string, never>, State> {
 
         {clipped && (
           <div onClick={this.revealRooms} style={{ position: 'fixed', inset: 0, zIndex: 15, cursor: 'pointer' }}>
+            {/* One quiet line that answers "what is this?" at the moment the House
+                opens — editorial, never marketing. It resolves the category so a
+                first-time founder can relax and explore, without dissolving the
+                House metaphor. It captions the entry, then recedes: once the
+                visitor descends into the rooms, this reveal overlay unmounts. */}
+            <div style={{ position: 'absolute', left: '50%', bottom: 'clamp(96px,17vh,210px)', transform: 'translateX(-50%)', width: 'min(90vw,600px)', textAlign: 'center', pointerEvents: 'none', animation: 'softFade 2200ms ease 700ms both' }}>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,2.2vw,27px)', lineHeight: 1.55, color: 'rgba(246,239,228,0.92)', margin: 0, textShadow: '0 1px 3px rgba(20,14,7,0.85), 0 3px 22px rgba(20,14,7,0.8)', textWrap: 'balance' as React.CSSProperties['textWrap'] }}>Part private members&rsquo; house. Part strategy studio. Entirely built for founders.</p>
+            </div>
             <div style={{ position: 'absolute', left: '50%', bottom: 'clamp(30px,6vh,64px)', transform: 'translateX(-50%)', textAlign: 'center', pointerEvents: 'none', animation: 'cueBreath 4.6s ease-in-out infinite' }}>
               <div style={{ width: 26, height: 26, margin: '0 auto', borderRight: '1px solid rgba(246,239,228,0.66)', borderBottom: '1px solid rgba(246,239,228,0.66)', transform: 'rotate(45deg)' }} />
             </div>
@@ -674,6 +682,12 @@ export class App extends React.Component<Record<string, never>, State> {
         )}
 
         {this.rooms.journey.map((room, i) => this.renderRoomSection(room, i, sunShiftAnim, alive))}
+
+        {/* A closed door as the public rooms give way to the courtyard — the
+            House is larger than what the visitor has been shown. It doesn't
+            explain itself and nothing opens; it simply implies a private wing,
+            the way a members' house always has one. Reward for observation. */}
+        {this.renderResidentsDoor()}
 
         {/* A pause before the Founding Wall — leaving the active rooms and
             entering a quiet courtyard. The reflective line and the six
@@ -728,6 +742,40 @@ export class App extends React.Component<Record<string, never>, State> {
           <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.1vw,29px)', lineHeight: 1.4, color: 'rgba(246,239,228,0.9)', margin: '0.7em 0 0', whiteSpace: room.whisperWrap, textShadow: '0 1px 24px rgba(20,14,7,0.4)' }}>{room.whisper}</p>
           <El onClick={this.enterLabelHandler(room)} style={{ pointerEvents: 'auto', cursor: 'pointer', display: 'inline-block', marginTop: '1.7em', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.85)', borderBottom: '1px solid rgba(246,239,228,0.42)', paddingBottom: 5, transition: 'color 500ms ease, border-color 500ms ease' }} hover={{ color: '#fff', borderColor: '#fff' }}>{room.enterLabel}</El>
         </div>
+      </section>
+    )
+  }
+
+  /**
+   * A private door, met in passing between the public rooms and the courtyard.
+   * A members'-house convention: one door marked for those who belong, which
+   * does not open and does not explain itself. On hover it gives the faintest
+   * catch of light — acknowledging the curious visitor without surrendering its
+   * secret — so the House quietly feels larger than everything they have seen.
+   * Decorative: it never navigates, and swallows its own click.
+   */
+  private renderResidentsDoor() {
+    const reveal: React.CSSProperties = { animation: 'fadeUpSoft 1200ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 6% cover 36%' as unknown as string }
+    return (
+      <section aria-label="A private door" style={{ position: 'relative', background: '#ddd0b2', padding: 'clamp(130px,26vh,340px) clamp(24px,8vw,120px)', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+        {/* a soft corridor shadow, so the door reads as set into a wall */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '50%', top: 0, transform: 'translateX(-50%)', width: 'min(560px,88vw)', height: '100%', background: 'radial-gradient(58% 66% at 50% 46%, rgba(40,28,12,0.18), transparent 74%)', pointerEvents: 'none' }} />
+        <El
+          onClick={stop}
+          aria-label="Residents only"
+          style={{ position: 'relative', width: 'clamp(158px,23vw,250px)', height: 'clamp(320px,54vh,500px)', borderRadius: 'clamp(78px,11vw,125px) clamp(78px,11vw,125px) 6px 6px', cursor: 'default', border: 'none', padding: 0, background: 'linear-gradient(172deg, #4b3826 0%, #3d2d1e 44%, #342617 78%, #2c2015 100%)', boxShadow: '0 44px 84px -46px rgba(30,20,8,0.78), inset 0 2px 0 rgba(255,236,196,0.10), inset 0 0 0 1px rgba(20,13,6,0.5)', transition: 'box-shadow 800ms ease', ...reveal }}
+          hover={{ boxShadow: '0 44px 84px -46px rgba(30,20,8,0.78), inset 0 2px 0 rgba(255,236,196,0.14), inset 0 0 40px rgba(255,224,170,0.13), inset 0 0 0 1px rgba(255,236,196,0.18)' }}
+        >
+          {/* two recessed panels, so it reads as a real door */}
+          <span aria-hidden="true" style={{ position: 'absolute', left: '17%', right: '17%', top: '13%', height: '40%', borderRadius: '58px 58px 3px 3px', boxShadow: 'inset 0 1px 3px rgba(20,13,6,0.6), inset 0 -1px 0 rgba(255,236,196,0.06)' }} />
+          <span aria-hidden="true" style={{ position: 'absolute', left: '17%', right: '17%', bottom: '9%', height: '30%', borderRadius: 3, boxShadow: 'inset 0 1px 3px rgba(20,13,6,0.6), inset 0 -1px 0 rgba(255,236,196,0.06)' }} />
+          {/* the brass plate */}
+          <span aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '51%', transform: 'translate(-50%,-50%)', padding: '7px 13px', borderRadius: 2, background: 'linear-gradient(152deg,#c1a468,#8f7238 56%,#ac8f54)', boxShadow: 'inset 0 1px 0 rgba(255,248,226,0.5), 0 4px 10px -6px rgba(20,13,6,0.6)' }}>
+            <span style={{ display: 'block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 'clamp(8px,1vw,10px)', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(40,29,13,0.76)', textShadow: '0 1px 0 rgba(255,248,226,0.4)', whiteSpace: 'nowrap' }}>Residents Only</span>
+          </span>
+          {/* a small keyhole below the plate */}
+          <span aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '65%', transform: 'translateX(-50%)', width: 9, height: 13, background: 'rgba(18,12,5,0.72)', borderRadius: '50% 50% 42% 42%', boxShadow: 'inset 0 1px 1px rgba(0,0,0,0.6), 0 1px 0 rgba(255,236,196,0.08)' }} />
+        </El>
       </section>
     )
   }
