@@ -60,5 +60,18 @@ mature version of the House will almost always say less, not more.
 5. Remove The Stage.
 6. Final coherence pass — every page belongs to the same institution.
 
+### Carried into Pass 6 (coherence) — do not act before then
+- **Experience accuracy is now part of the standard.** The Founder's Room is
+  *virtual*; The Founder's Table is *in person*; the Houses are *physical
+  gatherings and retreats*. No page may describe one in the language of another.
+- **`THE_FIRST_EVENING.md` must be re-homed.** It rehearses the inaugural
+  gathering as an in-person evening (arrival, a round table, food, the book).
+  Under the now-foundational architecture that lived experience belongs to **The
+  Table or the Houses**, not the virtual Founder's Room. Re-home it in Pass 6;
+  leave it untouched until then.
+- **Meeting times stay unfixed for now.** Cadence is specific to the day (e.g. the
+  third Thursday of each month); exact times may evolve once the first room has
+  run, so they are deliberately not hard-coded yet.
+
 *The goal is a House founders remember twenty years from now — not for what it
 claimed to be, but for what it quietly became.*

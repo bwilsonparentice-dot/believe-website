@@ -442,7 +442,7 @@ export const EXPERIENCES: Record<string, Experience> = {
     ],
     faqs: [
       { q: 'Is this coaching?', a: 'No. Coaching works on you; the Founder’s Room thinks with you. It’s a place to bring the real decision and find perspective before you make it.' },
-      { q: 'How often does the room meet?', a: 'The Founder’s Room gathers virtually on the third Thursday of every month, from 6:00 to 8:00 PM Eastern, with conversations continuing between gatherings. A standing rhythm, because trust is built over time — not in a set number of sessions.' },
+      { q: 'How often does the room meet?', a: 'The Founder’s Room gathers virtually on the third Thursday of every month, with conversations continuing between gatherings. A standing rhythm, because trust is built over time — not in a set number of sessions.' },
       { q: 'What kinds of decisions?', a: 'The ones that don’t belong in a boardroom — a pivot, a partnership, a hire, a season of doubt. The decisions that quietly shape the next chapter.' },
       { q: 'How does it begin?', a: 'It begins with a private conversation — to understand the chapter you’re in, and whether this is the right room for it now.' },
     ],

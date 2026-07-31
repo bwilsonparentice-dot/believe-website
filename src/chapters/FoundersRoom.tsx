@@ -84,15 +84,18 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
       <div style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', height: 'clamp(380px,68vh,760px)', overflow: 'hidden', ...surface('entry 0% cover 12%') }}>
         <ImageSlot src={PHOTOS.founders} fit="cover" alt="The Founder’s Room — a quiet chair by a tall window in morning light" placeholder="a quiet chair by a tall window, morning light, only space to think" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'slowZoom 24s ease-out both' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(56% 52% at 34% 26%, rgba(255,226,178,0.34), transparent 68%)' }} />
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.08) 0%, transparent 30%, transparent 60%, rgba(239,231,213,0.7) 92%, #efe7d5 100%)' }} />
+        {/* the room's light dissolving into the page — a long, gentle feather
+            (many stops, no hard band) so the seam reads as architecture, not an
+            interface fade. The final colour is the page ground exactly. */}
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.10) 0%, transparent 26%, transparent 52%, rgba(239,231,213,0.22) 70%, rgba(239,231,213,0.55) 84%, rgba(239,231,213,0.85) 94%, #efe7d5 100%)' }} />
       </div>
 
-      <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(72px,12vh,150px) 8vw clamp(90px,16vh,200px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
+      <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(104px,17vh,208px) 8vw clamp(90px,16vh,200px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* ── the heading ───────────────────────────────────────────────── */}
         <ArchMark width={2.2} margin="0 auto 1.5em" />
         <div style={{ ...label, marginBottom: '1.4em' }}>The most personal room in the house</div>
-        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.45em' }}>The Founder’s Room<span style={{ fontSize: '0.42em', verticalAlign: 'super', letterSpacing: 0 }}>™</span></h2>
+        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.45em' }}>The Founder’s Room</h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '22ch', ...balance }}>Every founder eventually needs a room like this.</p>
 
         {/* ── recognition — before any explanation, the room sees you ─────────
