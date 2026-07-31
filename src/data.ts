@@ -346,6 +346,21 @@ export type Particular = { label: string; value: string }
  */
 export type ArchiveNote = { no: string; lines: string[]; source: string; image?: string }
 
+// ── Held out of the live experience — Pass Two (borrowed history) ─────────────
+// Fabricated "archive" notes: invented institutional memory the House has not
+// earned. As each is removed from its experience's live data, it is moved here —
+// inert, never imported into any render — preserved verbatim so nothing is
+// destroyed and a future, honestly-sourced archive could recompose from it.
+// Keyed by experience/room id. Do not wire these back into the live experience.
+export const HELD_ARCHIVE_NOTES: Record<string, ArchiveNote> = {
+  'believe-blueprint': {
+    no: '031',
+    lines: ['Nothing about the company changed.', 'Only the founder’s ability to finally see it clearly.'],
+    source: '— from The Believe Blueprint Archive',
+    image: '/photos/artifact-sketch.webp',
+  },
+}
+
 /**
  * The Seven Drawings — the Believe Blueprint presented as an architect's folio.
  * Each is one sheet from the set: a numeral, a sheet number, the name, the one
@@ -609,12 +624,6 @@ export const EXPERIENCES: Record<string, Experience> = {
     joinLead: 'Every Blueprint begins with a conversation.',
     joinBody: 'Before we architect anything, we begin by understanding you — your company, your vision, and the chapter you’re entering.',
     closing: 'Just as an architect begins with a blueprint, every founder begins with clarity.',
-    archive: {
-      no: '031',
-      lines: ['Nothing about the company changed.', 'Only the founder’s ability to finally see it clearly.'],
-      source: '— from The Believe Blueprint Archive',
-      image: '/photos/artifact-sketch.webp',
-    },
   },
 
   'private-advisory': {
