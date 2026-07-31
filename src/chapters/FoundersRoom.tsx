@@ -5,7 +5,6 @@ import { ChapterShell, ArchMark } from '../components/ChapterShell'
 import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
-import { ArchiveCard } from '../components/ArchiveCard'
 import { Correspondence } from '../components/Correspondence'
 import { EXPERIENCES, PHOTOS } from '../data'
 
@@ -27,10 +26,10 @@ const surface = (range = 'entry 3% cover 26%'): CSSProperties => ({
 })
 
 const TRANSFORM = [
-  'I make decisions differently.',
-  'I don’t carry every answer alone.',
-  'My company became stronger because I became clearer.',
-  'The business didn’t need another strategy.',
+  'You start to make decisions differently.',
+  'You stop carrying every answer alone.',
+  'You grow clearer — and the company grows stronger for it.',
+  'The business never needed another strategy.',
   'It needed a stronger founder.',
 ]
 
@@ -47,18 +46,6 @@ const SPECS = [
 // the layout already anticipates it; nothing else on the page needs to change.
 const ROOMS = [
   { name: 'The Olive Room', image: '/photos/olive-room-plaque.webp', status: 'Now welcoming its founding founders.' },
-]
-
-// Evidence of presence — not testimonials, and nothing invented as a quotation
-// from a real person. Anonymized fragments left in the room, in the House's own
-// "left here" convention: the residue of real conversations, so the room reads
-// as genuinely lived in rather than proven. The aim is not "people like Believe
-// Studio" but "meaningful founder conversations happen here." Placeholder wording
-// in the House's voice — replace with true fragments as founders leave them.
-const LEFT_HERE = [
-  { t: 'Said the thing out loud for the first time. The room didn’t flinch.', rot: '0.8deg' },
-  { t: 'Turned out three of us had been awake at 3am over the same decision.', rot: '-0.6deg' },
-  { t: 'Left with one decision instead of forty.', rot: '0.5deg' },
 ]
 
 // A brass plaque outside a private room — Beth's own olive-branch artwork,
@@ -135,31 +122,25 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.6)', margin: 0, maxWidth: '26ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>you carry them into the meeting, and out again, unspoken.</p>
         </div>
         <div style={{ marginTop: 'clamp(44px,8vh,92px)', display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.6vh,18px)', ...surface() }}>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>They are the same questions asked in this room every month,</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>by founders who look as certain as you do.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>These are the questions this room is here to hold &mdash;</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,36px)', lineHeight: 1.34, color: 'rgba(43,39,35,0.86)', margin: 0, maxWidth: '25ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>the ones every founder carries behind the same certain face.</p>
         </div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(25px,3.3vw,45px)', lineHeight: 1.28, color: 'rgba(122,94,52,0.9)', margin: 'clamp(44px,8vh,92px) auto 0', maxWidth: '18ch', ...balance, ...surface() }}>You were never the only one carrying this.</p>
 
-        {/* ── evidence of presence — the room, lived in ──────────────────────
-            Not testimonials and nothing invented as a real person's quotation:
-            anonymized fragments left in the room, in the House's "left here"
-            convention. The framed line has held this wall alone; now a few more
-            fragments join it, so the room reads as one where real conversations
-            have happened. (See LEFT_HERE — placeholder wording, easily swapped.) */}
+        {/* ── the first page — an honest beginning, not invented residue ──────
+            The House has no history yet, and does not pretend to. Where a
+            lived-in room would show the notes founders left behind, this room
+            shows a blank first page: an invitation for the founding founders to
+            write the first words, rather than evidence that others already have.
+            The handwriting is the House's own hand, not a fabricated founder's. */}
         <div style={{ marginTop: 'clamp(88px,15vh,190px)' }}>
-          <div style={{ ...label, marginBottom: 'clamp(40px,7vh,80px)', ...surface('entry 0% cover 22%') }}>Left in the room</div>
+          <div style={{ ...label, marginBottom: 'clamp(40px,7vh,80px)', ...surface('entry 0% cover 22%') }}>The first page</div>
 
           <figure style={{ margin: '0 auto', width: 'min(72vw,252px)', padding: 'clamp(22px,2.8vw,32px) clamp(18px,2.2vw,28px)', background: '#efe7d5', border: '1px solid rgba(122,94,52,0.26)', boxShadow: 'inset 0 0 0 4px rgba(255,251,242,0.55), 0 24px 50px -34px rgba(60,44,20,0.55)', transform: 'rotate(-0.7deg)', ...surface() }}>
-            <blockquote style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(21px,2.5vw,28px)', lineHeight: 1.32, color: 'rgba(43,39,35,0.8)', margin: 0 }}>The meeting that changed everything happened here.</blockquote>
+            <blockquote style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(21px,2.5vw,28px)', lineHeight: 1.32, color: 'rgba(43,39,35,0.72)', margin: 0 }}>The first page is still blank.</blockquote>
           </figure>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(20px,3vw,40px)', justifyContent: 'center', margin: 'clamp(36px,6vh,64px) auto 0', maxWidth: 640 }}>
-            {LEFT_HERE.map((n, i) => (
-              <figure key={i} style={{ margin: 0, width: 'min(64vw,232px)', padding: 'clamp(18px,2.2vw,26px) clamp(16px,2vw,24px)', background: '#efe7d5', border: '1px solid rgba(122,94,52,0.22)', boxShadow: 'inset 0 0 0 4px rgba(255,251,242,0.5), 0 20px 44px -32px rgba(60,44,20,0.5)', transform: `rotate(${n.rot})`, ...surface('entry 0% cover 20%') }}>
-                <blockquote style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(19px,2.3vw,25px)', lineHeight: 1.32, color: 'rgba(43,39,35,0.76)', margin: 0 }}>{n.t}</blockquote>
-              </figure>
-            ))}
-          </div>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.86)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '22ch', ...balance, ...surface() }}>The founders who arrive first will fill it.</p>
         </div>
 
         {/* ── what happens here — the room, as it is actually lived ────────
@@ -189,7 +170,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', margin: 'clamp(32px,5vh,56px) auto 0', ...surface() }}>Not a cohort.<br />Not a forum.<br /><span style={{ color: '#2b2723' }}>A room.</span></p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>The Founder’s Room is where six to eight founders return to the same conversation over time. Not to perform. Not to collect more information. To work through what is actually in front of them, alongside people who understand what the decision carries.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '28ch', ...balance, ...surface() }}>What has been carried alone can be worked through together.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '36ch', ...pretty, ...surface() }}>Some founders stay together for years. Some eventually return to guide the founders who come after them.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '36ch', ...pretty, ...surface() }}>In time, some founders will stay together for years. Some will return to guide the founders who come after them.</p>
 
           {/* the plaque — treated as architecture, given room to breathe */}
           <div style={{ marginTop: 'clamp(90px,16vh,200px)' }}>
@@ -208,9 +189,6 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
 
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.72)', margin: 'clamp(100px,18vh,220px) auto 0', maxWidth: '28ch', ...balance, ...surface() }}>As the House grows, new rooms will quietly open.</p>
         </div>
-
-        {/* ── the archive note ──────────────────────────────────────────── */}
-        {x.archive && <ArchiveCard note={x.archive} />}
 
         {/* ── the particulars — quiet, never transactional ──────────────── */}
         <div style={{ marginTop: 'clamp(40px,7vh,90px)', ...surface() }}>
@@ -239,7 +217,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
             {TRANSFORM.map((t, i) => {
               const last = i === TRANSFORM.length - 1
               return (
-                <p key={i} style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: last ? 'clamp(28px,3.8vw,52px)' : 'clamp(24px,3.1vw,40px)', lineHeight: 1.26, color: last ? '#2b2723' : 'rgba(122,94,52,0.86)', margin: 0, maxWidth: '22ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>&ldquo;{t}&rdquo;</p>
+                <p key={i} style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: last ? 'clamp(28px,3.8vw,52px)' : 'clamp(24px,3.1vw,40px)', lineHeight: 1.26, color: last ? '#2b2723' : 'rgba(122,94,52,0.86)', margin: 0, maxWidth: '22ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>{t}</p>
               )
             })}
           </div>
@@ -260,6 +238,9 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
 
           {/* the standard, said plainly — what the room is for */}
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(24px,3.2vw,42px)', lineHeight: 1.24, color: '#2b2723', margin: 'clamp(64px,11vh,130px) auto 0', maxWidth: '16ch', ...balance, ...surface() }}>A clearer decision.<br />A founder less alone.</p>
+
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(64px,11vh,130px) auto 0', maxWidth: '30ch', ...pretty, ...surface() }}>This room isn&rsquo;t here to tell you what Believe Studio has become.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.34, color: 'rgba(122,94,52,0.9)', margin: 'clamp(28px,5vh,52px) auto 0', maxWidth: '26ch', ...balance, ...surface() }}>It&rsquo;s here to invite you to help shape what it will become.</p>
 
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(48px,9vh,96px) auto 0', ...balance, ...surface() }}>The door is open.</p>
 
