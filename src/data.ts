@@ -427,8 +427,8 @@ export const EXPERIENCES: Record<string, Experience> = {
       { label: 'Meeting cadence', value: 'A live gathering each month, with the conversation continuing quietly between.' },
       { label: 'Community', value: 'A private space for members, open between gatherings, in your own time.' },
     ],
-    investment: '$995 / month',
-    investmentNote: 'An investment in the founder your company needs you to become.',
+    investment: 'By request',
+    investmentNote: 'A place in the Founder’s Room is requested through the House.',
     changesLead: 'Founders arrive carrying questions. They leave carrying clarity.',
     changes: [
       'I feel lighter.',
@@ -438,9 +438,9 @@ export const EXPERIENCES: Record<string, Experience> = {
     ],
     faqs: [
       { q: 'Is this coaching?', a: 'No. Coaching works on you; the Founder’s Room thinks with you. It’s a place to bring the real decision and find perspective before you make it.' },
-      { q: 'How often does the room meet?', a: 'The Founder’s Room gathers virtually on the third Thursday of every month, with conversations continuing between gatherings. A standing rhythm, because trust is built over time — not in a set number of sessions.' },
+      { q: 'How often does the room meet?', a: 'The Founder’s Room gathers as a curated Room, not a standing course to keep up with. When you request a place, the House shares the current gathering and its timing.' },
       { q: 'What kinds of decisions?', a: 'The ones that don’t belong in a boardroom — a pivot, a partnership, a hire, a season of doubt. The decisions that quietly shape the next chapter.' },
-      { q: 'How does it begin?', a: 'It begins with a private conversation — to understand the chapter you’re in, and whether this is the right room for it now.' },
+      { q: 'How does it begin?', a: 'It begins when you request a place. From there, the House opens the door — a welcome, and the current gathering. No long application, no sales call.' },
     ],
     joinLead: 'The room opens through conversation.',
     joinBody: 'We begin with The Founder Conversation so we can understand where you are, what you’re building, and whether this is the right room for you today.',

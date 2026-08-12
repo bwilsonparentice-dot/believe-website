@@ -15,7 +15,6 @@ import { LivingHouse } from './components/LivingHouse'
 import { Community } from './components/Community'
 
 // chapters
-import { FounderRoomChapter } from './chapters/FounderRoom'
 import { BlueprintChapter } from './chapters/Blueprint'
 import { TableChapter } from './chapters/Table'
 import { LibraryChapter } from './chapters/Library'
@@ -36,6 +35,8 @@ import { ArchiveCard } from './components/ArchiveCard'
 import { FieldNotesChapter } from './chapters/FieldNotes'
 import { HousesChapter } from './chapters/Houses'
 import { ReceiveKey } from './chapters/ReceiveKey'
+// NOTE: the legacy FounderRoomChapter (./chapters/FounderRoom) was removed — the
+// Founder's Room resolves to FoundersRoom via openDoorway('founders-room').
 
 type Phase = 'overture' | 'sketch' | 'prologue' | 'map'
 
@@ -49,7 +50,7 @@ interface State {
   activeDoorway: string | null
   hasKey: boolean
   pendingRoom: string | null
-  showHouses: boolean; showPeople: boolean; showStudio: boolean; showFounderRoom: boolean
+  showHouses: boolean; showPeople: boolean; showStudio: boolean
   showHouse: boolean; showWhyBelieve: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showStudioPage: boolean
@@ -131,7 +132,7 @@ function overlaySlugFromPath(pathname: string): string | null {
 
 // every overlay flag/doorway, closed — the neutral ground a route opens from
 const CLOSED_OVERLAYS: Partial<State> = {
-  showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showFounderRoom: false,
+  showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
   showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
   showDirectory: false, activeDoorway: null,
@@ -149,7 +150,7 @@ function makeInitialState(): State {
   const base: State = {
     phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: hasSeenPrologue(),
     activeId: null, activeDoorway: null, hasKey: false, pendingRoom: null,
-    showHouses: false, showPeople: false, showStudio: false, showFounderRoom: false,
+    showHouses: false, showPeople: false, showStudio: false,
     showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
     showStudioPage: false, showDirectory: false,
@@ -296,7 +297,7 @@ export class App extends React.Component<Record<string, never>, State> {
     if (e.key === 'Escape') {
       if (this.state.showDirectory) { this.setState({ showDirectory: false }); return }
       if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
-      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showFounderRoom', 'showStudio', 'showStudioPage', 'showPeople', 'showHouses', 'showKey']
+      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
     }
@@ -404,7 +405,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private closeDirectory = () => this.setState({ showDirectory: false })
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showFounderRoom: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showDirectory: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showDirectory: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -491,7 +492,6 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showPeople && <PeopleChapter ctx={this.ctx} />}
         {this.state.showStudio && <InResidenceChapter ctx={this.ctx} />}
         {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}
-        {this.state.showFounderRoom && <FounderRoomChapter ctx={this.ctx} />}
         {this.state.showStories && <StoriesChapter ctx={this.ctx} />}
         {this.state.showDirectory && <DirectoryOverlay ctx={this.ctx} onClose={this.closeDirectory} />}
       </>
