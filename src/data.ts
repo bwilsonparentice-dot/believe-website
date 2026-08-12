@@ -304,25 +304,6 @@ export const HOUSE_COLLECTION: FounderArtifact[] = [
   },
 ]
 
-export const FR_RHYTHM = [
-  { t: 'The weekly conversation', d: 'Ninety minutes to two hours, live. A different question each week — the same purpose always. No lecture, no slides. Just founders thinking out loud together.' },
-  { t: 'Founder hot seats', d: 'One founder, one real decision, the room’s full attention. Not advice given from above, but clarity found in the open.' },
-  { t: 'Founder Notes', d: 'After each gathering, the essence is written down and kept — a growing library of timeless insight rather than a feed to keep up with.' },
-  { t: 'The conversation continues', d: 'The best thinking rarely ends when the room does. Founders carry it on naturally, in their own time.' },
-]
-export const FR_MEMBERSHIP = [
-  'The handcrafted brass Founder Key, mailed as a welcome',
-  'Preferential pricing for every Founder’s Room gathering',
-  'Founder Notes, kept and added to over time',
-  'The Library and Field Notes',
-  'Invitations to member experiences',
-  'Priority access to future rooms and offerings',
-]
-export const FR_OUTCOMES = ['I feel lighter.', 'I can see more clearly.', 'I know my next step.', 'I remembered why I started.']
-export const FR_INCLUDES = [
-  'Your Believe Blueprint', 'Private strategy sessions', 'Founder decision support', 'Ongoing implementation guidance',
-  'Accountability', 'Access to resident expertise', 'Priority communication', 'Quarterly Blueprint refinement',
-]
 
 /**
  * EXPERIENCES — the dedicated editorial rooms behind each doorway.
