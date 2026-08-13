@@ -4,6 +4,7 @@ import type { Ctx } from '../lib/ctx'
 import { ChapterShell, ArchMark } from '../components/ChapterShell'
 import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
+import { HouseArch } from '../components/HouseArch'
 import { Correspondence } from '../components/Correspondence'
 import { EXPERIENCES, PHOTOS } from '../data'
 
@@ -76,17 +77,6 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
       {/* the room's light — soft, slowly drifting, never quite noticed */}
       <div aria-hidden="true" style={{ position: 'fixed', inset: '-20%', pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(42% 38% at 50% 6%, rgba(255,236,196,0.9), transparent 60%)', opacity: 0.66, animation: 'lightWander 90s ease-in-out infinite alternate' }} />
 
-      {/* the room itself — no explanation, only presence */}
-      <div style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', height: 'clamp(420px,72vh,800px)', overflow: 'hidden', ...surface('entry 0% cover 12%') }}>
-        <ImageSlot src={PHOTOS.founders} fit="cover" alt="The Founder’s Room — a quiet chair by a tall window in morning light" placeholder="a quiet chair by a tall window, morning light, only space to think" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'slowZoom 24s ease-out both' }} />
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(56% 52% at 34% 26%, rgba(255,226,178,0.34), transparent 68%)' }} />
-        {/* the room's light dissolving into the page — a short, low feather kept
-            near the very bottom (many stops, no hard band) so the photograph
-            holds its light and only the last strip settles into the page. The
-            final colour is the page ground exactly. */}
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.05) 0%, transparent 18%, transparent 72%, rgba(239,231,213,0.14) 84%, rgba(239,231,213,0.52) 94%, #efe7d5 100%)' }} />
-      </div>
-
       <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(104px,17vh,208px) 8vw clamp(90px,16vh,200px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* ── the heading ───────────────────────────────────────────────── */}
@@ -94,6 +84,18 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         <div style={{ ...label, marginBottom: '1.4em' }}>The most personal room in the house</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.45em' }}>The Founder’s Room</h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '22ch', ...balance }}>Every founder eventually needs a room like this.</p>
+
+        {/* ── the room, seen through an opening in the House ─────────────────
+            The photograph is no longer a full-width hero dissolving into the
+            page; it is framed in the canonical House arch, so the visitor feels
+            they are looking through a doorway into the room. The arch crop is
+            the transition — no cream fade beneath it. Kept large so it remains
+            an important destination, not a content card. */}
+        <div style={{ marginTop: 'clamp(56px,9.5vh,120px)', ...surface('entry 0% cover 16%') }}>
+          <HouseArch scale="standard" width="min(86vw,600px)">
+            <ImageSlot src={PHOTOS.founders} fit="cover" alt="The Founder’s Room — an arched corridor of the House in morning light, a linen curtain lifting in the breeze" placeholder="a sunlit arched corridor of the House, a linen curtain lifting in the breeze, morning light, only space to think" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: '52% 42%', animation: 'slowZoom 24s ease-out both' }} />
+          </HouseArch>
+        </div>
 
         {/* ── recognition — before any explanation, the room sees you ─────────
             Three quiet second-person lines name the weight a founder has
