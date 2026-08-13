@@ -77,13 +77,14 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
       <div aria-hidden="true" style={{ position: 'fixed', inset: '-20%', pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(42% 38% at 50% 6%, rgba(255,236,196,0.9), transparent 60%)', opacity: 0.66, animation: 'lightWander 90s ease-in-out infinite alternate' }} />
 
       {/* the room itself — no explanation, only presence */}
-      <div style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', height: 'clamp(380px,68vh,760px)', overflow: 'hidden', ...surface('entry 0% cover 12%') }}>
+      <div style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', height: 'clamp(420px,72vh,800px)', overflow: 'hidden', ...surface('entry 0% cover 12%') }}>
         <ImageSlot src={PHOTOS.founders} fit="cover" alt="The Founder’s Room — a quiet chair by a tall window in morning light" placeholder="a quiet chair by a tall window, morning light, only space to think" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'slowZoom 24s ease-out both' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(56% 52% at 34% 26%, rgba(255,226,178,0.34), transparent 68%)' }} />
-        {/* the room's light dissolving into the page — a long, gentle feather
-            (many stops, no hard band) so the seam reads as architecture, not an
-            interface fade. The final colour is the page ground exactly. */}
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.10) 0%, transparent 26%, transparent 52%, rgba(239,231,213,0.22) 70%, rgba(239,231,213,0.55) 84%, rgba(239,231,213,0.85) 94%, #efe7d5 100%)' }} />
+        {/* the room's light dissolving into the page — a short, low feather kept
+            near the very bottom (many stops, no hard band) so the photograph
+            holds its light and only the last strip settles into the page. The
+            final colour is the page ground exactly. */}
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.05) 0%, transparent 18%, transparent 72%, rgba(239,231,213,0.14) 84%, rgba(239,231,213,0.52) 94%, #efe7d5 100%)' }} />
       </div>
 
       <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(104px,17vh,208px) 8vw clamp(90px,16vh,200px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
@@ -166,9 +167,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.24, color: '#2b2723', margin: '0 auto', maxWidth: '18ch', ...balance, ...surface() }}>Every founder belongs to a room.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', margin: 'clamp(32px,5vh,56px) auto 0', ...surface() }}>Not a cohort.<br />Not a forum.<br /><span style={{ color: '#2b2723' }}>A room.</span></p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.4, color: '#2b2723', margin: 'clamp(52px,9vh,104px) auto 0', maxWidth: '20ch', ...balance, ...surface() }}>Eight brands. Ten founders. One table.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>The Founder’s Room gathers them around it&mdash; to work through what is actually in front of them, alongside people who understand what the decision carries.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.82)', margin: 'clamp(28px,4.5vh,48px) auto 0', maxWidth: '34ch', ...balance, ...surface() }}>Some brands are built by more than one person. Every one of them has a seat.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '36ch', ...pretty, ...surface() }}>In time, some founders will stay together for years. Some will return to guide the founders who come after them.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.72)', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '42ch', ...pretty, ...surface() }}>The Founder’s Room gathers them around one table to work through what is actually in front of them, alongside people who understand what the decision carries.</p>
 
           {/* the named Room — introduced quietly, as architecture, given room to breathe */}
           <div style={{ marginTop: 'clamp(90px,16vh,200px)' }}>
@@ -199,26 +198,12 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* ── questions ─────────────────────────────────────────────────── */}
-        <div style={{ marginTop: 'var(--space-lg)', maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', ...surface() }}>
-          <div style={{ ...label, marginBottom: 'clamp(40px,7vh,72px)' }}>Questions founders ask</div>
-          <Correspondence items={x.faqs} />
-        </div>
-
-        {/* ── beyond the room → the House — a late reveal, discovered rather
-            than sold. The Room is the signature gathering; the House is the
-            ongoing ecosystem it belongs to. Kept intriguing, never a membership
-            pitch, and its link stays subordinate to Request a Place below. */}
-        <div style={{ marginTop: 'var(--space-xl)', ...surface() }}>
-          <div style={{ ...label, marginBottom: '1.5em' }}>Beyond the room</div>
-          <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.4vw,76px)', lineHeight: 1.02, margin: '0 0 0.55em', color: '#2b2723' }}>The House</h3>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.78)', margin: '0 auto', maxWidth: '30ch', ...balance, ...surface() }}>One conversation can change a decision. But founders don&rsquo;t only need perspective for ninety minutes.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.86)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '34ch', ...pretty, ...surface() }}>The House is what happens between the Rooms &mdash; the relationships, the intelligence, the introductions, and the conversations that continue.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.5, color: '#2b2723', margin: 'clamp(44px,8vh,88px) auto 0', maxWidth: '24ch', ...balance, ...surface() }}>The Founder&rsquo;s Room is where founders gather.<br /><span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.9)' }}>The House is where founders belong.</span></p>
-          <El onClick={ctx.openHouse} style={{ display: 'inline-block', margin: 'clamp(40px,7vh,80px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 5, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.6)' }}>Step further into the House &rarr;</El>
-        </div>
-
-        {/* ── the invitation — the quietest on the website ──────────────── */}
+        {/* ── the invitation — the Founder's Room completes its own journey
+            here, before anything else is revealed. This is the primary action
+            of the page: the quiet close, "the door is open," and Request a
+            Place. A founder who is ready can act now, without first being taken
+            into the House. Given the most room to breathe on the page, and still
+            no louder than a door opening. */}
         <div style={{ marginTop: 'var(--space-xl)' }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: '0 auto', maxWidth: '30ch', ...pretty, ...surface('entry 2% cover 26%') }}>This room isn&rsquo;t here to tell you what Believe Studio has become.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.34, color: 'rgba(122,94,52,0.9)', margin: 'clamp(28px,5vh,52px) auto 0', maxWidth: '26ch', ...balance, ...surface() }}>It&rsquo;s here to invite you to help shape what it will become.</p>
@@ -235,6 +220,28 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           >
             Request a Place &rarr;
           </El>
+        </div>
+
+        {/* ── questions — now after the primary action. A founder who is ready
+            has already found the door; a founder still deciding reads on. Kept
+            editorial and restrained. */}
+        <div style={{ marginTop: 'var(--space-lg)', maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', ...surface() }}>
+          <div style={{ ...label, marginBottom: 'clamp(40px,7vh,72px)' }}>Questions founders ask</div>
+          <Correspondence items={x.faqs} />
+        </div>
+
+        {/* ── beyond the room → the House — the final, quiet doorway on the page,
+            discovered only after the Room's own story is complete and its
+            primary action is reached. Deliberately small and intriguing: the
+            gather/belong couplet, one supporting thought, a single subordinate
+            link. Not a second sales argument — the House page tells that story.
+            Its link stays quieter than Request a Place above. */}
+        <div style={{ marginTop: 'var(--space-lg)', ...surface() }}>
+          <div style={{ ...label, marginBottom: '1.5em' }}>Beyond the room</div>
+          <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.6vw,60px)', lineHeight: 1.04, margin: '0 0 0.6em', color: '#2b2723' }}>The House</h3>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.5, color: '#2b2723', margin: '0 auto', maxWidth: '24ch', ...balance, ...surface() }}>The Founder&rsquo;s Room is where founders gather.<br /><span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.9)' }}>The House is where founders belong.</span></p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.84)', margin: 'clamp(32px,5.5vh,60px) auto 0', maxWidth: '32ch', ...pretty, ...surface() }}>For founders who want the relationships, intelligence and conversation to continue beyond one Room.</p>
+          <El onClick={ctx.openHouse} style={{ display: 'inline-block', margin: 'clamp(38px,6.5vh,72px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 5, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.6)' }}>Step further into the House &rarr;</El>
         </div>
 
         <div style={{ marginTop: 'clamp(110px,20vh,220px)', textAlign: 'center' }}><RoomNav ctx={ctx} slug="founders-room" /></div>

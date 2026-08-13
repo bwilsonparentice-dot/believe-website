@@ -421,6 +421,7 @@ export const EXPERIENCES: Record<string, Experience> = {
       { q: 'Is this coaching?', a: 'No. Coaching works on you; the Founder’s Room thinks with you. It’s a place to bring the real decision and find perspective before you make it.' },
       { q: 'How often does the room meet?', a: 'The Founder’s Room gathers as a curated Room, not a standing course to keep up with. When you request a place, the House shares the current gathering and its timing.' },
       { q: 'What kinds of decisions?', a: 'The ones that don’t belong in a boardroom — a pivot, a partnership, a hire, a season of doubt. The decisions that quietly shape the next chapter.' },
+      { q: 'What if a brand has more than one founder?', a: 'Some brands are built by more than one person. Every one of them has a seat.' },
       { q: 'How does it begin?', a: 'It begins when you request a place. From there, the House opens the door — a welcome, and the current gathering. No long application, no sales call.' },
     ],
     joinLead: 'The room opens through conversation.',
