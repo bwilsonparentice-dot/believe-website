@@ -484,7 +484,7 @@ export class App extends React.Component<Record<string, never>, State> {
           ? <FoundersRoom ctx={this.ctx} />
           : this.state.activeDoorway === 'visionary-collective'
           ? <VisionaryCollectiveChapter ctx={this.ctx} />
-          : this.state.activeDoorway && <DoorwayChapter ctx={this.ctx} id={this.state.activeDoorway} />}
+          : this.state.activeDoorway && <DoorwayChapter key={this.state.activeDoorway} ctx={this.ctx} id={this.state.activeDoorway} />}
         {this.state.showAdvisory && <AdvisoryChapter ctx={this.ctx} />}
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
         {this.state.showHouse && <HouseChapter ctx={this.ctx} />}
