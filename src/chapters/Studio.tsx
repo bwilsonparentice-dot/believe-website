@@ -118,32 +118,8 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
 
       <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: '0 7vw clamp(80px,15vh,190px)', textAlign: 'center', color: '#2b2723' }}>
 
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.78)', margin: 'clamp(44px,8vh,90px) auto 0', maxWidth: '26ch', ...balance, ...surface() }}>Someone stepped away five minutes ago. The work is still warm.</p>
-
-        {/* A shelf that was here long before this visitor — one worn notebook a
-            year, nothing to open, no label. They only half-register it, and feel
-            the room has been kept for years. Evidence of history, not a feature. */}
-        <div aria-hidden="true" style={{ margin: 'clamp(76px,13vh,168px) auto 0', width: 'min(90vw,432px)', ...surface() }}>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center', gap: 'clamp(5px,1vw,9px)', height: 'clamp(116px,19vh,182px)' }}>
-            {[
-              { y: '2022', c: '#6f5836', h: 0.9 },
-              { y: '2023', c: '#7c4b38', h: 1 },
-              { y: '2024', c: '#4f5a44', h: 0.86 },
-              { y: '2025', c: '#586475', h: 0.96 },
-              { y: '2026', c: '#8a6a3d', h: 0.92 },
-            ].map((b, i) => (
-              <div key={b.y} style={{ position: 'relative', width: 'clamp(30px,5vw,44px)', height: `${b.h * 100}%`, background: b.c, backgroundImage: 'linear-gradient(90deg, rgba(0,0,0,0.24), rgba(0,0,0,0) 20%, rgba(255,255,255,0.06) 50%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.17))', borderRadius: '3px 3px 1px 1px', boxShadow: 'inset 0 2px 0 rgba(255,255,255,0.07), inset 0 -7px 11px -7px rgba(0,0,0,0.42)', transform: `rotate(${i % 2 ? '0.6deg' : '-0.5deg'})`, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                <span style={{ marginBottom: '1em', fontFamily: sans, fontWeight: 400, fontSize: 'clamp(9px,1.1vw,11px)', letterSpacing: '0.1em', color: 'rgba(244,236,222,0.64)' }}>{b.y}</span>
-                <span style={{ position: 'absolute', top: '15%', left: 0, right: 0, height: 1, background: 'rgba(0,0,0,0.18)' }} />
-                <span style={{ position: 'absolute', bottom: '30%', left: 0, right: 0, height: 1, background: 'rgba(0,0,0,0.14)' }} />
-              </div>
-            ))}
-          </div>
-          <div style={{ height: 3, width: '108%', marginLeft: '-4%', background: 'linear-gradient(180deg, rgba(122,94,52,0.42), rgba(122,94,52,0.12))', borderRadius: 1 }} />
-        </div>
-
         {/* ── why the Studio exists — before any project ────────────────── */}
-        <div style={{ marginTop: 'clamp(120px,22vh,280px)' }}>
+        <div style={{ marginTop: 'clamp(110px,20vh,240px)' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,4.2vw,60px)', lineHeight: 1.14, color: '#2b2723', margin: '0 auto', maxWidth: '18ch', ...balance, ...surface('entry 0% cover 24%') }}>We don’t build because we have ideas. We build because founders keep asking the same questions.</p>
           <div style={{ marginTop: 'clamp(56px,10vh,120px)', display: 'flex', flexDirection: 'column', gap: 'clamp(18px,3vh,30px)', ...surface() }}>
             {PHILOSOPHY.map((p, i) => (
