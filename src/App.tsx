@@ -28,6 +28,7 @@ import { StoriesChapter } from './chapters/Stories'
 import { HouseChapter } from './chapters/House'
 import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
+import { Foyer } from './components/Foyer'
 import { DoorwayChapter } from './chapters/Doorway'
 import { BlueprintFolio } from './chapters/BlueprintFolio'
 import { FoundersRoom } from './chapters/FoundersRoom'
@@ -456,6 +457,13 @@ export class App extends React.Component<Record<string, never>, State> {
 
   // ── render ───────────────────────────────────────────────────────────
   render() {
+    // Pass 2 — the Foyer behind a flag: render it in isolation for review
+    // (?foyer). The doors are inert here; Pass 3 makes it the front door and
+    // wires them (Work with Believe → the Work page; Step inside → the ritual).
+    if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('foyer')) {
+      return <Foyer />
+    }
+
     const { phase, opening } = this.state
     const alive = motionAllowed(LIGHT_MOTION)
     const sunShiftAnim = alive ? 'sunShift 170s ease-in-out infinite alternate' : 'none'
