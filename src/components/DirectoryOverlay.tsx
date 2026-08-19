@@ -57,8 +57,6 @@ export function DirectoryOverlay({ ctx, onClose }: { ctx: Ctx; onClose: () => vo
             Work with Believe &rarr;
           </El>
         </div>
-
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(246,239,228,0.4)', textAlign: 'center', margin: 'clamp(20px,3vh,34px) 0 0' }}>The house is always open.</p>
       </div>
 
       {/* the brass × — close and return to where you were */}

@@ -30,9 +30,9 @@ const linkBase: CSSProperties = {
   transition: 'color 360ms ease', lineHeight: 1.5,
 }
 
-function NavLink({ onClick, children, align = 'center' }: { onClick: Handler; children: ReactNode; align?: CSSProperties['textAlign'] }) {
+function NavLink({ onClick, children, align = 'center', dim = false }: { onClick: Handler; children: ReactNode; align?: CSSProperties['textAlign']; dim?: boolean }) {
   return (
-    <El as="button" onClick={onClick} style={{ ...linkBase, textAlign: align }} hover={{ color: ink }}>{children}</El>
+    <El as="button" onClick={onClick} style={{ ...linkBase, textAlign: align, ...(dim ? { fontSize: 10, letterSpacing: '0.24em', color: 'rgba(122,94,52,0.62)' } : {}) }} hover={{ color: ink }}>{children}</El>
   )
 }
 
@@ -41,18 +41,25 @@ export function RoomNav({ ctx, slug }: { ctx: Ctx; slug: string }) {
   const prev = i > 0 ? WALK[i - 1] : null
   const next = i >= 0 && i < WALK.length - 1 ? WALK[i + 1] : null
   return (
-    <nav aria-label="Move through the House" style={{ width: 'min(760px, 92vw)', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.4em', flexWrap: 'wrap' }}>
-      <div style={{ flex: '1 1 38%', textAlign: 'left', minWidth: 150 }}>
-        {prev && <NavLink onClick={prev.open(ctx)} align="left">&larr;&nbsp;{prev.name}</NavLink>}
+    <nav aria-label="Move through the House" style={{ width: 'min(760px, 92vw)', margin: '0 auto' }}>
+      {/* primary spatial navigation — the previous and next rooms. This is the
+          room-to-room hierarchy and it never bends around anything else. */}
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em 2em', flexWrap: 'wrap' }}>
+        <div style={{ textAlign: 'left' }}>
+          {prev && <NavLink onClick={prev.open(ctx)} align="left">&larr;&nbsp;{prev.name}</NavLink>}
+        </div>
+        <div style={{ textAlign: 'right', marginLeft: 'auto' }}>
+          {next
+            ? <NavLink onClick={next.open(ctx)} align="right">{next.name}&nbsp;&rarr;</NavLink>
+            : <NavLink onClick={ctx.toBuilding} align="right">Continue through the House&nbsp;&rarr;</NavLink>}
+        </div>
       </div>
-      <div style={{ flex: '0 0 auto', textAlign: 'center', display: 'inline-flex', alignItems: 'baseline', gap: 'clamp(0.9em,2vw,1.4em)' }}>
-        <NavLink onClick={ctx.openWork}>Work with Believe</NavLink>
-        <NavLink onClick={ctx.openDirectory}>Directory</NavLink>
-      </div>
-      <div style={{ flex: '1 1 38%', textAlign: 'right', minWidth: 150 }}>
-        {next
-          ? <NavLink onClick={next.open(ctx)} align="right">{next.name}&nbsp;&rarr;</NavLink>
-          : <NavLink onClick={ctx.toBuilding} align="right">Continue through the House&nbsp;&rarr;</NavLink>}
+      {/* a quiet secondary line — the plain commercial door and the House
+          index, kept subordinate so the spatial navigation stays primary. */}
+      <div style={{ marginTop: 'clamp(20px,3.4vh,34px)', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: '0.5em 1.1em' }}>
+        <NavLink onClick={ctx.openWork} dim>Work with Believe</NavLink>
+        <span aria-hidden="true" style={{ color: 'rgba(122,94,52,0.38)', fontSize: 10 }}>&middot;</span>
+        <NavLink onClick={ctx.openDirectory} dim>Directory</NavLink>
       </div>
     </nav>
   )
