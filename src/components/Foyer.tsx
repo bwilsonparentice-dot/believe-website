@@ -54,7 +54,7 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
         {/* the sentence that orients — the plainest, warmest statement on the
             site, and the largest thing in the room */}
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,33px)', lineHeight: 1.42, color: '#2b2723', margin: 'clamp(38px,6.2vh,80px) auto 0', maxWidth: '34ch', ...balance }}>
-          Believe Studio works alongside founders to clarify the brand, build demand, grow the business &mdash; and navigate the decisions that shape what comes next.
+          Believe Studio works alongside founders to clarify the brand, build demand, grow the business, and navigate the decisions that shape what comes next.
         </p>
 
         {/* the three areas — engraved into the wall */}
