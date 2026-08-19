@@ -45,7 +45,8 @@ export function RoomNav({ ctx, slug }: { ctx: Ctx; slug: string }) {
       <div style={{ flex: '1 1 38%', textAlign: 'left', minWidth: 150 }}>
         {prev && <NavLink onClick={prev.open(ctx)} align="left">&larr;&nbsp;{prev.name}</NavLink>}
       </div>
-      <div style={{ flex: '0 0 auto', textAlign: 'center' }}>
+      <div style={{ flex: '0 0 auto', textAlign: 'center', display: 'inline-flex', alignItems: 'baseline', gap: 'clamp(0.9em,2vw,1.4em)' }}>
+        <NavLink onClick={ctx.openWork}>Work with Believe</NavLink>
         <NavLink onClick={ctx.openDirectory}>Directory</NavLink>
       </div>
       <div style={{ flex: '1 1 38%', textAlign: 'right', minWidth: 150 }}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { stop } from '../lib/El'
+import { El, stop } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { DirectoryPlaque } from './DirectoryPlaque'
 
@@ -43,6 +43,20 @@ export function DirectoryOverlay({ ctx, onClose }: { ctx: Ctx; onClose: () => vo
         </div>
 
         <DirectoryPlaque ctx={ctx} onNavigate={onClose} />
+
+        {/* the plain door, offered in ordinary language beside the engraved
+            rooms — so a founder looking for how to work with us never has to
+            decode a House term to find it. */}
+        <div style={{ textAlign: 'center', margin: 'clamp(24px,3.6vh,42px) 0 0' }}>
+          <El
+            as="button"
+            onClick={() => { ctx.openWork(); onClose() }}
+            style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.7)', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(236,209,147,0.4)', paddingBottom: 5, cursor: 'pointer', transition: 'color 350ms ease, border-color 350ms ease' }}
+            hover={{ color: '#fff', borderColor: 'rgba(236,209,147,0.85)' }}
+          >
+            Work with Believe &rarr;
+          </El>
+        </div>
 
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(246,239,228,0.4)', textAlign: 'center', margin: 'clamp(20px,3vh,34px) 0 0' }}>The house is always open.</p>
       </div>

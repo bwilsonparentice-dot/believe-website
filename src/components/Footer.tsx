@@ -51,7 +51,7 @@ export function Footer({ ctx }: { ctx: Ctx }) {
       <div style={{ maxWidth: 1120, margin: 'clamp(96px,16vh,200px) auto 0', paddingTop: 'clamp(28px,4.5vh,52px)', borderTop: '1px solid rgba(246,239,228,0.1)', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em 2.4em' }}>
         <span style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 15, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.7)' }}>Believe Studio</span>
         <nav aria-label="Site information" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6em 1.9em', alignItems: 'baseline' }}>
-          <El as="button" onClick={ctx.openWork} style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.55)', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', transition: 'color 350ms ease' }} hover={{ color: 'rgba(246,239,228,0.9)' }}>Contact</El>
+          <El as="button" onClick={ctx.openWork} style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.55)', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', transition: 'color 350ms ease' }} hover={{ color: 'rgba(246,239,228,0.9)' }}>Work with Believe</El>
           {['Privacy', 'Terms', 'LinkedIn', 'Accessibility'].map((t) => (
             <span key={t} style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.4)' }}>{t}</span>
           ))}

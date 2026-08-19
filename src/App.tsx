@@ -661,19 +661,35 @@ export class App extends React.Component<Record<string, never>, State> {
             Threshold stay ceremonial. Opens the plaque as an overlay from
             anywhere; returns the visitor to exactly where they were. */}
         {this.state.roomsRevealed && (
-          <El
-            as="button"
-            onClick={this.openDirectory}
-            aria-label="Open the House Directory"
-            title="Open the House Directory"
-            style={{ position: 'fixed', top: 'clamp(16px,3vh,28px)', right: 'clamp(16px,3vw,34px)', zIndex: 22, display: 'inline-flex', alignItems: 'center', gap: '0.7em', padding: '9px 14px', borderRadius: 3, border: '1px solid rgba(236,209,147,0.34)', background: 'rgba(20,15,9,0.28)', cursor: 'pointer', WebkitBackdropFilter: 'blur(3px)', backdropFilter: 'blur(3px)', transition: 'border-color 350ms ease, background 350ms ease' }}
-            hover={{ borderColor: 'rgba(236,209,147,0.72)', background: 'rgba(20,15,9,0.42)' }}
-          >
-            <svg width="13" height="15" viewBox="0 0 48 56" fill="none" aria-hidden="true" style={{ display: 'block' }}>
-              <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="rgba(236,209,147,0.9)" strokeWidth="3" strokeLinecap="round" />
-            </svg>
-            <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.36em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.82)' }}>Directory</span>
-          </El>
+          <div style={{ position: 'fixed', top: 'clamp(16px,3vh,28px)', right: 'clamp(16px,3vw,34px)', zIndex: 22, display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center', gap: 'clamp(8px,1.1vw,14px)', maxWidth: 'calc(100vw - clamp(32px,6vw,68px))' }}>
+            {/* the plain door — a founder looking for how to work with us finds it
+                immediately, without decoding House language. Kept quiet: same
+                muted-brass pill, text only, so the Directory (with its arch mark)
+                stays the primary House control beside it. */}
+            <El
+              as="button"
+              onClick={this.ctx.openWork}
+              aria-label="Work with Believe"
+              title="Work with Believe"
+              style={{ display: 'inline-flex', alignItems: 'center', padding: '9px 14px', borderRadius: 3, border: '1px solid rgba(236,209,147,0.34)', background: 'rgba(20,15,9,0.28)', cursor: 'pointer', WebkitBackdropFilter: 'blur(3px)', backdropFilter: 'blur(3px)', transition: 'border-color 350ms ease, background 350ms ease' }}
+              hover={{ borderColor: 'rgba(236,209,147,0.72)', background: 'rgba(20,15,9,0.42)' }}
+            >
+              <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.82)' }}>Work with Believe</span>
+            </El>
+            <El
+              as="button"
+              onClick={this.openDirectory}
+              aria-label="Open the House Directory"
+              title="Open the House Directory"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.7em', padding: '9px 14px', borderRadius: 3, border: '1px solid rgba(236,209,147,0.34)', background: 'rgba(20,15,9,0.28)', cursor: 'pointer', WebkitBackdropFilter: 'blur(3px)', backdropFilter: 'blur(3px)', transition: 'border-color 350ms ease, background 350ms ease' }}
+              hover={{ borderColor: 'rgba(236,209,147,0.72)', background: 'rgba(20,15,9,0.42)' }}
+            >
+              <svg width="13" height="15" viewBox="0 0 48 56" fill="none" aria-hidden="true" style={{ display: 'block' }}>
+                <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="rgba(236,209,147,0.9)" strokeWidth="3" strokeLinecap="round" />
+              </svg>
+              <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.36em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.82)' }}>Directory</span>
+            </El>
+          </div>
         )}
 
         {this.rooms.journey.map((room, i) => this.renderRoomSection(room, i, sunShiftAnim, alive))}
