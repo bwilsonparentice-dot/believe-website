@@ -72,8 +72,9 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
           Because you can&rsquo;t separate the company from the person building it.
         </p>
 
-        {/* the two doors */}
-        <div style={{ margin: 'clamp(44px,7.5vh,96px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
+        {/* the two doors — held a touch closer to the composition so they read
+            as part of the Foyer rather than stranded near the bottom edge */}
+        <div style={{ margin: 'clamp(36px,5.5vh,74px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
           <El as="button" onClick={onWork} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Work with Believe &rarr;</El>
           <El as="button" onClick={onStepInside} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Step inside the House &rarr;</El>
         </div>

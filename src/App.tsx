@@ -183,6 +183,11 @@ export class App extends React.Component<Record<string, never>, State> {
   private tAuto?: ReturnType<typeof setTimeout>
   private tRoom?: ReturnType<typeof setTimeout>
   private tBird?: ReturnType<typeof setTimeout>
+  // Pass 2 — the Foyer behind the ?foyer flag. Detected once, at construction,
+  // and kept stable so a URL rewrite can never drop it. In Foyer mode the whole
+  // entry lifecycle is skipped (no timers, no auto-advance, no history rewrite),
+  // so the Foyer is a permanent front door: it stays until the visitor chooses.
+  private foyerMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('foyer')
   private pending = false
   private leafPlayed = false
   // routing: the overlay slug currently reflected in the URL, and a guard so
@@ -227,6 +232,9 @@ export class App extends React.Component<Record<string, never>, State> {
 
   // ── lifecycle ──────────────────────────────────────────────────────────
   componentDidMount() {
+    // Foyer mode: no listeners, no timers, no URL rewrite — nothing that could
+    // advance the screen. The visitor stays on the Foyer until they choose.
+    if (this.foyerMode) return
     try { if (localStorage.getItem('bs_key') === '1') this.setState({ hasKey: true }) } catch { /* ignore */ }
     window.addEventListener('keydown', this.onKey)
     window.addEventListener('pointerdown', this.onDown)
@@ -458,9 +466,10 @@ export class App extends React.Component<Record<string, never>, State> {
   // ── render ───────────────────────────────────────────────────────────
   render() {
     // Pass 2 — the Foyer behind a flag: render it in isolation for review
-    // (?foyer). The doors are inert here; Pass 3 makes it the front door and
-    // wires them (Work with Believe → the Work page; Step inside → the ritual).
-    if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('foyer')) {
+    // (?foyer). It never auto-advances (see componentDidMount). The doors are
+    // inert here; Pass 3 makes it the front door and wires them (Work with
+    // Believe → the Work page; Step inside → the entrance ritual).
+    if (this.foyerMode) {
       return <Foyer />
     }
 
