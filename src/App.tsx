@@ -187,7 +187,10 @@ export class App extends React.Component<Record<string, never>, State> {
   // and kept stable so a URL rewrite can never drop it. In Foyer mode the whole
   // entry lifecycle is skipped (no timers, no auto-advance, no history rewrite),
   // so the Foyer is a permanent front door: it stays until the visitor chooses.
-  private foyerMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('foyer')
+  private foyerMode = typeof window !== 'undefined' && (
+    new URLSearchParams(window.location.search).has('foyer') ||
+    /^\/foyer\/?$/.test(window.location.pathname)
+  )
   private pending = false
   private leafPlayed = false
   // routing: the overlay slug currently reflected in the URL, and a guard so
