@@ -17,9 +17,9 @@ const engrave: CSSProperties = {
 // a door, not a button — the same quiet underlined way out used elsewhere in
 // the House (Request a Place, Step further into the House).
 const door: CSSProperties = {
-  fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase',
-  color: 'rgba(43,39,35,0.74)', background: 'transparent', border: 'none',
-  borderBottom: '1px solid rgba(122,94,52,0.45)', padding: '0 0 6px', cursor: 'pointer',
+  fontFamily: sans, fontWeight: 400, fontSize: 13, letterSpacing: '0.32em', textTransform: 'uppercase',
+  color: 'rgba(43,39,35,0.9)', background: 'transparent', border: 'none',
+  borderBottom: '1px solid rgba(122,94,52,0.6)', padding: '0 0 7px', cursor: 'pointer',
   textDecoration: 'none', transition: 'color 500ms ease, border-color 500ms ease',
 }
 
@@ -57,7 +57,7 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
         {/* the plain answer to "what is this?" — the most confident line in the
             room, and the fastest thing to read */}
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.5vw,48px)', lineHeight: 1.12, color: '#2b2723', margin: 'clamp(40px,6.5vh,86px) auto 0', maxWidth: '30ch', ...balance }}>
-          We help founder-led brands grow.
+          {'We help founder‑led brands grow.'}
         </p>
 
         {/* the disciplines — engraved into the wall, not displayed as offerings */}
@@ -71,7 +71,7 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
         </div>
 
         {/* how we help — plain and confident, not poetic */}
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(30px,5vh,58px) auto 0', maxWidth: '34ch', ...balance }}>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(30px,5vh,58px) auto 0', maxWidth: '40ch', ...balance }}>
           We work alongside founders to solve what&rsquo;s stuck, uncover opportunities others miss, and help make the next move happen.
         </p>
 
