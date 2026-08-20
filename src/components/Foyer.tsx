@@ -29,13 +29,16 @@ const door: CSSProperties = {
  * Not a homepage, not a hero, not a services page, not a landing page: the
  * front room, where a founder arrives and, within a breath, understands where
  * they are and sees the two ways in. Clarity first; depth second. Deliberately
- * almost empty — one sentence, three areas engraved into the architecture, one
- * quiet line, and two doors. It reuses the House's own grammar (Cormorant,
- * cream, the brass arch mark, the engraved principles) rather than inventing a
- * new visual language.
+ * almost empty — a plain confident line, four disciplines engraved into the
+ * architecture, one supporting sentence, two doors, and a quiet founder-first
+ * inscription beneath the choices. It reuses the House's own grammar
+ * (Cormorant, cream, the brass arch mark, the engraved principles) rather than
+ * inventing a new visual language. The words are direct; the room is what
+ * whispers.
  *
- * Pass 2: rendered in isolation behind the ?foyer flag for review. The doors
- * are inert here on purpose — wiring them into the live entrance is Pass 3.
+ * Rendered behind the ?foyer flag (or /foyer) for review; it never
+ * auto-advances. The doors are inert here — wiring them into the live entrance
+ * is a later pass.
  */
 export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepInside?: () => void }) {
   return (
@@ -51,15 +54,15 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
         <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(27px,3.4vw,44px)', letterSpacing: '0.14em', lineHeight: 1 }}>Believe Studio</div>
         <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginTop: '1.3em' }}>A House for Founders</div>
 
-        {/* the sentence that orients — the plainest, warmest statement on the
-            site, and the largest thing in the room */}
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,33px)', lineHeight: 1.42, color: '#2b2723', margin: 'clamp(38px,6.2vh,80px) auto 0', maxWidth: '34ch', ...balance }}>
-          Believe Studio works alongside founders to clarify the brand, build demand, grow the business, and navigate the decisions that shape what comes next.
+        {/* the plain answer to "what is this?" — the most confident line in the
+            room, and the fastest thing to read */}
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.5vw,48px)', lineHeight: 1.12, color: '#2b2723', margin: 'clamp(40px,6.5vh,86px) auto 0', maxWidth: '30ch', ...balance }}>
+          We help founder-led brands grow.
         </p>
 
-        {/* the three areas — engraved into the wall */}
-        <div style={{ margin: 'clamp(38px,6vh,74px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(0.7em,2.2vw,2em)' }}>
-          {['Brand & Positioning', 'Marketing & Demand', 'Retail & Growth'].map((t, i) => (
+        {/* the disciplines — engraved into the wall, not displayed as offerings */}
+        <div style={{ margin: 'clamp(34px,5.6vh,68px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(0.7em,2.4vw,2.2em)' }}>
+          {['Brand', 'Sales', 'Retail', 'Marketing'].map((t, i) => (
             <React.Fragment key={t}>
               {i > 0 && <span aria-hidden="true" style={{ color: 'rgba(122,94,52,0.4)', fontSize: 11 }}>&middot;</span>}
               <span style={engrave}>{t}</span>
@@ -67,17 +70,22 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
           ))}
         </div>
 
-        {/* the founder spine — one quiet line */}
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', margin: 'clamp(30px,5vh,60px) auto 0', maxWidth: '30ch', ...balance }}>
-          Because you can&rsquo;t separate the company from the person building it.
+        {/* how we help — plain and confident, not poetic */}
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(30px,5vh,58px) auto 0', maxWidth: '34ch', ...balance }}>
+          We work alongside founders to solve what&rsquo;s stuck, uncover opportunities others miss, and help make the next move happen.
         </p>
 
-        {/* the two doors — held a touch closer to the composition so they read
-            as part of the Foyer rather than stranded near the bottom edge */}
-        <div style={{ margin: 'clamp(36px,5.5vh,74px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
+        {/* the two choices — the Foyer's only real decision */}
+        <div style={{ margin: 'clamp(40px,6.5vh,86px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
           <El as="button" onClick={onWork} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Work with Believe &rarr;</El>
-          <El as="button" onClick={onStepInside} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Step inside the House &rarr;</El>
+          <El as="button" onClick={onStepInside} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Explore the House &rarr;</El>
         </div>
+
+        {/* the founder-first distinction — a quiet inscription beneath the
+            choices, so it never delays the clarity or the decision above it */}
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.6vw,20px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.66)', margin: 'clamp(34px,5.5vh,68px) auto 0', maxWidth: '30ch', ...balance }}>
+          Because you can&rsquo;t separate the company from the person building it.
+        </p>
       </div>
     </div>
   )
