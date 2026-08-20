@@ -102,6 +102,7 @@ const DOORWAY_SLUG: Record<string, string> = {
   'visionary-collective': 'visionary-collective',
 }
 const FLAG_SLUG: Partial<Record<keyof State, string>> = {
+  showWork: 'work',
   showStudioPage: 'studio',
   showStudio: 'in-residence',
   showLibrary: 'library',
