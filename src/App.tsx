@@ -172,8 +172,6 @@ function makeInitialState(): State {
   const slug = overlaySlugFromPath(path)
   if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) }
   if (BUILDING_ANCHORS.has(rawPath(path))) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
-  // a returning visitor skips the cinematic arrival and lands on the Foyer
-  if (hasVisited()) return { ...base, phase: 'foyer' }
   return base
 }
 
