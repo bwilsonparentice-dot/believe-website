@@ -39,7 +39,7 @@ import { ReceiveKey } from './chapters/ReceiveKey'
 // NOTE: the legacy FounderRoomChapter (./chapters/FounderRoom) was removed — the
 // Founder's Room resolves to FoundersRoom via openDoorway('founders-room').
 
-type Phase = 'overture' | 'sketch' | 'prologue' | 'map'
+type Phase = 'overture' | 'sketch' | 'foyer' | 'prologue' | 'map'
 
 interface State {
   phase: Phase
@@ -86,6 +86,14 @@ function rememberPrologueSeen() {
 const VISITED_KEY = 'believe.visited'
 function rememberVisited() {
   try { localStorage.setItem(VISITED_KEY, '1') } catch { /* ignore */ }
+}
+function hasVisited(): boolean {
+  try { return typeof localStorage !== 'undefined' && localStorage.getItem(VISITED_KEY) === '1' } catch { return false }
+}
+// The Foyer as a direct destination — /foyer or ?foyer opens it straight away.
+function isFoyerRoute(): boolean {
+  if (typeof window === 'undefined') return false
+  try { return new URLSearchParams(window.location.search).has('foyer') || /^\/foyer\/?$/.test(window.location.pathname) } catch { return false }
 }
 
 // ── shareable routes ────────────────────────────────────────────────────────
@@ -160,9 +168,12 @@ function makeInitialState(): State {
   }
   if (typeof window === 'undefined') return base
   const path = window.location.pathname
+  if (isFoyerRoute()) return { ...base, phase: 'foyer' }
   const slug = overlaySlugFromPath(path)
   if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) }
   if (BUILDING_ANCHORS.has(rawPath(path))) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
+  // a returning visitor skips the cinematic arrival and lands on the Foyer
+  if (hasVisited()) return { ...base, phase: 'foyer' }
   return base
 }
 
@@ -184,14 +195,6 @@ export class App extends React.Component<Record<string, never>, State> {
   private tAuto?: ReturnType<typeof setTimeout>
   private tRoom?: ReturnType<typeof setTimeout>
   private tBird?: ReturnType<typeof setTimeout>
-  // Pass 2 — the Foyer behind the ?foyer flag. Detected once, at construction,
-  // and kept stable so a URL rewrite can never drop it. In Foyer mode the whole
-  // entry lifecycle is skipped (no timers, no auto-advance, no history rewrite),
-  // so the Foyer is a permanent front door: it stays until the visitor chooses.
-  private foyerMode = typeof window !== 'undefined' && (
-    new URLSearchParams(window.location.search).has('foyer') ||
-    /^\/foyer\/?$/.test(window.location.pathname)
-  )
   private pending = false
   private leafPlayed = false
   // routing: the overlay slug currently reflected in the URL, and a guard so
@@ -236,9 +239,6 @@ export class App extends React.Component<Record<string, never>, State> {
 
   // ── lifecycle ──────────────────────────────────────────────────────────
   componentDidMount() {
-    // Foyer mode: no listeners, no timers, no URL rewrite — nothing that could
-    // advance the screen. The visitor stays on the Foyer until they choose.
-    if (this.foyerMode) return
     try { if (localStorage.getItem('bs_key') === '1') this.setState({ hasKey: true }) } catch { /* ignore */ }
     window.addEventListener('keydown', this.onKey)
     window.addEventListener('pointerdown', this.onDown)
@@ -253,15 +253,15 @@ export class App extends React.Component<Record<string, never>, State> {
       setTimeout(() => this.scrollToWall(), 320)
     }
 
-    // the Door ritual only runs when we actually begin at the Door
-    if (!deepLinked) {
+    // the arrival ritual runs only when we actually begin at the Door (first visit)
+    if (this.state.phase === 'overture') {
       // the arrival plays hands-free, unhurried — the slowness is part of the
       // emotional experience, so we let it breathe. The faint "Step inside" cue
       // (below) is what reassures a first-time visitor the screen is theirs to
       // touch, without shortening the moment.
-      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 13000)
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 2600)
       // the bird finishes crossing and perches in the olive tree (Scene 2)
-      this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
+      this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 2000)
     }
   }
   componentDidUpdate(_p: Record<string, never>, prev: State) {
@@ -341,23 +341,25 @@ export class App extends React.Component<Record<string, never>, State> {
       this.pending = false
       this.setState({ opening: true })
       if (this.tAccept) clearTimeout(this.tAccept)
-      this.tAccept = setTimeout(() => this.toSketch(), 3200)
+      this.tAccept = setTimeout(() => this.toSketch(), 1000)
     }, 280) // Scene 5 — nothing happens immediately; ~280ms later the handle turns
   }
   private skip = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
     if (this.tAccept) clearTimeout(this.tAccept)
-    rememberPrologueSeen(); rememberVisited()
+    if (this.tDoor) clearTimeout(this.tDoor)
+    if (this.tEnter) clearTimeout(this.tEnter)
+    rememberVisited()
     this.audio.fadeAmbient(1.4)
-    this.setState({ phase: 'map', opening: false, prologueSeen: true })
+    this.setState({ phase: 'foyer', opening: false })
   }
   private toSketch = () => {
     this.setState({ phase: 'sketch', activeId: null })
     this.audio.resume(); this.audio.startAmbient()
     if (this.tDoor) clearTimeout(this.tDoor)
-    this.tDoor = setTimeout(() => { if (this.state.phase === 'sketch') this.audio.doorOpen() }, 5500)
+    this.tDoor = setTimeout(() => { if (this.state.phase === 'sketch') this.audio.doorOpen() }, 1400)
     if (this.tEnter) clearTimeout(this.tEnter)
-    this.tEnter = setTimeout(() => { if (this.state.phase === 'sketch') this.enterBuilding() }, 8200)
+    this.tEnter = setTimeout(() => { if (this.state.phase === 'sketch') this.toFoyer() }, 2300)
   }
   private enterBuilding = () => {
     if (this.tEnter) clearTimeout(this.tEnter)
@@ -372,6 +374,20 @@ export class App extends React.Component<Record<string, never>, State> {
     if (this.tWelcome) clearTimeout(this.tWelcome)
     this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
+  // ── the Foyer — the hard stop after the cinematic arrival ──────────────
+  private toFoyer = () => {
+    if (this.tEnter) clearTimeout(this.tEnter)
+    if (this.tDoor) clearTimeout(this.tDoor)
+    rememberVisited() // the cinematic arrival is experienced once
+    this.audio.fadeAmbient(1.8)
+    this.setState({ phase: 'foyer', opening: false })
+  }
+  // Explore the House — the visitor chooses depth: continue exactly as the site
+  // does today (the Prologue on the first visit, then the rooms).
+  private foyerToExplore = (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    this.enterBuilding()
+  }
   private replay = () => {
     this.audio.fadeAmbient(1)
     this.setState({ ...this.closedChapters(), phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false, prologueSeen: false } as unknown as Pick<State, keyof State>)
@@ -381,7 +397,7 @@ export class App extends React.Component<Record<string, never>, State> {
       try { window.history.pushState({ slug: null }, '', '/') } catch { /* ignore */ }
     }
     if (this.tBird) clearTimeout(this.tBird)
-    this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 6600)
+    this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 2000)
   }
   private revealRooms = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -469,14 +485,6 @@ export class App extends React.Component<Record<string, never>, State> {
 
   // ── render ───────────────────────────────────────────────────────────
   render() {
-    // Pass 2 — the Foyer behind a flag: render it in isolation for review
-    // (?foyer). It never auto-advances (see componentDidMount). The doors are
-    // inert here; Pass 3 makes it the front door and wires them (Work with
-    // Believe → the Work page; Step inside → the entrance ritual).
-    if (this.foyerMode) {
-      return <Foyer />
-    }
-
     const { phase, opening } = this.state
     const alive = motionAllowed(LIGHT_MOTION)
     const sunShiftAnim = alive ? 'sunShift 170s ease-in-out infinite alternate' : 'none'
@@ -488,6 +496,7 @@ export class App extends React.Component<Record<string, never>, State> {
       <>
         {phase === 'overture' && this.renderOverture(opening)}
         {phase === 'sketch' && this.renderSketch()}
+        {phase === 'foyer' && !this.state.showWork && <Foyer onWork={this.ctx.openWork} onStepInside={this.foyerToExplore} />}
         {phase === 'prologue' && <Prologue onEnter={this.enterHouse} motionOn={alive} />}
         {phase === 'map' && this.renderBuilding(alive, sunShiftAnim)}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
@@ -522,11 +531,11 @@ export class App extends React.Component<Record<string, never>, State> {
   // ── OVERTURE — the limestone doorway, filled with morning light ────────
   private renderOverture(opening: boolean) {
     const motionOn = motionAllowed(LIGHT_MOTION)
-    const glowAnim = opening ? 'glowGrow 2600ms ease 200ms forwards' : 'none'
-    const overtureFade = opening ? 'overtureOut 2400ms ease 900ms forwards' : 'none'
+    const glowAnim = opening ? 'glowGrow 780ms ease 60ms forwards' : 'none'
+    const overtureFade = opening ? 'overtureOut 720ms ease 270ms forwards' : 'none'
     const sunShiftAnim = motionOn ? 'sunShift 170s ease-in-out infinite alternate' : 'none'
     // Scene 7 — three quiet steps forward into the house (a walk, not a zoom)
-    const walk = opening && motionOn ? 'walkForward 3200ms cubic-bezier(.4,0,.3,1) 260ms forwards' : undefined
+    const walk = opening && motionOn ? 'walkForward 960ms cubic-bezier(.4,0,.3,1) 78ms forwards' : undefined
     return (
       <div onClick={this.accept} style={{ position: 'fixed', inset: 0, zIndex: 40, overflow: 'hidden', background: '#0b0906', cursor: 'pointer', animation: overtureFade }}>
         <div style={{ position: 'absolute', inset: 0, transformOrigin: '51% 46%', animation: walk, background: 'radial-gradient(120% 80% at 30% 10%, rgba(255,246,224,0.92), transparent 55%), linear-gradient(180deg,#efe6d3,#e4d9c1 58%,#dbcfb3)' }}>
@@ -546,9 +555,9 @@ export class App extends React.Component<Record<string, never>, State> {
           <Motes list={this.coverMotes} enabled={motionAllowed(LIGHT_MOTION)} />
 
           {/* Scene 2 — one bird crosses and lands in the olive tree, then perches */}
-          <div style={{ position: 'absolute', left: '13%', top: '30%', zIndex: 2, pointerEvents: 'none', animation: 'birdArrive 4600ms cubic-bezier(.32,.5,.3,1) 1800ms both' }}>
+          <div style={{ position: 'absolute', left: '13%', top: '30%', zIndex: 2, pointerEvents: 'none', animation: 'birdArrive 1380ms cubic-bezier(.32,.5,.3,1) 540ms both' }}>
             <svg width="46" height="26" viewBox="0 0 80 44" style={{ display: 'block', overflow: 'visible', filter: 'drop-shadow(0 5px 6px rgba(40,28,10,0.28))' }}>
-              <g style={{ transformOrigin: '40px 25px', animation: this.state.birdLanded ? 'birdSettle 6s ease-in-out infinite' : 'birdFlap 300ms ease-in-out infinite' }}>
+              <g style={{ transformOrigin: '40px 25px', animation: this.state.birdLanded ? 'birdSettle 6s ease-in-out infinite' : 'birdFlap 90ms ease-in-out infinite' }}>
                 <path d="M40 25 C31 12, 19 6, 3 3 C16 13, 28 19, 40 27 Z" fill="#243f5e" />
                 <path d="M40 25 C49 12, 61 6, 77 3 C64 13, 52 19, 40 27 Z" fill="#243f5e" />
                 <path d="M40 25 C33 15, 24 11, 12 7 C22 14, 31 18, 40 26 Z" fill="#b98a3c" opacity="0.7" />
@@ -565,24 +574,24 @@ export class App extends React.Component<Record<string, never>, State> {
           <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%)', zIndex: 4, textAlign: 'center', pointerEvents: 'none', padding: '0 6vw' }}>
             {/* a scrim confined to the doorway, so the words read as light in the dark opening */}
             {/* the house is experienced first — birds, the curtain, the light — then, only then, the words gather */}
-            <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(300px,58vw)', height: 460, background: 'radial-gradient(60% 60% at 50% 50%, rgba(24,15,6,0.55), rgba(24,15,6,0.2) 62%, transparent 82%)', filter: 'blur(30px)', opacity: 0, animation: 'softFade 2800ms ease 2200ms both' }} />
-            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(58px,8vw,122px)', lineHeight: 1.08, color: '#faf4ea', margin: 0, opacity: 0, animation: 'softFade 2600ms ease 2800ms both', textShadow: '0 1px 2px rgba(20,14,7,0.7), 0 4px 22px rgba(20,14,7,0.85), 0 0 60px rgba(20,14,7,0.6)' }}>Come in.</p>
-            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(37px,5.3vw,76px)', lineHeight: 1.24, color: '#f2e7cf', margin: '0.5em 0 0', opacity: 0, animation: 'softFade 2600ms ease 5400ms both', textShadow: '0 1px 3px rgba(20,14,7,0.85), 0 3px 18px rgba(20,14,7,0.9), 0 0 42px rgba(20,14,7,0.7)' }}>We&rsquo;ve been expecting you.</p>
+            <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(300px,58vw)', height: 460, background: 'radial-gradient(60% 60% at 50% 50%, rgba(24,15,6,0.55), rgba(24,15,6,0.2) 62%, transparent 82%)', filter: 'blur(30px)', opacity: 0, animation: 'softFade 840ms ease 660ms both' }} />
+            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(58px,8vw,122px)', lineHeight: 1.08, color: '#faf4ea', margin: 0, opacity: 0, animation: 'softFade 780ms ease 840ms both', textShadow: '0 1px 2px rgba(20,14,7,0.7), 0 4px 22px rgba(20,14,7,0.85), 0 0 60px rgba(20,14,7,0.6)' }}>Come in.</p>
+            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(37px,5.3vw,76px)', lineHeight: 1.24, color: '#f2e7cf', margin: '0.5em 0 0', opacity: 0, animation: 'softFade 780ms ease 1620ms both', textShadow: '0 1px 3px rgba(20,14,7,0.85), 0 3px 18px rgba(20,14,7,0.9), 0 0 42px rgba(20,14,7,0.7)' }}>We&rsquo;ve been expecting you.</p>
           </div>
 
           {opening && (
-            <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '70vh', height: '70vh', borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,246,224,1),rgba(230,196,132,0.45) 45%,transparent 72%)', animation: 'bloom 2600ms cubic-bezier(.4,.1,.2,1) forwards' }} />
+            <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '70vh', height: '70vh', borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,246,224,1),rgba(230,196,132,0.45) 45%,transparent 72%)', animation: 'bloom 780ms cubic-bezier(.4,.1,.2,1) forwards' }} />
           )}
         </div>
 
         {/* Scene 1 — the arrival fades up from black (morning birds are heard first) */}
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 2400ms ease 150ms both' : 'blackReveal 700ms ease both' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 720ms ease 45ms both' : 'blackReveal 210ms ease both' }} />
 
         {/* a quiet cue that the arrival is theirs to touch — eased in only after
             the second line has landed, so the words are never rushed, and gone
             the moment the visitor steps in */}
         {!opening && (
-          <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(52px,10vh,112px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 2200ms ease 6800ms both' }}>
+          <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(52px,10vh,112px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 660ms ease 2040ms both' }}>
             <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.56)', marginBottom: '1em', textShadow: '0 1px 12px rgba(20,14,7,0.85)' }}>Step inside</div>
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ margin: '0 auto', opacity: 0.7, animation: motionOn ? 'hint 3.4s ease-in-out infinite' : 'none' }}>
               <path d="M2 3 L8 9 L14 3" stroke="rgba(246,239,228,0.72)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -593,7 +602,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {/* One quiet way past the arrival for anyone genuinely impatient — never
             a prominent shortcut, and never shown for returning visitors, so the
             door drawing stays the default for everyone. */}
-        <El onClick={this.skip} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 400ms ease', zIndex: 5 }} hover={{ color: 'rgba(43,39,35,0.7)' }}>Skip&nbsp;&rarr;</El>
+        <El onClick={this.skip} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 120ms ease', zIndex: 5 }} hover={{ color: 'rgba(43,39,35,0.7)' }}>Skip&nbsp;&rarr;</El>
       </div>
     )
   }
@@ -601,41 +610,41 @@ export class App extends React.Component<Record<string, never>, State> {
   // ── SKETCH — the doorway drawn line by line, then flooded with light ───
   private renderSketch() {
     return (
-      <div onClick={this.enterBuilding} style={{ position: 'fixed', inset: 0, zIndex: 37, cursor: 'pointer', overflow: 'hidden', background: '#f6f1e6', animation: 'veilIn 1200ms ease both' }}>
+      <div onClick={this.enterBuilding} style={{ position: 'fixed', inset: 0, zIndex: 37, cursor: 'pointer', overflow: 'hidden', background: '#f6f1e6', animation: 'veilIn 336ms ease both' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 100% at 50% 42%, #fbf7ee, #f3ecdd 72%, #ece3d1)', animation: 'paperBreath 7s ease-in-out infinite' }} />
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '11vh', opacity: 0, animation: 'doorFadeIn 1200ms ease 400ms forwards' }}>
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '11vh', opacity: 0, animation: 'doorFadeIn 336ms ease 112ms forwards' }}>
           <div style={{ position: 'relative', height: '74vh', maxHeight: 680, aspectRatio: '0.52/1' }}>
-            <div style={{ position: 'absolute', inset: '5% 8% 0 8%', borderRadius: '999px 999px 0 0', background: 'radial-gradient(120% 96% at 50% 70%, #fff6de, #f1dca6 46%, #e7cb8b)', opacity: 0, animation: 'lightPour 2600ms ease 5900ms forwards' }} />
+            <div style={{ position: 'absolute', inset: '5% 8% 0 8%', borderRadius: '999px 999px 0 0', background: 'radial-gradient(120% 96% at 50% 70%, #fff6de, #f1dca6 46%, #e7cb8b)', opacity: 0, animation: 'lightPour 728ms ease 1652ms forwards' }} />
             <svg viewBox="0 0 200 380" preserveAspectRatio="xMidYMax meet" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', overflow: 'visible' }}>
               <g fill="none" stroke="rgba(43,39,35,0.6)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M100,58 L100,376" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 900ms ease 500ms forwards' }} />
-                <path d="M11,122 L11,376" pathLength={1} stroke="rgba(43,39,35,0.16)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 900ms ease 600ms forwards' }} />
-                <path d="M7,122 L15,122 M7,376 L15,376" pathLength={1} stroke="rgba(43,39,35,0.16)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 500ms ease 1500ms forwards' }} />
-                <path d="M40,42 L160,42" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 800ms ease 900ms forwards' }} />
-                <path d="M40,38 L40,46 M160,38 L160,46" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 450ms ease 1700ms forwards' }} />
-                <path d="M36,120 A64,64 0 0 1 164,120" pathLength={1} stroke="rgba(43,39,35,0.13)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 1200ms ease 700ms forwards' }} />
-                <path d="M14,378 L186,378" pathLength={1} style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 700ms ease 800ms forwards' }} />
-                <path d="M46,378 L46,362 L154,362 L154,378" pathLength={1} strokeWidth="1.3" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 1100ms ease 1300ms forwards' }} />
-                <path d="M40,362 L40,120 A60,60 0 0 1 160,120 L160,362" pathLength={1} style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 2000ms cubic-bezier(.5,0,.5,1) 1500ms forwards' }} />
-                <path d="M43,360 L43,121 A57,57 0 0 1 157,121 L157,360" pathLength={1} stroke="rgba(43,39,35,0.26)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 2000ms cubic-bezier(.5,0,.5,1) 1750ms forwards' }} />
-                <path d="M102,132 L146,132 L146,350 L102,350 Z" fill="rgba(43,39,35,0.05)" stroke="none" style={{ opacity: 0, animation: 'doorFadeIn 1800ms ease 4500ms both' }} />
-                <path d="M92,74 L108,74 L106,92 L94,92 Z" pathLength={1} stroke="rgba(43,39,35,0.4)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 700ms ease 3400ms forwards' }} />
-                <path d="M52,180 L60,180 M52,300 L60,300" pathLength={1} stroke="rgba(43,39,35,0.34)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 500ms ease 4700ms forwards' }} />
-                <g style={{ transformBox: 'fill-box', transformOrigin: '1% 52%', animation: 'doorCrack 2400ms cubic-bezier(.42,0,.3,1) 5400ms forwards' }}>
-                  <path d="M52,360 L52,126 A48,48 0 0 1 148,126 L148,360" pathLength={1} stroke="rgba(43,39,35,0.5)" strokeWidth="1.4" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 1700ms cubic-bezier(.5,0,.5,1) 3100ms forwards' }} />
-                  <path d="M68,150 L132,150 L132,230 L68,230 Z" pathLength={1} stroke="rgba(43,39,35,0.38)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 900ms ease 3900ms forwards' }} />
-                  <path d="M68,246 L132,246 L132,344 L68,344 Z" pathLength={1} stroke="rgba(43,39,35,0.38)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 900ms ease 4300ms forwards' }} />
-                  <path d="M138,250 L138,300" pathLength={1} stroke="rgba(43,39,35,0.6)" strokeWidth="1.5" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 500ms ease 4900ms forwards' }} />
-                  <circle cx="138" cy="250" r="3.4" pathLength={1} stroke="rgba(43,39,35,0.6)" strokeWidth="1.4" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 400ms ease 5200ms forwards' }} />
+                <path d="M100,58 L100,376" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 140ms forwards' }} />
+                <path d="M11,122 L11,376" pathLength={1} stroke="rgba(43,39,35,0.16)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 168ms forwards' }} />
+                <path d="M7,122 L15,122 M7,376 L15,376" pathLength={1} stroke="rgba(43,39,35,0.16)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 140ms ease 420ms forwards' }} />
+                <path d="M40,42 L160,42" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 224ms ease 252ms forwards' }} />
+                <path d="M40,38 L40,46 M160,38 L160,46" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 126ms ease 476ms forwards' }} />
+                <path d="M36,120 A64,64 0 0 1 164,120" pathLength={1} stroke="rgba(43,39,35,0.13)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 336ms ease 196ms forwards' }} />
+                <path d="M14,378 L186,378" pathLength={1} style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 196ms ease 224ms forwards' }} />
+                <path d="M46,378 L46,362 L154,362 L154,378" pathLength={1} strokeWidth="1.3" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 308ms ease 364ms forwards' }} />
+                <path d="M40,362 L40,120 A60,60 0 0 1 160,120 L160,362" pathLength={1} style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 560ms cubic-bezier(.5,0,.5,1) 420ms forwards' }} />
+                <path d="M43,360 L43,121 A57,57 0 0 1 157,121 L157,360" pathLength={1} stroke="rgba(43,39,35,0.26)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 560ms cubic-bezier(.5,0,.5,1) 490ms forwards' }} />
+                <path d="M102,132 L146,132 L146,350 L102,350 Z" fill="rgba(43,39,35,0.05)" stroke="none" style={{ opacity: 0, animation: 'doorFadeIn 504ms ease 1260ms both' }} />
+                <path d="M92,74 L108,74 L106,92 L94,92 Z" pathLength={1} stroke="rgba(43,39,35,0.4)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 196ms ease 952ms forwards' }} />
+                <path d="M52,180 L60,180 M52,300 L60,300" pathLength={1} stroke="rgba(43,39,35,0.34)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 140ms ease 1316ms forwards' }} />
+                <g style={{ transformBox: 'fill-box', transformOrigin: '1% 52%', animation: 'doorCrack 672ms cubic-bezier(.42,0,.3,1) 1512ms forwards' }}>
+                  <path d="M52,360 L52,126 A48,48 0 0 1 148,126 L148,360" pathLength={1} stroke="rgba(43,39,35,0.5)" strokeWidth="1.4" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 476ms cubic-bezier(.5,0,.5,1) 868ms forwards' }} />
+                  <path d="M68,150 L132,150 L132,230 L68,230 Z" pathLength={1} stroke="rgba(43,39,35,0.38)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 1092ms forwards' }} />
+                  <path d="M68,246 L132,246 L132,344 L68,344 Z" pathLength={1} stroke="rgba(43,39,35,0.38)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 1204ms forwards' }} />
+                  <path d="M138,250 L138,300" pathLength={1} stroke="rgba(43,39,35,0.6)" strokeWidth="1.5" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 140ms ease 1372ms forwards' }} />
+                  <circle cx="138" cy="250" r="3.4" pathLength={1} stroke="rgba(43,39,35,0.6)" strokeWidth="1.4" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 112ms ease 1456ms forwards' }} />
                 </g>
-                <path d="M150,130 L150,352" stroke="rgba(232,198,132,0.72)" strokeWidth="2.6" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 1000ms ease 5600ms forwards, doorFadeIn 900ms ease 5600ms forwards' }} />
-                <path d="M152,150 L176,300" stroke="rgba(232,198,132,0.4)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 1100ms ease 5800ms forwards, doorFadeIn 900ms ease 5800ms forwards' }} />
-                <path d="M150,160 L164,330" stroke="rgba(232,198,132,0.34)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 1100ms ease 5950ms forwards, doorFadeIn 900ms ease 5950ms forwards' }} />
+                <path d="M150,130 L150,352" stroke="rgba(232,198,132,0.72)" strokeWidth="2.6" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 280ms ease 1568ms forwards, doorFadeIn 252ms ease 1568ms forwards' }} />
+                <path d="M152,150 L176,300" stroke="rgba(232,198,132,0.4)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 308ms ease 1624ms forwards, doorFadeIn 252ms ease 1624ms forwards' }} />
+                <path d="M150,160 L164,330" stroke="rgba(232,198,132,0.34)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 308ms ease 1666ms forwards, doorFadeIn 252ms ease 1666ms forwards' }} />
               </g>
             </svg>
           </div>
         </div>
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0, background: 'radial-gradient(82% 72% at 50% 66%, rgba(255,247,224,0.97), rgba(244,231,198,0.72) 52%, transparent 80%)', animation: 'lightPour 2200ms ease 6400ms forwards' }} />
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0, background: 'radial-gradient(82% 72% at 50% 66%, rgba(255,247,224,0.97), rgba(244,231,198,0.72) 52%, transparent 80%)', animation: 'lightPour 616ms ease 1792ms forwards' }} />
       </div>
     )
   }
