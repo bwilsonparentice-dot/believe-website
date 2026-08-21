@@ -7,10 +7,11 @@ import { PHOTOS } from '../data'
 /**
  * Prologue — the guided walk before the house opens.
  *
- * Not navigation. A sequence. The visitor crosses the threshold and moves,
- * one quiet room at a time, through the reason the house exists before ever
- * seeing a door: Threshold → Why Believe Exists → The Founder → The Blueprint,
- * then the house opens. One thought per beat. Nothing to decide. Only Continue.
+ * Not navigation. A sequence. Reached from the Foyer, which now serves as the
+ * gentle on-ramp, the walk opens straight on the reason the house exists and
+ * moves one quiet room at a time before the house opens: Why Believe Exists →
+ * The Founder → The Blueprint. One thought per beat. Nothing to decide. Only
+ * Continue.
  *
  * Restraint is the point: no chrome, no logo, no menu — just light, a line,
  * and the invitation to keep walking.
@@ -36,7 +37,7 @@ const PROMPTS = [
 export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn: boolean }) {
   const alive = useAlive() && motionOn
   const [step, setStep] = useState(0)
-  const LAST = 3
+  const LAST = 2
   const next = () => setStep((s) => Math.min(LAST, s + 1))
 
   // gentle keyboard: Enter / Space / ↓ advances; the space bar never scrolls
@@ -65,12 +66,6 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
     opacity: 0.6, animation: alive ? 'lightWander 60s ease-in-out infinite alternate' : 'none',
   }
 
-  const arch = (
-    <svg width="22" height="26" viewBox="0 0 48 56" fill="none" style={{ display: 'block', margin: '0 auto clamp(20px,4vh,40px)', opacity: 0.7 }}>
-      <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth="1.6" fill="none" strokeLinecap="round" />
-    </svg>
-  )
-
   // the "Continue" invitation — a breathing cue, never a hard button
   const Continue = ({ label = 'Continue', onClick }: { label?: string; onClick: () => void }) => (
     <El onClick={onClick} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: '0.6em', marginTop: 'clamp(32px,6vh,68px)', cursor: 'pointer', color: 'rgba(43,39,35,0.62)', transition: 'color 500ms ease' }} hover={{ color: '#2b2723' }}>
@@ -93,23 +88,12 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
 
       {/* a faint sense of where you are in the walk — never a progress bar */}
       <div aria-hidden="true" style={{ position: 'absolute', top: 'clamp(26px,5vh,48px)', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 10 }}>
-        {[0, 1, 2, 3].map((i) => (
+        {[0, 1, 2].map((i) => (
           <span key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: i === step ? 'rgba(122,94,52,0.8)' : 'rgba(122,94,52,0.22)', transition: 'background 700ms ease' }} />
         ))}
       </div>
 
       {step === 0 && beat(0, (
-        <>
-          {arch}
-          <div style={{ ...eyebrow, marginBottom: 'clamp(20px,4vh,36px)' }}>You have crossed the threshold</div>
-          <h1 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(38px,6vw,86px)', lineHeight: 1.05, margin: '0 auto', maxWidth: '16ch', ...balance }}>You’re inside now.</h1>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.68)', maxWidth: '26ch', margin: 'clamp(30px,5vh,56px) auto 0', ...balance }}>There is no map to memorize, and nothing to decide yet.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(19px,2.2vw,27px)', color: 'rgba(122,94,52,0.8)', margin: '0.9em auto 0', maxWidth: '22ch' }}>Walk with us a moment.</p>
-          <Continue onClick={next} />
-        </>
-      ))}
-
-      {step === 1 && beat(1, (
         <>
           <div style={{ ...eyebrow, marginBottom: 'clamp(30px,6vh,58px)' }}>Why this house exists</div>
           {/* the emotional center — allowed to breathe, never explained here */}
@@ -118,7 +102,7 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
         </>
       ))}
 
-      {step === 2 && beat(2, (
+      {step === 1 && beat(1, (
         <>
           <div style={{ ...eyebrow, marginBottom: 'clamp(22px,4vh,40px)' }}>Before the company — the founder</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2.2vh,22px)', maxWidth: '40ch', margin: '0 auto' }}>
@@ -132,7 +116,7 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
         </>
       ))}
 
-      {step === 3 && beat(3, (
+      {step === 2 && beat(2, (
         <>
           <div style={{ ...eyebrow, marginBottom: 'clamp(16px,3vh,30px)' }}>And it begins the same way for everyone</div>
           <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.6vw,62px)', lineHeight: 1.04, margin: '0 auto 0.35em', maxWidth: '16ch', ...balance }}>Every founder begins<br />with a Blueprint.</h2>
