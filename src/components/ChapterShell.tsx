@@ -11,6 +11,7 @@ export function ChapterShell({
   background = '#efe6d3',
   z = 120,
   dark = false,
+  backLabel,
   children,
 }: {
   onClose: Handler
@@ -18,6 +19,8 @@ export function ChapterShell({
   z?: number
   /** lighten the corner "Back to the building" link for dark chapters */
   dark?: boolean
+  /** override the corner affordance's wording (defaults to "← Back to the building") */
+  backLabel?: React.ReactNode
   children: React.ReactNode
 }) {
   return (
@@ -27,7 +30,7 @@ export function ChapterShell({
         style={{ position: 'fixed', top: 'clamp(20px,3vh,34px)', right: 'clamp(20px,3vw,40px)', zIndex: 6, fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: dark ? 'rgba(246,239,228,0.55)' : 'rgba(43,39,35,0.5)', cursor: 'pointer', transition: 'color 400ms ease' }}
         hover={{ color: dark ? 'rgba(246,239,228,0.95)' : 'rgba(43,39,35,0.9)' }}
       >
-        ←&nbsp;Back to the building
+        {backLabel ?? <>←&nbsp;Back to the building</>}
       </El>
       {children}
     </div>

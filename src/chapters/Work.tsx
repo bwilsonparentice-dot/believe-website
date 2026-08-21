@@ -181,7 +181,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
   const talk = () => setNoteOpen(true)
 
   return (
-    <ChapterShell onClose={ctx.closeWork} background="#efe6d3">
+    <ChapterShell onClose={ctx.closeWork} background="#efe6d3" backLabel={<>←&nbsp;Back</>}>
       <div style={{ position: 'relative', maxWidth: 800, margin: '0 auto', padding: 'clamp(96px,17vh,220px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* the lead — what Believe is, plainly and confidently */}
@@ -263,7 +263,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         <ArchLine m="clamp(80px,13vh,150px) auto clamp(40px,7vh,64px)" />
-        <BackPill onClose={ctx.closeWork} label="← Back to the building" />
+        <BackPill onClose={ctx.closeWork} label="← Back" />
       </div>
 
       {/* the note that greets a founder before any calendar */}
