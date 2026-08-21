@@ -745,6 +745,95 @@ export const LIBRARY_NOTES = [
   'She said it twice. That means it matters.',
   'Write it down before you explain it away.',
 ]
+
+// Founder Answers — real questions founders ask, answered by people who have
+// actually built brands. Attribution is data, not architecture: today every
+// answer is Beth's; later a record can carry a different author (and, only when
+// that person is real, an optional role) without the Library being redesigned.
+// The `fromExperience` note is optional — used only where a lived example earns
+// its place, never manufactured to fill the field.
+export type FounderAnswer = {
+  question: string
+  answer: string[]
+  author: { name: string; role?: string }
+  fromExperience?: string
+}
+export const FOUNDER_ANSWERS: FounderAnswer[] = [
+  {
+    question: 'Everyone is telling me something different. Who should I listen to?',
+    answer: [
+      'Start by asking what each person can see — and what they can’t.',
+      'A broker may understand the retailer. A marketer may understand the consumer. An investor may see the economics. An operator may see what it will actually take to execute. Their advice can all be good and still point you in different directions.',
+      'Your job as the founder isn’t to collect enough opinions until one wins. It’s to understand what each perspective is optimizing for, then come back to the whole business.',
+      'What actually needs to move right now?',
+      'That’s usually where the answer gets clearer.',
+    ],
+    author: { name: 'Beth' },
+    fromExperience: 'When I was building Sipp, I had plenty of smart people telling me what I should do. What I eventually learned was that good advice and the right decision aren’t always the same thing.',
+  },
+  {
+    question: 'How do I know whether an opportunity is a distraction or the next big move?',
+    answer: [
+      'Almost every real opportunity looks a little like a distraction at first, and almost every distraction can make a convincing case for itself. The size of the prize alone won’t tell you which one you’re holding.',
+      'I usually ask three things. Does it strengthen something we’re already trying to build? If it works, does it create more opportunity beyond this one moment? And can we pursue it without starving the things that are already working?',
+      'A real move compounds. A distraction just consumes.',
+      'You don’t have to know with certainty before you move. Sometimes the smartest answer is to find the smallest way to test the opportunity before giving it the whole company’s attention.',
+    ],
+    author: { name: 'Beth' },
+  },
+  {
+    question: 'My sales have stalled. How do I know what’s actually wrong?',
+    answer: [
+      '“Sales are flat” is a symptom, not a diagnosis, and flat sales can come from very different places, each with a very different fix.',
+      'Get specific about which link in the chain is breaking. Are people not discovering you, or discovering you and not buying? Buying once and not coming back? Moving in some stores and not others? The number may look the same. The problem isn’t.',
+      'Find the real constraint — awareness, trial, repeat, distribution or velocity — before you spend a dollar fixing the wrong one. Too many brands pour effort into the part that was already working.',
+    ],
+    author: { name: 'Beth' },
+  },
+  {
+    question: 'Do I need more retail doors, or better velocity in the ones I already have?',
+    answer: [
+      'Start with velocity.',
+      'If the product isn’t moving where it already lives, more doors rarely solve the problem. They usually spread it. But if you’re showing strong velocity, repeat and retailer performance in the doors you have, expansion may be exactly what comes next.',
+      'The mistake is treating door count as the scorecard.',
+      'I’d rather see a brand prove it can win in 100 doors than celebrate getting into 1,000 it isn’t prepared to support.',
+      'Strong velocity earns expansion. Distribution should amplify demand, not substitute for it.',
+    ],
+    author: { name: 'Beth' },
+  },
+  {
+    question: 'My distributor isn’t selling my brand. What do I do?',
+    answer: [
+      'First, get clear on what you expected the distributor to do.',
+      'A good distributor can open doors, service accounts, provide sales support and help your product move through the system. But they usually cannot create consumer demand for a brand that doesn’t already have a reason to move.',
+      'So look upstream. Are buyers interested? Are consumers pulling the product off the shelf? Are you giving the sales team a compelling story, the right materials and a reason to prioritize you? Are you creating demand outside the distributor?',
+      'If those pieces are working and you’re still not getting the support or service you should be getting, then you have a distributor problem.',
+      'But don’t ask distribution to solve a demand problem.',
+    ],
+    author: { name: 'Beth' },
+  },
+  {
+    question: 'How do I know whether my positioning is the problem?',
+    answer: [
+      'When everything downstream feels harder than it should, positioning is one of the first places I’d look.',
+      'Marketing isn’t converting. You’re constantly explaining what makes the product different. Buyers like it but can’t quite articulate why it belongs on shelf. Consumers enjoy it once they try it, but don’t immediately understand why they should pick it up in the first place.',
+      'Here’s a useful test: can someone encounter the brand for ten seconds and tell you, in their own words, what makes it different — and get it right?',
+      'If they can’t, adding more marketing dollars may simply amplify the confusion.',
+      'Get clear on what you stand for before you turn up the volume on it. Strong positioning makes everything that follows work harder.',
+    ],
+    author: { name: 'Beth' },
+  },
+  {
+    question: 'When should I say no to a retailer?',
+    answer: [
+      'More often than most founders expect, because a yes to the wrong retailer can get expensive in ways that don’t show up until later.',
+      'Say no when you aren’t ready to win there: when you can’t support the velocity, when the terms quietly break your economics, when the operational demands put the rest of the business at risk, or when the opportunity would scatter your focus before your core is solid.',
+      'Getting in isn’t the goal. Selling through and staying in is.',
+      'The right retailer at the wrong time can still be the wrong move. It’s often easier to earn your way in later than to recover from a launch you weren’t ready to support.',
+    ],
+    author: { name: 'Beth' },
+  },
+]
 export const LIBRARY_WRITING = [
   { kind: 'Field Note', title: 'The founder is the strategy', note: 'Why the person building matters more than the plan they are building.' },
   { kind: 'Essay', title: 'On borrowing wisdom', note: 'What a decade of retail taught us about the questions worth asking early.' },
