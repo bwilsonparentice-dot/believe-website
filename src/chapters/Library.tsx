@@ -7,6 +7,7 @@ import { ImageSlot } from '../components/ImageSlot'
 import { HouseArch } from '../components/HouseArch'
 import { RoomHeader } from '../components/RoomHeader'
 import { FounderAnswers } from '../components/FounderAnswers'
+import { InsideThisMonth } from '../components/InsideThisMonth'
 import { Keynote } from '../components/Living'
 import { ArchivalRecord } from '../components/ArchivalRecord'
 import { LIBRARY_BOOKS, LIBRARY_MARGINS, LIBRARY_OBJECTS, LIBRARY_NOTES, RESIDENCY_RECORDS, PHOTOS } from '../data'
@@ -42,6 +43,13 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         {/* how wisdom enters, and how it stays */}
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', maxWidth: '28ch', margin: 'clamp(64px,11vh,130px) auto 0', textWrap: 'balance' as React.CSSProperties['textWrap'] }}>The workshops are how wisdom enters the House. The Library is how it stays.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '44ch', margin: 'clamp(34px,5.5vh,60px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Every Resident leaves something behind — a handbook, a dashboard, an audit, a framework, or another piece of hard-won wisdom. Long after the residency ends, that work remains here for founders they may never meet.</p>
+
+        <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,110px) auto clamp(40px,6.5vh,80px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+
+        {/* INSIDE THE HOUSE THIS MONTH — proof of life: what's occupied in the
+            House right now. A prototype placed here (the living-archive room);
+            easy to relocate. Additive only. */}
+        <InsideThisMonth />
 
         <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,110px) auto clamp(40px,6.5vh,80px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 

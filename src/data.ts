@@ -849,6 +849,19 @@ export const STUDIO_NIGHTS = [
   { topic: 'The Story Investors Believe', name: 'Priya Raman', role: 'Early-Stage Investor', room: 'The Stage', label: 'On the Stage', when: 'Later this year', note: 'An intimate evening on what makes an investor believe in a founder — not the deck, but the clarity underneath it, and the story only you can tell.' },
 ]
 
+// Inside the House this month — a small living record that the House is occupied
+// right now. Set HOUSE_MONTH to the current month, and edit the entries to
+// update it; the statuses are illustrative, so set them to the real current
+// state before publishing. `live` gives an entry a gently breathing indicator,
+// for something in session at this moment.
+export const HOUSE_MONTH = 'October 2026'
+export const HOUSE_THIS_MONTH: { status: string; name: string; detail?: string; live?: boolean }[] = [
+  { status: 'In session', name: 'The Founder’s Room · No. 001', detail: 'Eight founders, one room, this month’s decisions.', live: true },
+  { status: 'Upcoming', name: 'Founder Workshop No. 001 — Buy Back 20 Hours', detail: 'A working session with Chef MoWils.' },
+  { status: 'In residence', name: 'Chef MoWils', detail: 'Where AI meets CPG, around The Table.' },
+  { status: 'This month', name: 'Blueprint reveals', detail: 'New Believe Blueprints, read back to their founders.' },
+]
+
 // The core House team as shown on the commercial path — name + role only, so a
 // founder sees the strength of Believe at a glance (an institution, not a solo
 // practice). Residents (e.g. Mona) are shown separately, never here. Edit this
