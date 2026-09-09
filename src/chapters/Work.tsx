@@ -4,7 +4,7 @@ import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
-import { PHOTOS, STORIES } from '../data'
+import { PHOTOS, STORIES, HOUSE_TEAM } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
@@ -202,6 +202,38 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.24, color: '#2b2723', maxWidth: '18ch', margin: 'clamp(58px,10vh,112px) auto 0', ...balance }}>&ldquo;I built the partner I wish I&rsquo;d had.&rdquo;</p>
           <div style={{ ...label, fontSize: 10, letterSpacing: '0.4em', color: 'rgba(122,94,52,0.6)', marginTop: '1.5em' }}>Beth</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', maxWidth: '38ch', margin: 'clamp(30px,5vh,52px) auto 0', ...pretty }}>When I was building Sipp, I had plenty of people telling me what I should do. What I needed was someone willing to get in it with me.</p>
+        </div>
+
+        {/* who you're working with — the House around Beth, so a founder sees
+            this is an institution, not one person. Names and roles, quietly set
+            (never headshot cards); the fuller portraits live in The People. */}
+        <ArchLine m="clamp(100px,17vh,210px) auto clamp(56px,10vh,120px)" />
+        <div style={reveal}>
+          <div style={{ ...label, marginBottom: 'clamp(26px,4.5vh,44px)' }}>Who you&rsquo;re working with</div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.8)', maxWidth: '40ch', margin: '0 auto', ...balance }}>Believe is Beth and a small group of experienced operators and specialists. As the work requires it, we bring the right people around the table &mdash; people who&rsquo;ve actually built and grown brands in the part of the business you&rsquo;re trying to move.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.82)', maxWidth: '34ch', margin: 'clamp(26px,4.5vh,44px) auto 0', ...balance }}>You&rsquo;re not handed off to junior staff, and you&rsquo;re not relying on one person alone.</p>
+
+          {/* the roster — name over role, engraved into the page rather than boxed */}
+          <div style={{ margin: 'clamp(48px,8vh,92px) auto 0', maxWidth: 720, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'clamp(32px,5vh,52px) clamp(24px,4vw,48px)' }}>
+            {HOUSE_TEAM.map((m, i) => (
+              <div key={i}>
+                {m.name ? (
+                  <>
+                    <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(21px,2.4vw,29px)', lineHeight: 1.12, color: '#2b2723' }}>{m.name}</div>
+                    <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginTop: '0.85em' }}>{m.role}</div>
+                  </>
+                ) : (
+                  // an open seat — the role we're filling, shown by title only
+                  <>
+                    <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(20px,2.3vw,28px)', lineHeight: 1.12, color: 'rgba(43,39,35,0.5)' }}>{m.role}</div>
+                    <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)', marginTop: '0.85em' }}>Joining soon</div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <El as="button" onClick={ctx.openPeople} style={{ display: 'inline-block', marginTop: 'clamp(44px,8vh,84px)', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(122,94,52,0.4)', paddingBottom: 4, cursor: 'pointer', transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>Meet the people of Believe Studio &rarr;</El>
         </div>
 
         {/* what we help founders do — outcomes, not departments (more hierarchy + breathing room) */}

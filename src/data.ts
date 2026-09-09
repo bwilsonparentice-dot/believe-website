@@ -711,7 +711,6 @@ export const LIBRARY_OBJECTS = [
 ]
 export const LIBRARY_KEEPERS = [
   { name: 'Tiffany Nilles', note: 'She keeps the shelf on finding the right rooms — and staying in them. The wisdom of knowing where a brand truly belongs before chasing where it doesn’t.' },
-  { name: 'Jillian Rhys', note: 'She keeps the words founders leave behind, and the ones still forming. If a sentence in here stays with you, it likely passed through her hands first.' },
 ]
 
 // Residency records — what each Resident worked through and left in the Library.
@@ -850,10 +849,26 @@ export const STUDIO_NIGHTS = [
   { topic: 'The Story Investors Believe', name: 'Priya Raman', role: 'Early-Stage Investor', room: 'The Stage', label: 'On the Stage', when: 'Later this year', note: 'An intimate evening on what makes an investor believe in a founder — not the deck, but the clarity underneath it, and the story only you can tell.' },
 ]
 
+// The core House team as shown on the commercial path — name + role only, so a
+// founder sees the strength of Believe at a glance (an institution, not a solo
+// practice). Residents (e.g. Mona) are shown separately, never here. Edit this
+// one array to update the roster; `comingSoon` softens a not-yet-solidified seat.
+// A seat with no `name` is a role being filled — shown by title only, never a
+// name, until the person has officially started.
+export const HOUSE_TEAM: { name?: string; role: string; comingSoon?: boolean }[] = [
+  { name: 'Beth Wilson-Parentice', role: 'Founder' },
+  { name: 'Tiffany Nilles', role: 'Retail Strategy Advisor' },
+  { name: 'Grace Federico', role: 'Brand Growth Associate' },
+  { name: 'Joy Mooiweer', role: 'House Operations' },
+  { name: 'Jillian Waun', role: 'Creative & Editorial' },
+  { role: 'Founder Advisor', comingSoon: true },
+  { role: 'Founder Advisor', comingSoon: true },
+]
+
 export const PEOPLE = [
-  { first: 'Beth', name: 'Beth Wilson-Parentice', pid: 'portrait-beth', dir: 'row', room: 'The Founder’s Room', portrait: 'Editorial portrait of Beth in The Founder’s Room — morning light, a journal, coffee', belief: 'Beth created Believe Studio because she believes founders change the world when someone believes in them first. Her role isn’t to lecture — it’s to help founders see possibilities they couldn’t yet see themselves.', when: 'when you’re carrying a decision that feels too heavy to make alone.' },
-  { first: 'Joy', name: 'Joy Mooiweer', pid: 'portrait-joy', dir: 'row-reverse', room: 'The Studio', portrait: 'Editorial portrait of Joy in The Studio — beautiful materials, packaging, paper, brass, warm oak', belief: 'Joy believes extraordinary hospitality is often invisible. The best experiences are the ones that simply feel right.', when: 'long before you realize she’s quietly orchestrated dozens of thoughtful details that made your experience feel effortless.' },
-  { first: 'Jillian', name: 'Jillian Waun', pid: 'portrait-jillian', dir: 'row', room: 'The Library', portrait: 'Editorial portrait of Jillian in The Library — books, notes, window light', belief: 'Jillian believes thoughtful storytelling creates belonging.', when: 'through the stories you read, the words that stay with you, and the conversations that continue long after you’ve left.' },
+  { first: 'Beth', name: 'Beth Wilson-Parentice', pid: 'portrait-beth', dir: 'row', room: 'The Founder’s Room', role: 'Founder', portrait: 'Editorial portrait of Beth in The Founder’s Room — morning light, a journal, coffee', belief: 'Beth created Believe Studio because she believes founders change the world when someone believes in them first. Her role isn’t to lecture — it’s to help founders see possibilities they couldn’t yet see themselves.', when: 'when you’re carrying a decision that feels too heavy to make alone.' },
+  { first: 'Joy', name: 'Joy Mooiweer', pid: 'portrait-joy', dir: 'row-reverse', room: 'The Studio', role: 'House Operations', portrait: 'Editorial portrait of Joy in The Studio — beautiful materials, packaging, paper, brass, warm oak', belief: 'Joy believes extraordinary hospitality is often invisible. The best experiences are the ones that simply feel right.', when: 'long before you realize she’s quietly orchestrated dozens of thoughtful details that made your experience feel effortless.' },
+  { first: 'Jillian', name: 'Jillian Waun', pid: 'portrait-jillian', dir: 'row', room: 'The Library', role: 'Creative & Editorial', portrait: 'Editorial portrait of Jillian in The Library — books, notes, window light', belief: 'Jillian believes thoughtful storytelling creates belonging.', when: 'through the stories you read, the words that stay with you, and the conversations that continue long after you’ve left.' },
   { first: 'Tiffany', name: 'Tiffany Nilles', pid: 'portrait-tiffany', dir: 'row-reverse', room: 'The Table', role: 'Retail Strategy Advisor', portrait: 'Editorial portrait of Tiffany at The Table — an open notebook, conversation, coffee', belief: 'Tiffany believes clarity creates momentum. She quietly helps founders move from possibility to progress.', when: 'when ideas begin becoming organized into meaningful action.' },
   { first: 'Chef MoWils', name: 'Chef MoWils', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Chef MoWils in The Garden — olive trees, a stone path, morning light', belief: 'Chef MoWils believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
 ]

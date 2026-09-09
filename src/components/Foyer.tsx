@@ -42,10 +42,15 @@ const door: CSSProperties = {
  */
 export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepInside?: () => void }) {
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: '#efe6d3', overflowY: 'auto' }}>
-      {/* the room's light — a single soft shaft from above, so the cream reads
-          as an architectural surface rather than a flat field */}
-      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(46% 40% at 50% 10%, rgba(255,238,205,0.55), transparent 62%)' }} />
+    <div style={{ position: 'fixed', inset: 0, zIndex: 200, overflowY: 'auto', background: 'linear-gradient(158deg, #f1e9d8 0%, #efe6d3 46%, #e7dcc4 100%)' }}>
+      {/* the room's atmosphere — kept to roughly a whisper: a late-afternoon
+          shaft entering off-frame from one upper corner (drifting almost
+          imperceptibly), a faint architectural edge at one side that suggests a
+          wall return and a room beyond, and a soft settling of shadow into the
+          far lower corner. All reuse the House's own light grammar — no photo,
+          no new palette — so the cream reads as lit plaster, not a flat field. */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(52% 46% at 30% 8%, rgba(255,240,205,0.9), transparent 60%)', opacity: 0.75, animation: 'lightWander 72s ease-in-out infinite alternate' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(270deg, rgba(80,60,28,0.05) 0%, transparent 10%), radial-gradient(60% 55% at 92% 100%, rgba(80,60,28,0.06), transparent 60%)' }} />
 
       <div style={{ position: 'relative', minHeight: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 'clamp(48px,8vh,100px) 8vw', color: '#2b2723', animation: 'contentFocus 1100ms cubic-bezier(.2,.7,.2,1) both' }}>
 
@@ -71,21 +76,24 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
         </div>
 
         {/* how we help — plain and confident, not poetic */}
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(30px,5vh,58px) auto 0', maxWidth: '40ch', ...balance }}>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(28px,4.6vh,52px) auto 0', maxWidth: '40ch', ...balance }}>
           We work alongside founders to solve what&rsquo;s stuck, uncover opportunities others miss, and help make the next move happen.
         </p>
 
-        {/* the two choices — the Foyer's only real decision */}
-        <div style={{ margin: 'clamp(40px,6.5vh,86px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
+        {/* the founder-first distinction — the bridge between Believe as a growth
+            studio and Believe as a House for Founders. Set above the doors and
+            given real presence (quieter than the headline, never a footer) so it
+            performs that role rather than reading as an afterthought. */}
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.42, color: 'rgba(90,68,34,0.9)', margin: 'clamp(30px,5vh,60px) auto 0', maxWidth: '26ch', ...balance }}>
+          Because you can&rsquo;t separate the company from the person building it.
+        </p>
+
+        {/* the two choices — the Foyer's only real decision, kept in the first
+            viewport beneath the bridge line */}
+        <div style={{ margin: 'clamp(30px,5vh,60px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
           <El as="button" onClick={onWork} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Work with Believe &rarr;</El>
           <El as="button" onClick={onStepInside} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Explore the House &rarr;</El>
         </div>
-
-        {/* the founder-first distinction — a quiet inscription beneath the
-            choices, so it never delays the clarity or the decision above it */}
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.6vw,20px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.66)', margin: 'clamp(34px,5.5vh,68px) auto 0', maxWidth: '30ch', ...balance }}>
-          Because you can&rsquo;t separate the company from the person building it.
-        </p>
       </div>
     </div>
   )
