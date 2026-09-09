@@ -490,11 +490,24 @@ export class App extends React.Component<Record<string, never>, State> {
     const cool = VEIL_MOOD === 'Cool dawn'
     const veilBg = cool ? '#eef0ec' : '#efe6d3'
 
+    // The Foyer sits above the building (z 200), so it must step aside whenever
+    // ANY chapter is open — not just Work — or it would cover a page opened from
+    // the Foyer (e.g. "Meet the people" from the Work page). Chapters are opaque
+    // full-screen overlays, so unmounting the Foyer beneath them is invisible;
+    // closing the chapter brings the Foyer back.
+    const s = this.state
+    const overlayOpen = !!(
+      s.showWork || s.showPeople || s.showHouses || s.showStudio || s.showStudioPage ||
+      s.showStories || s.showHouse || s.showWhyBelieve || s.showLibrary || s.showBlueprint ||
+      s.showFieldNotes || s.showTable || s.showAdvisory || s.showStage || s.showDirectory ||
+      s.showKey || s.activeDoorway
+    )
+
     return (
       <>
         {phase === 'overture' && this.renderOverture(opening)}
         {phase === 'sketch' && this.renderSketch()}
-        {phase === 'foyer' && !this.state.showWork && <Foyer onWork={this.ctx.openWork} onStepInside={this.foyerToExplore} />}
+        {phase === 'foyer' && !overlayOpen && <Foyer onWork={this.ctx.openWork} onStepInside={this.foyerToExplore} />}
         {phase === 'prologue' && <Prologue onEnter={this.enterHouse} motionOn={alive} />}
         {phase === 'map' && this.renderBuilding(alive, sunShiftAnim)}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
