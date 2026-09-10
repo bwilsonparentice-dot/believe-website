@@ -857,7 +857,6 @@ export const STUDIO_NIGHTS = [
 // name, until the person has officially started.
 export const HOUSE_TEAM: { name?: string; role: string; comingSoon?: boolean }[] = [
   { name: 'Beth Wilson-Parentice', role: 'Founder' },
-  { role: 'Founder Advisor', comingSoon: true },
   { name: 'Tiffany Nilles', role: 'Retail Intelligence Advisor' },
   { name: 'Joy Mooiweer', role: 'House Operations' },
   { name: 'Jillian Waun', role: 'Creative & Editorial' },
@@ -873,7 +872,6 @@ export const HOUSE_TEAM: { name?: string; role: string; comingSoon?: boolean }[]
 export type TeamMember = { name?: string; role: string; roleShort?: string; values: string; photo?: string; pos?: string; lead?: boolean }
 export const CORE_TEAM: TeamMember[] = [
   { name: 'Beth Wilson-Parentice', role: 'Founder', values: 'Sees the pattern beneath the problem.', photo: '/photos/portrait-beth.webp', pos: 'center 26%', lead: true },
-  { role: 'Founder Advisor', values: 'Keeps the founder and the enterprise in the same conversation.' },
   { name: 'Tiffany Nilles', role: 'Retail Intelligence Advisor', roleShort: 'Retail Intelligence', values: 'Brings the evidence into the room.', photo: '/photos/portrait-tiffany.webp', pos: 'center 28%' },
   { name: 'Joy Mooiweer', role: 'House Operations', values: 'Makes the House work when no one is watching.', photo: '/photos/portrait-joy.webp', pos: 'center 28%' },
   { name: 'Jillian Waun', role: 'Creative & Editorial', values: 'Gives the House its visible language.', photo: '/photos/portrait-jillian.webp', pos: 'center 26%' },
