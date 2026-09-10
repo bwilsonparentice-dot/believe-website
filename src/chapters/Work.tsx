@@ -5,6 +5,7 @@ import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
 import { ConversationNote } from '../components/ConversationNote'
 import { PHOTOS, STORIES, HOUSE_TEAM } from '../data'
+import { palette } from '../lib/palette'
 
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
@@ -21,14 +22,16 @@ const label: React.CSSProperties = {
   textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)',
 }
 
-// the single quiet action — the same underlined door treatment as the Foyer,
-// never a filled agency button.
+// the single primary action — deep navy on cream: authority and contrast, not
+// a luxury-brand gold button. Kept institutional (small, tracked, sharp corner),
+// with gold appearing only as a detail discovered on hover.
 const cta: React.CSSProperties = {
-  display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 15, letterSpacing: '0.34em',
-  textTransform: 'uppercase', color: 'rgba(43,39,35,0.95)', background: 'transparent', border: 'none',
-  borderBottom: '1.5px solid rgba(122,94,52,0.72)', padding: '0 0 9px', cursor: 'pointer',
-  transition: 'color 500ms ease, border-color 500ms ease',
+  display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 13, letterSpacing: '0.32em',
+  textTransform: 'uppercase', color: palette.linen, background: palette.navy, border: `1px solid ${palette.navy}`,
+  borderRadius: 2, padding: '17px 42px', cursor: 'pointer', boxShadow: 'inset 0 0 0 1px rgba(250,244,234,0)',
+  transition: 'background 500ms ease, box-shadow 600ms ease',
 }
+const ctaHover: React.CSSProperties = { background: palette.navyDeep, boxShadow: `inset 0 0 0 1px ${palette.gold}55, 0 20px 40px -26px rgba(22,32,58,0.7)` }
 
 /** A quiet architectural rule — a dimension line across the limestone. */
 function ArchLine({ m = 'clamp(90px,16vh,200px) auto' }: { m?: string }) {
@@ -290,7 +293,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <div style={{ ...label, marginBottom: 'clamp(24px,4vh,40px)' }}>Investment</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', maxWidth: '42ch', margin: '0 auto', ...pretty }}>Most ongoing Believe partnerships begin at <span style={{ color: '#2b2723' }}>$3,500/month</span>. More embedded growth partnerships typically begin around <span style={{ color: '#2b2723' }}>$5,000/month</span> and scale with the level of involvement.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.78)', maxWidth: '36ch', margin: 'clamp(26px,4.5vh,44px) auto 0', ...balance }}>We&rsquo;ll recommend the level of support that makes sense after we understand the business, the opportunity, and what would actually move it forward.</p>
-          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(52px,9vh,104px)' }} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.9)' }}>Start a Conversation &rarr;</El>
+          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(52px,9vh,104px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.6vw,20px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.7)', maxWidth: '32ch', margin: 'clamp(48px,8vh,96px) auto 0', ...balance }}>The Founder&rsquo;s Room, our room for founders growing beside one another, is <El as="span" onClick={ctx.openFounderRoom} style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)', cursor: 'pointer', borderBottom: '1px solid rgba(122,94,52,0.4)', transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>here</El>.</p>
         </div>
 
