@@ -32,7 +32,10 @@ function FoyerNiche({ m, drop }: { m: TeamMember; drop: boolean }) {
   const seat = !m.photo
   // larger on desktop so the people read as the proof; Beth only slightly
   // larger; scales down responsively so the 2-up phone layout still fits.
-  const w = seat ? 'clamp(116px,13vw,142px)' : (m.lead ? 'clamp(138px,15.7vw,172px)' : 'clamp(128px,14.5vw,158px)')
+  // A seat reserves the SAME footprint as a real (non-lead) portrait, so a photo
+  // can drop in later with zero layout shift — the quiet fill/shadow, not a
+  // smaller size, is what keeps a seat subordinate.
+  const w = m.lead ? 'clamp(138px,15.7vw,172px)' : 'clamp(128px,14.5vw,158px)'
   return (
     <div style={{ width: 'clamp(140px,16vw,176px)', display: 'flex', flexDirection: 'column', alignItems: 'center', transform: drop ? 'translateY(clamp(16px,2vw,26px))' : 'none' }}>
       <div style={{

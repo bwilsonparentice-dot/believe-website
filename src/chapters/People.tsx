@@ -14,7 +14,9 @@ const archRadius = '46% 46% 8px 8px / 56% 56% 6px 6px'
 /** A portrait, or an architectural seat for a role whose face is not yet placed. */
 function Niche({ m, size }: { m: TeamMember; size: number }) {
   const seat = !m.photo
-  const w = seat ? Math.round(size * 0.9) : size
+  // A seat reserves the same footprint as a portrait, so a real photo can replace
+  // it later with no layout shift; the quiet fill/shadow keep it subordinate.
+  const w = size
   const h = Math.round(w * 1.33)
   return (
     <div style={{
