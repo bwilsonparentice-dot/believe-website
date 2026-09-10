@@ -857,12 +857,32 @@ export const STUDIO_NIGHTS = [
 // name, until the person has officially started.
 export const HOUSE_TEAM: { name?: string; role: string; comingSoon?: boolean }[] = [
   { name: 'Beth Wilson-Parentice', role: 'Founder' },
-  { name: 'Tiffany Nilles', role: 'Retail Strategy Advisor' },
-  { name: 'Grace Federico', role: 'Brand Growth Associate' },
+  { role: 'Founder Advisor', comingSoon: true },
+  { name: 'Tiffany Nilles', role: 'Retail Intelligence Advisor' },
   { name: 'Joy Mooiweer', role: 'House Operations' },
   { name: 'Jillian Waun', role: 'Creative & Editorial' },
-  { role: 'Founder Advisor', comingSoon: true },
-  { role: 'Founder Advisor', comingSoon: true },
+  { name: 'Grace Federico', role: 'Brand & Growth Associate' },
+]
+
+// The core team of the House, shown as the "Who you'll find inside" reveal on
+// the Foyer and the full People page. Each carries one values line. A member
+// with a `photo` renders as an editorial portrait; one without renders as an
+// architectural seat (a real role in the House, its portrait not yet placed).
+// `pos` biases the crop toward the face. `lead` (Beth) reads a touch larger.
+// `roleShort` is the compact label used under the small Foyer niches.
+export type TeamMember = { name?: string; role: string; roleShort?: string; values: string; photo?: string; pos?: string; lead?: boolean }
+export const CORE_TEAM: TeamMember[] = [
+  { name: 'Beth Wilson-Parentice', role: 'Founder', values: 'Sees the pattern beneath the problem.', photo: '/photos/portrait-beth.webp', pos: 'center 26%', lead: true },
+  { role: 'Founder Advisor', values: 'Keeps the founder and the enterprise in the same conversation.' },
+  { name: 'Tiffany Nilles', role: 'Retail Intelligence Advisor', roleShort: 'Retail Intelligence', values: 'Brings the evidence into the room.', photo: '/photos/portrait-tiffany.webp', pos: 'center 28%' },
+  { name: 'Joy Mooiweer', role: 'House Operations', values: 'Makes the House work when no one is watching.', photo: '/photos/portrait-joy.webp', pos: 'center 28%' },
+  { name: 'Jillian Waun', role: 'Creative & Editorial', values: 'Gives the House its visible language.', photo: '/photos/portrait-jillian.webp', pos: 'center 26%' },
+  { name: 'Grace Federico', role: 'Brand & Growth Associate', roleShort: 'Brand & Growth', values: 'Makes sure ideas become action and founders know what comes next.' },
+]
+// Residents — rotating specialist expertise available to the House, shown quieter
+// and subordinate to the core team.
+export const RESIDENTS: TeamMember[] = [
+  { name: 'Chef MoWils', role: 'In Residence', values: 'Where AI meets CPG, around The Table.', photo: '/photos/portrait-mona.webp', pos: 'center 30%' },
 ]
 
 export const PEOPLE = [

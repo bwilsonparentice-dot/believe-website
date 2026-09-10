@@ -1,18 +1,13 @@
 import React, { CSSProperties } from 'react'
 import { El } from '../lib/El'
 import { ArchMark } from './ChapterShell'
+import { ImageSlot } from './ImageSlot'
+import { CORE_TEAM, type TeamMember } from '../data'
+import { palette } from '../lib/palette'
 
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
 const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
-
-// the three areas of work — set the way the six principles are set elsewhere in
-// the House: small, wide-tracked, brass, engraved into the wall rather than
-// displayed as offerings. No cards, no icons, no descriptions.
-const engrave: CSSProperties = {
-  fontFamily: sans, fontWeight: 400, fontSize: 'clamp(10px,1.15vw,12px)', letterSpacing: '0.42em',
-  textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', whiteSpace: 'nowrap',
-}
 
 // a door, not a button — the same quiet underlined way out used elsewhere in
 // the House (Request a Place, Step further into the House).
@@ -23,74 +18,106 @@ const door: CSSProperties = {
   textDecoration: 'none', transition: 'color 500ms ease, border-color 500ms ease',
 }
 
+// the arched niche geometry, shared by portraits and seats
+const archRadius = '46% 46% 7px 7px / 56% 56% 6px 6px'
+
 /**
- * The Foyer — the first physical space of the House.
- *
- * Not a homepage, not a hero, not a services page, not a landing page: the
- * front room, where a founder arrives and, within a breath, understands where
- * they are and sees the two ways in. Clarity first; depth second. Deliberately
- * almost empty — a plain confident line, four disciplines engraved into the
- * architecture, one supporting sentence, two doors, and a quiet founder-first
- * inscription beneath the choices. It reuses the House's own grammar
- * (Cormorant, cream, the brass arch mark, the engraved principles) rather than
- * inventing a new visual language. The words are direct; the room is what
- * whispers.
- *
- * Rendered behind the ?foyer flag (or /foyer) for review; it never
- * auto-advances. The doors are inert here — wiring them into the live entrance
- * is a later pass.
+ * A single face in the House — a portrait for a photographed member, or an
+ * architectural "seat" for a real role whose portrait isn't placed yet. The
+ * seat is ~10% quieter (a touch smaller, softer fill) so it reads as a real
+ * role without competing with the people whose faces are present. The crop is
+ * biased toward the face so each person feels close, not distant.
+ */
+function FoyerNiche({ m, drop }: { m: TeamMember; drop: boolean }) {
+  const seat = !m.photo
+  const base = m.lead ? 158 : 140
+  const w = seat ? Math.round(base * 0.9) : base
+  const h = Math.round(w * 1.32)
+  return (
+    <div style={{ width: 150, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: drop ? 'translateY(26px)' : 'none' }}>
+      <div style={{
+        width: w, height: h, borderRadius: archRadius, overflow: 'hidden', position: 'relative',
+        ...(seat
+          ? { background: 'linear-gradient(160deg,#e7dcc4,#ded1b6)', border: '1px solid rgba(156,122,63,0.42)', boxShadow: 'inset 0 8px 20px rgba(80,60,28,0.12)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }
+          : { boxShadow: '0 20px 34px -20px rgba(60,44,20,0.5)' }),
+      }}>
+        {seat
+          ? <div aria-hidden="true" style={{ width: 24, height: 28, border: '1.4px solid rgba(156,122,63,0.6)', borderBottom: 'none', borderRadius: '50% 50% 4px 4px / 60% 60% 3px 3px', marginTop: '28%' }} />
+          : <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%', filter: 'brightness(1.03)' }} />}
+      </div>
+      <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 19, lineHeight: 1.08, marginTop: 14, color: seat ? 'rgba(43,39,35,0.7)' : '#2b2723' }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
+      {m.name && <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 9.5, letterSpacing: '0.24em', textTransform: 'uppercase', color: palette.olive, marginTop: 6, lineHeight: 1.35, opacity: seat ? 0.82 : 1 }}>{m.roleShort || m.role}</div>}
+    </div>
+  )
+}
+
+/**
+ * The Foyer — the first room of the House, and now the place the differentiator
+ * is proved before the visitor chooses a path. Positioning first (a promise, the
+ * capabilities, one operating line), then the reveal — "Who you'll find inside":
+ * a restrained navy statement and the staggered team, so a founder understands
+ * they are not hiring one advisor but entering a coordinated House. The bridge
+ * line and the two doors close it. Quiet House; strong people. It reuses the
+ * House's own grammar (Cormorant, cream, the arch, the palette) and adds one
+ * controlled navy moment; the room is what whispers, the people are the proof.
  */
 export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepInside?: () => void }) {
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 200, overflowY: 'auto', background: 'linear-gradient(158deg, #f1e9d8 0%, #efe6d3 46%, #e7dcc4 100%)' }}>
-      {/* the room's atmosphere — kept to roughly a whisper: a late-afternoon
-          shaft entering off-frame from one upper corner (drifting almost
-          imperceptibly), a faint architectural edge at one side that suggests a
-          wall return and a room beyond, and a soft settling of shadow into the
-          far lower corner. All reuse the House's own light grammar — no photo,
-          no new palette — so the cream reads as lit plaster, not a flat field. */}
+      {/* the room's atmosphere — a whisper of off-frame late-afternoon light and a
+          faint architectural edge, so the cream reads as lit plaster. */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(52% 46% at 30% 8%, rgba(255,240,205,0.9), transparent 60%)', opacity: 0.75, animation: 'lightWander 72s ease-in-out infinite alternate' }} />
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(270deg, rgba(80,60,28,0.05) 0%, transparent 10%), radial-gradient(60% 55% at 92% 100%, rgba(80,60,28,0.06), transparent 60%)' }} />
 
-      <div style={{ position: 'relative', minHeight: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 'clamp(48px,8vh,100px) 8vw', color: '#2b2723', animation: 'contentFocus 1100ms cubic-bezier(.2,.7,.2,1) both' }}>
+      <div style={{ position: 'relative', minHeight: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', textAlign: 'center', padding: 'clamp(46px,7vh,80px) 8vw clamp(56px,9vh,90px)', color: '#2b2723', animation: 'contentFocus 1100ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* the mark + wordmark — you know the House the moment you arrive */}
-        <ArchMark width={2.2} margin="0 auto 1.7em" />
+        <ArchMark width={2.2} margin="0 auto 1.5em" />
         <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(27px,3.4vw,44px)', letterSpacing: '0.14em', lineHeight: 1 }}>Believe Studio</div>
-        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginTop: '1.3em' }}>A House for Founders</div>
+        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginTop: '1.2em' }}>A House for Founders</div>
 
-        {/* the plain answer to "what is this?" — the most confident line in the
-            room, and the fastest thing to read */}
-        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.5vw,48px)', lineHeight: 1.12, color: '#2b2723', margin: 'clamp(40px,6.5vh,86px) auto 0', maxWidth: '30ch', ...balance }}>
-          {'We help founder‑led brands grow.'}
+        {/* the promise — the most confident line in the room */}
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,3.7vw,50px)', lineHeight: 1.12, color: '#2b2723', margin: 'clamp(34px,5.2vh,64px) auto 0', maxWidth: '20ch', ...balance }}>
+          Build brands worth keeping.
         </p>
 
-        {/* the disciplines — engraved into the wall, not displayed as offerings */}
-        <div style={{ margin: 'clamp(34px,5.6vh,68px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(0.7em,2.4vw,2.2em)' }}>
-          {['Brand', 'Sales', 'Retail', 'Marketing'].map((t, i) => (
+        {/* the capabilities — engraved into the wall, not displayed as services */}
+        <div style={{ margin: 'clamp(28px,4.4vh,48px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(0.55em,1.8vw,1.5em)' }}>
+          {['Strategy', 'Brand', 'Retail', 'Growth', 'Operations'].map((t, i) => (
             <React.Fragment key={t}>
               {i > 0 && <span aria-hidden="true" style={{ color: 'rgba(122,94,52,0.4)', fontSize: 11 }}>&middot;</span>}
-              <span style={engrave}>{t}</span>
+              <span style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', whiteSpace: 'nowrap' }}>{t}</span>
             </React.Fragment>
           ))}
         </div>
 
-        {/* how we help — plain and confident, not poetic */}
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(28px,4.6vh,52px) auto 0', maxWidth: '40ch', ...balance }}>
-          We work alongside founders to solve what&rsquo;s stuck, uncover opportunities others miss, and help make the next move happen.
+        {/* one operating line — the House model, plainly */}
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', margin: 'clamp(28px,4.4vh,50px) auto 0', maxWidth: '40ch', ...balance }}>
+          Believe Studio brings a multidisciplinary team around CPG founders to help them see what is really happening, make stronger decisions, and build what comes next.
         </p>
 
-        {/* the founder-first distinction — the bridge between Believe as a growth
-            studio and Believe as a House for Founders. Set above the doors and
-            given real presence (quieter than the headline, never a footer) so it
-            performs that role rather than reading as an afterthought. */}
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.42, color: 'rgba(90,68,34,0.9)', margin: 'clamp(30px,5vh,60px) auto 0', maxWidth: '26ch', ...balance }}>
+        {/* ── the reveal: who you'll find inside ─────────────────────────── */}
+        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, margin: 'clamp(56px,9vh,92px) auto 0' }}>Who you&rsquo;ll find inside</div>
+
+        {/* a restrained navy lintel — a strong architectural pause, two lines on
+            desktop, wrapping naturally on smaller screens */}
+        <div style={{ background: palette.navy, color: palette.linen, borderRadius: 2, padding: 'clamp(20px,2.6vh,24px) clamp(30px,4.4vw,50px)', margin: 'clamp(22px,3.4vh,28px) auto 0', width: 'min(500px, 92%)' }}>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.4vw,26px)', lineHeight: 1.34, ...balance }}>No founder should have to carry the whole company alone.</p>
+        </div>
+
+        {/* the team — larger, staggered, loose and architectural (never a grid);
+            portraits present, seats for roles whose faces are not yet placed */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(30px,4vh,38px) clamp(26px,4vw,46px)', maxWidth: 560, margin: 'clamp(40px,6vh,52px) auto 0' }}>
+          {CORE_TEAM.map((m, i) => <FoyerNiche key={i} m={m} drop={i % 2 === 1} />)}
+        </div>
+
+        {/* the founder-first bridge into the two paths */}
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.42, color: 'rgba(90,68,34,0.9)', margin: 'clamp(60px,9vh,96px) auto 0', maxWidth: '26ch', ...balance }}>
           Because you can&rsquo;t separate the company from the person building it.
         </p>
 
-        {/* the two choices — the Foyer's only real decision, kept in the first
-            viewport beneath the bridge line */}
-        <div style={{ margin: 'clamp(30px,5vh,60px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
+        {/* the two choices */}
+        <div style={{ margin: 'clamp(34px,5vh,58px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
           <El as="button" onClick={onWork} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Work with Believe &rarr;</El>
           <El as="button" onClick={onStepInside} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Explore the House &rarr;</El>
         </div>
