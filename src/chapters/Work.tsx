@@ -284,17 +284,26 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <ArchLine m="clamp(100px,17vh,210px) auto clamp(64px,11vh,130px)" />
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(26px,4.5vh,44px)' }}>How we work</div>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance }}>It starts with a conversation.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(34px,6vh,64px) auto 0', ...pretty }}>{'Tell us where the business is, where you want it to go, and what feels like it’s getting in the way. From there we’ll figure out whether Believe is the right partner, and what work would actually move the business forward.'}</p>
-          {/* investment — an orientation, not a menu: a quiet labeled beat after
-              how we work and before the final action. Figures in full ink, the
-              rest muted; the second line is the softer reassurance note. */}
-          <ArchLine m="clamp(72px,12vh,150px) auto clamp(56px,10vh,110px)" />
-          <div style={{ ...label, marginBottom: 'clamp(24px,4vh,40px)' }}>Investment</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.7)', maxWidth: '42ch', margin: '0 auto', ...pretty }}>Most ongoing Believe partnerships begin at <span style={{ color: '#2b2723' }}>$3,500/month</span>. More embedded growth partnerships typically begin around <span style={{ color: '#2b2723' }}>$5,000/month</span> and scale with the level of involvement.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.78)', maxWidth: '36ch', margin: 'clamp(26px,4.5vh,44px) auto 0', ...balance }}>We&rsquo;ll recommend the level of support that makes sense after we understand the business, the opportunity, and what would actually move it forward.</p>
-          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(52px,9vh,104px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.6vw,20px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.7)', maxWidth: '32ch', margin: 'clamp(48px,8vh,96px) auto 0', ...balance }}>The Founder&rsquo;s Room, our room for founders growing beside one another, is <El as="span" onClick={ctx.openFounderRoom} style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)', cursor: 'pointer', borderBottom: '1px solid rgba(122,94,52,0.4)', transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>here</El>.</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance }}>Before we advise, we understand.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(34px,6vh,64px) auto 0', ...pretty }}>We begin by understanding the founder, the business, and the decision in front of them, then determine which part of the House is the right place to begin.</p>
+          {/* Private Advisory — two registers: a poetic lead, then the plain
+              authoritative statement (full ink, more presence), then a quieter
+              subordinate note. Generous space before the action. */}
+          <ArchLine m="clamp(72px,12vh,150px) auto clamp(60px,11vh,120px)" />
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(23px,2.9vw,38px)', lineHeight: 1.28, color: 'rgba(43,39,35,0.78)', maxWidth: '24ch', margin: '0 auto', ...balance }}>Some seasons ask for someone closer.</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.7vw,34px)', lineHeight: 1.36, color: '#2b2723', maxWidth: '32ch', margin: 'clamp(30px,5vh,58px) auto 0', ...balance }}>Private Advisory begins at <span style={{ whiteSpace: 'nowrap' }}>$5,000 per month</span> and is reserved for a small number of founders whose businesses require ongoing strategic stewardship.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15px,1.5vw,19px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.5)', maxWidth: '36ch', margin: 'clamp(22px,3.6vh,38px) auto 0', ...balance }}>We recommend the right structure after understanding the founder, the business, and the decisions ahead.</p>
+          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(66px,12vh,140px)' }} hover={ctaHover}>Request Private Advisory &rarr;</El>
+
+          {/* another room inside the House — a quieter text transition, not a
+              second navy button. The muted-olive label is the single
+              architectural signal that we are entering another room. */}
+          <div style={{ marginTop: 'clamp(100px,18vh,210px)' }}>
+            <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, marginBottom: 'clamp(24px,4.2vh,42px)' }}>Another room inside the House</div>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(22px,2.9vw,38px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '22ch', margin: '0 auto', ...balance }}>The right room changes the work.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.72)', maxWidth: '42ch', margin: 'clamp(28px,5vh,52px) auto 0', ...pretty }}>The Founder&rsquo;s Room brings eight founders together each month around real business decisions, supported by Believe methodology and specialist Residents.</p>
+            <El as="button" onClick={ctx.openFounderRoom} style={{ display: 'inline-block', marginTop: 'clamp(34px,6vh,60px)', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.9)', background: 'transparent', border: 'none', borderBottom: `1.5px solid ${palette.gold}`, padding: '0 0 7px', cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.85)' }}>Request a Place &rarr;</El>
+          </div>
         </div>
 
         <ArchLine m="clamp(80px,13vh,150px) auto clamp(40px,7vh,64px)" />
