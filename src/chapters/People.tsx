@@ -20,11 +20,11 @@ function Niche({ m, size }: { m: TeamMember; size: number }) {
     <div style={{
       width: w, height: h, maxWidth: '82vw', borderRadius: archRadius, overflow: 'hidden', position: 'relative', flex: '0 0 auto',
       ...(seat
-        ? { background: 'linear-gradient(160deg,#e7dcc4,#ded1b6)', border: '1px solid rgba(156,122,63,0.4)', boxShadow: 'inset 0 8px 22px rgba(80,60,28,0.12)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }
+        ? { background: 'linear-gradient(160deg,#ede3cd,#e6dcc1)', border: '1px solid rgba(156,122,63,0.2)', boxShadow: 'inset 0 6px 14px rgba(80,60,28,0.055)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }
         : { boxShadow: '0 40px 70px -44px rgba(60,44,20,0.55)' }),
     }}>
       {seat
-        ? <div aria-hidden="true" style={{ width: 30, height: 34, border: '1.5px solid rgba(156,122,63,0.6)', borderBottom: 'none', borderRadius: '50% 50% 4px 4px / 60% 60% 3px 3px', marginTop: '26%' }} />
+        ? <div aria-hidden="true" style={{ width: 30, height: 34, border: '1.3px solid rgba(156,122,63,0.38)', borderBottom: 'none', borderRadius: '50% 50% 4px 4px / 60% 60% 3px 3px', marginTop: '26%' }} />
         : <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%', filter: 'brightness(1.03)' }} />}
     </div>
   )
@@ -61,18 +61,20 @@ export function PeopleChapter({ ctx }: { ctx: Ctx }) {
 
         {CORE_TEAM.map((m, i) => <TeamRow key={i} m={m} i={i} />)}
 
-        {/* the residents — a quieter, subordinate bench */}
-        <div style={{ width: 1, height: 'clamp(56px,9vh,110px)', margin: 'clamp(80px,14vh,170px) auto clamp(44px,7vh,84px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
-        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, textAlign: 'center', marginBottom: '0.5em' }}>In Residence</div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(16px,1.8vw,22px)', color: 'rgba(122,94,52,0.78)', textAlign: 'center', maxWidth: '34ch', margin: '0 auto clamp(44px,7vh,76px)', ...balance }}>Rotating specialist expertise, available to the House.</p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(28px,5vw,56px)' }}>
+        {/* the residents — a clearly labelled but still subordinate bench, so
+            the message reads: core team around you, specialist expertise in
+            residence when needed */}
+        <div style={{ width: 1, height: 'clamp(56px,9vh,110px)', margin: 'clamp(80px,14vh,170px) auto clamp(40px,6.5vh,76px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, textAlign: 'center', marginBottom: '0.9em' }}>In Residence</div>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.8)', textAlign: 'center', maxWidth: '34ch', margin: '0 auto clamp(52px,8.5vh,90px)', ...balance }}>Rotating specialist expertise, available to the House.</p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(40px,7vh,80px) clamp(28px,5vw,56px)' }}>
           {RESIDENTS.map((m, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 'clamp(20px,3vw,32px)', flexWrap: 'wrap', justifyContent: 'center', maxWidth: 460 }}>
-              <Niche m={m} size={132} />
-              <div style={{ flex: '1 1 200px', minWidth: 180, textAlign: 'left' }}>
-                <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(23px,2.6vw,30px)', lineHeight: 1.05 }}>{m.name || m.role}</div>
-                <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', margin: '12px 0 0' }}>{m.role}</div>
-                <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,21px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.62)', margin: '12px 0 0', maxWidth: '26ch', ...pretty }}>{m.values}</p>
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 'clamp(24px,3.4vw,40px)', flexWrap: 'wrap', justifyContent: 'center', maxWidth: 500 }}>
+              <Niche m={m} size={152} />
+              <div style={{ flex: '1 1 210px', minWidth: 190, textAlign: 'left' }}>
+                <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(25px,2.9vw,33px)', lineHeight: 1.05 }}>{m.name || m.role}</div>
+                <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', margin: '13px 0 0' }}>{m.role}</div>
+                <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: '13px 0 0', maxWidth: '26ch', ...pretty }}>{m.values}</p>
               </div>
             </div>
           ))}

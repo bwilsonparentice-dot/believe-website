@@ -30,13 +30,13 @@ const archRadius = '46% 46% 7px 7px / 56% 56% 6px 6px'
  */
 function FoyerNiche({ m, drop }: { m: TeamMember; drop: boolean }) {
   const seat = !m.photo
-  const base = m.lead ? 158 : 140
-  const w = seat ? Math.round(base * 0.9) : base
-  const h = Math.round(w * 1.32)
+  // larger on desktop so the people read as the proof; Beth only slightly
+  // larger; scales down responsively so the 2-up phone layout still fits.
+  const w = seat ? 'clamp(116px,13vw,142px)' : (m.lead ? 'clamp(138px,15.7vw,172px)' : 'clamp(128px,14.5vw,158px)')
   return (
-    <div style={{ width: 150, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: drop ? 'translateY(26px)' : 'none' }}>
+    <div style={{ width: 'clamp(140px,16vw,176px)', display: 'flex', flexDirection: 'column', alignItems: 'center', transform: drop ? 'translateY(clamp(16px,2vw,26px))' : 'none' }}>
       <div style={{
-        width: w, height: h, borderRadius: archRadius, overflow: 'hidden', position: 'relative',
+        width: w, aspectRatio: '0.758', borderRadius: archRadius, overflow: 'hidden', position: 'relative',
         ...(seat
           ? { background: 'linear-gradient(160deg,#e7dcc4,#ded1b6)', border: '1px solid rgba(156,122,63,0.42)', boxShadow: 'inset 0 8px 20px rgba(80,60,28,0.12)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }
           : { boxShadow: '0 20px 34px -20px rgba(60,44,20,0.5)' }),
@@ -97,7 +97,7 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
         </p>
 
         {/* ── the reveal: who you'll find inside ─────────────────────────── */}
-        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, margin: 'clamp(56px,9vh,92px) auto 0' }}>Who you&rsquo;ll find inside</div>
+        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, margin: 'clamp(46px,7.2vh,78px) auto 0' }}>Who you&rsquo;ll find inside</div>
 
         {/* a restrained navy lintel — a strong architectural pause, two lines on
             desktop, wrapping naturally on smaller screens */}
@@ -107,17 +107,17 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
 
         {/* the team — larger, staggered, loose and architectural (never a grid);
             portraits present, seats for roles whose faces are not yet placed */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(30px,4vh,38px) clamp(26px,4vw,46px)', maxWidth: 560, margin: 'clamp(40px,6vh,52px) auto 0' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(28px,3.6vh,36px) clamp(24px,3.4vw,44px)', maxWidth: 640, margin: 'clamp(32px,4.8vh,44px) auto 0' }}>
           {CORE_TEAM.map((m, i) => <FoyerNiche key={i} m={m} drop={i % 2 === 1} />)}
         </div>
 
         {/* the founder-first bridge into the two paths */}
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.42, color: 'rgba(90,68,34,0.9)', margin: 'clamp(60px,9vh,96px) auto 0', maxWidth: '26ch', ...balance }}>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.42, color: 'rgba(90,68,34,0.9)', margin: 'clamp(50px,7.6vh,82px) auto 0', maxWidth: '26ch', ...balance }}>
           Because you can&rsquo;t separate the company from the person building it.
         </p>
 
         {/* the two choices */}
-        <div style={{ margin: 'clamp(34px,5vh,58px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
+        <div style={{ margin: 'clamp(28px,4.2vh,48px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(28px,6vw,74px)' }}>
           <El as="button" onClick={onWork} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Work with Believe &rarr;</El>
           <El as="button" onClick={onStepInside} style={door} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}>Explore the House &rarr;</El>
         </div>
