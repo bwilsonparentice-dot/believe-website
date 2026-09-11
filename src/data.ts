@@ -852,10 +852,8 @@ export const STUDIO_NIGHTS = [
 // The core House team as shown on the commercial path — name + role only, so a
 // founder sees the strength of Believe at a glance (an institution, not a solo
 // practice). Residents (e.g. Mona) are shown separately, never here. Edit this
-// one array to update the roster; `comingSoon` softens a not-yet-solidified seat.
-// A seat with no `name` is a role being filled — shown by title only, never a
-// name, until the person has officially started.
-export const HOUSE_TEAM: { name?: string; role: string; comingSoon?: boolean }[] = [
+// one array to update the roster.
+export const HOUSE_TEAM: { name: string; role: string }[] = [
   { name: 'Beth Wilson-Parentice', role: 'Founder' },
   { name: 'Tiffany Nilles', role: 'Retail Intelligence Advisor' },
   { name: 'Joy Mooiweer', role: 'House Operations' },
@@ -875,7 +873,7 @@ export const CORE_TEAM: TeamMember[] = [
   { name: 'Tiffany Nilles', role: 'Retail Intelligence Advisor', roleShort: 'Retail Intelligence', values: 'Brings the evidence into the room.', photo: '/photos/portrait-tiffany.webp', pos: 'center 28%' },
   { name: 'Joy Mooiweer', role: 'House Operations', values: 'Makes the House work when no one is watching.', photo: '/photos/portrait-joy.webp', pos: 'center 28%' },
   { name: 'Jillian Waun', role: 'Creative & Editorial', values: 'Gives the House its visible language.', photo: '/photos/portrait-jillian.webp', pos: 'center 26%' },
-  { name: 'Grace Federico', role: 'Brand & Growth Associate', roleShort: 'Brand & Growth', values: 'Makes sure ideas become action and founders know what comes next.', photo: '/photos/portrait-grace.webp', pos: 'center 30%' },
+  { name: 'Grace Federico', role: 'Brand & Growth Associate', roleShort: 'Brand & Growth', values: 'Makes sure ideas become action and founders know what comes next.', photo: '/photos/portrait-grace.webp', pos: 'center 22%' },
 ]
 // Residents — rotating specialist expertise available to the House, shown quieter
 // and subordinate to the core team.
