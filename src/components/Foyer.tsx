@@ -110,7 +110,7 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
 
         {/* the team — larger, staggered, loose and architectural (never a grid);
             portraits present, seats for roles whose faces are not yet placed */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(28px,3.6vh,36px) clamp(24px,3.4vw,44px)', maxWidth: 640, margin: 'clamp(32px,4.8vh,44px) auto 0' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(12px,1.8vh,18px) clamp(24px,3.4vw,44px)', maxWidth: 640, margin: 'clamp(18px,3vh,26px) auto 0' }}>
           {CORE_TEAM.map((m, i) => <FoyerNiche key={i} m={m} drop={i % 2 === 1} />)}
         </div>
 
