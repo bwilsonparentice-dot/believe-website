@@ -191,7 +191,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <ArchMark width={2.2} margin="0 auto 1.5em" />
         <div style={{ ...label, marginBottom: '1.5em' }}>Work with Believe</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.1vw,68px)', lineHeight: 1.06, margin: '0 auto', maxWidth: '20ch', ...balance }}>The founder belongs in the strategy.</h2>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '45ch', margin: 'clamp(36px,6vh,76px) auto 0', ...balance }}>Believe Studio brings a multidisciplinary team around CPG founders to help them see what is really happening, make stronger decisions, and build what comes next.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '46ch', margin: 'clamp(36px,6vh,76px) auto 0', ...balance }}>We bring experienced people around both the founder and the business, then work across the disciplines that matter to the decision in front of them.</p>
         {/* the capabilities — engraved, not a services list; the same line the Foyer uses */}
         <div style={{ margin: 'clamp(28px,4.4vh,48px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(0.55em,1.8vw,1.5em)' }}>
           {['Strategy', 'Brand', 'Retail', 'Growth', 'Operations'].map((t, i) => (

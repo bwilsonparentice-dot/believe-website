@@ -67,7 +67,7 @@ export function AdvisoryChapter({ ctx }: { ctx: Ctx }) {
         {/* who it's for */}
         <div style={{ ...eyebrow, marginBottom: '1.4em' }}>Who it’s for</div>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '32ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Private Advisory is designed for founders leading meaningful companies who want an experienced strategic partner close to the business, not another outside voice.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '28ch', margin: '1.4em auto 0' }}>Some engagements last a single day. Others continue for years. There is no standard timeline — only the work that needs to be done.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '28ch', margin: '1.4em auto 0' }}>Some engagements last a single day. Others continue for years. There is no standard timeline. The work determines the pace.</p>
 
         <Divider h="clamp(50px,9vh,100px)" m="clamp(56px,10vh,110px) auto" />
 
