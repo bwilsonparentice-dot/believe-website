@@ -260,9 +260,9 @@ export class App extends React.Component<Record<string, never>, State> {
       // (below) is what reassures a first-time visitor the screen is theirs to
       // touch, without shortening the moment.
       // "We've been waiting for you." only finishes fading in around 2.4s, so a
-      // 2.6s auto-advance cut it off. Hold the arrival longer (still hands-free,
-      // still skippable by a click) so both lines are read before we move on.
-      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 4800)
+      // 2.6s auto-advance cut it off. Hold the arrival to ~4.2s (still hands-free,
+      // still skippable by a click) so the second line registers without dragging.
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 4200)
       // the bird finishes crossing and perches in the olive tree (Scene 2)
       this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 2000)
     }

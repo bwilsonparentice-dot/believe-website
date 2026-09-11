@@ -118,11 +118,11 @@ export function Foyer({ onWork, onStepInside, onPerson }: { onWork?: () => void;
         {/* ── the reveal: who you'll find inside ─────────────────────────── */}
         <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, margin: 'clamp(46px,7.2vh,78px) auto 0' }}>Who you&rsquo;ll find inside</div>
 
-        {/* a restrained navy lintel — a strong architectural pause, two lines on
-            desktop, wrapping naturally on smaller screens */}
-        <div style={{ background: palette.navy, color: palette.linen, borderRadius: 2, padding: 'clamp(20px,2.6vh,24px) clamp(30px,4.4vw,50px)', margin: 'clamp(22px,3.4vh,28px) auto 0', width: 'min(500px, 92%)' }}>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.4vw,26px)', lineHeight: 1.34, ...balance }}>No founder should have to carry the whole company alone.</p>
-        </div>
+        {/* the statement — minimal and editorial: deep-navy serif set straight on
+            the cream, with a single restrained aged-gold hairline beneath. No box,
+            no shadow — the people, not the container, are the focal point. */}
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.8vw,46px)', lineHeight: 1.22, color: palette.navy, margin: 'clamp(22px,3.4vh,32px) auto 0', maxWidth: '24ch', ...balance }}>No founder should have to carry the whole company alone.</p>
+        <div aria-hidden="true" style={{ width: 'clamp(60px,7vw,80px)', height: 1, background: palette.gold, opacity: 0.75, margin: 'clamp(22px,3.2vh,30px) auto 0' }} />
 
         {/* the team — larger, staggered, loose and architectural (never a grid);
             portraits present, seats for roles whose faces are not yet placed */}
