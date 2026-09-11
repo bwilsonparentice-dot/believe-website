@@ -190,16 +190,26 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         {/* the lead — what Believe is, plainly and confidently */}
         <ArchMark width={2.2} margin="0 auto 1.5em" />
         <div style={{ ...label, marginBottom: '1.5em' }}>Work with Believe</div>
-        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.1vw,68px)', lineHeight: 1.06, margin: '0 auto', maxWidth: '20ch', ...balance }}>{'Believe is a founder‑first growth studio.'}</h2>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '45ch', margin: 'clamp(36px,6vh,76px) auto 0', ...balance }}>{'We work beside founder‑led brands across brand, sales, retail and marketing, solving what’s stuck, uncovering the opportunities others miss, and helping make the next move happen.'}</p>
+        <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.1vw,68px)', lineHeight: 1.06, margin: '0 auto', maxWidth: '20ch', ...balance }}>The founder belongs in the strategy.</h2>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '45ch', margin: 'clamp(36px,6vh,76px) auto 0', ...balance }}>Believe Studio brings a multidisciplinary team around CPG founders to help them see what is really happening, make stronger decisions, and build what comes next.</p>
+        {/* the capabilities — engraved, not a services list; the same line the Foyer uses */}
+        <div style={{ margin: 'clamp(28px,4.4vh,48px) auto 0', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: 'clamp(0.55em,1.8vw,1.5em)' }}>
+          {['Strategy', 'Brand', 'Retail', 'Growth', 'Operations'].map((t, i) => (
+            <React.Fragment key={t}>
+              {i > 0 && <span aria-hidden="true" style={{ color: 'rgba(122,94,52,0.4)', fontSize: 11 }}>&middot;</span>}
+              <span style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', whiteSpace: 'nowrap' }}>{t}</span>
+            </React.Fragment>
+          ))}
+        </div>
 
         {/* built from the other side of the table */}
         <ArchLine m="clamp(90px,16vh,190px) auto clamp(64px,11vh,130px)" />
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(28px,5vh,50px)' }}>Built from the other side of the table</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.3vw,30px)', lineHeight: 1.5, color: '#2b2723', maxWidth: '33ch', margin: '0 auto', ...balance }}>{'Beth built Sipp from her kitchen into a multimillion‑dollar national brand, on the shelves at Target, Whole Foods, Starbucks, Wegmans and The Fresh Market.'}</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(30px,5vh,54px) auto 0', ...pretty }}>She&rsquo;s sat across from buyers, worked with distributors, raised the money, run production, made the expensive mistakes and celebrated the wins, and hired plenty of people who promised they could help.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '40ch', margin: 'clamp(30px,5vh,54px) auto 0', ...pretty }}>That&rsquo;s why Believe works the way it does: experienced enough to see the business differently, close enough to roll up our sleeves and help move it forward.</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(25px,3.3vw,42px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance }}>Experience changes what you see.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,26px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.78)', maxWidth: '42ch', margin: 'clamp(28px,4.6vh,48px) auto 0', ...balance }}>Beth built Sipp from her kitchen into a multimillion-dollar national brand sold at Target, Whole Foods, Starbucks, Wegmans, The Fresh Market, and thousands of retail doors.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(30px,5vh,54px) auto 0', ...pretty }}>She has sat across from buyers, worked with distributors, raised money, managed production, made expensive mistakes, celebrated the wins, and hired plenty of people who promised they could help.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '42ch', margin: 'clamp(30px,5vh,54px) auto 0', ...pretty }}>Believe was built from that experience. Not to stand outside the business and tell founders what they should do, but to bring experienced people around the table and help make the next move happen.</p>
 
           {/* the signature — Beth's line alone, then her voice in body copy beneath (emphasis preserved) */}
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.24, color: '#2b2723', maxWidth: '18ch', margin: 'clamp(58px,10vh,112px) auto 0', ...balance }}>&ldquo;I built the partner I wish I&rsquo;d had.&rdquo;</p>
@@ -226,13 +236,13 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <ArchLine m="clamp(100px,17vh,210px) auto clamp(64px,11vh,130px)" />
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(26px,4.5vh,44px)' }}>What we help founders do</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.8)', maxWidth: '28ch', margin: '0 auto clamp(66px,11vh,132px)', ...balance }}>Founders don&rsquo;t come to us for departments. They come because something needs to move.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.8)', maxWidth: '34ch', margin: '0 auto clamp(66px,11vh,132px)', ...balance }}>Founders rarely arrive with a department problem. They arrive because something needs to move.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(60px,10vh,112px)' }}>
             {[
-              { name: 'Build the brand', line: 'Positioning, messaging, and the story that makes the product matter.' },
-              { name: 'Grow sales', line: 'Retail strategy, buyer outreach, new channels, distribution and partnerships.' },
-              { name: 'Create demand', line: 'Marketing, social, content, collaborations and activations.' },
-              { name: 'Solve what’s stuck', line: 'Find the real constraint, uncover the opportunity, and help make the next move.' },
+              { name: 'See the business clearly', line: 'Positioning, customer, economics, retail reality, and the real constraint beneath the obvious problem.' },
+              { name: 'Build a brand people choose', line: 'Clarify the positioning, story, experience, and reason the product deserves to matter.' },
+              { name: 'Create the next growth move', line: 'Retail, channels, partnerships, buyer strategy, distribution, demand, and the opportunities worth pursuing.' },
+              { name: 'Unstick what isn’t moving', line: 'Find the issue behind the issue, make the decision, and turn the next move into action.' },
             ].map((o) => (
               <div key={o.name}>
                 <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.8vw,50px)', lineHeight: 1.06, color: '#2b2723' }}>{o.name}</div>
@@ -246,7 +256,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <ArchLine m="clamp(100px,17vh,210px) auto clamp(64px,11vh,130px)" />
         <div style={reveal}>
           <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,4vw,54px)', lineHeight: 1.12, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance }}>The biggest opportunity is rarely the one in the brief.</h3>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.72)', maxWidth: '42ch', margin: 'clamp(36px,6vh,72px) auto 0', ...pretty }}>{'We look across the brand, the business and the market for the move that isn’t obvious yet: the reframe, the connection, or the opportunity that changes what the company can become.'}</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.72)', maxWidth: '42ch', margin: 'clamp(36px,6vh,72px) auto 0', ...pretty }}>We look across the founder, the business, and the market for the move that is not obvious yet: the reframe, connection, decision, or opportunity that changes what becomes possible.</p>
         </div>
 
         {/* proof — real founders, in their words (restrained hierarchy preserved) */}
@@ -268,14 +278,14 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(26px,4.5vh,44px)' }}>How we work</div>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance }}>Before we advise, we understand.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(34px,6vh,64px) auto 0', ...pretty }}>We begin by understanding the founder, the business, and the decision in front of them, then determine which part of the House is the right place to begin.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(34px,6vh,64px) auto 0', ...pretty }}>We begin with the founder, the business, and the decision in front of them. Then we determine which part of the House is the right place to begin.</p>
           {/* Private Advisory — two registers: a poetic lead, then the plain
               authoritative statement (full ink, more presence), then a quieter
               subordinate note. Generous space before the action. */}
           <ArchLine m="clamp(72px,12vh,150px) auto clamp(60px,11vh,120px)" />
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(23px,2.9vw,38px)', lineHeight: 1.28, color: 'rgba(43,39,35,0.78)', maxWidth: '24ch', margin: '0 auto', ...balance }}>Some seasons ask for someone closer.</p>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.7vw,34px)', lineHeight: 1.36, color: '#2b2723', maxWidth: '32ch', margin: 'clamp(30px,5vh,58px) auto 0', ...balance }}>Private Advisory begins at <span style={{ whiteSpace: 'nowrap' }}>$5,000 per month</span> and is reserved for a small number of founders whose businesses require ongoing strategic stewardship.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15px,1.5vw,19px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.5)', maxWidth: '36ch', margin: 'clamp(22px,3.6vh,38px) auto 0', ...balance }}>We recommend the right structure after understanding the founder, the business, and the decisions ahead.</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.7vw,34px)', lineHeight: 1.36, color: '#2b2723', maxWidth: '32ch', margin: 'clamp(30px,5vh,58px) auto 0', ...balance }}>Private Advisory begins at <span style={{ whiteSpace: 'nowrap' }}>$5,000 per month</span> and is reserved for a small number of founders who need an experienced strategic partner close to the business.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15px,1.5vw,19px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.5)', maxWidth: '36ch', margin: 'clamp(22px,3.6vh,38px) auto 0', ...balance }}>We recommend the right structure after understanding the company, the decisions ahead, and where the House can create the most value.</p>
           <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(66px,12vh,140px)' }} hover={ctaHover}>Request Private Advisory &rarr;</El>
 
           {/* another room inside the House — a quieter text transition, not a
