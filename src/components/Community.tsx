@@ -42,7 +42,7 @@ function Enter({ onClick, children }: { onClick: Handler; children: ReactNode })
 // the language the House keeps — a small glossary, discovered like a page in a book
 const GLOSSARY: [string, string][] = [
   ['Resident', 'Someone invited into the House to contribute wisdom that remains after they leave.'],
-  ['Artifact', 'Something useful made through a conversation, workshop, or residency — and kept for the founders who come next.'],
+  ['Artifact', 'Something useful made through a conversation, workshop, or residency, and kept for the founders who come next.'],
   ['Field Note', 'An observation written down before it hardens into a framework.'],
   ['The Table', 'A place where conversation becomes decision.'],
   ['House', 'Not a platform. Not a program. A place founders can return to.'],
@@ -69,7 +69,7 @@ export function Community({ ctx }: { ctx: Ctx }) {
             <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '1.2em' }}>Founder</div>
             <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,54px)', lineHeight: 1.02, margin: '0 0 0.5em', color: ink }}>Beth Wilson-Parentice</h3>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.78)', maxWidth: '30ch', ...balance }}>Building the place she wished had existed when she was building alone.</p>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.6)', maxWidth: '34ch', margin: '1.4em 0 0', ...pretty }}>Around her, a small circle of residents, advisors, builders, and collaborators — each known by what they contribute to the House.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.6)', maxWidth: '34ch', margin: '1.4em 0 0', ...pretty }}>Around her, a small circle of residents, advisors, builders, and collaborators, each known by what they contribute to the House.</p>
             <Enter onClick={ctx.openPeople}>Meet the People</Enter>
           </div>
         </div>
@@ -77,7 +77,7 @@ export function Community({ ctx }: { ctx: Ctx }) {
         {/* ── The Houses to Come ────────────────────────────────────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(120px,22vh,300px)', ...reveal() }}>
           <div style={{ ...label, marginBottom: '1.7em' }}>The Houses to Come</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.7vw,36px)', lineHeight: 1.36, color: ink, maxWidth: '26ch', margin: '0 auto', ...balance }}>Believe Studio begins as one House. In time, there may be others — places where founders gather around tables, work through what matters, and leave something useful for those who come next.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.7vw,36px)', lineHeight: 1.36, color: ink, maxWidth: '26ch', margin: '0 auto', ...balance }}>Believe Studio begins as one House. In time, there may be others: places where founders gather around tables, work through what matters, and leave something useful for those who come next.</p>
 
           {/* a quiet brass plate for the next House, not yet located */}
           <div style={{ width: 'min(100%, 380px)', margin: 'clamp(56px,9vh,110px) auto 0', border: '1px solid rgba(40,44,70,0.26)', padding: 'clamp(30px,4.4vw,48px) clamp(26px,3.6vw,40px)', background: 'rgba(255,251,243,0.4)' }}>
@@ -93,7 +93,7 @@ export function Community({ ctx }: { ctx: Ctx }) {
         <div id="the-language" style={{ marginTop: 'clamp(120px,22vh,300px)', ...reveal() }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{ ...label, marginBottom: '1.7em' }}>The Language of the House</div>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.3vw,30px)', lineHeight: 1.44, color: ink, maxWidth: '30ch', margin: '0 auto clamp(56px,10vh,110px)', ...balance }}>Words shape what people believe is possible. Believe Studio uses language deliberately — not to sound different, but to behave differently.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.3vw,30px)', lineHeight: 1.44, color: ink, maxWidth: '30ch', margin: '0 auto clamp(56px,10vh,110px)', ...balance }}>Words shape what people believe is possible. Believe Studio uses language deliberately, not to sound different, but to behave differently.</p>
           </div>
 
           <dl style={{ width: 'min(100%, 640px)', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>

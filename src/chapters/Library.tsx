@@ -23,7 +23,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <RoomHeader eyebrow="How the house thinks" title="The Library" descriptor="Borrowed wisdom, collected over years." titleSize="clamp(40px,6.4vw,92px)" />
         <div style={{ marginTop: 'clamp(52px,9vh,116px)', animation: 'fadeUpSoft 1200ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 0% cover 16%' as unknown as string }}>
           <HouseArch scale="standard" width="min(88vw,600px)">
-            <ImageSlot src={PHOTOS.library} alt="Floor-to-ceiling walnut shelving in the Library, natural light" placeholder="Floor-to-ceiling walnut shelving, beautiful books, a ladder, natural light — an extraordinary private collection" fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: 'center', filter: 'brightness(1.03)', animation: 'slowZoom 20s ease-out both' }} />
+            <ImageSlot src={PHOTOS.library} alt="Floor-to-ceiling walnut shelving in the Library, natural light" placeholder="Floor-to-ceiling walnut shelving, beautiful books, a ladder, natural light: an extraordinary private collection" fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: 'center', filter: 'brightness(1.03)', animation: 'slowZoom 20s ease-out both' }} />
           </HouseArch>
         </div>
       </div>
@@ -41,7 +41,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
 
         {/* how wisdom enters, and how it stays */}
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', maxWidth: '28ch', margin: 'clamp(64px,11vh,130px) auto 0', textWrap: 'balance' as React.CSSProperties['textWrap'] }}>The workshops are how wisdom enters the House. The Library is how it stays.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '44ch', margin: 'clamp(34px,5.5vh,60px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Every Resident leaves something behind — a handbook, a dashboard, an audit, a framework, or another piece of hard-won wisdom. Long after the residency ends, that work remains here for founders they may never meet.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '44ch', margin: 'clamp(34px,5.5vh,60px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Every Resident leaves something behind: a handbook, a dashboard, an audit, a framework, or another piece of hard-won wisdom. Long after the residency ends, that work remains here for founders they may never meet.</p>
 
         <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,110px) auto clamp(40px,6.5vh,80px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
@@ -56,7 +56,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         {/* SHELF ONE — From the Shelf */}
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', marginBottom: '0.9em' }}>Shelf One</div>
         <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>From the Shelf</h3>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '34ch', margin: '0 auto clamp(48px,8vh,84px)' }}>Not recommendations. The books we return to — the ones that shaped how Believe Studio thinks.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '34ch', margin: '0 auto clamp(48px,8vh,84px)' }}>Not recommendations. The books we return to: the ones that shaped how Believe Studio thinks.</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(34px,5.5vh,58px)', textAlign: 'left', maxWidth: 600, margin: '0 auto' }}>
           {LIBRARY_BOOKS.map((b, i) => (
             <div key={i}>

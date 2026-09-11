@@ -44,7 +44,7 @@ const PROJECTS = [
   {
     name: 'Retailer Radar',
     question: 'How do I know which retailers are actually worth pursuing?',
-    body: 'Retailer Radar exists to replace guesswork with clarity — helping founders spend more time building relationships with the retailers that matter most.',
+    body: 'Retailer Radar exists to replace guesswork with clarity, helping founders spend more time building relationships with the retailers that matter most.',
     status: 'Quietly evolving beside founders.',
   },
   {
@@ -111,7 +111,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
 
       {/* ── the workbench itself — an editorial still life ──────────────── */}
       <div style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', height: 'clamp(340px,60vh,700px)', overflow: 'hidden', ...surface('entry 0% cover 14%') }}>
-        <ImageSlot src={PHOTOS.studio} fit="cover" alt="An oak worktable in a warm workshop — tracing paper, a brass ruler, an open notebook, a packaging sketch and a prototype screen in morning light" placeholder="a warm workshop — oak table, tracing paper, brass ruler, notebook, packaging sketch, one prototype screen, coffee, morning light, no people" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'slowZoom 24s ease-out both' }} />
+        <ImageSlot src={PHOTOS.studio} fit="cover" alt="An oak worktable in a warm workshop: tracing paper, a brass ruler, an open notebook, a packaging sketch and a prototype screen in morning light" placeholder="a warm workshop: oak table, tracing paper, brass ruler, notebook, packaging sketch, one prototype screen, coffee, morning light, no people" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', animation: 'slowZoom 24s ease-out both' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 54% at 36% 22%, rgba(255,226,178,0.36), transparent 70%)' }} />
         <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,14,7,0.08) 0%, transparent 26%, transparent 62%, rgba(239,230,211,0.72) 92%, #efe6d3 100%)' }} />
       </div>

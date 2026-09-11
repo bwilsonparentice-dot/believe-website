@@ -71,7 +71,7 @@ export function StageChapter({ ctx }: { ctx: Ctx }) {
         {/* ── what the Stage honors — lived experience, not recognition ─── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: '2em' }}>What the Stage honors</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.7)', maxWidth: '30ch', margin: '0 auto', ...balance }}>Founder wisdom is often worth the most after the fact — after the success, the failure, the reinvention, sometimes even after the company has closed its doors.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.7)', maxWidth: '30ch', margin: '0 auto', ...balance }}>Founder wisdom is often worth the most after the fact: after the success, the failure, the reinvention, sometimes even after the company has closed its doors.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: 'clamp(40px,7vh,78px) auto 0' }}>The Stage honors lived experience.<br />Not public recognition. Not titles. Not achievements.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '26ch', ...balance }}>A founder’s greatest contribution often begins after the spotlight fades.</p>
         </div>

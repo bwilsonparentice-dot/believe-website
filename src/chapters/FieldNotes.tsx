@@ -128,7 +128,7 @@ export function FieldNotesChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center', marginTop: 'clamp(100px,18vh,220px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.88)', maxWidth: '22ch', margin: '0 auto', ...balance }}>Not every lesson becomes a framework. Some arrive quietly.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.66)', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>During a founder conversation.<br />Across a conference table.<br />Late at night, after everyone else has gone home.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', maxWidth: '26ch', margin: 'clamp(36px,6vh,64px) auto 0', ...balance }}>Or years later — when someone finally understands what really happened.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', maxWidth: '26ch', margin: 'clamp(36px,6vh,64px) auto 0', ...balance }}>Or years later, when someone finally understands what really happened.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: 'clamp(44px,8vh,88px) auto 0', ...balance }}>These are those moments. Collected one conversation at a time. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.78)' }}>Still growing.</span></p>
         </div>
 

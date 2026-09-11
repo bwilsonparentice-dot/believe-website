@@ -104,7 +104,7 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
 
       {step === 1 && beat(1, (
         <>
-          <div style={{ ...eyebrow, marginBottom: 'clamp(22px,4vh,40px)' }}>Before the company — the founder</div>
+          <div style={{ ...eyebrow, marginBottom: 'clamp(22px,4vh,40px)' }}>Before the company: the founder</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2.2vh,22px)', maxWidth: '40ch', margin: '0 auto' }}>
             {PROMPTS.map((q, i) => (
               <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.82)', margin: 0, opacity: 0, animation: `riseFade 1100ms ease ${300 + i * 900}ms both`, ...balance }}>{q}</p>
@@ -122,7 +122,7 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
           <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.6vw,62px)', lineHeight: 1.04, margin: '0 auto 0.35em', maxWidth: '16ch', ...balance }}>Every founder begins<br />with a Blueprint.</h2>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', color: 'rgba(122,94,52,0.82)', margin: '0 auto clamp(22px,3.6vh,40px)' }}>Not a business plan. A foundation.</p>
           <div style={{ width: 'min(74%,520px)', margin: '0 auto', animation: alive ? 'blueprintUnfold 2600ms cubic-bezier(.2,.7,.2,1) both' : 'none', transformOrigin: 'center top' }}>
-            <ImageSlot src={PHOTOS.blueprint} alt="The Believe Blueprint — an open journal and the architectural plans in morning light" placeholder="the Believe Blueprint unfolding" fit="cover" style={{ display: 'block', width: '100%', height: 'clamp(180px,26vh,320px)', background: '#f3ecdd', borderRadius: 4, boxShadow: '0 40px 90px -50px rgba(60,44,20,0.7)' }} />
+            <ImageSlot src={PHOTOS.blueprint} alt="The Believe Blueprint: an open journal and the architectural plans in morning light" placeholder="the Believe Blueprint unfolding" fit="cover" style={{ display: 'block', width: '100%', height: 'clamp(180px,26vh,320px)', background: '#f3ecdd', borderRadius: 4, boxShadow: '0 40px 90px -50px rgba(60,44,20,0.7)' }} />
           </div>
           <Continue label="Enter the house" onClick={onEnter} />
         </>

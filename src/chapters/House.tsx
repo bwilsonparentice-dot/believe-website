@@ -27,7 +27,7 @@ const ROOMS: { name: string; because: string }[] = [
 
 const TRIAD: { q: string; a: string; note: string }[] = [
   { q: 'What is Believe?', a: 'A House for Founders.', note: 'A place founders come to think more clearly, make better decisions, and build more meaningful companies.' },
-  { q: 'Why does Believe exist?', a: 'To transform founders.', note: 'So they build stronger companies — and eventually strengthen other founders.' },
+  { q: 'Why does Believe exist?', a: 'To transform founders.', note: 'So they build stronger companies. Eventually, they strengthen other founders.' },
   { q: 'What does Believe do?', a: 'We are a catalyst.', note: 'A catalyst for founders building brands that matter.' },
 ]
 
@@ -48,7 +48,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
         {/* Why Believe exists — emotion, then conviction, then (quietly) definition */}
         <div style={{ ...label, marginBottom: '1.6em' }}>Why Believe exists</div>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,4.2vw,58px)', lineHeight: 1.1, color: '#2b2723', maxWidth: '17ch', margin: '0 auto', textWrap: balance }}>Founders change the world <span style={{ fontStyle: 'italic' }}>when someone believes in them first.</span></p>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.8)', maxWidth: '46ch', margin: 'clamp(36px,6vh,64px) auto 0', textWrap: pretty }}>Believe was built on that conviction. When founders become stronger, they build stronger companies — and when they share what they’ve learned, they change the path for the founder coming next.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.8)', maxWidth: '46ch', margin: 'clamp(36px,6vh,64px) auto 0', textWrap: pretty }}>Believe was built on that conviction. When founders become stronger, they build stronger companies. And when they share what they’ve learned, they change the path for the founder coming next.</p>
 
         <div style={{ width: 1, height: 'clamp(40px,7vh,80px)', margin: 'clamp(46px,8vh,92px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
@@ -153,7 +153,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
 
         {/* the standard, kept quietly — the last thing the house says */}
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.7)', margin: '0 auto clamp(6px,1.5vh,14px)', maxWidth: '26ch', textWrap: balance }}>You may forget the door, the light, the small map that brought you here.</p>
-        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.28, color: '#2b2723', margin: '0 auto', maxWidth: '26ch', textWrap: balance }}>We hope you remember how it felt to be understood — and that, one day, you become the one who understands.</p>
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.28, color: '#2b2723', margin: '0 auto', maxWidth: '26ch', textWrap: balance }}>We hope you remember how it felt to be understood. And that, one day, you become the one who understands.</p>
 
         <Divider h="clamp(48px,8vh,88px)" m="clamp(56px,9vh,100px) auto clamp(40px,6vh,70px)" />
         <BackPill onClose={ctx.closeHouse} label="← Back into the house" />

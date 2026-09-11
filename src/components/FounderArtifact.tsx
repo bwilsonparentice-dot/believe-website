@@ -55,7 +55,7 @@ export function FounderArtifact({ artifact }: { artifact: FounderArtifactData })
 
   return (
     <section
-      aria-label={`${founder} — the House Collection`}
+      aria-label={`${founder} · the House Collection`}
       style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', padding: '0 clamp(16px,5vw,90px)', boxSizing: 'border-box' }}
     >
       <div style={{ maxWidth: 1440, margin: '0 auto' }}>

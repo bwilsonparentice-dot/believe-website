@@ -60,7 +60,7 @@ export function LivingHouse({ ctx }: { ctx: Ctx }) {
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'clamp(32px,5vw,76px)', marginTop: 'clamp(96px,17vh,220px)', ...reveal() }}>
           <div style={{ flex: '1 1 320px', minWidth: 280 }}>
             <div style={{ position: 'relative', aspectRatio: '1 / 1', borderRadius: 'clamp(6px,1vw,12px)', overflow: 'hidden', boxShadow: '0 54px 96px -58px rgba(40,44,70,0.55)' }}>
-              <ImageSlot src="/photos/workshop-buyback20.webp" fit="cover" alt="Founder Workshop No. 001 — Buy Back 20 Hours, the current residency of Chef MoWils, Resident AI Strategist" placeholder="the current residency — Founder Workshop No. 001, Buy Back 20 Hours" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+              <ImageSlot src="/photos/workshop-buyback20.webp" fit="cover" alt="Founder Workshop No. 001 · Buy Back 20 Hours, the current residency of Chef MoWils, Resident AI Strategist" placeholder="the current residency: Founder Workshop No. 001, Buy Back 20 Hours" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
             </div>
           </div>
           <div style={{ flex: '1 1 360px', minWidth: 300 }}>
@@ -70,7 +70,7 @@ export function LivingHouse({ ctx }: { ctx: Ctx }) {
             </div>
             <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,4.8vw,64px)', lineHeight: 1.0, margin: '0 0 0.3em', color: ink }}>Chef MoWils</h3>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', color: brass, margin: '0 0 1.3em' }}>Resident AI Strategist</p>
-            <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.34, color: ink, margin: '0 0 0.5em', ...balance }}>Founder Workshop No. 001 &mdash; Buy Back 20 Hours</p>
+            <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.34, color: ink, margin: '0 0 0.5em', ...balance }}>Founder Workshop No. 001 &middot; Buy Back 20 Hours</p>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.68)', maxWidth: '28ch', ...pretty }}>Five AI teammates. One founder. Twenty hours returned.</p>
             <Enter onClick={ctx.openStudio}>Meet the Current Resident</Enter>
           </div>
@@ -82,11 +82,11 @@ export function LivingHouse({ ctx }: { ctx: Ctx }) {
           {/* a story from the House */}
           <div style={{ flex: '1 1 320px', minWidth: 280, ...reveal() }}>
             <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 'clamp(6px,1vw,12px)', overflow: 'hidden', marginBottom: 'clamp(28px,4vh,50px)', boxShadow: '0 46px 84px -58px rgba(40,28,10,0.5)' }}>
-              <ImageSlot src="/photos/portrait-snehee.webp" fit="cover" alt="Snehee, founder of Gallivant — a story from the House" placeholder="an editorial founder portrait — a story from the House" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+              <ImageSlot src="/photos/portrait-snehee.webp" fit="cover" alt="Snehee, founder of Gallivant: a story from the House" placeholder="an editorial founder portrait: a story from the House" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
             </div>
             <div style={{ ...label, fontSize: 10, marginBottom: '1.1em' }}>A Story From the House</div>
             <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.4vw,46px)', lineHeight: 1.04, margin: '0 0 0.5em', color: ink }}>Gallivant</h3>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.56, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', ...pretty }}>What happened when a founder finally found the words for her brand &mdash; and walked into rooms she once believed were out of reach.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.56, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', ...pretty }}>What happened when a founder finally found the words for her brand, and walked into rooms she once believed were out of reach.</p>
             <Enter onClick={ctx.openStories}>Read the Stories</Enter>
           </div>
 
@@ -99,7 +99,7 @@ export function LivingHouse({ ctx }: { ctx: Ctx }) {
             </div>
             <div style={{ ...label, fontSize: 10, marginBottom: '1.1em' }}>From the Archive</div>
             <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.4vw,46px)', lineHeight: 1.04, margin: '0 0 0.5em', color: ink }}>Field Notes</h3>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.56, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', ...pretty }}>Wisdom noticed before it becomes a framework &mdash; caught, gently, in passing.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.56, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', ...pretty }}>Wisdom noticed before it becomes a framework. Caught gently in passing.</p>
             <Enter onClick={ctx.openFieldNotes}>Open the Notebook</Enter>
           </div>
         </div>

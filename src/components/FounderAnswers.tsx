@@ -20,7 +20,7 @@ const sans = "'Jost',sans-serif"
 const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 
 function Answer({ a }: { a: FounderAnswer }) {
-  const signature = a.author.role ? `— ${a.author.name}, ${a.author.role}` : `— ${a.author.name}`
+  const signature = a.author.role ? `${a.author.name}, ${a.author.role}` : `${a.author.name}`
   return (
     <div style={{ maxWidth: 640, margin: '0 auto', textAlign: 'left' }}>
       {/* the question — the visual anchor of the unit */}
@@ -59,7 +59,7 @@ export function FounderAnswers() {
           the Shelf One–Seven catalogue. */}
       <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>Founder Answers</h3>
       <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '42ch', margin: '0 auto clamp(64px,11vh,120px)' }}>
-        Real questions founders ask us — answered by people who have actually built brands.
+        Real questions founders ask us, answered by people who have actually built brands.
       </p>
 
       {/* the answers — a continuous editorial sequence, punctuated by a quiet

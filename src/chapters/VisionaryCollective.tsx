@@ -32,7 +32,7 @@ const CARDS: Card[] = [
   { title: 'Field Notes', lines: ['Observations gathered from real founder work.', 'Not theory. Not trends.', 'Lessons earned in the room.'], go: 'fieldnotes' },
   { title: 'In Residence', lines: ['Each month a different practitioner enters the House.', 'Together we work through one real founder challenge.', 'Every Resident leaves something behind.'], go: 'residence' },
   { title: 'House Updates', lines: ['New Residents. New Library additions.', 'New Founder’s Rooms. Stories from founders.', 'The House continues to grow.'] },
-  { title: 'Occasional Gatherings', lines: ['From time to time the doors open.', 'Founders gather — sometimes online, sometimes around a table.', 'Always with intention.'] },
+  { title: 'Occasional Gatherings', lines: ['From time to time the doors open.', 'Founders gather, sometimes online, sometimes around a table.', 'Always with intention.'] },
 ]
 
 /**
@@ -67,7 +67,7 @@ export function VisionaryCollectiveChapter({ ctx }: { ctx: Ctx }) {
         {/* ── an image — the entrance hall, conversations always nearby ──── */}
         <div style={{ margin: 'clamp(110px,20vh,240px) auto 0', width: 'min(96%,760px)', ...surface() }}>
           <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 10', overflow: 'hidden', borderRadius: 'clamp(120px,22vw,300px) clamp(120px,22vw,300px) 8px 8px', boxShadow: '0 60px 110px -60px rgba(60,44,20,0.6)' }}>
-            <ImageSlot src={PHOTOS.people} alt="An oak table in morning light — coffee, an open journal, empty chairs, a curtain moving gently" fit="cover" placeholder="an oak table at sunrise — coffee, an open notebook, empty chairs, morning light" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+            <ImageSlot src={PHOTOS.people} alt="An oak table in morning light: coffee, an open journal, empty chairs, a curtain moving gently" fit="cover" placeholder="an oak table at sunrise: coffee, an open notebook, empty chairs, morning light" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
             <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 56% at 38% 22%, rgba(255,230,178,0.5), transparent 70%)' }} />
           </div>
         </div>
@@ -121,7 +121,7 @@ export function VisionaryCollectiveChapter({ ctx }: { ctx: Ctx }) {
             <p style={{ fontFamily: hand, fontWeight: 500, fontSize: 'clamp(24px,2.9vw,36px)', lineHeight: 1.5, color: 'rgba(52,40,26,0.82)', margin: 0 }}>Founder,</p>
             <p style={{ fontFamily: hand, fontWeight: 500, fontSize: 'clamp(24px,2.9vw,36px)', lineHeight: 1.5, color: 'rgba(52,40,26,0.82)', margin: '0.6em 0 0' }}>You don’t have to build everything today. Sometimes the most important thing is simply staying close to good conversations.</p>
             <p style={{ fontFamily: hand, fontWeight: 500, fontSize: 'clamp(24px,2.9vw,36px)', lineHeight: 1.5, color: 'rgba(52,40,26,0.82)', margin: '0.6em 0 0' }}>I’ll see you around the House.</p>
-            <p style={{ fontFamily: hand, fontWeight: 500, fontSize: 'clamp(26px,3.1vw,40px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.82)', margin: '0.9em 0 0' }}>— Beth</p>
+            <p style={{ fontFamily: hand, fontWeight: 500, fontSize: 'clamp(26px,3.1vw,40px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.82)', margin: '0.9em 0 0' }}>Beth</p>
           </div>
         </div>
 

@@ -28,7 +28,7 @@ const surface = (range = 'entry 3% cover 26%'): CSSProperties => ({
 const TRANSFORM = [
   'You start to make decisions differently.',
   'You stop carrying every decision alone.',
-  'You grow clearer — and the company grows stronger for it.',
+  'You grow clearer, and the company grows stronger for it.',
 ]
 
 // The named rooms of the House. The Founder's Room is the signature curated
@@ -93,7 +93,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
             an important destination, not a content card. */}
         <div style={{ marginTop: 'clamp(56px,9.5vh,120px)', ...surface('entry 0% cover 16%') }}>
           <HouseArch scale="standard" width="min(86vw,600px)">
-            <ImageSlot src={PHOTOS.founders} fit="cover" alt="The Founder’s Room — an arched corridor of the House in morning light, a linen curtain lifting in the breeze" placeholder="a sunlit arched corridor of the House, a linen curtain lifting in the breeze, morning light, only space to think" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: '52% 42%', animation: 'slowZoom 24s ease-out both' }} />
+            <ImageSlot src={PHOTOS.founders} fit="cover" alt="The Founder’s Room: an arched corridor of the House in morning light, a linen curtain lifting in the breeze" placeholder="a sunlit arched corridor of the House, a linen curtain lifting in the breeze, morning light, only space to think" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: '52% 42%', animation: 'slowZoom 24s ease-out both' }} />
           </HouseArch>
         </div>
 
@@ -103,7 +103,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
             is that the visitor exhales; this is where that begins, in the first
             moments, so everything after lands on someone who feels understood. */}
         <div style={{ marginTop: 'clamp(84px,15vh,180px)', display: 'flex', flexDirection: 'column', gap: 'clamp(10px,1.8vh,20px)', ...surface() }}>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: 0, maxWidth: '27ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>By now, you have learned to carry it quietly &mdash;</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: 0, maxWidth: '27ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>By now, you have learned to carry it quietly:</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: 0, maxWidth: '27ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>to sound certain in the meeting when you weren&rsquo;t,</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: 0, maxWidth: '27ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>to make the hardest call alone, and live with it alone.</p>
         </div>
@@ -153,13 +153,13 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '23ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>Noise is set aside. The assumption beneath the question is named out loud.</p>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.24, color: 'rgba(122,94,52,0.9)', margin: 0, maxWidth: '20ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>And you leave holding one true next move.</p>
           </div>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', color: 'rgba(122,94,52,0.7)', margin: 'clamp(56px,10vh,112px) auto 0', ...surface() }}>What the room holds &mdash;</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', color: 'rgba(122,94,52,0.7)', margin: 'clamp(56px,10vh,112px) auto 0', ...surface() }}>What the room holds:</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px,3vh,30px)', marginTop: 'clamp(24px,4vh,44px)' }}>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.82)', margin: 0, ...balance, ...surface() }}>A trusted conversation.</p>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '24ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface() }}>An outside perspective that owes you honesty.</p>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.82)', margin: 0, ...balance, ...surface() }}>The accountability to actually move.</p>
           </div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '24ch', ...balance, ...surface() }}>Not a curriculum &mdash; real businesses, moving through real seasons.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', margin: 'clamp(48px,8vh,96px) auto 0', maxWidth: '24ch', ...balance, ...surface() }}>Not a curriculum. Real businesses, moving through real seasons.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(36px,6vh,68px) auto 0', maxWidth: '22ch', ...balance, ...surface() }}>The work unfolds one decision at a time.</p>
         </div>
 
@@ -174,7 +174,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           {/* the named Room — introduced quietly, as architecture, given room to breathe */}
           <div style={{ marginTop: 'clamp(90px,16vh,200px)' }}>
             {ROOMS.map((r) => (
-              <RoomPlaque key={r.name} image={r.image} alt="The Lantern Room — a brass lantern holding a single candle." name={r.name} meaning={r.meaning} status={r.status} />
+              <RoomPlaque key={r.name} image={r.image} alt="The Lantern Room: a brass lantern holding a single candle." name={r.name} meaning={r.meaning} status={r.status} />
             ))}
           </div>
 

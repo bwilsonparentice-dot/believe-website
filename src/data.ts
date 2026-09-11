@@ -32,12 +32,12 @@ export const EXTRAS: Record<string, any> = {
   },
   founders: {
     photo: 'a founder by a tall window, half in shadow',
-    person: { name: 'Beth Wilson-Parentice', first: 'Beth', role: 'The founder. She built this house — and created The Spark Method, which turns kitchen-table ideas into movements.' },
+    person: { name: 'Beth Wilson-Parentice', first: 'Beth', role: 'The founder. She built this house and created The Spark Method, which turns kitchen-table ideas into movements.' },
     door: { leaf: 'linear-gradient(100deg,#e8ddc7,#d9c9aa)', type: 'panel2', panel: 'rgba(120,95,60,0.42)', handle: brass },
   },
   library: {
     photo: 'floor-to-ceiling oak shelves, a reading ladder, low lamplight',
-    person: { name: 'Tiffany Nilles', first: 'Tiffany', role: 'She keeps decades of retail wisdom on these shelves — how founder-led brands land the right doors, and stay there.' },
+    person: { name: 'Tiffany Nilles', first: 'Tiffany', role: 'She keeps decades of retail wisdom on these shelves: how founder-led brands land the right doors, and stay there.' },
     story: { kind: 'a journal', by: 'Michelle', of: 'Date Better', text: 'I came in certain I needed a strategy. I left remembering why I started. That was the strategy.' },
     door: { leaf: 'linear-gradient(100deg,#3f2c17,#5a3f22 45%,#6b4c2b)', type: 'panel2', panel: 'rgba(18,12,6,0.5)', handle: brass },
   },
@@ -47,7 +47,7 @@ export const EXTRAS: Record<string, any> = {
   },
   table: {
     photo: 'a long communal table, low morning light, empty chairs',
-    person: { name: 'Jillian Waun', first: 'Jillian', role: 'She tends the voice of the house — turning strategy into content that founders actually gather around.' },
+    person: { name: 'Jillian Waun', first: 'Jillian', role: 'She tends the voice of the house, turning strategy into content that founders actually gather around.' },
     story: { kind: 'a reflection', by: 'A founder', of: 'left after a conversation', text: 'Nobody solved my problem for me. They just made me less afraid of it. Somehow that was enough.' },
     door: { leaf: 'linear-gradient(100deg,#6b4a30,#7d5836)', type: 'glass', panel: 'rgba(30,18,8,0.5)', handle: brass },
   },
@@ -97,7 +97,7 @@ export const DATA: any[] = [
     accent: 'oklch(0.62 0.09 60)', glow: 'oklch(0.62 0.09 60 / 0.22)',
     whisper: 'Not a doorway. A decision.', keywords: ['Curiosity', 'Hope', 'Possibility'],
     body: [
-      'To arrive here is already to have chosen something. The threshold asks nothing of you but willingness — the quiet admission that the way you have been building is not the only way.',
+      'To arrive here is already to have chosen something. The threshold asks nothing of you but willingness: the quiet admission that the way you have been building is not the only way.',
       'Beyond it, nothing is demanded and nothing is sold. Only an invitation to begin again, more honestly this time.',
     ] },
   { id: 'founders', roman: 'II', name: "The Founder's Room", l: '4%', t: '33%', w: '30%', h: '28%',
@@ -105,7 +105,7 @@ export const DATA: any[] = [
     whisper: 'Where founders remember who they are beneath the business.',
     keywords: ['Seen', 'Heard', 'Encouraged', 'Identity'],
     body: [
-      'For a while, the company steps aside. The person who carries it is seen, heard, and taken seriously — not as a strategy, but as a human being with something worth protecting.',
+      'For a while, the company steps aside. The person who carries it is seen, heard, and taken seriously, not as a strategy, but as a human being with something worth protecting.',
       'Confidence does not arrive as noise. It returns as perspective, and the founder leaves a little more themselves.',
     ] },
   { id: 'blueprint', name: 'The Believe Blueprint', l: '71%', t: '60%', w: '22%', h: '24%',
@@ -123,7 +123,7 @@ export const DATA: any[] = [
       { t: 'Bird by Bird', a: 'Anne Lamott' },
     ],
     body: [
-      'Not information — perspective. The lessons of others, collected patiently and offered without insistence. What is gathered here is meant to be reflected upon, not merely consumed.',
+      'Not information. Perspective. The lessons of others, collected patiently and offered without insistence. What is gathered here is meant to be reflected upon, not merely consumed.',
       'You may borrow what you need and leave the rest for the next founder who wanders in.',
     ] },
   { id: 'fieldnotes', roman: 'V', name: 'Field Notes', l: '21%', t: '6%', w: '13%', h: '19%',
@@ -132,12 +132,12 @@ export const DATA: any[] = [
     keywords: ['Observe', 'Notice', 'Collect', 'Listen'], variant: 'notes',
     notes: [
       { t: 'The best ideas arrive sideways.', align: 'flex-start', ml: '0', mr: '0', rot: '-1.6deg' },
-      { t: 'She said it twice — that means it matters.', align: 'flex-end', ml: '0', mr: '3%', rot: '1.3deg' },
+      { t: 'She said it twice. That means it matters.', align: 'flex-end', ml: '0', mr: '3%', rot: '1.3deg' },
       { t: 'A brand is what survives the founder’s doubt.', align: 'center', ml: '0', mr: '0', rot: '-0.7deg' },
       { t: 'Write it down before you talk yourself out of it.', align: 'flex-start', ml: '7%', mr: '0', rot: '1.7deg' },
     ],
     body: [
-      'Observations, conversations, half-formed patterns — the work before it hardens into strategy. This is the room for noticing, where an offhand remark is written down before it disappears.',
+      'Observations, conversations, half-formed patterns: the work before it hardens into strategy. This is the room for noticing, where an offhand remark is written down before it disappears.',
       'The most important ideas rarely announce themselves. They are caught, gently, in passing.',
     ] },
   { id: 'table', roman: 'VI', name: 'The Table', l: '37%', t: '5%', w: '26%', h: '20%',
@@ -148,7 +148,7 @@ export const DATA: any[] = [
     questionSub: 'Sit with it. The table isn’t in a hurry.',
     body: [
       'There is a difference between talking about a company and sitting across from someone who helps you finally see it clearly. The Table exists for those conversations.',
-      'Some last twenty minutes. Some last three hours. Almost all of them change something — not because advice was given, but because clarity arrived.',
+      'Some last twenty minutes. Some last three hours. Almost all of them change something. Not because advice was given, but because clarity arrived.',
     ] },
   { id: 'studio', roman: 'VII', name: 'The Studio', l: '66%', t: '30%', w: '30%', h: '31%',
     accent: 'oklch(0.63 0.09 92)', glow: 'oklch(0.63 0.09 92 / 0.22)',
@@ -157,7 +157,7 @@ export const DATA: any[] = [
     sketches: ['Left on the worktable', 'Still becoming', 'Before the launch'],
     oneLine: 'Every finished company was once an unfinished conversation.',
     body: [
-      'Nothing enters this room finished. Ideas arrive as sketches, half-written notes, packaging mockups, questions scribbled in the margins — and leave a little clearer than when they came.',
+      'Nothing enters this room finished. Ideas arrive as sketches, half-written notes, packaging mockups, questions scribbled in the margins, and leave a little clearer than when they came.',
       'This is where uncertainty quietly becomes momentum. You don’t have to arrive with all the answers. Only the willingness to begin.',
     ] },
   { id: 'advisory', roman: 'VIII', name: 'Private Advisory', l: '72%', t: '6%', w: '24%', h: '19%',
@@ -166,7 +166,7 @@ export const DATA: any[] = [
     keywords: ['Trust', 'Honesty', 'Depth', 'Partnership'], variant: 'quiet',
     oneLine: 'What is said in this room stays in this room.',
     body: [
-      'The quietest room, and the smallest. The conversations that happen nowhere else — where a founder can be uncertain, afraid, or wrong, and still be met with honesty.',
+      'The quietest room, and the smallest. The conversations that happen nowhere else, where a founder can be uncertain, afraid, or wrong, and still be met with honesty.',
       'Depth is only possible where there is trust. Here, it is the whole point.',
     ] },
   { id: 'garden', roman: 'IX', name: 'The Garden', l: '34%', t: '29%', w: '32%', h: '34%', courtyard: true,
@@ -175,7 +175,7 @@ export const DATA: any[] = [
     keywords: ['Rest', 'Breathe', 'Renew', 'Light'], variant: 'garden',
     oneLine: 'Stay as long as you like. Nothing is being produced here.',
     body: [
-      'Not another room. A courtyard. Nothing is produced here — no output is owed, no progress measured. Only stone, morning light, and the slow return of perspective.',
+      'Not another room. A courtyard. Nothing is produced here. No output is owed, no progress measured. Only stone, morning light, and the slow return of perspective.',
       'Everything in the building quietly revolves around this place. To pause here is not to stop. It is to see.',
     ] },
   { id: 'stage', roman: 'X', name: 'The Stage', l: '66%', t: '64%', w: '30%', h: '24%',
@@ -183,9 +183,9 @@ export const DATA: any[] = [
     whisper: 'Where founders give back what they’ve learned.',
     keywords: ['Share', 'Give', 'Mentor', 'Legacy'],
     body: [
-      'There comes a moment when what you’ve learned no longer belongs to you alone. Another founder needs to hear it — and you may be the only one who can say it plainly.',
-      'The Stage is where founder stories are kept and passed on: the pivots, the quiet victories, the retail milestones, the lessons earned the hard way. Not a highlight reel — a gallery of contribution.',
-      'Some founders speak. Some write. Some simply sit across from the next founder and say the thing no one told them. However it happens, the work stops being only yours. It was never about being seen — it’s about what you hand forward.',
+      'There comes a moment when what you’ve learned no longer belongs to you alone. Another founder needs to hear it, and you may be the only one who can say it plainly.',
+      'The Stage is where founder stories are kept and passed on: the pivots, the quiet victories, the retail milestones, the lessons earned the hard way. Not a highlight reel. A gallery of contribution.',
+      'Some founders speak. Some write. Some simply sit across from the next founder and say the thing no one told them. However it happens, the work stops being only yours. It was never about being seen. It’s about what you hand forward.',
     ] },
 ]
 
@@ -199,7 +199,7 @@ export const STORIES = [
     name: 'Snehee', company: 'Founder, Gallivant', pid: 'story-snehee', dir: 'row',
     quote: 'Beth helped me believe that our brand belonged in rooms we once thought were out of reach.',
     narrative: [
-      'When Snehee first sat down with Beth, Gallivant was a brand she believed in — and a story she hadn’t yet found the words for.',
+      'When Snehee first sat down with Beth, Gallivant was a brand she believed in, and a story she hadn’t yet found the words for.',
       'Together they worked on clarity before growth: who Gallivant was for, why it mattered, and how a founder walks into a room and makes people believe. The confidence came first.',
       'The doors followed.',
     ],
@@ -209,7 +209,7 @@ export const STORIES = [
     name: 'Michelle', company: 'Founder, Date Better Snacks', pid: 'story-michelle', dir: 'row-reverse',
     quote: 'Having Beth as an advisor has been a gift. Her warm, caring presence makes every conversation feel like a safe place to think big, be vulnerable, and get clear.',
     narrative: [
-      'Michelle came to the table with Date Better Snacks already in motion — and the particular loneliness of carrying every decision alone.',
+      'Michelle came to the table with Date Better Snacks already in motion, and the particular loneliness of carrying every decision alone.',
       'What she found wasn’t another strategy deck. It was a place to think out loud, to be honest about what was hard, and to leave each conversation a little clearer than she arrived.',
     ],
   },
@@ -264,7 +264,7 @@ export const HOUSE_COLLECTION: FounderArtifact[] = [
     aspectRatio: '3 / 2',
     alignment: 'right',
     size: 'cinematic',
-    placeholder: 'An aged-brass Peanut Butter & Co. plaque — “Since 1998” — set into a shallow limestone recess, olive branches at the edge, warm afternoon light',
+    placeholder: 'An aged-brass Peanut Butter & Co. plaque, “Since 1998,” set into a shallow limestone recess, olive branches at the edge, warm afternoon light',
   },
   {
     id: 'wizzies',
@@ -300,7 +300,7 @@ export const HOUSE_COLLECTION: FounderArtifact[] = [
     aspectRatio: '3 / 4',
     alignment: 'left',
     size: 'cinematic',
-    placeholder: 'A Horman’s Family Pickles mark — “Since 1898” — set into a stucco wall beside a weathered wooden door, an olive tree and pickle crocks in warm dusk light',
+    placeholder: 'A Horman’s Family Pickles mark, “Since 1898,” set into a stucco wall beside a weathered wooden door, an olive tree and pickle crocks in warm dusk light',
   },
 ]
 
@@ -331,26 +331,26 @@ export type ArchiveNote = { no: string; lines: string[]; source: string; image?:
 export type Drawing = { numeral: string; sheet: string; name: string; meaning: string; narrative: string }
 export const BLUEPRINT_DRAWINGS: Drawing[] = [
   { numeral: 'I', sheet: 'A-01', name: 'Business Reinvention',
-    meaning: 'The company you have built — and the company it must now become.',
+    meaning: 'The company you have built, and the company it must now become.',
     narrative: 'We begin where every reinvention begins: an honest look at what you’ve created, and a clear-eyed view of what it’s ready to grow into.' },
   { numeral: 'II', sheet: 'A-02', name: 'Brand Architecture',
     meaning: 'The meaning your company is built to carry.',
-    narrative: 'Not a logo or a palette — the structure of belief beneath the brand. What it stands for, and why anyone should care.' },
+    narrative: 'Not a logo or a palette. The structure of belief beneath the brand. What it stands for, and why anyone should care.' },
   { numeral: 'III', sheet: 'A-03', name: 'Opportunity Atlas',
     meaning: 'A complete landscape of credible growth opportunities, prioritized by strategic fit rather than distraction.',
-    narrative: 'Every direction you could take, mapped in a single view — so you can pursue the few that matter and let go of the many that don’t.' },
+    narrative: 'Every direction you could take, mapped in a single view, so you can pursue the few that matter and let go of the many that don’t.' },
   { numeral: 'IV', sheet: 'A-04', name: 'Experience Channels',
-    meaning: 'Every place your brand can be experienced — not simply purchased.',
-    narrative: 'Where a founder sees sales, we map moments — each a chance for someone to feel the company long before they ever buy from it.' },
+    meaning: 'Every place your brand can be experienced, not simply purchased.',
+    narrative: 'Where a founder sees sales, we map moments: each a chance for someone to feel the company long before they ever buy from it.' },
   { numeral: 'V', sheet: 'A-05', name: 'Dream Accounts',
     meaning: 'The relationships capable of changing the trajectory of your company.',
-    narrative: 'The handful of partners, retailers, and rooms that would change everything — named, and approached with intention rather than hope.' },
+    narrative: 'The handful of partners, retailers, and rooms that would change everything. Named and approached with intention rather than hope.' },
   { numeral: 'VI', sheet: 'A-06', name: 'Growth Roadmap',
     meaning: 'The sequence that converts possibility into meaningful movement.',
-    narrative: 'Not everything at once. The right order — the moves that make the next move easier — drawn as a path you can actually walk.' },
+    narrative: 'Not everything at once. The right order: the moves that make the next move easier, drawn as a path you can actually walk.' },
   { numeral: 'VII', sheet: 'A-07', name: 'Executive Debrief',
     meaning: 'A founder-to-founder perspective on what we see, what matters most, and what your next chapter asks of you.',
-    narrative: 'We close by stepping back — one founder to another — naming the truth of where you are, and what this chapter is quietly asking of you.' },
+    narrative: 'We close by stepping back, one founder to another, naming the truth of where you are, and what this chapter is quietly asking of you.' },
 ]
 export type Experience = {
   id: string
@@ -387,10 +387,10 @@ export const EXPERIENCES: Record<string, Experience> = {
     tm: true,
     tagline: 'Grow beside other founders.',
     photo: 'founders',
-    photoAlt: 'The Founder’s Room — a quiet circle of chairs by a tall window, morning light',
+    photoAlt: 'The Founder’s Room: a quiet circle of chairs by a tall window, morning light',
     whatIsIt: [
       'The Founder’s Room is an ongoing advisory circle for founders who believe the best decisions are rarely made alone.',
-      'Each month a small, carefully chosen group of founders gathers — to think out loud, to bring the real decision to the room, and to become stronger leaders alongside one another. Not a course. Not a mastermind. A room you can build a company inside of.',
+      'Each month a small, carefully chosen group of founders gathers: to think out loud, to bring the real decision to the room, and to become stronger leaders alongside one another. Not a course. Not a mastermind. A room you can build a company inside of.',
     ],
     whoFor: 'For founders building meaningful companies who value thoughtful strategy over quick tactics, want a trusted circle to think beside, and are willing to do the work of becoming a better leader.',
     whoNotFor: 'It’s probably not the room for those seeking shortcuts, passive courses, or someone else to build the company for them.',
@@ -404,7 +404,7 @@ export const EXPERIENCES: Record<string, Experience> = {
       'Real accountability',
     ],
     particulars: [
-      { label: 'Group size', value: 'A small, curated circle — never a crowd. Small enough that every founder is known.' },
+      { label: 'Group size', value: 'A small, curated circle. Never a crowd. Small enough that every founder is known.' },
       { label: 'Meeting cadence', value: 'A live gathering each month, with the conversation continuing quietly between.' },
       { label: 'Community', value: 'A private space for members, open between gatherings, in your own time.' },
     ],
@@ -420,9 +420,9 @@ export const EXPERIENCES: Record<string, Experience> = {
     faqs: [
       { q: 'Is this coaching?', a: 'No. Coaching works on you; the Founder’s Room thinks with you. It’s a place to bring the real decision and find perspective before you make it.' },
       { q: 'How often does the room meet?', a: 'The Founder’s Room gathers as a curated Room, not a standing course to keep up with. When you request a place, the House shares the current gathering and its timing.' },
-      { q: 'What kinds of decisions?', a: 'The ones that don’t belong in a boardroom — a pivot, a partnership, a hire, a season of doubt. The decisions that quietly shape the next chapter.' },
+      { q: 'What kinds of decisions?', a: 'The ones that don’t belong in a boardroom: a pivot, a partnership, a hire, a season of doubt. The decisions that quietly shape the next chapter.' },
       { q: 'What if a brand has more than one founder?', a: 'Some brands are built by more than one person. Every one of them has a seat.' },
-      { q: 'How does it begin?', a: 'It begins when you request a place. From there, the House opens the door — a welcome, and the current gathering. No long application, no sales call.' },
+      { q: 'How does it begin?', a: 'It begins when you request a place. From there, the House opens the door: a welcome, and the current gathering. No long application, no sales call.' },
     ],
     joinLead: 'The room opens through conversation.',
     joinBody: 'We begin with The Founder Conversation so we can understand where you are, what you’re building, and whether this is the right room for you today.',
@@ -436,13 +436,13 @@ export const EXPERIENCES: Record<string, Experience> = {
     tm: false,
     tagline: 'You’re not building alone.',
     photo: 'table',
-    photoAlt: 'A warm walnut table in morning light — coffee, an open notebook, chairs drawn close',
+    photoAlt: 'A warm walnut table in morning light: coffee, an open notebook, chairs drawn close',
     background: '#f1e7d0',
     whatIsIt: [
-      'The Founder’s Table is where founders stop building alone. A standing invitation to sit down beside others who understand — to think out loud, to be honest, and to leave in better company than you arrived.',
-      'Some conversations last twenty minutes; some last three hours. Around the table, founders help founders — not with advice handed down, but with the collective wisdom of people who have built what you are building now.',
+      'The Founder’s Table is where founders stop building alone. A standing invitation to sit down beside others who understand: to think out loud, to be honest, and to leave in better company than you arrived.',
+      'Some conversations last twenty minutes; some last three hours. Around the table, founders help founders, not with advice handed down, but with the collective wisdom of people who have built what you are building now.',
     ],
-    whoFor: 'For founders who’ve carried it alone long enough — who want a table of others building meaningful companies, and the kind of honesty that only comes from people who have been there.',
+    whoFor: 'For founders who’ve carried it alone long enough, who want a table of others building meaningful companies, and the kind of honesty that only comes from people who have been there.',
     whoNotFor: 'It isn’t a networking room, and it isn’t an audience. It’s a table.',
     includedHeading: 'What gathering holds',
     included: [
@@ -453,7 +453,7 @@ export const EXPERIENCES: Record<string, Experience> = {
     ],
     interlude: 'What decision have you already made… but haven’t admitted to yourself yet?',
     particulars: [
-      { label: 'The table', value: 'Small and consistent — the same faces, growing familiar over time.' },
+      { label: 'The table', value: 'Small and consistent: the same faces, growing familiar over time.' },
       { label: 'How often', value: 'Regular gatherings, in person and in conversation, never rushed.' },
       { label: 'The spirit', value: 'Honesty over polish. Belonging over programming.' },
     ],
@@ -467,13 +467,13 @@ export const EXPERIENCES: Record<string, Experience> = {
       'I’m not building alone anymore.',
     ],
     faqs: [
-      { q: 'Is this networking?', a: 'No. Networking is transactional; the Table is relational. You won’t be pitching — you’ll be understood.' },
-      { q: 'How large is the table?', a: 'Small and consistent — the same founders, growing familiar over time, so honesty has room to happen.' },
+      { q: 'Is this networking?', a: 'No. Networking is transactional; the Table is relational. You won’t be pitching. You’ll be understood.' },
+      { q: 'How large is the table?', a: 'Small and consistent: the same founders, growing familiar over time, so honesty has room to happen.' },
       { q: 'What actually happens?', a: 'Conversation. Real questions, real decisions, and the quiet relief of sitting among people who’ve been where you are.' },
       { q: 'How do I pull up a chair?', a: 'With a conversation. We begin with The Founder Conversation, so the table stays a place where everyone truly belongs.' },
     ],
     joinLead: 'Pull up a chair.',
-    joinBody: 'The Table begins with a conversation — so that when you sit down, you’re already among founders who understand.',
+    joinBody: 'The Table begins with a conversation, so that when you sit down, you’re already among founders who understand.',
     closing: 'The best founders don’t build alone. They build beside others who understand.',
   },
 
@@ -486,10 +486,10 @@ export const EXPERIENCES: Record<string, Experience> = {
     photo: 'conversation',
     photoAlt: 'Two chairs drawn close around a small walnut table, coffee and an open journal in morning light',
     whatIsIt: [
-      'A relaxed thirty-minute conversation — to understand where you are, what you’re building, what you’re navigating, and whether Believe is the right place to support your journey.',
+      'A relaxed thirty-minute conversation to understand where you are, what you’re building, what you’re working through, and whether Believe is the right place to support your journey.',
       'It is not a sales call. It’s the beginning of a relationship. Before we talk about strategy, growth, or opportunities, we’d simply like to understand you.',
     ],
-    whoFor: 'For any founder wondering whether Believe is the right place for them — whether you’re merely curious, quietly navigating something, or ready for a real next step.',
+    whoFor: 'For any founder wondering whether Believe is the right place for them: whether you’re merely curious, quietly working through something, or ready for a real next step.',
     whoNotFor: 'There’s no wrong reason to come, and no obligation to continue.',
     includedHeading: 'What the conversation holds',
     included: [
@@ -500,7 +500,7 @@ export const EXPERIENCES: Record<string, Experience> = {
     ],
     particulars: [
       { label: 'Format', value: 'A relaxed thirty-minute conversation, one to one.' },
-      { label: 'When', value: 'At a time that suits you — scheduled the moment you’re ready.' },
+      { label: 'When', value: 'Scheduled at a time that suits you, the moment you’re ready.' },
       { label: 'Obligation', value: 'None. It’s a conversation, not a commitment.' },
     ],
     investment: 'Complimentary',
@@ -508,18 +508,18 @@ export const EXPERIENCES: Record<string, Experience> = {
     changesLead: 'Most founders leave the first conversation lighter than they arrived.',
     changes: [
       'I feel understood.',
-      'I can name what I’m really navigating.',
+      'I can name what I’m really working through.',
       'I know whether this is the right place.',
       'I’m not carrying it alone anymore.',
     ],
     faqs: [
       { q: 'Is this a sales call?', a: 'No. It’s a conversation. We’d simply like to understand you, what you’re building, and whether Believe is the right place to help. Nothing is expected of you afterward.' },
-      { q: 'How long is it?', a: 'About thirty minutes — long enough to talk honestly, short enough that it never becomes a meeting.' },
+      { q: 'How long is it?', a: 'About thirty minutes: long enough to talk honestly, short enough that it never becomes a meeting.' },
       { q: 'What should I prepare?', a: 'Nothing. Come as you are, with whatever is on your mind. The best conversations aren’t rehearsed.' },
       { q: 'What happens afterward?', a: 'If it feels like the right fit, we’ll point you toward the doorway that matches where you are. If it doesn’t, you’ll still leave with clarity. Either way, no pressure.' },
     ],
     joinLead: 'There’s nothing to decide yet.',
-    joinBody: 'Just a conversation — thirty minutes to understand where you are, what you’re building, and whether Believe is the right place to help.',
+    joinBody: 'Just a conversation: thirty minutes to understand where you are, what you’re building, and whether Believe is the right place to help.',
     closing: 'Every meaningful company begins with a single conversation.',
   },
 
@@ -530,12 +530,12 @@ export const EXPERIENCES: Record<string, Experience> = {
     tm: false,
     tagline: 'Architect the next chapter.',
     photo: 'blueprint',
-    photoAlt: 'The Believe Blueprint — an open journal and architectural plans on the oak table in morning light',
+    photoAlt: 'The Believe Blueprint: an open journal and architectural plans on the oak table in morning light',
     whatIsIt: [
-      'A one-time strategic engagement that brings your founder strategy, brand architecture, growth opportunities, and a practical roadmap into one comprehensive plan — designed specifically for your company.',
-      'More than a strategy. The architectural plan for your next chapter — a living document you return to, built from the ground up and never templated.',
+      'A one-time strategic engagement that brings your founder strategy, brand architecture, growth opportunities, and a practical roadmap into one comprehensive plan, designed specifically for your company.',
+      'More than a strategy. The architectural plan for your next chapter: a living document you return to, built from the ground up and never templated.',
     ],
-    whoFor: 'For founders entering a new chapter who want clarity before they build — a real plan, designed around their company, not borrowed from someone else’s.',
+    whoFor: 'For founders entering a new chapter who want clarity before they build: a real plan, designed around their company, not borrowed from someone else’s.',
     whoNotFor: 'It isn’t for those looking for a quick template, or a deck to file away and forget.',
     includedHeading: 'What we architect together',
     included: [
@@ -550,10 +550,10 @@ export const EXPERIENCES: Record<string, Experience> = {
     particulars: [
       { label: 'Format', value: 'A one-time strategic engagement, built entirely around you.' },
       { label: 'Timeline', value: 'A few focused weeks, from first conversation to finished Blueprint.' },
-      { label: 'What you leave with', value: 'A living strategic document — the architecture of your next chapter.' },
+      { label: 'What you leave with', value: 'A living strategic document: the architecture of your next chapter.' },
     ],
     investment: '$3,995',
-    investmentNote: 'A one-time engagement — the foundation everything that follows is built upon.',
+    investmentNote: 'A one-time engagement: the foundation everything that follows is built upon.',
     changesLead: 'You stop guessing, and start building from a plan that is truly yours.',
     changes: [
       'I can see the whole picture.',
@@ -562,13 +562,13 @@ export const EXPERIENCES: Record<string, Experience> = {
       'I finally have a plan I believe in.',
     ],
     faqs: [
-      { q: 'How long does a Blueprint take?', a: 'A few focused weeks, from the first conversation to the finished document — never rushed, never drawn out.' },
-      { q: 'Is it a slide deck?', a: 'No. It’s a living strategic document you’ll return to — the architecture of your company, not a presentation to file away.' },
+      { q: 'How long does a Blueprint take?', a: 'A few focused weeks, from the first conversation to the finished document. Never rushed, never drawn out.' },
+      { q: 'Is it a slide deck?', a: 'No. It’s a living strategic document you’ll return to: the architecture of your company, not a presentation to file away.' },
       { q: 'Is it templated?', a: 'Never. Every Blueprint is built from the ground up, around your founder, your company, and the decisions that matter most.' },
       { q: 'What happens after the Blueprint?', a: 'Many founders continue into The Founder’s Room, where the Blueprint becomes the foundation for everything that follows. But it’s yours to carry forward however you choose.' },
     ],
     joinLead: 'Every Blueprint begins with a conversation.',
-    joinBody: 'Before we architect anything, we begin by understanding you — your company, your vision, and the chapter you’re entering.',
+    joinBody: 'Before we architect anything, we begin by understanding you: your company, your vision, and the chapter you’re entering.',
     closing: 'Just as an architect begins with a blueprint, every founder begins with clarity.',
   },
 
@@ -577,14 +577,14 @@ export const EXPERIENCES: Record<string, Experience> = {
     eyebrow: 'The private room',
     name: 'Private Advisory',
     tm: false,
-    tagline: 'Navigate your biggest decisions.',
+    tagline: 'Make the decisions that shape what comes next.',
     photo: 'advisory',
-    photoAlt: 'A quiet private room — two chairs, warm light, a place for the decisions that matter most',
+    photoAlt: 'A quiet private room: two chairs, warm light, a place for the decisions that matter most',
     whatIsIt: [
-      'Reserved for founders navigating meaningful periods of growth, leadership, transition, or transformation — highly personalized advisory work, designed around your company, your leadership, and your biggest decisions.',
-      'This is the most personal work we do. No curriculum, no template — only a trusted partner in the room for the decisions that shape everything else.',
+      'Reserved for founders in meaningful periods of growth, leadership change, transition, or transformation: highly personalized advisory work, designed around your company, your leadership, and your biggest decisions.',
+      'This is the most personal work we do. No curriculum, no template. Only a trusted partner in the room for the decisions that shape everything else.',
     ],
-    whoFor: 'For founders in a defining moment — growth, leadership, transition, or transformation — who want a trusted thinking partner beside them for the decisions that matter most.',
+    whoFor: 'For founders in a defining moment of growth, leadership, transition, or transformation who want a trusted thinking partner beside them for the decisions that matter most.',
     whoNotFor: 'It isn’t for those who want someone else to make the decision for them.',
     includedHeading: 'What it involves',
     included: [
@@ -595,8 +595,8 @@ export const EXPERIENCES: Record<string, Experience> = {
     ],
     particulars: [
       { label: 'Format', value: 'Highly personal, one-to-one advisory, shaped entirely around you.' },
-      { label: 'Availability', value: 'By application — only a few founders at a time.' },
-      { label: 'Reserved for', value: 'Defining moments — growth, leadership, transition, transformation.' },
+      { label: 'Availability', value: 'By application. Only a few founders at a time.' },
+      { label: 'Reserved for', value: 'Defining moments: growth, leadership, transition, transformation.' },
     ],
     investment: 'By application',
     investmentNote: 'Scope and investment are designed around your company and the decisions in front of you.',
@@ -608,7 +608,7 @@ export const EXPERIENCES: Record<string, Experience> = {
       'I’m becoming the leader this moment asks for.',
     ],
     faqs: [
-      { q: 'Who is this for?', a: 'Founders navigating a defining moment — significant growth, a leadership shift, a transition, or a transformation — who want a trusted partner in the room.' },
+      { q: 'Who is this for?', a: 'Founders in a defining moment of significant growth, leadership change, transition, or transformation who want a trusted partner in the room.' },
       { q: 'Why is it by application?', a: 'Because it’s deeply personal work, and we take on only a few founders at a time so each receives real attention.' },
       { q: 'What does it involve?', a: 'Highly personalized advisory, shaped entirely around your company, your leadership, and the decisions in front of you. No two engagements are alike.' },
       { q: 'How do I begin?', a: 'With a conversation. We’ll understand the moment you’re in and whether Private Advisory is the right room for it.' },
@@ -625,12 +625,12 @@ export const EXPERIENCES: Record<string, Experience> = {
     tm: false,
     tagline: 'Stay connected to the house.',
     photo: 'garden',
-    photoAlt: 'The garden at the edge of the house — olive trees, a stone path, morning light',
+    photoAlt: 'The garden at the edge of the house: olive trees, a stone path, morning light',
     whatIsIt: [
       'Not every founder is ready to begin a Blueprint, and not every founder is looking for Private Advisory. Sometimes you simply want a place to return to.',
-      'A place to think. A place to keep learning. A place to remain connected to other founders building meaningful companies. This is the front porch of the house — belonging, not buying.',
+      'A place to think. A place to keep learning. A place to remain connected to other founders building meaningful companies. This is the front porch of the house. Belonging, not buying.',
     ],
-    whoFor: 'For founders who simply want to stay close to the house — to keep thinking, keep learning, and remain among others building meaningful companies.',
+    whoFor: 'For founders who simply want to stay close to the house: to keep thinking, keep learning, and remain among others building meaningful companies.',
     whoNotFor: 'No engagement required, and no pressure to become more than a member.',
     includedHeading: 'What membership holds',
     included: [
@@ -640,12 +640,12 @@ export const EXPERIENCES: Record<string, Experience> = {
       'An open door to whatever comes next',
     ],
     particulars: [
-      { label: 'Membership', value: 'Two ways to belong — the Founder membership, or Legacy.' },
-      { label: 'Rhythm', value: 'Yours to set — a place to return to, in your own time.' },
+      { label: 'Membership', value: 'Two ways to belong: the Founder membership, or Legacy.' },
+      { label: 'Rhythm', value: 'Yours to set. A place to return to, in your own time.' },
       { label: 'Community', value: 'A standing connection to the founders and conversations inside Believe.' },
     ],
     investment: 'Founder $98 · Legacy $498',
-    investmentNote: 'Both renew yearly. Not a purchase — a quiet way to stay close to the house.',
+    investmentNote: 'Both renew yearly. Not a purchase. A quiet way to stay close to the house.',
     changesLead: 'The house stays close, even between chapters.',
     changes: [
       'I have a place to think.',
@@ -654,13 +654,13 @@ export const EXPERIENCES: Record<string, Experience> = {
       'I never feel far from the house.',
     ],
     faqs: [
-      { q: 'What is the Collective?', a: 'The front porch of the house — a way to stay connected to the ideas, conversations, and founders inside Believe, without beginning a formal engagement.' },
-      { q: 'What’s the difference between Founder and Legacy?', a: 'Founder is the way in. Legacy is for those who want to give more and receive more — deeper access to gatherings and the Studio.' },
+      { q: 'What is the Collective?', a: 'The front porch of the house: a way to stay connected to the ideas, conversations, and founders inside Believe, without beginning a formal engagement.' },
+      { q: 'What’s the difference between Founder and Legacy?', a: 'Founder is the way in. Legacy is for those who want to give more and receive more: deeper access to gatherings and the Studio.' },
       { q: 'Do I need to be a client?', a: 'No. The Collective is open to any founder who wants to stay close to the house.' },
       { q: 'Can I begin something more later?', a: 'Of course. Many founders start on the porch and, when the time is right, step into a Blueprint or The Founder’s Room.' },
     ],
     joinLead: 'Pull up a chair.',
-    joinBody: 'The Collective is the simplest way to stay close to the house — to keep thinking, keep learning, and remain among founders building meaningful companies.',
+    joinBody: 'The Collective is the simplest way to stay close to the house: to keep thinking, keep learning, and remain among founders building meaningful companies.',
     closing: 'Sometimes belonging is the first step. The rest can come later.',
   },
 }
@@ -680,12 +680,12 @@ export const FIELD_NOTES: FieldNote[] = [
   { n: '041', obs: 'Questions repeated three times are usually the real questions.', tilt: '0.4deg' },
   { n: '056', obs: 'Most founders don’t need another framework. They need a room quiet enough to hear themselves think.', to: 'The House', tape: 1, tilt: '-0.6deg' },
   { n: '063', obs: 'Retail rarely breaks companies.', hand: 'Confusion usually does.', where: 'Outside Whole Foods.', tilt: '0.7deg' },
-  { n: '071', title: 'On beginning', obs: 'Every meaningful company we’ve watched take shape began the same way — not with a plan, but with a better question.', to: 'The Believe Blueprint', tilt: '-0.4deg' },
+  { n: '071', title: 'On beginning', obs: 'Every meaningful company we’ve watched take shape began the same way. Not with a plan, but with a better question.', to: 'The Believe Blueprint', tilt: '-0.4deg' },
   { n: '084', obs: 'A founder can outgrow their positioning long before they outgrow their business.', where: 'Collected after Expo West.', tape: 1, tilt: '0.6deg' },
   { n: '090', obs: 'The bravest thing said at the table is usually the quietest.', trace: 'This conversation became our first workshop.', tilt: '-0.5deg' },
   { n: '097', obs: 'Clarity is not the reward at the end of the work. It is the thing that makes the work possible.', where: 'Late Tuesday afternoon.', tilt: '0.4deg' },
   { n: '102', obs: 'Sometimes the next strategy begins with a better question.', tape: 2, tilt: '-0.5deg' },
-  { n: '118', title: 'Unfinished', obs: '— what if belief is the only asset that compounds without capital?', hand: '(left for later)', tilt: '0.7deg' },
+  { n: '118', title: 'Unfinished', obs: 'What if belief is the only asset that compounds without capital?', hand: '(left for later)', tilt: '0.7deg' },
   { n: '126', obs: 'The founders who go on to build the most give the most away first.', to: 'The Stage', where: 'From a founder in tears.', tilt: '-0.4deg' },
 ]
 
@@ -702,15 +702,15 @@ export const LIBRARY_MARGINS = [
   'I thought I needed more confidence. I needed more clarity.',
 ]
 export const LIBRARY_OBJECTS = [
-  { no: '001', name: 'The Brass Key', src: '/photos/artifact-key.webp', story: 'Sent once, by mail, to every founder who joins the house. Most are never used to open anything — they are kept on desks, on shelves, in pockets, as a quiet reminder that the door was always open.', lesson: 'The invitation was always enough.', photo: 'The handcrafted brass key resting on linen beside a folded invitation — morning light, soft shadows, nothing staged', dir: 'row' },
+  { no: '001', name: 'The Brass Key', src: '/photos/artifact-key.webp', story: 'Sent once, by mail, to every founder who joins the house. Most are never used to open anything. They are kept on desks, on shelves, in pockets, as a quiet reminder that the door was always open.', lesson: 'The invitation was always enough.', photo: 'The handcrafted brass key resting on linen beside a folded invitation: morning light, soft shadows, nothing staged', dir: 'row' },
   { no: '002', name: 'The Folded Buyer Note', src: '/photos/artifact-buyernote.webp', story: 'A handwritten note from a retail buyer, corners softened from being unfolded and refolded a hundred times. One sentence long. It was the yes that turned a kitchen idea into a company.', lesson: 'One sentence can change everything that follows.', photo: 'A slightly worn handwritten retailer note resting beside a coffee mug, corners softened from being unfolded many times', dir: 'row-reverse' },
-  { no: '003', name: 'Prototype No. 1', src: '/photos/artifact-sipp.webp', story: 'The original. Imperfect in every way the founder later learned to fix, and kept precisely because of it — proof that meaningful things rarely arrive finished.', lesson: 'Still imperfect. Still worth keeping.', photo: 'The original imperfect prototype, beautifully photographed — evidence of beginnings', dir: 'row' },
-  { no: '004', name: 'A Handwritten Blueprint', src: '/photos/artifact-sketch.webp', story: 'Before the plan had a name, it was pencil on tracing paper — construction lines, second thoughts, a ring left by a coffee cup. The first Believe Blueprint, drawn by hand.', lesson: 'Every company begins as a drawing before it becomes a building.', photo: 'The original Believe Blueprint resting beneath tracing paper, construction lines barely visible, coffee nearby', dir: 'row-reverse' },
-  { no: '005', name: 'A Ceramic Mug', src: '/photos/artifact-journal.webp', story: 'Still half full. Left on the table the morning a founder finally said the thing they had been circling for months. Nobody washed it. It stayed.', lesson: 'The most important decisions are made over something warm.', photo: 'A ceramic mug, half full, on a walnut table — evidence someone has just stood up from a long conversation', dir: 'row' },
+  { no: '003', name: 'Prototype No. 1', src: '/photos/artifact-sipp.webp', story: 'The original. Imperfect in every way the founder later learned to fix, and kept precisely because of it: proof that meaningful things rarely arrive finished.', lesson: 'Still imperfect. Still worth keeping.', photo: 'The original imperfect prototype, beautifully photographed: evidence of beginnings', dir: 'row' },
+  { no: '004', name: 'A Handwritten Blueprint', src: '/photos/artifact-sketch.webp', story: 'Before the plan had a name, it was pencil on tracing paper: construction lines, second thoughts, a ring left by a coffee cup. The first Believe Blueprint, drawn by hand.', lesson: 'Every company begins as a drawing before it becomes a building.', photo: 'The original Believe Blueprint resting beneath tracing paper, construction lines barely visible, coffee nearby', dir: 'row-reverse' },
+  { no: '005', name: 'A Ceramic Mug', src: '/photos/artifact-journal.webp', story: 'Still half full. Left on the table the morning a founder finally said the thing they had been circling for months. Nobody washed it. It stayed.', lesson: 'The most important decisions are made over something warm.', photo: 'A ceramic mug, half full, on a walnut table: evidence someone has just stood up from a long conversation', dir: 'row' },
   { no: '006', name: 'A Retailer Badge', src: '/photos/artifact-badge.webp', story: 'A trade-show badge, lanyard still creased. The morning the shelf stopped being a dream and became an address.', lesson: 'The shelf becomes real the day someone walks you to it.', photo: 'A worn trade-show retailer badge with creased lanyard, resting on cream paper in soft light', dir: 'row-reverse', pos: '96% 50%' },
 ]
 export const LIBRARY_KEEPERS = [
-  { name: 'Tiffany Nilles', note: 'She keeps the shelf on finding the right rooms — and staying in them. The wisdom of knowing where a brand truly belongs before chasing where it doesn’t.' },
+  { name: 'Tiffany Nilles', note: 'She keeps the shelf on finding the right rooms, and staying in them. The wisdom of knowing where a brand truly belongs before chasing where it doesn’t.' },
 ]
 
 // Residency records — what each Resident worked through and left in the Library.
@@ -761,7 +761,7 @@ export const FOUNDER_ANSWERS: FounderAnswer[] = [
   {
     question: 'Everyone is telling me something different. Who should I listen to?',
     answer: [
-      'Start by asking what each person can see — and what they can’t.',
+      'Start by asking what each person can see, and what they can’t.',
       'A broker may understand the retailer. A marketer may understand the consumer. An investor may see the economics. An operator may see what it will actually take to execute. Their advice can all be good and still point you in different directions.',
       'Your job as the founder isn’t to collect enough opinions until one wins. It’s to understand what each perspective is optimizing for, then come back to the whole business.',
       'What actually needs to move right now?',
@@ -785,7 +785,7 @@ export const FOUNDER_ANSWERS: FounderAnswer[] = [
     answer: [
       '“Sales are flat” is a symptom, not a diagnosis, and flat sales can come from very different places, each with a very different fix.',
       'Get specific about which link in the chain is breaking. Are people not discovering you, or discovering you and not buying? Buying once and not coming back? Moving in some stores and not others? The number may look the same. The problem isn’t.',
-      'Find the real constraint — awareness, trial, repeat, distribution or velocity — before you spend a dollar fixing the wrong one. Too many brands pour effort into the part that was already working.',
+      'Find the real constraint, whether awareness, trial, repeat, distribution, or velocity, before you spend a dollar fixing the wrong one. Too many brands pour effort into the part that was already working.',
     ],
     author: { name: 'Beth' },
   },
@@ -816,7 +816,7 @@ export const FOUNDER_ANSWERS: FounderAnswer[] = [
     answer: [
       'When everything downstream feels harder than it should, positioning is one of the first places I’d look.',
       'Marketing isn’t converting. You’re constantly explaining what makes the product different. Buyers like it but can’t quite articulate why it belongs on shelf. Consumers enjoy it once they try it, but don’t immediately understand why they should pick it up in the first place.',
-      'Here’s a useful test: can someone encounter the brand for ten seconds and tell you, in their own words, what makes it different — and get it right?',
+      'Here’s a useful test: can someone encounter the brand for ten seconds and tell you, in their own words, what makes it different, and get it right?',
       'If they can’t, adding more marketing dollars may simply amplify the confusion.',
       'Get clear on what you stand for before you turn up the volume on it. Strong positioning makes everything that follows work harder.',
     ],
@@ -843,10 +843,10 @@ export const LIBRARY_WRITING = [
 ]
 
 export const STUDIO_NIGHTS = [
-  { topic: 'Building Financial Confidence', name: 'Nick Huggins', role: 'Fractional CFO', room: 'The Studio', label: 'Inside the Studio', when: 'This month', note: 'Nick joins founders for an honest conversation about the financial side of building a remarkable company — the decisions, the discipline, and the quiet confidence of knowing your numbers.' },
-  { topic: 'Landing the Right Shelves', name: 'Sarah Ellison', role: 'Retail Strategy', room: 'The Table', label: 'An Evening in the House', when: 'Next month', note: 'Sarah joins founders for an honest conversation about retail growth — how meaningful brands earn the right doors, build lasting partnerships, and stay on the shelf long after launch.' },
+  { topic: 'Building Financial Confidence', name: 'Nick Huggins', role: 'Fractional CFO', room: 'The Studio', label: 'Inside the Studio', when: 'This month', note: 'Nick joins founders for an honest conversation about the financial side of building a remarkable company: the decisions, the discipline, and the quiet confidence of knowing your numbers.' },
+  { topic: 'Landing the Right Shelves', name: 'Sarah Ellison', role: 'Retail Strategy', room: 'The Table', label: 'An Evening in the House', when: 'Next month', note: 'Sarah joins founders for an honest conversation about retail growth: how meaningful brands earn the right doors, build lasting partnerships, and stay on the shelf long after launch.' },
   { topic: 'Protecting What You Build', name: 'James Okafor', role: 'Trademark & Brand Counsel', room: 'The Library', label: 'In the Library', when: 'In the spring', note: 'Every lasting company eventually protects what it creates. An evening exploring trademarks, intellectual property, and the quiet decisions that preserve a founder’s work for decades.' },
-  { topic: 'The Story Investors Believe', name: 'Priya Raman', role: 'Early-Stage Investor', room: 'The Stage', label: 'On the Stage', when: 'Later this year', note: 'An intimate evening on what makes an investor believe in a founder — not the deck, but the clarity underneath it, and the story only you can tell.' },
+  { topic: 'The Story Investors Believe', name: 'Priya Raman', role: 'Early-Stage Investor', room: 'The Stage', label: 'On the Stage', when: 'Later this year', note: 'An intimate evening on what makes an investor believe in a founder. Not the deck, but the clarity underneath it, and the story only you can tell.' },
 ]
 
 // The core House team as shown on the commercial path — name + role only, so a
@@ -918,9 +918,9 @@ export const STORY_PHOTOS: Record<string, string> = {
 
 export const STAGE_MOMENTS = [
   { k: 'A Founder’s First Yes', b: 'The buyer who believed first. The retailer that opened the first door. The moment possibility became real.' },
-  { k: 'Around the Table', b: 'Founder dinners. Shared meals. Honest conversations. The moments that never appear in press releases — yet often change everything.' },
-  { k: 'Beyond the House', b: 'Fancy Food Show. Founder gatherings. Retail summits. Private salons. The house occasionally leaves home — carrying its philosophy wherever founders gather.' },
-  { k: 'Stories Worth Sharing', b: 'Launches. Milestones. Golden Tickets. Shelf placements. Keynotes. Awards. Not because recognition defines success — because every founder deserves to have someone witness the moment.' },
+  { k: 'Around the Table', b: 'Founder dinners. Shared meals. Honest conversations. The moments that never appear in press releases, yet often change everything.' },
+  { k: 'Beyond the House', b: 'Fancy Food Show. Founder gatherings. Retail summits. Private salons. The house occasionally leaves home, carrying its philosophy wherever founders gather.' },
+  { k: 'Stories Worth Sharing', b: 'Launches. Milestones. Golden Tickets. Shelf placements. Keynotes. Awards. Not because recognition defines success, but because every founder deserves to have someone witness the moment.' },
 ]
 export const STAGE_GALLERY = [
   'A founder beside their product, first time on shelf', 'Fancy Food Show installation', 'A Founder Table dinner',
@@ -1015,7 +1015,7 @@ export function buildRooms(): { all: Room[]; journey: Room[]; byId: (id: string)
       blockMx: ss.textAlign === 'center' ? 'auto' : '0',
       breeze: r.id === 'threshold' ? 'url(#breeze)' : 'none',
       contentDelay: i === 0 ? '2800ms' : '0ms',
-      enterLabel: enterLabelMap[r.id] || (r.locked ? 'Enter — a key opens this' : i === 0 ? 'Step inside' : 'Enter ' + r.name),
+      enterLabel: enterLabelMap[r.id] || (r.locked ? 'Enter · a key opens this' : i === 0 ? 'Step inside' : 'Enter ' + r.name),
     }
   })
   const byId = (id: string) => all.find((r) => r.id === id)

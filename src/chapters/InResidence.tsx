@@ -45,16 +45,16 @@ const RESIDENT = {
   // why she belongs here — the qualities first, the résumé only as evidence
   why: [
     'Chef MoWils has spent a career refusing to accept that things must be done the way they have always been done.',
-    'Long before AI, she was inventing categories that didn’t yet exist — turning one unlikely idea, the savory cupcake, into a company, It’s A CupCake!, and a story that reached Food Network, People, and Food & Wine.',
+    'Long before AI, she was inventing categories that didn’t yet exist: turning one unlikely idea, the savory cupcake, into a company, It’s A CupCake!, and a story that reached Food Network, People, and Food & Wine.',
     'What made her a remarkable entrepreneur is exactly what makes her a remarkable resident: curiosity, a willingness to experiment, the discipline to actually ship, and the resilience to keep going when the map runs out.',
-    'Those were the qualities we wanted for the House’s first AI residency — not a technologist, but a builder who has lived the founder’s road and now helps others walk it with new tools in hand.',
+    'Those were the qualities we wanted for the House’s first AI residency: not a technologist, but a builder who has lived the founder’s road and now helps others walk it with new tools in hand.',
   ],
 
   // a concise, warm biography — judgment over technology
   about: [
-    'Chef MoWils is Believe Studio’s Resident AI Strategist. She helps founders use AI the way a seasoned operator would — thoughtfully, practically, and always in service of the business, never for its own sake.',
+    'Chef MoWils is Believe Studio’s Resident AI Strategist. She helps founders use AI the way a seasoned operator would: thoughtfully, practically, and always in service of the business, never for its own sake.',
     'Her focus is judgment, not technology. She is far less interested in what a tool can do than in what a founder should do with the hours it hands back.',
-    'People over software. Capacity over automation. The aim is never to take the founder out of the work that matters — only out of the work that never should have required them.',
+    'People over software. Capacity over automation. The aim is never to take the founder out of the work that matters, only out of the work that never should have required them.',
   ],
 
   workshopNo: 'Founder Workshop No. 001',
@@ -78,7 +78,7 @@ const RESIDENT = {
 // the House Card — a museum object label for the current resident
 const HOUSE_CARD: [string, string][] = [
   ['In Residence', RESIDENT.season],
-  ['Current Contribution', `${RESIDENT.workshopNo} — ${RESIDENT.workshopTitle}`],
+  ['Current Contribution', `${RESIDENT.workshopNo} · ${RESIDENT.workshopTitle}`],
   ['What Founders Are Carrying', RESIDENT.carrying],
   ['What Becomes Clear', RESIDENT.clarifies],
   ['Leaves Behind', RESIDENT.artifact],
@@ -160,13 +160,13 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           <figure style={{ width: 'min(90vw, 560px)', margin: 'clamp(64px,11vh,130px) auto 0' }}>
             <img
               src={WORKSHOP_COVER}
-              alt={`${R.workshopNo} — ${R.workshopTitle}. Five AI teammates. One founder. Twenty hours returned. In residence: ${R.fullName}, ${R.role}.`}
+              alt={`${R.workshopNo} · ${R.workshopTitle}. Five AI teammates. One founder. Twenty hours returned. In residence: ${R.fullName}, ${R.role}.`}
               loading="lazy"
               style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 'clamp(5px,0.9vw,11px)', boxShadow: '0 54px 96px -56px rgba(40,44,70,0.55)' }}
             />
           </figure>
 
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>The workshop begins with something real a founder is carrying. Chef MoWils works through it live with the room — not performed, but genuinely worked through together. What is learned enters the Library, so its value reaches beyond the founders who were present.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>The workshop begins with something real a founder is carrying. Chef MoWils works through it live with the room, not performed, but worked through together in real time. What is learned enters the Library, so its value reaches beyond the founders who were present.</p>
 
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,3vw,40px)', lineHeight: 1.32, color: indigo, maxWidth: '20ch', margin: 'clamp(56px,9vh,110px) auto 0', ...balance }}>This workshop is not about AI. It is about what you would do with twenty hours.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(20px,3vh,32px) auto 0' }}>AI does the prep. You do the judgment.</p>

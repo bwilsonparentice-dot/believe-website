@@ -858,7 +858,7 @@ export class App extends React.Component<Record<string, never>, State> {
     const reveal = (range: string): React.CSSProperties => ({ animation: 'fadeUpSoft 1100ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: range as unknown as string })
     return (
       <section aria-label="A pause before the Founding Wall" style={{ position: 'relative', background: '#dccfb2', padding: 'clamp(120px,26vh,340px) clamp(24px,8vw,120px)', textAlign: 'center' }}>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px,3.4vw,48px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.86)', maxWidth: '26ch', margin: '0 auto', textWrap: 'balance' as React.CSSProperties['textWrap'], ...reveal('entry 4% cover 28%') }}>No founder walks the same path &mdash; yet every room leads toward greater clarity.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px,3.4vw,48px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.86)', maxWidth: '26ch', margin: '0 auto', textWrap: 'balance' as React.CSSProperties['textWrap'], ...reveal('entry 4% cover 28%') }}>No founder walks the same path, yet every room leads toward greater clarity.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(16px,1.9vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.6)', maxWidth: '32ch', margin: 'clamp(28px,5vh,52px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'], ...reveal('entry 2% cover 26%') }}>Come in. We&rsquo;ve been waiting for you. The door has never been locked.</p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5em 2.6em', alignItems: 'baseline', justifyContent: 'center', margin: 'clamp(52px,9vh,120px) auto 0', ...reveal('entry 0% cover 24%') }}>
           {PRINCIPLES.map((pr) => (
@@ -982,7 +982,7 @@ export class App extends React.Component<Record<string, never>, State> {
               <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.75)', marginBottom: '1.1em' }}>From the shelf</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7em', alignItems: 'center' }}>
                 {active.reading.map((b: any, k: number) => (
-                  <div key={k} style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 'clamp(17px,1.7vw,21px)', color: 'rgba(43,39,35,0.9)' }}>{b.t}<span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.62)' }}>&nbsp;&mdash; {b.a}</span></div>
+                  <div key={k} style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 'clamp(17px,1.7vw,21px)', color: 'rgba(43,39,35,0.9)' }}>{b.t}<span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.62)' }}>&nbsp;&middot; {b.a}</span></div>
                 ))}
               </div>
             </>
@@ -1021,7 +1021,7 @@ export class App extends React.Component<Record<string, never>, State> {
           {v === 'quiet' && (
             <>
               <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(20px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.88)', maxWidth: '24ch', margin: '1.2em auto 2.2em' }}>{active.oneLine}</p>
-              <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.55)' }}>&mdash; in confidence</div>
+              <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.55)' }}>in confidence</div>
             </>
           )}
 
@@ -1033,7 +1033,7 @@ export class App extends React.Component<Record<string, never>, State> {
             <div style={{ maxWidth: 460, margin: '2.6em auto 0', padding: '1.5em 1.7em 1.6em', background: '#efe6d3', border: '1px solid rgba(236,209,147,0.5)', textAlign: 'left', boxShadow: '0 24px 60px -36px rgba(60,44,20,0.55)' }}>
               <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '0.7em' }}>Left here &middot; {active.story.kind}</div>
               <p style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(22px,2.5vw,30px)', lineHeight: 1.25, color: 'rgba(43,39,35,0.92)', margin: '0 0 0.5em' }}>&ldquo;{active.story.text}&rdquo;</p>
-              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(122,94,52,0.62)' }}>&mdash; {active.story.by}, {active.story.of}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(122,94,52,0.62)' }}>{active.story.by}, {active.story.of}</div>
             </div>
           )}
 

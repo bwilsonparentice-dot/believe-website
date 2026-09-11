@@ -45,7 +45,7 @@ export function TableChapter({ ctx }: { ctx: Ctx }) {
 
         {/* opening */}
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.9)', maxWidth: '26ch', margin: '0 auto 1.4em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>There is a difference between talking about a company and sitting across from someone who helps you finally see it clearly.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 2, color: 'rgba(43,39,35,0.68)', maxWidth: '34ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>The Table exists for those conversations.<br />Some last twenty minutes.<br />Some last three hours.<br />Almost all of them change something —<br />not because advice was given,<br />because clarity arrived.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 2, color: 'rgba(43,39,35,0.68)', maxWidth: '34ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>The Table exists for those conversations.<br />Some last twenty minutes.<br />Some last three hours.<br />Almost all of them change something.<br />Not because advice was given,<br />but because clarity arrived.</p>
 
         <Divider h="clamp(44px,7vh,88px)" m="clamp(40px,6.5vh,80px) auto" />
 
@@ -70,7 +70,7 @@ export function TableChapter({ ctx }: { ctx: Ctx }) {
         {/* Left here, after a conversation */}
         <div style={{ ...eyebrow, marginBottom: '1.6em' }}>Left here · after a conversation</div>
         <p style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(28px,4vw,52px)', lineHeight: 1.24, color: 'rgba(43,39,35,0.9)', maxWidth: '22ch', margin: '0 auto 0.8em' }}>“Nobody solved my problem. They simply helped me hear the answer I’d been avoiding.”</p>
-        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(122,94,52,0.62)' }}>— left anonymously after dinner</div>
+        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(122,94,52,0.62)' }}>Left anonymously after dinner.</div>
 
         <Divider h="clamp(44px,7vh,88px)" m="clamp(40px,6.5vh,80px) auto" />
 
@@ -85,7 +85,7 @@ export function TableChapter({ ctx }: { ctx: Ctx }) {
         {/* who keeps this room */}
         <div style={{ ...eyebrow, marginBottom: '0.9em' }}>Who keeps this room</div>
         <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(26px,3vw,38px)', lineHeight: 1.05, marginBottom: '0.6em' }}>Jillian Waun</div>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.7)', maxWidth: '34ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Jillian quietly keeps conversations alive long after everyone leaves the table. She listens for the sentence a founder almost didn’t say — because those are often the ones worth building around. If you spend enough time here, you’ll probably find Jillian nearby.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.7)', maxWidth: '34ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Jillian quietly keeps conversations alive long after everyone leaves the table. She listens for the sentence a founder almost didn’t say, because those are often the ones worth building around. If you spend enough time here, you’ll probably find Jillian nearby.</p>
 
         <Divider h="clamp(44px,7vh,88px)" m="clamp(40px,6.5vh,80px) auto" />
 
