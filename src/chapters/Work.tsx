@@ -220,18 +220,8 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <div style={{ margin: 'clamp(48px,8vh,92px) auto 0', maxWidth: 720, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'clamp(32px,5vh,52px) clamp(24px,4vw,48px)' }}>
             {HOUSE_TEAM.map((m, i) => (
               <div key={i}>
-                {m.name ? (
-                  <>
-                    <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(21px,2.4vw,29px)', lineHeight: 1.12, color: '#2b2723' }}>{m.name}</div>
-                    <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginTop: '0.85em' }}>{m.role}</div>
-                  </>
-                ) : (
-                  // an open seat — the role we're filling, shown by title only
-                  <>
-                    <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(20px,2.3vw,28px)', lineHeight: 1.12, color: 'rgba(43,39,35,0.5)' }}>{m.role}</div>
-                    <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)', marginTop: '0.85em' }}>Joining soon</div>
-                  </>
-                )}
+                <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(21px,2.4vw,29px)', lineHeight: 1.12, color: '#2b2723' }}>{m.name}</div>
+                <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', marginTop: '0.85em' }}>{m.role}</div>
               </div>
             ))}
           </div>
