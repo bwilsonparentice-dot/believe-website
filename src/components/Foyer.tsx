@@ -28,7 +28,12 @@ const archRadius = '46% 46% 7px 7px / 56% 56% 6px 6px'
  * role without competing with the people whose faces are present. The crop is
  * biased toward the face so each person feels close, not distant.
  */
-function FoyerNiche({ m, drop }: { m: TeamMember; drop: boolean }) {
+/** the stable People-page anchor for a member (Beth -> 'beth', etc.) */
+function personAnchor(m: TeamMember): string | undefined {
+  return m.name ? m.name.split(' ')[0].toLowerCase() : undefined
+}
+
+function FoyerNiche({ m, drop, onPerson }: { m: TeamMember; drop: boolean; onPerson?: (id: string) => (e?: React.MouseEvent) => void }) {
   const seat = !m.photo
   // larger on desktop so the people read as the proof; Beth only slightly
   // larger; scales down responsively so the 2-up phone layout still fits.
@@ -36,9 +41,12 @@ function FoyerNiche({ m, drop }: { m: TeamMember; drop: boolean }) {
   // can drop in later with zero layout shift — the quiet fill/shadow, not a
   // smaller size, is what keeps a seat subordinate.
   const w = m.lead ? 'clamp(138px,15.7vw,172px)' : 'clamp(128px,14.5vw,158px)'
-  return (
-    <div style={{ width: 'clamp(140px,16vw,176px)', display: 'flex', flexDirection: 'column', alignItems: 'center', transform: drop ? 'translateY(clamp(16px,2vw,26px))' : 'none' }}>
-      <div style={{
+  const id = personAnchor(m)
+
+  // portrait + name + role — the whole block is the clickable target
+  const inner = (
+    <>
+      <div className="foyer-portrait" style={{
         width: w, aspectRatio: '0.758', borderRadius: archRadius, overflow: 'hidden', position: 'relative',
         ...(seat
           ? { background: 'linear-gradient(160deg,#e7dcc4,#ded1b6)', border: '1px solid rgba(156,122,63,0.42)', boxShadow: 'inset 0 8px 20px rgba(80,60,28,0.12)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }
@@ -48,8 +56,16 @@ function FoyerNiche({ m, drop }: { m: TeamMember; drop: boolean }) {
           ? <div aria-hidden="true" style={{ width: 24, height: 28, border: '1.4px solid rgba(156,122,63,0.6)', borderBottom: 'none', borderRadius: '50% 50% 4px 4px / 60% 60% 3px 3px', marginTop: '28%' }} />
           : <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%', filter: 'brightness(1.03)' }} />}
       </div>
-      <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 19, lineHeight: 1.08, marginTop: 14, color: seat ? 'rgba(43,39,35,0.7)' : '#2b2723' }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
+      <div className="foyer-name" style={{ fontFamily: serif, fontWeight: 500, fontSize: 19, lineHeight: 1.08, marginTop: 14, color: seat ? 'rgba(43,39,35,0.7)' : '#2b2723' }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
       {m.name && <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 9.5, letterSpacing: '0.24em', textTransform: 'uppercase', color: palette.olive, marginTop: 6, lineHeight: 1.35, opacity: seat ? 0.82 : 1 }}>{m.roleShort || m.role}</div>}
+    </>
+  )
+
+  return (
+    <div style={{ width: 'clamp(140px,16vw,176px)', display: 'flex', flexDirection: 'column', alignItems: 'center', transform: drop ? 'translateY(clamp(16px,2vw,26px))' : 'none' }}>
+      {onPerson && id
+        ? <button type="button" className="foyer-person" onClick={onPerson(id)} aria-label={`Meet ${m.name} on the People page`}>{inner}</button>
+        : <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>{inner}</div>}
     </div>
   )
 }
@@ -64,7 +80,7 @@ function FoyerNiche({ m, drop }: { m: TeamMember; drop: boolean }) {
  * House's own grammar (Cormorant, cream, the arch, the palette) and adds one
  * controlled navy moment; the room is what whispers, the people are the proof.
  */
-export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepInside?: () => void }) {
+export function Foyer({ onWork, onStepInside, onPerson }: { onWork?: () => void; onStepInside?: () => void; onPerson?: (id: string) => (e?: React.MouseEvent) => void }) {
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 200, overflowY: 'auto', background: 'linear-gradient(158deg, #f1e9d8 0%, #efe6d3 46%, #e7dcc4 100%)' }}>
       {/* the room's atmosphere — a whisper of off-frame late-afternoon light and a
@@ -111,7 +127,7 @@ export function Foyer({ onWork, onStepInside }: { onWork?: () => void; onStepIns
         {/* the team — larger, staggered, loose and architectural (never a grid);
             portraits present, seats for roles whose faces are not yet placed */}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(12px,1.8vh,18px) clamp(24px,3.4vw,44px)', maxWidth: 640, margin: 'clamp(18px,3vh,26px) auto 0' }}>
-          {CORE_TEAM.map((m, i) => <FoyerNiche key={i} m={m} drop={i % 2 === 1} />)}
+          {CORE_TEAM.map((m, i) => <FoyerNiche key={i} m={m} drop={i % 2 === 1} onPerson={onPerson} />)}
         </div>
 
         {/* the founder-first bridge into the two paths */}

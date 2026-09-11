@@ -59,6 +59,8 @@ interface State {
   showKey: boolean
   facadeReady: boolean
   birdLanded: boolean
+  /** when the People page is opened from a Foyer portrait, the person to scroll to */
+  peopleAnchor?: string
 }
 
 // the founder philosophy, engraved in stone — the House's emotional anchor
@@ -216,7 +218,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openStudioPage: this.openChapter('showStudioPage'), closeStudioPage: this.closeChapter('showStudioPage'),
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
-      openPeople: this.openChapter('showPeople'), closePeople: this.closeChapter('showPeople'),
+      openPeople: this.openPeoplePlain, closePeople: this.closeChapter('showPeople'),
       openStories: this.openChapter('showStories'), closeStories: this.closeChapter('showStories'),
       openHouse: this.openChapter('showHouse'), closeHouse: this.closeChapter('showHouse'),
       openWhyBelieve: this.openChapter('showWhyBelieve'), closeWhyBelieve: this.closeChapter('showWhyBelieve'),
@@ -257,7 +259,10 @@ export class App extends React.Component<Record<string, never>, State> {
       // emotional experience, so we let it breathe. The faint "Step inside" cue
       // (below) is what reassures a first-time visitor the screen is theirs to
       // touch, without shortening the moment.
-      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 2600)
+      // "We've been waiting for you." only finishes fading in around 2.4s, so a
+      // 2.6s auto-advance cut it off. Hold the arrival longer (still hands-free,
+      // still skippable by a click) so both lines are read before we move on.
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 4800)
       // the bird finishes crossing and perches in the olive tree (Scene 2)
       this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 2000)
     }
@@ -386,6 +391,17 @@ export class App extends React.Component<Record<string, never>, State> {
     if (e && e.stopPropagation) e.stopPropagation()
     this.enterBuilding()
   }
+  // People — opened plainly (no target), or deep-linked to a specific person from
+  // the Foyer team reveal. peopleAnchor tells the People page which section to land on.
+  private openPeoplePlain = (e?: React.MouseEvent) => {
+    this.setState({ peopleAnchor: undefined })
+    this.openChapter('showPeople')(e)
+  }
+  private openPeopleAt = (id: string) => (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    this.setState({ peopleAnchor: id })
+    this.openChapter('showPeople')(e)
+  }
   private replay = () => {
     this.audio.fadeAmbient(1)
     this.setState({ ...this.closedChapters(), phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false, prologueSeen: false } as unknown as Pick<State, keyof State>)
@@ -507,7 +523,7 @@ export class App extends React.Component<Record<string, never>, State> {
       <>
         {phase === 'overture' && this.renderOverture(opening)}
         {phase === 'sketch' && this.renderSketch()}
-        {phase === 'foyer' && !overlayOpen && <Foyer onWork={this.ctx.openWork} onStepInside={this.foyerToExplore} />}
+        {phase === 'foyer' && !overlayOpen && <Foyer onWork={this.ctx.openWork} onStepInside={this.foyerToExplore} onPerson={this.openPeopleAt} />}
         {phase === 'prologue' && <Prologue onEnter={this.enterHouse} motionOn={alive} />}
         {phase === 'map' && this.renderBuilding(alive, sunShiftAnim)}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
@@ -530,7 +546,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
         {this.state.showHouse && <HouseChapter ctx={this.ctx} />}
         {this.state.showWhyBelieve && <WhyBelieveChapter ctx={this.ctx} />}
-        {this.state.showPeople && <PeopleChapter ctx={this.ctx} />}
+        {this.state.showPeople && <PeopleChapter ctx={this.ctx} anchor={this.state.peopleAnchor} />}
         {this.state.showStudio && <InResidenceChapter ctx={this.ctx} />}
         {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}
         {this.state.showStories && <StoriesChapter ctx={this.ctx} />}

@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useEffect } from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
@@ -32,11 +32,16 @@ function Niche({ m, size }: { m: TeamMember; size: number }) {
   )
 }
 
+/** the stable anchor id for a member (Beth -> 'beth'), for Foyer deep-links. */
+function personAnchor(m: TeamMember): string | undefined {
+  return m.name ? m.name.split(' ')[0].toLowerCase() : undefined
+}
+
 /** One core-team member — staggered, alternating side, Beth a touch larger. */
 function TeamRow({ m, i }: { m: TeamMember; i: number }) {
   const rev = i % 2 === 1
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(28px,5vw,64px)', flexWrap: 'wrap', flexDirection: rev ? 'row-reverse' : 'row', margin: 'clamp(56px,9vh,116px) auto 0' }}>
+    <div id={personAnchor(m)} style={{ scrollMarginTop: 'clamp(80px,14vh,150px)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(28px,5vw,64px)', flexWrap: 'wrap', flexDirection: rev ? 'row-reverse' : 'row', margin: 'clamp(56px,9vh,116px) auto 0' }}>
       <Niche m={m} size={m.lead ? 300 : 230} />
       <div style={{ flex: '1 1 320px', minWidth: 260, maxWidth: 460, textAlign: 'left' }}>
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: m.lead ? 'clamp(34px,4.2vw,48px)' : 'clamp(30px,3.6vw,40px)', lineHeight: 1.02, color: '#2b2723' }}>{m.name || m.role}</div>
@@ -48,7 +53,16 @@ function TeamRow({ m, i }: { m: TeamMember; i: number }) {
 }
 
 /** The People of Believe Studio — the House around the founder, revealed. */
-export function PeopleChapter({ ctx }: { ctx: Ctx }) {
+export function PeopleChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
+  // when opened from a Foyer portrait, land directly on that person's section
+  useEffect(() => {
+    if (!anchor) return
+    const t = setTimeout(() => {
+      const el = document.getElementById(anchor)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 240)
+    return () => clearTimeout(t)
+  }, [anchor])
   return (
     <ChapterShell onClose={ctx.closePeople} background="#efe6d3" dark>
       {/* the one navy moment — an immersive, confident opening */}
