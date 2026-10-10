@@ -24,6 +24,10 @@ export interface Ctx {
   openHouses: Handler; closeHouses: Handler
   openWork: Handler; closeWork: Handler
   openFieldNotes: Handler; closeFieldNotes: Handler
+  /** The Observatory — a short intro to Believe Radar, links out to its own site */
+  openObservatory: Handler; closeObservatory: Handler
+  /** The one true call to action — the Founder Conversation, openable anywhere */
+  openConversation: Handler; closeConversation: Handler
   /** open a dedicated experience page (e.g. 'founders-room') */
   openDoorway: (id: string) => Handler; closeDoorway: Handler
   /** The House Directory — the brass plaque, openable as an overlay from anywhere */

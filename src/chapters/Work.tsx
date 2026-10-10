@@ -284,7 +284,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
               subordinate note. Generous space before the action. */}
           <ArchLine m="clamp(72px,12vh,150px) auto clamp(60px,11vh,120px)" />
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(23px,2.9vw,38px)', lineHeight: 1.28, color: 'rgba(43,39,35,0.78)', maxWidth: '24ch', margin: '0 auto', ...balance }}>Some seasons ask for someone closer.</p>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.7vw,34px)', lineHeight: 1.36, color: '#2b2723', maxWidth: '32ch', margin: 'clamp(30px,5vh,58px) auto 0', ...balance }}>Private Advisory begins at <span style={{ whiteSpace: 'nowrap' }}>$5,000 per month</span> and is reserved for a small number of founders who need an experienced strategic partner close to the business.</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.7vw,34px)', lineHeight: 1.36, color: '#2b2723', maxWidth: '32ch', margin: 'clamp(30px,5vh,58px) auto 0', ...balance }}>Private Advisory is reserved for a small number of founders who need an experienced strategic partner close to the business.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15px,1.5vw,19px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.5)', maxWidth: '36ch', margin: 'clamp(22px,3.6vh,38px) auto 0', ...balance }}>We recommend the right structure after understanding the company, the decisions ahead, and where the House can create the most value.</p>
           <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(66px,12vh,140px)' }} hover={ctaHover}>Request Private Advisory &rarr;</El>
 

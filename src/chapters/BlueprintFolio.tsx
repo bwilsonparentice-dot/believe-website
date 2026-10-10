@@ -132,7 +132,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
 
   const specs: { label: string; value: string }[] = [
     ...x.particulars,
-    { label: 'Your investment', value: x.investment },
+    // Pricing held for review — not published on the engagement page.
   ]
 
   return (

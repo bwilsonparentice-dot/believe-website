@@ -61,7 +61,7 @@ export function BlueprintChapter({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.7vw,21px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.6)', maxWidth: '30ch', margin: '1em auto 0' }}>For many founders, that next step is The Founder’s Room.</p>
 
         <Divider h="clamp(48px,7vh,80px)" m="clamp(46px,7vh,80px) auto clamp(36px,5vh,60px)" />
-        <div onClick={ctx.openFounderRoom} style={{ display: 'inline-block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: '#1b140c', background: 'linear-gradient(160deg,#d9bd7e,#b8934e)', padding: '15px 38px', cursor: 'pointer', boxShadow: '0 20px 40px -22px rgba(120,90,40,0.7)' }}>Begin Your Blueprint →</div>
+        <div onClick={ctx.openConversation} style={{ display: 'inline-block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: '#1b140c', background: 'linear-gradient(160deg,#d9bd7e,#b8934e)', padding: '15px 38px', cursor: 'pointer', boxShadow: '0 20px 40px -22px rgba(120,90,40,0.7)' }}>Begin the Conversation →</div>
       </div>
     </ChapterShell>
   )

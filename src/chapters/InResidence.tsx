@@ -174,11 +174,11 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
           {/* reserve a seat — the workshop registration (Luma) */}
           <div style={{ marginTop: 'clamp(56px,9vh,110px)' }}>
             <div style={{ ...label, fontSize: 9.5, letterSpacing: '0.42em', marginBottom: '1.5em', color: 'rgba(122,94,52,0.62)' }}>{R.month}</div>
-            <El as="a" href={REGISTER_URL} target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', textDecoration: 'none', transition: 'background 400ms ease, color 400ms ease' }}
+            <El as="button" onClick={() => setNoteOpen(true)}
+              style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', transition: 'background 400ms ease, color 400ms ease' }}
               hover={{ background: 'transparent', color: indigo }}
             >
-              Reserve your seat
+              Start a Conversation
             </El>
           </div>
         </div>
@@ -216,11 +216,11 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
 
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.8)', margin: 'clamp(48px,8vh,96px) auto 0' }}>{R.hook[0]} {R.hook[1]}</p>
           <div style={{ marginTop: 'clamp(40px,7vh,80px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(22px,3.4vh,34px)' }}>
-            <El as="a" href={REGISTER_URL} target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', textDecoration: 'none', transition: 'background 400ms ease, color 400ms ease' }}
+            <El as="button" onClick={() => setNoteOpen(true)}
+              style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f3ecdc', background: indigo, border: `1px solid ${indigo}`, borderRadius: 2, padding: '15px 42px', cursor: 'pointer', transition: 'background 400ms ease, color 400ms ease' }}
               hover={{ background: 'transparent', color: indigo }}
             >
-              Reserve your seat
+              Start a Conversation
             </El>
             {/* a quieter path — for founders who'd rather talk before they register */}
             <El

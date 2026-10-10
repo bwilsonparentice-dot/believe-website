@@ -53,6 +53,17 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
 
         <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,110px) auto clamp(40px,6.5vh,80px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
+        {/* NOW WHAT? — the Library's film series. Positioning held in place; the
+            external channel link is added only when the confirmed URL arrives,
+            so there is never a broken or placeholder link. */}
+        <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', marginBottom: '0.9em' }}>The film series</div>
+        <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>NOW WHAT?</h3>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '34ch', margin: '0 auto clamp(26px,4vh,40px)' }}>Short conversations on the questions founders actually face.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '42ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>NOW WHAT? is where the house thinks out loud: a founder&rsquo;s real question, talked through with the honesty of people who have built brands. The films live in the Library, so their wisdom reaches founders long after the conversation.</p>
+        <p style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)', marginTop: 'clamp(24px,4vh,36px)' }}>Watch soon</p>
+
+        <div style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(40px,6.5vh,80px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+
         {/* SHELF ONE — From the Shelf */}
         <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', marginBottom: '0.9em' }}>Shelf One</div>
         <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>From the Shelf</h3>

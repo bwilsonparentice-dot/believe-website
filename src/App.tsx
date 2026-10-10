@@ -36,6 +36,9 @@ import { ArchiveCard } from './components/ArchiveCard'
 import { FieldNotesChapter } from './chapters/FieldNotes'
 import { HousesChapter } from './chapters/Houses'
 import { ReceiveKey } from './chapters/ReceiveKey'
+import { Home } from './components/Home'
+import { ObservatoryChapter } from './chapters/Observatory'
+import { ConversationNote } from './components/ConversationNote'
 // NOTE: the legacy FounderRoomChapter (./chapters/FounderRoom) was removed — the
 // Founder's Room resolves to FoundersRoom via openDoorway('founders-room').
 
@@ -56,6 +59,7 @@ interface State {
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showStudioPage: boolean
   showDirectory: boolean
+  showObservatory: boolean; showConversation: boolean
   showKey: boolean
   facadeReady: boolean
   birdLanded: boolean
@@ -121,6 +125,7 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showPeople: 'people',
   showHouses: 'houses',
   showStage: 'stage',
+  showObservatory: 'observatory',
 }
 const SLUG_TO_DOORWAY: Record<string, string> = Object.fromEntries(Object.entries(DOORWAY_SLUG).map(([id, s]) => [s, id]))
 const SLUG_TO_FLAG: Record<string, keyof State> = Object.fromEntries(Object.entries(FLAG_SLUG).map(([k, s]) => [s as string, k as keyof State]))
@@ -147,6 +152,7 @@ const CLOSED_OVERLAYS: Partial<State> = {
   showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
   showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
+  showObservatory: false,
   showDirectory: false, activeDoorway: null,
 }
 /** the state that opens the overlay a slug names (all others closed) */
@@ -166,11 +172,12 @@ function makeInitialState(): State {
     showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
     showStudioPage: false, showDirectory: false,
+    showObservatory: false, showConversation: false,
     showKey: false, facadeReady: false, birdLanded: false,
   }
   if (typeof window === 'undefined') return base
   const path = window.location.pathname
-  if (isFoyerRoute()) return { ...base, phase: 'foyer' }
+  if (isFoyerRoute()) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
   const slug = overlaySlugFromPath(path)
   if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) }
   if (BUILDING_ANCHORS.has(rawPath(path))) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
@@ -225,6 +232,8 @@ export class App extends React.Component<Record<string, never>, State> {
       openHouses: this.openChapter('showHouses'), closeHouses: this.closeChapter('showHouses'),
       openWork: this.openChapter('showWork'), closeWork: this.closeChapter('showWork'),
       openFieldNotes: this.openChapter('showFieldNotes'), closeFieldNotes: this.closeChapter('showFieldNotes'),
+      openObservatory: this.openChapter('showObservatory'), closeObservatory: this.closeChapter('showObservatory'),
+      openConversation: this.openConversation, closeConversation: this.closeConversation,
       openDoorway: this.openDoorway, closeDoorway: this.closeDoorway,
       openDirectory: this.openDirectory, closeDirectory: this.closeDirectory,
       toBuilding: this.toBuilding,
@@ -311,9 +320,10 @@ export class App extends React.Component<Record<string, never>, State> {
 
   private onKey = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
+      if (this.state.showConversation) { this.setState({ showConversation: false }); return }
       if (this.state.showDirectory) { this.setState({ showDirectory: false }); return }
       if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
-      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showPeople', 'showHouses', 'showKey']
+      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showObservatory', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
     }
@@ -352,9 +362,11 @@ export class App extends React.Component<Record<string, never>, State> {
     if (this.tAccept) clearTimeout(this.tAccept)
     if (this.tDoor) clearTimeout(this.tDoor)
     if (this.tEnter) clearTimeout(this.tEnter)
-    rememberVisited()
+    rememberVisited(); rememberPrologueSeen()
     this.audio.fadeAmbient(1.4)
-    this.setState({ phase: 'foyer', opening: false })
+    this.setState({ phase: 'map', opening: false, roomsRevealed: true, prologueSeen: true, activeId: null, justEntered: true })
+    if (this.tWelcome) clearTimeout(this.tWelcome)
+    this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
   private toSketch = () => {
     this.setState({ phase: 'sketch', activeId: null })
@@ -366,14 +378,13 @@ export class App extends React.Component<Record<string, never>, State> {
   }
   private enterBuilding = () => {
     if (this.tEnter) clearTimeout(this.tEnter)
-    // the guided walk plays once before the house opens; afterwards we go straight in
-    if (!this.state.prologueSeen) { this.audio.fadeAmbient(2.2); this.setState({ phase: 'prologue', activeId: null }); return }
+    // Phase 1: the entrance opens straight onto the scrollable homepage
     this.enterHouse()
   }
   private enterHouse = () => {
     rememberPrologueSeen(); rememberVisited()
     this.audio.fadeAmbient(1.6)
-    this.setState({ phase: 'map', prologueSeen: true, activeId: null, justEntered: true, roomsRevealed: false })
+    this.setState({ phase: 'map', prologueSeen: true, activeId: null, justEntered: true, roomsRevealed: true })
     if (this.tWelcome) clearTimeout(this.tWelcome)
     this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
@@ -381,9 +392,11 @@ export class App extends React.Component<Record<string, never>, State> {
   private toFoyer = () => {
     if (this.tEnter) clearTimeout(this.tEnter)
     if (this.tDoor) clearTimeout(this.tDoor)
-    rememberVisited() // the cinematic arrival is experienced once
+    rememberVisited(); rememberPrologueSeen() // the cinematic arrival is experienced once
     this.audio.fadeAmbient(1.8)
-    this.setState({ phase: 'foyer', opening: false })
+    this.setState({ phase: 'map', opening: false, roomsRevealed: true, prologueSeen: true, activeId: null, justEntered: true })
+    if (this.tWelcome) clearTimeout(this.tWelcome)
+    this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
   // Explore the House — the visitor chooses depth: continue exactly as the site
   // does today (the Prologue on the first visit, then the rooms).
@@ -446,9 +459,11 @@ export class App extends React.Component<Record<string, never>, State> {
   // exactly where they were; it never navigates away on its own.
   private openDirectory = (e?: React.MouseEvent) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ showDirectory: true }) }
   private closeDirectory = () => this.setState({ showDirectory: false })
+  private openConversation = (e?: React.MouseEvent) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ showConversation: true }) }
+  private closeConversation = () => this.setState({ showConversation: false })
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showDirectory: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showDirectory: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -516,7 +531,7 @@ export class App extends React.Component<Record<string, never>, State> {
       s.showWork || s.showPeople || s.showHouses || s.showStudio || s.showStudioPage ||
       s.showStories || s.showHouse || s.showWhyBelieve || s.showLibrary || s.showBlueprint ||
       s.showFieldNotes || s.showTable || s.showAdvisory || s.showStage || s.showDirectory ||
-      s.showKey || s.activeDoorway
+      s.showObservatory || s.showKey || s.activeDoorway
     )
 
     return (
@@ -551,6 +566,8 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}
         {this.state.showStories && <StoriesChapter ctx={this.ctx} />}
         {this.state.showDirectory && <DirectoryOverlay ctx={this.ctx} onClose={this.closeDirectory} />}
+        {this.state.showObservatory && <ObservatoryChapter ctx={this.ctx} />}
+        {this.state.showConversation && <ConversationNote onClose={this.closeConversation} />}
       </>
     )
   }
@@ -677,8 +694,34 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   // ── THE BUILDING — the walk-through of rooms + brass directory footer ──
+  // The persistent house header — wordmark, poetic nav, and the one primary
+  // action. Shown on the scrollable homepage; chapter overlays sit above it.
+  // Mobile collapses the nav into a Menu button that opens the brass Directory.
+  private renderHeader() {
+    const c = this.ctx
+    return (
+      <header className="bs-header">
+        <button className="bs-brand" onClick={() => { try { window.scrollTo({ top: 0, behavior: 'smooth' }) } catch { /* ignore */ } }} aria-label="Believe Studio — back to top">
+          <svg width="20" height="23" viewBox="0 0 48 56" fill="none" aria-hidden="true"><path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth="2.6" strokeLinecap="round" /></svg>
+          <span className="wm">Believe Studio</span>
+        </button>
+        <nav className="bs-nav" aria-label="Primary">
+          <button onClick={c.openStudioPage}>The Studio</button>
+          <button onClick={c.openLibrary}>The Library</button>
+          <button onClick={c.openAdvisory}>The Drawing Room</button>
+          <button onClick={c.openObservatory}>The Observatory</button>
+          <button onClick={c.openDirectory}>The House</button>
+        </nav>
+        <div className="bs-right">
+          <button className="bs-menu-btn" onClick={c.openDirectory} aria-label="Open the House Directory">Menu</button>
+          <button className="bs-cta" onClick={c.openConversation}>Start a Conversation</button>
+        </div>
+      </header>
+    )
+  }
+
   private renderBuilding(alive: boolean, sunShiftAnim: string) {
-    const clipped = !this.state.roomsRevealed
+    const clipped = false
     const buildingStyle: React.CSSProperties = { position: 'relative', background: '#e2d7bf', animation: 'veilIn 1800ms ease both', ...(clipped ? { height: '100vh', overflow: 'hidden' } : {}) }
     return (
       <div style={buildingStyle}>
@@ -703,21 +746,13 @@ export class App extends React.Component<Record<string, never>, State> {
           </div>
         )}
 
-        <div ref={(el) => { this.headerEl = el }} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 20, padding: '20px 0 28px', textAlign: 'center', pointerEvents: 'none', background: 'linear-gradient(180deg, rgba(20,15,9,0.32), transparent)', transition: 'opacity 600ms ease' }}>
-          <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 7 }}>
-            <svg width="30" height="35" viewBox="0 0 48 56" fill="none" style={{ display: 'block' }}>
-              <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="rgba(236,209,147,0.92)" strokeWidth="2.2" strokeLinecap="round" />
-            </svg>
-            <span style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 16, letterSpacing: '0.44em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.94)', paddingLeft: '0.44em' }}>Believe Studio</span>
-            <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 9, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.5)', paddingLeft: '0.42em' }}>A House for Founders</span>
-          </div>
-        </div>
+        {this.renderHeader()}
 
         {/* the persistent House Directory control — discreet aged brass, top
             right, appearing once the guided journey has begun so the Door and
             Threshold stay ceremonial. Opens the plaque as an overlay from
             anywhere; returns the visitor to exactly where they were. */}
-        {this.state.roomsRevealed && (
+        {false && this.state.roomsRevealed && (
           <div style={{ position: 'fixed', top: 'clamp(16px,3vh,28px)', right: 'clamp(16px,3vw,34px)', zIndex: 22, display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center', gap: 'clamp(8px,1.1vw,14px)', maxWidth: 'calc(100vw - clamp(32px,6vw,68px))' }}>
             {/* the plain door — a founder looking for how to work with us finds it
                 immediately, without decoding House language. Kept quiet: same
@@ -748,6 +783,8 @@ export class App extends React.Component<Record<string, never>, State> {
             </El>
           </div>
         )}
+
+        <Home ctx={this.ctx} />
 
         {this.rooms.journey.map((room, i) => this.renderRoomSection(room, i, sunShiftAnim, alive))}
 

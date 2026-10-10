@@ -213,14 +213,12 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(48px,9vh,96px) auto 0', ...balance, ...surface() }}>The door is open.</p>
 
           <El
-            as="a"
-            href="https://house.believestudio.co/request-a-place"
-            target="_blank"
-            rel="noreferrer"
-            style={{ display: 'inline-block', margin: 'clamp(56px,10vh,110px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', borderBottom: '1px solid rgba(122,94,52,0.5)', paddingBottom: 7, cursor: 'pointer', textDecoration: 'none', transition: 'color 500ms ease, border-color 500ms ease' }}
+            as="button"
+            onClick={ctx.openConversation}
+            style={{ display: 'inline-block', margin: 'clamp(56px,10vh,110px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(122,94,52,0.5)', paddingBottom: 7, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
             hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}
           >
-            Request a Place &rarr;
+            Start a Conversation &rarr;
           </El>
         </div>
 
