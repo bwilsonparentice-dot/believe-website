@@ -39,7 +39,7 @@ import { ReceiveKey } from './chapters/ReceiveKey'
 import { Home } from './components/Home'
 import { ObservatoryChapter } from './chapters/Observatory'
 import { AboutChapter } from './chapters/About'
-import { ConversationNote } from './components/ConversationNote'
+import { openBooking } from './lib/booking'
 // NOTE: the legacy FounderRoomChapter (./chapters/FounderRoom) was removed — the
 // Founder's Room resolves to FoundersRoom via openDoorway('founders-room').
 
@@ -462,7 +462,8 @@ export class App extends React.Component<Record<string, never>, State> {
   // exactly where they were; it never navigates away on its own.
   private openDirectory = (e?: React.MouseEvent) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ showDirectory: true }) }
   private closeDirectory = () => this.setState({ showDirectory: false })
-  private openConversation = (e?: React.MouseEvent) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ showConversation: true }) }
+  // Start a Conversation opens the booking page directly — no intermediate note.
+  private openConversation = (e?: React.MouseEvent) => openBooking(e)
   private closeConversation = () => this.setState({ showConversation: false })
 
   private closedChapters(): Partial<State> {
@@ -571,7 +572,6 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showDirectory && <DirectoryOverlay ctx={this.ctx} onClose={this.closeDirectory} />}
         {this.state.showObservatory && <ObservatoryChapter ctx={this.ctx} />}
         {this.state.showAbout && <AboutChapter ctx={this.ctx} />}
-        {this.state.showConversation && <ConversationNote onClose={this.closeConversation} />}
       </>
     )
   }

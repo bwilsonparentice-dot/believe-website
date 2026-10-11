@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
-import { ConversationNote } from '../components/ConversationNote'
+import { openBooking } from '../lib/booking'
 import { PHOTOS, STORIES } from '../data'
 import { palette } from '../lib/palette'
 
@@ -180,8 +180,7 @@ function OliveTree() {
  * (ctx.openWork.)
  */
 export function WorkChapter({ ctx }: { ctx: Ctx }) {
-  const [noteOpen, setNoteOpen] = useState(false)
-  const talk = () => setNoteOpen(true)
+  const talk = openBooking
 
   return (
     <ChapterShell onClose={ctx.closeWork} background="#efe6d3" backLabel={<>←&nbsp;Back</>}>
@@ -341,7 +340,6 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       </div>
 
       {/* the note that greets a founder before any calendar */}
-      {noteOpen && <ConversationNote onClose={() => setNoteOpen(false)} />}
     </ChapterShell>
   )
 }

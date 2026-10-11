@@ -1,10 +1,10 @@
-import React, { useState, CSSProperties } from 'react'
+import React, { CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, ArchMark } from '../components/ChapterShell'
 import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
-import { ConversationNote } from '../components/ConversationNote'
+import { openBooking } from '../lib/booking'
 import { ArchiveCard } from '../components/ArchiveCard'
 import { Correspondence } from '../components/Correspondence'
 import { EXPERIENCES, PHOTOS, BLUEPRINT_DRAWINGS, type Drawing } from '../data'
@@ -128,7 +128,6 @@ const CHANGES = [
  */
 export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
   const x = EXPERIENCES['believe-blueprint']
-  const [noteOpen, setNoteOpen] = useState(false)
 
   const specs: { label: string; value: string }[] = [
     ...x.particulars,
@@ -230,7 +229,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.9)', maxWidth: '22ch', margin: 'clamp(70px,13vh,160px) auto 0', ...balance, ...surface() }}>{x.closing}</p>
 
           <El
-            onClick={() => setNoteOpen(true)}
+            onClick={openBooking}
             style={{ display: 'inline-block', margin: 'clamp(48px,9vh,96px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', borderBottom: '1px solid rgba(122,94,52,0.5)', paddingBottom: 7, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
             hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}
           >
@@ -242,7 +241,6 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center' }}><RoomNav ctx={ctx} slug="blueprint" /></div>
       </div>
 
-      {noteOpen && <ConversationNote onClose={() => setNoteOpen(false)} />}
     </ChapterShell>
   )
 }

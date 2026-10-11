@@ -7,9 +7,10 @@ const sans = "'Jost',sans-serif"
 const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 const balance = { textWrap: 'balance' as React.CSSProperties['textWrap'] }
 
-// Beth's scheduling link for The Founder Conversation — reached only after this
-// note, so the emotional tone is set before a time is ever chosen.
-export const FOUNDER_CALL_URL = 'https://calendly.com/beth-believeagency/elite-brand-visibility-call-clone'
+// The booking link lives in one place now (src/lib/booking.ts). Re-exported
+// here for any legacy import; the primary CTAs open it directly without a note.
+import { FOUNDER_CALL_URL } from '../lib/booking'
+export { FOUNDER_CALL_URL }
 
 const label: React.CSSProperties = {
   fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em',

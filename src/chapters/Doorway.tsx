@@ -1,10 +1,10 @@
-import React, { useState, CSSProperties } from 'react'
+import React, { CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, ArchMark, Divider } from '../components/ChapterShell'
 import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
-import { ConversationNote } from '../components/ConversationNote'
+import { openBooking } from '../lib/booking'
 import { ArchiveCard } from '../components/ArchiveCard'
 import { Correspondence } from '../components/Correspondence'
 import { EXPERIENCES, PHOTOS } from '../data'
@@ -41,7 +41,6 @@ const surface = (range = 'entry 4% cover 30%'): CSSProperties => ({
  */
 export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
   const x = EXPERIENCES[id]
-  const [noteOpen, setNoteOpen] = useState(false)
   if (!x) return null
 
   return (
@@ -148,7 +147,7 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
 
           {/* the invitation, kept deliberately quiet — a line, not a billboard */}
           <El
-            onClick={() => setNoteOpen(true)}
+            onClick={openBooking}
             style={{ display: 'inline-block', margin: 'clamp(48px,9vh,96px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', borderBottom: '1px solid rgba(122,94,52,0.5)', paddingBottom: 7, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
             hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.8)' }}
           >
@@ -160,7 +159,6 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
         <div style={{ textAlign: 'center' }}><RoomNav ctx={ctx} slug={id === 'founders-table' ? 'table' : id === 'private-advisory' ? 'private-advisory' : ''} /></div>
       </div>
 
-      {noteOpen && <ConversationNote onClose={() => setNoteOpen(false)} />}
     </ChapterShell>
   )
 }

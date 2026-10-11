@@ -4,6 +4,7 @@ import type { Ctx } from '../lib/ctx'
 import { ChapterShell, BackPill, ArchMark } from '../components/ChapterShell'
 import { ImageSlot } from '../components/ImageSlot'
 import { FounderArtifact } from '../components/FounderArtifact'
+import { openBooking } from '../lib/booking'
 import { STORIES, STORY_PHOTOS, GALLERY_BRANDS, HOUSE_COLLECTION } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
@@ -175,7 +176,7 @@ export function StoriesChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', margin: 'clamp(28px,4.5vh,44px) auto 0', maxWidth: '22ch', ...balance }}>The next frame is still empty.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.9)', margin: 'clamp(14px,2.4vh,24px) auto clamp(48px,8vh,88px)', maxWidth: '20ch', ...balance }}>Perhaps it’s waiting for yours.</p>
           <El
-            onClick={ctx.openDoorway('founder-conversation')}
+            onClick={openBooking}
             style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.78)', border: '1px solid rgba(122,94,52,0.5)', borderRadius: 2, padding: '15px 34px', cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease, background 400ms ease' }}
             hover={{ color: '#2b2723', borderColor: 'rgba(122,94,52,0.9)', background: 'rgba(122,94,52,0.06)' }}
           >
