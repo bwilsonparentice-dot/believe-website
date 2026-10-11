@@ -10,6 +10,9 @@ dist-ssr
 
 # verification artifacts
 scratch-shots
+# local in-situ review screenshots
+/f-*.jpg
+/rm-*.jpg
 
 # build info
 tsconfig.tsbuildinfo
