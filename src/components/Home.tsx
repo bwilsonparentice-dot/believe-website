@@ -114,12 +114,12 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <El as="button" onClick={ctx.openWork} style={{ ...ghost, marginTop: 'clamp(38px,5.5vh,58px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>See all the ways to work &rarr;</El>
       </Section>
 
-      {/* ── 3 · What makes our approach different — one point of view, stated boldly ── */}
+      {/* ── 3 · What makes our approach different — one point of view as a large editorial statement ── */}
       <Section>
         <div style={eyebrow}>Our point of view</div>
-        <p style={{ ...lead, color: palette.navy, margin: '0.5em auto 0', maxWidth: '16ch' }}>Demand before distribution.</p>
-        <p style={{ ...body, maxWidth: '44ch', margin: 'clamp(24px,3.6vh,36px) auto 0' }}>Growth isn&rsquo;t more stores, or one loud moment. We build demand on purpose, so discovery, distribution, and loyalty feed one another.</p>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.95vw,23px)', lineHeight: 1.46, color: 'rgba(90,68,34,0.9)', margin: 'clamp(22px,3.2vh,30px) auto 0', maxWidth: '36ch', ...balance }}>And the biggest opportunity is rarely the one in the brief. We look for the move that isn&rsquo;t obvious yet.</p>
+        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(46px,8.4vw,98px)', lineHeight: 0.98, letterSpacing: '-0.015em', color: palette.navy, margin: 'clamp(18px,2.6vh,30px) auto 0', maxWidth: '12ch', ...balance }}>Demand before distribution.</p>
+        <p style={{ ...body, maxWidth: '42ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>Growth isn&rsquo;t more stores, or one loud moment. We build demand on purpose, so discovery, distribution, and loyalty feed one another.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.95vw,23px)', lineHeight: 1.46, color: 'rgba(90,68,34,0.9)', margin: 'clamp(20px,3vh,28px) auto 0', maxWidth: '36ch', ...balance }}>And the biggest opportunity is rarely the one in the brief. We look for the move that isn&rsquo;t obvious yet.</p>
       </Section>
 
       {/* ── 4 · The people & experience — the human difference, personal and credible ── */}

@@ -890,7 +890,7 @@ export class App extends React.Component<Record<string, never>, State> {
       <section
         id="founding-wall"
         aria-label="The founder philosophy, engraved in the stone of the House"
-        style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(130px,28vh,360px) clamp(16px,4vw,64px)', background: '#e2d7bf' }}
+        style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(56px,10vh,110px) clamp(16px,4vw,64px)', background: '#e2d7bf' }}
       >
         <img
           src={FOUNDER_WALL}

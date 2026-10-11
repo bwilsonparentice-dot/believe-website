@@ -317,7 +317,9 @@ a:hover { color: #b08a4a; }
     radial-gradient(82% 62% at 80% 18%, rgba(255,241,210,0.5), transparent 62%),
     linear-gradient(118deg, #ece4d4 2%, #e9dec6 58%, #e4d9bf); }
 .bs-closing-photo { position: relative; overflow: hidden; }
-.bs-closing-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 42%; display: block; }
+/* absolutely-positioned so the tall portrait source cover-fills its cell instead
+   of dictating the row height (which ballooned the closing to ~1.4 viewports) */
+.bs-closing-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; display: block; }
 .bs-closing-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, transparent 58%, rgba(233,222,198,0.5) 80%, #e9dec6 100%); }
 .bs-closing-copy { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
