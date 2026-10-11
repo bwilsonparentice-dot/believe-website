@@ -13,6 +13,10 @@ scratch-shots
 # local in-situ review screenshots
 /f-*.jpg
 /rm-*.jpg
+/home-*.jpg
+/dir-*.jpg
+/drawing-*.jpg
+/nav-*.jpg
 
 # build info
 tsconfig.tsbuildinfo
