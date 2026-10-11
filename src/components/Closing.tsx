@@ -29,9 +29,6 @@ export function Closing({ ctx }: { ctx: Ctx }) {
         />
       </div>
       <div className="bs-closing-copy bs-closing-copy-reveal">
-        <svg width="26" height="30" viewBox="0 0 48 56" fill="none" aria-hidden="true" style={{ display: 'block', margin: '0 auto clamp(18px,2.6vh,30px)' }}>
-          <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth={2} fill="none" strokeLinecap="round" />
-        </svg>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,3.6vw,56px)', lineHeight: 1.06, color: '#241c10', maxWidth: '12ch', margin: 0, textWrap: balance }}>The house is always open.</h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,1.9vw,26px)', lineHeight: 1.45, color: 'rgba(110,84,44,0.95)', maxWidth: '22ch', margin: 'clamp(18px,2.6vh,30px) auto 0', textWrap: balance }}>For those who see what could be.</p>
         <El

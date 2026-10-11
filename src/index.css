@@ -195,8 +195,8 @@ a:hover { color: #b08a4a; }
 .bs-header { position: fixed; top: env(safe-area-inset-top, 0px); left: 0; right: 0; z-index: 30;
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 13px clamp(16px,4vw,40px);
-  background: linear-gradient(180deg, rgba(239,230,211,0.97), rgba(239,230,211,0.86) 64%, rgba(239,230,211,0));
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  background: linear-gradient(180deg, rgba(239,230,211,0.94), rgba(239,230,211,0.66) 52%, rgba(239,230,211,0));
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
 .bs-brand { display: inline-flex; align-items: center; gap: 10px; background: none; border: none; cursor: pointer; color: #2b2723; padding: 4px 2px; }
 .bs-brand .wm { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 18px; letter-spacing: 0.14em; line-height: 1; }
 .bs-nav { display: flex; align-items: center; gap: clamp(13px,1.9vw,26px); }
