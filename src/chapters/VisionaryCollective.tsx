@@ -11,9 +11,6 @@ const hand = "'Caveat',cursive"
 const pretty = { textWrap: 'pretty' as CSSProperties['textWrap'] }
 const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
 
-// where a founder can write to stay close — swapped for a proper list when ready
-const STAY_LINK = 'mailto:bwilsonparentice@gmail.com?subject=Staying%20close%20to%20the%20House'
-
 const label: CSSProperties = {
   fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em',
   textTransform: 'uppercase', color: 'rgba(122,94,52,0.66)',
@@ -106,13 +103,8 @@ export function VisionaryCollectiveChapter({ ctx }: { ctx: Ctx }) {
         {/* ── the quiet invitation — stay close ─────────────────────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
           <div style={{ ...label, fontSize: 11, letterSpacing: '0.46em', marginBottom: '1.8em' }}>Stay close</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.6, color: '#2b2723', maxWidth: '26ch', margin: '0 auto' }}>We’ll let you know when a new Resident enters the House.<br />When a new Field Note is written.<br />When another room quietly opens.</p>
-          <a
-            href={STAY_LINK}
-            style={{ display: 'inline-block', margin: 'clamp(52px,9vh,100px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.36em', textTransform: 'uppercase', color: '#f4ede0', background: '#3a2f1e', border: '1px solid #3a2f1e', borderRadius: 2, padding: '15px 42px', textDecoration: 'none' }}
-          >
-            Stay Connected
-          </a>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,32px)', lineHeight: 1.6, color: '#2b2723', maxWidth: '26ch', margin: '0 auto' }}>A new Resident enters the House. A new Field Note is written. Another room quietly opens.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.82)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '28ch' }}>A quiet way to stay close is opening to more founders soon.</p>
         </div>
 
         {/* ── a personal note, in Beth's hand ───────────────────────────── */}

@@ -214,11 +214,9 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
 
           <div style={{ maxWidth: 620, margin: 'clamp(44px,8vh,80px) auto 0', textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
             {[
-              { n: 'The Founder Conversation', d: 'A complimentary first conversation — where every engagement begins.', go: talk },
-              { n: 'The Believe Blueprint', d: 'A one-time strategic engagement: the architecture of your next chapter.', go: ctx.openBlueprint },
-              { n: 'Private Advisory', d: 'A trusted strategic partner, one to one — the engagement within The Drawing Room.', go: ctx.openAdvisory },
-              { n: 'The Founder’s Room', d: 'An ongoing advisory circle where founders think beside one another.', go: ctx.openFounderRoom },
-              { n: 'The Table', d: 'Meaningful founder conversations and shared thinking.', go: ctx.openTable },
+              { n: 'The Believe Blueprint', d: 'A focused strategic engagement — the architecture of your next chapter.', go: ctx.openBlueprint },
+              { n: 'Private Advisory', d: 'Ongoing founder advisory and strategic partnership, within The Drawing Room.', go: ctx.openAdvisory },
+              { n: 'Creative Strategy & Brand Worlds', d: 'Scoped creative strategy, brand development, and demand-building engagements.', go: ctx.openStudioPage },
             ].map((e) => (
               <El as="button" key={e.n} onClick={e.go} style={{ textAlign: 'left', background: 'none', border: 'none', borderTop: '1px solid rgba(122,94,52,0.2)', padding: 'clamp(20px,3vh,28px) 0 clamp(20px,3vh,28px)', cursor: 'pointer', transition: 'background 300ms ease' }} hover={{ background: 'rgba(122,94,52,0.05)' }}>
                 <span style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em' }}>
@@ -230,10 +228,14 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
             ))}
           </div>
 
-          {/* future, not yet open — kept distinct so availability is never implied */}
-          <div style={{ maxWidth: 620, margin: 'clamp(40px,7vh,70px) auto 0', textAlign: 'left', borderTop: '1px solid rgba(122,94,52,0.2)', paddingTop: 'clamp(24px,4vh,36px)' }}>
+          {/* the beginning — the Founder Conversation is the entry, via Start a Conversation */}
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.55, color: 'rgba(122,94,52,0.84)', maxWidth: '34ch', margin: 'clamp(44px,8vh,80px) auto 0', ...balance }}>Every engagement begins with The Founder Conversation — a complimentary first conversation.</p>
+          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(30px,5vh,52px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
+
+          {/* retained in the House, but not promoted as active until status is confirmed */}
+          <div style={{ maxWidth: 620, margin: 'clamp(56px,10vh,100px) auto 0', textAlign: 'left', borderTop: '1px solid rgba(122,94,52,0.2)', paddingTop: 'clamp(24px,4vh,36px)' }}>
             <div style={{ ...label, fontSize: 9, letterSpacing: '0.42em', color: 'rgba(122,94,52,0.5)', marginBottom: '1.1em' }}>On the horizon</div>
-            <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(20px,2.3vw,27px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.6)' }}>The Visionary Collective<span style={{ fontStyle: 'italic', fontSize: '0.82em', color: 'rgba(122,94,52,0.72)' }}> — a quiet way to stay close to the House.</span></div>
+            <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(19px,2.2vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.58)' }}>The Founder&rsquo;s Room &middot; The Visionary Collective<span style={{ display: 'block', fontStyle: 'italic', fontSize: '0.82em', color: 'rgba(122,94,52,0.72)', marginTop: '0.5em' }}>Quiet ways to stay close to the House, opening to more founders over time.</span></div>
           </div>
         </div>
 
@@ -330,7 +332,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
             <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, marginBottom: 'clamp(24px,4.2vh,42px)' }}>Another room inside the House</div>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(22px,2.9vw,38px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '22ch', margin: '0 auto', ...balance }}>The right room changes the work.</p>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.72)', maxWidth: '42ch', margin: 'clamp(28px,5vh,52px) auto 0', ...pretty }}>The Founder&rsquo;s Room brings eight founders together each month around real business decisions, supported by Believe methodology and specialist Residents.</p>
-            <El as="button" onClick={ctx.openFounderRoom} style={{ display: 'inline-block', marginTop: 'clamp(34px,6vh,60px)', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.9)', background: 'transparent', border: 'none', borderBottom: `1.5px solid ${palette.gold}`, padding: '0 0 7px', cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.85)' }}>Request a Place &rarr;</El>
+            <El as="button" onClick={ctx.openFounderRoom} style={{ display: 'inline-block', marginTop: 'clamp(34px,6vh,60px)', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.9)', background: 'transparent', border: 'none', borderBottom: `1.5px solid ${palette.gold}`, padding: '0 0 7px', cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.85)' }}>Learn about The Founder&rsquo;s Room &rarr;</El>
           </div>
         </div>
 

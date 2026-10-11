@@ -271,7 +271,7 @@ a:hover { color: #b08a4a; }
 
 /* a discreet way to the engagements + conversation, reachable from the index (esp. mobile) */
 .hi-ways { position: absolute; z-index: 6; left: 0; right: 0; bottom: clamp(16px,3vh,30px); text-align: center; display: flex; flex-wrap: wrap; gap: 0.3em 1.1em; align-items: baseline; justify-content: center; padding: 0 5vw; }
-.hi-ways button { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(70,52,26,0.82); background: none; border: none; cursor: pointer; padding: 4px 2px; transition: color 300ms ease; }
+.hi-ways button { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(70,52,26,0.82); background: none; border: none; cursor: pointer; padding: 4px 2px; transition: color 300ms ease; }
 .hi-ways button:hover, .hi-ways button:focus-visible { color: #2b2723; }
 .hi-ways .dot { color: rgba(120,94,52,0.5); }
 

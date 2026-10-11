@@ -90,6 +90,7 @@ export const ARTIFACTS: Record<string, any> = {
   advisory: { principle: 'Clarity', artifact: 'The Private Door', artifactNote: 'Closed. Heavy walnut. No explanation offered.', continueLabel: 'Continue', light: 'radial-gradient(46% 44% at 44% 34%, rgba(240,218,176,0.42), transparent 60%)' },
   garden: { principle: 'Clarity', artifact: 'The Stone Bench', artifactNote: 'Warm from the morning sun. Sit as long as you like.', continueLabel: 'Stay a while', light: 'radial-gradient(58% 52% at 38% 22%, rgba(224,240,194,0.5), transparent 66%)' },
   stage: { principle: 'Belonging', artifact: 'The Badge', artifactImg: '/photos/artifact-badge.webp', artifactNote: 'Proof that the work had begun to travel.', continueLabel: 'Pass it forward', light: 'radial-gradient(56% 50% at 40% 22%, rgba(255,222,204,0.5), transparent 66%)' },
+  observatory: { principle: 'Clarity', artifact: 'The Telescope', artifactNote: 'Trained on the landscape, not the stars.', continueLabel: 'Continue', light: 'radial-gradient(54% 48% at 34% 26%, rgba(236,224,196,0.34), transparent 64%)' },
 }
 
 export const DATA: any[] = [
@@ -172,6 +173,13 @@ export const DATA: any[] = [
       'The quietest room, and the smallest. The conversations that happen nowhere else, where a founder can be uncertain, afraid, or wrong, and still be met with honesty.',
       'Depth is only possible where there is trust. Here, it is the whole point.',
     ] },
+  { id: 'observatory', name: 'The Observatory', l: '72%', t: '6%', w: '24%', h: '19%',
+    accent: 'oklch(0.55 0.08 250)', glow: 'oklch(0.55 0.08 250 / 0.22)',
+    whisper: 'The long view.',
+    functional: 'Believe Radar and retail intelligence.',
+    photo: 'The Observatory: a domed glass study with a brass telescope beneath the Milky Way, a founder’s view over the city at twilight',
+    keywords: ['See', 'Decide', 'Foresee'],
+    body: ['From here a founder sees the landscape clearly: where the brand stands, where its people are, and which move is worth making next.'] },
   { id: 'garden', roman: 'IX', name: 'The Garden', l: '34%', t: '29%', w: '32%', h: '34%', courtyard: true,
     accent: 'oklch(0.55 0.08 145)', glow: 'oklch(0.55 0.08 145 / 0.22)',
     whisper: 'Where clarity returns.',
@@ -966,6 +974,7 @@ const LAYOUT: Record<string, { side: string; corner?: string }> = {
   library: { side: 'left', corner: 'left' }, fieldnotes: { side: 'right', corner: 'right' },
   table: { side: 'center', corner: 'center' }, studio: { side: 'left' },
   advisory: { side: 'center' }, garden: { side: 'center' }, stage: { side: 'left', corner: 'left' }, blueprint: { side: 'center' },
+  observatory: { side: 'left' },
 }
 const featOf = (f: string) => ({
   isShelves: f === 'shelves', isFireplace: f === 'fireplace', isGallery: f === 'gallery', isAtelier: f === 'atelier',
@@ -986,11 +995,11 @@ const sideStyle = (side: string) =>
 // — a quieter editorial section, not more cinematic room blocks. Field Notes and
 // the Stage therefore leave the guided room scroll: Field Notes is featured in
 // the Living House, and the Stage stays reachable through the House Directory.
-const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'studio', 'library', 'fieldnotes', 'stage', 'garden']
+const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'studio', 'library', 'observatory', 'fieldnotes', 'stage', 'garden']
 const enterLabelMap: Record<string, string> = {
   table: 'Let’s think together.', studio: 'Step into the Studio →', advisory: 'Let’s decide together.',
   garden: 'Let’s gain perspective.', stage: 'Give your work to the world.', blueprint: 'Explore the Blueprint →',
-  fieldnotes: 'Open the notebook.', library: 'Enter the Library.',
+  fieldnotes: 'Open the notebook.', library: 'Enter the Library.', observatory: 'Enter the Observatory →',
 }
 
 export type Room = any
@@ -1013,7 +1022,7 @@ export function buildRooms(): { all: Room[]; journey: Room[]; byId: (id: string)
   // sections (Threshold opens the walk); The Observatory is its own chapter,
   // entered from the House Index. The Founder's Room, Blueprint and Table keep
   // their pages/routes and are reached through Ways to Work With Believe.
-  const JOURNEY_IDS = ['threshold', 'studio', 'library', 'advisory']
+  const JOURNEY_IDS = ['threshold', 'studio', 'library', 'advisory', 'observatory']
   const journey = all.filter((r) => JOURNEY_IDS.includes(r.id)).sort((a, b) => JOURNEY_IDS.indexOf(a.id) - JOURNEY_IDS.indexOf(b.id)).map((r, i) => {
     const lo = LAYOUT[r.id] || { side: 'center' }
     const ss = sideStyle(lo.side)

@@ -26,6 +26,7 @@ export interface Ctx {
   openFieldNotes: Handler; closeFieldNotes: Handler
   /** The Observatory — a short intro to Believe Radar, links out to its own site */
   openObservatory: Handler; closeObservatory: Handler
+  openAbout: Handler; closeAbout: Handler
   /** The one true call to action — the Founder Conversation, openable anywhere */
   openConversation: Handler; closeConversation: Handler
   /** open a dedicated experience page (e.g. 'founders-room') */

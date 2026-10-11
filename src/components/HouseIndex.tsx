@@ -63,7 +63,9 @@ export function HouseIndex({ ctx, onNavigate, variant = 'overlay' }: { ctx: Ctx;
       <div className="hi-archway" aria-hidden="true" />
       <Plate ctx={ctx} onNavigate={onNavigate} showFoot />
       <div className="hi-ways">
-        <El as="button" onClick={() => { ctx.openWork(); onNavigate?.() }}>Ways to Work with Believe</El>
+        <El as="button" onClick={() => { ctx.openWork(); onNavigate?.() }}>Ways to Work</El>
+        <span className="dot" aria-hidden="true">&middot;</span>
+        <El as="button" onClick={() => { ctx.openAbout(); onNavigate?.() }}>About Believe</El>
         <span className="dot" aria-hidden="true">&middot;</span>
         <El as="button" onClick={() => { ctx.openConversation(); onNavigate?.() }}>Start a Conversation</El>
       </div>
