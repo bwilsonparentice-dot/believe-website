@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { HouseIndex } from './HouseIndex'
@@ -28,10 +29,19 @@ export function Footer({ ctx }: { ctx: Ctx }) {
       <div style={{ maxWidth: 1120, margin: 'clamp(84px,14vh,180px) auto 0', paddingTop: 'clamp(28px,4.5vh,52px)', borderTop: '1px solid rgba(246,239,228,0.1)', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em 2.4em' }}>
         <span style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 15, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.7)' }}>Believe Studio</span>
         <nav aria-label="Site information" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6em 1.9em', alignItems: 'baseline' }}>
-          <El as="button" onClick={ctx.openWork} style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.55)', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', transition: 'color 350ms ease' }} hover={{ color: 'rgba(246,239,228,0.9)' }}>Work with Believe</El>
-          {['Privacy', 'Terms', 'LinkedIn', 'Accessibility'].map((t) => (
-            <span key={t} style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.4)' }}>{t}</span>
-          ))}
+          {(() => {
+            const fsLink: CSSProperties = { fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.55)', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'none', transition: 'color 350ms ease' }
+            const hv = { color: 'rgba(246,239,228,0.9)' }
+            return (
+              <>
+                <El as="button" onClick={ctx.openWork} style={fsLink} hover={hv}>Work with Believe</El>
+                <El as="button" onClick={ctx.openPrivacy} style={fsLink} hover={hv}>Privacy</El>
+                <El as="button" onClick={ctx.openTerms} style={fsLink} hover={hv}>Terms</El>
+                <El as="a" href="https://www.linkedin.com/company/believe-studio-co" target="_blank" rel="noopener noreferrer" style={fsLink} hover={hv}>LinkedIn</El>
+                <El as="button" onClick={ctx.openAccessibility} style={fsLink} hover={hv}>Accessibility</El>
+              </>
+            )
+          })()}
         </nav>
         <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.18em', color: 'rgba(246,239,228,0.36)' }}>&copy; 2026 Believe Studio &middot; Built by belief.</span>
       </div>

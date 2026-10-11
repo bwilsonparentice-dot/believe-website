@@ -40,6 +40,7 @@ import { ReceiveKey } from './chapters/ReceiveKey'
 import { Home } from './components/Home'
 import { ObservatoryChapter } from './chapters/Observatory'
 import { AboutChapter } from './chapters/About'
+import { PrivacyPage, TermsPage, AccessibilityPage } from './chapters/Legal'
 import { openBooking } from './lib/booking'
 // NOTE: the legacy FounderRoomChapter (./chapters/FounderRoom) was removed — the
 // Founder's Room resolves to FoundersRoom via openDoorway('founders-room').
@@ -62,6 +63,7 @@ interface State {
   showStudioPage: boolean
   showDirectory: boolean
   showObservatory: boolean; showConversation: boolean; showAbout: boolean
+  showPrivacy: boolean; showTerms: boolean; showAccessibility: boolean
   showKey: boolean
   facadeReady: boolean
   birdLanded: boolean
@@ -129,6 +131,9 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showStage: 'stage',
   showObservatory: 'observatory',
   showAbout: 'about',
+  showPrivacy: 'privacy',
+  showTerms: 'terms',
+  showAccessibility: 'accessibility',
 }
 const SLUG_TO_DOORWAY: Record<string, string> = Object.fromEntries(Object.entries(DOORWAY_SLUG).map(([id, s]) => [s, id]))
 const SLUG_TO_FLAG: Record<string, keyof State> = Object.fromEntries(Object.entries(FLAG_SLUG).map(([k, s]) => [s as string, k as keyof State]))
@@ -155,7 +160,7 @@ const CLOSED_OVERLAYS: Partial<State> = {
   showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
   showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-  showObservatory: false, showAbout: false,
+  showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
   showDirectory: false, activeDoorway: null,
 }
 /** the state that opens the overlay a slug names (all others closed) */
@@ -176,6 +181,7 @@ function makeInitialState(): State {
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
     showStudioPage: false, showDirectory: false,
     showObservatory: false, showConversation: false, showAbout: false,
+    showPrivacy: false, showTerms: false, showAccessibility: false,
     showKey: false, facadeReady: false, birdLanded: false,
   }
   if (typeof window === 'undefined') return base
@@ -237,6 +243,9 @@ export class App extends React.Component<Record<string, never>, State> {
       openFieldNotes: this.openChapter('showFieldNotes'), closeFieldNotes: this.closeChapter('showFieldNotes'),
       openObservatory: this.openChapter('showObservatory'), closeObservatory: this.closeChapter('showObservatory'),
       openAbout: this.openChapter('showAbout'), closeAbout: this.closeChapter('showAbout'),
+      openPrivacy: this.openChapter('showPrivacy'), closePrivacy: this.closeChapter('showPrivacy'),
+      openTerms: this.openChapter('showTerms'), closeTerms: this.closeChapter('showTerms'),
+      openAccessibility: this.openChapter('showAccessibility'), closeAccessibility: this.closeChapter('showAccessibility'),
       openConversation: this.openConversation, closeConversation: this.closeConversation,
       openDoorway: this.openDoorway, closeDoorway: this.closeDoorway,
       openDirectory: this.openDirectory, closeDirectory: this.closeDirectory,
@@ -327,7 +336,7 @@ export class App extends React.Component<Record<string, never>, State> {
       if (this.state.showConversation) { this.setState({ showConversation: false }); return }
       if (this.state.showDirectory) { this.setState({ showDirectory: false }); return }
       if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
-      const order: (keyof State)[] = ['showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showObservatory', 'showAbout', 'showPeople', 'showHouses', 'showKey']
+      const order: (keyof State)[] = ['showPrivacy', 'showTerms', 'showAccessibility', 'showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showObservatory', 'showAbout', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
     }
@@ -468,7 +477,7 @@ export class App extends React.Component<Record<string, never>, State> {
   private closeConversation = () => this.setState({ showConversation: false })
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showDirectory: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -536,7 +545,7 @@ export class App extends React.Component<Record<string, never>, State> {
       s.showWork || s.showPeople || s.showHouses || s.showStudio || s.showStudioPage ||
       s.showStories || s.showHouse || s.showWhyBelieve || s.showLibrary || s.showBlueprint ||
       s.showFieldNotes || s.showTable || s.showAdvisory || s.showStage || s.showDirectory ||
-      s.showObservatory || s.showAbout || s.showKey || s.activeDoorway
+      s.showObservatory || s.showAbout || s.showPrivacy || s.showTerms || s.showAccessibility || s.showKey || s.activeDoorway
     )
 
     return (
@@ -573,6 +582,9 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showDirectory && <DirectoryOverlay ctx={this.ctx} onClose={this.closeDirectory} />}
         {this.state.showObservatory && <ObservatoryChapter ctx={this.ctx} />}
         {this.state.showAbout && <AboutChapter ctx={this.ctx} />}
+        {this.state.showPrivacy && <PrivacyPage ctx={this.ctx} />}
+        {this.state.showTerms && <TermsPage ctx={this.ctx} />}
+        {this.state.showAccessibility && <AccessibilityPage ctx={this.ctx} />}
       </>
     )
   }
