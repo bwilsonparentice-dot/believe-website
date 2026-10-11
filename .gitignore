@@ -17,6 +17,7 @@ scratch-shots
 /dir-*.jpg
 /drawing-*.jpg
 /nav-*.jpg
+/ref-*.jpg
 
 # build info
 tsconfig.tsbuildinfo

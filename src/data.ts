@@ -115,7 +115,7 @@ export const DATA: any[] = [
     body: ['The architect’s first act. Before a single stone is laid, the shape of what you’re building is drawn.'] },
   { id: 'library', roman: 'IV', name: 'The Library', l: '4%', t: '5%', w: '15%', h: '25%',
     accent: 'oklch(0.6 0.085 132)', glow: 'oklch(0.6 0.085 132 / 0.22)',
-    whisper: 'Borrowed wisdom.', keywords: ['Learn', 'Reflect', 'Remember'], variant: 'library',
+    whisper: 'Borrowed wisdom.', functional: 'Founder perspectives, original thinking, and our NOW WHAT? editorial.', keywords: ['Learn', 'Reflect', 'Remember'], variant: 'library',
     quote: 'Everything I know, someone had the generosity to tell me first.',
     reading: [
       { t: 'Letters to a Young Poet', a: 'Rilke' },
@@ -143,6 +143,7 @@ export const DATA: any[] = [
   { id: 'table', roman: 'VI', name: 'The Table', l: '37%', t: '5%', w: '26%', h: '20%',
     accent: 'oklch(0.62 0.09 350)', glow: 'oklch(0.62 0.09 350 / 0.22)',
     whisper: 'Where conversations become decisions.',
+    functional: 'Meaningful founder conversations and shared thinking.',
     keywords: ['Listen', 'Question', 'Decide', 'Build'], variant: 'question',
     question: 'What decision have you already made… but haven’t admitted to yourself yet?',
     questionSub: 'Sit with it. The table isn’t in a hurry.',
@@ -153,6 +154,7 @@ export const DATA: any[] = [
   { id: 'studio', roman: 'VII', name: 'The Studio', l: '66%', t: '30%', w: '30%', h: '31%',
     accent: 'oklch(0.63 0.09 92)', glow: 'oklch(0.63 0.09 92 / 0.22)',
     whisper: 'Where ideas become real.',
+    functional: 'Creative strategy, brand worlds, and omnichannel demand-building.',
     keywords: ['Build', 'Craft', 'Experiment', 'Momentum'], variant: 'studio',
     sketches: ['Left on the worktable', 'Still becoming', 'Before the launch'],
     oneLine: 'Every finished company was once an unfinished conversation.',
@@ -163,6 +165,7 @@ export const DATA: any[] = [
   { id: 'advisory', roman: 'VIII', name: 'The Drawing Room', l: '72%', t: '6%', w: '24%', h: '19%',
     accent: 'oklch(0.6 0.085 300)', glow: 'oklch(0.6 0.085 300 / 0.22)',
     whisper: 'Trust made visible.',
+    functional: 'Private founder conversations and strategic advisory.',
     keywords: ['Trust', 'Honesty', 'Depth', 'Partnership'], variant: 'quiet',
     oneLine: 'What is said in this room stays in this room.',
     body: [
