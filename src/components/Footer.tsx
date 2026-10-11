@@ -1,6 +1,6 @@
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
-import { DirectoryPlaque } from './DirectoryPlaque'
+import { HouseIndex } from './HouseIndex'
 
 /**
  * The end of the House — the brass directory encountered after the walk, then a
@@ -17,7 +17,7 @@ export function Footer({ ctx }: { ctx: Ctx }) {
       </div>
 
       <div style={{ position: 'relative', left: '50%', width: '100vw', marginLeft: '-50vw', marginRight: '-50vw', padding: 'clamp(20px,4vh,60px) 6vw' }}>
-        <DirectoryPlaque ctx={ctx} />
+        <HouseIndex ctx={ctx} variant="footer" />
       </div>
 
       {/* the quiet closing — leaving the House slowly, a doorway still lit */}

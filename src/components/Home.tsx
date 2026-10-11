@@ -152,6 +152,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
           ))}
         </div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.9vw,22px)', color: 'rgba(43,39,35,0.6)', margin: 'clamp(34px,5vh,52px) auto 0', maxWidth: '40ch', ...balance }}>Every engagement is shaped around the founder and the work.</p>
+        <El as="button" onClick={ctx.openWork} style={{ ...ghost, marginTop: 'clamp(26px,4vh,40px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>See all the ways to work with Believe &rarr;</El>
       </Section>
 
       {/* ── Who you'll work with ───────────────────────────────────────── */}

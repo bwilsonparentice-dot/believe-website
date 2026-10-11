@@ -1008,7 +1008,13 @@ export function buildRooms(): { all: Room[]; journey: Room[]; byId: (id: string)
     const ia = ORDER.indexOf(a.id), ib = ORDER.indexOf(b.id)
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib)
   })
-  const journey = all.filter((r) => r.id !== 'garden' && r.id !== 'fieldnotes' && r.id !== 'stage').map((r, i) => {
+  // The primary room journey is organized around the four approved rooms. The
+  // Studio, The Library and The Drawing Room are walked here as immersive
+  // sections (Threshold opens the walk); The Observatory is its own chapter,
+  // entered from the House Index. The Founder's Room, Blueprint and Table keep
+  // their pages/routes and are reached through Ways to Work With Believe.
+  const JOURNEY_IDS = ['threshold', 'studio', 'library', 'advisory']
+  const journey = all.filter((r) => JOURNEY_IDS.includes(r.id)).sort((a, b) => JOURNEY_IDS.indexOf(a.id) - JOURNEY_IDS.indexOf(b.id)).map((r, i) => {
     const lo = LAYOUT[r.id] || { side: 'center' }
     const ss = sideStyle(lo.side)
     return {

@@ -710,7 +710,7 @@ export class App extends React.Component<Record<string, never>, State> {
           <button onClick={c.openLibrary}>The Library</button>
           <button onClick={c.openAdvisory}>The Drawing Room</button>
           <button onClick={c.openObservatory}>The Observatory</button>
-          <button onClick={c.openDirectory}>The House</button>
+          <button onClick={c.openDirectory}>Explore the House</button>
         </nav>
         <div className="bs-right">
           <button className="bs-menu-btn" onClick={c.openDirectory} aria-label="Open the House Directory">Menu</button>

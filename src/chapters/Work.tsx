@@ -189,7 +189,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
 
         {/* the lead — what Believe is, plainly and confidently */}
         <ArchMark width={2.2} margin="0 auto 1.5em" />
-        <div style={{ ...label, marginBottom: '1.5em' }}>Work with Believe</div>
+        <div style={{ ...label, marginBottom: '1.5em' }}>Ways to Work With Believe</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.1vw,68px)', lineHeight: 1.06, margin: '0 auto', maxWidth: '20ch', ...balance }}>The founder belongs in the strategy.</h2>
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '46ch', margin: 'clamp(36px,6vh,76px) auto 0', ...balance }}>We bring experienced people around both the founder and the business, then work across the disciplines that matter to the decision in front of them.</p>
         {/* the capabilities — engraved, not a services list; the same line the Foyer uses */}
@@ -200,6 +200,41 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
               <span style={{ fontFamily: sans, fontWeight: 400, fontSize: 'clamp(10px,1.1vw,12px)', letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', whiteSpace: 'nowrap' }}>{t}</span>
             </React.Fragment>
           ))}
+        </div>
+
+        {/* the engagements — the concrete ways to work, made easy to understand.
+            Active engagements have real pages/flows; future concepts are set
+            apart under "On the horizon" so nothing is implied to be available
+            before it has launched. */}
+        <ArchLine m="clamp(90px,16vh,190px) auto clamp(56px,10vh,120px)" />
+        <div style={reveal}>
+          <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>The engagements</div>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(24px,3.1vw,40px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '22ch', margin: '0 auto', ...balance }}>A few clear ways to work together.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.7)', maxWidth: '40ch', margin: 'clamp(22px,3.6vh,36px) auto 0', ...pretty }}>Every engagement begins with a conversation, so we can point you toward the right one.</p>
+
+          <div style={{ maxWidth: 620, margin: 'clamp(44px,8vh,80px) auto 0', textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
+            {[
+              { n: 'The Founder Conversation', d: 'A complimentary first conversation — where every engagement begins.', go: talk },
+              { n: 'The Believe Blueprint', d: 'A one-time strategic engagement: the architecture of your next chapter.', go: ctx.openBlueprint },
+              { n: 'Private Advisory', d: 'A trusted strategic partner, one to one — the engagement within The Drawing Room.', go: ctx.openAdvisory },
+              { n: 'The Founder’s Room', d: 'An ongoing advisory circle where founders think beside one another.', go: ctx.openFounderRoom },
+              { n: 'The Table', d: 'Meaningful founder conversations and shared thinking.', go: ctx.openTable },
+            ].map((e) => (
+              <El as="button" key={e.n} onClick={e.go} style={{ textAlign: 'left', background: 'none', border: 'none', borderTop: '1px solid rgba(122,94,52,0.2)', padding: 'clamp(20px,3vh,28px) 0 clamp(20px,3vh,28px)', cursor: 'pointer', transition: 'background 300ms ease' }} hover={{ background: 'rgba(122,94,52,0.05)' }}>
+                <span style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em' }}>
+                  <span style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(22px,2.6vw,32px)', lineHeight: 1.05, color: '#2b2723' }}>{e.n}</span>
+                  <span style={{ fontFamily: sans, fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', whiteSpace: 'nowrap' }}>Enter &rarr;</span>
+                </span>
+                <span style={{ display: 'block', fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,21px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.7)', marginTop: '0.4em', ...pretty }}>{e.d}</span>
+              </El>
+            ))}
+          </div>
+
+          {/* future, not yet open — kept distinct so availability is never implied */}
+          <div style={{ maxWidth: 620, margin: 'clamp(40px,7vh,70px) auto 0', textAlign: 'left', borderTop: '1px solid rgba(122,94,52,0.2)', paddingTop: 'clamp(24px,4vh,36px)' }}>
+            <div style={{ ...label, fontSize: 9, letterSpacing: '0.42em', color: 'rgba(122,94,52,0.5)', marginBottom: '1.1em' }}>On the horizon</div>
+            <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(20px,2.3vw,27px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.6)' }}>The Visionary Collective<span style={{ fontStyle: 'italic', fontSize: '0.82em', color: 'rgba(122,94,52,0.72)' }}> — a quiet way to stay close to the House.</span></div>
+          </div>
         </div>
 
         {/* built from the other side of the table */}
