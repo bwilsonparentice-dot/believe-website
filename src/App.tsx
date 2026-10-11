@@ -190,6 +190,8 @@ function makeInitialState(): State {
   const slug = overlaySlugFromPath(path)
   if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) }
   if (BUILDING_ANCHORS.has(rawPath(path))) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
+  // returning visitors skip the cinematic arrival and land straight on the homepage
+  if (hasVisited()) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
   return base
 }
 
@@ -277,16 +279,13 @@ export class App extends React.Component<Record<string, never>, State> {
 
     // the arrival ritual runs only when we actually begin at the Door (first visit)
     if (this.state.phase === 'overture') {
-      // the arrival plays hands-free, unhurried — the slowness is part of the
-      // emotional experience, so we let it breathe. The faint "Step inside" cue
-      // (below) is what reassures a first-time visitor the screen is theirs to
-      // touch, without shortening the moment.
-      // "We've been waiting for you." only finishes fading in around 2.4s, so a
-      // 2.6s auto-advance cut it off. Hold the arrival to ~4.2s (still hands-free,
-      // still skippable by a click) so the second line registers without dragging.
-      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 4200)
+      // the arrival is short and skippable: a visible "Enter the House" control
+      // is shown from the first frame, and the two lines land quickly. First-time
+      // visitors auto-advance toward the homepage in ~1.3s; returning visitors
+      // skip the arrival entirely (see makeInitialState). Reduced motion respected.
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 1300)
       // the bird finishes crossing and perches in the olive tree (Scene 2)
-      this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 2000)
+      this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 750)
     }
   }
   componentDidUpdate(_p: Record<string, never>, prev: State) {
@@ -367,7 +366,7 @@ export class App extends React.Component<Record<string, never>, State> {
       this.pending = false
       this.setState({ opening: true })
       if (this.tAccept) clearTimeout(this.tAccept)
-      this.tAccept = setTimeout(() => this.toSketch(), 1000)
+      this.tAccept = setTimeout(() => this.toSketch(), 700)
     }, 280) // Scene 5 — nothing happens immediately; ~280ms later the handle turns
   }
   private skip = (e?: React.MouseEvent) => {
@@ -385,9 +384,9 @@ export class App extends React.Component<Record<string, never>, State> {
     this.setState({ phase: 'sketch', activeId: null })
     this.audio.resume(); this.audio.startAmbient()
     if (this.tDoor) clearTimeout(this.tDoor)
-    this.tDoor = setTimeout(() => { if (this.state.phase === 'sketch') this.audio.doorOpen() }, 1400)
+    this.tDoor = setTimeout(() => { if (this.state.phase === 'sketch') this.audio.doorOpen() }, 400)
     if (this.tEnter) clearTimeout(this.tEnter)
-    this.tEnter = setTimeout(() => { if (this.state.phase === 'sketch') this.toFoyer() }, 2300)
+    this.tEnter = setTimeout(() => { if (this.state.phase === 'sketch') this.toFoyer() }, 700)
   }
   private enterBuilding = () => {
     if (this.tEnter) clearTimeout(this.tEnter)
@@ -636,8 +635,8 @@ export class App extends React.Component<Record<string, never>, State> {
             {/* a scrim confined to the doorway, so the words read as light in the dark opening */}
             {/* the house is experienced first — birds, the curtain, the light — then, only then, the words gather */}
             <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(300px,58vw)', height: 460, background: 'radial-gradient(60% 60% at 50% 50%, rgba(24,15,6,0.55), rgba(24,15,6,0.2) 62%, transparent 82%)', filter: 'blur(30px)', opacity: 0, animation: 'softFade 840ms ease 660ms both' }} />
-            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(58px,8vw,122px)', lineHeight: 1.08, color: '#faf4ea', margin: 0, opacity: 0, animation: 'softFade 780ms ease 840ms both', textShadow: '0 1px 2px rgba(20,14,7,0.7), 0 4px 22px rgba(20,14,7,0.85), 0 0 60px rgba(20,14,7,0.6)' }}>Come in.</p>
-            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(37px,5.3vw,76px)', lineHeight: 1.24, color: '#f2e7cf', margin: '0.5em 0 0', opacity: 0, animation: 'softFade 780ms ease 1620ms both', textShadow: '0 1px 3px rgba(20,14,7,0.85), 0 3px 18px rgba(20,14,7,0.9), 0 0 42px rgba(20,14,7,0.7)' }}>We&rsquo;ve been waiting for you.</p>
+            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(58px,8vw,122px)', lineHeight: 1.08, color: '#faf4ea', margin: 0, opacity: 0, animation: 'softFade 620ms ease 220ms both', textShadow: '0 1px 2px rgba(20,14,7,0.7), 0 4px 22px rgba(20,14,7,0.85), 0 0 60px rgba(20,14,7,0.6)' }}>Come in.</p>
+            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(37px,5.3vw,76px)', lineHeight: 1.24, color: '#f2e7cf', margin: '0.5em 0 0', opacity: 0, animation: 'softFade 680ms ease 520ms both', textShadow: '0 1px 3px rgba(20,14,7,0.85), 0 3px 18px rgba(20,14,7,0.9), 0 0 42px rgba(20,14,7,0.7)' }}>We&rsquo;ve been waiting for you.</p>
           </div>
 
           {opening && (
@@ -652,7 +651,7 @@ export class App extends React.Component<Record<string, never>, State> {
             the second line has landed, so the words are never rushed, and gone
             the moment the visitor steps in */}
         {!opening && (
-          <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(52px,10vh,112px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 660ms ease 2040ms both' }}>
+          <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(52px,10vh,112px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 480ms ease 360ms both' }}>
             <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.56)', marginBottom: '1em', textShadow: '0 1px 12px rgba(20,14,7,0.85)' }}>Step inside</div>
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ margin: '0 auto', opacity: 0.7, animation: motionOn ? 'hint 3.4s ease-in-out infinite' : 'none' }}>
               <path d="M2 3 L8 9 L14 3" stroke="rgba(246,239,228,0.72)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -663,7 +662,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {/* One quiet way past the arrival for anyone genuinely impatient — never
             a prominent shortcut, and never shown for returning visitors, so the
             door drawing stays the default for everyone. */}
-        <El onClick={this.skip} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 120ms ease', zIndex: 5 }} hover={{ color: 'rgba(43,39,35,0.7)' }}>Skip&nbsp;&rarr;</El>
+        <El onClick={this.skip} aria-label="Enter the House" style={{ position: 'absolute', right: 'clamp(18px,3vw,38px)', bottom: 'clamp(18px,3vh,34px)', display: 'inline-flex', alignItems: 'center', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#f2e7cf', background: 'rgba(20,14,7,0.42)', border: '1px solid rgba(238,202,140,0.55)', borderRadius: 3, padding: '10px 18px', WebkitBackdropFilter: 'blur(3px)', backdropFilter: 'blur(3px)', cursor: 'pointer', transition: 'background 200ms ease, border-color 200ms ease', zIndex: 6 }} hover={{ background: 'rgba(20,14,7,0.62)', borderColor: 'rgba(238,202,140,0.92)' }}>Enter the House&nbsp;&rarr;</El>
       </div>
     )
   }
@@ -804,35 +803,16 @@ export class App extends React.Component<Record<string, never>, State> {
 
         <Home ctx={this.ctx} />
 
-        {this.rooms.journey.map((room, i) => this.renderRoomSection(room, i, sunShiftAnim, alive))}
-
-        {/* A pause before the Founding Wall — leaving the active rooms and
-            entering a quiet courtyard. The reflective line and the six
-            principles slow the visitor down before the inscription. */}
-        {this.renderWallTransition()}
-
-        {/* The Founding Wall — the philosophical hinge of the House. It comes
-            after the primary working rooms (…Studio, Library) and before the
-            Living House, so it sits between what the House does and why the
-            House exists. It stands alone: no paragraph explains it afterward —
-            the inscription is allowed to echo into the next chapter. */}
+        {/* The Founding Wall — a wordless philosophical beat that carries the
+            visitor from the five homepage moments into the closing courtyard.
+            The forced inline room walk, the wall transition, the Living House and
+            the Community chapters were removed from the main scroll in the
+            simplification; every room and chapter is retained in the codebase and
+            remains reachable through the House Directory (see HouseIndex). */}
         {this.renderFounderWall()}
 
-        {/* The Living House — the evolving, editorial chapter that follows the
-            wall: the current resident, stories, field notes, and the Collective. */}
-        <LivingHouse ctx={this.ctx} />
-
-        {/* a breath between the two editorial chapters — turning the page from
-            what the House is doing to the people who make it */}
-        {this.renderChapterBreath()}
-
-        {/* The Community — the human chapter: the People, the Houses to come,
-            and the language the House keeps. Belonging and future. */}
-        <Community ctx={this.ctx} />
-
         {/* The closing — an open limestone arch onto the courtyard: the final
-            invitation. Replaces the old "Residents Only" door; the footer below
-            no longer repeats "the house is always open." */}
+            invitation, and the single home of "the house is always open." */}
         <Closing ctx={this.ctx} />
 
         <Footer ctx={this.ctx} />
