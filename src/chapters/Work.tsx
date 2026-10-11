@@ -192,6 +192,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       body: 'For founders reimagining their brand, exploring new opportunities, building something that doesn’t exist yet, or creating a more meaningful relationship with the people they serve.',
       encompass: ['Brand positioning and creative strategy', 'Brand worlds and storytelling', 'Omnichannel demand strategy', 'Creative campaigns and brand experiences', 'Strategic collaborations and partnerships', 'Community-building and belonging', 'New market and audience opportunities'],
       message: 'We help founders see what’s possible — and build the strategy to bring it to life.',
+      img: '/photos/photo-atelier.webp', imgAlt: 'A sunlit creative atelier — a small team reviewing moodboards, materials, and sketches around a long table',
     },
     {
       n: '02', title: 'A Seat at Your Table', verb: 'Think together.',
@@ -199,6 +200,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       body: 'Some founders don’t need another agency or another presentation. They need a trusted strategic voice who understands what it’s like to build a company, make difficult decisions, and see both the creative and commercial picture.',
       encompass: ['Private founder advisory', 'Strategic sounding-board relationships', 'Navigating growth and important crossroads', 'Evaluating opportunities and trade-offs', 'Brand and business direction', 'Founder decision-making and perspective', 'Ongoing strategic partnership'],
       message: 'You don’t have to figure out every next move alone.',
+      img: '/photos/photo-conversation.webp', imgAlt: 'Two chairs drawn close around a small walnut table, coffee and an open journal in morning light',
     },
     {
       n: '03', title: 'Build Something Together', verb: 'Connect.',
@@ -206,6 +208,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       body: 'Some of the most powerful opportunities happen when the right people, ideas, brands, and communities come together.',
       encompass: ['Strategic partnerships and collaborations', 'Building brand communities and belonging', 'Creating meaningful brand experiences', 'Bringing founders and creative thinkers together', 'Cross-category collaborations', 'Unconventional growth opportunities', 'Connections that extend beyond traditional distribution'],
       message: 'Sometimes what changes everything is who — and what — you bring together.',
+      img: '/photos/photo-courtyard.webp', imgAlt: 'A Mediterranean courtyard at golden hour — a long linen-dressed table set for gathering beneath olive trees',
     },
   ]
 
@@ -231,19 +234,21 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>The invitations</div>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(24px,3.1vw,40px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '24ch', margin: '0 auto', ...balance }}>Three ways a conversation can begin.</p>
 
-          <div style={{ marginTop: 'var(--wtw-head-first)' }}>
+          <div className="wtw-invitations" style={{ marginTop: 'var(--wtw-head-first)' }}>
             {invitations.map((inv, i) => (
-              <React.Fragment key={inv.n}>
-                {i > 0 && <ArchLine m="var(--wtw-inv-gap) auto" />}
-                <div>
-                  <div style={{ ...label, color: 'rgba(122,94,52,0.72)', marginBottom: 'var(--wtw-inv-label)' }}>{inv.n}&nbsp;&mdash;&nbsp;{inv.title}</div>
-                  <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,4.6vw,62px)', lineHeight: 1.04, color: '#2b2723', margin: '0 auto', ...balance }}>{inv.verb}</p>
-                  <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', maxWidth: '36ch', margin: 'var(--wtw-inv-for) auto 0', ...balance }}>{inv.forWhom}</p>
-                  <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.74)', maxWidth: '44ch', margin: 'var(--wtw-inv-body) auto 0', ...pretty }}>{inv.body}</p>
-                  <Included items={inv.encompass} heading="This can encompass" />
-                  <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '30ch', margin: 'var(--wtw-inv-msg) auto 0', ...balance }}>{inv.message}</p>
+              <div className={'wtw-spread' + (i % 2 === 1 ? ' flip' : '')} key={inv.n}>
+                <div className="wtw-media">
+                  <ImageSlot src={inv.img} alt={inv.imgAlt} placeholder={inv.imgAlt} fit="cover" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
                 </div>
-              </React.Fragment>
+                <div className="wtw-copy">
+                  <div style={{ ...label, color: 'rgba(122,94,52,0.72)', marginBottom: 'var(--wtw-inv-label)' }}>{inv.n}&nbsp;&mdash;&nbsp;{inv.title}</div>
+                  <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.2vw,56px)', lineHeight: 1.03, color: '#2b2723', margin: 0 }}>{inv.verb}</p>
+                  <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', maxWidth: '30ch', margin: 'var(--wtw-inv-for) 0 0', ...pretty }}>{inv.forWhom}</p>
+                  <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.74)', margin: 'var(--wtw-inv-body) 0 0', ...pretty }}>{inv.body}</p>
+                  <div className="wtw-encompass"><b>This can encompass</b>{inv.encompass.join(' · ')}</div>
+                  <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.4vw,30px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '30ch', margin: 'var(--wtw-inv-msg) 0 0', ...balance }}>{inv.message}</p>
+                </div>
+              </div>
             ))}
           </div>
 
