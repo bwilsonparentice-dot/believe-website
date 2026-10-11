@@ -14,13 +14,17 @@ const label: CSSProperties = { fontFamily: sans, fontWeight: 400, fontSize: 11, 
 const h3: CSSProperties = { fontFamily: serif, fontWeight: 500, fontSize: 'clamp(21px,2.3vw,30px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(44px,7vh,76px) 0 0.7em' }
 const body: CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.65vw,21px)', lineHeight: 1.7, color: 'rgba(43,38,30,0.86)', margin: '0.8em 0 0', ...pretty }
 
-/** A clearly-marked placeholder for the public contact email — never a fabricated
- *  address. Replaced with the real address once confirmed, before launch. */
-function EmailPlaceholder() {
+/** The verified public contact address, rendered as a mailto link in the body
+ *  serif so it sits naturally in the prose. */
+const CONTACT_EMAIL = 'hello@believestudio.co'
+function ContactEmail() {
   return (
-    <span style={{ fontFamily: sans, fontSize: '0.82em', letterSpacing: '0.04em', color: 'rgba(122,94,52,0.75)', background: 'rgba(122,94,52,0.08)', border: '1px dashed rgba(122,94,52,0.4)', borderRadius: 3, padding: '1px 8px', whiteSpace: 'nowrap' }}>
-      [ contact email &mdash; added before launch ]
-    </span>
+    <a
+      href={`mailto:${CONTACT_EMAIL}`}
+      style={{ color: '#7a5e34', textDecoration: 'none', borderBottom: '1px solid rgba(122,94,52,0.4)', paddingBottom: 1, transition: 'border-color 350ms ease' }}
+    >
+      {CONTACT_EMAIL}
+    </a>
   )
 }
 
@@ -69,7 +73,7 @@ export function PrivacyPage({ ctx }: { ctx: Ctx }) {
       <p style={body}>We link to other websites, including Believe Radar and third-party services. Those sites are operated independently and have their own privacy practices, which we don&rsquo;t control and aren&rsquo;t responsible for.</p>
 
       <h3 style={h3}>Contacting us</h3>
-      <p style={body}>If you have a question or request about your privacy, you can reach us at <EmailPlaceholder />. Because this is an evolving policy, we may update it from time to time; the effective date above reflects the latest version.</p>
+      <p style={body}>If you have a question or request about your privacy, you can reach us at <ContactEmail />. Because this is an evolving policy, we may update it from time to time; the effective date above reflects the latest version.</p>
     </LegalShell>
   )
 }
@@ -99,7 +103,7 @@ export function TermsPage({ ctx }: { ctx: Ctx }) {
       <p style={body}>We may update these terms from time to time; the effective date above reflects the latest version. These terms are governed by the laws of the Commonwealth of Pennsylvania, United States, without regard to its conflict-of-laws rules.</p>
 
       <h3 style={h3}>Contact</h3>
-      <p style={body}>Questions about these terms? Reach us at <EmailPlaceholder />.</p>
+      <p style={body}>Questions about these terms? Reach us at <ContactEmail />.</p>
     </LegalShell>
   )
 }
@@ -130,7 +134,7 @@ export function AccessibilityPage({ ctx }: { ctx: Ctx }) {
       <p style={body}>Accessibility is ongoing work rather than a finished state, and some areas of the site may not yet fully meet every guideline. We keep working to improve it.</p>
 
       <h3 style={h3}>Tell us how we&rsquo;re doing</h3>
-      <p style={body}>If you encounter a barrier, or you have a suggestion that would make the experience better for you, we&rsquo;d genuinely like to hear from you at <EmailPlaceholder />. We&rsquo;ll do our best to help and to put things right.</p>
+      <p style={body}>If you encounter a barrier, or you have a suggestion that would make the experience better for you, we&rsquo;d genuinely like to hear from you at <ContactEmail />. We&rsquo;ll do our best to help and to put things right.</p>
     </LegalShell>
   )
 }
