@@ -162,7 +162,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <div className="home-team">
           {CORE_TEAM.map((m, i) => (
             <React.Fragment key={i}>
-              {i === 3 && <div className="home-team-break" aria-hidden="true" />}
+              {i === 3 && <div className="team-row-break" aria-hidden="true" />}
               <TeamFace m={m} />
             </React.Fragment>
           ))}
