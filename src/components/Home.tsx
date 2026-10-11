@@ -9,7 +9,6 @@ import { palette } from '../lib/palette'
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
 const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
-const pretty = { textWrap: 'pretty' as CSSProperties['textWrap'] }
 
 const eyebrow: CSSProperties = {
   fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.42em',
@@ -161,7 +160,12 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(23px,3.4vw,38px)', lineHeight: 1.18, color: palette.navy, margin: '0.6em auto 0', maxWidth: '24ch', ...balance }}>No founder should have to carry the whole company alone.</p>
         <div aria-hidden="true" style={{ width: 'clamp(60px,7vw,80px)', height: 1, background: palette.gold, opacity: 0.75, margin: 'clamp(22px,3.2vh,30px) auto clamp(28px,4vh,40px)' }} />
         <div className="home-team">
-          {CORE_TEAM.map((m, i) => <TeamFace key={i} m={m} />)}
+          {CORE_TEAM.map((m, i) => (
+            <React.Fragment key={i}>
+              {i === 3 && <div className="home-team-break" aria-hidden="true" />}
+              <TeamFace m={m} />
+            </React.Fragment>
+          ))}
         </div>
         <p style={{ ...body, maxWidth: '50ch', margin: 'clamp(34px,5vh,54px) auto 0' }}>A small, experienced team around the founder, with specialist expertise added when the work calls for it. Led by Beth Wilson-Parentice, who built Sipp from a kitchen into a national brand on shelves at Target, Whole Foods, and Starbucks.</p>
         <El as="button" onClick={ctx.openPeople} style={{ ...ghost, marginTop: 'clamp(30px,4.4vh,46px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Meet the people of Believe Studio &rarr;</El>
@@ -176,9 +180,6 @@ export function Home({ ctx }: { ctx: Ctx }) {
               <div key={s.name}>
                 <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.6vw,32px)', lineHeight: 1.36, color: palette.ink, maxWidth: '30ch', margin: '0 auto', ...balance }}>&ldquo;{s.quote}&rdquo;</p>
                 <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', marginTop: '1.3em' }}>{s.name} &middot; {s.company}</div>
-                {i === 0 && s.changed && (
-                  <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(14px,1.5vw,17px)', color: 'rgba(43,39,35,0.6)', marginTop: '0.9em', maxWidth: '44ch', marginLeft: 'auto', marginRight: 'auto', ...pretty }}>{s.changed.join(' · ')}</div>
-                )}
               </div>
             ))}
           </div>

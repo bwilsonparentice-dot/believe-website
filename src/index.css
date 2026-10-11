@@ -340,6 +340,10 @@ a:hover { color: #b08a4a; }
 /* homepage responsive helpers (content stays visible at rest; no reveal gating) */
 .home-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(16px,2vw,24px); }
 .home-team { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px,2vh,20px) clamp(20px,3vw,40px); }
+/* force a 3 + 2 centered arrangement on larger screens (row break before the
+   fourth face); on phones the break collapses so faces keep their natural 2-up wrap */
+.home-team-break { flex: 0 0 100%; width: 100%; height: 0; }
+@media (max-width: 600px) { .home-team-break { display: none; } }
 .home-shift { display: flex; flex-direction: column; border: 1px solid rgba(43,39,35,0.14); border-radius: 8px; overflow: hidden; }
 .home-srow { display: grid; grid-template-columns: 1fr 26px 1fr; gap: 6px 14px; align-items: center; padding: 15px 18px; border-top: 1px solid rgba(43,39,35,0.12); }
 .home-srow:first-child { border-top: none; }
