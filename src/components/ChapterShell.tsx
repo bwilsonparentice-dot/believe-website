@@ -27,7 +27,8 @@ export function ChapterShell({
     <div style={{ position: 'fixed', inset: 0, zIndex: z, overflowY: 'auto', overflowX: 'hidden', background, animation: 'veilIn 700ms ease both' }}>
       <El
         onClick={onClose}
-        style={{ position: 'fixed', top: 'clamp(20px,3vh,34px)', right: 'clamp(20px,3vw,40px)', zIndex: 6, fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: dark ? 'rgba(246,239,228,0.55)' : 'rgba(43,39,35,0.5)', cursor: 'pointer', transition: 'color 400ms ease' }}
+        className={dark ? 'chapter-back chapter-back--dark' : 'chapter-back'}
+        style={{ top: 'clamp(20px,3vh,34px)', right: 'clamp(20px,3vw,40px)', zIndex: 6, fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: dark ? 'rgba(246,239,228,0.55)' : 'rgba(43,39,35,0.5)', cursor: 'pointer', transition: 'color 400ms ease' }}
         hover={{ color: dark ? 'rgba(246,239,228,0.95)' : 'rgba(43,39,35,0.9)' }}
       >
         {backLabel ?? <>←&nbsp;Back to the building</>}

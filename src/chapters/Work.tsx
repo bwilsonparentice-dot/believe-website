@@ -56,7 +56,7 @@ function Investment({ children }: { children: React.ReactNode }) {
 /** A soft, editorial list of what's included — quiet, never a feature grid. */
 function Included({ items, heading }: { items: string[]; heading?: string }) {
   return (
-    <div style={{ margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: 560 }}>
+    <div style={{ margin: 'var(--wtw-inv-list, clamp(30px,5vh,52px)) auto 0', maxWidth: 560 }}>
       {heading && <div style={{ ...label, fontSize: 9, letterSpacing: '0.42em', color: 'rgba(122,94,52,0.5)', marginBottom: '1.4em' }}>{heading}</div>}
       <div style={{ display: 'grid', gridTemplateColumns: items.length > 4 ? 'repeat(auto-fit,minmax(180px,1fr))' : '1fr', gap: 'clamp(10px,1.8vh,16px) clamp(24px,4vw,56px)', justifyItems: 'center' }}>
         {items.map((it, i) => (
@@ -192,7 +192,6 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       body: 'For founders reimagining their brand, exploring new opportunities, building something that doesn’t exist yet, or creating a more meaningful relationship with the people they serve.',
       encompass: ['Brand positioning and creative strategy', 'Brand worlds and storytelling', 'Omnichannel demand strategy', 'Creative campaigns and brand experiences', 'Strategic collaborations and partnerships', 'Community-building and belonging', 'New market and audience opportunities'],
       message: 'We help founders see what’s possible — and build the strategy to bring it to life.',
-      notA: 'Not a fixed package, and not a promise of particular deliverables.',
     },
     {
       n: '02', title: 'A Seat at Your Table', verb: 'Think together.',
@@ -200,7 +199,6 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       body: 'Some founders don’t need another agency or another presentation. They need a trusted strategic voice who understands what it’s like to build a company, make difficult decisions, and see both the creative and commercial picture.',
       encompass: ['Private founder advisory', 'Strategic sounding-board relationships', 'Navigating growth and important crossroads', 'Evaluating opportunities and trade-offs', 'Brand and business direction', 'Founder decision-making and perspective', 'Ongoing strategic partnership'],
       message: 'You don’t have to figure out every next move alone.',
-      notA: 'Not a coaching program, and not a generic consulting package.',
     },
     {
       n: '03', title: 'Build Something Together', verb: 'Connect.',
@@ -208,13 +206,12 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       body: 'Some of the most powerful opportunities happen when the right people, ideas, brands, and communities come together.',
       encompass: ['Strategic partnerships and collaborations', 'Building brand communities and belonging', 'Creating meaningful brand experiences', 'Bringing founders and creative thinkers together', 'Cross-category collaborations', 'Unconventional growth opportunities', 'Connections that extend beyond traditional distribution'],
       message: 'Sometimes what changes everything is who — and what — you bring together.',
-      notA: 'Not event planning, and not a promise of access to particular buyers or partners.',
     },
   ]
 
   return (
     <ChapterShell onClose={ctx.closeWork} background="#efe6d3" backLabel={<>←&nbsp;Back</>}>
-      <div style={{ position: 'relative', maxWidth: 800, margin: '0 auto', padding: 'clamp(96px,17vh,220px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
+      <div className="wtw" style={{ position: 'relative', maxWidth: 800, margin: '0 auto', padding: 'clamp(96px,17vh,220px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* the lead — what Believe is, plainly and confidently */}
         <ArchMark width={2.2} margin="0 auto 1.5em" />
@@ -229,23 +226,22 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
             Active engagements have real pages/flows; future concepts are set
             apart under "On the horizon" so nothing is implied to be available
             before it has launched. */}
-        <ArchLine m="clamp(90px,16vh,190px) auto clamp(56px,10vh,120px)" />
+        <ArchLine m="var(--wtw-hero-invite-t) auto var(--wtw-hero-invite-b)" />
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>The invitations</div>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(24px,3.1vw,40px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '24ch', margin: '0 auto', ...balance }}>Three ways a conversation can begin.</p>
 
-          <div style={{ marginTop: 'clamp(54px,9vh,96px)' }}>
+          <div style={{ marginTop: 'var(--wtw-head-first)' }}>
             {invitations.map((inv, i) => (
               <React.Fragment key={inv.n}>
-                {i > 0 && <ArchLine m="clamp(74px,13vh,156px) auto" />}
+                {i > 0 && <ArchLine m="var(--wtw-inv-gap) auto" />}
                 <div>
-                  <div style={{ ...label, color: 'rgba(122,94,52,0.72)', marginBottom: 'clamp(16px,2.6vh,26px)' }}>{inv.n}&nbsp;&mdash;&nbsp;{inv.title}</div>
+                  <div style={{ ...label, color: 'rgba(122,94,52,0.72)', marginBottom: 'var(--wtw-inv-label)' }}>{inv.n}&nbsp;&mdash;&nbsp;{inv.title}</div>
                   <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,4.6vw,62px)', lineHeight: 1.04, color: '#2b2723', margin: '0 auto', ...balance }}>{inv.verb}</p>
-                  <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', maxWidth: '36ch', margin: 'clamp(20px,3.4vh,34px) auto 0', ...balance }}>{inv.forWhom}</p>
-                  <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.74)', maxWidth: '44ch', margin: 'clamp(26px,4.4vh,44px) auto 0', ...pretty }}>{inv.body}</p>
+                  <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,27px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', maxWidth: '36ch', margin: 'var(--wtw-inv-for) auto 0', ...balance }}>{inv.forWhom}</p>
+                  <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.74)', maxWidth: '44ch', margin: 'var(--wtw-inv-body) auto 0', ...pretty }}>{inv.body}</p>
                   <Included items={inv.encompass} heading="This can encompass" />
-                  <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '30ch', margin: 'clamp(36px,6vh,64px) auto 0', ...balance }}>{inv.message}</p>
-                  <p style={{ fontFamily: sans, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(11px,1.1vw,13px)', letterSpacing: '0.02em', lineHeight: 1.5, color: 'rgba(43,39,35,0.42)', maxWidth: '42ch', margin: 'clamp(18px,2.8vh,28px) auto 0', ...balance }}>{inv.notA}</p>
+                  <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '30ch', margin: 'var(--wtw-inv-msg) auto 0', ...balance }}>{inv.message}</p>
                 </div>
               </React.Fragment>
             ))}
@@ -360,25 +356,8 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(26px,4.5vh,44px)' }}>How we work</div>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,52px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance }}>Before we advise, we understand.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(34px,6vh,64px) auto 0', ...pretty }}>We begin with the founder, the business, and the decision in front of them. Then we determine which part of the House is the right place to begin.</p>
-          {/* Private Advisory — two registers: a poetic lead, then the plain
-              authoritative statement (full ink, more presence), then a quieter
-              subordinate note. Generous space before the action. */}
-          <ArchLine m="clamp(72px,12vh,150px) auto clamp(60px,11vh,120px)" />
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(23px,2.9vw,38px)', lineHeight: 1.28, color: 'rgba(43,39,35,0.78)', maxWidth: '24ch', margin: '0 auto', ...balance }}>Some seasons ask for someone closer.</p>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,2.7vw,34px)', lineHeight: 1.36, color: '#2b2723', maxWidth: '32ch', margin: 'clamp(30px,5vh,58px) auto 0', ...balance }}>Private Advisory is reserved for a small number of founders who need an experienced strategic partner close to the business.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15px,1.5vw,19px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.5)', maxWidth: '36ch', margin: 'clamp(22px,3.6vh,38px) auto 0', ...balance }}>We recommend the right structure after understanding the company, the decisions ahead, and where the House can create the most value.</p>
-          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(66px,12vh,140px)' }} hover={ctaHover}>Request Private Advisory &rarr;</El>
-
-          {/* another room inside the House — a quieter text transition, not a
-              second navy button. The muted-olive label is the single
-              architectural signal that we are entering another room. */}
-          <div style={{ marginTop: 'clamp(100px,18vh,210px)' }}>
-            <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, marginBottom: 'clamp(24px,4.2vh,42px)' }}>Another room inside the House</div>
-            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(22px,2.9vw,38px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '22ch', margin: '0 auto', ...balance }}>The right room changes the work.</p>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.72)', maxWidth: '42ch', margin: 'clamp(28px,5vh,52px) auto 0', ...pretty }}>The Founder&rsquo;s Room brings eight founders together each month around real business decisions, supported by Believe methodology and specialist Residents.</p>
-            <El as="button" onClick={ctx.openFounderRoom} style={{ display: 'inline-block', marginTop: 'clamp(34px,6vh,60px)', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.9)', background: 'transparent', border: 'none', borderBottom: `1.5px solid ${palette.gold}`, padding: '0 0 7px', cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.85)' }}>Learn about The Founder&rsquo;s Room &rarr;</El>
-          </div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '45ch', margin: 'clamp(34px,6vh,64px) auto 0', ...pretty }}>We begin with the founder, the business, and the decision in front of them &mdash; then we shape the work around what will actually move it forward.</p>
+          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(48px,9vh,100px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
         </div>
 
         <ArchLine m="clamp(80px,13vh,150px) auto clamp(40px,7vh,64px)" />
