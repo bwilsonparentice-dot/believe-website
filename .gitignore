@@ -20,3 +20,6 @@ dist-preview
 # uploaded working images (optimized copies live in public/photos)
 /*.png
 /*.webp
+
+# local-only original room image backups (pre-swap), for revert
+.image-originals/

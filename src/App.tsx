@@ -840,6 +840,12 @@ export class App extends React.Component<Record<string, never>, State> {
           {room.id === 'advisory' && (
             <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(88% 78% at 50% 50%, rgba(16,11,6,0.16), rgba(16,11,6,0.52) 68%, rgba(10,7,4,0.74))' }} />
           )}
+          {/* The Studio photograph is bright, so its left-aligned title needs a
+              localized left scrim for contrast; it fades out by ~58% so the
+              window light and shelving on the right stay luminous. */}
+          {room.id === 'studio' && (
+            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(90deg, rgba(26,19,11,0.56) 0%, rgba(26,19,11,0.3) 28%, rgba(26,19,11,0) 58%)' }} />
+          )}
         </div>
 
         <div style={{ position: 'relative', zIndex: 2, maxWidth: room.blockMax, width: room.blockW, marginLeft: room.blockMx, marginRight: room.blockMx, textAlign: room.textAlign, color: '#f6efe4', pointerEvents: 'none', animation: 'contentFocus 1600ms cubic-bezier(.2,.7,.2,1) both', animationDelay: room.contentDelay }}>

@@ -19,7 +19,7 @@ const WALK: Room[] = [
   { slug: 'blueprint', name: 'The Believe Blueprint', open: (c) => c.openBlueprint },
   { slug: 'founders-room', name: 'The Founder’s Room', open: (c) => c.openFounderRoom },
   { slug: 'table', name: 'The Table', open: (c) => c.openTable },
-  { slug: 'private-advisory', name: 'Private Advisory', open: (c) => c.openAdvisory },
+  { slug: 'private-advisory', name: 'The Drawing Room', open: (c) => c.openAdvisory },
   { slug: 'studio', name: 'The Studio', open: (c) => c.openStudioPage },
   { slug: 'library', name: 'The Library', open: (c) => c.openLibrary },
 ]

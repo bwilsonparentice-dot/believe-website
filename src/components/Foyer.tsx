@@ -97,7 +97,7 @@ export function Foyer({ onWork, onStepInside, onPerson }: { onWork?: () => void;
 
         {/* the promise — the most confident line in the room */}
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,3.7vw,50px)', lineHeight: 1.12, color: '#2b2723', margin: 'clamp(34px,5.2vh,64px) auto 0', maxWidth: '20ch', ...balance }}>
-          Build brands worth keeping.
+          A creative strategy studio for ambitious founders.
         </p>
 
         {/* the capabilities — engraved into the wall, not displayed as services */}
