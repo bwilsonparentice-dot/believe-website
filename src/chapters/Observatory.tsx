@@ -2,6 +2,8 @@ import React, { CSSProperties } from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell, ArchMark, Divider } from '../components/ChapterShell'
 import { RoomNav } from '../components/RoomNav'
+import { ImageSlot } from '../components/ImageSlot'
+import { PHOTOS } from '../data'
 import { palette } from '../lib/palette'
 
 const serif = "'Cormorant Garamond',serif"
@@ -29,6 +31,13 @@ export function ObservatoryChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ ...label, marginBottom: '1.3em' }}>The Observatory</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,86px)', lineHeight: 1.02, margin: '0 0 0.4em' }}>Believe Radar</h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,32px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>Market and retail intelligence for founders.</p>
+
+        <div style={{ width: 'min(92%,640px)', margin: 'clamp(44px,8vh,90px) auto 0' }}>
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 2', overflow: 'hidden', borderRadius: '999px 999px 6px 6px', boxShadow: '0 46px 90px -54px rgba(60,44,20,0.66)' }}>
+            <ImageSlot src={PHOTOS.observatory} alt="The Observatory: a deep-navy study with brass instruments and a telescope at a great arched window onto a twilight sky and the landscape below" fit="cover" placeholder="an observatory study: navy shelving, a brass telescope, celestial charts, a great arched window onto a twilight sky and the city below" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 60% at 40% 22%, rgba(255,232,180,0.4), transparent 68%)' }} />
+          </div>
+        </div>
 
         <Divider h="clamp(44px,7vh,86px)" m="clamp(50px,9vh,100px) auto clamp(30px,5vh,50px)" />
 
