@@ -44,7 +44,7 @@ function Section({ children, style }: { children: React.ReactNode; style?: CSSPr
 /** The Creativity · Commerce · Connection mark — compact, legible, static. */
 function Venn() {
   return (
-    <svg width="100%" height="auto" viewBox="0 0 320 272" role="img" aria-label="Three overlapping circles, Creativity, Commerce and Connection, meeting at Believe" style={{ display: 'block', maxWidth: 360, margin: '0 auto' }}>
+    <svg viewBox="0 0 320 272" role="img" aria-label="Three overlapping circles, Creativity, Commerce and Connection, meeting at Believe" style={{ display: 'block', width: '100%', height: 'auto', maxWidth: 360, margin: '0 auto' }}>
       <g fillOpacity={0.15} strokeWidth={1.6}>
         <circle cx="126" cy="110" r="84" fill={palette.olive} stroke={palette.olive} />
         <circle cx="194" cy="110" r="84" fill={palette.gold} stroke={palette.gold} />

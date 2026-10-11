@@ -716,7 +716,10 @@ export class App extends React.Component<Record<string, never>, State> {
         </nav>
         <div className="bs-right">
           <button className="bs-menu-btn" onClick={c.openDirectory} aria-label="Open the House Index">Menu</button>
-          <button className="bs-cta" onClick={c.openConversation}>Start a Conversation</button>
+          <button className="bs-cta" onClick={c.openConversation}>
+            <span className="bs-cta-full">Start a Conversation</span>
+            <span className="bs-cta-short">Let&rsquo;s Talk</span>
+          </button>
         </div>
       </header>
     )
