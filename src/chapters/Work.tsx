@@ -237,25 +237,29 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <div className="wtw-invitations" style={{ marginTop: 'var(--wtw-head-first)' }}>
             {invitations.map((inv, i) => (
               <div className={'wtw-spread' + (i % 2 === 1 ? ' flip' : '')} key={inv.n}>
-                <div className="wtw-media">
+                <div className="wtw-media wtw-reveal-media">
                   <ImageSlot src={inv.img} alt={inv.imgAlt} placeholder={inv.imgAlt} fit="cover" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
                 </div>
-                <div className="wtw-copy">
+                <div className="wtw-copy wtw-reveal-copy">
                   <div style={{ ...label, color: 'rgba(122,94,52,0.72)', marginBottom: 'var(--wtw-inv-label)' }}>{inv.n}&nbsp;&mdash;&nbsp;{inv.title}</div>
                   <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.2vw,56px)', lineHeight: 1.03, color: '#2b2723', margin: 0 }}>{inv.verb}</p>
-                  <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', maxWidth: '30ch', margin: 'var(--wtw-inv-for) 0 0', ...pretty }}>{inv.forWhom}</p>
-                  <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.74)', margin: 'var(--wtw-inv-body) 0 0', ...pretty }}>{inv.body}</p>
-                  <div className="wtw-encompass"><b>This can encompass</b>{inv.encompass.join(' · ')}</div>
+                  <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(110,84,44,0.95)', maxWidth: '30ch', margin: 'var(--wtw-inv-for) 0 0', ...pretty }}>{inv.forWhom}</p>
+                  <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.68, color: 'rgba(43,38,30,0.9)', margin: 'var(--wtw-inv-body) 0 0', ...pretty }}>{inv.body}</p>
+                  <div className="wtw-encompass"><b>This can encompass</b><span className="items">{inv.encompass.map((it, k) => (<React.Fragment key={k}>{k > 0 && <span className="sep" aria-hidden="true">·</span>}{it}</React.Fragment>))}</span></div>
                   <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.4vw,30px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '30ch', margin: 'var(--wtw-inv-msg) 0 0', ...balance }}>{inv.message}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* the first conversation — complimentary, kept warm and understated */}
-          <ArchLine m="clamp(90px,16vh,190px) auto clamp(44px,8vh,92px)" />
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.55, color: 'rgba(122,94,52,0.84)', maxWidth: '36ch', margin: '0 auto', ...balance }}>The first Founder Conversation is complimentary &mdash; simply a chance to understand each other, with no obligation to continue.</p>
-          <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(30px,5vh,52px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
+          {/* the first conversation — a quiet editorial invitation carrying on from
+              the courtyard, not an abrupt CTA. Arch mark for continuity; the
+              approved complimentary line verbatim; the same booking action. */}
+          <div className="wtw-reveal-copy" style={{ marginTop: 'clamp(84px,15vh,180px)', textAlign: 'center' }}>
+            <ArchMark width={2} margin="0 auto clamp(22px,3.6vh,38px)" />
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.5, color: 'rgba(110,84,44,0.92)', maxWidth: '34ch', margin: '0 auto', ...balance }}>The first Founder Conversation is complimentary &mdash; simply a chance to understand each other, with no obligation to continue.</p>
+            <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(34px,5.5vh,56px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
+          </div>
 
           {/* existing experiences & gatherings — preserved and reachable, clearly secondary to the invitations */}
           <div style={{ maxWidth: 620, margin: 'clamp(66px,11vh,120px) auto 0', textAlign: 'left' }}>

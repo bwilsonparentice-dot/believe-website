@@ -260,15 +260,35 @@ a:hover { color: #b08a4a; }
    photography reads prominently (the concept's generous editorial width); the
    hero and prose sections keep their narrower measure. */
 .wtw-invitations { text-align: left; width: min(1100px, calc(100vw - 40px)); margin-left: 50%; transform: translateX(-50%); }
-.wtw-spread { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: clamp(36px,4.5vw,84px); align-items: center; }
+.wtw-spread { position: relative; display: grid; grid-template-columns: 1.08fr 0.92fr; gap: clamp(36px,4.5vw,84px); align-items: start; }
 .wtw-spread + .wtw-spread { margin-top: var(--wtw-inv-gap); }
+/* a delicate brass thread in the gap — a quiet architectural line connecting the
+   three invitations into one journey (no second numbering, no progress bar) */
+.wtw-spread + .wtw-spread::before { content: ""; position: absolute; left: 50%; top: calc(-1 * var(--wtw-inv-gap)); width: 1px; height: var(--wtw-inv-gap); transform: translateX(-50%); pointer-events: none; background: linear-gradient(180deg, transparent, rgba(156,122,63,0.4) 50%, transparent); }
 .wtw-spread.flip .wtw-media { order: 2; }
 .wtw-media { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 280px 280px 8px 8px; box-shadow: 0 50px 100px -56px rgba(60,44,20,0.6); }
 .wtw-media > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .wtw-media::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: soft-light; background: radial-gradient(60% 55% at 42% 20%, rgba(255,232,180,0.5), transparent 68%); }
 .wtw-copy { max-width: 42ch; }
-.wtw-encompass { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(43,39,35,0.5); line-height: 2; margin-top: var(--wtw-inv-list); }
-.wtw-encompass b { display: block; font-weight: 400; font-size: 9px; letter-spacing: 0.4em; color: rgba(122,94,52,0.55); margin-bottom: 0.7em; }
+/* areas of expertise — set a touch larger and looser than before, with real
+   separation between phrases, so it reads as quiet confidence, not fine print */
+.wtw-encompass { margin-top: var(--wtw-inv-list); }
+.wtw-encompass b { display: block; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(122,94,52,0.62); margin-bottom: 1em; }
+.wtw-encompass .items { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(43,38,30,0.64); line-height: 2.2; }
+.wtw-encompass .sep { margin: 0 0.62em; color: rgba(156,122,63,0.55); }
+
+/* scroll reveals — each arch and its copy surface as they enter the viewport,
+   lightly staggered so they don't arrive all at once; a very restrained scale
+   settles the photograph inside its arch. All gated by reduced-motion below,
+   and the content is fully visible without the animation. */
+@keyframes wtwArch { 0% { transform: scale(1.055); } 100% { transform: scale(1); } }
+.wtw-reveal-media, .wtw-reveal-copy { animation: fadeUpSoft both; animation-timeline: view(); }
+.wtw-reveal-media { animation-range: entry 4% cover 22%; }
+.wtw-reveal-copy { animation-range: entry 12% cover 32%; }
+.wtw-reveal-media img { animation: wtwArch both; animation-timeline: view(); animation-range: entry 0% cover 46%; }
+@media (prefers-reduced-motion: reduce) {
+  .wtw-reveal-media, .wtw-reveal-copy, .wtw-reveal-media img { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
 @media (max-width: 760px) {
   .wtw-invitations { width: auto; margin-left: 0; transform: none; }
   .wtw-spread { grid-template-columns: 1fr; gap: clamp(22px,4vh,38px); }
