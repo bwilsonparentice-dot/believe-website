@@ -898,16 +898,12 @@ export class App extends React.Component<Record<string, never>, State> {
           loading="lazy"
           style={{
             display: 'block', width: 'auto', height: 'auto',
-            maxWidth: 'min(94vw, 900px)', maxHeight: '94vh', margin: '0 auto',
-            borderRadius: 'clamp(14px,2.4vw,30px)',
-            // feather all four edges so the wall dissolves into the page rather
-            // than sitting as a hard rectangle — it reads as part of the House
-            WebkitMaskImage:
-              'linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%)',
-            WebkitMaskComposite: 'source-in',
-            maskImage:
-              'linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%), linear-gradient(to bottom, transparent 0, #000 4%, #000 96%, transparent 100%)',
-            maskComposite: 'intersect',
+            maxWidth: 'min(92vw, 1060px)', maxHeight: '92vh', margin: '0 auto',
+            // crisp, intentional architectural framing: a subtle corner radius and
+            // a soft low shadow so the photograph sits as a real panel on the warm
+            // ground, rather than a feathered vignette dissolving into the page
+            borderRadius: 'clamp(6px,0.9vw,14px)',
+            boxShadow: '0 34px 64px -44px rgba(60,44,20,0.5)',
             animation: 'fadeUpSoft 950ms ease both',
             animationTimeline: 'view()' as unknown as string,
             animationRange: 'entry 4% cover 26%' as unknown as string,
