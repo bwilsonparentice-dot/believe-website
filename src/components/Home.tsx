@@ -14,9 +14,6 @@ const eyebrow: CSSProperties = {
   fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.42em',
   textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)',
 }
-const lead: CSSProperties = {
-  fontFamily: serif, fontWeight: 500, fontSize: 'clamp(26px,4vw,46px)', lineHeight: 1.08, color: palette.ink, ...balance,
-}
 const body: CSSProperties = {
   fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', ...balance,
 }
@@ -81,13 +78,14 @@ export function Home({ ctx }: { ctx: Ctx }) {
   return (
     <div className="home" style={{ position: 'relative', background: 'linear-gradient(176deg,#f1e9d8 0%,#efe6d3 50%,#e9dfc9 100%)', color: palette.ink }}>
 
-      {/* ── Hero — the studio, stated ──────────────────────────────────── */}
+      {/* ── Moment 1 · Hero — simple and emotionally compelling. The eyebrow
+          carries the category clarity; the headline carries the feeling. ── */}
       <Section style={{ paddingTop: 'clamp(118px,20vh,210px)' }}>
         <ArchMark width={2.2} margin="0 auto 1.4em" />
-        <div style={eyebrow}>Believe Studio &middot; A House for Founders</div>
+        <div style={eyebrow}>Believe Studio &middot; Creative Strategy &amp; Advisory for Consumer Brands</div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px,2.1vw,22px)', color: palette.gold, margin: 'clamp(26px,4vh,40px) 0 0' }}>For those who see what could be.</p>
-        <h1 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,6.4vw,74px)', lineHeight: 1.02, color: palette.ink, margin: '0.22em auto 0', maxWidth: '18ch', ...balance }}>A creative strategy studio for ambitious founders.</h1>
-        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(18px,2.4vw,27px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.72)', margin: '0.9em auto 0', maxWidth: '34ch', ...balance }}>We help founders build brands people believe in, and make the decisions that shape what comes next.</p>
+        <h1 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,6.4vw,74px)', lineHeight: 1.03, color: palette.ink, margin: '0.22em auto 0', maxWidth: '16ch', ...balance }}>You&rsquo;ve built the brand. But what could it become?</h1>
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(18px,2.4vw,27px)', lineHeight: 1.45, color: 'rgba(43,39,35,0.72)', margin: '0.9em auto 0', maxWidth: '38ch', ...balance }}>You&rsquo;ve made the decisions, taken the risks, opened the doors, and carried the responsibility of building something from nothing.</p>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '18px 26px', margin: 'clamp(36px,5.5vh,58px) auto 0' }}>
           <El as="button" onClick={ctx.openConversation} style={navyCta} hover={{ background: palette.navyDeep }}>Start a Conversation</El>
@@ -95,12 +93,22 @@ export function Home({ ctx }: { ctx: Ctx }) {
         </div>
       </Section>
 
-      {/* ── 2 · What we help founders accomplish — the practical value, early and concrete ── */}
+      {/* ── Moment 2 · The shift in perspective, then how we help. The passage
+          unfolds here: the turn is carried by type and whitespace, with one
+          faint brass hairline as its only accent. The three value cards then
+          follow so the founder sees, plainly, what Believe does. ── */}
       <Section>
+        <p style={{ ...body, maxWidth: '42ch', margin: '0 auto' }}>But sometimes the next opportunity isn&rsquo;t another retailer, another campaign, or another item on your to-do list.</p>
+
+        <div aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(122,94,52,0.45)', margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
+        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(30px,4.6vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>Sometimes it begins with a different conversation.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '36ch', ...balance }}>One that helps you see your business, and its possibilities, in an entirely new way.</p>
+        <El as="button" onClick={ctx.openConversation} style={{ ...ghost, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Start a Conversation &rarr;</El>
+
+        {/* a quiet architectural rule into the concrete "how we help" */}
+        <div aria-hidden="true" style={{ width: 'min(300px,54%)', height: 1, background: 'linear-gradient(90deg, transparent, rgba(122,94,52,0.32) 24%, rgba(122,94,52,0.32) 76%, transparent)', margin: 'clamp(66px,11vh,128px) auto clamp(40px,6.5vh,64px)' }} />
         <div style={eyebrow}>How we help</div>
-        <p style={{ ...lead, margin: '0.5em auto clamp(20px,3vh,30px)', maxWidth: '18ch' }}>Before we advise, we understand.</p>
-        <p style={{ ...body, maxWidth: '44ch', margin: '0 auto clamp(36px,5.5vh,56px)' }}>We don&rsquo;t begin with a playbook. We begin with the founder, the brand they&rsquo;ve built, and the possibilities they haven&rsquo;t yet imagined.</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 'clamp(30px,4vw,56px)', textAlign: 'left', maxWidth: 940, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 'clamp(30px,4vw,56px)', textAlign: 'left', maxWidth: 940, margin: 'clamp(30px,4.5vh,44px) auto 0' }}>
           {[
             { t: 'Create what’s next', d: 'Discover what makes your brand unmistakably itself, then bring it to life through creative strategy, storytelling, and experiences that connect with people.' },
             { t: 'Grow in every direction', d: 'Omnichannel demand, strategic partnerships, and the community that turns attention into belonging.' },
