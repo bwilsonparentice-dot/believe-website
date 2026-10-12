@@ -30,6 +30,7 @@ export function Closing({ ctx }: { ctx: Ctx }) {
       </div>
       <div className="bs-closing-copy bs-closing-copy-reveal">
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,3.6vw,56px)', lineHeight: 1.06, color: '#241c10', maxWidth: '12ch', margin: 0, textWrap: balance }}>The house is always open.</h2>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.5, color: 'rgba(36,28,16,0.72)', maxWidth: '26ch', margin: 'clamp(22px,3.4vh,32px) 0 0', textAlign: 'center', textWrap: balance }}>Bring the question that&rsquo;s been keeping you up at night. We&rsquo;ll start there.</p>
         <El
           as="button"
           onClick={ctx.openConversation}

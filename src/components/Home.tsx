@@ -133,9 +133,21 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
       {/* ── 4 · The people & experience — the human difference, personal and credible ── */}
       <Section style={{ paddingBottom: 'clamp(70px,12vh,150px)' }}>
-        <div style={eyebrow}>Who you&rsquo;ll find inside</div>
-        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(23px,3.4vw,38px)', lineHeight: 1.18, color: palette.navy, margin: '0.6em auto 0', maxWidth: '24ch', ...balance }}>No founder should have to carry the whole company alone.</p>
-        <p style={{ ...body, maxWidth: '50ch', margin: 'clamp(26px,4vh,40px) auto 0' }}>Believe Studio is led by Beth Wilson-Parentice, who built Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, and Starbucks. She has sat in the founder&rsquo;s chair, and built the partner she wished she&rsquo;d had.</p>
+        {/* The dramatic editorial moment of the People section: an oversized,
+            asymmetric question set to the left with open whitespace to its
+            right, the italic second line stepping in, echoing the reference
+            spreads. It stands entirely on its own, no eyebrow and no supporting
+            copy; the founder story and portraits below are its answer. */}
+        {/* widened container: this moment breaks out of the Section's 8vw padded
+            column (which narrows to ~810px on wide screens) so the oversized
+            question keeps full scale and "Who's helping you see" stays on one
+            line, with the italic second line beneath. Centered on the viewport,
+            never wider than the viewport minus a safe gutter. */}
+        <div style={{ textAlign: 'left', width: 'min(1120px, calc(100vw - clamp(32px,6vw,110px)))', marginLeft: '50%', transform: 'translateX(-50%)' }}>
+          <div aria-hidden="true" style={{ width: 56, height: 1, background: 'rgba(122,94,52,0.55)', margin: '0 0 clamp(26px,4.4vh,46px)' }} />
+          <h2 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,9vw,112px)', lineHeight: 0.97, letterSpacing: '-0.02em', color: palette.navy, margin: 0 }}>Who&rsquo;s helping you see<span style={{ display: 'block', fontStyle: 'italic', fontWeight: 400, paddingLeft: '0.14em' }}>the bigger picture?</span></h2>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '46ch', margin: 'clamp(48px,8vh,96px) 0 0', textWrap: 'pretty' as CSSProperties['textWrap'] }}>Believe Studio is led by Beth Wilson-Parentice, who built Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, and Starbucks. She has sat in the founder&rsquo;s chair, and built the partner she wished she&rsquo;d had.</p>
+        </div>
         <div className="home-team" style={{ marginTop: 'clamp(38px,6vh,62px)' }}>
           {CORE_TEAM.map((m, i) => (
             <React.Fragment key={i}>
