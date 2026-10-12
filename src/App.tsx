@@ -35,6 +35,8 @@ import { BlueprintFolio } from './chapters/BlueprintFolio'
 import { FoundersRoom } from './chapters/FoundersRoom'
 import { ArchiveCard } from './components/ArchiveCard'
 import { FieldNotesChapter } from './chapters/FieldNotes'
+import { Journal } from './chapters/Journal'
+import { isPublishedSlug } from './journal/articles'
 import { HousesChapter } from './chapters/Houses'
 import { ReceiveKey } from './chapters/ReceiveKey'
 import { Home } from './components/Home'
@@ -61,6 +63,7 @@ interface State {
   showHouse: boolean; showWhyBelieve: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showStudioPage: boolean
+  showJournal: boolean; openArticle: string | null
   showDirectory: boolean
   showObservatory: boolean; showConversation: boolean; showAbout: boolean
   showPrivacy: boolean; showTerms: boolean; showAccessibility: boolean
@@ -124,6 +127,7 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showStudioPage: 'studio',
   showStudio: 'in-residence',
   showLibrary: 'library',
+  showJournal: 'journal',
   showStories: 'stories',
   showFieldNotes: 'field-notes',
   showPeople: 'people',
@@ -149,9 +153,23 @@ function overlaySlugOf(s: State): string | null {
   for (const key of Object.keys(FLAG_SLUG) as (keyof State)[]) { if (s[key]) return FLAG_SLUG[key]! }
   return null
 }
+/** the full path the URL should show for the current state (journal articles
+    live one level deeper, at /journal/<slug>) */
+function pathForState(s: State): string {
+  const slug = overlaySlugOf(s)
+  if (!slug) return '/'
+  if (slug === 'journal' && s.openArticle) return '/journal/' + s.openArticle
+  return '/' + slug
+}
+/** the article slug named by a /journal/<slug> path, or '' */
+function articleSlugFromPath(pathname: string): string {
+  const raw = rawPath(pathname)
+  return raw.startsWith('journal/') ? raw.slice('journal/'.length).split('/')[0] : ''
+}
 /** the overlay slug named by a path, or null if the path is the building/unknown */
 function overlaySlugFromPath(pathname: string): string | null {
   const raw = rawPath(pathname)
+  if (raw === 'journal' || raw.startsWith('journal/')) return 'journal'
   return ALL_ROUTE_SLUGS.has(raw) ? raw : null
 }
 
@@ -161,13 +179,16 @@ const CLOSED_OVERLAYS: Partial<State> = {
   showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
   showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
+  showJournal: false, openArticle: null,
   showDirectory: false, activeDoorway: null,
 }
-/** the state that opens the overlay a slug names (all others closed) */
-function openStateForSlug(slug: string): Partial<State> {
+/** the state that opens the overlay a slug names (all others closed). For the
+    journal, an optional article slug opens that piece directly. */
+function openStateForSlug(slug: string, articleSlug?: string): Partial<State> {
   const base: Partial<State> = { ...CLOSED_OVERLAYS }
   if (SLUG_TO_DOORWAY[slug]) base.activeDoorway = SLUG_TO_DOORWAY[slug]
   else if (SLUG_TO_FLAG[slug]) (base as Record<string, unknown>)[SLUG_TO_FLAG[slug] as string] = true
+  if (slug === 'journal' && articleSlug && isPublishedSlug(articleSlug)) base.openArticle = articleSlug
   return base
 }
 
@@ -179,7 +200,7 @@ function makeInitialState(): State {
     showHouses: false, showPeople: false, showStudio: false,
     showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showStudioPage: false, showDirectory: false,
+    showStudioPage: false, showJournal: false, openArticle: null, showDirectory: false,
     showObservatory: false, showConversation: false, showAbout: false,
     showPrivacy: false, showTerms: false, showAccessibility: false,
     showKey: false, facadeReady: false, birdLanded: false,
@@ -188,7 +209,7 @@ function makeInitialState(): State {
   const path = window.location.pathname
   if (isFoyerRoute()) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
   const slug = overlaySlugFromPath(path)
-  if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) }
+  if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug, articleSlugFromPath(path)) }
   if (BUILDING_ANCHORS.has(rawPath(path))) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
   // returning visitors skip the cinematic arrival and land straight on the homepage
   if (hasVisited()) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
@@ -243,6 +264,8 @@ export class App extends React.Component<Record<string, never>, State> {
       openHouses: this.openChapter('showHouses'), closeHouses: this.closeChapter('showHouses'),
       openWork: this.openChapter('showWork'), closeWork: this.closeChapter('showWork'),
       openFieldNotes: this.openChapter('showFieldNotes'), closeFieldNotes: this.closeChapter('showFieldNotes'),
+      openJournal: this.openJournal, closeJournal: this.openChapter('showLibrary'),
+      openArticle: this.openArticle, closeArticle: this.closeArticle,
       openObservatory: this.openChapter('showObservatory'), closeObservatory: this.closeChapter('showObservatory'),
       openAbout: this.openChapter('showAbout'), closeAbout: this.closeChapter('showAbout'),
       openPrivacy: this.openChapter('showPrivacy'), closePrivacy: this.closeChapter('showPrivacy'),
@@ -270,8 +293,8 @@ export class App extends React.Component<Record<string, never>, State> {
     window.addEventListener('popstate', this.onPopState)
 
     // reflect the entry URL, and honor a deep link into a specific room
-    this.lastSlug = overlaySlugOf(this.state)
-    try { window.history.replaceState({ slug: this.lastSlug }, '', window.location.pathname) } catch { /* ignore */ }
+    this.lastSlug = pathForState(this.state)
+    try { window.history.replaceState({ path: this.lastSlug }, '', window.location.pathname) } catch { /* ignore */ }
     const deepLinked = this.state.phase === 'map'
     if (deepLinked && BUILDING_ANCHORS.has(rawPath(window.location.pathname)) && rawPath(window.location.pathname) === 'founding-wall') {
       setTimeout(() => this.scrollToWall(), 320)
@@ -298,22 +321,23 @@ export class App extends React.Component<Record<string, never>, State> {
   // browser back/forward buttons walk between rooms as the visitor expects.
   private syncUrl() {
     if (typeof window === 'undefined' || this.state.phase !== 'map') return
-    const slug = overlaySlugOf(this.state)
-    if (slug === this.lastSlug) return
-    this.lastSlug = slug
+    const path = pathForState(this.state)
+    if (path === this.lastSlug) return
+    this.lastSlug = path
     if (this.suppressPush) return
-    const path = slug ? '/' + slug : '/'
     if (window.location.pathname !== path) {
-      try { window.history.pushState({ slug }, '', path) } catch { /* ignore */ }
+      try { window.history.pushState({ path }, '', path) } catch { /* ignore */ }
     }
   }
   // the browser back/forward buttons: mirror the URL back into open/closed state
   private onPopState = () => {
-    const slug = overlaySlugFromPath(window.location.pathname)
-    this.lastSlug = slug
+    const raw = window.location.pathname
+    const slug = overlaySlugFromPath(raw)
+    const article = slug === 'journal' ? articleSlugFromPath(raw) : ''
+    this.lastSlug = slug ? (slug === 'journal' && article && isPublishedSlug(article) ? '/journal/' + article : '/' + slug) : '/'
     this.suppressPush = true
     const done = () => { this.suppressPush = false }
-    if (slug) this.setState({ phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug) } as unknown as Pick<State, keyof State>, done)
+    if (slug) this.setState({ phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug, article) } as unknown as Pick<State, keyof State>, done)
     else this.setState({ ...this.closedChapters() } as unknown as Pick<State, keyof State>, done)
   }
   private scrollToWall() {
@@ -335,7 +359,8 @@ export class App extends React.Component<Record<string, never>, State> {
       if (this.state.showConversation) { this.setState({ showConversation: false }); return }
       if (this.state.showDirectory) { this.setState({ showDirectory: false }); return }
       if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
-      const order: (keyof State)[] = ['showPrivacy', 'showTerms', 'showAccessibility', 'showStories', 'showFieldNotes', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showObservatory', 'showAbout', 'showPeople', 'showHouses', 'showKey']
+      if (this.state.showJournal && this.state.openArticle) { this.setState({ openArticle: null }); return }
+      const order: (keyof State)[] = ['showPrivacy', 'showTerms', 'showAccessibility', 'showStories', 'showFieldNotes', 'showJournal', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showObservatory', 'showAbout', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
     }
@@ -476,13 +501,28 @@ export class App extends React.Component<Record<string, never>, State> {
   private closeConversation = () => this.setState({ showConversation: false })
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
     this.setState({ ...this.closedChapters(), [key]: true } as unknown as Pick<State, keyof State>)
   }
   private closeChapter = (key: keyof State): Handler => () => this.setState({ [key]: false } as unknown as Pick<State, keyof State>)
+
+  // Believe Beyond Borders — the journal landing, and individual articles
+  private openJournal = (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    this.setState({ ...this.closedChapters(), showJournal: true, openArticle: null } as unknown as Pick<State, keyof State>)
+  }
+  private openArticle = (slug: string): Handler => (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    this.setState({ ...this.closedChapters(), showJournal: true, openArticle: slug } as unknown as Pick<State, keyof State>)
+    try { window.scrollTo({ top: 0 }) } catch { /* ignore */ }
+  }
+  private closeArticle = (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    this.setState({ openArticle: null })
+  }
 
   private gotoRoom = (id: string): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -561,6 +601,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showBlueprint && <BlueprintChapter ctx={this.ctx} />}
         {this.state.showFieldNotes && <FieldNotesChapter ctx={this.ctx} />}
         {this.state.showLibrary && <LibraryChapter ctx={this.ctx} />}
+        {this.state.showJournal && <Journal ctx={this.ctx} articleSlug={this.state.openArticle} />}
         {this.state.showTable && <TableChapter ctx={this.ctx} />}
         {this.state.showWork && <WorkChapter ctx={this.ctx} />}
         {this.state.activeDoorway === 'believe-blueprint'

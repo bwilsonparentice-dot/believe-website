@@ -85,7 +85,7 @@ export function FounderAnswers() {
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#2b2723' }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(122,94,52,0.72)' }}
         >
-          Read all seven Founder Answers &rarr;
+          Read all the Founder Answers &rarr;
         </button>
       )}
     </section>

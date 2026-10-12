@@ -6,6 +6,7 @@ import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
 import { HouseArch } from '../components/HouseArch'
 import { Correspondence } from '../components/Correspondence'
+import { FounderAnswers } from '../components/FounderAnswers'
 import { EXPERIENCES, PHOTOS } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
@@ -228,6 +229,13 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
         <div style={{ marginTop: 'var(--space-lg)', maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', ...surface() }}>
           <div style={{ ...label, marginBottom: 'clamp(40px,7vh,72px)' }}>Questions founders ask</div>
           <Correspondence items={x.faqs} />
+        </div>
+
+        {/* ── Founder Answers — real questions founders ask, answered by people
+            who have built brands. Relocated here from the Library so the Library
+            can be purely editorial; kept public and easy to find. */}
+        <div style={{ marginTop: 'var(--space-lg)', maxWidth: 720, marginLeft: 'auto', marginRight: 'auto', ...surface() }}>
+          <FounderAnswers />
         </div>
 
         {/* ── beyond the room → the House — the final, quiet doorway on the page,

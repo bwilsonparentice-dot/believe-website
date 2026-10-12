@@ -24,6 +24,9 @@ export interface Ctx {
   openHouses: Handler; closeHouses: Handler
   openWork: Handler; closeWork: Handler
   openFieldNotes: Handler; closeFieldNotes: Handler
+  /** Believe Beyond Borders — the journal landing, and an individual article */
+  openJournal: Handler; closeJournal: Handler
+  openArticle: (slug: string) => Handler; closeArticle: Handler
   /** The Observatory — a short intro to Believe Radar, links out to its own site */
   openObservatory: Handler; closeObservatory: Handler
   openAbout: Handler; closeAbout: Handler
