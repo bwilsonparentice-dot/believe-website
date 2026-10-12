@@ -7,6 +7,7 @@ import { ImageSlot } from '../components/ImageSlot'
 import { openBooking } from '../lib/booking'
 import { ArchiveCard } from '../components/ArchiveCard'
 import { Correspondence } from '../components/Correspondence'
+import { DrawingRoom } from './DrawingRoom'
 import { EXPERIENCES, PHOTOS } from '../data'
 
 const serif = "'Cormorant Garamond',serif"
@@ -40,6 +41,9 @@ const surface = (range = 'entry 4% cover 30%'): CSSProperties => ({
  * (ctx.openDoorway(id).)
  */
 export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
+  // The Drawing Room (Private Advisory) is its own dedicated, quieter page.
+  if (id === 'private-advisory') return <DrawingRoom ctx={ctx} />
+
   const x = EXPERIENCES[id]
   if (!x) return null
 
