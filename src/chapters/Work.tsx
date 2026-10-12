@@ -57,7 +57,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
     {
       n: '01', title: 'Create What’s Next', verb: 'Imagine.',
       forWhom: 'For founders ready to see their brand differently.',
-      body: 'From positioning and storytelling to unexpected partnerships, experiences, and new ways of connecting with consumers, we explore what a brand could become.',
+      body: 'We begin by finding what makes a brand distinctive, then express it through positioning, storytelling, partnerships, and new ways of connecting with the people it wants to reach.',
       message: 'We turn possibility into creative strategy.',
       img: '/photos/photo-atelier.webp', imgAlt: 'A sunlit creative atelier, a small team reviewing moodboards, materials, and sketches around a long table',
     },

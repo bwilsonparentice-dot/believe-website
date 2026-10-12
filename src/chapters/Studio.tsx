@@ -73,9 +73,17 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         {/* ── what the Studio makes ─────────────────────────────────────── */}
         <div style={{ marginTop: 'var(--space-lg)' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,4.2vw,58px)', lineHeight: 1.14, color: palette.ink, margin: '0 auto', maxWidth: '18ch', ...balance, ...surface('entry 0% cover 24%') }}>A founder&rsquo;s imagination, made real.</p>
-          <div style={{ marginTop: 'clamp(38px,6.5vh,76px)', display: 'flex', flexDirection: 'column', gap: 'clamp(18px,3vh,30px)', ...surface() }}>
+
+          {/* the defining question — the Studio's intellectual anchor, set apart
+              as a quiet editorial centerpiece rather than another paragraph */}
+          <div style={{ marginTop: 'clamp(32px,5.5vh,64px)', ...surface('entry 0% cover 22%') }}>
+            <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.5), transparent)' }} />
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(25px,3.6vw,48px)', lineHeight: 1.3, letterSpacing: '0.005em', color: palette.navy, margin: '0 auto', maxWidth: '21ch', ...balance }}>If we removed your logo, packaging, product category, and marketing language, what would remain that makes your brand uniquely yours?</p>
+          </div>
+
+          <div style={{ marginTop: 'clamp(32px,5.5vh,64px)', display: 'flex', flexDirection: 'column', gap: 'clamp(18px,3vh,30px)', ...surface() }}>
             {[
-              'We build the brand world a company lives inside: its positioning, its story, its identity, and the creative direction that makes it impossible to ignore.',
+              'That question is where we begin. Together, we uncover the perspective and character at the heart of your brand, then bring it to life through creative strategy, storytelling, and experiences that connect with people.',
               'Some of it is shaped quietly at the worktable. Some becomes clearer in conversation. All of it is built around the founder, never templated.',
             ].map((p, i) => (
               <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.72)', margin: 0, maxWidth: '40ch', marginLeft: 'auto', marginRight: 'auto', ...pretty }}>{p}</p>

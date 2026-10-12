@@ -101,7 +101,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <p style={{ ...lead, margin: '0.5em auto clamp(36px,5.5vh,56px)', maxWidth: '18ch' }}>Before we advise, we understand.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 'clamp(30px,4vw,56px)', textAlign: 'left', maxWidth: 940, margin: '0 auto' }}>
           {[
-            { t: 'Create what’s next', d: 'Brand positioning, creative strategy, and the brand world that makes a founder impossible to ignore.' },
+            { t: 'Create what’s next', d: 'Discover what makes your brand unmistakably itself, then bring it to life through creative strategy, storytelling, and experiences that connect with people.' },
             { t: 'Grow in every direction', d: 'Omnichannel demand, strategic partnerships, and the community that turns attention into belonging.' },
             { t: 'Think it through together', d: 'A trusted partner for the decisions that shape what comes next, from the next growth move to the ones only a founder can make.' },
           ].map((a) => (
