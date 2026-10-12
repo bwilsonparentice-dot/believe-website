@@ -53,23 +53,26 @@ const reveal: React.CSSProperties = {
 export function WorkChapter({ ctx }: { ctx: Ctx }) {
   const talk = openBooking
 
+  // Each way of working is named in its eyebrow (Creative Strategy / Private
+  // Advisory / The Table), with the editorial phrase as the headline and the
+  // original one-word verb kept as a subtle accent beneath it.
   const invitations = [
     {
-      n: '01', title: 'Create What’s Next', verb: 'Imagine.',
+      n: '01', title: 'Creative Strategy', verb: 'Create What’s Next', accent: 'Imagine.',
       forWhom: 'For founders ready to see their brand differently.',
       body: 'We begin by finding what makes a brand distinctive, then express it through positioning, storytelling, partnerships, and new ways of connecting with the people it wants to reach.',
       message: 'We turn possibility into creative strategy.',
       img: '/photos/photo-atelier.webp', imgAlt: 'A sunlit creative atelier, a small team reviewing moodboards, materials, and sketches around a long table',
     },
     {
-      n: '02', title: 'A Seat at Your Table', verb: 'Think together.',
+      n: '02', title: 'Private Advisory', verb: 'A Different Perspective', accent: 'Think together.',
       forWhom: 'For founders navigating what comes next.',
       body: 'A trusted strategic voice who has built a company, beside you through the decisions that shape it.',
       message: 'You don’t have to figure out every next move alone.',
       img: '/photos/photo-conversation.webp', imgAlt: 'Two chairs drawn close around a small walnut table, coffee and an open journal in morning light',
     },
     {
-      n: '03', title: 'Build Something Together', verb: 'Connect.',
+      n: '03', title: 'The Table', verb: 'Build Something Together', accent: 'Connect.',
       forWhom: 'For founders who believe the right connection can change everything.',
       body: 'We bring together brands, people, ideas, and communities to create opportunities that might never have existed otherwise.',
       message: 'Sometimes the most valuable thing we create is the connection itself.',
@@ -86,8 +89,8 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <ArchMark width={2.2} margin="0 auto 1.5em" />
         <div style={{ ...label, marginBottom: '1.5em' }}>Ways to Work With Believe</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.1vw,68px)', lineHeight: 1.06, margin: '0 auto', maxWidth: '18ch', ...balance }}>The best things begin with a conversation.</h2>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', maxWidth: '46ch', margin: 'clamp(34px,5.5vh,66px) auto 0', ...balance }}>We don&rsquo;t begin with a package. We begin with what you&rsquo;re building, what you&rsquo;re questioning, and what you believe could be possible.</p>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.84)', maxWidth: '40ch', margin: 'clamp(24px,4vh,40px) auto 0', ...balance }}>The first conversation is complimentary, with no obligation. You don&rsquo;t need to know exactly what you need before reaching out.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,28px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', maxWidth: '48ch', margin: 'clamp(34px,5.5vh,66px) auto 0', ...balance }}>We begin by getting to know you and the company you&rsquo;ve built, what&rsquo;s happening now, what you&rsquo;re imagining, and what might be possible. Sometimes a conversation surfaces an immediate opportunity. Sometimes it opens an entirely different way of thinking about the business.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.84)', maxWidth: '42ch', margin: 'clamp(24px,4vh,40px) auto 0', ...balance }}>From there, we explore whether Believe could be the right creative and strategic partner. The first conversation is complimentary, with no obligation.</p>
         <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(38px,6.5vh,68px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
 
         {/* 2 · The three ways to work — photographic spreads, distinct
@@ -104,8 +107,9 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
                   <ImageSlot src={inv.img} alt={inv.imgAlt} placeholder={inv.imgAlt} fit="cover" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
                 </div>
                 <div className="wtw-copy wtw-reveal-copy">
-                  <div style={{ ...label, color: 'rgba(122,94,52,0.72)', marginBottom: 'var(--wtw-inv-label)' }}>{inv.n}&nbsp;&mdash;&nbsp;{inv.title}</div>
+                  <div style={{ ...label, color: 'rgba(122,94,52,0.72)', marginBottom: 'var(--wtw-inv-label)' }}>{inv.n}&nbsp;&middot;&nbsp;{inv.title}</div>
                   <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.2vw,56px)', lineHeight: 1.03, color: '#2b2723', margin: 0 }}>{inv.verb}</p>
+                  <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.6vw,19px)', letterSpacing: '0.01em', lineHeight: 1.2, color: 'rgba(122,94,52,0.62)', margin: '0.5em 0 0' }}>{inv.accent}</p>
                   <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(110,84,44,0.95)', maxWidth: '30ch', margin: 'var(--wtw-inv-for) 0 0', ...pretty }}>{inv.forWhom}</p>
                   <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.68, color: 'rgba(43,38,30,0.9)', margin: 'var(--wtw-inv-body) 0 0', ...pretty }}>{inv.body}</p>
                   <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.4vw,30px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '30ch', margin: 'var(--wtw-inv-msg) 0 0', ...balance }}>{inv.message}</p>
@@ -121,10 +125,9 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>How engagements take shape</div>
           <div style={{ maxWidth: 620, margin: '0 auto', textAlign: 'left' }}>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.68)', margin: '0 0 clamp(20px,3.4vh,34px)', textAlign: 'center', ...pretty }}>In time, a conversation might become a focused engagement, an ongoing seat at the table, or a place to gather with other founders.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.68)', margin: '0 0 clamp(20px,3.4vh,34px)', textAlign: 'center', ...pretty }}>In time, a conversation might become focused creative work, an ongoing seat at the table, or a place to gather with other founders.</p>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                { n: 'The Believe Blueprint', d: 'A focused strategic engagement, the architecture of your next chapter.', go: ctx.openBlueprint },
                 { n: 'Private Advisory', d: 'An ongoing strategic partnership, within The Drawing Room.', go: ctx.openAdvisory },
                 { n: 'The Table', d: 'A gathering space for founders and conversation.', go: ctx.openTable },
               ].map((e) => (

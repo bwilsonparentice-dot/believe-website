@@ -98,7 +98,8 @@ export function Home({ ctx }: { ctx: Ctx }) {
       {/* ── 2 · What we help founders accomplish — the practical value, early and concrete ── */}
       <Section>
         <div style={eyebrow}>How we help</div>
-        <p style={{ ...lead, margin: '0.5em auto clamp(36px,5.5vh,56px)', maxWidth: '18ch' }}>Before we advise, we understand.</p>
+        <p style={{ ...lead, margin: '0.5em auto clamp(20px,3vh,30px)', maxWidth: '18ch' }}>Before we advise, we understand.</p>
+        <p style={{ ...body, maxWidth: '44ch', margin: '0 auto clamp(36px,5.5vh,56px)' }}>We don&rsquo;t begin with a playbook. We begin with the founder, the brand they&rsquo;ve built, and the possibilities they haven&rsquo;t yet imagined.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 'clamp(30px,4vw,56px)', textAlign: 'left', maxWidth: 940, margin: '0 auto' }}>
           {[
             { t: 'Create what’s next', d: 'Discover what makes your brand unmistakably itself, then bring it to life through creative strategy, storytelling, and experiences that connect with people.' },

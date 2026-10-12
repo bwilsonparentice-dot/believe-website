@@ -16,7 +16,6 @@ const brass = 'rgba(122,94,52,0.9)'
 type Room = { slug: string; name: string; open: (c: Ctx) => Handler }
 // the guided walk through the primary rooms, in narrative order
 const WALK: Room[] = [
-  { slug: 'blueprint', name: 'The Believe Blueprint', open: (c) => c.openBlueprint },
   { slug: 'founders-room', name: 'The Founder’s Room', open: (c) => c.openFounderRoom },
   { slug: 'table', name: 'The Table', open: (c) => c.openTable },
   { slug: 'private-advisory', name: 'The Drawing Room', open: (c) => c.openAdvisory },
