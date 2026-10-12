@@ -53,7 +53,7 @@ const CONDITIONS: [string, string][] = [
 export function StudioChapter({ ctx }: { ctx: Ctx }) {
   return (
     <ChapterShell onClose={ctx.closeStudioPage} background="#efe6d3" z={120}>
-      <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: 'clamp(90px,16vh,190px) 7vw clamp(50px,9vh,110px)', textAlign: 'center', color: palette.ink, animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
+      <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: 'clamp(90px,16vh,190px) 7vw clamp(42px,7.5vh,92px)', textAlign: 'center', color: palette.ink, animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
         {/* ── the hero ──────────────────────────────────────────────────── */}
         <div style={{ ...label, marginBottom: '1.5em' }}>The Studio</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(42px,6.4vw,94px)', lineHeight: 1.0, margin: '0 0 0.42em' }}>The Studio</h2>
@@ -71,9 +71,9 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
       <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: '0 7vw clamp(80px,15vh,190px)', textAlign: 'center', color: palette.ink }}>
 
         {/* ── what the Studio makes ─────────────────────────────────────── */}
-        <div style={{ marginTop: 'clamp(100px,18vh,220px)' }}>
+        <div style={{ marginTop: 'var(--space-lg)' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,4.2vw,58px)', lineHeight: 1.14, color: palette.ink, margin: '0 auto', maxWidth: '18ch', ...balance, ...surface('entry 0% cover 24%') }}>A founder&rsquo;s imagination, made real.</p>
-          <div style={{ marginTop: 'clamp(44px,8vh,90px)', display: 'flex', flexDirection: 'column', gap: 'clamp(18px,3vh,30px)', ...surface() }}>
+          <div style={{ marginTop: 'clamp(38px,6.5vh,76px)', display: 'flex', flexDirection: 'column', gap: 'clamp(18px,3vh,30px)', ...surface() }}>
             {[
               'We build the brand world a company lives inside: its positioning, its story, its identity, and the creative direction that makes it impossible to ignore.',
               'Some of it is shaped quietly at the worktable. Some becomes clearer in conversation. All of it is built around the founder, never templated.',
@@ -84,7 +84,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ══ the point of view — demand before distribution ═══════════════ */}
-        <div style={{ marginTop: 'clamp(120px,22vh,260px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
+        <div style={{ marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
           <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The Believe approach</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.2vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '16ch', textAlign: 'center', ...balance }}>Demand before distribution.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', margin: 'clamp(34px,5.5vh,60px) auto 0', maxWidth: '52ch', ...pretty }}>We are not anti-retail. Retail is one powerful part of a much larger omnichannel strategy. But the conventional path assumes growth is mostly a matter of more stores, more shelf, more distributors. We think differently. We build demand intentionally and use every channel strategically, so discovery, distribution, and demand reinforce one another instead of waiting on each other.</p>
@@ -116,7 +116,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ══ build belonging ══════════════════════════════════════════════ */}
-        <div style={{ marginTop: 'clamp(120px,22vh,260px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
+        <div style={{ marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
           <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The deeper aim</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(26px,4vw,52px)', lineHeight: 1.1, color: palette.ink, margin: '0 auto', maxWidth: '18ch', textAlign: 'center', ...balance }}>Don&rsquo;t just build an audience. Build belonging.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', margin: 'clamp(34px,5.5vh,60px) auto 0', maxWidth: '52ch', ...pretty }}>A single viral moment can be useful, but it is not a brand. The brands that last are the ones people identify with, talk about, and want to be part of. We can&rsquo;t manufacture a cult following, and we wouldn&rsquo;t try. What we can do is help founders intentionally create the conditions for a passionate following to form.</p>
@@ -132,17 +132,17 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ══ tied to the three pillars ════════════════════════════════════ */}
-        <div style={{ marginTop: 'clamp(110px,20vh,240px)', ...surface() }}>
+        <div style={{ marginTop: 'clamp(94px,17vh,198px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(22px,3vw,34px)', lineHeight: 1.3, color: palette.navy, margin: '0 auto', maxWidth: '34ch', ...balance }}>Creativity imagines what&rsquo;s possible. Commerce brings it to life. Connection gives it meaning.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.68)', margin: 'clamp(26px,4vh,40px) auto 0', maxWidth: '46ch', ...pretty }}>Demand gives a brand reach. Belonging gives it roots. The work that changes a company happens where all three meet.</p>
         </div>
 
         {/* ── the closing ───────────────────────────────────────────────── */}
-        <div style={{ marginTop: 'clamp(100px,18vh,220px)', ...surface() }}>
+        <div style={{ marginTop: 'var(--space-lg)', ...surface() }}>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.9vw,38px)', lineHeight: 1.3, color: palette.ink, margin: '0 auto', maxWidth: '22ch', ...balance }}>Every lasting brand began as something a founder could only imagine.</p>
         </div>
 
-        <div style={{ width: 1, height: 'clamp(52px,9vh,96px)', margin: 'clamp(80px,14vh,160px) auto clamp(36px,6vh,60px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+        <div style={{ width: 1, height: 'clamp(52px,9vh,96px)', margin: 'clamp(68px,12vh,136px) auto clamp(32px,5vh,52px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
         <div style={{ textAlign: 'center' }}><RoomNav ctx={ctx} slug="studio" /></div>
       </div>
     </ChapterShell>

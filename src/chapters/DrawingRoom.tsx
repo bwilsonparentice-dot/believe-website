@@ -34,7 +34,7 @@ const surface: CSSProperties = {
   animationRange: 'entry 4% cover 30%' as unknown as string,
 }
 /** spacious, but without the generic doorway's oversized gaps */
-const moment: CSSProperties = { margin: 'clamp(76px,13vh,150px) auto 0', ...surface }
+const moment: CSSProperties = { margin: 'clamp(66px,11vh,128px) auto 0', ...surface }
 
 export function DrawingRoom({ ctx }: { ctx: Ctx }) {
   return (
@@ -47,7 +47,7 @@ export function DrawingRoom({ ctx }: { ctx: Ctx }) {
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,88px)', lineHeight: 1.02, margin: '0 0 0.45em' }}>The Drawing Room</h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>A seat beside you when the decisions matter most.</p>
 
-        <div style={{ width: 'min(90%,660px)', margin: 'clamp(44px,8vh,90px) auto 0' }}>
+        <div style={{ width: 'min(90%,660px)', margin: 'var(--hero-gap) auto 0' }}>
           <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 2', overflow: 'hidden', borderRadius: '999px 999px 6px 6px', boxShadow: '0 46px 90px -54px rgba(60,44,20,0.66)' }}>
             <ImageSlot src={PHOTOS.advisory} alt="A quiet private room: two chairs, warm light, a place for the decisions that matter most" fit="cover" placeholder="A quiet private room with two chairs and warm light" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
             <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(60% 60% at 40% 22%, rgba(255,232,180,0.5), transparent 68%)' }} />
@@ -79,7 +79,7 @@ export function DrawingRoom({ ctx }: { ctx: Ctx }) {
         </section>
 
         {/* 5 · The invitation */}
-        <section style={{ margin: 'clamp(96px,16vh,190px) auto 0', ...surface }}>
+        <section style={{ margin: 'clamp(84px,13vh,158px) auto 0', ...surface }}>
           <ArchMark width={2} margin="0 auto clamp(24px,4vh,40px)" />
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,60px)', lineHeight: 1.12, color: '#2b2723', margin: '0 auto', maxWidth: '18ch', ...balance }}>It begins with a conversation.</p>
           <p style={{ ...body, maxWidth: '44ch', margin: 'clamp(32px,5.5vh,56px) auto 0' }}>Your first Founder Conversation is complimentary, with no obligation. It&rsquo;s an opportunity to get to know each other, explore what&rsquo;s in front of you, and discover whether Private Advisory is the right fit.</p>
@@ -92,7 +92,7 @@ export function DrawingRoom({ ctx }: { ctx: Ctx }) {
           </El>
         </section>
 
-        <Divider h="clamp(48px,7vh,80px)" m="clamp(90px,15vh,180px) auto clamp(36px,6vh,60px)" />
+        <Divider h="clamp(48px,7vh,80px)" m="clamp(74px,12vh,148px) auto clamp(32px,5vh,52px)" />
         <div style={{ textAlign: 'center' }}><RoomNav ctx={ctx} slug="private-advisory" /></div>
       </div>
     </ChapterShell>

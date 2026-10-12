@@ -67,7 +67,7 @@ function DrawingSheet({ d, variant, sketch }: { d: Drawing; variant: 'center' | 
   )
 
   return (
-    <article style={{ position: 'relative', border: `1px solid ${graphite}0.13)`, padding: 'clamp(40px,6vw,86px) clamp(34px,5vw,74px) clamp(64px,9vw,110px)', margin: 'clamp(40px,7vh,96px) 0', textAlign: align, ...surface('entry 3% cover 24%') }}>
+    <article style={{ position: 'relative', border: `1px solid ${graphite}0.13)`, padding: 'clamp(40px,6vw,86px) clamp(34px,5vw,74px) clamp(64px,9vw,110px)', margin: 'clamp(34px,6vh,82px) 0', textAlign: align, ...surface('entry 3% cover 24%') }}>
       {/* corner registration marks */}
       <Reg s={{ top: 6, left: 6 }} /><Reg s={{ top: 6, right: 6 }} />
       <Reg s={{ bottom: 6, left: 6 }} /><Reg s={{ bottom: 6, right: 6 }} />
@@ -136,7 +136,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
 
   return (
     <ChapterShell onClose={ctx.closeDoorway} background="#ece5d1" z={130}>
-      <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: 'clamp(120px,22vh,280px) 7vw clamp(80px,14vh,170px)', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
+      <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: 'clamp(104px,18vh,224px) 7vw clamp(80px,14vh,170px)', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* ── opening — the folio, resting on the oak table, in an arch ──── */}
         <div style={{ width: 'min(90%,660px)', margin: '0 auto', ...surface('entry 0% cover 18%') }}>
@@ -147,25 +147,25 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── the heading, in the language of the other rooms ───────────── */}
-        <div style={{ textAlign: 'center', marginTop: 'clamp(80px,14vh,170px)' }}>
+        <div style={{ textAlign: 'center', marginTop: 'clamp(68px,12vh,144px)' }}>
           <ArchMark width={2.2} margin="0 auto 1.5em" />
           <div style={{ ...label, marginBottom: '1.3em' }}>{x.eyebrow}</div>
           <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.2vw,90px)', lineHeight: 1.01, margin: '0 0 0.4em' }}>{x.name}</h2>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>{x.tagline}</p>
         </div>
 
-        <ArchRule m="clamp(96px,17vh,220px) auto" />
+        <ArchRule m="clamp(80px,14vh,182px) auto" />
 
         {/* ── the manifesto, then the philosophy ────────────────────────── */}
         <div style={{ textAlign: 'center' }}>
-          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.8vw,68px)', lineHeight: 1.1, margin: '0 auto clamp(48px,8vh,96px)', maxWidth: '18ch', ...balance }}>We don’t build business plans. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)' }}>We reveal business architecture.</span></h2>
+          <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.8vw,68px)', lineHeight: 1.1, margin: '0 auto clamp(40px,7vh,82px)', maxWidth: '18ch', ...balance }}>We don’t build business plans. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.92)' }}>We reveal business architecture.</span></h2>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.86)', maxWidth: '28ch', margin: '0 auto', ...balance }}>Business plans attempt to predict the future. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.9)' }}>Architecture creates structures capable of carrying it.</span></p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.72)', maxWidth: '46ch', margin: 'clamp(48px,8vh,90px) auto 0', ...pretty }}>The Believe Blueprint is not a template, a deck, or a collection of recommendations. It is the architectural plan for your next chapter: a thoughtful examination of your company, your opportunities, your leadership, and the decisions that will shape what comes next.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.82)', maxWidth: '32ch', margin: 'clamp(34px,6vh,60px) auto 0', ...balance }}>Every Blueprint is built from the ground up. Never templated. Never borrowed. Always designed around the founder and the company they are becoming.</p>
         </div>
 
         {/* ── transition into the drawings ──────────────────────────────── */}
-        <ArchRule m="clamp(110px,20vh,240px) auto clamp(70px,12vh,150px)" />
+        <ArchRule m="clamp(92px,17vh,200px) auto clamp(60px,10vh,126px)" />
         <div style={{ textAlign: 'center' }}>
           <div style={{ ...label, marginBottom: 'clamp(30px,5vh,52px)' }}>What we architect together</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.78)', maxWidth: '40ch', margin: '0 auto', ...pretty }}>Every meaningful building begins with a series of architectural drawings. The Believe Blueprint is built the same way: each drawing reveals another layer of your company’s architecture, until the complete picture comes into focus.</p>
@@ -187,7 +187,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── the particulars — architectural specifications ────────────── */}
-        <ArchRule m="clamp(110px,20vh,240px) auto clamp(60px,10vh,120px)" />
+        <ArchRule m="clamp(92px,17vh,200px) auto clamp(52px,9vh,102px)" />
         <div style={{ ...surface() }}>
           <div style={{ ...label, textAlign: 'center', marginBottom: 'clamp(48px,8vh,90px)' }}>The particulars</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 'clamp(36px,4.5vw,64px)', maxWidth: 820, margin: '0 auto' }}>
@@ -204,9 +204,9 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── what changes — one sentence at a time ─────────────────────── */}
-        <ArchRule m="clamp(120px,22vh,260px) auto clamp(60px,10vh,120px)" />
+        <ArchRule m="clamp(100px,18vh,214px) auto clamp(52px,9vh,102px)" />
         <div style={{ textAlign: 'center' }}>
-          <div style={{ ...label, marginBottom: 'clamp(50px,9vh,100px)', ...surface('entry 0% cover 22%') }}>What changes because of it</div>
+          <div style={{ ...label, marginBottom: 'clamp(42px,7.5vh,84px)', ...surface('entry 0% cover 22%') }}>What changes because of it</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(34px,6.5vh,82px)' }}>
             {CHANGES.map((c, i) => (
               <p key={i} style={{ fontFamily: serif, fontStyle: i < 2 ? 'normal' : 'italic', fontWeight: 400, fontSize: 'clamp(24px,3.2vw,42px)', lineHeight: 1.24, color: i < 2 ? '#2b2723' : 'rgba(122,94,52,0.86)', margin: 0, maxWidth: '22ch', marginLeft: 'auto', marginRight: 'auto', ...balance, ...surface('entry 0% cover 20%') }}>{c}</p>
@@ -215,14 +215,14 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ── questions founders ask ────────────────────────────────────── */}
-        <ArchRule m="clamp(120px,22vh,260px) auto clamp(50px,9vh,96px)" />
+        <ArchRule m="clamp(100px,18vh,214px) auto clamp(42px,7.5vh,82px)" />
         <div style={{ maxWidth: 720, margin: '0 auto', ...surface() }}>
           <div style={{ ...label, textAlign: 'center', marginBottom: 'clamp(40px,7vh,72px)' }}>Questions founders ask</div>
           <Correspondence items={x.faqs} />
         </div>
 
         {/* ── the invitation — the words create the desire ──────────────── */}
-        <ArchRule m="clamp(120px,22vh,260px) auto clamp(60px,10vh,120px)" />
+        <ArchRule m="clamp(100px,18vh,214px) auto clamp(52px,9vh,102px)" />
         <div style={{ textAlign: 'center' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.8vw,52px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance, ...surface('entry 2% cover 26%') }}>{x.joinLead}</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.7)', maxWidth: '44ch', margin: 'clamp(40px,7vh,72px) auto 0', ...pretty, ...surface() }}>{x.joinBody}</p>
@@ -237,7 +237,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
           </El>
         </div>
 
-        <ArchRule m="clamp(96px,16vh,190px) auto clamp(36px,6vh,60px)" />
+        <ArchRule m="clamp(80px,13vh,160px) auto clamp(32px,5vh,52px)" />
         <div style={{ textAlign: 'center' }}><RoomNav ctx={ctx} slug="blueprint" /></div>
       </div>
 

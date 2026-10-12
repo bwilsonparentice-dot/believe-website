@@ -19,9 +19,16 @@
   --space-xs:  clamp(24px, 4vh, 44px);
   --space-sm:  clamp(40px, 7vh, 80px);
   --space-md:  clamp(70px, 12vh, 150px);
-  --space-lg:  clamp(100px, 18vh, 220px);
-  --space-xl:  clamp(130px, 24vh, 300px);
+  --space-lg:  clamp(88px, 15vh, 184px);
+  --space-xl:  clamp(116px, 20vh, 236px);
   --space-sacred: clamp(130px, 28vh, 360px);
+
+  /* --hero-gap — the calibrated breath between a room's intro/tagline and the
+     photograph that belongs to it. Shared so arched/inset photo heroes read as
+     one connected composition across the House (calibrated on The Drawing
+     Room). Full-bleed heroes keep a slightly more open, bespoke value so the
+     rooms don't feel mechanically identical. */
+  --hero-gap: clamp(36px, 6.5vh, 74px);
 }
 
 html, body { margin: 0; padding: 0; }
@@ -227,7 +234,7 @@ a:hover { color: #b08a4a; }
    reading rhythm (~30–40% less vertical whitespace) via the same tokens, so the
    approved desktop aesthetic is untouched. */
 .wtw {
-  --wtw-hero-invite-t: clamp(46px,8vh,98px);
+  --wtw-hero-invite-t: clamp(40px,6.8vh,82px);
   --wtw-hero-invite-b: clamp(30px,5vh,62px);
   --wtw-head-first: clamp(34px,6vh,68px);
   --wtw-inv-gap: clamp(74px,13vh,156px);

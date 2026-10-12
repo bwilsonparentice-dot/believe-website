@@ -29,7 +29,7 @@ const sub: React.CSSProperties = { fontFamily: serif, fontStyle: 'italic', fontS
 const body: React.CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '42ch', margin: '0 auto', ...pretty }
 
 function Divider() {
-  return <div aria-hidden="true" style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,110px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+  return <div aria-hidden="true" style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(48px,7.5vh,92px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 }
 
 export function LibraryChapter({ ctx }: { ctx: Ctx }) {
@@ -38,7 +38,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
       {/* the room, entered through the House arch — imagery and architecture kept */}
       <div style={{ position: 'relative', maxWidth: 820, margin: '0 auto', padding: 'clamp(92px,15vh,196px) 6vw 0', textAlign: 'center', color: '#2b2723' }}>
         <RoomHeader eyebrow="How the house thinks" title="The Library" descriptor="Borrowed wisdom, worth returning to." titleSize="clamp(40px,6.4vw,92px)" />
-        <div style={{ marginTop: 'clamp(52px,9vh,116px)', animation: 'fadeUpSoft 1200ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 0% cover 16%' as unknown as string }}>
+        <div style={{ marginTop: 'clamp(44px,7.5vh,98px)', animation: 'fadeUpSoft 1200ms ease both', animationTimeline: 'view()' as unknown as string, animationRange: 'entry 0% cover 16%' as unknown as string }}>
           <HouseArch scale="standard" width="min(88vw,600px)">
             <ImageSlot src={PHOTOS.library} alt="Floor-to-ceiling walnut shelving in the Library, natural light" placeholder="Floor-to-ceiling walnut shelving, beautiful books, a ladder, natural light" fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: 'center', filter: 'brightness(1.03)', animation: 'slowZoom 20s ease-out both' }} />
           </HouseArch>
@@ -92,7 +92,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         </div>
         <El onClick={ctx.openFieldNotes} style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', borderBottom: '1px solid rgba(122,94,52,0.4)', paddingBottom: 5, cursor: 'pointer', marginTop: 'clamp(44px,7.5vh,80px)', transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>Open the notebook &rarr;</El>
 
-        <div aria-hidden="true" style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,110px) auto clamp(30px,5vh,56px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+        <div aria-hidden="true" style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(48px,7.5vh,92px) auto clamp(28px,4.5vh,48px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
         {/* quiet ending */}
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.35, color: '#2b2723', maxWidth: '22ch', margin: '0 auto clamp(40px,7vh,72px)' }}>Take what&rsquo;s useful. Keep building.</p>

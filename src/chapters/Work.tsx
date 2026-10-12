@@ -117,7 +117,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
 
         {/* 3 · How engagements take shape — the deeper pathways, kept accessible
             and clearly secondary to the invitations; future concepts set apart */}
-        <ArchLine m="clamp(90px,15vh,180px) auto clamp(56px,9vh,110px)" />
+        <ArchLine m="clamp(76px,13vh,152px) auto clamp(48px,7.5vh,92px)" />
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>How engagements take shape</div>
           <div style={{ maxWidth: 620, margin: '0 auto', textAlign: 'left' }}>
@@ -145,7 +145,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* 4 · The experience and people behind Believe — combined and concise */}
-        <ArchLine m="clamp(90px,16vh,190px) auto clamp(56px,10vh,120px)" />
+        <ArchLine m="clamp(76px,13vh,160px) auto clamp(48px,8.5vh,100px)" />
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(26px,4.5vh,44px)' }}>Built from the other side of the table</div>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,44px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance }}>Believe was built by a founder who has actually built one.</p>
@@ -156,7 +156,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* 5 · A final invitation */}
-        <ArchLine m="clamp(90px,16vh,200px) auto clamp(48px,8vh,96px)" />
+        <ArchLine m="clamp(76px,13vh,168px) auto clamp(40px,7vh,80px)" />
         <div style={reveal}>
           <ArchMark width={2} margin="0 auto clamp(24px,4vh,40px)" />
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,4vw,54px)', lineHeight: 1.14, color: '#2b2723', maxWidth: '20ch', margin: '0 auto', ...balance }}>What if the next chapter begins with a conversation?</p>
@@ -165,7 +165,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           <El as="button" onClick={talk} style={{ ...cta, marginTop: 'clamp(38px,6.5vh,72px)' }} hover={ctaHover}>Start a Conversation &rarr;</El>
         </div>
 
-        <ArchLine m="clamp(80px,13vh,150px) auto clamp(40px,7vh,64px)" />
+        <ArchLine m="clamp(68px,11vh,126px) auto clamp(34px,6vh,54px)" />
         <BackPill onClose={ctx.closeWork} label="← Back" />
       </div>
     </ChapterShell>
