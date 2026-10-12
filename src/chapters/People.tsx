@@ -41,7 +41,7 @@ function personAnchor(m: TeamMember): string | undefined {
 function TeamRow({ m, i }: { m: TeamMember; i: number }) {
   const rev = i % 2 === 1
   return (
-    <div id={personAnchor(m)} style={{ scrollMarginTop: 'clamp(80px,14vh,150px)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(28px,5vw,64px)', flexWrap: 'wrap', flexDirection: rev ? 'row-reverse' : 'row', margin: 'clamp(56px,9vh,116px) auto 0' }}>
+    <div id={personAnchor(m)} style={{ scrollMarginTop: 'clamp(80px,14vh,150px)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(28px,5vw,64px)', flexWrap: 'wrap', flexDirection: rev ? 'row-reverse' : 'row', margin: i === 0 ? 'clamp(30px,4.6vh,52px) auto 0' : 'clamp(56px,9vh,116px) auto 0' }}>
       <Niche m={m} size={m.lead ? 300 : 230} />
       <div style={{ flex: '1 1 320px', minWidth: 260, maxWidth: 460, textAlign: 'left' }}>
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: m.lead ? 'clamp(34px,4.2vw,48px)' : 'clamp(30px,3.6vw,40px)', lineHeight: 1.02, color: '#2b2723' }}>{m.name || m.role}</div>
@@ -66,14 +66,15 @@ export function PeopleChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
   }, [anchor])
   return (
     <ChapterShell onClose={ctx.closePeople} background="#efe6d3" dark>
-      {/* the one navy moment — an immersive, confident opening */}
-      <div style={{ background: palette.navy, color: palette.linen, textAlign: 'center', padding: 'clamp(96px,15vh,150px) 8vw clamp(72px,12vh,110px)' }}>
+      {/* the one navy moment — a lighter, more intimate opening: the headline
+          commands, the paragraph is a quiet invitation beneath it */}
+      <div style={{ background: palette.navy, color: palette.linen, textAlign: 'center', padding: 'clamp(78px,12vh,122px) 8vw clamp(58px,10vh,90px)' }}>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5vw,56px)', lineHeight: 1.14, maxWidth: '20ch', margin: '0 auto', ...balance }}>No founder should have to carry the whole company alone.</h2>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.3vw,26px)', lineHeight: 1.5, color: 'rgba(250,244,234,0.8)', maxWidth: '42ch', margin: 'clamp(24px,4vh,32px) auto 0', ...pretty }}>Believe brings a coordinated team around the founder, across strategy, brand, retail, growth, and operations, with experienced perspective in every room. These are the people you&rsquo;ll work with, and what each of them brings.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.9vw,22px)', lineHeight: 1.6, color: 'rgba(250,244,234,0.82)', maxWidth: 470, margin: 'clamp(22px,3.4vh,30px) auto 0', ...pretty }}>Different minds. Shared curiosity. A belief in what&rsquo;s possible. Meet the people who bring their experience, creativity, and perspective to the work we do together.</p>
       </div>
 
       {/* then cream, for the people */}
-      <div style={{ maxWidth: 960, margin: '0 auto', padding: 'clamp(64px,10vh,120px) 6vw clamp(72px,13vh,150px)', color: '#2b2723' }}>
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: 'clamp(44px,7vh,84px) 6vw clamp(72px,13vh,150px)', color: '#2b2723' }}>
         <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: palette.olive, textAlign: 'center' }}>Who you&rsquo;ll find inside</div>
 
         {CORE_TEAM.map((m, i) => <TeamRow key={i} m={m} i={i} />)}
