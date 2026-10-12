@@ -878,18 +878,18 @@ export const HOUSE_TEAM: { name: string; role: string }[] = [
 // architectural seat (a real role in the House, its portrait not yet placed).
 // `pos` biases the crop toward the face. `lead` (Beth) reads a touch larger.
 // `roleShort` is the compact label used under the small Foyer niches.
-export type TeamMember = { name?: string; role: string; roleShort?: string; values: string; photo?: string; pos?: string; lead?: boolean }
+export type TeamMember = { name?: string; role: string; roleShort?: string; values: string; bio?: string; photo?: string; pos?: string; lead?: boolean }
 export const CORE_TEAM: TeamMember[] = [
-  { name: 'Beth Wilson-Parentice', role: 'Founder', values: 'Sees the pattern beneath the problem.', photo: '/photos/portrait-beth.webp', pos: 'center 26%', lead: true },
-  { name: 'Tiffany Nilles', role: 'Retail Intelligence Advisor', roleShort: 'Retail Intelligence', values: 'Brings the evidence into the room.', photo: '/photos/portrait-tiffany.webp', pos: 'center 28%' },
-  { name: 'Joy Mooiweer', role: 'House Operations', values: 'Makes the House work when no one is watching.', photo: '/photos/portrait-joy.webp', pos: 'center 28%' },
-  { name: 'Jillian Waun', role: 'Creative & Editorial', values: 'Gives the House its visible language.', photo: '/photos/portrait-jillian.webp', pos: 'center 26%' },
-  { name: 'Grace Federico', role: 'Brand & Growth Associate', roleShort: 'Brand & Growth', values: 'Makes sure ideas become action and founders know what comes next.', photo: '/photos/portrait-grace.webp', pos: 'center 22%' },
+  { name: 'Beth Wilson-Parentice', role: 'Founder & Creative Strategist', roleShort: 'Founder', values: 'Sees the pattern beneath the problem.', bio: 'Beth built Sipp from her kitchen into a nationally distributed brand before founding Believe Studio. She has spent her career building brands, challenging conventional thinking, and discovering that the most interesting opportunities often begin with a better question. She believes the most extraordinary brands aren’t built by following a formula, but by discovering what makes them impossible to replicate.', photo: '/photos/portrait-beth.webp', pos: 'center 26%', lead: true },
+  { name: 'Tiffany Nilles', role: 'Retail Strategy Advisor', roleShort: 'Retail Strategy', values: 'Brings the evidence into the room.', bio: 'Tiffany sees retail through a different lens. She knows that getting onto shelves is only part of the story, and brings the insight, relationships, and commercial perspective to help founders understand where their brands truly belong.', photo: '/photos/portrait-tiffany.webp', pos: 'center 28%' },
+  { name: 'Joy Mooiweer', role: 'Client Project Manager', roleShort: 'Project Manager', values: 'Makes the House work when no one is watching.', bio: 'Every ambitious idea needs someone who can make the moving pieces work together. Joy brings clarity to complexity, connecting people and priorities, keeping projects moving, and helping turn great thinking into meaningful progress.', photo: '/photos/portrait-joy.webp', pos: 'center 28%' },
+  { name: 'Jillian Waun', role: 'Social Media Strategist', roleShort: 'Social Media', values: 'Gives the House its visible language.', bio: 'Jillian believes a brand’s presence should feel like a personality, not a posting schedule. She brings creativity, visual instinct, and a feel for storytelling that turns everyday content into moments people want to connect with.', photo: '/photos/portrait-jillian.webp', pos: 'center 26%' },
+  { name: 'Grace Federico', role: 'Brand Growth Associate', roleShort: 'Brand Growth', values: 'Makes sure ideas become action and founders know what comes next.', bio: 'Grace brings curiosity, fresh perspective, and a willingness to look beyond the obvious. Whether uncovering an unexpected opportunity or finding a thoughtful way to start a conversation, she helps turn new connections into possibilities for growth.', photo: '/photos/portrait-grace.webp', pos: 'center 22%' },
 ]
 // Residents — rotating specialist expertise available to the House, shown quieter
 // and subordinate to the core team.
 export const RESIDENTS: TeamMember[] = [
-  { name: 'Chef MoWils', role: 'In Residence', values: 'Where AI meets CPG, around The Table.', photo: '/photos/portrait-mona.webp', pos: 'center 30%' },
+  { name: 'Chef MoWils', role: 'In Residence', values: 'Where AI meets CPG, around The Table.', bio: 'Before AI, Chef MoWils was building things that didn’t exist yet, turning the savory cupcake into a company, It’s A CupCake!, and competing on Food Network’s Cupcake Wars. As the House’s Resident AI Strategist, she brings that same entrepreneurial instinct to how founders use AI: practically, and always in service of the business. Her focus is judgment, not technology.', photo: '/photos/portrait-mona.webp', pos: 'center 30%' },
 ]
 
 export const PEOPLE = [

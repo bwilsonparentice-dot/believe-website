@@ -47,6 +47,7 @@ function TeamRow({ m, i }: { m: TeamMember; i: number }) {
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: m.lead ? 'clamp(34px,4.2vw,48px)' : 'clamp(30px,3.6vw,40px)', lineHeight: 1.02, color: '#2b2723' }}>{m.name || m.role}</div>
         {m.name && <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: palette.olive, margin: '16px 0 0' }}>{m.role}</div>}
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(22px,2.6vw,30px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '22ch', margin: 'clamp(16px,2.4vh,22px) 0 0', ...pretty }}>{m.values}</p>
+        {m.bio && <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15.5px,1.7vw,19px)', lineHeight: 1.62, color: 'rgba(43,39,35,0.82)', maxWidth: m.lead ? '40ch' : '35ch', margin: 'clamp(18px,2.8vh,26px) 0 0', ...pretty }}>{m.bio}</p>}
       </div>
     </div>
   )
@@ -68,7 +69,7 @@ export function PeopleChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
       {/* the one navy moment — an immersive, confident opening */}
       <div style={{ background: palette.navy, color: palette.linen, textAlign: 'center', padding: 'clamp(96px,15vh,150px) 8vw clamp(72px,12vh,110px)' }}>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5vw,56px)', lineHeight: 1.14, maxWidth: '20ch', margin: '0 auto', ...balance }}>No founder should have to carry the whole company alone.</h2>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.3vw,26px)', lineHeight: 1.5, color: 'rgba(250,244,234,0.8)', maxWidth: '40ch', margin: 'clamp(24px,4vh,32px) auto 0', ...pretty }}>Believe brings a coordinated team around the founder, combining strategy, brand, retail, growth, operations, and experienced perspective in one House.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.3vw,26px)', lineHeight: 1.5, color: 'rgba(250,244,234,0.8)', maxWidth: '42ch', margin: 'clamp(24px,4vh,32px) auto 0', ...pretty }}>Believe brings a coordinated team around the founder, across strategy, brand, retail, growth, and operations, with experienced perspective in every room. These are the people you&rsquo;ll work with, and what each of them brings.</p>
       </div>
 
       {/* then cream, for the people */}
@@ -91,6 +92,7 @@ export function PeopleChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
                 <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(25px,2.9vw,33px)', lineHeight: 1.05 }}>{m.name || m.role}</div>
                 <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', margin: '13px 0 0' }}>{m.role}</div>
                 <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: '13px 0 0', maxWidth: '26ch', ...pretty }}>{m.values}</p>
+                {m.bio && <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(14.5px,1.6vw,17px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.8)', margin: 'clamp(14px,2vh,20px) 0 0', maxWidth: '32ch', ...pretty }}>{m.bio}</p>}
               </div>
             </div>
           ))}
