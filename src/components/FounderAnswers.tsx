@@ -51,27 +51,43 @@ function Answer({ a }: { a: FounderAnswer }) {
   )
 }
 
+const FEATURED = 3
+
 export function FounderAnswers() {
+  const [showAll, setShowAll] = React.useState(false)
+  const shown = showAll ? FOUNDER_ANSWERS : FOUNDER_ANSWERS.slice(0, FEATURED)
+  const remaining = FOUNDER_ANSWERS.length - FEATURED
   return (
     <section aria-label="Founder Answers">
-      {/* the shelf header — a serif title and one descriptor, unnumbered:
-          this is the room's featured, living collection, not one more entry in
-          the Shelf One–Seven catalogue. */}
+      {/* the featured collection — a serif title and one descriptor, unnumbered */}
       <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>Founder Answers</h3>
       <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '42ch', margin: '0 auto clamp(64px,11vh,120px)' }}>
         Real questions founders ask us, answered by people who have actually built brands.
       </p>
 
       {/* the answers — a continuous editorial sequence, punctuated by a quiet
-          hairline, never boxed into an accordion or a list */}
+          hairline, never boxed into an accordion or a list. Three are shown; the
+          rest are revealed in place, with the full answers always present. */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {FOUNDER_ANSWERS.map((a, i) => (
+        {shown.map((a, i) => (
           <React.Fragment key={i}>
             {i > 0 && <div aria-hidden="true" style={{ width: 40, height: 1, margin: 'clamp(64px,11vh,120px) auto', background: 'rgba(122,94,52,0.32)' }} />}
             <Answer a={a} />
           </React.Fragment>
         ))}
       </div>
+
+      {!showAll && remaining > 0 && (
+        <button
+          type="button"
+          onClick={() => setShowAll(true)}
+          style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(122,94,52,0.4)', padding: '0 0 5px', cursor: 'pointer', marginTop: 'clamp(56px,10vh,110px)', transition: 'color 400ms ease' }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#2b2723' }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(122,94,52,0.72)' }}
+        >
+          Read all seven Founder Answers &rarr;
+        </button>
+      )}
     </section>
   )
 }
