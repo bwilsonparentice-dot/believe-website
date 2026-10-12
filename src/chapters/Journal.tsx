@@ -4,8 +4,9 @@ import type { Ctx } from '../lib/ctx'
 import { ChapterShell } from '../components/ChapterShell'
 import { ArticleView } from '../components/ArticleView'
 import { BeyondBordersHero } from '../components/BeyondBordersHero'
+import { ImageSlot } from '../components/ImageSlot'
 import { palette } from '../lib/palette'
-import { DESTINATIONS } from '../journal/destinations'
+import { DESTINATIONS, type ChapterTeaser } from '../journal/destinations'
 import { articleBySlug, articlesForDestination } from '../journal/articles'
 
 /**
@@ -33,6 +34,37 @@ const surface = (range = 'entry 3% cover 26%'): CSSProperties => ({
   animationRange: range as unknown as string,
 })
 
+/**
+ * An editorial teaser for an upcoming chapter — a preview of a feature not yet
+ * written, set like the opening of a travel-and-culture journal. It is
+ * deliberately non-clickable: nothing links until a real article is published,
+ * and nothing is phrased as having already happened.
+ */
+function ChapterTeaserView({ t }: { t: ChapterTeaser }) {
+  return (
+    <div style={{ marginTop: 'clamp(40px,7vh,82px)' }}>
+      <h4 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.5vw,48px)', lineHeight: 1.08, color: '#2b2723', margin: '0 auto', maxWidth: '17ch', ...balance }}>{t.title}</h4>
+      <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.36, color: 'rgba(122,94,52,0.85)', margin: 'clamp(14px,2.2vh,20px) auto 0', maxWidth: '24ch', ...balance }}>{t.subtitle}</p>
+
+      <div style={{ margin: 'clamp(34px,5.5vh,58px) auto 0' }}>
+        {t.blurb.map((para, i) => {
+          if (i === 0) return (
+            <p key={i} style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.4vw,28px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.9)', margin: '0 auto', maxWidth: '27ch', ...balance }}>{para}</p>
+          )
+          if (i === t.blurb.length - 1) return (
+            <p key={i} style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,26px)', lineHeight: 1.45, color: 'rgba(122,94,52,0.9)', margin: 'clamp(26px,4.4vh,44px) auto 0', maxWidth: '31ch', ...balance }}>{para}</p>
+          )
+          return (
+            <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,21px)', lineHeight: 1.78, color: 'rgba(43,39,35,0.72)', margin: 'clamp(24px,4vh,40px) auto 0', maxWidth: '48ch', ...pretty }}>{para}</p>
+          )
+        })}
+      </div>
+
+      <div style={{ ...label, fontSize: 11, letterSpacing: '0.42em', color: 'rgba(122,94,52,0.6)', margin: 'clamp(40px,6.5vh,74px) auto 0' }}>{t.label}</div>
+    </div>
+  )
+}
+
 /** One chapter, by destination — its index of stories, or a quiet arriving note. */
 function Chapter({ ctx, id }: { ctx: Ctx; id: string }) {
   const d = DESTINATIONS.find((x) => x.id === id)
@@ -43,19 +75,30 @@ function Chapter({ ctx, id }: { ctx: Ctx; id: string }) {
       <div style={{ ...label, marginBottom: 'clamp(16px,2.4vh,22px)' }}>{d.chapter}</div>
       <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.8vw,68px)', lineHeight: 1.04, margin: '0 auto', maxWidth: '16ch', ...balance }}>{d.label}</h3>
 
-      {/* a calm, warm chapter image — a temporary treatment until real
-          photography exists; no unrelated stock photo is shown as editorial */}
+      {/* the chapter image — a signature photograph when one exists, otherwise
+          a calm warm placeholder (no unrelated stock photo is shown as editorial) */}
       <div style={{ width: 'min(94%,760px)', margin: 'clamp(34px,6vh,64px) auto 0' }}>
         <div style={{ position: 'relative', width: '100%', aspectRatio: '3 / 2', borderRadius: 5, overflow: 'hidden', background: 'linear-gradient(135deg,#e7dcc4,#efe6d3 52%,#e3d7bd)', boxShadow: '0 40px 80px -56px rgba(60,44,20,0.42)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)' }}>Florence &middot; photography to come</div>
+          {d.hero ? (
+            <ImageSlot src={d.hero} alt={d.heroAlt || d.label} placeholder={d.heroAlt || d.label} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />
+          ) : (
+            <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)' }}>{d.label} &middot; photography to come</div>
+          )}
         </div>
       </div>
 
-      <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.45, color: 'rgba(122,94,52,0.84)', margin: 'clamp(28px,4.6vh,44px) auto 0', maxWidth: '26ch', ...balance }}>{d.intro}</p>
-
-      {stories.length === 0 ? (
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,21px)', lineHeight: 1.6, letterSpacing: '0.02em', color: 'rgba(43,39,35,0.6)', margin: 'clamp(26px,4vh,38px) auto 0', ...balance }}>Arriving {d.date}.</p>
+      {stories.length === 0 && d.teaser ? (
+        <ChapterTeaserView t={d.teaser} />
       ) : (
+        <>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.45, color: 'rgba(122,94,52,0.84)', margin: 'clamp(28px,4.6vh,44px) auto 0', maxWidth: '26ch', ...balance }}>{d.intro}</p>
+          {stories.length === 0 && (
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,21px)', lineHeight: 1.6, letterSpacing: '0.02em', color: 'rgba(43,39,35,0.6)', margin: 'clamp(26px,4vh,38px) auto 0', ...balance }}>Arriving {d.date}.</p>
+          )}
+        </>
+      )}
+
+      {stories.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(22px,3.4vh,34px)', maxWidth: 620, margin: 'clamp(40px,6.5vh,72px) auto 0' }}>
           {stories.map((s) => (
             <El as="button" key={s.slug} onClick={ctx.openArticle(s.slug)} style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'center' }} hover={{}}>
