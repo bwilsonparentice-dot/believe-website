@@ -25,7 +25,6 @@ const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
 const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 
-const label: React.CSSProperties = { fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', marginBottom: '0.9em' }
 const h3: React.CSSProperties = { fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }
 const sub: React.CSSProperties = { fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', margin: '0 auto' }
 const body: React.CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '42ch', margin: '0 auto', ...pretty }
@@ -61,16 +60,20 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <Divider />
 
         {/* 2 · From the Studio — original writing, perspectives, and film. NOW
-            WHAT? keeps its full feature treatment and prominence. */}
-        <div style={label}>From the studio</div>
+            WHAT? keeps its full feature treatment and prominence. The small
+            eyebrow is dropped so each collection reads from one serif heading. */}
         <h3 style={h3}>From the Studio</h3>
-        <p style={{ ...sub, maxWidth: '38ch', display: 'block', marginBottom: 'clamp(44px,7.5vh,84px)' }}>Original writing, perspectives, and film on creativity, brand, and the questions that shape our work.</p>
+        <p style={{ ...sub, maxWidth: '38ch', display: 'block', marginBottom: 'clamp(44px,7.5vh,84px)' }}>Original writing, perspectives, and filmed conversations on creativity, brand, and the questions that shape our work.</p>
         <NowWhatFeature />
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: '0.8em 2.4em', marginTop: 'clamp(44px,7.5vh,84px)' }}>
+        <div style={{ textAlign: 'center', marginTop: 'clamp(34px,5.5vh,60px)' }}>
           <El onClick={ctx.openFieldNotes} style={quietLink} hover={{ color: '#2b2723' }}>Open the Notebook &rarr;</El>
+          <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(14px,1.5vw,17px)', color: 'rgba(43,39,35,0.5)', margin: 'clamp(11px,1.5vh,15px) auto 0' }}>Field notes and observations from the work.</div>
         </div>
 
-        <Divider />
+        {/* a purposeful, tightened transition into Founder Answers (~28% less space
+            than the full collection dividers above) so the short link above does
+            not leave the brass line floating */}
+        <div aria-hidden="true" style={{ width: 1, height: 'clamp(32px,5vh,62px)', margin: 'clamp(40px,6.4vh,80px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
         {/* 3 · Founder Answers — advisory perspectives from people who have built
             brands, kept as a discoverable collection: a title and an invitation to
@@ -85,8 +88,8 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <Divider tight />
 
         {/* 4 · On Our Shelves — books and references that move us. The Creative
-            Act is the first; no invented endorsements. */}
-        <div style={label}>On our shelves</div>
+            Act is the first; no invented endorsements. Eyebrow dropped to match
+            the other collections (one consistent serif heading). */}
         <h3 style={h3}>On Our Shelves</h3>
         <p style={{ ...sub, maxWidth: '40ch', display: 'block', marginBottom: 'clamp(40px,6.5vh,72px)' }}>A growing, carefully curated selection of the books and references that have genuinely shaped how we think.</p>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
