@@ -446,8 +446,8 @@ export const EXPERIENCES: Record<string, Experience> = {
     name: 'The Table',
     tm: false,
     tagline: 'Where brands meet culture.',
-    photo: 'courtyard',
-    photoAlt: 'A Mediterranean courtyard at golden hour: a long linen-dressed table set beneath olive trees',
+    photo: 'theTable',
+    photoAlt: 'A long table set for dinner on a Mediterranean clifftop at golden hour, candles and olive branches, the sea and the setting sun beyond',
     background: '#f1e7d0',
     whatIsIt: [
       'Some of the most interesting brand stories don’t begin on a shelf.',
@@ -962,7 +962,7 @@ export function roomKeyFor(room: string): string {
 // ── the walk-through journey: merge DATA + EXTRAS + ARTIFACTS + PLANS + layout ──
 export const PHOTOS: Record<string, string> = {
   threshold: '/photos/photo-threshold.webp', room: '/photos/photo-room.webp', table: '/photos/photo-table.webp',
-  courtyard: '/photos/photo-courtyard.webp',
+  courtyard: '/photos/photo-courtyard.webp', theTable: '/photos/photo-the-table.webp',
   garden: '/photos/photo-garden.webp', library: '/photos/photo-library.webp', fieldnotes: '/photos/photo-fieldnotes.webp',
   stage: '/photos/photo-stage.webp', advisory: '/photos/photo-advisory.webp',
   // The Studio and The Founder's Room now show photographs (previously type-led).
