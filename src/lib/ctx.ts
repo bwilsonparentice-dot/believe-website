@@ -18,6 +18,8 @@ export interface Ctx {
   openAdvisory: Handler; closeAdvisory: Handler
   openStage: Handler; closeStage: Handler
   openPeople: Handler; closePeople: Handler
+  /** Open the People page scrolled to a specific person (anchor = first name, lowercased). */
+  openPeopleAt: (id: string) => Handler
   openStories: Handler; closeStories: Handler
   openHouse: Handler; closeHouse: Handler
   openWhyBelieve: Handler; closeWhyBelieve: Handler

@@ -54,16 +54,19 @@ function Venn() {
   )
 }
 
-function TeamFace({ m }: { m: typeof CORE_TEAM[number] }) {
+function TeamFace({ m, ctx }: { m: typeof CORE_TEAM[number]; ctx: Ctx }) {
   const w = m.lead ? 'clamp(122px,14vw,150px)' : 'clamp(112px,12.5vw,138px)'
+  const anchor = m.name ? m.name.split(' ')[0].toLowerCase() : ''
+  // each face is a door into the People page, landing on that person's section
+  const open = anchor ? ctx.openPeopleAt(anchor) : ctx.openPeople
   return (
-    <div style={{ width: 'clamp(124px,14vw,152px)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ width: w, aspectRatio: '0.758', borderRadius: '46% 46% 7px 7px / 56% 56% 6px 6px', overflow: 'hidden', position: 'relative', boxShadow: '0 20px 34px -22px rgba(60,44,20,0.5)' }}>
+    <El as="button" className="home-teamface" onClick={open} aria-label={`Meet ${m.name || m.role} on the People page`} style={{ width: 'clamp(124px,14vw,152px)', display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit' }}>
+      <div className="home-teamface__img" style={{ width: w, aspectRatio: '0.758', borderRadius: '46% 46% 7px 7px / 56% 56% 6px 6px', overflow: 'hidden', position: 'relative', boxShadow: '0 20px 34px -22px rgba(60,44,20,0.5)' }}>
         <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%' }} />
       </div>
-      <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 18, marginTop: 12, color: palette.ink }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
+      <div className="home-teamface__name" style={{ fontFamily: serif, fontWeight: 500, fontSize: 18, marginTop: 12, color: palette.ink }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
       <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 9.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: palette.olive, marginTop: 5 }}>{m.roleShort || m.role}</div>
-    </div>
+    </El>
   )
 }
 
@@ -152,7 +155,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
           {CORE_TEAM.map((m, i) => (
             <React.Fragment key={i}>
               {i === 3 && <div className="team-row-break" aria-hidden="true" />}
-              <TeamFace m={m} />
+              <TeamFace m={m} ctx={ctx} />
             </React.Fragment>
           ))}
         </div>

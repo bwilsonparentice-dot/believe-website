@@ -487,3 +487,13 @@ a:hover { color: #b08a4a; }
   .ppl-row--first { margin-top: clamp(26px,4vh,40px); }
   .ppl-outline--r, .ppl-outline--l { transform: translate(8px, 7px); }
 }
+
+/* ── Homepage team faces — each portrait is a quiet door into the People page. */
+.home-teamface__img { transition: transform 450ms ease, box-shadow 450ms ease; }
+.home-teamface__name { transition: color 350ms ease; }
+.home-teamface:hover .home-teamface__img,
+.home-teamface:focus-visible .home-teamface__img { transform: translateY(-4px); box-shadow: 0 28px 44px -22px rgba(60,44,20,0.55); }
+.home-teamface:hover .home-teamface__name,
+.home-teamface:focus-visible .home-teamface__name { color: #9c7a3f; }
+.home-teamface:focus { outline: none; }
+.home-teamface:focus-visible { outline: 2px solid rgba(156,122,63,0.6); outline-offset: 6px; border-radius: 10px; }

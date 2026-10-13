@@ -258,6 +258,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openPeoplePlain, closePeople: this.closeChapter('showPeople'),
+      openPeopleAt: this.openPeopleAt,
       openStories: this.openChapter('showStories'), closeStories: this.closeChapter('showStories'),
       openHouse: this.openChapter('showHouse'), closeHouse: this.closeChapter('showHouse'),
       openWhyBelieve: this.openChapter('showWhyBelieve'), closeWhyBelieve: this.closeChapter('showWhyBelieve'),
