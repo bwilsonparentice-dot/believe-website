@@ -9,25 +9,45 @@ const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
 const pretty = { textWrap: 'pretty' as CSSProperties['textWrap'] }
 const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
-const archRadius = '46% 46% 8px 8px / 56% 56% 6px 6px'
+// The portrait shape — an elongated, softly rounded capsule (taller and
+// narrower than the former arch, for a more editorial proportion).
+const capsule = '999px'
 
-/** A portrait, or an architectural seat for a role whose face is not yet placed. */
-function Niche({ m, size }: { m: TeamMember; size: number }) {
+/** A single, extremely subtle brass starburst — used on at most one or two
+ *  portraits across the whole page, never as a repeating motif. */
+function Starburst({ side }: { side: 'left' | 'right' }) {
+  return (
+    <span aria-hidden="true" style={{ position: 'absolute', zIndex: 3, width: 12, height: 12, opacity: 0.6, bottom: 8, ...(side === 'right' ? { right: -6 } : { left: -6 }) }}>
+      <svg viewBox="0 0 24 24" fill="none" style={{ display: 'block', width: '100%', height: '100%' }}>
+        <path d="M12 0 C12 6.6 12.4 11.6 24 12 C12.4 12.4 12 17.4 12 24 C12 17.4 11.6 12.4 0 12 C11.6 11.6 12 6.6 12 0 Z" fill="#9c7a3f" />
+      </svg>
+    </span>
+  )
+}
+
+/** A portrait, or an architectural seat for a role whose face is not yet placed.
+ *  The capsule carries a delicate brass outline, offset gently to the outer side
+ *  (the offset side alternates with each row; see TeamRow). */
+function Niche({ m, size, offset = 'right', star }: { m: TeamMember; size: number; offset?: 'left' | 'right'; star?: boolean }) {
   const seat = !m.photo
   // A seat reserves the same footprint as a portrait, so a real photo can replace
-  // it later with no layout shift; the quiet fill/shadow keep it subordinate.
+  // it later with no layout shift; the quiet fill keeps it subordinate.
   const w = size
-  const h = Math.round(w * 1.33)
+  const h = Math.round(w * 1.46)
   return (
-    <div style={{
-      width: w, height: h, maxWidth: '82vw', borderRadius: archRadius, overflow: 'hidden', position: 'relative', flex: '0 0 auto',
-      ...(seat
-        ? { background: 'linear-gradient(160deg,#ede3cd,#e6dcc1)', border: '1px solid rgba(156,122,63,0.2)', boxShadow: 'inset 0 6px 14px rgba(80,60,28,0.055)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }
-        : { boxShadow: '0 40px 70px -44px rgba(60,44,20,0.55)' }),
-    }}>
-      {seat
-        ? <div aria-hidden="true" style={{ width: 30, height: 34, border: '1.3px solid rgba(156,122,63,0.38)', borderBottom: 'none', borderRadius: '50% 50% 4px 4px / 60% 60% 3px 3px', marginTop: '26%' }} />
-        : <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%', filter: 'brightness(1.03)' }} />}
+    <div style={{ position: 'relative', width: w, maxWidth: '80vw', aspectRatio: `${w} / ${h}`, flex: '0 0 auto' }}>
+      {!seat && <div className={`ppl-outline ppl-outline--${offset === 'right' ? 'r' : 'l'}`} />}
+      <div style={{
+        position: 'absolute', inset: 0, borderRadius: capsule, overflow: 'hidden', zIndex: 1,
+        ...(seat
+          ? { background: 'linear-gradient(160deg,#ede3cd,#e6dcc1)', border: '1px solid rgba(156,122,63,0.2)', boxShadow: 'inset 0 6px 14px rgba(80,60,28,0.055)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }
+          : { boxShadow: '0 40px 70px -46px rgba(60,44,20,0.5)' }),
+      }}>
+        {seat
+          ? <div aria-hidden="true" style={{ width: 28, height: 38, border: '1.3px solid rgba(156,122,63,0.38)', borderBottom: 'none', borderRadius: '999px 999px 0 0', marginTop: '30%' }} />
+          : <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%', filter: 'brightness(1.03)' }} />}
+      </div>
+      {star && !seat && <Starburst side={offset} />}
     </div>
   )
 }
@@ -37,12 +57,14 @@ function personAnchor(m: TeamMember): string | undefined {
   return m.name ? m.name.split(' ')[0].toLowerCase() : undefined
 }
 
-/** One core-team member — staggered, alternating side, Beth a touch larger. */
+/** One core-team member — staggered, alternating side, Beth a touch larger.
+ *  The brass outline offsets to the outer side and alternates with the row;
+ *  a lone, very subtle starburst sits only on the lead portrait. */
 function TeamRow({ m, i }: { m: TeamMember; i: number }) {
   const rev = i % 2 === 1
   return (
-    <div id={personAnchor(m)} style={{ scrollMarginTop: 'clamp(80px,14vh,150px)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(28px,5vw,64px)', flexWrap: 'wrap', flexDirection: rev ? 'row-reverse' : 'row', margin: i === 0 ? 'clamp(30px,4.6vh,52px) auto 0' : 'clamp(56px,9vh,116px) auto 0' }}>
-      <Niche m={m} size={m.lead ? 300 : 230} />
+    <div id={personAnchor(m)} className={`ppl-row${rev ? ' ppl-row--rev' : ''}${i === 0 ? ' ppl-row--first' : ''}`} style={{ scrollMarginTop: 'clamp(80px,14vh,150px)' }}>
+      <Niche m={m} size={m.lead ? 250 : 212} offset={rev ? 'right' : 'left'} star={!!m.lead} />
       <div style={{ flex: '1 1 320px', minWidth: 260, maxWidth: 460, textAlign: 'left' }}>
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: m.lead ? 'clamp(34px,4.2vw,48px)' : 'clamp(30px,3.6vw,40px)', lineHeight: 1.02, color: '#2b2723' }}>{m.name || m.role}</div>
         {m.name && <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: palette.olive, margin: '16px 0 0' }}>{m.role}</div>}
@@ -88,7 +110,7 @@ export function PeopleChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 'clamp(40px,7vh,80px) clamp(28px,5vw,56px)' }}>
           {RESIDENTS.map((m, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 'clamp(24px,3.4vw,40px)', flexWrap: 'wrap', justifyContent: 'center', maxWidth: 500 }}>
-              <Niche m={m} size={152} />
+              <Niche m={m} size={140} offset="right" />
               <div style={{ flex: '1 1 210px', minWidth: 190, textAlign: 'left' }}>
                 <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(25px,2.9vw,33px)', lineHeight: 1.05 }}>{m.name || m.role}</div>
                 <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', margin: '13px 0 0' }}>{m.role}</div>

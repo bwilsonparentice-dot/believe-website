@@ -471,3 +471,19 @@ a:hover { color: #b08a4a; }
   .bbb-hero__rule { display: block; width: 64px; margin-top: clamp(18px,5.2cqw,26px); margin-bottom: clamp(17px,4.8cqw,24px); }
   .bbb-hero__sub { font-size: clamp(11px, 3.3cqw, 15px); }
 }
+
+/* ── The People — elongated capsule portraits with a delicate offset brass
+   outline. Alternating offset by portrait on desktop; a single consistent,
+   restrained offset on mobile, where each person's section stacks portrait-first. */
+.ppl-row { display: flex; align-items: center; justify-content: center; gap: clamp(28px,5vw,64px); flex-wrap: wrap; margin: clamp(56px,9vh,116px) auto 0; }
+.ppl-row--first { margin-top: clamp(30px,4.6vh,52px); }
+.ppl-row--rev { flex-direction: row-reverse; }
+.ppl-outline { position: absolute; inset: 0; border: 1px solid rgba(156,122,63,0.5); border-radius: 999px; z-index: 0; pointer-events: none; }
+.ppl-outline--r { transform: translate(13px, 10px); }
+.ppl-outline--l { transform: translate(-13px, 10px); }
+@media (max-width: 560px) {
+  .ppl-row, .ppl-row--rev { flex-direction: column; }
+  .ppl-row { margin-top: clamp(40px,6vh,56px); }
+  .ppl-row--first { margin-top: clamp(26px,4vh,40px); }
+  .ppl-outline--r, .ppl-outline--l { transform: translate(8px, 7px); }
+}
