@@ -58,18 +58,31 @@ const FEATURED = 3
  * On the Library it is 0, so the shelf reads as a discoverable collection —
  * a title, a descriptor, and an invitation to read — rather than a wall of
  * text on the Library's main page. The full collection reveals in place.
+ *
+ * `teaser` (optional) features one real question beneath the descriptor as a
+ * small editorial pull — a single line, not a section — so the collection hints
+ * at what's inside before the invitation to read.
  */
-export function FounderAnswers({ initialCount = FEATURED }: { initialCount?: number } = {}) {
+export function FounderAnswers({ initialCount = FEATURED, teaser }: { initialCount?: number; teaser?: string } = {}) {
   const [showAll, setShowAll] = React.useState(false)
   const shown = showAll ? FOUNDER_ANSWERS : FOUNDER_ANSWERS.slice(0, initialCount)
   const remaining = FOUNDER_ANSWERS.length - initialCount
+  const showTeaser = !!teaser && !showAll
+  const descMb = showTeaser ? 'clamp(22px,3.4vh,34px)' : (shown.length ? 'clamp(64px,11vh,120px)' : 'clamp(34px,5.5vh,56px)')
   return (
     <section aria-label="Founder Answers">
       {/* the featured collection — a serif title and one descriptor, unnumbered */}
       <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>Founder Answers</h3>
-      <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '42ch', margin: shown.length ? '0 auto clamp(64px,11vh,120px)' : '0 auto clamp(34px,5.5vh,56px)' }}>
+      <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '42ch', margin: `0 auto ${descMb}` }}>
         Real questions founders ask us, answered by people who have actually built brands.
       </p>
+
+      {/* one real question, pulled out as a quiet editorial teaser */}
+      {showTeaser && (
+        <p style={{ fontFamily: serif, fontWeight: 400, fontStyle: 'italic', fontSize: 'clamp(23px,2.9vw,36px)', lineHeight: 1.3, color: '#2b2723', maxWidth: '24ch', margin: '0 auto clamp(34px,5.2vh,56px)' }}>
+          &ldquo;{teaser}&rdquo;
+        </p>
+      )}
 
       {/* the answers — a continuous editorial sequence, punctuated by a quiet
           hairline, never boxed into an accordion or a list. Three are shown; the

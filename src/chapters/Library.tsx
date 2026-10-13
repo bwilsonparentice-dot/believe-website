@@ -31,8 +31,8 @@ const sub: React.CSSProperties = { fontFamily: serif, fontStyle: 'italic', fontS
 const body: React.CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '42ch', margin: '0 auto', ...pretty }
 const quietLink: React.CSSProperties = { display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', borderBottom: '1px solid rgba(122,94,52,0.38)', paddingBottom: 5, cursor: 'pointer', transition: 'color 400ms ease' }
 
-function Divider() {
-  return <div aria-hidden="true" style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,112px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
+function Divider({ tight }: { tight?: boolean }) {
+  return <div aria-hidden="true" style={{ width: 1, height: tight ? 'clamp(36px,5.5vh,64px)' : 'clamp(44px,7vh,88px)', margin: tight ? 'clamp(28px,4.5vh,56px) auto' : 'clamp(56px,9vh,112px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 }
 
 export function LibraryChapter({ ctx }: { ctx: Ctx }) {
@@ -77,10 +77,12 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
             read, the full answers revealing in place. Relocated here from the
             Founder's Room so that room stays focused on the community experience. */}
         <div style={{ textAlign: 'center' }}>
-          <FounderAnswers initialCount={0} />
+          <FounderAnswers initialCount={0} teaser="How do I know whether an opportunity is a distraction or the next big move?" />
         </div>
 
-        <Divider />
+        {/* a tighter transition here: the collection above is deliberately short,
+            so the full divider left a floating line in an outsized gap */}
+        <Divider tight />
 
         {/* 4 · On Our Shelves — books and references that move us. The Creative
             Act is the first; no invented endorsements. */}
