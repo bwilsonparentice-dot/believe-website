@@ -134,7 +134,11 @@ export function Home({ ctx }: { ctx: Ctx }) {
       {/* ── 3 · What makes our approach different — one point of view as a large editorial statement ── */}
       <Section>
         <div style={eyebrow}>Our point of view</div>
-        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(46px,8.4vw,98px)', lineHeight: 0.98, letterSpacing: '-0.015em', color: palette.navy, margin: 'clamp(18px,2.6vh,30px) auto 0', maxWidth: '12ch', ...balance }}>Demand before distribution.</p>
+        {/* a quiet editorial lead-in: a setup line, then the philosophy given
+            gentle emphasis on its own line, kept subordinate to the headline */}
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', margin: 'clamp(22px,3.2vh,34px) auto 0', maxWidth: '34ch', ...balance }}>Every remarkable brand begins as something only its founder can imagine.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(20px,2.3vw,27px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.74)', margin: 'clamp(11px,1.6vh,16px) auto 0', maxWidth: '26ch', ...balance }}>Sometimes you have to see it before you can believe it.</p>
+        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(46px,8.4vw,98px)', lineHeight: 0.98, letterSpacing: '-0.015em', color: palette.navy, margin: 'clamp(30px,4.6vh,52px) auto 0', maxWidth: '12ch', ...balance }}>Demand before distribution.</p>
         <p style={{ ...body, maxWidth: '42ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>Growth isn&rsquo;t more stores, or one loud moment. We build demand on purpose, so discovery, distribution, and loyalty feed one another.</p>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.95vw,23px)', lineHeight: 1.46, color: 'rgba(90,68,34,0.9)', margin: 'clamp(20px,3vh,28px) auto 0', maxWidth: '36ch', ...balance }}>And the biggest opportunity is rarely the one in the brief. We look for the move that isn&rsquo;t obvious yet.</p>
       </Section>
