@@ -20,6 +20,13 @@ const ROOMS: { name: string; desc: string; open: (c: Ctx) => Handler }[] = [
   { name: 'The Observatory', desc: 'Believe Radar and retail intelligence.', open: (c) => c.openObservatory },
 ]
 
+// Two distinct experiences beyond the core engagements: a founder community and
+// a brand experience. Their descriptions keep them from reading as the same thing.
+const BEYOND: { name: string; desc: string; open: (c: Ctx) => Handler }[] = [
+  { name: 'The Founder’s Room', desc: 'A monthly founder community.', open: (c) => c.openFounderRoom },
+  { name: 'The Table', desc: 'Where brands meet culture.', open: (c) => c.openTable },
+]
+
 function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => void; showFoot: boolean }) {
   const go = (open: (c: Ctx) => Handler): Handler => (e) => { open(ctx)(e); onNavigate?.() }
   return (
@@ -40,6 +47,21 @@ function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => voi
           {(showFoot || i < ROOMS.length - 1) && <div className="hi-rule" />}
         </React.Fragment>
       ))}
+      {showFoot && (
+        <div style={{ marginBottom: 'clamp(2px,0.4vw,6px)' }}>
+          <span className="hi-more-label" style={{ marginBottom: 'clamp(16px,1.5vw,24px)' }}>Beyond the Studio</span>
+          {BEYOND.map((r, i) => (
+            <React.Fragment key={r.name}>
+              <El as="button" className="hi-room" onClick={go(r.open)} aria-label={`${r.name} — ${r.desc.replace(/[.?]$/, '')}`}>
+                <span className="hi-room-top"><span className="hi-name">{r.name}</span><span className="hi-arrow" aria-hidden="true">&rarr;</span></span>
+                <span className="hi-desc">{r.desc}</span>
+              </El>
+              {i < BEYOND.length - 1 && <div className="hi-rule" />}
+            </React.Fragment>
+          ))}
+          <div className="hi-rule" />
+        </div>
+      )}
       {showFoot && (
         <div className="hi-more">
           <span className="hi-more-label">Also inside the House</span>

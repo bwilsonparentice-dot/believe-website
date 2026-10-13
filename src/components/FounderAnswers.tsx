@@ -53,15 +53,21 @@ function Answer({ a }: { a: FounderAnswer }) {
 
 const FEATURED = 3
 
-export function FounderAnswers() {
+/**
+ * `initialCount` controls how many answers are present before the reveal.
+ * On the Library it is 0, so the shelf reads as a discoverable collection —
+ * a title, a descriptor, and an invitation to read — rather than a wall of
+ * text on the Library's main page. The full collection reveals in place.
+ */
+export function FounderAnswers({ initialCount = FEATURED }: { initialCount?: number } = {}) {
   const [showAll, setShowAll] = React.useState(false)
-  const shown = showAll ? FOUNDER_ANSWERS : FOUNDER_ANSWERS.slice(0, FEATURED)
-  const remaining = FOUNDER_ANSWERS.length - FEATURED
+  const shown = showAll ? FOUNDER_ANSWERS : FOUNDER_ANSWERS.slice(0, initialCount)
+  const remaining = FOUNDER_ANSWERS.length - initialCount
   return (
     <section aria-label="Founder Answers">
       {/* the featured collection — a serif title and one descriptor, unnumbered */}
       <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }}>Founder Answers</h3>
-      <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '42ch', margin: '0 auto clamp(64px,11vh,120px)' }}>
+      <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', maxWidth: '42ch', margin: shown.length ? '0 auto clamp(64px,11vh,120px)' : '0 auto clamp(34px,5.5vh,56px)' }}>
         Real questions founders ask us, answered by people who have actually built brands.
       </p>
 
@@ -81,11 +87,11 @@ export function FounderAnswers() {
         <button
           type="button"
           onClick={() => setShowAll(true)}
-          style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(122,94,52,0.4)', padding: '0 0 5px', cursor: 'pointer', marginTop: 'clamp(56px,10vh,110px)', transition: 'color 400ms ease' }}
+          style={{ display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(122,94,52,0.4)', padding: '0 0 5px', cursor: 'pointer', marginTop: shown.length ? 'clamp(56px,10vh,110px)' : 0, transition: 'color 400ms ease' }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#2b2723' }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = 'rgba(122,94,52,0.72)' }}
         >
-          Read all the Founder Answers &rarr;
+          {shown.length ? 'Read all the Founder Answers' : 'Read the Founder Answers'} &rarr;
         </button>
       )}
     </section>

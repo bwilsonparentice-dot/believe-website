@@ -53,9 +53,10 @@ const reveal: React.CSSProperties = {
 export function WorkChapter({ ctx }: { ctx: Ctx }) {
   const talk = openBooking
 
-  // Each way of working is named in its eyebrow (Creative Strategy / Private
-  // Advisory / The Table), with the editorial phrase as the headline and the
-  // original one-word verb kept as a subtle accent beneath it.
+  // The two core engagements, each named in its eyebrow (Creative Strategy /
+  // Private Advisory), with the editorial phrase as the headline and the
+  // original one-word verb kept as a subtle accent beneath it. The experiences
+  // (The Founder's Room, The Table) live in "Beyond the Studio" below.
   const invitations = [
     {
       n: '01', title: 'Creative Strategy', verb: 'Create What’s Next', accent: 'Imagine.',
@@ -68,15 +69,8 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       n: '02', title: 'Private Advisory', verb: 'A Different Perspective', accent: 'Think together.',
       forWhom: 'For founders navigating what comes next.',
       body: 'A trusted strategic voice who has built a company, beside you through the decisions that shape it.',
-      message: 'You don’t have to figure out every next move alone.',
+      message: 'A steady voice for the decisions only you can make.',
       img: '/photos/photo-conversation.webp', imgAlt: 'Two chairs drawn close around a small walnut table, coffee and an open journal in morning light',
-    },
-    {
-      n: '03', title: 'The Table', verb: 'Build Something Together', accent: 'Connect.',
-      forWhom: 'For founders who believe the right connection can change everything.',
-      body: 'We bring together brands, people, ideas, and communities to create opportunities that might never have existed otherwise.',
-      message: 'Sometimes the most valuable thing we create is the connection itself.',
-      img: '/photos/photo-courtyard.webp', imgAlt: 'A Mediterranean courtyard at golden hour, a long linen-dressed table set for gathering beneath olive trees',
     },
   ]
 
@@ -98,7 +92,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
         <ArchLine m="var(--wtw-hero-invite-t) auto var(--wtw-hero-invite-b)" />
         <div style={reveal}>
           <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>The invitations</div>
-          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(24px,3.1vw,40px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '24ch', margin: '0 auto', ...balance }}>Three ways a conversation can begin.</p>
+          <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(24px,3.1vw,40px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '24ch', margin: '0 auto', ...balance }}>Two ways a conversation can begin.</p>
 
           <div className="wtw-invitations" style={{ marginTop: 'var(--wtw-head-first)' }}>
             {invitations.map((inv, i) => (
@@ -119,30 +113,28 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* 3 · How engagements take shape — the deeper pathways, kept accessible
-            and clearly secondary to the invitations; future concepts set apart */}
+        {/* 3 · Beyond the Studio — the two experiences the House hosts, distinct
+            from the engagements above: a founder community, and a brand
+            experience. Written so they cannot be mistaken for the same thing. */}
         <ArchLine m="clamp(76px,13vh,152px) auto clamp(48px,7.5vh,92px)" />
         <div style={reveal}>
-          <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>How engagements take shape</div>
+          <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>Beyond the Studio</div>
           <div style={{ maxWidth: 620, margin: '0 auto', textAlign: 'left' }}>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.68)', margin: '0 0 clamp(20px,3.4vh,34px)', textAlign: 'center', ...pretty }}>In time, a conversation might become focused creative work, an ongoing seat at the table, or a place to gather with other founders.</p>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', margin: '0 0 clamp(26px,4.4vh,44px)', textAlign: 'center', ...balance }}>Some things are built through conversation. Others come to life through experience.</p>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                { n: 'Private Advisory', d: 'An ongoing strategic partnership, within The Drawing Room.', go: ctx.openAdvisory },
-                { n: 'The Table', d: 'A gathering space for founders and conversation.', go: ctx.openTable },
+                { n: 'The Founder’s Room', d: 'A recurring monthly virtual gathering for consumer-brand founders: honest conversation, shared challenges, and the perspective that comes from building in the same world.', go: ctx.openFounderRoom },
+                { n: 'The Table', d: 'A curated brand experience connecting consumer brands with chefs, creators, and cultural voices, to build demand and story beyond the shelf.', go: ctx.openTable },
               ].map((e) => (
-                <El as="button" key={e.n} onClick={e.go} style={{ textAlign: 'left', background: 'none', border: 'none', borderTop: '1px solid rgba(122,94,52,0.2)', padding: 'clamp(18px,2.6vh,26px) 0', cursor: 'pointer', transition: 'background 300ms ease' }} hover={{ background: 'rgba(122,94,52,0.05)' }}>
+                <El as="button" key={e.n} onClick={e.go} style={{ textAlign: 'left', background: 'none', border: 'none', borderTop: '1px solid rgba(122,94,52,0.2)', padding: 'clamp(20px,3vh,30px) 0', cursor: 'pointer', transition: 'background 300ms ease' }} hover={{ background: 'rgba(122,94,52,0.05)' }}>
                   <span style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em' }}>
-                    <span style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(20px,2.3vw,28px)', lineHeight: 1.05, color: '#2b2723' }}>{e.n}</span>
+                    <span style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(22px,2.6vw,32px)', lineHeight: 1.05, color: '#2b2723' }}>{e.n}</span>
                     <span style={{ fontFamily: sans, fontSize: 10, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', whiteSpace: 'nowrap' }}>Enter &rarr;</span>
                   </span>
-                  <span style={{ display: 'block', fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15px,1.7vw,20px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.7)', marginTop: '0.4em', ...pretty }}>{e.d}</span>
+                  <span style={{ display: 'block', fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,21px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.72)', marginTop: '0.5em', ...pretty }}>{e.d}</span>
                 </El>
               ))}
-            </div>
-            <div style={{ marginTop: 'clamp(36px,6vh,64px)', borderTop: '1px solid rgba(122,94,52,0.2)', paddingTop: 'clamp(22px,3.6vh,34px)' }}>
-              <div style={{ ...label, fontSize: 9, letterSpacing: '0.42em', color: 'rgba(122,94,52,0.5)', marginBottom: '1.1em' }}>On the horizon</div>
-              <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(19px,2.2vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.58)' }}>The Founder&rsquo;s Room &middot; The Visionary Collective<span style={{ display: 'block', fontStyle: 'italic', fontSize: '0.82em', color: 'rgba(122,94,52,0.72)', marginTop: '0.5em' }}>Future and evolving concepts, opening to more founders over time.</span></div>
+              <div style={{ borderTop: '1px solid rgba(122,94,52,0.2)' }} />
             </div>
           </div>
         </div>

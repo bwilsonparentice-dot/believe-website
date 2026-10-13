@@ -18,7 +18,7 @@ const MANIFESTO = [
 ]
 
 const ROOMS: { name: string; because: string }[] = [
-  { name: 'The Founder’s Table', because: 'Because founders gather there.' },
+  { name: 'The Table', because: 'Because brands meet culture there.' },
   { name: 'The Library', because: 'Because wisdom lives there.' },
   { name: 'The Founder’s Room', because: 'Because transformation begins there.' },
   { name: 'The Blueprint', because: 'Because every meaningful company deserves thoughtful architecture.' },

@@ -8,15 +8,17 @@ import { HouseArch } from '../components/HouseArch'
 import { RoomHeader } from '../components/RoomHeader'
 import { JournalFeature } from '../components/JournalFeature'
 import { NowWhatFeature } from '../components/NowWhatFeature'
+import { FounderAnswers } from '../components/FounderAnswers'
 import { PHOTOS } from '../data'
 
 /**
  * The Library — reimagined as an editorial reading room. Three collections:
  * Believe Beyond Borders (the featured journal), From the Studio (original
  * writing, perspectives, and the NOW WHAT? film), and On Our Shelves (books
- * and references that move us). The advisory Founder Answers now live in the
- * Founder's Room; a quiet pointer keeps them discoverable here. The room's
- * own architecture and imagery are preserved. Nothing is invented.
+ * and references that move us), with Founder Answers as a fourth, discoverable
+ * collection — advisory perspectives that reveal in place rather than crowding
+ * the page. The room's own architecture and imagery are preserved. Nothing is
+ * invented.
  */
 
 const serif = "'Cormorant Garamond',serif"
@@ -66,12 +68,21 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <NowWhatFeature />
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'center', gap: '0.8em 2.4em', marginTop: 'clamp(44px,7.5vh,84px)' }}>
           <El onClick={ctx.openFieldNotes} style={quietLink} hover={{ color: '#2b2723' }}>Open the Notebook &rarr;</El>
-          <El onClick={ctx.openFounderRoom} style={quietLink} hover={{ color: '#2b2723' }}>Founder Answers, in the Founder&rsquo;s Room &rarr;</El>
         </div>
 
         <Divider />
 
-        {/* 3 · On Our Shelves — books and references that move us. The Creative
+        {/* 3 · Founder Answers — advisory perspectives from people who have built
+            brands, kept as a discoverable collection: a title and an invitation to
+            read, the full answers revealing in place. Relocated here from the
+            Founder's Room so that room stays focused on the community experience. */}
+        <div style={{ textAlign: 'center' }}>
+          <FounderAnswers initialCount={0} />
+        </div>
+
+        <Divider />
+
+        {/* 4 · On Our Shelves — books and references that move us. The Creative
             Act is the first; no invented endorsements. */}
         <div style={label}>On our shelves</div>
         <h3 style={h3}>On Our Shelves</h3>
