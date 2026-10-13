@@ -150,7 +150,7 @@ export const DATA: any[] = [
     questionSub: 'Some of the most interesting brand stories don’t begin on a shelf.',
     body: [
       'The Table brings a brand together with the chefs, tastemakers, creators, and cultural voices who can carry it somewhere a shelf never will.',
-      'A dinner, a collaboration, a pop-up, a cultural partnership — each imagined and produced as an experience, not a pitch. A room where a brand is tasted, felt, and remembered.',
+      'A dinner, a collaboration, a pop-up, a cultural partnership, each imagined and produced as an experience, not a pitch. A room where a brand is tasted, felt, and remembered.',
     ] },
   { id: 'studio', roman: 'VII', name: 'The Studio', l: '66%', t: '30%', w: '30%', h: '31%',
     accent: 'oklch(0.63 0.09 92)', glow: 'oklch(0.63 0.09 92 / 0.22)',
@@ -429,11 +429,11 @@ export const EXPERIENCES: Record<string, Experience> = {
       'I remembered why I started.',
     ],
     faqs: [
-      { q: 'How often does it meet?', a: 'Once a month, online. The conversation stays in the room — nothing is recorded.' },
+      { q: 'How often does it meet?', a: 'Once a month, online. The conversation stays in the room. Nothing is recorded.' },
       { q: 'What’s the format?', a: 'A small, guided video conversation among founders. No presentations and no prescribed agenda, just honest discussion that helps you see what comes next.' },
       { q: 'Who’s in the room?', a: 'Up to eight consumer-brand founders, and up to ten people in all. Kept deliberately small, so honesty has room to happen. If a brand is built by more than one founder, each has a seat.' },
-      { q: 'What do founders bring?', a: 'Whatever you’ve been sitting with: a pivot, a hire, a partnership, a season of doubt — the decisions that quietly shape the next chapter.' },
-      { q: 'How do I join?', a: 'Ask about joining. We’re forming the founding circle now and would love to hear from you — no long application, no sales call.' },
+      { q: 'What do founders bring?', a: 'Whatever you’ve been sitting with: a pivot, a hire, a partnership, a season of doubt, the decisions that quietly shape the next chapter.' },
+      { q: 'How do I join?', a: 'Ask about joining. We’re forming the founding circle now and would love to hear from you, no long application, no sales call.' },
     ],
     joinLead: 'The room opens through conversation.',
     joinBody: 'We begin with The Founder Conversation so we can understand where you are, what you’re building, and whether this is the right room for you today.',
@@ -895,11 +895,11 @@ export const RESIDENTS: TeamMember[] = [
 ]
 
 export const PEOPLE = [
-  { first: 'Beth', name: 'Beth Wilson-Parentice', pid: 'portrait-beth', dir: 'row', room: 'The Founder’s Room', role: 'Founder', portrait: 'Editorial portrait of Beth in The Founder’s Room — morning light, a journal, coffee', belief: 'Beth created Believe Studio because she believes founders change the world when someone believes in them first. Her role isn’t to lecture — it’s to help founders see possibilities they couldn’t yet see themselves.', when: 'when you’re carrying a decision that feels too heavy to make alone.' },
-  { first: 'Joy', name: 'Joy Mooiweer', pid: 'portrait-joy', dir: 'row-reverse', room: 'The Studio', role: 'House Operations', portrait: 'Editorial portrait of Joy in The Studio — beautiful materials, packaging, paper, brass, warm oak', belief: 'Joy believes extraordinary hospitality is often invisible. The best experiences are the ones that simply feel right.', when: 'long before you realize she’s quietly orchestrated dozens of thoughtful details that made your experience feel effortless.' },
-  { first: 'Jillian', name: 'Jillian Waun', pid: 'portrait-jillian', dir: 'row', room: 'The Library', role: 'Creative & Editorial', portrait: 'Editorial portrait of Jillian in The Library — books, notes, window light', belief: 'Jillian believes thoughtful storytelling creates belonging.', when: 'through the stories you read, the words that stay with you, and the conversations that continue long after you’ve left.' },
-  { first: 'Tiffany', name: 'Tiffany Nilles', pid: 'portrait-tiffany', dir: 'row-reverse', room: 'The Table', role: 'Retail Strategy Advisor', portrait: 'Editorial portrait of Tiffany at The Table — an open notebook, conversation, coffee', belief: 'Tiffany believes clarity creates momentum. She quietly helps founders move from possibility to progress.', when: 'when ideas begin becoming organized into meaningful action.' },
-  { first: 'Chef MoWils', name: 'Chef MoWils', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Chef MoWils in The Garden — olive trees, a stone path, morning light', belief: 'Chef MoWils believes meaningful conversations change lives.', when: 'around The Table—where AI meets CPG, and efficiency makes more room for connection.' },
+  { first: 'Beth', name: 'Beth Wilson-Parentice', pid: 'portrait-beth', dir: 'row', room: 'The Founder’s Room', role: 'Founder', portrait: 'Editorial portrait of Beth in The Founder’s Room, morning light, a journal, coffee', belief: 'Beth created Believe Studio because she believes founders change the world when someone believes in them first. Her role isn’t to lecture. It’s to help founders see possibilities they couldn’t yet see themselves.', when: 'when you’re carrying a decision that feels too heavy to make alone.' },
+  { first: 'Joy', name: 'Joy Mooiweer', pid: 'portrait-joy', dir: 'row-reverse', room: 'The Studio', role: 'House Operations', portrait: 'Editorial portrait of Joy in The Studio, beautiful materials, packaging, paper, brass, warm oak', belief: 'Joy believes extraordinary hospitality is often invisible. The best experiences are the ones that simply feel right.', when: 'long before you realize she’s quietly orchestrated dozens of thoughtful details that made your experience feel effortless.' },
+  { first: 'Jillian', name: 'Jillian Waun', pid: 'portrait-jillian', dir: 'row', room: 'The Library', role: 'Creative & Editorial', portrait: 'Editorial portrait of Jillian in The Library, books, notes, window light', belief: 'Jillian believes thoughtful storytelling creates belonging.', when: 'through the stories you read, the words that stay with you, and the conversations that continue long after you’ve left.' },
+  { first: 'Tiffany', name: 'Tiffany Nilles', pid: 'portrait-tiffany', dir: 'row-reverse', room: 'The Table', role: 'Retail Strategy Advisor', portrait: 'Editorial portrait of Tiffany at The Table, an open notebook, conversation, coffee', belief: 'Tiffany believes clarity creates momentum. She quietly helps founders move from possibility to progress.', when: 'when ideas begin becoming organized into meaningful action.' },
+  { first: 'Chef MoWils', name: 'Chef MoWils', pid: 'portrait-mona', dir: 'row', room: 'The Garden', portrait: 'Editorial portrait of Chef MoWils in The Garden, olive trees, a stone path, morning light', belief: 'Chef MoWils believes meaningful conversations change lives.', when: 'around The Table, where AI meets CPG, and efficiency makes more room for connection.' },
 ]
 
 /**

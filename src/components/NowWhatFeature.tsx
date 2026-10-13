@@ -36,7 +36,7 @@ export function NowWhatFeature() {
       {/* series mark — the real NOW WHAT? logo, used as-is and blended into the navy */}
       <img
         src="/photos/nowwhat-logo.webp"
-        alt="NOW WHAT? — the Believe Studio film series"
+        alt="NOW WHAT? The Believe Studio film series"
         style={{ display: 'block', width: 'clamp(116px,15vw,150px)', height: 'auto', margin: '0 auto' }}
       />
 

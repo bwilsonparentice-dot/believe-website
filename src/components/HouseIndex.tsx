@@ -40,7 +40,7 @@ function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => voi
       <div className="hi-rule" />
       {ROOMS.map((r, i) => (
         <React.Fragment key={r.name}>
-          <El as="button" className="hi-room" onClick={go(r.open)} aria-label={`${r.name} — ${r.desc.replace(/[.?]$/, '')}`}>
+          <El as="button" className="hi-room" onClick={go(r.open)} aria-label={`${r.name}, ${r.desc.replace(/[.?]$/, '')}`}>
             <span className="hi-room-top"><span className="hi-name">{r.name}</span><span className="hi-arrow" aria-hidden="true">&rarr;</span></span>
             <span className="hi-desc">{r.desc}</span>
           </El>
@@ -52,7 +52,7 @@ function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => voi
           <span className="hi-more-label" style={{ marginBottom: 'clamp(16px,1.5vw,24px)' }}>Beyond the Studio</span>
           {BEYOND.map((r, i) => (
             <React.Fragment key={r.name}>
-              <El as="button" className="hi-room" onClick={go(r.open)} aria-label={`${r.name} — ${r.desc.replace(/[.?]$/, '')}`}>
+              <El as="button" className="hi-room" onClick={go(r.open)} aria-label={`${r.name}, ${r.desc.replace(/[.?]$/, '')}`}>
                 <span className="hi-room-top"><span className="hi-name">{r.name}</span><span className="hi-arrow" aria-hidden="true">&rarr;</span></span>
                 <span className="hi-desc">{r.desc}</span>
               </El>

@@ -57,16 +57,16 @@ export function PrivacyPage({ ctx }: { ctx: Ctx }) {
 
       <h3 style={h3}>What this website collects</h3>
       <p style={body}>The website itself has no contact forms, no email sign-ups, and no advertising or analytics trackers, and it does not set cookies. We do not build profiles of visitors or sell any information.</p>
-      <p style={body}>The site stores a few small preferences in your browser&rsquo;s local storage &mdash; for example, whether you&rsquo;ve already seen the opening animation. This information stays on your own device, is not transmitted to us, and you can clear it at any time through your browser.</p>
+      <p style={body}>The site stores a few small preferences in your browser&rsquo;s local storage, for example, whether you&rsquo;ve already seen the opening animation. This information stays on your own device, is not transmitted to us, and you can clear it at any time through your browser.</p>
 
       <h3 style={h3}>Technical information through our host</h3>
-      <p style={body}>The site is hosted on GitHub Pages. Like virtually all web hosts, the host may process limited technical information &mdash; such as your IP address and basic request details &mdash; in standard server logs, in order to deliver and secure the website. That processing is handled by the host under its own terms.</p>
+      <p style={body}>The site is hosted on GitHub Pages. Like virtually all web hosts, the host may process limited technical information, such as your IP address and basic request details, in standard server logs, in order to deliver and secure the website. That processing is handled by the host under its own terms.</p>
 
       <h3 style={h3}>Fonts</h3>
       <p style={body}>Our typefaces are served from our own website, so viewing the site does not send your information to a third-party font provider.</p>
 
       <h3 style={h3}>Booking a conversation (Calendly)</h3>
-      <p style={body}>When you choose to start a conversation, you are taken to Calendly, an independent scheduling service, to book a time. Any details you enter there &mdash; such as your name, email address, and appointment details &mdash; are collected and processed by Calendly under its own privacy policy.</p>
+      <p style={body}>When you choose to start a conversation, you are taken to Calendly, an independent scheduling service, to book a time. Any details you enter there, such as your name, email address, and appointment details, are collected and processed by Calendly under its own privacy policy.</p>
       <p style={body}>Believe Studio may receive and retain the contact information and appointment details you submit through Calendly, so that we can schedule, prepare for, and follow up on our conversation with you. We use that information to correspond with you about working together, and we do not sell it.</p>
 
       <h3 style={h3}>Links to other sites</h3>
@@ -91,13 +91,13 @@ export function TermsPage({ ctx }: { ctx: Ctx }) {
       <p style={body}>Please use the site lawfully and in good faith. Don&rsquo;t attempt to disrupt or misuse it, interfere with its normal operation, or gain unauthorized access to any part of it or its underlying systems.</p>
 
       <h3 style={h3}>External links and scheduling</h3>
-      <p style={body}>The site links to third-party services &mdash; including Calendly for scheduling and Believe Radar &mdash; which are operated independently. We provide these links for convenience and are not responsible for the content, availability, or practices of those services.</p>
+      <p style={body}>The site links to third-party services, including Calendly for scheduling and Believe Radar, which are operated independently. We provide these links for convenience and are not responsible for the content, availability, or practices of those services.</p>
 
       <h3 style={h3}>No warranties</h3>
       <p style={body}>This website is provided &ldquo;as is&rdquo; and &ldquo;as available,&rdquo; without warranties of any kind, whether express or implied. We don&rsquo;t warrant that the site will always be available, uninterrupted, or free of errors.</p>
 
       <h3 style={h3}>Limitation of liability</h3>
-      <p style={body}>To the fullest extent permitted by law, Believe Studio will not be liable for any indirect, incidental, or consequential damages arising from your use of &mdash; or inability to use &mdash; this website.</p>
+      <p style={body}>To the fullest extent permitted by law, Believe Studio will not be liable for any indirect, incidental, or consequential damages arising from your use of, or inability to use, this website.</p>
 
       <h3 style={h3}>Changes and governing law</h3>
       <p style={body}>We may update these terms from time to time; the effective date above reflects the latest version. These terms are governed by the laws of the Commonwealth of Pennsylvania, United States, without regard to its conflict-of-laws rules.</p>
@@ -119,7 +119,7 @@ export function AccessibilityPage({ ctx }: { ctx: Ctx }) {
       <ul style={{ ...body, margin: '0.6em 0 0', paddingLeft: '1.2em', listStyle: 'none' }}>
         {[
           'A semantic, keyboard-navigable structure, with visible focus indicators so you can always see where you are.',
-          'Respect for your system&rsquo;s reduced-motion setting &mdash; when you prefer reduced motion, animation is turned off and all content remains complete and usable.',
+          'Respect for your system&rsquo;s reduced-motion setting, when you prefer reduced motion, animation is turned off and all content remains complete and usable.',
           'Descriptive alternative text for imagery, and clearly labelled controls.',
           'Attention to color contrast and readable, generously spaced typography.',
         ].map((t, i) => (

@@ -758,7 +758,7 @@ export class App extends React.Component<Record<string, never>, State> {
     const c = this.ctx
     return (
       <header className="bs-header">
-        <button className="bs-brand" onClick={() => { try { window.scrollTo({ top: 0, behavior: 'smooth' }) } catch { /* ignore */ } }} aria-label="Believe Studio — back to top">
+        <button className="bs-brand" onClick={() => { try { window.scrollTo({ top: 0, behavior: 'smooth' }) } catch { /* ignore */ } }} aria-label="Believe Studio, back to top">
           <svg width="20" height="23" viewBox="0 0 48 56" fill="none" aria-hidden="true"><path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth="2.6" strokeLinecap="round" /></svg>
           <span className="wm">Believe Studio</span>
         </button>

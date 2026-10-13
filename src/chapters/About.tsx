@@ -25,7 +25,7 @@ export function AboutChapter({ ctx }: { ctx: Ctx }) {
   const links: { t: string; go: () => void }[] = [
     { t: 'Why I built Believe', go: ctx.openWhyBelieve },
     { t: 'The People of Believe Studio', go: ctx.openPeople },
-    { t: 'The House — what this place is', go: ctx.openHouse },
+    { t: 'The House, what this place is', go: ctx.openHouse },
     { t: 'The Houses to Come', go: ctx.openHouses },
   ]
   return (
@@ -35,7 +35,7 @@ export function AboutChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ ...label, marginBottom: '1.4em' }}>About Believe</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.2vw,70px)', lineHeight: 1.05, margin: '0 auto', maxWidth: '20ch', ...balance }}>A creative strategy studio for ambitious founders, built by a founder.</h2>
 
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,27px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.78)', maxWidth: '46ch', margin: 'clamp(40px,7vh,84px) auto 0', ...pretty }}>Believe was built by Beth Wilson-Parentice, who grew Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, Starbucks, and thousands of retail doors — and who built the strategic partner she wished she&rsquo;d had.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,27px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.78)', maxWidth: '46ch', margin: 'clamp(40px,7vh,84px) auto 0', ...pretty }}>Believe was built by Beth Wilson-Parentice, who grew Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, Starbucks, and thousands of retail doors, and who built the strategic partner she wished she&rsquo;d had.</p>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', maxWidth: '32ch', margin: 'clamp(30px,5vh,54px) auto 0', ...balance }}>A house for founders: a place to think clearly, make better decisions, and build companies that matter.</p>
 
         <Divider h="clamp(44px,7vh,86px)" m="clamp(70px,12vh,150px) auto clamp(40px,7vh,70px)" />
