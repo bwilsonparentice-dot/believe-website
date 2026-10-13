@@ -489,10 +489,14 @@ a:hover { color: #b08a4a; }
 }
 
 /* ── Homepage team faces — each portrait is a quiet door into the People page. */
-.home-teamface__img { transition: transform 450ms ease, box-shadow 450ms ease; }
+.home-teamface__frame { transition: transform 450ms ease; }
+.home-teamface__img { transition: box-shadow 450ms ease; }
+.home-teamface__outline { position: absolute; inset: 0; border: 1px solid rgba(156,122,63,0.5); border-radius: 999px; transform: translate(7px, 7px); pointer-events: none; }
 .home-teamface__name { transition: color 350ms ease; }
+.home-teamface:hover .home-teamface__frame,
+.home-teamface:focus-visible .home-teamface__frame { transform: translateY(-4px); }
 .home-teamface:hover .home-teamface__img,
-.home-teamface:focus-visible .home-teamface__img { transform: translateY(-4px); box-shadow: 0 28px 44px -22px rgba(60,44,20,0.55); }
+.home-teamface:focus-visible .home-teamface__img { box-shadow: 0 28px 44px -22px rgba(60,44,20,0.55); }
 .home-teamface:hover .home-teamface__name,
 .home-teamface:focus-visible .home-teamface__name { color: #9c7a3f; }
 .home-teamface:focus { outline: none; }

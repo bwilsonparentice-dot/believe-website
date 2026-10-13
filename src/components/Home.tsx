@@ -54,17 +54,22 @@ function Venn() {
   )
 }
 
+// Every face is the same size here (no lead emphasis): an elongated capsule with
+// a delicate offset brass outline, matching the People page so the two read as
+// one family. No starburst on the homepage.
 function TeamFace({ m, ctx }: { m: typeof CORE_TEAM[number]; ctx: Ctx }) {
-  const w = m.lead ? 'clamp(122px,14vw,150px)' : 'clamp(112px,12.5vw,138px)'
   const anchor = m.name ? m.name.split(' ')[0].toLowerCase() : ''
   // each face is a door into the People page, landing on that person's section
   const open = anchor ? ctx.openPeopleAt(anchor) : ctx.openPeople
   return (
-    <El as="button" className="home-teamface" onClick={open} aria-label={`Meet ${m.name || m.role} on the People page`} style={{ width: 'clamp(124px,14vw,152px)', display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit' }}>
-      <div className="home-teamface__img" style={{ width: w, aspectRatio: '0.758', borderRadius: '46% 46% 7px 7px / 56% 56% 6px 6px', overflow: 'hidden', position: 'relative', boxShadow: '0 20px 34px -22px rgba(60,44,20,0.5)' }}>
-        <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%' }} />
+    <El as="button" className="home-teamface" onClick={open} aria-label={`Meet ${m.name || m.role} on the People page`} style={{ width: 'clamp(108px,11.8vw,130px)', display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit' }}>
+      <div className="home-teamface__frame" style={{ position: 'relative', width: '100%', aspectRatio: '0.685' }}>
+        <div className="home-teamface__outline" aria-hidden="true" />
+        <div className="home-teamface__img" style={{ position: 'absolute', inset: 0, borderRadius: '999px', overflow: 'hidden', boxShadow: '0 20px 34px -22px rgba(60,44,20,0.5)' }}>
+          <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%' }} />
+        </div>
       </div>
-      <div className="home-teamface__name" style={{ fontFamily: serif, fontWeight: 500, fontSize: 18, marginTop: 12, color: palette.ink }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
+      <div className="home-teamface__name" style={{ fontFamily: serif, fontWeight: 500, fontSize: 17, marginTop: 14, color: palette.ink }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
       <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 9.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: palette.olive, marginTop: 5 }}>{m.roleShort || m.role}</div>
     </El>
   )
@@ -149,7 +154,12 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'left', width: 'min(1120px, calc(100vw - clamp(32px,6vw,110px)))', marginLeft: '50%', transform: 'translateX(-50%)' }}>
           <div aria-hidden="true" style={{ width: 56, height: 1, background: 'rgba(122,94,52,0.55)', margin: '0 0 clamp(26px,4.4vh,46px)' }} />
           <h2 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,9vw,112px)', lineHeight: 0.97, letterSpacing: '-0.02em', color: palette.navy, margin: 0 }}>Who&rsquo;s helping you see<span style={{ display: 'block', fontStyle: 'italic', fontWeight: 400, paddingLeft: '0.14em' }}>the bigger picture?</span></h2>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '46ch', margin: 'clamp(48px,8vh,96px) 0 0', textWrap: 'pretty' as CSSProperties['textWrap'] }}>Believe Studio is led by Beth Wilson-Parentice, who built Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, and Starbucks. She has sat in the founder&rsquo;s chair, and built the partner she wished she&rsquo;d had.</p>
+
+          {/* an intentional progression: a small label, the credibility in a quiet
+              line, then the emotional close given its own prominence */}
+          <div style={{ ...eyebrow, margin: 'clamp(42px,7vh,84px) 0 clamp(16px,2.4vh,24px)' }}>Built from experience</div>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,24px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', maxWidth: '44ch', margin: 0, textWrap: 'pretty' as CSSProperties['textWrap'] }}>Believe Studio is led by Beth Wilson-Parentice, who built Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, and Starbucks.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.9vw,34px)', lineHeight: 1.32, color: palette.navy, maxWidth: '26ch', margin: 'clamp(24px,3.8vh,40px) 0 0', ...balance }}>She has sat in the founder&rsquo;s chair, and built the partner she wished she&rsquo;d had.</p>
         </div>
         <div className="home-team" style={{ marginTop: 'clamp(38px,6vh,62px)' }}>
           {CORE_TEAM.map((m, i) => (
