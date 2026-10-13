@@ -27,7 +27,7 @@ const BEYOND: { name: string; desc: string; open: (c: Ctx) => Handler }[] = [
   { name: 'The Table', desc: 'Where brands meet culture.', open: (c) => c.openTable },
 ]
 
-function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => void; showFoot: boolean }) {
+function Plate({ ctx, onNavigate, showFoot, showBeyond = showFoot }: { ctx: Ctx; onNavigate?: () => void; showFoot: boolean; showBeyond?: boolean }) {
   const go = (open: (c: Ctx) => Handler): Handler => (e) => { open(ctx)(e); onNavigate?.() }
   return (
     <nav className="hi-plate" aria-label="The House" onClick={stop}>
@@ -44,10 +44,10 @@ function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => voi
             <span className="hi-room-top"><span className="hi-name">{r.name}</span><span className="hi-arrow" aria-hidden="true">&rarr;</span></span>
             <span className="hi-desc">{r.desc}</span>
           </El>
-          {(showFoot || i < ROOMS.length - 1) && <div className="hi-rule" />}
+          {(showBeyond || i < ROOMS.length - 1) && <div className="hi-rule" />}
         </React.Fragment>
       ))}
-      {showFoot && (
+      {showBeyond && (
         <div style={{ marginBottom: 'clamp(2px,0.4vw,6px)' }}>
           <span className="hi-more-label" style={{ marginBottom: 'clamp(16px,1.5vw,24px)' }}>Beyond the Studio</span>
           {BEYOND.map((r, i) => (
@@ -59,7 +59,7 @@ function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => voi
               {i < BEYOND.length - 1 && <div className="hi-rule" />}
             </React.Fragment>
           ))}
-          <div className="hi-rule" />
+          {showFoot && <div className="hi-rule" />}
         </div>
       )}
       {showFoot && (
@@ -89,7 +89,7 @@ export function HouseIndex({ ctx, onNavigate, variant = 'overlay' }: { ctx: Ctx;
   if (variant === 'footer') {
     return (
       <div className="hi-footer">
-        <Plate ctx={ctx} onNavigate={onNavigate} showFoot={false} />
+        <Plate ctx={ctx} onNavigate={onNavigate} showFoot={false} showBeyond />
       </div>
     )
   }

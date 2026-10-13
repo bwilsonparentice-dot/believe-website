@@ -10,7 +10,7 @@ import { HouseIndex } from './HouseIndex'
  */
 export function Footer({ ctx }: { ctx: Ctx }) {
   return (
-    <footer style={{ position: 'relative', zIndex: 2, background: '#161613', color: 'rgba(246,239,228,0.9)', padding: 'clamp(60px,12vh,150px) clamp(30px,8vw,120px)' }}>
+    <footer style={{ position: 'relative', zIndex: 2, background: '#1e2a44', color: 'rgba(246,239,228,0.9)', padding: 'clamp(60px,12vh,150px) clamp(30px,8vw,120px)' }}>
       {/* a quiet introduction, then the full brass directory */}
       <div style={{ textAlign: 'center', maxWidth: 700, margin: '0 auto clamp(30px,5vh,56px)' }}>
         <p style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(236,209,147,0.6)', margin: '0 0 1.6em' }}>The House Directory</p>
@@ -26,7 +26,7 @@ export function Footer({ ctx }: { ctx: Ctx }) {
           now lives in the Closing section just above; the footer is the quiet
           directory and the end-matter.) (Privacy/Terms/LinkedIn/Accessibility
           await real URLs.) */}
-      <div style={{ maxWidth: 1120, margin: 'clamp(84px,14vh,180px) auto 0', paddingTop: 'clamp(28px,4.5vh,52px)', borderTop: '1px solid rgba(246,239,228,0.1)', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em 2.4em' }}>
+      <div style={{ maxWidth: 1120, margin: 'clamp(48px,7.5vh,104px) auto 0', paddingTop: 'clamp(26px,4vh,46px)', borderTop: '1px solid rgba(246,239,228,0.1)', display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'space-between', gap: '1em 2.4em' }}>
         <span style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 15, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.7)' }}>Believe Studio</span>
         <nav aria-label="Site information" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6em 1.9em', alignItems: 'baseline' }}>
           {(() => {
