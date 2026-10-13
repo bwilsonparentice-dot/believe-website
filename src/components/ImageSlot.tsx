@@ -21,10 +21,12 @@ export function ImageSlot({
   showNote = false,
   loading,
   style,
+  className,
 }: {
   src?: string
   placeholder?: string
   alt?: string
+  className?: string
   /** a per-room wash so each placeholder carries the room's own light */
   tint?: string
   fit?: 'cover' | 'contain'
@@ -44,6 +46,7 @@ export function ImageSlot({
         alt={alt || ''}
         loading={loading}
         onError={() => setFailed(true)}
+        className={className}
         style={{ objectFit: fit, objectPosition: 'center', ...style, display: 'block' }}
       />
     )

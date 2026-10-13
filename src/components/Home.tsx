@@ -3,7 +3,8 @@ import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ArchMark } from './ChapterShell'
 import { ImageSlot } from './ImageSlot'
-import { CORE_TEAM, STORIES } from '../data'
+import { CORE_TEAM } from '../data'
+import { GoodCompany } from './GoodCompany'
 import { palette } from '../lib/palette'
 
 const serif = "'Cormorant Garamond',serif"
@@ -173,9 +174,12 @@ export function Home({ ctx }: { ctx: Ctx }) {
             </React.Fragment>
           ))}
         </div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.3vw,28px)', lineHeight: 1.4, color: palette.ink, maxWidth: '34ch', margin: 'clamp(42px,6vh,68px) auto 0', ...balance }}>&ldquo;{STORIES[0].quote}&rdquo;</p>
-        <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', marginTop: '1.3em' }}>{STORIES[0].name} &middot; {STORIES[0].company}</div>
         <El as="button" onClick={ctx.openPeople} style={{ ...ghost, marginTop: 'clamp(36px,5vh,54px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Meet the people of Believe Studio &rarr;</El>
+
+        {/* Good Company — the brands in our orbit, with Snehee's and Michelle's
+            voices paired to their brands. Evolves the single testimonial that
+            used to close this moment into one art-directed editorial composition. */}
+        <GoodCompany />
       </Section>
     </div>
   )
