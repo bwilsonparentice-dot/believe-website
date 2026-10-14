@@ -527,63 +527,48 @@ a:hover { color: #b08a4a; }
   .nowwhat-featured .nowwhat-meta h4 { margin-left: auto; margin-right: auto; }
 }
 
-/* ── Good Company — the brands in our orbit, art-directed as one continuous
-   editorial composition: two founder features (Gallivant · Snehee, Date Better ·
-   Michelle) bracketing an organic scatter of the remaining four brands. ── */
-.gc-wrap { position: relative; width: min(1180px, calc(100vw - clamp(32px,6vw,110px))); margin-left: 50%; transform: translateX(-50%); text-align: left; }
+/* ── Good Company — the brands in our orbit: a refined editorial gallery of six
+   product photographs on consistent warm backdrops (three columns, two rows,
+   with gentle column offsets), and beneath it the two founder testimonials with
+   their circular portraits set beside each quote. ── */
+.gc-wrap { position: relative; width: min(1140px, calc(100vw - clamp(32px,6vw,110px))); margin-top: clamp(70px,11vh,150px); margin-left: 50%; transform: translateX(-50%); }
 .gc-head { text-align: center; max-width: 640px; margin: 0 auto; }
-.gc-obj { text-align: center; }
-.gc-obj img { display: block; margin: 0 auto; height: auto; filter: drop-shadow(0 20px 24px rgba(60,44,20,0.24)); }
-.gc-lab { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(16px,1.5vw,21px); line-height: 1.1; color: #2b2723; margin-top: 0.95em; }
-.gc-cat { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: #6f7d48; margin-top: 0.5em; }
-.gc-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(20px,2.2vw,29px); line-height: 1.46; color: #2b2723; max-width: 22ch; text-wrap: pretty; }
-.gc-attr { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.17em; text-transform: uppercase; color: rgba(43,39,35,0.64); margin-top: 1.25em; }
+.gc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(22px,3vw,52px); margin-top: clamp(52px,8.5vh,104px); }
+.gc-cell { display: flex; flex-direction: column; }
+.gc-cell:nth-child(2), .gc-cell:nth-child(5) { margin-top: clamp(26px,5vh,64px); }
+.gc-plate { border-radius: 3px; overflow: hidden; border: 1px solid rgba(122,94,52,0.12); box-shadow: 0 26px 48px -34px rgba(60,44,20,0.55); }
+.gc-plate img { display: block; width: 100%; height: auto; }
+.gc-lab { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(17px,1.6vw,22px); line-height: 1.1; color: #2b2723; margin-top: 0.95em; text-align: center; }
+.gc-cat { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase; color: #6f7d48; margin-top: 0.5em; text-align: center; }
 
-/* two founder features */
-.gc-feature { display: grid; grid-template-columns: repeat(12,1fr); align-items: center; column-gap: clamp(20px,3vw,48px); margin-top: clamp(48px,8vh,104px); }
-.gc-feature__prod { grid-column: 1 / span 5; }
-.gc-feature__say { grid-column: 7 / span 6; }
-.gc-feature--rev .gc-feature__say { grid-column: 1 / span 6; order: 1; }
-.gc-feature--rev .gc-feature__prod { grid-column: 8 / span 5; order: 2; }
+.gc-rule { width: min(300px,52%); height: 1px; background: linear-gradient(90deg, transparent, rgba(122,94,52,0.3) 24%, rgba(122,94,52,0.3) 76%, transparent); margin: clamp(78px,13vh,150px) auto clamp(60px,10vh,100px); }
 
-/* organic scatter of the remaining four — varied scale + staggered baselines */
-.gc-scatter { display: grid; grid-template-columns: repeat(12,1fr); align-items: end; column-gap: clamp(16px,2.5vw,40px); margin-top: clamp(30px,5vh,66px); }
-.gc-s-pb      { grid-column: 2 / span 3; }
-.gc-s-hormans { grid-column: 5 / span 3; margin-bottom: clamp(26px,5vh,70px); }
-.gc-s-maia    { grid-column: 8 / span 2; margin-bottom: clamp(46px,9vh,116px); }
-.gc-s-fizzy   { grid-column: 10 / span 2; }
-
-/* display widths (authentic proportions preserved; only size varies) */
-.gc-img-gallivant { width: clamp(220px,24vw,310px); }
-.gc-img-date      { width: clamp(180px,20vw,250px); }
-.gc-img-pb        { width: clamp(130px,13vw,180px); }
-.gc-img-hormans   { width: clamp(140px,14vw,200px); }
-.gc-img-maia      { width: clamp(104px,10vw,138px); }
-.gc-img-fizzy     { width: clamp(66px,6.5vw,92px); }
+/* testimonials — portrait beside quote (slightly more prominent quote text) */
+.gc-voices { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,3vw,52px); max-width: 980px; margin: 0 auto; }
+/* each portrait+quote pair is centered within its half so the two groups read
+   as evenly balanced on the page; the quote column is a touch wider for a more
+   natural editorial measure, and the portrait aligns toward the opening lines
+   of the quote rather than the full block's vertical center. */
+.gc-voice { display: grid; grid-template-columns: 128px minmax(0, 34ch); justify-content: center; gap: clamp(20px,1.8vw,28px); align-items: start; text-align: left; }
+.gc-port { margin-top: clamp(2px,0.5vh,8px); }
+.gc-port { width: 140px; aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; box-shadow: 0 20px 34px -18px rgba(60,44,20,0.5); }
+.gc-port img { width: 100%; height: 100%; object-fit: cover; }
+.gc-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(20px,2.05vw,27px); line-height: 1.48; color: #2b2723; text-wrap: pretty; }
+.gc-attr { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.17em; text-transform: uppercase; color: rgba(43,39,35,0.7); margin-top: 1.1em; }
 
 /* subtle scroll reveal, disabled under reduced-motion */
 @media (prefers-reduced-motion: no-preference) {
-  .gc-reveal { animation: gcUp 900ms ease both; animation-timeline: view(); animation-range: entry 0% cover 20%; }
+  .gc-reveal { animation: gcUp 900ms ease both; animation-timeline: view(); animation-range: entry 0% cover 18%; }
 }
 @keyframes gcUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 760px) {
   .gc-wrap { width: 100%; }
-  .gc-feature { grid-template-columns: 1fr; row-gap: 22px; margin-top: clamp(48px,8vh,76px); }
-  .gc-feature__prod, .gc-feature__say { grid-column: 1 / -1; }
-  .gc-feature--rev .gc-feature__say { grid-column: 1 / -1; order: 2; }
-  .gc-feature--rev .gc-feature__prod { grid-column: 1 / -1; order: 1; }
-  .gc-quote { max-width: 30ch; }
-  /* scatter → intentional staggered 2-column, not a flat stack */
-  .gc-scatter { grid-template-columns: 1fr 1fr; align-items: end; column-gap: 16px; row-gap: 42px; margin-top: 52px; }
-  .gc-s-pb      { grid-column: 1; margin-bottom: 0; }
-  .gc-s-hormans { grid-column: 2; margin-bottom: 0; margin-top: 34px; }
-  .gc-s-maia    { grid-column: 1; margin-bottom: 0; }
-  .gc-s-fizzy   { grid-column: 2; margin-bottom: 0; margin-top: 22px; }
-  .gc-img-gallivant { width: min(60vw,280px); }
-  .gc-img-date      { width: min(56vw,250px); }
-  .gc-img-pb        { width: min(42vw,172px); }
-  .gc-img-hormans   { width: min(46vw,190px); }
-  .gc-img-maia      { width: min(32vw,132px); }
-  .gc-img-fizzy     { width: min(24vw,96px); }
+  .gc-grid { grid-template-columns: 1fr 1fr; gap: 16px; margin-top: clamp(48px,8vh,80px); }
+  .gc-cell:nth-child(2), .gc-cell:nth-child(5) { margin-top: 0; }
+  .gc-cell:nth-child(even) { margin-top: clamp(22px,5vh,40px); }
+  .gc-voices { grid-template-columns: 1fr; gap: 56px; max-width: 480px; }
+  /* portrait above the quote on mobile, so the text gets full width */
+  .gc-voice { grid-template-columns: 1fr; gap: 20px; justify-items: start; align-items: start; }
+  .gc-port { width: 150px; }
 }

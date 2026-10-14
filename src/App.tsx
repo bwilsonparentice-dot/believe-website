@@ -40,6 +40,11 @@ import { isPublishedSlug } from './journal/articles'
 import { HousesChapter } from './chapters/Houses'
 import { ReceiveKey } from './chapters/ReceiveKey'
 import { Home } from './components/Home'
+
+// Mockup toggle: hide the Founders Wall from the homepage scroll while keeping
+// its implementation (renderFounderWall) intact, so it can be restored or
+// relocated later. Set back to true to bring it back exactly as before.
+const SHOW_FOUNDER_WALL = false
 import { ObservatoryChapter } from './chapters/Observatory'
 import { AboutChapter } from './chapters/About'
 import { PrivacyPage, TermsPage, AccessibilityPage } from './chapters/Legal'
@@ -851,7 +856,7 @@ export class App extends React.Component<Record<string, never>, State> {
             the Community chapters were removed from the main scroll in the
             simplification; every room and chapter is retained in the codebase and
             remains reachable through the House Directory (see HouseIndex). */}
-        {this.renderFounderWall()}
+        {SHOW_FOUNDER_WALL && this.renderFounderWall()}
 
         {/* The closing — an open limestone arch onto the courtyard: the final
             invitation, and the single home of "the house is always open." */}

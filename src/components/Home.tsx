@@ -83,6 +83,10 @@ function TeamFace({ m, ctx }: { m: typeof CORE_TEAM[number]; ctx: Ctx }) {
  * hero, the Creativity · Commerce · Connection framework, Demand before
  * distribution, and Build belonging all live here; the cinematic rooms follow.
  */
+// A/B toggle for the editorial pull quote between the People moment and Good
+// Company. true = Version B (with pull quote); false = Version A (testimonials only).
+const SHOW_PEOPLE_QUOTE = false
+
 export function Home({ ctx }: { ctx: Ctx }) {
   return (
     <div className="home" style={{ position: 'relative', background: 'linear-gradient(176deg,#f1e9d8 0%,#efe6d3 50%,#e9dfc9 100%)', color: palette.ink }}>
@@ -145,7 +149,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
       </Section>
 
       {/* ── 4 · The people & experience — the human difference, personal and credible ── */}
-      <Section style={{ paddingBottom: 'clamp(70px,12vh,150px)' }}>
+      <Section style={{ paddingBottom: 'clamp(56px,10vh,122px)' }}>
         {/* The dramatic editorial moment of the People section: an oversized,
             asymmetric question set to the left with open whitespace to its
             right, the italic second line stepping in, echoing the reference
@@ -175,6 +179,18 @@ export function Home({ ctx }: { ctx: Ctx }) {
           ))}
         </div>
         <El as="button" onClick={ctx.openPeople} style={{ ...ghost, marginTop: 'clamp(36px,5vh,54px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Meet the people of Believe Studio &rarr;</El>
+
+        {/* An editorial pull quote bridging the people behind Believe Studio to
+            the brands in our orbit. Oversized serif, a single brass hairline, a
+            discreet attribution — no card, no quotation marks. Toggle for the
+            A/B comparison. */}
+        {SHOW_PEOPLE_QUOTE && (
+          <div style={{ textAlign: 'center', maxWidth: 940, margin: '0 auto', padding: 'clamp(82px,14vh,176px) 4vw clamp(10px,2vh,28px)' }}>
+            <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(30px,5vw,62px)', lineHeight: 1.12, letterSpacing: '-0.01em', color: palette.navy, maxWidth: '17ch', margin: '0 auto', ...balance }}>When your team is exceptional, you look exceptional.</p>
+            <div aria-hidden="true" style={{ width: 46, height: 1, background: 'rgba(122,94,52,0.5)', margin: 'clamp(26px,4vh,42px) auto clamp(16px,2.4vh,24px)' }} />
+            <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)' }}>Snehee Chaplot &middot; Founder, Gallivant</div>
+          </div>
+        )}
 
         {/* Good Company — the brands in our orbit, with Snehee's and Michelle's
             voices paired to their brands. Evolves the single testimonial that
