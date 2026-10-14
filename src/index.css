@@ -572,3 +572,30 @@ a:hover { color: #b08a4a; }
   .gc-voice { grid-template-columns: 1fr; gap: 20px; justify-items: start; align-items: start; }
   .gc-port { width: 150px; }
 }
+
+/* ── The Founder Conversation — the welcome note before scheduling ──────────
+   A brief, warm greeting in Believe's own type that every "Start a Conversation"
+   CTA opens. The note's own "Find a Time to Talk" is the one hand-off to
+   Calendly. Styles live here (not inline) so the button can hold one line on
+   mobile and so reduced-motion is honored. */
+.fc-veil { position: fixed; inset: 0; z-index: 140; display: flex; align-items: center; justify-content: center; padding: clamp(18px,5vw,60px); background: rgba(26,19,11,0.5); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: veilIn 500ms ease both; }
+.fc-card { position: relative; width: min(600px,100%); max-height: 94vh; overflow-y: auto; background: radial-gradient(120% 90% at 34% 18%, #fbf6ec, #f1e8d7 70%, #e9dfc9); border-radius: 4px; box-shadow: 0 60px 120px -50px rgba(30,20,8,0.7); padding: clamp(48px,6vw,78px) clamp(32px,5vw,66px); text-align: center; animation: contentFocus 800ms cubic-bezier(.2,.7,.2,1) both; outline: none; }
+.fc-arch { display: block; margin: 0 auto 1.3em; opacity: 0.85; }
+.fc-eyebrow { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.44em; text-transform: uppercase; color: rgba(122,94,52,0.62); margin-bottom: 1.5em; }
+.fc-headline { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(28px,3.5vw,44px); line-height: 1.14; color: #2b2723; margin: 0 auto; max-width: 18ch; text-wrap: balance; }
+.fc-intro { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(18px,2.1vw,25px); line-height: 1.6; color: rgba(43,39,35,0.72); max-width: 34ch; margin: clamp(24px,3.8vh,36px) auto 0; text-wrap: pretty; }
+.fc-listening { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(18px,2.1vw,26px); line-height: 1.45; color: rgba(122,94,52,0.85); margin: clamp(34px,5.4vh,52px) auto clamp(34px,5vh,46px); max-width: 26ch; text-wrap: balance; }
+.fc-continue { display: inline-block; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #faf4ea; background: #1e2a44; border: 1px solid #1e2a44; border-radius: 2px; padding: 17px 44px; cursor: pointer; text-decoration: none; white-space: nowrap; transition: background 400ms ease, box-shadow 400ms ease; }
+.fc-continue:hover { background: #16203a; box-shadow: inset 0 0 0 1px rgba(156,122,63,0.4); }
+.fc-continue:focus-visible { outline: 2px solid #9c7a3f; outline-offset: 3px; }
+.fc-dismiss { display: block; margin: clamp(26px,4.2vh,40px) auto 0; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(43,39,35,0.4); background: none; border: none; cursor: pointer; transition: color 400ms ease; }
+.fc-dismiss:hover { color: rgba(43,39,35,0.75); }
+.fc-dismiss:focus-visible { outline: 2px solid rgba(156,122,63,0.7); outline-offset: 3px; border-radius: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .fc-veil, .fc-card { animation: none; }
+}
+@media (max-width: 760px) {
+  .fc-card { padding: 52px 26px; }
+  /* keep the action on one line, elegantly, at phone width */
+  .fc-continue { letter-spacing: 0.2em; padding: 16px 30px; }
+}

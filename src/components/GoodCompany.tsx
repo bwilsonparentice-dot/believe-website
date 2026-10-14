@@ -20,7 +20,7 @@ const BRANDS: Brand[] = [
   { name: 'Peanut Butter & Co.', cat: 'Spreads', file: '/photos/gc-pb.webp', alt: 'Peanut Butter & Co. smooth peanut butter' },
   { name: 'Date Better Snacks', cat: 'Dates', file: '/photos/gc-datebetter.webp', alt: 'Date Better Snacks chocolate-covered dates' },
   { name: 'Gallivant Ice Cream', file: '/photos/gc-gallivant.webp', alt: 'Gallivant mango mawa ice cream' },
-  { name: 'Maia', cat: 'Greek Yogurt', file: '/photos/gc-maia.webp', alt: 'Maia grass-fed Greek yogurt' },
+  { name: 'Maia Yogurt', file: '/photos/gc-maia.webp', alt: 'Maia grass-fed Greek yogurt' },
   { name: 'Tamalitoz', cat: 'British × Mexican Candy', file: '/photos/gc-tamalitoz.webp', alt: 'Tamalitoz by Sugarox candy' },
   { name: 'Fizzy Wizzie’s', cat: 'Sparkling Tea', file: '/photos/gc-fizzy.webp', alt: 'Fizzy Wizzie’s sparkling fresh brewed tea' },
 ]
@@ -50,14 +50,14 @@ export function GoodCompany() {
         <div className="gc-voice gc-reveal">
           <div className="gc-port"><ImageSlot src="/photos/portrait-snehee-gc.webp" alt="Snehee, founder of Gallivant" placeholder="Snehee" style={{ objectPosition: '48% 50%' }} /></div>
           <div>
-            <p className="gc-quote">&ldquo;She broke down complex brand and marketing language into simple, compelling stories. I knew my brand deeply, but Beth helped me tell it &mdash; clearly, confidently, and in a way that actually landed with the right audience.&rdquo;</p>
-            <div className="gc-attr">Snehee Chaplot &middot; Founder, Gallivant</div>
+            <p className="gc-quote">&ldquo;Beth broke down complex brand and marketing language into simple, compelling stories. I knew my brand deeply, but she helped me tell it &mdash; clearly, confidently, and in a way that actually landed with the right audience.&rdquo;</p>
+            <div className="gc-attr">Snehee Chaplot &middot; Founder, Gallivant Ice Cream</div>
           </div>
         </div>
         <div className="gc-voice gc-reveal">
           <div className="gc-port"><ImageSlot src="/photos/portrait-michelle.webp" alt="Michelle, founder of Date Better Snacks" placeholder="Michelle" style={{ objectPosition: '52% 32%' }} /></div>
           <div>
-            <p className="gc-quote">&ldquo;She&rsquo;s helped me in countless ways, from strategy to mindset and has a superpower of connecting the right people at the right time. If you&rsquo;re lucky enough to work with her, say yes.&rdquo;</p>
+            <p className="gc-quote">&ldquo;Beth&rsquo;s helped me in countless ways, from strategy to mindset and has a superpower of connecting the right people at the right time. If you&rsquo;re lucky enough to work with her, say yes.&rdquo;</p>
             <div className="gc-attr">Michelle Valdez-Wilton &middot; Founder, Date Better Snacks</div>
           </div>
         </div>

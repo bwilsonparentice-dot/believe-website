@@ -48,7 +48,8 @@ const SHOW_FOUNDER_WALL = false
 import { ObservatoryChapter } from './chapters/Observatory'
 import { AboutChapter } from './chapters/About'
 import { PrivacyPage, TermsPage, AccessibilityPage } from './chapters/Legal'
-import { openBooking } from './lib/booking'
+import { setConversationOpener } from './lib/booking'
+import { ConversationNote } from './components/ConversationNote'
 // NOTE: the legacy FounderRoomChapter (./chapters/FounderRoom) was removed — the
 // Founder's Room resolves to FoundersRoom via openDoorway('founders-room').
 
@@ -293,6 +294,9 @@ export class App extends React.Component<Record<string, never>, State> {
   // ── lifecycle ──────────────────────────────────────────────────────────
   componentDidMount() {
     try { if (localStorage.getItem('bs_key') === '1') this.setState({ hasKey: true }) } catch { /* ignore */ }
+    // every "Start a Conversation" CTA across the House reaches the Founder
+    // Conversation note through this opener (see src/lib/booking.ts)
+    setConversationOpener(() => this.openConversation())
     window.addEventListener('keydown', this.onKey)
     window.addEventListener('pointerdown', this.onDown)
     window.addEventListener('scroll', this.onScroll, { passive: true })
@@ -352,6 +356,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   componentWillUnmount() {
+    setConversationOpener(null)
     window.removeEventListener('keydown', this.onKey)
     window.removeEventListener('pointerdown', this.onDown)
     window.removeEventListener('scroll', this.onScroll)
@@ -502,9 +507,21 @@ export class App extends React.Component<Record<string, never>, State> {
   // exactly where they were; it never navigates away on its own.
   private openDirectory = (e?: React.MouseEvent) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ showDirectory: true }) }
   private closeDirectory = () => this.setState({ showDirectory: false })
-  // Start a Conversation opens the booking page directly — no intermediate note.
-  private openConversation = (e?: React.MouseEvent) => openBooking(e)
-  private closeConversation = () => this.setState({ showConversation: false })
+  // Start a Conversation opens the Founder Conversation note (the warm welcome
+  // before scheduling). We remember the control that opened it so focus returns
+  // there when the note closes — a quiet, correct keyboard experience.
+  private convTrigger: HTMLElement | null = null
+  private openConversation = (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    try { this.convTrigger = (document.activeElement as HTMLElement) ?? null } catch { this.convTrigger = null }
+    this.setState({ showConversation: true })
+  }
+  private closeConversation = () => {
+    this.setState({ showConversation: false })
+    const t = this.convTrigger
+    this.convTrigger = null
+    if (t && typeof t.focus === 'function') { try { t.focus() } catch { /* ignore */ } }
+  }
 
   private closedChapters(): Partial<State> {
     return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null }
@@ -631,6 +648,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showPrivacy && <PrivacyPage ctx={this.ctx} />}
         {this.state.showTerms && <TermsPage ctx={this.ctx} />}
         {this.state.showAccessibility && <AccessibilityPage ctx={this.ctx} />}
+        {this.state.showConversation && <ConversationNote onClose={this.closeConversation} />}
       </>
     )
   }
