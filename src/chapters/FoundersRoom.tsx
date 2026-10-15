@@ -76,7 +76,7 @@ export function FoundersRoom({ ctx }: { ctx: Ctx }) {
           </div>
           <div style={{ ...surface('entry 0% cover 16%') }}>
             <HouseArch scale="standard" width="min(100%,520px)">
-              <ImageSlot src={PHOTOS.foundersRoom} fit="cover" alt="The Founder&rsquo;s Room: a contemporary sitting room in soft, warm light, a small circle of chairs and a quiet brass lantern" placeholder="a contemporary sitting room in soft, warm light, a small circle of chairs and a brass lantern, a quiet place to gather" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: 'center 56%', animation: 'slowZoom 24s ease-out both' }} />
+              <ImageSlot src={PHOTOS.foundersRoom} fit="cover" alt="The Founder&rsquo;s Room: a richly appointed navy-panelled library with curated bookshelves lit by warm brass picture lights, an intimate circle of seating around a round stone table, an olive-green velvet chair, and an atmospheric framed riverside painting beside a marble fireplace." placeholder="a navy-panelled library with curated bookshelves, warm brass lighting, an intimate circle of seating and an olive-green velvet chair" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: 'center 50%', animation: 'slowZoom 24s ease-out both' }} />
             </HouseArch>
           </div>
         </div>
