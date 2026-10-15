@@ -398,12 +398,16 @@ export class App extends React.Component<Record<string, never>, State> {
     if (this.state.opening || this.pending) return
     this.pending = true
     this.audio.resume()
+    const motionOn = motionAllowed(LIGHT_MOTION)
     setTimeout(() => {
       this.pending = false
       this.setState({ opening: true })
+      if (this.tDoor) clearTimeout(this.tDoor)
+      this.tDoor = setTimeout(() => { this.audio.doorOpen() }, 120)
       if (this.tAccept) clearTimeout(this.tAccept)
-      this.tAccept = setTimeout(() => this.toSketch(), 700)
-    }, 280) // Scene 5 — nothing happens immediately; ~280ms later the handle turns
+      // the leaf swings open (~1300ms) and a warm bloom floods; then we are inside
+      this.tAccept = setTimeout(() => this.enterHouse(), motionOn ? 2920 : 460)
+    }, motionOn ? 180 : 60) // a held beat, then the door gives way
   }
   private skip = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -653,73 +657,54 @@ export class App extends React.Component<Record<string, never>, State> {
     )
   }
 
-  // ── OVERTURE — the limestone doorway, filled with morning light ────────
+  // ── OVERTURE — the Dusty Rose Door, opening onto the House ─────────────
+  // The approved London Georgian photograph is kept whole as the architectural
+  // surround; the door LEAF is a separate layer that swings on its hinge to
+  // reveal the House's own warm limestone corridor (composited into the base's
+  // opening, so the stone step and doormat never move). One lightweight CSS
+  // transform — photographic fidelity, no video, no layout shift.
   private renderOverture(opening: boolean) {
     const motionOn = motionAllowed(LIGHT_MOTION)
-    const glowAnim = opening ? 'glowGrow 780ms ease 60ms forwards' : 'none'
-    const overtureFade = opening ? 'overtureOut 720ms ease 270ms forwards' : 'none'
     const sunShiftAnim = motionOn ? 'sunShift 170s ease-in-out infinite alternate' : 'none'
-    // Scene 7 — three quiet steps forward into the house (a walk, not a zoom)
-    const walk = opening && motionOn ? 'walkForward 960ms cubic-bezier(.4,0,.3,1) 78ms forwards' : undefined
     return (
-      <div onClick={this.accept} style={{ position: 'fixed', inset: 0, zIndex: 40, overflow: 'hidden', background: '#0b0906', cursor: 'pointer', animation: overtureFade }}>
-        <div style={{ position: 'absolute', inset: 0, transformOrigin: '51% 46%', animation: walk, background: 'radial-gradient(120% 80% at 30% 10%, rgba(255,246,224,0.92), transparent 55%), linear-gradient(180deg,#efe6d3,#e4d9c1 58%,#dbcfb3)' }}>
-          {/* the doorway itself — limestone arch, dark warm interior */}
-          <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(30vh,60vw)', height: '66vh', maxHeight: 640, borderRadius: '999px 999px 10px 10px', background: 'linear-gradient(180deg, #2a2018 0%, #34271b 60%, #241a12)', boxShadow: 'inset 0 8px 60px rgba(10,6,3,0.8), inset 0 0 0 2px rgba(120,94,52,0.25)' }}>
-            <div style={{ position: 'absolute', left: '51%', top: '54%', transform: 'translate(-50%,-50%)', width: '80%', height: '78%', borderRadius: '999px 999px 6px 6px', background: 'radial-gradient(closest-side, rgba(255,238,200,0.9), rgba(240,205,140,0.34) 55%, transparent 82%)', opacity: 0, mixBlendMode: 'screen', filter: 'blur(8px)', animation: glowAnim }} />
+      <div onClick={this.accept} style={{ position: 'fixed', inset: 0, zIndex: 40, overflow: 'hidden', cursor: 'pointer', background: 'radial-gradient(132% 92% at 50% 16%, #f3ebd9, #e7dcc4 56%, #dccfb2)' }}>
+        {/* a slow drift of warm daylight across the whole scene */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: '-10%', pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(46% 40% at 46% 14%, rgba(255,241,210,0.6), transparent 66%)', animation: sunShiftAnim }} />
+
+        {/* the entrance — the photograph, with the door leaf swinging open */}
+        <div className={'bs-ent-stage' + (opening && motionOn ? ' bs-ent-walk' : '')}>
+          <div className="bs-ent" data-open={opening ? 'true' : 'false'}>
+            <div className="bs-ent-base" role="img" aria-label="An elegant London Georgian townhouse entrance: a dusty-rose panelled front door with a large centred aged-brass knob, a glowing fanlight above, a pale limestone surround, and two topiaries in stone pots flanking the steps." />
+            <div className="bs-ent-spill" aria-hidden="true" />
+            <div className="bs-ent-leaf" aria-hidden="true" />
+
+            {/* the words, gathered as light over the closed door; they clear the
+                moment the door gives way */}
+            <div style={{ position: 'absolute', left: 0, right: 0, top: '60%', transform: 'translateY(-50%)', zIndex: 4, textAlign: 'center', pointerEvents: 'none', padding: '0 6%', opacity: opening ? 0 : 1, transition: 'opacity 520ms ease' }}>
+              <div aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '132%', height: 340, background: 'radial-gradient(50% 50% at 50% 50%, rgba(16,11,5,0.72), rgba(16,11,5,0.34) 52%, transparent 78%)', filter: 'blur(22px)', opacity: 0, animation: opening ? 'none' : 'softFade 840ms ease 600ms both' }} />
+              <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(33px,5.4vw,52px)', lineHeight: 1.06, color: '#fbf6ee', margin: 0, opacity: 0, animation: opening ? 'none' : 'softFade 620ms ease 240ms both', textShadow: '0 1px 2px rgba(16,11,5,0.8), 0 3px 14px rgba(16,11,5,0.9), 0 0 36px rgba(16,11,5,0.6)' }}>Come in.</p>
+              <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(19px,3vw,28px)', lineHeight: 1.22, color: '#f6ecd8', margin: '0.5em 0 0', opacity: 0, animation: opening ? 'none' : 'softFade 680ms ease 540ms both', textShadow: '0 1px 3px rgba(16,11,5,0.85), 0 2px 14px rgba(16,11,5,0.9), 0 0 30px rgba(16,11,5,0.6)' }}>We&rsquo;ve been waiting for you.</p>
+            </div>
           </div>
-          {/* the real arrival photograph, when present — covers the CSS doorway fallback */}
-          <FacadePhoto onStatus={(present) => { if (present !== this.state.facadeReady) this.setState({ facadeReady: present }) }} />
-
-          {/* the door eases open a crack — warm interior light spilling from the
-              real opening edge, aligned to the photograph's own doorway */}
-          {this.state.facadeReady && <DoorCrack opening={opening} motionOn={motionAllowed(LIGHT_MOTION)} />}
-
-          {/* a soft limestone lintel shadow */}
-          <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', mixBlendMode: 'soft-light', background: 'radial-gradient(58% 50% at 42% 26%, rgba(255,240,205,0.55), rgba(255,240,205,0) 68%)', animation: sunShiftAnim }} />
-          <Motes list={this.coverMotes} enabled={motionAllowed(LIGHT_MOTION)} />
-
-          {/* Scene 2 — one bird crosses and lands in the olive tree, then perches */}
-          <div style={{ position: 'absolute', left: '13%', top: '30%', zIndex: 2, pointerEvents: 'none', animation: 'birdArrive 1380ms cubic-bezier(.32,.5,.3,1) 540ms both' }}>
-            <svg width="46" height="26" viewBox="0 0 80 44" style={{ display: 'block', overflow: 'visible', filter: 'drop-shadow(0 5px 6px rgba(40,28,10,0.28))' }}>
-              <g style={{ transformOrigin: '40px 25px', animation: this.state.birdLanded ? 'birdSettle 6s ease-in-out infinite' : 'birdFlap 90ms ease-in-out infinite' }}>
-                <path d="M40 25 C31 12, 19 6, 3 3 C16 13, 28 19, 40 27 Z" fill="#243f5e" />
-                <path d="M40 25 C49 12, 61 6, 77 3 C64 13, 52 19, 40 27 Z" fill="#243f5e" />
-                <path d="M40 25 C33 15, 24 11, 12 7 C22 14, 31 18, 40 26 Z" fill="#b98a3c" opacity="0.7" />
-                <path d="M40 25 C47 15, 56 11, 68 7 C58 14, 49 18, 40 26 Z" fill="#b98a3c" opacity="0.7" />
-              </g>
-              <ellipse cx="40" cy="26" rx="6.4" ry="3" fill="#1d3450" />
-              <path d="M40 27 L46 35 L36 34 Z" fill="#c79a44" />
-              <circle cx="45" cy="23.5" r="2.6" fill="#1a2f49" />
-              <path d="M47.2 23 L51 22.4" stroke="#c79a44" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </div>
-
-          {/* the words that complete the photograph */}
-          <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', transform: 'translateY(-50%)', zIndex: 4, textAlign: 'center', pointerEvents: 'none', padding: '0 6vw' }}>
-            {/* a scrim confined to the doorway, so the words read as light in the dark opening */}
-            {/* the house is experienced first — birds, the curtain, the light — then, only then, the words gather */}
-            <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 'min(300px,58vw)', height: 460, background: 'radial-gradient(60% 60% at 50% 50%, rgba(24,15,6,0.55), rgba(24,15,6,0.2) 62%, transparent 82%)', filter: 'blur(30px)', opacity: 0, animation: 'softFade 840ms ease 660ms both' }} />
-            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(58px,8vw,122px)', lineHeight: 1.08, color: '#faf4ea', margin: 0, opacity: 0, animation: 'softFade 620ms ease 220ms both', textShadow: '0 1px 2px rgba(20,14,7,0.7), 0 4px 22px rgba(20,14,7,0.85), 0 0 60px rgba(20,14,7,0.6)' }}>Come in.</p>
-            <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(37px,5.3vw,76px)', lineHeight: 1.24, color: '#f2e7cf', margin: '0.5em 0 0', opacity: 0, animation: 'softFade 680ms ease 520ms both', textShadow: '0 1px 3px rgba(20,14,7,0.85), 0 3px 18px rgba(20,14,7,0.9), 0 0 42px rgba(20,14,7,0.7)' }}>We&rsquo;ve been waiting for you.</p>
-          </div>
-
-          {opening && (
-            <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '70vh', height: '70vh', borderRadius: '50%', background: 'radial-gradient(circle,rgba(255,246,224,1),rgba(230,196,132,0.45) 45%,transparent 72%)', animation: 'bloom 780ms cubic-bezier(.4,.1,.2,1) forwards' }} />
-          )}
         </div>
 
-        {/* Scene 1 — the arrival fades up from black (morning birds are heard first) */}
-        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 720ms ease 45ms both' : 'blackReveal 210ms ease both' }} />
+        {/* after the door holds open a beat, a soft warm light gathers and carries
+            the visitor inside — a quiet dissolve, never a flash */}
+        {opening && (
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', background: 'radial-gradient(118% 92% at 50% 44%, rgba(248,241,226,0.97), rgba(238,228,207,0.99))', opacity: 0, animation: motionOn ? 'glowGrow 760ms ease 2300ms both' : 'glowGrow 300ms ease forwards' }} />
+        )}
+
+        {/* the arrival fades up from a dark hush on the first paint */}
+        <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 760ms ease 40ms both' : 'blackReveal 210ms ease both' }} />
 
         {/* a quiet cue that the arrival is theirs to touch — eased in only after
             the second line has landed, so the words are never rushed, and gone
             the moment the visitor steps in */}
         {!opening && (
           <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(52px,10vh,112px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 480ms ease 360ms both' }}>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(246,239,228,0.56)', marginBottom: '1em', textShadow: '0 1px 12px rgba(20,14,7,0.85)' }}>Step inside</div>
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ margin: '0 auto', opacity: 0.7, animation: motionOn ? 'hint 3.4s ease-in-out infinite' : 'none' }}>
-              <path d="M2 3 L8 9 L14 3" stroke="rgba(246,239,228,0.72)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(78,58,32,0.72)', marginBottom: '1em', textShadow: '0 1px 10px rgba(247,240,224,0.7)' }}>Step inside</div>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ margin: '0 auto', opacity: 0.8, animation: motionOn ? 'hint 3.4s ease-in-out infinite' : 'none' }}>
+              <path d="M2 3 L8 9 L14 3" stroke="rgba(78,58,32,0.75)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
             </svg>
           </div>
         )}
