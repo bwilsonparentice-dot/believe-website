@@ -539,6 +539,24 @@ a:hover { color: #b08a4a; }
 .gc-plate { border-radius: 3px; overflow: hidden; border: 1px solid rgba(122,94,52,0.12); box-shadow: 0 26px 48px -34px rgba(60,44,20,0.55); }
 .gc-plate img { display: block; width: 100%; height: auto; }
 .gc-lab { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(17px,1.6vw,22px); line-height: 1.1; color: #2b2723; margin-top: 0.95em; text-align: center; }
+.gc-lab span { position: relative; display: inline-block; padding-bottom: 5px; }
+/* a brass hairline waiting beneath each name, drawn in only on hover (desktop) */
+.gc-lab span::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: #9c7a3f; transform: scaleX(0); transform-origin: center; transition: transform 550ms cubic-bezier(.2,.7,.2,1); }
+/* The Living Gallery — Quiet Lift. Each plate rises a little, its shadow softens
+   and deepens, and the photograph scales almost imperceptibly, like a piece
+   examined in a private gallery. No sibling dimming: every brand holds presence. */
+.gc-plate { transition: transform 600ms cubic-bezier(.2,.7,.2,1), box-shadow 600ms ease; }
+.gc-plate img { transition: transform 700ms cubic-bezier(.2,.7,.2,1); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .gc-cell:hover .gc-plate { transform: translateY(-6px); box-shadow: 0 44px 74px -40px rgba(60,44,20,0.6); }
+  .gc-cell:hover .gc-plate img { transform: scale(1.035); }
+  .gc-cell:hover .gc-lab span::after { transform: scaleX(1); }
+}
+/* a gentle one-time settle as the gallery arrives; added once by an observer */
+@media (prefers-reduced-motion: no-preference) {
+  .gc-grid.gc-shown .gc-plate img { animation: gcImgSettle 1200ms cubic-bezier(.2,.7,.2,1); }
+}
+@keyframes gcImgSettle { from { transform: scale(1.05); } to { transform: scale(1); } }
 .gc-cat { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase; color: #6f7d48; margin-top: 0.5em; text-align: center; }
 
 .gc-rule { width: min(300px,52%); height: 1px; background: linear-gradient(90deg, transparent, rgba(122,94,52,0.3) 24%, rgba(122,94,52,0.3) 76%, transparent); margin: clamp(78px,13vh,150px) auto clamp(60px,10vh,100px); }

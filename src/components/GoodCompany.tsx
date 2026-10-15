@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 import { ImageSlot } from './ImageSlot'
 import { palette } from '../lib/palette'
 
@@ -15,17 +15,33 @@ const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
 const eyebrow: CSSProperties = { fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)' }
 
-type Brand = { name: string; cat?: string; file: string; alt: string }
+type Brand = { name: string; file: string; alt: string }
 const BRANDS: Brand[] = [
-  { name: 'Peanut Butter & Co.', cat: 'Spreads', file: '/photos/gc-pb.webp', alt: 'Peanut Butter & Co. smooth peanut butter' },
-  { name: 'Date Better Snacks', cat: 'Dates', file: '/photos/gc-datebetter.webp', alt: 'Date Better Snacks chocolate-covered dates' },
+  { name: 'Peanut Butter & Co.', file: '/photos/gc-pb.webp', alt: 'Peanut Butter & Co. smooth peanut butter' },
+  { name: 'Date Better Snacks', file: '/photos/gc-datebetter.webp', alt: 'Date Better Snacks chocolate-covered dates' },
   { name: 'Gallivant Ice Cream', file: '/photos/gc-gallivant.webp', alt: 'Gallivant mango mawa ice cream' },
   { name: 'Maia Yogurt', file: '/photos/gc-maia.webp', alt: 'Maia grass-fed Greek yogurt' },
-  { name: 'Tamalitoz', cat: 'British × Mexican Candy', file: '/photos/gc-tamalitoz.webp', alt: 'Tamalitoz by Sugarox candy' },
-  { name: 'Fizzy Wizzie’s', cat: 'Sparkling Tea', file: '/photos/gc-fizzy.webp', alt: 'Fizzy Wizzie’s sparkling fresh brewed tea' },
+  { name: 'Tamalitoz', file: '/photos/gc-tamalitoz.webp', alt: 'Tamalitoz by Sugarox candy' },
+  { name: 'Fizzy Wizzie’s', file: '/photos/gc-fizzy.webp', alt: 'Fizzy Wizzie’s sparkling fresh brewed tea' },
 ]
 
 export function GoodCompany() {
+  // The gallery settles once per visit, not on every scroll-by: an observer
+  // adds `gc-shown` the first time the grid enters view, then disconnects. The
+  // settle itself is CSS, gated under prefers-reduced-motion. Without JS or an
+  // observer, the grid is simply shown — the photography never depends on motion.
+  const gridRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+    if (typeof IntersectionObserver === 'undefined') { grid.classList.add('gc-shown'); return }
+    const io = new IntersectionObserver((entries, obs) => {
+      for (const e of entries) if (e.isIntersecting) { grid.classList.add('gc-shown'); obs.disconnect() }
+    }, { threshold: 0.12 })
+    io.observe(grid)
+    return () => io.disconnect()
+  }, [])
+
   return (
     <div className="gc-wrap">
       <div className="gc-head">
@@ -34,12 +50,11 @@ export function GoodCompany() {
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(20px,3vh,30px) auto 0' }}>Different founders. Different ambitions. A shared belief in what could be.</p>
       </div>
 
-      <div className="gc-grid">
+      <div className="gc-grid" ref={gridRef}>
         {BRANDS.map((b) => (
           <div className="gc-cell gc-reveal" key={b.name}>
             <div className="gc-plate"><ImageSlot src={b.file} alt={b.alt} placeholder={b.name} /></div>
-            <div className="gc-lab">{b.name}</div>
-            {b.cat && <div className="gc-cat">{b.cat}</div>}
+            <div className="gc-lab"><span>{b.name}</span></div>
           </div>
         ))}
       </div>
