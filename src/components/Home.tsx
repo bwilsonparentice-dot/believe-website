@@ -3,7 +3,7 @@ import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { ArchMark } from './ChapterShell'
 import { ImageSlot } from './ImageSlot'
-import { CORE_TEAM } from '../data'
+import { CORE_TEAM, PHOTOS } from '../data'
 import { GoodCompany } from './GoodCompany'
 import { palette } from '../lib/palette'
 
@@ -136,8 +136,18 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <El as="button" onClick={ctx.openWork} style={{ ...ghost, marginTop: 'clamp(38px,5.5vh,58px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>See all the ways to work &rarr;</El>
       </Section>
 
+      {/* a single quiet editorial plate — an intimate Georgian townhouse
+          interior, a sense of conversation, curiosity, and possibility — one
+          photographic breath between what we do and our point of view, in the
+          House's restrained contained-plate treatment */}
+      <div style={{ padding: 'clamp(8px,2vh,28px) 8vw clamp(24px,5vh,64px)' }}>
+        <figure className="home-pov" style={{ margin: '0 auto', maxWidth: 940 }}>
+          <ImageSlot src={PHOTOS.pov} alt="An intimate Georgian townhouse sitting room: two soft chairs drawn around a round travertine table with an open journal, a brass lamp and collected books, warm light from a tall sash window onto a stone terrace" placeholder="a Georgian townhouse interior, two chairs and warm window light" fit="cover" loading="lazy" style={{ width: '100%', height: '100%', objectPosition: 'center 52%' }} />
+        </figure>
+      </div>
+
       {/* ── 3 · What makes our approach different — one point of view as a large editorial statement ── */}
-      <Section>
+      <Section style={{ paddingBottom: 'clamp(44px,7.5vh,96px)' }}>
         <div style={eyebrow}>Our point of view</div>
         {/* a quiet editorial lead-in, then the point of view as a large but
             calm serif statement — sized for a longer line so it breathes as a
@@ -145,7 +155,6 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', margin: 'clamp(22px,3.2vh,34px) auto 0', maxWidth: '34ch', ...balance }}>Every remarkable brand begins as something only its founder can imagine.</p>
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(40px,6.6vw,78px)', lineHeight: 1.05, letterSpacing: '-0.01em', color: palette.navy, margin: 'clamp(30px,4.6vh,52px) auto 0', maxWidth: '15ch', ...balance }}>A new way of seeing what&rsquo;s possible.</p>
         <p style={{ ...body, maxWidth: '44ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>We bring entrepreneurial experience, creative thinking, and commercial judgment to the decisions that shape what a brand becomes.</p>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.95vw,23px)', lineHeight: 1.46, color: 'rgba(90,68,34,0.9)', margin: 'clamp(20px,3vh,28px) auto 0', maxWidth: '36ch', ...balance }}>And the biggest opportunity is rarely the one in the brief. We look for the move that isn&rsquo;t obvious yet.</p>
       </Section>
 
       {/* ── 4 · The people & experience — the human difference, personal and credible ── */}

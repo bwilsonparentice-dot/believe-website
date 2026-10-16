@@ -973,6 +973,7 @@ export const PHOTOS: Record<string, string> = {
   // editorial imagery for the final room (the investment / doorways)
   conversation: '/photos/photo-conversation.webp', people: '/photos/photo-the-people.webp',
   observatory: '/photos/photo-observatory.webp',
+  pov: '/photos/photo-pov.webp',
 }
 const LAYOUT: Record<string, { side: string; corner?: string }> = {
   threshold: { side: 'center' }, room: { side: 'left' }, founders: { side: 'center' },

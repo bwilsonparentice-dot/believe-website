@@ -499,6 +499,13 @@ a:hover { color: #b08a4a; }
 .home-teamface:focus { outline: none; }
 .home-teamface:focus-visible { outline: 2px solid rgba(156,122,63,0.6); outline-offset: 6px; border-radius: 10px; }
 
+/* ── Our Point of View — a single contained editorial plate between How We Help
+   and the point of view, breaking the page's longest typographic run. A 16:9
+   frame on desktop; a taller 4:5 crop on phones so the room still reads.
+   Restrained: a quiet rounded plate with one long, low shadow. ── */
+.home-pov { display: block; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #f3ecdd; box-shadow: 0 50px 110px -60px rgba(60,44,20,0.7); }
+@media (max-width: 600px) { .home-pov { aspect-ratio: 4 / 5; } }
+
 /* ── NOW WHAT? — the conversation series as a film archive. One featured episode
    now; the layout grows to a 2- then 3-column collection as episodes are added. */
 .nowwhat-card { display: block; text-decoration: none; color: inherit; cursor: pointer; }
