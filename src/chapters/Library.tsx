@@ -28,7 +28,6 @@ const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 const h3: React.CSSProperties = { fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }
 const sub: React.CSSProperties = { fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', margin: '0 auto' }
 const body: React.CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '42ch', margin: '0 auto', ...pretty }
-const quietLink: React.CSSProperties = { display: 'inline-block', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)', borderBottom: '1px solid rgba(122,94,52,0.38)', paddingBottom: 5, cursor: 'pointer', transition: 'color 400ms ease' }
 
 function Divider({ tight }: { tight?: boolean }) {
   return <div aria-hidden="true" style={{ width: 1, height: tight ? 'clamp(36px,5.5vh,64px)' : 'clamp(44px,7vh,88px)', margin: tight ? 'clamp(28px,4.5vh,56px) auto' : 'clamp(56px,9vh,112px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
@@ -65,14 +64,8 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
         <h3 style={h3}>From the Studio</h3>
         <p style={{ ...sub, maxWidth: '38ch', display: 'block', marginBottom: 'clamp(44px,7.5vh,84px)' }}>Original writing, perspectives, and filmed conversations on creativity, brand, and the questions that shape our work.</p>
         <NowWhatFeature />
-        <div style={{ textAlign: 'center', marginTop: 'clamp(34px,5.5vh,60px)' }}>
-          <El onClick={ctx.openFieldNotes} style={quietLink} hover={{ color: '#2b2723' }}>Open the Notebook &rarr;</El>
-          <div style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(14px,1.5vw,17px)', color: 'rgba(43,39,35,0.5)', margin: 'clamp(11px,1.5vh,15px) auto 0' }}>Field notes and observations from the work.</div>
-        </div>
 
-        {/* a purposeful, tightened transition into Founder Answers (~28% less space
-            than the full collection dividers above) so the short link above does
-            not leave the brass line floating */}
+        {/* a purposeful, tightened transition into Founder Answers */}
         <div aria-hidden="true" style={{ width: 1, height: 'clamp(32px,5vh,62px)', margin: 'clamp(40px,6.4vh,80px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
         {/* 3 · Founder Answers — advisory perspectives from people who have built

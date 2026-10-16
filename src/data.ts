@@ -1000,11 +1000,11 @@ const sideStyle = (side: string) =>
 // — a quieter editorial section, not more cinematic room blocks. Field Notes and
 // the Stage therefore leave the guided room scroll: Field Notes is featured in
 // the Living House, and the Stage stays reachable through the House Directory.
-const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'studio', 'library', 'observatory', 'fieldnotes', 'stage', 'garden']
+const ORDER = ['threshold', 'blueprint', 'founders', 'table', 'advisory', 'studio', 'library', 'observatory', 'stage', 'garden']
 const enterLabelMap: Record<string, string> = {
   table: 'Let’s think together.', studio: 'Step into the Studio →', advisory: 'Let’s decide together.',
   garden: 'Let’s gain perspective.', stage: 'Give your work to the world.', blueprint: 'Explore the Blueprint →',
-  fieldnotes: 'Open the notebook.', library: 'Enter the Library.', observatory: 'Enter the Observatory →',
+  library: 'Enter the Library.', observatory: 'Enter the Observatory →',
 }
 
 export type Room = any

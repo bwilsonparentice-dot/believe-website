@@ -18,13 +18,10 @@ import { Closing } from './components/Closing'
 import { BlueprintChapter } from './chapters/Blueprint'
 import { TableChapter } from './chapters/Table'
 import { LibraryChapter } from './chapters/Library'
-import { InResidenceChapter } from './chapters/InResidence'
 import { StudioChapter } from './chapters/Studio'
-import { VisionaryCollectiveChapter } from './chapters/VisionaryCollective'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
-import { StoriesChapter } from './chapters/Stories'
 import { HouseChapter } from './chapters/House'
 import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
@@ -32,7 +29,6 @@ import { DoorwayChapter } from './chapters/Doorway'
 import { BlueprintFolio } from './chapters/BlueprintFolio'
 import { FoundersRoom } from './chapters/FoundersRoom'
 import { ArchiveCard } from './components/ArchiveCard'
-import { FieldNotesChapter } from './chapters/FieldNotes'
 import { Journal } from './chapters/Journal'
 import { isPublishedSlug } from './journal/articles'
 import { HousesChapter } from './chapters/Houses'
@@ -147,16 +143,12 @@ const DOORWAY_SLUG: Record<string, string> = {
   'founders-room': 'founders-room',
   'founders-table': 'table',
   'private-advisory': 'private-advisory',
-  'visionary-collective': 'visionary-collective',
 }
 const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showWork: 'work',
   showStudioPage: 'studio',
-  showStudio: 'in-residence',
   showLibrary: 'library',
   showJournal: 'journal',
-  showStories: 'stories',
-  showFieldNotes: 'field-notes',
   showPeople: 'people',
   showHouses: 'houses',
   showStage: 'stage',
@@ -169,6 +161,18 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
 const SLUG_TO_DOORWAY: Record<string, string> = Object.fromEntries(Object.entries(DOORWAY_SLUG).map(([id, s]) => [s, id]))
 const SLUG_TO_FLAG: Record<string, keyof State> = Object.fromEntries(Object.entries(FLAG_SLUG).map(([k, s]) => [s as string, k as keyof State]))
 const ALL_ROUTE_SLUGS = new Set<string>([...Object.keys(SLUG_TO_DOORWAY), ...Object.keys(SLUG_TO_FLAG)])
+// Retired destinations (an earlier website direction) → the surviving room that
+// now carries their purpose. Old public URLs resolve here instead of dead-ending,
+// and the address bar is rewritten to the new path so nothing stays broken.
+// A value of '' redirects to the home building itself (no overlay). Stories is
+// retired because its founder testimonials (Snehee, Michelle) already live on the
+// homepage in the Good Company section, so /stories returns there.
+const REDIRECT_SLUG: Record<string, string> = {
+  'field-notes': 'library',
+  'in-residence': 'table',
+  'visionary-collective': 'founders-room',
+  'stories': '',
+}
 // in-building scroll targets (not overlays) — links into the guided journey
 const BUILDING_ANCHORS = new Set(['threshold', 'founding-wall'])
 
@@ -241,11 +245,22 @@ function makeInitialState(): State {
   // destination — and count as having arrived this session, so returning to the
   // home root in the same session won't suddenly play the Door.
   if (isFoyerRoute()) { rememberEnteredSession(); return entered }
+  const redirect = REDIRECT_SLUG[rawPath(path)]
+  if (redirect !== undefined) {
+    rememberEnteredSession()
+    const to = redirect ? '/' + redirect : '/'
+    try { window.history.replaceState({ path: to }, '', to) } catch { /* ignore */ }
+    return redirect ? { ...entered, ...openStateForSlug(redirect) } : entered
+  }
   const slug = overlaySlugFromPath(path)
   if (slug) { rememberEnteredSession(); return { ...entered, ...openStateForSlug(slug, articleSlugFromPath(path)) } }
   if (BUILDING_ANCHORS.has(rawPath(path))) { rememberEnteredSession(); return entered }
   // Already arrived in this browsing session, or a reduced-motion visitor —
-  // straight to the usable homepage, no arrival.
+  // straight to the usable homepage, no arrival. The Door is a special arrival,
+  // not a repeated one: it plays once per browsing session (a new tab or a fresh
+  // browser session sees it again), while reloads and room-to-room navigation
+  // within the session never replay it. Manual ?enter replay, deep links, and
+  // reduced-motion bypass are all preserved above.
   if (enteredThisSession() || prefersReducedMotion()) return entered
   // First arrival of a new browsing session → the Door.
   return base
@@ -374,6 +389,16 @@ export class App extends React.Component<Record<string, never>, State> {
   // the browser back/forward buttons: mirror the URL back into open/closed state
   private onPopState = () => {
     const raw = window.location.pathname
+    const redirect = REDIRECT_SLUG[rawPath(raw)]
+    if (redirect !== undefined) {
+      const to = redirect ? '/' + redirect : '/'
+      this.lastSlug = to
+      this.suppressPush = true
+      try { window.history.replaceState({ path: to }, '', to) } catch { /* ignore */ }
+      const next = redirect ? openStateForSlug(redirect) : this.closedChapters()
+      this.setState({ phase: 'map', roomsRevealed: true, prologueSeen: true, ...next } as unknown as Pick<State, keyof State>, () => { this.suppressPush = false })
+      return
+    }
     const slug = overlaySlugFromPath(raw)
     const article = slug === 'journal' ? articleSlugFromPath(raw) : ''
     this.lastSlug = slug ? (slug === 'journal' && article && isPublishedSlug(article) ? '/journal/' + article : '/' + slug) : '/'
@@ -610,7 +635,6 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showKey && <ReceiveKey ctx={this.ctx} onClose={this.closeKey} />}
         {this.state.showHouses && <HousesChapter ctx={this.ctx} />}
         {this.state.showBlueprint && <BlueprintChapter ctx={this.ctx} />}
-        {this.state.showFieldNotes && <FieldNotesChapter ctx={this.ctx} />}
         {this.state.showLibrary && <LibraryChapter ctx={this.ctx} />}
         {this.state.showJournal && <Journal ctx={this.ctx} articleSlug={this.state.openArticle} />}
         {this.state.showWork && <WorkChapter ctx={this.ctx} />}
@@ -620,17 +644,13 @@ export class App extends React.Component<Record<string, never>, State> {
           ? <FoundersRoom ctx={this.ctx} />
           : this.state.activeDoorway === 'founders-table'
           ? <TableChapter ctx={this.ctx} />
-          : this.state.activeDoorway === 'visionary-collective'
-          ? <VisionaryCollectiveChapter ctx={this.ctx} />
           : this.state.activeDoorway && <DoorwayChapter key={this.state.activeDoorway} ctx={this.ctx} id={this.state.activeDoorway} />}
         {this.state.showAdvisory && <AdvisoryChapter ctx={this.ctx} />}
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
         {this.state.showHouse && <HouseChapter ctx={this.ctx} />}
         {this.state.showWhyBelieve && <WhyBelieveChapter ctx={this.ctx} />}
         {this.state.showPeople && <PeopleChapter ctx={this.ctx} anchor={this.state.peopleAnchor} />}
-        {this.state.showStudio && <InResidenceChapter ctx={this.ctx} />}
         {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}
-        {this.state.showStories && <StoriesChapter ctx={this.ctx} />}
         {this.state.showDirectory && <DirectoryOverlay ctx={this.ctx} onClose={this.closeDirectory} />}
         {this.state.showObservatory && <ObservatoryChapter ctx={this.ctx} />}
         {this.state.showAbout && <AboutChapter ctx={this.ctx} />}
@@ -910,7 +930,6 @@ export class App extends React.Component<Record<string, never>, State> {
   /** in-room "enter" routing: chapters for some rooms, the room overlay for others */
   private enterLabelHandler(room: any): Handler {
     if (room.id === 'blueprint') return this.ctx.openBlueprint
-    if (room.id === 'fieldnotes') return this.ctx.openFieldNotes
     if (room.id === 'library') return this.ctx.openLibrary
     // The Studio room opens its dedicated workshop page — one room, one page
     if (room.id === 'studio') return this.ctx.openStudioPage

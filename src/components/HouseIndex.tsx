@@ -63,19 +63,6 @@ function Plate({ ctx, onNavigate, showFoot, showBeyond = showFoot }: { ctx: Ctx;
         </div>
       )}
       {showFoot && (
-        <div className="hi-more">
-          <span className="hi-more-label">Also inside the House</span>
-          <div className="hi-more-links">
-            <El as="button" onClick={go((c) => c.openPeople)}>The People</El>
-            <El as="button" onClick={go((c) => c.openStories)}>Stories</El>
-            <El as="button" onClick={go((c) => c.openFieldNotes)}>Field Notes</El>
-            <El as="button" onClick={go((c) => c.openStudio)}>In Residence</El>
-            <El as="button" onClick={go((c) => c.openDoorway('visionary-collective'))}>The Collective</El>
-          </div>
-          <div className="hi-rule" style={{ marginTop: 'clamp(18px,1.6vw,24px)' }} />
-        </div>
-      )}
-      {showFoot && (
         <div className="hi-foot">
           <div className="hi-foot-mark" />
           <div className="hi-foot-line">The house is<br />always open.</div>

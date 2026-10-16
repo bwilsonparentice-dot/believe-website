@@ -33,7 +33,6 @@ const heldArchiveNotes = {
   'founders-table': { no: '044', lines: ['She arrived looking for advice.', 'She left realizing she wasn’t building alone.'], source: '— from The Founder’s Table', image: '/photos/artifact-journal.webp' },
   'founder-conversation': { no: '003', lines: ['She expected us to ask about the numbers.', 'We asked about her instead.'], source: '— from the Conversation Notes' },
   'private-advisory': { no: '051', lines: ['The breakthrough didn’t happen in the meeting.', 'It happened when she finally trusted herself.'], source: '— from The Private Advisory Archive' },
-  'visionary-collective': { no: '072', lines: ['She wasn’t ready to begin.', 'She only wanted to know the door would still be open.'], source: '— from The Front Porch Archive' },
   // — Stage chapter local note (Stage itself is slated for removal in Pass Five) —
   'stage-chapter': { no: '058', lines: ['The applause wasn’t the reward.', 'Knowing another founder believed because of your story was.'], source: '— from The Stage Archive' },
 }

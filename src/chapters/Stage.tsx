@@ -96,14 +96,6 @@ export function StageChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.66)', maxWidth: '26ch', margin: '0 auto' }}>Some founders come to Believe looking for clarity.<br />Some stay because they find community.<br />Some eventually return carrying wisdom.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.32, color: '#2b2723', margin: 'clamp(48px,9vh,100px) auto 0', maxWidth: '20ch', ...balance }}>When that chapter arrives, the Stage will be here.</p>
-
-          <El
-            onClick={ctx.openStories}
-            style={{ display: 'inline-block', margin: 'clamp(56px,10vh,110px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.5)', borderBottom: '1px solid rgba(122,94,52,0.34)', paddingBottom: 6, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
-            hover={{ color: 'rgba(43,39,35,0.9)', borderColor: 'rgba(43,39,35,0.6)' }}
-          >
-            Read Founder Stories
-          </El>
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 'clamp(96px,16vh,190px)' }}><BackPill onClose={ctx.closeStage} label="← Back" /></div>
