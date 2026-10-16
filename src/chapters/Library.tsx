@@ -9,6 +9,7 @@ import { RoomHeader } from '../components/RoomHeader'
 import { JournalFeature } from '../components/JournalFeature'
 import { NowWhatFeature } from '../components/NowWhatFeature'
 import { FounderAnswers } from '../components/FounderAnswers'
+import { WonderDiscovery } from '../components/WonderDiscovery'
 import { PHOTOS } from '../data'
 
 /**
@@ -80,7 +81,15 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
             so the full divider left a floating line in an outsized gap */}
         <Divider tight />
 
-        {/* 4 · On Our Shelves — books and references that move us. The Creative
+        {/* 4 · WONDER — the publication of the House, discovered on the Library
+            table alongside founder stories, insights, and NOW WHAT?. Picking it
+            up opens the full-screen reader; forthcoming articles are marked and
+            non-clickable until published. Lives in its own component. */}
+        <WonderDiscovery />
+
+        <Divider />
+
+        {/* 5 · On Our Shelves — books and references that move us. The Creative
             Act is the first; no invented endorsements. Eyebrow dropped to match
             the other collections (one consistent serif heading). */}
         <h3 style={h3}>On Our Shelves</h3>
