@@ -226,7 +226,7 @@ export function WonderDiscovery() {
   return (
     <div style={{ textAlign: 'center' }}>
       <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)' }}>The publication of the House</div>
-      <img src={WORD_NAVY} alt="WONDER" style={{ display: 'block', width: 'min(65%,335px)', height: 'auto', margin: 'clamp(16px,2.4vw,26px) auto clamp(6px,1vw,12px)' }} />
+      <img src={WORD_NAVY} alt="WONDER" style={{ display: 'block', width: 'min(60%,310px)', height: 'auto', margin: 'clamp(14px,2.2vw,22px) auto clamp(8px,1.2vw,14px)' }} />
       <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.82)' }}>An editorial publication by Beth Wonder.</div>
 
       <button className="wndr-feature" ref={magRef} onClick={doOpen} aria-label="Open WONDER, Issue 001 — the founding essay">
