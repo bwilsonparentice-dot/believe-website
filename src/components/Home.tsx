@@ -154,7 +154,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
             philosophy rather than a slogan; the support names the substance */}
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', margin: 'clamp(22px,3.2vh,34px) auto 0', maxWidth: '34ch', ...balance }}>Every remarkable brand begins as something only its founder can imagine.</p>
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(40px,6.6vw,78px)', lineHeight: 1.05, letterSpacing: '-0.01em', color: palette.navy, margin: 'clamp(30px,4.6vh,52px) auto 0', maxWidth: '15ch', ...balance }}>A new way of seeing what&rsquo;s possible.</p>
-        <p style={{ ...body, maxWidth: '44ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>We bring entrepreneurial experience, creative thinking, and commercial judgment to the decisions that shape what a brand becomes.</p>
+        <p style={{ ...body, maxWidth: '44ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>We connect ideas, people, and opportunities in unexpected ways, bringing entrepreneurial experience and commercial judgment to what comes next.</p>
       </Section>
 
       {/* ── 4 · The people & experience — the human difference, personal and credible ── */}
