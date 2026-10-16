@@ -80,8 +80,8 @@ function TeamFace({ m, ctx }: { m: typeof CORE_TEAM[number]; ctx: Ctx }) {
  * The Believe Studio homepage — a clear, scrollable introduction, experienced
  * inside the house. The visitor understands what the studio is and how we work
  * with founders before being invited to explore the rooms below. The approved
- * hero, the Creativity · Commerce · Connection framework, Demand before
- * distribution, and Build belonging all live here; the cinematic rooms follow.
+ * hero, the Creativity · Commerce · Connection framework, our point of
+ * view, and Build belonging all live here; the cinematic rooms follow.
  */
 // A/B toggle for the editorial pull quote between the People moment and Good
 // Company. true = Version B (with pull quote); false = Version A (testimonials only).
@@ -115,7 +115,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
         <div aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(122,94,52,0.45)', margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(30px,4.6vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>Sometimes it begins with a different conversation.</p>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '36ch', ...balance }}>One that helps you see your business, and its possibilities, in an entirely new way.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '36ch', ...balance }}>One that challenges assumptions, opens new perspectives, and changes what happens next.</p>
         <El as="button" onClick={ctx.openConversation} style={{ ...ghost, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Start a Conversation &rarr;</El>
 
         {/* a quiet architectural rule into the concrete "how we help" */}
@@ -139,12 +139,12 @@ export function Home({ ctx }: { ctx: Ctx }) {
       {/* ── 3 · What makes our approach different — one point of view as a large editorial statement ── */}
       <Section>
         <div style={eyebrow}>Our point of view</div>
-        {/* a quiet editorial lead-in: a setup line, then the philosophy given
-            gentle emphasis on its own line, kept subordinate to the headline */}
+        {/* a quiet editorial lead-in, then the point of view as a large but
+            calm serif statement — sized for a longer line so it breathes as a
+            philosophy rather than a slogan; the support names the substance */}
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', margin: 'clamp(22px,3.2vh,34px) auto 0', maxWidth: '34ch', ...balance }}>Every remarkable brand begins as something only its founder can imagine.</p>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(20px,2.3vw,27px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.74)', margin: 'clamp(11px,1.6vh,16px) auto 0', maxWidth: '26ch', ...balance }}>Sometimes you have to see it before you can believe it.</p>
-        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(46px,8.4vw,98px)', lineHeight: 0.98, letterSpacing: '-0.015em', color: palette.navy, margin: 'clamp(30px,4.6vh,52px) auto 0', maxWidth: '12ch', ...balance }}>Demand before distribution.</p>
-        <p style={{ ...body, maxWidth: '42ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>Growth isn&rsquo;t more stores, or one loud moment. We build demand on purpose, so discovery, distribution, and loyalty feed one another.</p>
+        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(40px,6.6vw,78px)', lineHeight: 1.05, letterSpacing: '-0.01em', color: palette.navy, margin: 'clamp(30px,4.6vh,52px) auto 0', maxWidth: '15ch', ...balance }}>A new way of seeing what&rsquo;s possible.</p>
+        <p style={{ ...body, maxWidth: '44ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>We bring entrepreneurial experience, creative thinking, and commercial judgment to the decisions that shape what a brand becomes.</p>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.95vw,23px)', lineHeight: 1.46, color: 'rgba(90,68,34,0.9)', margin: 'clamp(20px,3vh,28px) auto 0', maxWidth: '36ch', ...balance }}>And the biggest opportunity is rarely the one in the brief. We look for the move that isn&rsquo;t obvious yet.</p>
       </Section>
 
