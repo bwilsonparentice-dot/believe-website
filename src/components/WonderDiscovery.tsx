@@ -18,7 +18,6 @@ import '../wonder.css'
  * articles are clearly marked and non-interactive until they are published.
  */
 
-const COVER = '/photos/wonder-cover.webp'
 const WORD = '/photos/wonder-word.png'
 const WORD_NAVY = '/photos/wonder-word-navy.png'
 const DOORIMG = '/photos/wonder-door.webp'
@@ -231,26 +230,11 @@ export function WonderDiscovery() {
       <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.82)' }}>An editorial publication by Beth Wonder.</div>
 
       <button className="wndr-feature" ref={magRef} onClick={doOpen} aria-label="Open WONDER, Issue 001 — the founding essay">
-        <div className="wndr-tbl">
-          <div className="wndr-spot">
-            <div className="wndr-sh" />
-            <div className={`wndr-mag${lifting ? ' lift' : ''}`}>
-              <div className="wndr-cov">
-                <img className="art" src={COVER} alt="" />
-                <div className="grad" />
-                <img className="word" src={WORD} alt="WONDER" />
-                <div className="iss">Issue 001 &middot; The Art of Possibility</div>
-                <div className="feat"><div className="k">The Founding Essay</div><div className="t">The Doors We<br />Dare to Open</div><div className="b">by Beth Wonder</div></div>
-              </div>
-            </div>
-          </div>
+        <div className={`wndr-tbl${lifting ? ' opening' : ''}`}>
           <span className="wndr-pick">Pick it up &rarr;</span>
         </div>
         <span className="wndr-cue">Open WONDER &middot; Issue 001 &rarr;</span>
       </button>
-
-      <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '40ch', margin: 'clamp(26px,4vh,40px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>A printed companion to the House &mdash; essays on curiosity, possibility, and the doors we dare to open. Left on the Library table, the way you&rsquo;d notice a magazine in a friend&rsquo;s home.</p>
-      <div className="wndr-sign">New issues arrive first on Substack. <span aria-label="Subscribe — available once WONDER launches on Substack" title="Available once WONDER launches on Substack">Subscribe &rarr;</span></div>
 
       {typeof document !== 'undefined' && createPortal(reader, document.body)}
     </div>

@@ -7,39 +7,24 @@
 
 /* ── the printed copy resting on the Library table ── */
 .wndr-feature { display:block; width:100%; margin:clamp(30px,5vh,52px) auto 0; padding:0; border:none; background:none; cursor:pointer; }
-.wndr-tbl { position:relative; width:min(760px,100%); margin:0 auto; aspect-ratio:1600/1067; overflow:hidden;
-  border-radius:6px; background:url('/photos/wonder-table.webp') center/cover no-repeat; box-shadow:0 40px 80px -52px rgba(60,44,20,.5); }
-.wndr-spot { position:absolute; left:19%; top:38%; width:12%; transform-style:preserve-3d; perspective:800px; }
-.wndr-sh { position:absolute; left:2%; bottom:4%; width:104%; height:30%; z-index:0;
-  background:radial-gradient(50% 50% at 50% 50%, rgba(24,16,6,.5), rgba(24,16,6,.2) 50%, transparent 74%);
-  transform:translate(12%,58%) scaleY(.7); filter:blur(7px); }
-.wndr-mag { position:relative; z-index:2; display:block; width:100%; transform:rotateX(74deg) rotateZ(-14deg); transform-origin:50% 100%;
-  transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .5s ease; }
-.wndr-feature:hover .wndr-mag, .wndr-feature:focus-visible .wndr-mag { transform:rotateX(69deg) rotateZ(-13deg) translateY(-5%) scale(1.05); }
 .wndr-feature:focus { outline:none; }
 .wndr-feature:focus-visible { outline:2px solid rgba(156,122,63,.8); outline-offset:10px; border-radius:8px; }
-.wndr-cov { position:relative; width:100%; aspect-ratio:100/134; overflow:hidden; border-radius:3px 3px 2px 2px;
-  box-shadow:0 1px 0 rgba(255,255,255,.3) inset,
-    2px 2px 0 #f3ecdc, 3px 4px 0 #ece3cf, 5px 6px 0 #e0d6bf, 7px 8px 0 #d3c8ad, 8px 10px 0 #c8bc9d,
-    0 14px 18px rgba(24,16,6,.28); }
-.wndr-cov .art { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 46%; }
-.wndr-cov .grad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,14,24,.6), rgba(10,14,24,.12) 30%, rgba(10,14,24,0) 52%, rgba(10,14,24,.14) 74%, rgba(10,14,24,.62)); }
-.wndr-cov .word { position:absolute; top:6.5%; left:7%; width:86%; height:auto; filter:drop-shadow(0 1px 7px rgba(8,10,16,.75)); }
-.wndr-cov .iss { position:absolute; top:19%; left:0; right:0; text-align:center; font-family:'Jost',sans-serif; font-weight:400; font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:#ece1c4; text-shadow:0 1px 4px rgba(8,10,16,.9); }
-.wndr-cov .feat { position:absolute; left:8%; right:8%; bottom:7%; text-align:center; color:#f6efe0; }
-.wndr-cov .feat .k { font-family:'Jost',sans-serif; font-weight:400; font-size:7px; letter-spacing:.26em; text-transform:uppercase; color:rgba(246,239,224,.82); }
-.wndr-cov .feat .t { font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:15px; line-height:1.08; margin:.3em 0 .24em; text-shadow:0 1px 8px rgba(8,10,16,.6); }
-.wndr-cov .feat .b { font-family:'Jost',sans-serif; font-weight:300; font-size:7.5px; letter-spacing:.08em; color:rgba(246,239,224,.9); }
-.wndr-pick { position:absolute; left:19%; top:32%; transform:translate(-10%,-120%); font-family:'Jost',sans-serif; font-size:10px; letter-spacing:.24em;
-  text-transform:uppercase; color:#f6efe0; background:rgba(23,34,52,.82); padding:6px 11px; border-radius:2px; white-space:nowrap;
+/* the discovery is one cohesive photograph — a real printed copy of WONDER
+   lying on the Library reading table (cover composited with true perspective,
+   paper thickness and a contact shadow). No CSS tilt. */
+.wndr-tbl { position:relative; width:min(760px,100%); margin:0 auto; aspect-ratio:1536/1024; overflow:hidden;
+  border-radius:6px; background:url('/photos/wonder-london-composite.webp') center/cover no-repeat;
+  box-shadow:0 40px 80px -52px rgba(60,44,20,.5);
+  transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .5s ease, box-shadow .5s ease; }
+.wndr-feature:hover .wndr-tbl, .wndr-feature:focus-visible .wndr-tbl { transform:scale(1.012); box-shadow:0 48px 92px -50px rgba(60,44,20,.56); }
+.wndr-tbl.opening { transform:scale(1.06); opacity:0; }
+/* a quiet hover hint, sitting just above where the magazine rests */
+.wndr-pick { position:absolute; left:55%; top:62%; transform:translate(-50%,8px); font-family:'Jost',sans-serif; font-size:10px; letter-spacing:.24em;
+  text-transform:uppercase; color:#f6efe0; background:rgba(23,34,52,.82); padding:7px 13px; border-radius:2px; white-space:nowrap;
   opacity:0; transition:opacity .4s ease, transform .4s ease; pointer-events:none; }
-.wndr-feature:hover .wndr-pick, .wndr-feature:focus-visible .wndr-pick { opacity:1; transform:translate(-10%,-150%); }
+.wndr-feature:hover .wndr-pick, .wndr-feature:focus-visible .wndr-pick { opacity:1; transform:translate(-50%,0); }
 .wndr-cue { display:inline-block; margin-top:clamp(26px,4vh,40px); font-family:'Jost',sans-serif; font-weight:400; font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#9c7a3f; border-bottom:1px solid rgba(122,94,52,.4); padding-bottom:5px; transition:color .3s; }
 .wndr-feature:hover .wndr-cue, .wndr-feature:focus-visible .wndr-cue { color:#2b2723; }
-.wndr-mag.lift { transform:rotateX(10deg) rotateZ(-2deg) translateY(-30%) scale(1.7); opacity:0; }
-
-.wndr-sign { margin-top:clamp(18px,2.6vh,28px); font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(15px,1.6vw,18px); color:rgba(43,39,35,.5); }
-.wndr-sign a { color:#9c7a3f; font-style:normal; font-family:'Jost',sans-serif; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; border-bottom:1px solid rgba(122,94,52,.32); padding-bottom:2px; margin-left:.4em; cursor:pointer; }
 
 /* ══════════ THE WONDER READER — full-screen editorial environment ══════════ */
 .wndr-reader { position:fixed; inset:0; z-index:400; background:#f7f1e6; overflow:hidden;
@@ -160,9 +145,10 @@
 .wndr-eend-back:focus-visible { outline:2px solid #9c7a3f; outline-offset:3px; }
 
 @media (max-width:600px){
-  .wndr-spot { left:16%; top:39%; width:19%; }
-  .wndr-pick { left:16%; top:33%; }
-  .wndr-cov .iss { font-size:7px; } .wndr-cov .feat .t { font-size:12px; }
+  /* crop in toward the reading table so the magazine reads a touch larger on
+     phones while staying a natural part of the room (still one photograph) */
+  .wndr-tbl { aspect-ratio:1/1; background-size:168%; background-position:58% 74%; }
+  .wndr-pick { left:50%; top:52%; }
   .wndr-ebbb { flex-direction:column; align-items:flex-start; }
   .wndr-ebbb img { width:100%; }
   .wndr-rh-iss { display:none; }
