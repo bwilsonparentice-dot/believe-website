@@ -6,7 +6,6 @@ import { Motes, makeMotes, type Mote } from './components/Motes'
 import { ImageSlot } from './components/ImageSlot'
 import { FacadePhoto } from './components/FacadePhoto'
 import { DoorCrack } from './components/DoorCrack'
-import { Prologue } from './components/Prologue'
 import { buildRooms, roomKeyFor, PRINCIPLES } from './data'
 import type { Ctx, Handler } from './lib/ctx'
 import { Footer } from './components/Footer'
@@ -29,7 +28,6 @@ import { StoriesChapter } from './chapters/Stories'
 import { HouseChapter } from './chapters/House'
 import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
-import { Foyer } from './components/Foyer'
 import { DoorwayChapter } from './chapters/Doorway'
 import { BlueprintFolio } from './chapters/BlueprintFolio'
 import { FoundersRoom } from './chapters/FoundersRoom'
@@ -109,10 +107,33 @@ function rememberVisited() {
 function hasVisited(): boolean {
   try { return typeof localStorage !== 'undefined' && localStorage.getItem(VISITED_KEY) === '1' } catch { return false }
 }
+
+// The arrival now plays once per BROWSING SESSION rather than once per device.
+// A new tab or a fresh browser session sees the Door again; but reloading,
+// moving between rooms, and back/forward within the same session never replay
+// it (sessionStorage is per-tab-session and survives reloads, not restarts).
+const SESSION_KEY = 'believe.entered'
+function rememberEnteredSession() {
+  try { sessionStorage.setItem(SESSION_KEY, '1') } catch { /* private mode — falls back to in-memory for this load */ }
+}
+function enteredThisSession(): boolean {
+  try { return typeof sessionStorage !== 'undefined' && sessionStorage.getItem(SESSION_KEY) === '1' } catch { return false }
+}
+// Visitors who ask for less motion skip the cinematic arrival entirely.
+function prefersReducedMotion(): boolean {
+  try { return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return false }
+}
 // The Foyer as a direct destination — /foyer or ?foyer opens it straight away.
 function isFoyerRoute(): boolean {
   if (typeof window === 'undefined') return false
   try { return new URLSearchParams(window.location.search).has('foyer') || /^\/foyer\/?$/.test(window.location.pathname) } catch { return false }
+}
+
+// Replay the entrance — /enter or ?enter always plays the opening Door, even for
+// returning visitors, without changing anyone's normal first-visit experience.
+function isEnterRoute(): boolean {
+  if (typeof window === 'undefined') return false
+  try { return new URLSearchParams(window.location.search).has('enter') || /^\/enter\/?$/.test(window.location.pathname) } catch { return false }
 }
 
 // ── shareable routes ────────────────────────────────────────────────────────
@@ -213,12 +234,20 @@ function makeInitialState(): State {
   }
   if (typeof window === 'undefined') return base
   const path = window.location.pathname
-  if (isFoyerRoute()) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
+  const entered: State = { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
+  // ?enter (or /enter) always replays the opening Door, for anyone, on demand
+  if (isEnterRoute()) return base
+  // Direct links to a page, room, or article bypass the arrival and open their
+  // destination — and count as having arrived this session, so returning to the
+  // home root in the same session won't suddenly play the Door.
+  if (isFoyerRoute()) { rememberEnteredSession(); return entered }
   const slug = overlaySlugFromPath(path)
-  if (slug) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true, ...openStateForSlug(slug, articleSlugFromPath(path)) }
-  if (BUILDING_ANCHORS.has(rawPath(path))) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
-  // returning visitors skip the cinematic arrival and land straight on the homepage
-  if (hasVisited()) return { ...base, phase: 'map', roomsRevealed: true, prologueSeen: true }
+  if (slug) { rememberEnteredSession(); return { ...entered, ...openStateForSlug(slug, articleSlugFromPath(path)) } }
+  if (BUILDING_ANCHORS.has(rawPath(path))) { rememberEnteredSession(); return entered }
+  // Already arrived in this browsing session, or a reduced-motion visitor —
+  // straight to the usable homepage, no arrival.
+  if (enteredThisSession() || prefersReducedMotion()) return entered
+  // First arrival of a new browsing session → the Door.
   return base
 }
 
@@ -310,15 +339,18 @@ export class App extends React.Component<Record<string, never>, State> {
       setTimeout(() => this.scrollToWall(), 320)
     }
 
-    // the arrival ritual runs only when we actually begin at the Door (first visit)
+    // the arrival ritual runs only when we actually begin at the Door
     if (this.state.phase === 'overture') {
+      // Mark the session as arrived the moment the Door is shown, so this plays
+      // exactly once per browsing session — a reload, or any internal navigation,
+      // lands straight on the homepage afterward.
+      rememberEnteredSession()
       // the arrival is short and skippable: a visible "Enter the House" control
-      // is shown from the first frame, and the two lines land quickly. First-time
-      // visitors auto-advance toward the homepage in ~1.3s; returning visitors
-      // skip the arrival entirely (see makeInitialState). Reduced motion respected.
-      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 1300)
+      // is shown from the first frame, and the two lines land quickly. The door
+      // begins to open on its own in ~0.7s; a tap/click/Enter starts it sooner.
+      this.tAuto = setTimeout(() => { if (this.state.phase === 'overture' && !this.state.opening) this.accept() }, 700)
       // the bird finishes crossing and perches in the olive tree (Scene 2)
-      this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 750)
+      this.tBird = setTimeout(() => this.setState({ birdLanded: true }), 450)
     }
   }
   componentDidUpdate(_p: Record<string, never>, prev: State) {
@@ -378,12 +410,9 @@ export class App extends React.Component<Record<string, never>, State> {
     if (this.state.phase === 'overture' && !this.state.opening && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); this.accept() }
   }
   private onDown = () => {
+    // The entrance is intentionally silent — no music or sound effects. We only
+    // unlock the audio context for any later, in-House sound a visitor opts into.
     this.audio.resume()
-    if (this.state.phase === 'overture') {
-      if (!this.leafPlayed) { this.leafPlayed = true; this.audio.leafRustle() }
-      this.audio.startBreezeBed()
-    }
-    if (this.state.phase === 'sketch' && !this.audio.hasAmbient) this.audio.startAmbient()
   }
   private onScroll = () => {
     const el = this.headerEl; if (!el) return
@@ -402,12 +431,12 @@ export class App extends React.Component<Record<string, never>, State> {
     setTimeout(() => {
       this.pending = false
       this.setState({ opening: true })
-      if (this.tDoor) clearTimeout(this.tDoor)
-      this.tDoor = setTimeout(() => { this.audio.doorOpen() }, 120)
+      // the door opens in silence — no sound effect
       if (this.tAccept) clearTimeout(this.tAccept)
-      // the leaf swings open (~1300ms) and a warm bloom floods; then we are inside
-      this.tAccept = setTimeout(() => this.enterHouse(), motionOn ? 2920 : 460)
-    }, motionOn ? 180 : 60) // a held beat, then the door gives way
+      // the leaf swings open (~1700ms), holds a beat as the library is revealed,
+      // then a warm dissolve carries us straight onto the homepage
+      this.tAccept = setTimeout(() => this.enterHouse(), motionOn ? 2150 : 420)
+    }, motionOn ? 150 : 60) // a brief held beat, then the door gives way
   }
   private skip = (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -420,19 +449,6 @@ export class App extends React.Component<Record<string, never>, State> {
     if (this.tWelcome) clearTimeout(this.tWelcome)
     this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
-  private toSketch = () => {
-    this.setState({ phase: 'sketch', activeId: null })
-    this.audio.resume(); this.audio.startAmbient()
-    if (this.tDoor) clearTimeout(this.tDoor)
-    this.tDoor = setTimeout(() => { if (this.state.phase === 'sketch') this.audio.doorOpen() }, 400)
-    if (this.tEnter) clearTimeout(this.tEnter)
-    this.tEnter = setTimeout(() => { if (this.state.phase === 'sketch') this.toFoyer() }, 700)
-  }
-  private enterBuilding = () => {
-    if (this.tEnter) clearTimeout(this.tEnter)
-    // Phase 1: the entrance opens straight onto the scrollable homepage
-    this.enterHouse()
-  }
   private enterHouse = () => {
     rememberPrologueSeen(); rememberVisited()
     this.audio.fadeAmbient(1.6)
@@ -440,24 +456,8 @@ export class App extends React.Component<Record<string, never>, State> {
     if (this.tWelcome) clearTimeout(this.tWelcome)
     this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
   }
-  // ── the Foyer — the hard stop after the cinematic arrival ──────────────
-  private toFoyer = () => {
-    if (this.tEnter) clearTimeout(this.tEnter)
-    if (this.tDoor) clearTimeout(this.tDoor)
-    rememberVisited(); rememberPrologueSeen() // the cinematic arrival is experienced once
-    this.audio.fadeAmbient(1.8)
-    this.setState({ phase: 'map', opening: false, roomsRevealed: true, prologueSeen: true, activeId: null, justEntered: true })
-    if (this.tWelcome) clearTimeout(this.tWelcome)
-    this.tWelcome = setTimeout(() => this.setState({ justEntered: false }), 5400)
-  }
-  // Explore the House — the visitor chooses depth: continue exactly as the site
-  // does today (the Prologue on the first visit, then the rooms).
-  private foyerToExplore = (e?: React.MouseEvent) => {
-    if (e && e.stopPropagation) e.stopPropagation()
-    this.enterBuilding()
-  }
-  // People — opened plainly (no target), or deep-linked to a specific person from
-  // the Foyer team reveal. peopleAnchor tells the People page which section to land on.
+  // People — opened plainly (no target), or deep-linked to a specific person.
+  // peopleAnchor tells the People page which section to land on.
   private openPeoplePlain = (e?: React.MouseEvent) => {
     this.setState({ peopleAnchor: undefined })
     this.openChapter('showPeople')(e)
@@ -601,25 +601,9 @@ export class App extends React.Component<Record<string, never>, State> {
     const cool = VEIL_MOOD === 'Cool dawn'
     const veilBg = cool ? '#eef0ec' : '#efe6d3'
 
-    // The Foyer sits above the building (z 200), so it must step aside whenever
-    // ANY chapter is open — not just Work — or it would cover a page opened from
-    // the Foyer (e.g. "Meet the people" from the Work page). Chapters are opaque
-    // full-screen overlays, so unmounting the Foyer beneath them is invisible;
-    // closing the chapter brings the Foyer back.
-    const s = this.state
-    const overlayOpen = !!(
-      s.showWork || s.showPeople || s.showHouses || s.showStudio || s.showStudioPage ||
-      s.showStories || s.showHouse || s.showWhyBelieve || s.showLibrary || s.showBlueprint ||
-      s.showFieldNotes || s.showTable || s.showAdvisory || s.showStage || s.showDirectory ||
-      s.showObservatory || s.showAbout || s.showPrivacy || s.showTerms || s.showAccessibility || s.showKey || s.activeDoorway
-    )
-
     return (
       <>
         {phase === 'overture' && this.renderOverture(opening)}
-        {phase === 'sketch' && this.renderSketch()}
-        {phase === 'foyer' && !overlayOpen && <Foyer onWork={this.ctx.openWork} onStepInside={this.foyerToExplore} onPerson={this.openPeopleAt} />}
-        {phase === 'prologue' && <Prologue onEnter={this.enterHouse} motionOn={alive} />}
         {phase === 'map' && this.renderBuilding(alive, sunShiftAnim)}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
 
@@ -674,87 +658,30 @@ export class App extends React.Component<Record<string, never>, State> {
         {/* the entrance — the photograph, with the door leaf swinging open */}
         <div className={'bs-ent-stage' + (opening && motionOn ? ' bs-ent-walk' : '')}>
           <div className="bs-ent" data-open={opening ? 'true' : 'false'}>
-            <div className="bs-ent-base" role="img" aria-label="An elegant London Georgian townhouse entrance: a dusty-rose panelled front door with a large centred aged-brass knob, a glowing fanlight above, a pale limestone surround, and two topiaries in stone pots flanking the steps." />
+            <div className="bs-ent-base" role="img" aria-label="A beautifully restored London Georgian townhouse entrance: a dusty-rose panelled front door with a large centred aged-brass knob, a glowing fanlight and lantern above, a pale limestone facade with symmetrical sash windows, black wrought-iron railings, and two neatly clipped topiaries in dark planters." />
             <div className="bs-ent-spill" aria-hidden="true" />
             <div className="bs-ent-leaf" aria-hidden="true" />
-
-            {/* the words, gathered as light over the closed door; they clear the
-                moment the door gives way */}
-            <div style={{ position: 'absolute', left: 0, right: 0, top: '60%', transform: 'translateY(-50%)', zIndex: 4, textAlign: 'center', pointerEvents: 'none', padding: '0 6%', opacity: opening ? 0 : 1, transition: 'opacity 520ms ease' }}>
-              <div aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: '132%', height: 340, background: 'radial-gradient(50% 50% at 50% 50%, rgba(16,11,5,0.72), rgba(16,11,5,0.34) 52%, transparent 78%)', filter: 'blur(22px)', opacity: 0, animation: opening ? 'none' : 'softFade 840ms ease 600ms both' }} />
-              <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(33px,5.4vw,52px)', lineHeight: 1.06, color: '#fbf6ee', margin: 0, opacity: 0, animation: opening ? 'none' : 'softFade 620ms ease 240ms both', textShadow: '0 1px 2px rgba(16,11,5,0.8), 0 3px 14px rgba(16,11,5,0.9), 0 0 36px rgba(16,11,5,0.6)' }}>Come in.</p>
-              <p style={{ position: 'relative', fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(19px,3vw,28px)', lineHeight: 1.22, color: '#f6ecd8', margin: '0.5em 0 0', opacity: 0, animation: opening ? 'none' : 'softFade 680ms ease 540ms both', textShadow: '0 1px 3px rgba(16,11,5,0.85), 0 2px 14px rgba(16,11,5,0.9), 0 0 30px rgba(16,11,5,0.6)' }}>We&rsquo;ve been waiting for you.</p>
-            </div>
+            {/* the engraved aged-brass nameplate — a stationary graphic layer, never
+                moving with the door, carrying the true Believe Studio wordmark */}
+            <div className="bs-ent-plate" aria-label="Believe Studio"><span className="bs-ent-plate-face"><span className="n1">BELIEVE</span><span className="n2">STUDIO</span></span></div>
+            {/* No introductory wording: the townhouse and the opening door carry the
+                story on their own. The homepage headline is the first text a visitor reads. */}
           </div>
         </div>
 
         {/* after the door holds open a beat, a soft warm light gathers and carries
             the visitor inside — a quiet dissolve, never a flash */}
         {opening && (
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', background: 'radial-gradient(118% 92% at 50% 44%, rgba(248,241,226,0.97), rgba(238,228,207,0.99))', opacity: 0, animation: motionOn ? 'glowGrow 760ms ease 2300ms both' : 'glowGrow 300ms ease forwards' }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', background: 'radial-gradient(118% 92% at 50% 44%, rgba(248,241,226,0.97), rgba(238,228,207,0.99))', opacity: 0, animation: motionOn ? 'glowGrow 650ms ease 1750ms both' : 'glowGrow 260ms ease forwards' }} />
         )}
 
         {/* the arrival fades up from a dark hush on the first paint */}
         <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 8, background: '#0b0906', pointerEvents: 'none', animation: motionOn ? 'blackReveal 760ms ease 40ms both' : 'blackReveal 210ms ease both' }} />
 
-        {/* a quiet cue that the arrival is theirs to touch — eased in only after
-            the second line has landed, so the words are never rushed, and gone
-            the moment the visitor steps in */}
-        {!opening && (
-          <div aria-hidden="true" style={{ position: 'absolute', left: 0, right: 0, bottom: 'clamp(52px,10vh,112px)', zIndex: 5, textAlign: 'center', pointerEvents: 'none', opacity: 0, animation: 'softFade 480ms ease 360ms both' }}>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(78,58,32,0.72)', marginBottom: '1em', textShadow: '0 1px 10px rgba(247,240,224,0.7)' }}>Step inside</div>
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ margin: '0 auto', opacity: 0.8, animation: motionOn ? 'hint 3.4s ease-in-out infinite' : 'none' }}>
-              <path d="M2 3 L8 9 L14 3" stroke="rgba(78,58,32,0.75)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            </svg>
-          </div>
-        )}
-
-        {/* One quiet way past the arrival for anyone genuinely impatient — never
-            a prominent shortcut, and never shown for returning visitors, so the
-            door drawing stays the default for everyone. */}
-        <El onClick={this.skip} aria-label="Enter the House" style={{ position: 'absolute', right: 'clamp(18px,3vw,38px)', bottom: 'clamp(18px,3vh,34px)', display: 'inline-flex', alignItems: 'center', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#f2e7cf', background: 'rgba(20,14,7,0.42)', border: '1px solid rgba(238,202,140,0.55)', borderRadius: 3, padding: '10px 18px', WebkitBackdropFilter: 'blur(3px)', backdropFilter: 'blur(3px)', cursor: 'pointer', transition: 'background 200ms ease, border-color 200ms ease', zIndex: 6 }} hover={{ background: 'rgba(20,14,7,0.62)', borderColor: 'rgba(238,202,140,0.92)' }}>Enter the House&nbsp;&rarr;</El>
-      </div>
-    )
-  }
-
-  // ── SKETCH — the doorway drawn line by line, then flooded with light ───
-  private renderSketch() {
-    return (
-      <div onClick={this.enterBuilding} style={{ position: 'fixed', inset: 0, zIndex: 37, cursor: 'pointer', overflow: 'hidden', background: '#f6f1e6', animation: 'veilIn 336ms ease both' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(120% 100% at 50% 42%, #fbf7ee, #f3ecdd 72%, #ece3d1)', animation: 'paperBreath 7s ease-in-out infinite' }} />
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', paddingBottom: '11vh', opacity: 0, animation: 'doorFadeIn 336ms ease 112ms forwards' }}>
-          <div style={{ position: 'relative', height: '74vh', maxHeight: 680, aspectRatio: '0.52/1' }}>
-            <div style={{ position: 'absolute', inset: '5% 8% 0 8%', borderRadius: '999px 999px 0 0', background: 'radial-gradient(120% 96% at 50% 70%, #fff6de, #f1dca6 46%, #e7cb8b)', opacity: 0, animation: 'lightPour 728ms ease 1652ms forwards' }} />
-            <svg viewBox="0 0 200 380" preserveAspectRatio="xMidYMax meet" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', overflow: 'visible' }}>
-              <g fill="none" stroke="rgba(43,39,35,0.6)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M100,58 L100,376" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 140ms forwards' }} />
-                <path d="M11,122 L11,376" pathLength={1} stroke="rgba(43,39,35,0.16)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 168ms forwards' }} />
-                <path d="M7,122 L15,122 M7,376 L15,376" pathLength={1} stroke="rgba(43,39,35,0.16)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 140ms ease 420ms forwards' }} />
-                <path d="M40,42 L160,42" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 224ms ease 252ms forwards' }} />
-                <path d="M40,38 L40,46 M160,38 L160,46" pathLength={1} stroke="rgba(43,39,35,0.15)" strokeWidth="0.9" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 126ms ease 476ms forwards' }} />
-                <path d="M36,120 A64,64 0 0 1 164,120" pathLength={1} stroke="rgba(43,39,35,0.13)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 336ms ease 196ms forwards' }} />
-                <path d="M14,378 L186,378" pathLength={1} style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 196ms ease 224ms forwards' }} />
-                <path d="M46,378 L46,362 L154,362 L154,378" pathLength={1} strokeWidth="1.3" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 308ms ease 364ms forwards' }} />
-                <path d="M40,362 L40,120 A60,60 0 0 1 160,120 L160,362" pathLength={1} style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 560ms cubic-bezier(.5,0,.5,1) 420ms forwards' }} />
-                <path d="M43,360 L43,121 A57,57 0 0 1 157,121 L157,360" pathLength={1} stroke="rgba(43,39,35,0.26)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 560ms cubic-bezier(.5,0,.5,1) 490ms forwards' }} />
-                <path d="M102,132 L146,132 L146,350 L102,350 Z" fill="rgba(43,39,35,0.05)" stroke="none" style={{ opacity: 0, animation: 'doorFadeIn 504ms ease 1260ms both' }} />
-                <path d="M92,74 L108,74 L106,92 L94,92 Z" pathLength={1} stroke="rgba(43,39,35,0.4)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 196ms ease 952ms forwards' }} />
-                <path d="M52,180 L60,180 M52,300 L60,300" pathLength={1} stroke="rgba(43,39,35,0.34)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 140ms ease 1316ms forwards' }} />
-                <g style={{ transformBox: 'fill-box', transformOrigin: '1% 52%', animation: 'doorCrack 672ms cubic-bezier(.42,0,.3,1) 1512ms forwards' }}>
-                  <path d="M52,360 L52,126 A48,48 0 0 1 148,126 L148,360" pathLength={1} stroke="rgba(43,39,35,0.5)" strokeWidth="1.4" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 476ms cubic-bezier(.5,0,.5,1) 868ms forwards' }} />
-                  <path d="M68,150 L132,150 L132,230 L68,230 Z" pathLength={1} stroke="rgba(43,39,35,0.38)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 1092ms forwards' }} />
-                  <path d="M68,246 L132,246 L132,344 L68,344 Z" pathLength={1} stroke="rgba(43,39,35,0.38)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 252ms ease 1204ms forwards' }} />
-                  <path d="M138,250 L138,300" pathLength={1} stroke="rgba(43,39,35,0.6)" strokeWidth="1.5" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 140ms ease 1372ms forwards' }} />
-                  <circle cx="138" cy="250" r="3.4" pathLength={1} stroke="rgba(43,39,35,0.6)" strokeWidth="1.4" style={{ strokeDasharray: 1, strokeDashoffset: 1, animation: 'inkDraw 112ms ease 1456ms forwards' }} />
-                </g>
-                <path d="M150,130 L150,352" stroke="rgba(232,198,132,0.72)" strokeWidth="2.6" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 280ms ease 1568ms forwards, doorFadeIn 252ms ease 1568ms forwards' }} />
-                <path d="M152,150 L176,300" stroke="rgba(232,198,132,0.4)" strokeWidth="1.1" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 308ms ease 1624ms forwards, doorFadeIn 252ms ease 1624ms forwards' }} />
-                <path d="M150,160 L164,330" stroke="rgba(232,198,132,0.34)" strokeWidth="1" style={{ strokeDasharray: 1, strokeDashoffset: 1, opacity: 0, animation: 'inkDraw 308ms ease 1666ms forwards, doorFadeIn 252ms ease 1666ms forwards' }} />
-              </g>
-            </svg>
-          </div>
-        </div>
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0, background: 'radial-gradient(82% 72% at 50% 66%, rgba(255,247,224,0.97), rgba(244,231,198,0.72) 52%, transparent 80%)', animation: 'lightPour 616ms ease 1792ms forwards' }} />
+        {/* A discreet, accessible way past the arrival — a quiet text link in the
+            corner that never competes with the architecture. It reads on the pale
+            pavement via a soft light halo, and strengthens on hover/focus. */}
+        <El onClick={this.skip} aria-label="Enter the House" style={{ position: 'absolute', right: 'clamp(16px,2.5vw,30px)', bottom: 'clamp(14px,2.5vh,26px)', display: 'inline-flex', alignItems: 'center', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10.5, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'rgba(58,44,24,0.5)', background: 'transparent', border: 'none', padding: '8px 10px', cursor: 'pointer', textShadow: '0 1px 6px rgba(247,240,224,0.85)', transition: 'color 200ms ease', zIndex: 6 }} hover={{ color: 'rgba(38,27,10,0.88)' }}>Enter the House&nbsp;&rarr;</El>
       </div>
     )
   }
@@ -789,7 +716,7 @@ export class App extends React.Component<Record<string, never>, State> {
 
   private renderBuilding(alive: boolean, sunShiftAnim: string) {
     const clipped = false
-    const buildingStyle: React.CSSProperties = { position: 'relative', background: '#e2d7bf', animation: 'veilIn 1800ms ease both', ...(clipped ? { height: '100vh', overflow: 'hidden' } : {}) }
+    const buildingStyle: React.CSSProperties = { position: 'relative', background: '#e2d7bf', animation: 'veilIn 850ms ease both', ...(clipped ? { height: '100vh', overflow: 'hidden' } : {}) }
     return (
       <div style={buildingStyle}>
         {/* the living breeze filter for the threshold photo */}

@@ -625,52 +625,103 @@ a:hover { color: #b08a4a; }
    of the static base, so the stone step and doormat never move). Photographic
    fidelity + one lightweight CSS transform — no video, no layout shift. */
 .bs-ent-stage {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  padding: clamp(10px, 3vh, 40px) 16px; perspective: 1700px;
-  transform-origin: 50% 46%;
-  will-change: transform;
+  position: absolute; inset: 0; overflow: hidden; background: #0e1117;
+  display: flex; align-items: center; justify-content: center;
+  transform-origin: 50% 46%; will-change: transform;
 }
+/* the doorway plane carries the photograph at its exact proportions (never
+   stretched). It is sized to COVER the viewport, so the facade fills the screen
+   edge-to-edge with no frame, margin, or background blur. One landscape
+   photograph (image 49) serves every width: wide screens show the whole
+   symmetrical facade; phones cover the viewport and naturally crop to a
+   door-centred portrait view. The leaf is positioned in % of this plane, so it
+   stays locked to the base image as the door swings. */
 .bs-ent {
-  position: relative; width: min(560px, 92vw); aspect-ratio: 1024 / 1536; max-height: 94vh;
-  border-radius: 5px; overflow: hidden; transform-style: preserve-3d;
-  box-shadow: 0 60px 120px -58px rgba(48, 33, 13, 0.62), 0 10px 32px -18px rgba(48, 33, 13, 0.4);
+  position: relative; z-index: 1; flex: none; overflow: hidden;
+  perspective: 1900px; transform-style: preserve-3d;
+  aspect-ratio: 1672 / 941; width: max(100vw, 177.7vh);
 }
 .bs-ent-base {
   position: absolute; inset: 0;
-  background: url('/photos/entrance-rose-base.webp') center / cover no-repeat;
+  background: url('/photos/entrance49-base.webp') center / cover no-repeat;
 }
 /* warm interior light welling up from the opening as the door gives way */
 .bs-ent-spill {
-  position: absolute; left: 33.4%; top: 26.8%; width: 34.2%; height: 48.4%; z-index: 1;
+  position: absolute; left: 42.76%; top: 27.42%; width: 14.53%; height: 49.95%; z-index: 1;
   pointer-events: none; opacity: 0;
-  background: radial-gradient(56% 62% at 46% 54%, rgba(255, 225, 166, 0.5), rgba(255,225,166,0) 72%);
-  transition: opacity 1700ms ease 220ms;
+  background: radial-gradient(60% 54% at 52% 46%, rgba(255, 226, 170, 0.42), rgba(255,226,170,0) 72%);
+  transition: opacity 1500ms ease 200ms;
 }
-/* the door leaf — the pink door only, hinged on its right edge. Slightly
-   oversized (left/top/bottom) so it fully covers the opening when closed; the
-   right (hinge) edge stays pinned so the swing geometry is exact. */
+/* the door leaf — the dusty-rose slab ONLY, hinged on its LEFT edge (the
+   keyhole/latch is on the right). The limestone frame, fanlight, lantern,
+   threshold, steps and plaque all live in the stationary base, so only the
+   slab swings. The leaf is cropped from the same photo as the opening, so the
+   closed door fits its frame exactly — no double door, no seam. */
 .bs-ent-leaf {
-  position: absolute; left: 33.0%; top: 26.4%; width: 34.6%; height: 49.2%; z-index: 2;
-  background: url('/photos/entrance-rose-leaf.webp') left top / 100% 100% no-repeat;
-  transform-origin: right center; transform-style: preserve-3d; backface-visibility: hidden;
-  box-shadow: -1px 0 3px rgba(0, 0, 0, 0.16);
-  transition: transform 1800ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute; left: 42.76%; top: 27.42%; width: 14.53%; height: 49.95%; z-index: 2;
+  background: url('/photos/entrance49-leaf.webp') left top / 100% 100% no-repeat;
+  transform-origin: left center; transform-style: preserve-3d; backface-visibility: hidden;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.16);
+  transition: transform 1700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* the leaf falls into shadow as its face turns away from the daylight */
 .bs-ent-leaf::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(96deg, rgba(20, 13, 7, 0.62), rgba(20, 13, 7, 0.05) 70%);
+  background: linear-gradient(264deg, rgba(20, 13, 7, 0.6), rgba(20, 13, 7, 0.04) 70%);
   opacity: 0; transition: opacity 1200ms ease;
 }
-.bs-ent[data-open="true"] .bs-ent-leaf { transform: rotateY(-82deg); }
-.bs-ent[data-open="true"] .bs-ent-leaf::after { opacity: 1; }
+/* opens to a natural ajar angle (not edge-on), so the door stays a clearly
+   readable Georgian panel on its left hinge while the navy library is revealed */
+.bs-ent[data-open="true"] .bs-ent-leaf { transform: rotateY(62deg); }
+.bs-ent[data-open="true"] .bs-ent-leaf::after { opacity: 0.6; }
 .bs-ent[data-open="true"] .bs-ent-spill { opacity: 1; }
 /* gentle approach — the whole frame eases forward as the door opens (a step in) */
-.bs-ent-walk { animation: entWalk 1500ms cubic-bezier(0.4, 0, 0.3, 1) 60ms forwards; }
+.bs-ent-walk { animation: entWalk 1600ms cubic-bezier(0.4, 0, 0.3, 1) 60ms forwards; }
 @keyframes entWalk {
   0% { transform: scale(1) translateY(0); }
-  100% { transform: scale(1.12) translateY(1.4%); }
+  100% { transform: scale(1.11) translateY(1.3%); }
 }
+
+/* The aged-brass BELIEVE STUDIO nameplate — a SEPARATE, stationary graphic
+   layer (a sibling of the leaf, never a child), so it never swings, shifts, or
+   scales with the door. Positioned to the exact spot/scale it holds in the
+   approved photograph: on the limestone between the door and the right window.
+   BELIEVE is set noticeably larger than STUDIO. container-type lets the
+   engraved lettering scale with the plate, not the viewport. Hidden on the
+   narrow mobile crop, where it falls out of frame. */
+.bs-ent-plate {
+  position: absolute; z-index: 3; display: none; container-type: inline-size;
+  left: 62.3%; top: 36.8%; width: 8.25%; aspect-ratio: 138 / 74;
+}
+.bs-ent-plate-face {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; border-radius: 2cqw; padding: 3cqw 4cqw;
+  background:
+    radial-gradient(circle at 6% 16%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+    radial-gradient(circle at 94% 16%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+    radial-gradient(circle at 6% 84%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+    radial-gradient(circle at 94% 84%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+    radial-gradient(130% 120% at 28% 16%, rgba(255,248,218,0.5), rgba(255,248,218,0) 54%),
+    linear-gradient(150deg, #c6a360 0%, #ac8541 44%, #8c6931 76%, #ad8746 100%);
+  box-shadow:
+    2px 3px 8px rgba(40,26,7,0.4), 1px 1px 2px rgba(40,26,7,0.3),
+    inset 0 1px 1px rgba(255,248,218,0.55), inset 0 -1.5px 2px rgba(46,29,6,0.5),
+    inset 1px 0 1px rgba(255,248,218,0.22), inset -1px 0 1px rgba(46,29,6,0.32);
+}
+.bs-ent-plate .n1 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500;
+  letter-spacing: 0.14em; text-indent: 0.14em; font-size: 19cqw; line-height: 1;
+  color: #453211; white-space: nowrap;
+  text-shadow: 0 0.6px 0 rgba(255,247,214,0.42), 0 -0.4px 0.3px rgba(38,24,5,0.5);
+}
+.bs-ent-plate .n2 {
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500;
+  letter-spacing: 0.34em; text-indent: 0.34em; font-size: 11.5cqw; line-height: 1;
+  margin-top: 0.42em; color: #4a3512; white-space: nowrap;
+  text-shadow: 0 0.5px 0 rgba(255,247,214,0.4), 0 -0.3px 0.3px rgba(38,24,5,0.45);
+}
+@media (min-width: 760px) { .bs-ent-plate { display: block; } }
+
 @media (prefers-reduced-motion: reduce) {
   .bs-ent-leaf, .bs-ent-leaf::after, .bs-ent-spill { transition: none; }
   .bs-ent-walk { animation: none; }
