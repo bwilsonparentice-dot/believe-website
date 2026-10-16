@@ -613,12 +613,13 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showFieldNotes && <FieldNotesChapter ctx={this.ctx} />}
         {this.state.showLibrary && <LibraryChapter ctx={this.ctx} />}
         {this.state.showJournal && <Journal ctx={this.ctx} articleSlug={this.state.openArticle} />}
-        {this.state.showTable && <TableChapter ctx={this.ctx} />}
         {this.state.showWork && <WorkChapter ctx={this.ctx} />}
         {this.state.activeDoorway === 'believe-blueprint'
           ? <BlueprintFolio ctx={this.ctx} />
           : this.state.activeDoorway === 'founders-room'
           ? <FoundersRoom ctx={this.ctx} />
+          : this.state.activeDoorway === 'founders-table'
+          ? <TableChapter ctx={this.ctx} />
           : this.state.activeDoorway === 'visionary-collective'
           ? <VisionaryCollectiveChapter ctx={this.ctx} />
           : this.state.activeDoorway && <DoorwayChapter key={this.state.activeDoorway} ctx={this.ctx} id={this.state.activeDoorway} />}
