@@ -110,7 +110,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
           unfolds here: the turn is carried by type and whitespace, with one
           faint brass hairline as its only accent. The three value cards then
           follow so the founder sees, plainly, what Believe does. ── */}
-      <Section>
+      <Section style={{ paddingBottom: 'clamp(52px,9vh,112px)' }}>
         <p style={{ ...body, maxWidth: '42ch', margin: '0 auto' }}>But sometimes the next opportunity isn&rsquo;t another retailer, another campaign, or another item on your to-do list.</p>
 
         <div aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(122,94,52,0.45)', margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
@@ -140,7 +140,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
           interior, a sense of conversation, curiosity, and possibility — one
           photographic breath between what we do and our point of view, in the
           House's restrained contained-plate treatment */}
-      <div style={{ padding: 'clamp(8px,2vh,28px) 8vw clamp(24px,5vh,64px)' }}>
+      <div style={{ padding: 'clamp(8px,2vh,28px) 8vw clamp(16px,3.5vh,44px)' }}>
         <figure className="home-pov" style={{ margin: '0 auto', maxWidth: 940 }}>
           <ImageSlot src={PHOTOS.pov} alt="An intimate Georgian townhouse sitting room: two soft chairs drawn around a round travertine table with an open journal, a brass lamp and collected books, warm light from a tall sash window onto a stone terrace" placeholder="a Georgian townhouse interior, two chairs and warm window light" fit="cover" loading="lazy" style={{ width: '100%', height: '100%', objectPosition: 'center 52%' }} />
         </figure>
