@@ -12,7 +12,7 @@ const sans = "'Jost',sans-serif"
 const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
 
 const eyebrow: CSSProperties = {
-  fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.42em',
+  fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.36em',
   textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)',
 }
 const body: CSSProperties = {
@@ -100,7 +100,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
       <Section className="home-hero" style={{ paddingTop: 'clamp(118px,20vh,210px)' }}>
         <ArchMark width={2.2} margin="0 auto 1.4em" />
         <div style={eyebrow}>Believe Studio &middot; Creative Strategy &amp; Advisory for Consumer Brands</div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px,2.1vw,22px)', color: palette.gold, margin: 'clamp(26px,4vh,40px) 0 0' }}>For those who see what could be.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px,2.1vw,22px)', color: palette.gold, margin: 'clamp(21px,3.3vh,33px) 0 0' }}>For those who see what could be.</p>
         <h1 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,6.4vw,74px)', lineHeight: 1.03, color: palette.ink, margin: '0.22em auto 0', maxWidth: '16ch', ...balance }}>You&rsquo;ve built the brand. But what could it become?</h1>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(18px,2.4vw,27px)', lineHeight: 1.45, color: 'rgba(43,39,35,0.72)', margin: '0.9em auto 0', maxWidth: '38ch', ...balance }}>You&rsquo;ve made the decisions, taken the risks, opened the doors, and carried the responsibility of building something from nothing.</p>
 
