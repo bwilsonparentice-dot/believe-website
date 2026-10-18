@@ -5,24 +5,20 @@
    full-screen editorial environment layered above everything.
    ────────────────────────────────────────────────────────────────────────── */
 
-/* ── the printed copy resting on the Library table ── */
+/* ── WONDER, presented as a landscape editorial feature ── */
 .wndr-feature { display:block; width:100%; margin:clamp(30px,5vh,52px) auto 0; padding:0; border:none; background:none; cursor:pointer; }
 .wndr-feature:focus { outline:none; }
 .wndr-feature:focus-visible { outline:2px solid rgba(156,122,63,.8); outline-offset:10px; border-radius:8px; }
-/* the discovery is one cohesive photograph — a real printed copy of WONDER
-   lying on the Library reading table (cover composited with true perspective,
-   paper thickness and a contact shadow). No CSS tilt. */
-.wndr-tbl { position:relative; width:min(760px,100%); margin:0 auto; aspect-ratio:1536/1024; overflow:hidden;
-  border-radius:6px; background:url('/photos/wonder-london-composite.webp') center/cover no-repeat;
-  box-shadow:0 40px 80px -52px rgba(60,44,20,.5);
-  transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .5s ease, box-shadow .5s ease; }
-.wndr-feature:hover .wndr-tbl, .wndr-feature:focus-visible .wndr-tbl { transform:scale(1.012); box-shadow:0 48px 92px -50px rgba(60,44,20,.56); }
-.wndr-tbl.opening { transform:scale(1.06); opacity:0; }
-/* a quiet hover hint, sitting just above where the magazine rests */
-.wndr-pick { position:absolute; left:55%; top:62%; transform:translate(-50%,8px); font-family:'Jost',sans-serif; font-size:10px; letter-spacing:.24em;
-  text-transform:uppercase; color:#f6efe0; background:rgba(23,34,52,.82); padding:7px 13px; border-radius:2px; white-space:nowrap;
-  opacity:0; transition:opacity .4s ease, transform .4s ease; pointer-events:none; }
-.wndr-feature:hover .wndr-pick, .wndr-feature:focus-visible .wndr-pick { opacity:1; transform:translate(-50%,0); }
+/* the complete magazine cover shown uncropped as a physical publication, set
+   within a landscape band beside a quiet editorial caption. The cover carries
+   its own masthead, so the House wordmark is not repeated here. */
+.wndr-dgrid { display:grid; grid-template-columns:minmax(0,0.82fr) minmax(0,1fr); gap:clamp(28px,5vw,80px); align-items:center; max-width:1000px; margin:0 auto; text-align:left; }
+.wndr-dcover { justify-self:end; width:100%; max-width:360px; transition:transform .6s cubic-bezier(.2,.7,.2,1), opacity .5s ease; }
+.wndr-dcover img { display:block; width:100%; height:auto; border-radius:4px; box-shadow:0 44px 86px -48px rgba(60,44,20,.6); }
+.wndr-feature:hover .wndr-dcover, .wndr-feature:focus-visible .wndr-dcover { transform:translateY(-4px); }
+.wndr-dcover.opening { transform:scale(1.04); opacity:0; }
+.wndr-deyebrow { display:block; font-family:'Jost',sans-serif; font-weight:400; font-size:11px; letter-spacing:.42em; text-transform:uppercase; color:rgba(122,94,52,.72); }
+.wndr-dsub { display:block; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(18px,2vw,26px); line-height:1.4; color:rgba(122,94,52,.84); margin:clamp(14px,2vw,20px) 0 0; max-width:26ch; }
 .wndr-cue { display:inline-block; margin-top:clamp(26px,4vh,40px); font-family:'Jost',sans-serif; font-weight:400; font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#9c7a3f; border-bottom:1px solid rgba(122,94,52,.4); padding-bottom:5px; transition:color .3s; }
 .wndr-feature:hover .wndr-cue, .wndr-feature:focus-visible .wndr-cue { color:#2b2723; }
 
@@ -110,6 +106,15 @@
 .wndr-fc .wndr-ttl { color:rgba(43,39,35,.74); }
 .wndr-fc .wndr-byl { color:rgba(43,39,35,.5); }
 .wndr-status { font-family:'Jost',sans-serif; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:#9c7a3f; border:1px solid rgba(156,122,63,.38); border-radius:30px; padding:5px 11px; align-self:center; white-space:nowrap; }
+/* Forthcoming list — quieter and more compact so the one available essay reads
+   as the clear centerpiece. The "In development" heading already marks these as
+   forthcoming, so no per-item status pill is shown. */
+.wndr-fc-section { margin-top:clamp(34px,5.5vw,54px); }
+.wndr-fc-list { margin-top:clamp(8px,1.4vw,12px); }
+.wndr-fc-list li .wndr-entry { grid-template-columns:1fr; padding:clamp(9px,1.5vw,13px) 0; }
+.wndr-fc-list .wndr-dept { font-size:9px; letter-spacing:.26em; color:rgba(156,122,63,.8); margin-bottom:.35em; }
+.wndr-fc-list .wndr-ttl { font-size:clamp(16px,2vw,18px); font-weight:400; line-height:1.14; color:rgba(43,39,35,.72); }
+.wndr-fc-list .wndr-byl { font-size:clamp(13px,1.5vw,14px); color:rgba(43,39,35,.46); margin-top:.2em; }
 .wndr-colophon { margin-top:clamp(30px,5vw,46px); padding-top:16px; border-top:1px solid rgba(43,39,35,.16); font-family:'Cormorant Garamond',serif; font-weight:300; font-size:14px; color:rgba(43,39,35,.5); text-align:center; line-height:1.7; }
 .wndr-colophon b { font-weight:500; color:rgba(43,39,35,.74); letter-spacing:.02em; }
 
@@ -145,10 +150,10 @@
 .wndr-eend-back:focus-visible { outline:2px solid #9c7a3f; outline-offset:3px; }
 
 @media (max-width:600px){
-  /* crop in toward the reading table so the magazine reads a touch larger on
-     phones while staying a natural part of the room (still one photograph) */
-  .wndr-tbl { aspect-ratio:1/1; background-size:168%; background-position:58% 74%; }
-  .wndr-pick { left:50%; top:52%; }
+  /* the landscape feature stacks: full cover above, caption centered beneath */
+  .wndr-dgrid { grid-template-columns:1fr; gap:clamp(22px,4vh,32px); text-align:center; }
+  .wndr-dcover { justify-self:center; max-width:300px; }
+  .wndr-dsub { margin-left:auto; margin-right:auto; }
   .wndr-ebbb { flex-direction:column; align-items:flex-start; }
   .wndr-ebbb img { width:100%; }
   .wndr-rh-iss { display:none; }

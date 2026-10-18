@@ -173,6 +173,14 @@ const REDIRECT_SLUG: Record<string, string> = {
   'visionary-collective': 'founders-room',
   'stories': '',
 }
+// The standalone Believe Beyond Borders journal was retired; WONDER now carries
+// the Library's editorial. /journal and any /journal/<slug> resolve to The
+// Library so old links never dead-end. (The journal files remain in the repo.)
+function redirectSlugFor(pathname: string): string | undefined {
+  const raw = rawPath(pathname)
+  if (raw === 'journal' || raw.startsWith('journal/')) return 'library'
+  return REDIRECT_SLUG[raw]
+}
 // in-building scroll targets (not overlays) — links into the guided journey
 const BUILDING_ANCHORS = new Set(['threshold', 'founding-wall'])
 
@@ -245,7 +253,7 @@ function makeInitialState(): State {
   // destination — and count as having arrived this session, so returning to the
   // home root in the same session won't suddenly play the Door.
   if (isFoyerRoute()) { rememberEnteredSession(); return entered }
-  const redirect = REDIRECT_SLUG[rawPath(path)]
+  const redirect = redirectSlugFor(path)
   if (redirect !== undefined) {
     rememberEnteredSession()
     const to = redirect ? '/' + redirect : '/'
@@ -389,7 +397,7 @@ export class App extends React.Component<Record<string, never>, State> {
   // the browser back/forward buttons: mirror the URL back into open/closed state
   private onPopState = () => {
     const raw = window.location.pathname
-    const redirect = REDIRECT_SLUG[rawPath(raw)]
+    const redirect = redirectSlugFor(raw)
     if (redirect !== undefined) {
       const to = redirect ? '/' + redirect : '/'
       this.lastSlug = to

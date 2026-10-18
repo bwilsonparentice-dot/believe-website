@@ -6,20 +6,18 @@ import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
 import { HouseArch } from '../components/HouseArch'
 import { RoomHeader } from '../components/RoomHeader'
-import { JournalFeature } from '../components/JournalFeature'
 import { NowWhatFeature } from '../components/NowWhatFeature'
 import { FounderAnswers } from '../components/FounderAnswers'
 import { WonderDiscovery } from '../components/WonderDiscovery'
 import { PHOTOS } from '../data'
 
 /**
- * The Library — reimagined as an editorial reading room. Three collections:
- * Believe Beyond Borders (the featured journal), From the Studio (original
- * writing, perspectives, and the NOW WHAT? film), and On Our Shelves (books
- * and references that move us), with Founder Answers as a fourth, discoverable
- * collection — advisory perspectives that reveal in place rather than crowding
- * the page. The room's own architecture and imagery are preserved. Nothing is
- * invented.
+ * The Library — an editorial reading room. WONDER, the publication of the
+ * House, leads as the featured collection; then From the Studio (original
+ * writing, perspectives, and the NOW WHAT? film), Founder Answers (advisory
+ * perspectives that reveal in place), and On Our Shelves (books and references
+ * that move us). The room's own architecture and imagery are preserved.
+ * Nothing is invented.
  */
 
 const serif = "'Cormorant Garamond',serif"
@@ -54,8 +52,11 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
 
         <Divider />
 
-        {/* 1 · Believe Beyond Borders — the featured journal, a restrained preview */}
-        <JournalFeature ctx={ctx} />
+        {/* 1 · WONDER — the publication of the House, now the featured collection
+            of The Library. A printed copy is discovered on the reading table;
+            picking it up opens the full-screen reader. Forthcoming articles are
+            marked and non-clickable until published. Lives in its own component. */}
+        <WonderDiscovery />
 
         <Divider />
 
@@ -77,19 +78,9 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
           <FounderAnswers initialCount={0} teaser="How do I know whether an opportunity is a distraction or the next big move?" />
         </div>
 
-        {/* a tighter transition here: the collection above is deliberately short,
-            so the full divider left a floating line in an outsized gap */}
-        <Divider tight />
-
-        {/* 4 · WONDER — the publication of the House, discovered on the Library
-            table alongside founder stories, insights, and NOW WHAT?. Picking it
-            up opens the full-screen reader; forthcoming articles are marked and
-            non-clickable until published. Lives in its own component. */}
-        <WonderDiscovery />
-
         <Divider />
 
-        {/* 5 · On Our Shelves — books and references that move us. The Creative
+        {/* 4 · On Our Shelves — books and references that move us. The Creative
             Act is the first; no invented endorsements. Eyebrow dropped to match
             the other collections (one consistent serif heading). */}
         <h3 style={h3}>On Our Shelves</h3>

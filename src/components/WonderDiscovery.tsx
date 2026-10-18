@@ -20,6 +20,7 @@ import '../wonder.css'
 
 const WORD = '/photos/wonder-word.png'
 const WORD_NAVY = '/photos/wonder-word-navy.png'
+const MAG = '/photos/wonder-magazine.webp'
 const DOORIMG = '/photos/wonder-door.webp'
 const FLORENCE = '/photos/wonder-florence.webp'
 const TERRACE = '/photos/wonder-terrace.webp'
@@ -67,10 +68,10 @@ function Contents({ onReadEssay }: { onReadEssay: () => void }) {
             </div>
           </li>
         </ul>
-        <div className="wndr-toc-section">In development &middot; planned for WONDER</div>
-        <ul className="wndr-toc" aria-label="Forthcoming in WONDER">
+        <div className="wndr-toc-section wndr-fc-section">In development &middot; planned for WONDER</div>
+        <ul className="wndr-toc wndr-fc-list" aria-label="Forthcoming in WONDER">
           {[
-            { dept: 'Believe Beyond Borders', ttl: 'A Table in Florence', byl: 'People, places, and possibilities — the travel & discovery department' },
+            { dept: 'Beyond Borders', ttl: 'A Table in Florence', byl: 'People, places, and possibilities — the travel & discovery department' },
             { dept: 'In Residence', ttl: 'The Observatory: Notes on Looking Up', byl: 'What’s next, and the discipline of noticing it early' },
             { dept: 'In Conversation', ttl: 'Founders Who Opened Doors', byl: 'Three builders on the thresholds they crossed before anyone agreed' },
           ].map((a) => (
@@ -81,7 +82,6 @@ function Contents({ onReadEssay }: { onReadEssay: () => void }) {
                   <div className="wndr-ttl">{a.ttl}</div>
                   <div className="wndr-byl">{a.byl}</div>
                 </div>
-                <div className="wndr-status">Forthcoming</div>
               </div>
             </li>
           ))}
@@ -113,7 +113,7 @@ function Essay({ scrollRef, onBack }: { scrollRef: React.RefObject<HTMLDivElemen
           <p>A beautiful door is an invitation to imagine. Someone decided that an ordinary street deserved a colour worth remembering, that a threshold should promise something before a single word is spoken. I have lingered a little too long in front of more of them than was polite, imagining the rooms beyond &mdash; and loving that I would never quite know.</p>
           <blockquote className="wndr-pull">A door is the only promise a building makes before you step inside.</blockquote>
           <p>This is what I love about them, and what WONDER is built upon. A door tells you nothing certain and everything hopeful. It is possibility with a handle. Belief, to me, is simply the willingness to reach for it &mdash; the half-second between the hand on the brass and the room beyond. It is the spirit behind everything we make.</p>
-          <figure className="wndr-efig"><img src={FLORENCE} alt="A caf&eacute; table above the rooftops of Florence, a journal and sunglasses beside a coffee" /><figcaption>Believe Beyond Borders &middot; the appetite for what&rsquo;s next</figcaption></figure>
+          <figure className="wndr-efig"><img src={FLORENCE} alt="A caf&eacute; table above the rooftops of Florence, a journal and sunglasses beside a coffee" /><figcaption>Beyond Borders &middot; the appetite for what&rsquo;s next</figcaption></figure>
           <p>Founders live their whole working lives in that half-second. You have built something real &mdash; and still the question waits politely at the end of the hall: what could it become? WONDER is our answer, published for anyone who has ever slowed down in front of a beautiful, closed thing.</p>
           <p>In the issues to come, WONDER will wander &mdash; through cities and down quiet streets, after the colours and doorways that make us wonder what lies beyond. We hope to sit with founders who opened doors no one told them were there, and to keep asking the only question worth asking of a threshold. Our own door is a dusty rose &mdash; chosen, not inherited &mdash; and it is simply where we begin.</p>
           <p>There is always another door. I hope we never stop wondering what&rsquo;s behind it.</p>
@@ -122,7 +122,7 @@ function Essay({ scrollRef, onBack }: { scrollRef: React.RefObject<HTMLDivElemen
           <div className="wndr-ebbb">
             <img src={TERRACE} alt="A candlelit table on a Mediterranean terrace at dusk" />
             <div>
-              <div className="k">Also in this issue &middot; Believe Beyond Borders</div>
+              <div className="k">Also in this issue &middot; Beyond Borders</div>
               <div className="t">A Table in Florence</div>
               <div className="d">On wandering, long lunches, and the places that remind a founder why they started. A recurring department of people, places, and possibilities.</div>
             </div>
@@ -224,16 +224,21 @@ export function WonderDiscovery() {
   )
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)' }}>The publication of the House</div>
-      <img src={WORD_NAVY} alt="WONDER" style={{ display: 'block', width: 'min(60%,310px)', height: 'auto', margin: 'clamp(14px,2.2vw,22px) auto clamp(8px,1.2vw,14px)' }} />
-      <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.82)' }}>An editorial publication by Beth Wonder.</div>
-
+    <div>
+      {/* the landscape editorial feature: the full magazine cover (uncropped,
+          its own masthead intact) beside a quiet caption and the invitation.
+          The whole feature is the button that lifts the copy into the reader. */}
       <button className="wndr-feature" ref={magRef} onClick={doOpen} aria-label="Open WONDER, Issue 001 — the founding essay">
-        <div className={`wndr-tbl${lifting ? ' opening' : ''}`}>
-          <span className="wndr-pick">Pick it up &rarr;</span>
+        <div className="wndr-dgrid">
+          <div className={`wndr-dcover${lifting ? ' opening' : ''}`}>
+            <img src={MAG} alt="WONDER, Issue 001 — the magazine resting on a marble ledge, a city at dusk on its cover" />
+          </div>
+          <div className="wndr-dcap">
+            <span className="wndr-deyebrow">The publication of the House</span>
+            <span className="wndr-dsub">An editorial publication by Beth Wonder for the endlessly curious.</span>
+            <span className="wndr-cue">Open WONDER &middot; Issue 001 &rarr;</span>
+          </div>
         </div>
-        <span className="wndr-cue">Open WONDER &middot; Issue 001 &rarr;</span>
       </button>
 
       {typeof document !== 'undefined' && createPortal(reader, document.body)}
