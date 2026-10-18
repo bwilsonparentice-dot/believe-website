@@ -56,7 +56,7 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
   // The two core engagements, each named in its eyebrow (Creative Strategy /
   // Private Advisory), with the editorial phrase as the headline and the
   // original one-word verb kept as a subtle accent beneath it. The experiences
-  // (The Founder's Room, The Table) live in "Beyond the Studio" below.
+  // (The Founder's Room, The Table) follow below as two further invitations.
   const invitations = [
     {
       n: '01', title: 'Creative Strategy', verb: 'Create What’s Next', accent: 'Imagine.',
@@ -113,12 +113,13 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
           </div>
         </div>
 
-        {/* 3 · Beyond the Studio — the two experiences the House hosts, distinct
-            from the engagements above: a founder community, and a brand
-            experience. Written so they cannot be mistaken for the same thing. */}
-        <ArchLine m="clamp(76px,13vh,152px) auto clamp(48px,7.5vh,92px)" />
+        {/* 3 · Two further invitations — a founder community and a brand
+            experience. Part of the same House, not set apart from it (no
+            "Beyond the Studio" heading); written so they cannot be mistaken for
+            the same thing. The italic line opens the section in the label's
+            place, flowing straight into the two invitations. */}
+        <ArchLine m="clamp(76px,13vh,152px) auto clamp(44px,7vh,86px)" />
         <div style={reveal}>
-          <div style={{ ...label, marginBottom: 'clamp(22px,4vh,40px)' }}>Beyond the Studio</div>
           <div style={{ maxWidth: 620, margin: '0 auto', textAlign: 'left' }}>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', margin: '0 0 clamp(26px,4.4vh,44px)', textAlign: 'center', ...balance }}>Some things are built through conversation. Others come to life through experience.</p>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
