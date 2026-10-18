@@ -401,7 +401,6 @@ a:hover { color: #b08a4a; }
 .hi-room:hover .hi-name, .hi-room:focus-visible .hi-name { color: #f4e3b6; }
 .hi-room:hover .hi-arrow, .hi-room:focus-visible .hi-arrow { transform: translate(4px,-2px); color: #e7d5aa; }
 .hi-room:focus-visible { outline: 2px solid rgba(238,202,140,0.9); outline-offset: 6px; border-radius: 3px; }
-.hi-more-label { display: block; text-align: center; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(214,180,120,0.6); margin-bottom: 0.95em; text-shadow: 0 1px 2px rgba(0,0,0,0.55); }
 .hi-foot { text-align: center; margin-top: clamp(20px,1.8vw,28px); }
 .hi-foot-mark { width: 28px; height: 1px; background: rgba(214,180,120,0.6); margin: 0 auto clamp(12px,1.1vw,16px); }
 .hi-foot-line { font-family: 'Cormorant Garamond', serif; font-weight: 500; letter-spacing: 0.36em; text-transform: uppercase; font-size: clamp(10px,0.9vw,12px); color: rgba(214,180,120,0.82); text-indent: 0.36em; line-height: 1.75; text-shadow: 0 1px 2px rgba(0,0,0,0.55); }

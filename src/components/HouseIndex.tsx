@@ -4,7 +4,8 @@ import type { Ctx, Handler } from '../lib/ctx'
 
 /**
  * The House Index — the interactive bronze plaque that replaces the old
- * photographic DirectoryPlaque. Four primary rooms, each a real link; the
+ * photographic DirectoryPlaque. Six rooms, each a real link, read as one
+ * continuous directory (no sub-grouping); the
  * lettering is live HTML (selectable, translatable, accessible, editable), the
  * bronze/travertine/archway are CSS + texture layers. Styles live in index.css
  * under the `.hi-*` classes (approved Concept C).
@@ -13,21 +14,18 @@ import type { Ctx, Handler } from '../lib/ctx'
  *   inside the Directory overlay and the mobile Menu.
  * variant 'footer' — the plate alone, centered on the footer's own dark ground.
  */
+// All six rooms as one continuous directory — each equally part of the House,
+// with no "Beyond the Studio" distinction between them.
 const ROOMS: { name: string; desc: string; open: (c: Ctx) => Handler }[] = [
   { name: 'The Studio', desc: 'Creative strategy & brand worlds.', open: (c) => c.openStudioPage },
   { name: 'The Library', desc: 'Founder stories, insights & NOW WHAT?', open: (c) => c.openLibrary },
   { name: 'The Drawing Room', desc: 'Founder conversations and advisory.', open: (c) => c.openAdvisory },
   { name: 'The Observatory', desc: 'Believe Radar and retail intelligence.', open: (c) => c.openObservatory },
-]
-
-// Two distinct experiences beyond the core engagements: a founder community and
-// a brand experience. Their descriptions keep them from reading as the same thing.
-const BEYOND: { name: string; desc: string; open: (c: Ctx) => Handler }[] = [
   { name: 'The Founder’s Room', desc: 'A monthly founder community.', open: (c) => c.openFounderRoom },
   { name: 'The Table', desc: 'Where brands meet culture.', open: (c) => c.openTable },
 ]
 
-function Plate({ ctx, onNavigate, showFoot, showBeyond = showFoot }: { ctx: Ctx; onNavigate?: () => void; showFoot: boolean; showBeyond?: boolean }) {
+function Plate({ ctx, onNavigate, showFoot }: { ctx: Ctx; onNavigate?: () => void; showFoot: boolean }) {
   const go = (open: (c: Ctx) => Handler): Handler => (e) => { open(ctx)(e); onNavigate?.() }
   return (
     <nav className="hi-plate" aria-label="The House" onClick={stop}>
@@ -44,24 +42,9 @@ function Plate({ ctx, onNavigate, showFoot, showBeyond = showFoot }: { ctx: Ctx;
             <span className="hi-room-top"><span className="hi-name">{r.name}</span><span className="hi-arrow" aria-hidden="true">&rarr;</span></span>
             <span className="hi-desc">{r.desc}</span>
           </El>
-          {(showBeyond || i < ROOMS.length - 1) && <div className="hi-rule" />}
+          {(i < ROOMS.length - 1 || showFoot) && <div className="hi-rule" />}
         </React.Fragment>
       ))}
-      {showBeyond && (
-        <div style={{ marginBottom: 'clamp(2px,0.4vw,6px)' }}>
-          <span className="hi-more-label" style={{ marginBottom: 'clamp(16px,1.5vw,24px)' }}>Beyond the Studio</span>
-          {BEYOND.map((r, i) => (
-            <React.Fragment key={r.name}>
-              <El as="button" className="hi-room" onClick={go(r.open)} aria-label={`${r.name}, ${r.desc.replace(/[.?]$/, '')}`}>
-                <span className="hi-room-top"><span className="hi-name">{r.name}</span><span className="hi-arrow" aria-hidden="true">&rarr;</span></span>
-                <span className="hi-desc">{r.desc}</span>
-              </El>
-              {i < BEYOND.length - 1 && <div className="hi-rule" />}
-            </React.Fragment>
-          ))}
-          {showFoot && <div className="hi-rule" />}
-        </div>
-      )}
       {showFoot && (
         <div className="hi-foot">
           <div className="hi-foot-mark" />
@@ -76,7 +59,7 @@ export function HouseIndex({ ctx, onNavigate, variant = 'overlay' }: { ctx: Ctx;
   if (variant === 'footer') {
     return (
       <div className="hi-footer">
-        <Plate ctx={ctx} onNavigate={onNavigate} showFoot={false} showBeyond />
+        <Plate ctx={ctx} onNavigate={onNavigate} showFoot={false} />
       </div>
     )
   }
