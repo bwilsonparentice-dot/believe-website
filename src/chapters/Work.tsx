@@ -63,14 +63,14 @@ export function WorkChapter({ ctx }: { ctx: Ctx }) {
       forWhom: 'For founders ready to see their brand differently.',
       body: 'We begin by finding what makes a brand distinctive, then express it through positioning, storytelling, partnerships, and new ways of connecting with the people it wants to reach.',
       message: 'We turn possibility into creative strategy.',
-      img: '/photos/photo-atelier.webp', imgAlt: 'A sunlit creative atelier, a small team reviewing moodboards, materials, and sketches around a long table',
+      img: '/photos/photo-atelier.webp', imgAlt: 'A sunlit Georgian townhouse worktable set for a creative strategy session: moodboard prints, colour studies, and minimalist consumer-packaging concepts, with mauve velvet chairs, navy cabinetry, and a marble fireplace',
     },
     {
       n: '02', title: 'Private Advisory', verb: 'A Different Perspective', accent: 'Think together.',
       forWhom: 'For founders navigating what comes next.',
       body: 'A trusted strategic voice who has built a company, beside you through the decisions that shape it.',
       message: 'A steady voice for the decisions only you can make.',
-      img: '/photos/photo-conversation.webp', imgAlt: 'Two chairs drawn close around a small walnut table, coffee and an open journal in morning light',
+      img: '/photos/photo-conversation.webp', imgAlt: 'A quiet navy-panelled Georgian sitting room: two cream bouclé armchairs drawn around a round walnut table by a marble fireplace, in soft London light',
     },
   ]
 
