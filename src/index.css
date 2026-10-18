@@ -506,6 +506,42 @@ a:hover { color: #b08a4a; }
 .home-pov { display: block; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #f3ecdd; box-shadow: 0 50px 110px -60px rgba(60,44,20,0.7); }
 @media (max-width: 600px) { .home-pov { aspect-ratio: 4 / 5; } }
 
+/* ── Moment 2 · How We Help as an editorial index. Titles set large to the
+   left, descriptions in a measured column to the right, aligned on a shared
+   top line like a contents spread. Hairline ledger rules appear only BETWEEN
+   entries, so the section reads structured without feeling segmented. ── */
+.home-help { max-width: 880px; margin: 0 auto; text-align: left; }
+.home-help__list { margin-top: clamp(20px,3.2vh,30px); }
+.home-help__entry { display: grid; grid-template-columns: minmax(0,4.4fr) minmax(0,6fr); column-gap: clamp(28px,5vw,80px); align-items: start; padding: clamp(26px,4.4vh,48px) 0; }
+.home-help__entry + .home-help__entry { border-top: 1px solid rgba(122,94,52,0.2); }
+@media (max-width: 720px) {
+  .home-help__entry { grid-template-columns: 1fr; row-gap: clamp(10px,1.8vh,15px); padding: clamp(20px,3.4vh,28px) 0; }
+}
+
+/* ── Moment 4 · Founder & team as a contributor feature. The biography sits
+   left; the italic founder statement is offset to the right in dialogue, held
+   apart by negative space. One ledger hairline introduces a restrained index
+   of five equally sized portraits, evenly distributed across the measure. ── */
+.home-people__band { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); column-gap: clamp(30px,6vw,110px); align-items: start; margin-top: clamp(40px,6.5vh,88px); }
+.home-people__stmt { justify-self: end; text-align: right; margin-top: clamp(24px,3.6vh,46px); }
+.home-people__stmt-rule { width: 44px; height: 1px; background: rgba(122,94,52,0.5); margin: 0 0 clamp(16px,2.4vh,24px) auto; }
+.home-people__rule { height: 1px; background: rgba(122,94,52,0.26); width: 100%; margin: clamp(44px,7vh,92px) 0 clamp(30px,4.6vh,50px); }
+.home-people__contrib { display: flex; justify-content: space-between; gap: clamp(14px,2vw,30px); }
+@media (max-width: 760px) {
+  .home-people__band { grid-template-columns: 1fr; row-gap: clamp(20px,3.6vh,32px); }
+  .home-people__stmt { justify-self: end; margin-top: clamp(6px,1.4vh,14px); }
+  .home-people__contrib { flex-wrap: wrap; justify-content: center; gap: clamp(20px,3.6vh,32px) clamp(16px,6vw,40px); }
+}
+
+/* Mobile only: the hero and the "shift in perspective" section each carry a
+   full section padding, which stacked into an oversized empty band between
+   them on phones. Trim roughly 40% of that gap while keeping editorial
+   breathing room. Desktop spacing is deliberately unchanged. */
+@media (max-width: 600px) {
+  .home-hero { padding-bottom: clamp(40px,7vh,96px) !important; }
+  .home-perspective { padding-top: clamp(44px,7.5vh,104px) !important; }
+}
+
 /* ── NOW WHAT? — the conversation series as a film archive. One featured episode
    now; the layout grows to a 2- then 3-column collection as episodes are added. */
 .nowwhat-card { display: block; text-decoration: none; color: inherit; cursor: pointer; }

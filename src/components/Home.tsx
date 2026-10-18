@@ -30,9 +30,9 @@ const navyCta: CSSProperties = {
   padding: '15px 34px', cursor: 'pointer',
 }
 
-function Section({ children, style }: { children: React.ReactNode; style?: CSSProperties }) {
+function Section({ children, style, className }: { children: React.ReactNode; style?: CSSProperties; className?: string }) {
   return (
-    <section style={{ position: 'relative', padding: 'clamp(70px,12vh,150px) 8vw', maxWidth: 1040, margin: '0 auto', textAlign: 'center', ...style }}>
+    <section className={className} style={{ position: 'relative', padding: 'clamp(70px,12vh,150px) 8vw', maxWidth: 1040, margin: '0 auto', textAlign: 'center', ...style }}>
       {children}
     </section>
   )
@@ -58,20 +58,24 @@ function Venn() {
 // Every face is the same size here (no lead emphasis): an elongated capsule with
 // a delicate offset brass outline, matching the People page so the two read as
 // one family. No starburst on the homepage.
-function TeamFace({ m, ctx }: { m: typeof CORE_TEAM[number]; ctx: Ctx }) {
+function TeamFace({ m, ctx, variant = 'default' }: { m: typeof CORE_TEAM[number]; ctx: Ctx; variant?: 'default' | 'index' }) {
   const anchor = m.name ? m.name.split(' ')[0].toLowerCase() : ''
   // each face is a door into the People page, landing on that person's section
   const open = anchor ? ctx.openPeopleAt(anchor) : ctx.openPeople
+  // the contributor-index variant is a touch smaller and quieter, so the team
+  // reads as a typeset index rather than the dominant feature of the moment
+  const isIndex = variant === 'index'
+  const width = isIndex ? 'clamp(92px,9.6vw,114px)' : 'clamp(108px,11.8vw,130px)'
   return (
-    <El as="button" className="home-teamface" onClick={open} aria-label={`Meet ${m.name || m.role} on the People page`} style={{ width: 'clamp(108px,11.8vw,130px)', display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit' }}>
+    <El as="button" className="home-teamface" onClick={open} aria-label={`Meet ${m.name || m.role} on the People page`} style={{ width, display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit', textAlign: 'center' }}>
       <div className="home-teamface__frame" style={{ position: 'relative', width: '100%', aspectRatio: '0.685' }}>
         <div className="home-teamface__outline" aria-hidden="true" />
-        <div className="home-teamface__img" style={{ position: 'absolute', inset: 0, borderRadius: '999px', overflow: 'hidden', boxShadow: '0 20px 34px -22px rgba(60,44,20,0.5)' }}>
+        <div className="home-teamface__img" style={{ position: 'absolute', inset: 0, borderRadius: '999px', overflow: 'hidden', boxShadow: isIndex ? '0 18px 30px -22px rgba(60,44,20,0.5)' : '0 20px 34px -22px rgba(60,44,20,0.5)' }}>
           <ImageSlot src={m.photo} alt={`Portrait of ${m.name || m.role}`} placeholder={`Editorial portrait of ${m.name || m.role}`} fit="cover" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectPosition: m.pos || 'center 28%' }} />
         </div>
       </div>
-      <div className="home-teamface__name" style={{ fontFamily: serif, fontWeight: 500, fontSize: 17, marginTop: 14, color: palette.ink }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
-      <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 9.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: palette.olive, marginTop: 5 }}>{m.roleShort || m.role}</div>
+      <div className="home-teamface__name" style={{ fontFamily: serif, fontWeight: 500, fontSize: isIndex ? 16 : 17, marginTop: isIndex ? 13 : 14, color: palette.ink }}>{m.name ? m.name.split(' ')[0] : m.role}</div>
+      <div style={{ fontFamily: sans, fontWeight: 400, fontSize: isIndex ? 9 : 9.5, letterSpacing: '0.2em', textTransform: 'uppercase', color: palette.olive, marginTop: 5, lineHeight: 1.4 }}>{m.roleShort || m.role}</div>
     </El>
   )
 }
@@ -93,7 +97,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
       {/* ── Moment 1 · Hero — simple and emotionally compelling. The eyebrow
           carries the category clarity; the headline carries the feeling. ── */}
-      <Section style={{ paddingTop: 'clamp(118px,20vh,210px)' }}>
+      <Section className="home-hero" style={{ paddingTop: 'clamp(118px,20vh,210px)' }}>
         <ArchMark width={2.2} margin="0 auto 1.4em" />
         <div style={eyebrow}>Believe Studio &middot; Creative Strategy &amp; Advisory for Consumer Brands</div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px,2.1vw,22px)', color: palette.gold, margin: 'clamp(26px,4vh,40px) 0 0' }}>For those who see what could be.</p>
@@ -110,7 +114,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
           unfolds here: the turn is carried by type and whitespace, with one
           faint brass hairline as its only accent. The three value cards then
           follow so the founder sees, plainly, what Believe does. ── */}
-      <Section style={{ paddingBottom: 'clamp(52px,9vh,112px)' }}>
+      <Section className="home-perspective" style={{ paddingBottom: 'clamp(52px,9vh,112px)' }}>
         <p style={{ ...body, maxWidth: '42ch', margin: '0 auto' }}>But sometimes the next opportunity isn&rsquo;t another retailer, another campaign, or another item on your to-do list.</p>
 
         <div aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(122,94,52,0.45)', margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
@@ -120,20 +124,26 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
         {/* a quiet architectural rule into the concrete "how we help" */}
         <div aria-hidden="true" style={{ width: 'min(300px,54%)', height: 1, background: 'linear-gradient(90deg, transparent, rgba(122,94,52,0.32) 24%, rgba(122,94,52,0.32) 76%, transparent)', margin: 'clamp(66px,11vh,128px) auto clamp(40px,6.5vh,64px)' }} />
-        <div style={eyebrow}>How we help</div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 'clamp(30px,4vw,56px)', textAlign: 'left', maxWidth: 940, margin: 'clamp(30px,4.5vh,44px) auto 0' }}>
-          {[
-            { t: 'Create what’s next', d: 'Discover what makes your brand unmistakably itself, then bring it to life through creative strategy, storytelling, and experiences that connect with people.' },
-            { t: 'Grow in every direction', d: 'Omnichannel demand, strategic partnerships, and the community that turns attention into belonging.' },
-            { t: 'Think it through together', d: 'A trusted partner for the decisions that shape what comes next, from the next growth move to the ones only a founder can make.' },
-          ].map((a) => (
-            <div key={a.t}>
-              <h3 style={{ fontFamily: serif, fontWeight: 600, fontSize: 'clamp(21px,2.2vw,27px)', lineHeight: 1.1, color: palette.ink, margin: 0 }}>{a.t}</h3>
-              <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.7vw,19px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: '0.6em 0 0' }}>{a.d}</p>
-            </div>
-          ))}
+        {/* How we help, as an editorial index: each offering is a title set
+            large to the left in dialogue with its description to the right,
+            like a contents spread. Hairline ledger rules appear only between
+            entries, so the section reads structured but never segmented. */}
+        <div className="home-help">
+          <div style={eyebrow}>How we help</div>
+          <div className="home-help__list">
+            {[
+              { t: 'Create what’s next', d: 'Discover what makes your brand unmistakably itself, then bring it to life through creative strategy, storytelling, and experiences that connect with people.' },
+              { t: 'Grow in every direction', d: 'Omnichannel demand, strategic partnerships, and the community that turns attention into belonging.' },
+              { t: 'Think it through together', d: 'A trusted partner for the decisions that shape what comes next, from the next growth move to the ones only a founder can make.' },
+            ].map((a) => (
+              <div className="home-help__entry" key={a.t}>
+                <h3 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(26px,3.1vw,42px)', lineHeight: 1.03, letterSpacing: '-0.005em', color: palette.ink, margin: 0, maxWidth: '13ch' }}>{a.t}</h3>
+                <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(17px,1.75vw,20px)', lineHeight: 1.62, color: 'rgba(40,33,22,0.86)', margin: 0, maxWidth: '46ch', textWrap: 'pretty' as CSSProperties['textWrap'] }}>{a.d}</p>
+              </div>
+            ))}
+          </div>
+          <El as="button" onClick={ctx.openWork} style={{ ...ghost, marginTop: 'clamp(34px,5vh,52px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>See all the ways to work &rarr;</El>
         </div>
-        <El as="button" onClick={ctx.openWork} style={{ ...ghost, marginTop: 'clamp(38px,5.5vh,58px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>See all the ways to work &rarr;</El>
       </Section>
 
       {/* a single quiet editorial plate — an intimate Georgian townhouse
@@ -173,21 +183,30 @@ export function Home({ ctx }: { ctx: Ctx }) {
           <div aria-hidden="true" style={{ width: 56, height: 1, background: 'rgba(122,94,52,0.55)', margin: '0 0 clamp(26px,4.4vh,46px)' }} />
           <h2 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,9vw,112px)', lineHeight: 0.97, letterSpacing: '-0.02em', color: palette.navy, margin: 0 }}>Who&rsquo;s helping you see<span style={{ display: 'block', fontStyle: 'italic', fontWeight: 400, paddingLeft: '0.14em' }}>the bigger picture?</span></h2>
 
-          {/* an intentional progression: a small label, the credibility in a quiet
-              line, then the emotional close given its own prominence */}
-          <div style={{ ...eyebrow, margin: 'clamp(42px,7vh,84px) 0 clamp(16px,2.4vh,24px)' }}>Built from experience</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,24px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', maxWidth: '44ch', margin: 0, textWrap: 'pretty' as CSSProperties['textWrap'] }}>Believe Studio is led by Beth Wilson-Parentice, who built Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, and Starbucks.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.9vw,34px)', lineHeight: 1.32, color: palette.navy, maxWidth: '26ch', margin: 'clamp(24px,3.8vh,40px) 0 0', ...balance }}>She has sat in the founder&rsquo;s chair, and built the partner she wished she&rsquo;d had.</p>
+          {/* founder story as a contributor feature: the credibility set left,
+              the founder statement offset to the right in dialogue, the two
+              held apart by negative space rather than a rule */}
+          <div className="home-people__band">
+            <div>
+              <div style={{ ...eyebrow, margin: '0 0 clamp(16px,2.4vh,24px)' }}>Built from experience</div>
+              <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.05vw,24px)', lineHeight: 1.56, color: 'rgba(43,39,35,0.76)', maxWidth: '40ch', margin: 0, textWrap: 'pretty' as CSSProperties['textWrap'] }}>Believe Studio is led by Beth Wilson-Parentice, who built Sipp from her kitchen into a national brand on shelves at Target, Whole Foods, and Starbucks.</p>
+            </div>
+            <div className="home-people__stmt">
+              <div aria-hidden="true" className="home-people__stmt-rule" />
+              <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(23px,3vw,36px)', lineHeight: 1.3, color: palette.navy, margin: 0, maxWidth: '12.5em', marginLeft: 'auto', ...balance }}>She has sat in the founder&rsquo;s chair, and built the partner she wished she&rsquo;d had.</p>
+            </div>
+          </div>
+
+          {/* one ledger hairline, then the team as a restrained index of five
+              equally sized portraits — present, but no longer the feature */}
+          <div aria-hidden="true" className="home-people__rule" />
+          <div className="home-people__contrib">
+            {CORE_TEAM.map((m, i) => (
+              <TeamFace key={i} m={m} ctx={ctx} variant="index" />
+            ))}
+          </div>
+          <El as="button" onClick={ctx.openPeople} style={{ ...ghost, marginTop: 'clamp(40px,6vh,64px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Meet the people of Believe Studio &rarr;</El>
         </div>
-        <div className="home-team" style={{ marginTop: 'clamp(38px,6vh,62px)' }}>
-          {CORE_TEAM.map((m, i) => (
-            <React.Fragment key={i}>
-              {i === 3 && <div className="team-row-break" aria-hidden="true" />}
-              <TeamFace m={m} ctx={ctx} />
-            </React.Fragment>
-          ))}
-        </div>
-        <El as="button" onClick={ctx.openPeople} style={{ ...ghost, marginTop: 'clamp(36px,5vh,54px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Meet the people of Believe Studio &rarr;</El>
 
         {/* An editorial pull quote bridging the people behind Believe Studio to
             the brands in our orbit. Oversized serif, a single brass hairline, a
