@@ -33,8 +33,12 @@ const cta: React.CSSProperties = {
 export function TableChapter({ ctx }: { ctx: Ctx }) {
   return (
     <ChapterShell onClose={ctx.closeTable} background="#efe6d3">
-      {/* a candlelit dinner in an elegant London townhouse dining room */}
-      <div style={{ position: 'relative', width: '100%', height: 'clamp(340px,52vh,600px)', overflow: 'hidden', borderRadius: 'clamp(120px,26vw,420px) clamp(120px,26vw,420px) clamp(40px,6vw,120px) clamp(40px,6vw,120px)' }}>
+      {/* a candlelit dinner in an elegant London townhouse dining room. A small
+          breath of ivory above the curved hero clears the corner "Back to the
+          building" control, so it reads on the background rather than over the
+          photograph. (The other rooms open with padded intros, so their shared
+          back control already sits on ivory — this spacing is The Table's own.) */}
+      <div style={{ position: 'relative', width: '100%', height: 'clamp(340px,52vh,600px)', marginTop: 'clamp(56px,7vh,76px)', overflow: 'hidden', borderRadius: 'clamp(120px,26vw,420px) clamp(120px,26vw,420px) clamp(40px,6vw,120px) clamp(40px,6vw,120px)' }}>
         <ImageSlot
           src={PHOTOS.table}
           alt="A candlelit dinner laid along a long reclaimed-wood table in a dark-panelled London townhouse dining room, with boucle chairs, a marble fireplace, floral centrepieces, and tall windows"
