@@ -32,9 +32,11 @@ export function WhyBelieveChapter({ ctx }: { ctx: Ctx }) {
           <p style={lineBig}>I hope it becomes that place for you.</p>
         </div>
 
-        {/* the signature — the institution now has a founder */}
-        <div style={{ marginTop: 'clamp(70px,12vh,140px)' }}>
-          <div style={{ fontFamily: "'Caveat',cursive", fontWeight: 500, fontSize: 'clamp(40px,6vw,72px)', lineHeight: 1, color: '#2b2723' }}>Beth</div>
+        {/* the signature — a personal sign-off in Parisienne, as if Beth has
+            signed a letter to the visitor; drawn a little closer to the line
+            above so it reads as a hand-written close, not another brand mark */}
+        <div style={{ marginTop: 'clamp(54px,9vh,104px)' }}>
+          <div style={{ fontFamily: "'Parisienne',cursive", fontWeight: 400, fontSize: 'clamp(46px,6.8vw,82px)', lineHeight: 1, color: '#2b2723' }}>Beth</div>
           <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginTop: '1.4em' }}>Beth Wilson-Parentice · Founder</div>
         </div>
 
