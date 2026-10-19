@@ -17,5 +17,7 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "comment": "House.tsx is the retired 'What is this place?' philosophy page. It is kept in the repo for reference but is no longer mounted or routed, and its handlers were removed from Ctx; excluded here so it is not type-checked.",
+  "exclude": ["src/chapters/House.tsx"]
 }

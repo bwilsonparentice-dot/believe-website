@@ -25,8 +25,7 @@ export function AboutChapter({ ctx }: { ctx: Ctx }) {
   const links: { n: string; t: string; go: () => void }[] = [
     { n: '01', t: 'Why I Built Believe', go: ctx.openWhyBelieve },
     { n: '02', t: 'The People of Believe Studio', go: ctx.openPeople },
-    { n: '03', t: 'The House', go: ctx.openHouse },
-    { n: '04', t: 'The Houses to Come', go: ctx.openHouses },
+    { n: '03', t: 'The Houses to Come', go: ctx.openHouses },
   ]
   return (
     <ChapterShell onClose={ctx.closeAbout} background="#efe6d3" backLabel={<>&larr;&nbsp;Back</>}>
@@ -37,6 +36,7 @@ export function AboutChapter({ ctx }: { ctx: Ctx }) {
 
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,27px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.78)', maxWidth: '46ch', margin: 'clamp(40px,7vh,84px) auto 0', ...pretty }}>Believe Studio was founded by Beth Wilson-Parentice, who grew Sipp from her kitchen into a nationally distributed beverage brand, reaching shelves at Target, Whole Foods, Starbucks, and thousands of retail doors.</p>
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,27px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.78)', maxWidth: '46ch', margin: 'clamp(20px,3.4vh,30px) auto 0', ...pretty }}>She knows what it means to build something from nothing, make the hard calls, and recognize the opportunities others miss.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.15vw,27px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.78)', maxWidth: '40ch', margin: 'clamp(24px,4vh,36px) auto 0', ...balance }}>Sometimes all it takes is someone who sees what you can&rsquo;t see yet.</p>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.84)', maxWidth: '34ch', margin: 'clamp(30px,5vh,54px) auto 0', ...balance }}>A house for founders. A place to think differently, make better decisions, and build companies that matter.</p>
 
         <Divider h="clamp(44px,7vh,86px)" m="clamp(70px,12vh,150px) auto clamp(40px,7vh,70px)" />

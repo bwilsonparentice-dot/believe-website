@@ -22,7 +22,6 @@ import { StudioChapter } from './chapters/Studio'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
-import { HouseChapter } from './chapters/House'
 import { WhyBelieveChapter } from './chapters/WhyBelieve'
 import { WorkChapter } from './chapters/Work'
 import { DoorwayChapter } from './chapters/Doorway'
@@ -60,7 +59,7 @@ interface State {
   hasKey: boolean
   pendingRoom: string | null
   showHouses: boolean; showPeople: boolean; showStudio: boolean
-  showHouse: boolean; showWhyBelieve: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
+  showWhyBelieve: boolean; showLibrary: boolean; showBlueprint: boolean; showFieldNotes: boolean
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showStudioPage: boolean
   showJournal: boolean; openArticle: string | null
@@ -215,7 +214,7 @@ function overlaySlugFromPath(pathname: string): string | null {
 // every overlay flag/doorway, closed — the neutral ground a route opens from
 const CLOSED_OVERLAYS: Partial<State> = {
   showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
-  showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
+  showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
   showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
   showJournal: false, openArticle: null,
@@ -237,7 +236,7 @@ function makeInitialState(): State {
     phase: 'overture', opening: false, roomsRevealed: false, justEntered: false, prologueSeen: hasSeenPrologue(),
     activeId: null, activeDoorway: null, hasKey: false, pendingRoom: null,
     showHouses: false, showPeople: false, showStudio: false,
-    showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
+    showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
     showStudioPage: false, showJournal: false, openArticle: null, showDirectory: false,
     showObservatory: false, showConversation: false, showAbout: false,
@@ -318,7 +317,6 @@ export class App extends React.Component<Record<string, never>, State> {
       openPeople: this.openPeoplePlain, closePeople: this.closeChapter('showPeople'),
       openPeopleAt: this.openPeopleAt,
       openStories: this.openChapter('showStories'), closeStories: this.closeChapter('showStories'),
-      openHouse: this.openChapter('showHouse'), closeHouse: this.closeChapter('showHouse'),
       openWhyBelieve: this.openChapter('showWhyBelieve'), closeWhyBelieve: this.closeChapter('showWhyBelieve'),
       openHouses: this.openChapter('showHouses'), closeHouses: this.closeChapter('showHouses'),
       openWork: this.openChapter('showWork'), closeWork: this.closeChapter('showWork'),
@@ -436,7 +434,7 @@ export class App extends React.Component<Record<string, never>, State> {
       if (this.state.showDirectory) { this.setState({ showDirectory: false }); return }
       if (this.state.activeDoorway) { this.setState({ activeDoorway: null }); return }
       if (this.state.showJournal && this.state.openArticle) { this.setState({ openArticle: null }); return }
-      const order: (keyof State)[] = ['showPrivacy', 'showTerms', 'showAccessibility', 'showStories', 'showFieldNotes', 'showJournal', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showHouse', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showObservatory', 'showAbout', 'showPeople', 'showHouses', 'showKey']
+      const order: (keyof State)[] = ['showPrivacy', 'showTerms', 'showAccessibility', 'showStories', 'showFieldNotes', 'showJournal', 'showBlueprint', 'showTable', 'showWork', 'showAdvisory', 'showStage', 'showLibrary', 'showWhyBelieve', 'showStudio', 'showStudioPage', 'showObservatory', 'showAbout', 'showPeople', 'showHouses', 'showKey']
       for (const k of order) { if (this.state[k]) { this.setState({ [k]: false } as unknown as Pick<State, keyof State>); return } }
       if (this.state.activeId) { this.closeRoom(); return }
     }
@@ -561,7 +559,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showHouse: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -655,7 +653,6 @@ export class App extends React.Component<Record<string, never>, State> {
           : this.state.activeDoorway && <DoorwayChapter key={this.state.activeDoorway} ctx={this.ctx} id={this.state.activeDoorway} />}
         {this.state.showAdvisory && <AdvisoryChapter ctx={this.ctx} />}
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
-        {this.state.showHouse && <HouseChapter ctx={this.ctx} />}
         {this.state.showWhyBelieve && <WhyBelieveChapter ctx={this.ctx} />}
         {this.state.showPeople && <PeopleChapter ctx={this.ctx} anchor={this.state.peopleAnchor} />}
         {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}

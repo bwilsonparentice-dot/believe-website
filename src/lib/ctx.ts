@@ -21,7 +21,6 @@ export interface Ctx {
   /** Open the People page scrolled to a specific person (anchor = first name, lowercased). */
   openPeopleAt: (id: string) => Handler
   openStories: Handler; closeStories: Handler
-  openHouse: Handler; closeHouse: Handler
   openWhyBelieve: Handler; closeWhyBelieve: Handler
   openHouses: Handler; closeHouses: Handler
   openWork: Handler; closeWork: Handler
