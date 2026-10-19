@@ -319,28 +319,43 @@ a:hover { color: #b08a4a; }
    limestone ground, which opens from the same cream as the Community section
    above, so the two sides (and the chapter before) read as one continuous room.
    Motion is a subtle fade + scale reveal only, disabled under reduced-motion. */
-.bs-closing { position: relative; min-height: 100vh; display: grid; grid-template-columns: 58% 42%;
+.bs-closing { position: relative; min-height: 100vh;
   background:
     radial-gradient(82% 62% at 80% 18%, rgba(255,241,210,0.5), transparent 62%),
     linear-gradient(118deg, #ece4d4 2%, #e9dec6 58%, #e4d9bf); }
-.bs-closing-photo { position: relative; overflow: hidden; }
-/* absolutely-positioned so the tall portrait source cover-fills its cell instead
-   of dictating the row height (which ballooned the closing to ~1.4 viewports) */
-.bs-closing-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; display: block; }
-.bs-closing-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(90deg, transparent 58%, rgba(233,222,198,0.5) 80%, #e9dec6 100%); }
-.bs-closing-copy { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: clamp(40px,7vw,96px) clamp(30px,5vw,88px); }
+/* Option C — the whole section is one photograph of the Georgian interior; the
+   invitation sits over the photograph's own ivory wall at the right, so there is
+   no artificial fade into a flat panel. The cream background shows only if the
+   image fails to load. */
+.bs-closing-photo { position: absolute; inset: 0; overflow: hidden; }
+/* object-position 57% sets the open doors and conservatory as the focal point
+   while sliding the wall's vertical pilaster to the left of the copy, so the
+   architectural molding frames the text rather than running behind it. */
+.bs-closing-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 57% 44%; display: block; }
+.bs-closing-copy { position: absolute; top: 0; right: 0; height: 100%; width: min(40%, 560px); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: clamp(40px,4vw,80px) clamp(40px,4.5vw,96px); }
+/* a soft warm-ivory glow sits just behind the headline and copy: a blend-mode
+   lift (not an opaque wash) that brightens the wall where the letters fall while
+   the paneling, texture and shadows still read through. */
+.bs-closing-copy::before { content: ""; position: absolute; inset: -6% -4%; z-index: -1; pointer-events: none;
+  background: radial-gradient(78% 64% at 50% 45%, rgba(255,244,224,0.55), rgba(255,244,224,0.2) 46%, rgba(255,244,224,0) 72%);
+  mix-blend-mode: soft-light; }
 .bs-closing-reveal { animation: closingReveal 1500ms cubic-bezier(.2,.7,.2,1) both; animation-timeline: view(); animation-range: entry 2% cover 32%; }
 .bs-closing-copy-reveal { animation: fadeUpSoft 1300ms ease both; animation-timeline: view(); animation-range: entry 10% cover 36%; }
 @keyframes closingReveal { 0% { opacity: 0; transform: scale(1.035); } 100% { opacity: 1; transform: scale(1); } }
 @media (max-width: 860px) {
-  .bs-closing { grid-template-columns: 1fr; min-height: 0; }
-  /* full 2:3 so none of the arch, courtyard or olive tree is cropped */
-  .bs-closing-photo { height: auto; aspect-ratio: 1024 / 1536; max-height: 82vh; }
-  .bs-closing-photo img { object-position: 50% 36%; }
-  .bs-closing-photo::after { background: linear-gradient(180deg, transparent 74%, rgba(233,222,198,0.6) 90%, #e9dec6 100%); }
-  .bs-closing-copy { padding: clamp(36px,8vw,64px) 30px clamp(64px,12vw,100px); }
+  /* stacked: the photograph above (doorway + conservatory the focal point), the
+     invitation on cream below; a soft base fade settles the two together */
+  .bs-closing { min-height: 0; }
+  .bs-closing-photo { position: relative; height: auto; aspect-ratio: 4 / 5; max-height: 82vh; }
+  .bs-closing-photo img { object-position: 40% 44%; }
+  .bs-closing-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 80%, rgba(233,222,198,0.55) 93%, #e9dec6 100%); }
+  .bs-closing-copy { position: static; width: auto; height: auto; padding: clamp(36px,8vw,64px) 30px clamp(64px,12vw,100px); }
+  /* the wall glow is only for the desktop photo-backed copy; the stacked copy
+     sits on cream, so it is not needed here */
+  .bs-closing-copy::before { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bs-closing-reveal, .bs-closing-copy-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }

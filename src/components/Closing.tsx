@@ -7,8 +7,9 @@ const sans = "'Jost',sans-serif"
 const balance = 'balance' as React.CSSProperties['textWrap']
 
 /**
- * The closing — an open limestone arch onto a sunlit courtyard. We are already
- * inside the House, looking toward what comes next. The photograph is an
+ * The closing — an ivory archway with open black French doors, looking from the
+ * navy-panelled interior out to a sunlit garden and glass conservatory. We are
+ * already inside the House, looking toward what comes next. The photograph is an
  * immersive panel whose inner edge feathers into the warm limestone ground, so
  * the image and the invitation read as one continuous room (not a split screen).
  * This is the final emotional moment of the homepage; the footer below is a
@@ -24,7 +25,7 @@ export function Closing({ ctx }: { ctx: Ctx }) {
         <img
           className="bs-closing-reveal"
           src="/photos/photo-closing.webp"
-          alt="A limestone arch opening onto a sunlit Mediterranean courtyard with olive trees"
+          alt="An ivory archway with open black French doors in a navy-panelled Georgian room, white hydrangeas on a marble table, opening onto a sunlit garden and glass conservatory beyond"
           loading="lazy"
         />
       </div>
