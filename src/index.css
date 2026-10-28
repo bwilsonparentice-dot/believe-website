@@ -361,6 +361,32 @@ a:hover { color: #b08a4a; }
   .bs-closing-reveal, .bs-closing-copy-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
+/* ── Believe in the Yes (BITY) — the thinking behind Believe Studio, paired
+   with the bity tote photograph. The photo sits beside the copy on desktop and
+   stacks above it on mobile. The image is shown as a full, uncropped frame so
+   the woman and the whole gold "bity" logo stay visible at every width. ── */
+.bity { position: relative; background: linear-gradient(176deg, #e9dfc9 0%, #e7dcc4 100%); padding: clamp(70px,12vh,150px) 8vw; }
+.bity__grid { display: grid; grid-template-columns: minmax(0,0.95fr) minmax(0,1fr); column-gap: clamp(36px,5.5vw,96px); align-items: start; max-width: 1180px; margin: 0 auto; }
+/* top-align the photo with the headline (not the smaller eyebrow above it): a
+   modest offset drops it level with "Believe in the Yes." */
+.bity__photo { margin: clamp(30px,3.6vh,42px) 0 0; }
+.bity__photo img { display: block; width: 100%; height: auto; border-radius: clamp(6px,0.9vw,14px); box-shadow: 0 40px 80px -50px rgba(60,44,20,0.6); }
+.bity__copy { text-align: left; }
+.bity__steps { margin: clamp(24px,3.6vh,38px) 0 0; }
+.bity__step { padding: clamp(15px,2.4vh,22px) 0; }
+.bity__step + .bity__step { border-top: 1px solid rgba(122,94,52,0.2); }
+@media (max-width: 820px) {
+  /* stacked: the full portrait above (capped so it never dominates a phone),
+     the copy below, both reading left so the practice stays legible */
+  .bity__grid { grid-template-columns: 1fr; row-gap: clamp(30px,6vw,52px); }
+  .bity__photo { max-width: 440px; margin: 0 auto; }
+}
+.bity-photo-reveal { animation: closingReveal 1400ms cubic-bezier(.2,.7,.2,1) both; animation-timeline: view(); animation-range: entry 2% cover 30%; }
+.bity-copy-reveal { animation: fadeUpSoft 1200ms ease both; animation-timeline: view(); animation-range: entry 8% cover 34%; }
+@media (prefers-reduced-motion: reduce) {
+  .bity-photo-reveal, .bity-copy-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+
 /* homepage responsive helpers (content stays visible at rest; no reveal gating) */
 .home-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(16px,2vw,24px); }
 .home-team { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px,2vh,20px) clamp(20px,3vw,40px); }

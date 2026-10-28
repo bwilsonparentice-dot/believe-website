@@ -12,6 +12,7 @@ import { Footer } from './components/Footer'
 import { DirectoryOverlay } from './components/DirectoryOverlay'
 import { LivingHouse } from './components/LivingHouse'
 import { Community } from './components/Community'
+import { BelieveInTheYes } from './components/BelieveInTheYes'
 import { Closing } from './components/Closing'
 
 // chapters
@@ -805,6 +806,11 @@ export class App extends React.Component<Record<string, never>, State> {
         )}
 
         <Home ctx={this.ctx} />
+
+        {/* Believe in the Yes (BITY) — the thinking behind Believe Studio, met
+            after the homepage's services and client work and before the closing
+            archway. The bity-tote photograph sits beside the practice. */}
+        <BelieveInTheYes ctx={this.ctx} />
 
         {/* The Founding Wall — a wordless philosophical beat that carries the
             visitor from the five homepage moments into the closing courtyard.
