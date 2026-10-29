@@ -104,16 +104,14 @@ function hasVisited(): boolean {
   try { return typeof localStorage !== 'undefined' && localStorage.getItem(VISITED_KEY) === '1' } catch { return false }
 }
 
-// The arrival now plays once per BROWSING SESSION rather than once per device.
-// A new tab or a fresh browser session sees the Door again; but reloading,
-// moving between rooms, and back/forward within the same session never replay
-// it (sessionStorage is per-tab-session and survives reloads, not restarts).
+// The Door is the House's arrival, and it now plays on EVERY fresh load of the
+// home root — reload it, reopen it, or open a brand-new tab, and the townhouse
+// opens again each time. (We still record arrival in sessionStorage for possible
+// later use, but the arrival no longer reads it to decide whether to play, so a
+// returning visitor is never quietly dropped past the Door.)
 const SESSION_KEY = 'believe.entered'
 function rememberEnteredSession() {
   try { sessionStorage.setItem(SESSION_KEY, '1') } catch { /* private mode — falls back to in-memory for this load */ }
-}
-function enteredThisSession(): boolean {
-  try { return typeof sessionStorage !== 'undefined' && sessionStorage.getItem(SESSION_KEY) === '1' } catch { return false }
 }
 // Visitors who ask for less motion skip the cinematic arrival entirely.
 function prefersReducedMotion(): boolean {
@@ -263,14 +261,13 @@ function makeInitialState(): State {
   const slug = overlaySlugFromPath(path)
   if (slug) { rememberEnteredSession(); return { ...entered, ...openStateForSlug(slug, articleSlugFromPath(path)) } }
   if (BUILDING_ANCHORS.has(rawPath(path))) { rememberEnteredSession(); return entered }
-  // Already arrived in this browsing session, or a reduced-motion visitor —
-  // straight to the usable homepage, no arrival. The Door is a special arrival,
-  // not a repeated one: it plays once per browsing session (a new tab or a fresh
-  // browser session sees it again), while reloads and room-to-room navigation
-  // within the session never replay it. Manual ?enter replay, deep links, and
-  // reduced-motion bypass are all preserved above.
-  if (enteredThisSession() || prefersReducedMotion()) return entered
-  // First arrival of a new browsing session → the Door.
+  // The Door plays on every fresh load of the home root. Only two cases still
+  // skip it: a reduced-motion visitor (who has asked their OS for less motion,
+  // so we honour that and go straight to the homepage), and the deep-link,
+  // redirect and anchor paths handled above (landing straight in a room should
+  // not detour through the Door). Everything else gets the arrival.
+  if (prefersReducedMotion()) return entered
+  // The home root → the Door, every time.
   return base
 }
 
@@ -363,9 +360,8 @@ export class App extends React.Component<Record<string, never>, State> {
 
     // the arrival ritual runs only when we actually begin at the Door
     if (this.state.phase === 'overture') {
-      // Mark the session as arrived the moment the Door is shown, so this plays
-      // exactly once per browsing session — a reload, or any internal navigation,
-      // lands straight on the homepage afterward.
+      // Record that the visitor has arrived (retained for possible later use);
+      // the Door itself no longer depends on this — it plays on every fresh load.
       rememberEnteredSession()
       // the arrival is short and skippable: a visible "Enter the House" control
       // is shown from the first frame, and the two lines land quickly. The door
@@ -465,9 +461,10 @@ export class App extends React.Component<Record<string, never>, State> {
       this.setState({ opening: true })
       // the door opens in silence — no sound effect
       if (this.tAccept) clearTimeout(this.tAccept)
-      // the leaf swings open (~1700ms), holds a beat as the library is revealed,
-      // then a warm dissolve carries us straight onto the homepage
-      this.tAccept = setTimeout(() => this.enterHouse(), motionOn ? 2150 : 420)
+      // the leaf swings open (~1700ms), then holds fully open for about a second
+      // so the threshold can be taken in, before a warm dissolve carries us onto
+      // the homepage
+      this.tAccept = setTimeout(() => this.enterHouse(), motionOn ? 3100 : 420)
     }, motionOn ? 150 : 60) // a brief held beat, then the door gives way
   }
   private skip = (e?: React.MouseEvent) => {
@@ -699,7 +696,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {/* after the door holds open a beat, a soft warm light gathers and carries
             the visitor inside — a quiet dissolve, never a flash */}
         {opening && (
-          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', background: 'radial-gradient(118% 92% at 50% 44%, rgba(248,241,226,0.97), rgba(238,228,207,0.99))', opacity: 0, animation: motionOn ? 'glowGrow 650ms ease 1750ms both' : 'glowGrow 260ms ease forwards' }} />
+          <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 5, pointerEvents: 'none', background: 'radial-gradient(118% 92% at 50% 44%, rgba(248,241,226,0.97), rgba(238,228,207,0.99))', opacity: 0, animation: motionOn ? 'glowGrow 650ms ease 2700ms both' : 'glowGrow 260ms ease forwards' }} />
         )}
 
         {/* the arrival fades up from a dark hush on the first paint */}
