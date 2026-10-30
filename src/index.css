@@ -361,26 +361,47 @@ a:hover { color: #b08a4a; }
   .bs-closing-reveal, .bs-closing-copy-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
-/* ── Believe in the Yes (BITY) — the thinking behind Believe Studio, paired
-   with the bity tote photograph. The photo sits beside the copy on desktop and
-   stacks above it on mobile. The image is shown as a full, uncropped frame so
-   the woman and the whole gold "bity" logo stay visible at every width. ── */
-.bity { position: relative; background: linear-gradient(176deg, #e9dfc9 0%, #e7dcc4 100%); padding: clamp(70px,12vh,150px) 8vw; }
-.bity__grid { display: grid; grid-template-columns: minmax(0,0.95fr) minmax(0,1fr); column-gap: clamp(36px,5.5vw,96px); align-items: start; max-width: 1180px; margin: 0 auto; }
-/* top-align the photo with the headline (not the smaller eyebrow above it): a
-   modest offset drops it level with "Believe in the Yes." */
-.bity__photo { margin: clamp(30px,3.6vh,42px) 0 0; }
+/* ── Believe in the Yes (BITY) — the thinking behind Believe Studio, as three
+   editorial bands: an introduction with the tote photograph beside it; the
+   three steps as a full-width, hairline-ruled framework; and a centred close
+   that gives the final question its own moment. Warm linen ground, deep-navy
+   type, restrained muted-gold accents. ── */
+.bity { position: relative; background: linear-gradient(176deg, #efe7d6 0%, #eadfca 100%); padding: clamp(66px,11vh,140px) 8vw; }
+
+/* 1 · Introduction — the photograph accompanies only the intro, so the two
+   columns are close in height and centre against each other with little waste */
+.bity__intro { display: grid; grid-template-columns: minmax(0,0.78fr) minmax(0,1fr); column-gap: clamp(40px,5.5vw,92px); align-items: center; max-width: 1080px; margin: 0 auto; }
+.bity__photo { margin: 0; }
 .bity__photo img { display: block; width: 100%; height: auto; border-radius: clamp(6px,0.9vw,14px); box-shadow: 0 40px 80px -50px rgba(60,44,20,0.6); }
-.bity__copy { text-align: left; }
-.bity__steps { margin: clamp(24px,3.6vh,38px) 0 0; }
-.bity__step { padding: clamp(15px,2.4vh,22px) 0; }
-.bity__step + .bity__step { border-top: 1px solid rgba(122,94,52,0.2); }
-@media (max-width: 820px) {
-  /* stacked: the full portrait above (capped so it never dominates a phone),
-     the copy below, both reading left so the practice stays legible */
-  .bity__grid { grid-template-columns: 1fr; row-gap: clamp(30px,6vw,52px); }
-  .bity__photo { max-width: 440px; margin: 0 auto; }
+.bity__introcopy { text-align: left; }
+
+/* 2 · Steps — a full-width framework (wider than the intro column), set apart by
+   delicate hairlines top and bottom; three columns divided by thin gold rules.
+   No cards, no fills: the ruling alone carries the structure. */
+.bity__steps { list-style: none; margin: clamp(52px,8vh,104px) auto 0; padding: clamp(40px,6vh,72px) 0; max-width: 1200px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(122,94,52,0.26); border-bottom: 1px solid rgba(122,94,52,0.26); }
+.bity__step { text-align: center; padding: clamp(6px,1.4vh,12px) clamp(22px,3.2vw,54px); }
+.bity__step + .bity__step { border-left: 1px solid rgba(122,94,52,0.2); }
+.bity__num { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(30px,3.2vw,46px); line-height: 1; color: rgba(122,94,52,0.5); margin-bottom: clamp(14px,2vh,22px); }
+
+/* 3 · Closing — centred, with the final question given its own breathing room.
+   The lower half is drawn in tighter than the intro so the journey reads as one
+   continuous movement: steps → explanation → invitation. */
+.bity__close { max-width: 880px; margin: clamp(36px,5.6vh,72px) auto 0; text-align: center; }
+.bity__question { padding: clamp(32px,5.2vh,68px) 0 0; }
+.bity__tick { width: 48px; height: 1px; background: rgba(122,94,52,0.45); margin: 0 auto clamp(24px,3.8vh,40px); }
+
+/* ── mobile: intro stacks (full frame preserved), steps stack into a single
+   hairline-divided column, closing stays centred ── */
+@media (max-width: 860px) {
+  .bity__intro { grid-template-columns: 1fr; row-gap: clamp(30px,6vw,48px); }
+  .bity__photo { max-width: 420px; margin: 0 auto; }
+  .bity__steps { grid-template-columns: 1fr; padding: clamp(30px,6vw,48px) 0; }
+  .bity__step { padding: clamp(26px,6vw,36px) 0; }
+  .bity__step + .bity__step { border-left: none; border-top: 1px solid rgba(122,94,52,0.2); }
 }
+
 .bity-photo-reveal { animation: closingReveal 1400ms cubic-bezier(.2,.7,.2,1) both; animation-timeline: view(); animation-range: entry 2% cover 30%; }
 .bity-copy-reveal { animation: fadeUpSoft 1200ms ease both; animation-timeline: view(); animation-range: entry 8% cover 34%; }
 @media (prefers-reduced-motion: reduce) {
