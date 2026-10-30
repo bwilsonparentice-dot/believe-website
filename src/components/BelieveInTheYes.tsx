@@ -62,7 +62,7 @@ export function BelieveInTheYes({ ctx }: { ctx: Ctx }) {
           <p style={{ ...body, margin: 'clamp(14px,2vh,18px) 0 0', maxWidth: '44ch' }}>A partnership feels out of reach. A customer seems unlikely. An idea gets put aside before anyone finds out whether it could work.</p>
           {/* a delicate muted-gold line bridges the intro into the practice */}
           <div aria-hidden="true" style={{ width: 44, height: 1, background: 'rgba(122,94,52,0.5)', margin: 'clamp(22px,3.4vh,32px) 0 clamp(15px,2.2vh,20px)' }} />
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.9)', margin: 0, maxWidth: '34ch' }}>BITY is a simple practice for that moment.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(102,76,40,0.95)', margin: 0, maxWidth: 'none' }}>BITY is a different way of seeing what&rsquo;s possible.</p>
         </div>
       </div>
 
