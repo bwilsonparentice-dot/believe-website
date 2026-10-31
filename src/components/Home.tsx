@@ -24,6 +24,10 @@ const ghost: CSSProperties = {
   color: 'rgba(43,39,35,0.82)', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(122,94,52,0.55)',
   padding: '0 0 7px', cursor: 'pointer',
 }
+// The one teal wayfinding link (Explore the House): deep muted teal text and
+// underline; hover/focus deepen it (hover below, keyboard focus ring in
+// index.css at .home-cta-teal:focus-visible). Other ghost links stay as-is.
+const ghostTeal: CSSProperties = { ...ghost, color: palette.teal, borderBottom: '1px solid rgba(45,92,89,0.55)' }
 const navyCta: CSSProperties = {
   fontFamily: sans, fontWeight: 500, fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase',
   color: palette.linen, background: palette.navy, border: `1px solid ${palette.navy}`, borderRadius: 2,
@@ -95,9 +99,22 @@ export function Home({ ctx }: { ctx: Ctx }) {
   return (
     <div className="home" style={{ position: 'relative', background: 'linear-gradient(176deg,#f1e9d8 0%,#efe6d3 50%,#e9dfc9 100%)', color: palette.ink }}>
 
+      {/* ── The welcome — the first words a visitor meets as the house opens.
+          Permanent, accessible page content (no modal, nothing to dismiss); it
+          fades in once as the page appears and shows immediately for
+          reduced-motion visitors. Not a heading, so the hero keeps the only
+          H1. ── */}
+      <div className="home-welcome">
+        <p className="home-welcome__hello">Welcome.</p>
+        <p className="home-welcome__sub">We&rsquo;ve been waiting for you.</p>
+      </div>
+
       {/* ── Moment 1 · Hero — simple and emotionally compelling. The eyebrow
-          carries the category clarity; the headline carries the feeling. ── */}
-      <Section className="home-hero" style={{ paddingTop: 'clamp(118px,20vh,210px)' }}>
+          carries the category clarity; the headline carries the feeling. The
+          hero's top padding is reduced because the welcome above now carries
+          the space below the fixed header; it is tightened further so the arch
+          and descriptor sit closer to the greeting as one composition. ── */}
+      <Section className="home-hero" style={{ paddingTop: 'clamp(14px,2.6vh,30px)' }}>
         <ArchMark width={2.2} margin="0 auto 1.4em" />
         <div style={eyebrow}>Believe Studio &middot; Creative Strategy &amp; Advisory for Consumer Brands</div>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px,2.1vw,22px)', color: palette.gold, margin: 'clamp(21px,3.3vh,33px) 0 0' }}>For those who see what could be.</p>
@@ -106,7 +123,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '18px 26px', margin: 'clamp(36px,5.5vh,58px) auto 0' }}>
           <El as="button" onClick={ctx.openConversation} style={navyCta} hover={{ background: palette.navyDeep }}>Start a Conversation</El>
-          <El as="button" onClick={ctx.openDirectory} style={ghost} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Explore the House &rarr;</El>
+          <El as="button" className="home-cta-teal" onClick={ctx.openDirectory} style={ghostTeal} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Explore the House &rarr;</El>
         </div>
       </Section>
 
@@ -117,7 +134,9 @@ export function Home({ ctx }: { ctx: Ctx }) {
       <Section className="home-perspective" style={{ paddingBottom: 'clamp(52px,9vh,112px)' }}>
         <p style={{ ...body, maxWidth: '42ch', margin: '0 auto' }}>But sometimes the next opportunity isn&rsquo;t another retailer, another campaign, or another item on your to-do list.</p>
 
-        <div aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(122,94,52,0.45)', margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
+        {/* second, restrained teal touch: this fine divider (a proposal to show
+            the accent on one existing detail) — easy to revert to gold */}
+        <div aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(45,92,89,0.5)', margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(30px,4.6vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>Sometimes it begins with a different conversation.</p>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '36ch', ...balance }}>One that challenges assumptions, opens new perspectives, and changes what happens next.</p>
         <El as="button" onClick={ctx.openConversation} style={{ ...ghost, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Start a Conversation &rarr;</El>

@@ -104,11 +104,12 @@ function hasVisited(): boolean {
   try { return typeof localStorage !== 'undefined' && localStorage.getItem(VISITED_KEY) === '1' } catch { return false }
 }
 
-// The Door is the House's arrival, and it now plays on EVERY fresh load of the
+// The Door is the House's arrival, and it plays on EVERY fresh load of the
 // home root — reload it, reopen it, or open a brand-new tab, and the townhouse
 // opens again each time. (We still record arrival in sessionStorage for possible
 // later use, but the arrival no longer reads it to decide whether to play, so a
-// returning visitor is never quietly dropped past the Door.)
+// returning visitor is never quietly dropped past the Door.) Adding the
+// homepage welcome greeting does not change this frequency.
 const SESSION_KEY = 'believe.entered'
 function rememberEnteredSession() {
   try { sessionStorage.setItem(SESSION_KEY, '1') } catch { /* private mode — falls back to in-memory for this load */ }
@@ -261,11 +262,11 @@ function makeInitialState(): State {
   const slug = overlaySlugFromPath(path)
   if (slug) { rememberEnteredSession(); return { ...entered, ...openStateForSlug(slug, articleSlugFromPath(path)) } }
   if (BUILDING_ANCHORS.has(rawPath(path))) { rememberEnteredSession(); return entered }
-  // The Door plays on every fresh load of the home root. Only two cases still
-  // skip it: a reduced-motion visitor (who has asked their OS for less motion,
-  // so we honour that and go straight to the homepage), and the deep-link,
-  // redirect and anchor paths handled above (landing straight in a room should
-  // not detour through the Door). Everything else gets the arrival.
+  // The Door plays on every fresh load of the home root. Only two cases skip
+  // it: a reduced-motion visitor (who has asked their OS for less motion, so we
+  // honour that and go straight to the homepage and its welcome), and the
+  // deep-link, redirect and anchor paths handled above (landing straight in a
+  // room should not detour through the Door). Everything else gets the arrival.
   if (prefersReducedMotion()) return entered
   // The home root → the Door, every time.
   return base
@@ -719,8 +720,7 @@ export class App extends React.Component<Record<string, never>, State> {
     return (
       <header className="bs-header">
         <button className="bs-brand" onClick={() => { try { window.scrollTo({ top: 0, behavior: 'smooth' }) } catch { /* ignore */ } }} aria-label="Believe Studio, back to top">
-          <svg width="20" height="23" viewBox="0 0 48 56" fill="none" aria-hidden="true"><path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke="#9c7a3f" strokeWidth="2.6" strokeLinecap="round" /></svg>
-          <span className="wm">Believe Studio</span>
+          <img className="bs-logo" src="/logo/believe-horizontal.svg" alt="Believe Studio" />
         </button>
         <nav className="bs-nav" aria-label="Primary">
           <button onClick={c.openDirectory}>The House</button>

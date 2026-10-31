@@ -27,4 +27,9 @@ export const palette = {
   navyDeep: '#16203a',
   olive: '#6f7d48',
   gold: '#9c7a3f',
+  // a deep, muted teal — a quiet wayfinding accent that guides the eye to
+  // secondary links and the occasional fine divider; strong enough on ivory to
+  // read as text (~6:1 contrast). tealDeep is its hover/focus state.
+  teal: '#2d5c59',
+  tealDeep: '#234a47',
 } as const

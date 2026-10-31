@@ -95,7 +95,25 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
           <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The Believe approach</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.2vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '16ch', textAlign: 'center', ...balance }}>Demand before distribution.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', margin: 'clamp(34px,5.5vh,60px) auto 0', maxWidth: '52ch', ...pretty }}>We are not anti-retail. Retail is one powerful part of a much larger omnichannel strategy. But the conventional path assumes growth is mostly a matter of more stores, more shelf, more distributors. We think differently. We build demand intentionally and use every channel strategically, so discovery, distribution, and demand reinforce one another instead of waiting on each other.</p>
+          {/* The point of view in Believe's own voice: demand begins before
+              distribution. This replaces the earlier, more clinical
+              "not anti-retail / omnichannel" paragraph; the retail-positive
+              stance now lands through the closing lines here and the channels
+              line below. */}
+          {/* deliberate rhythm, not a uniform stack: paragraph gaps are drawn in
+              ~25-30%, connected pairs sit tight (the questions with their answer;
+              the retailer setup with "already asking for us"), and a longer pause
+              precedes the climax so "possibility becomes momentum" lands hardest. */}
+          <div style={{ marginTop: 'clamp(34px,5.5vh,60px)', textAlign: 'center' }}>
+            <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.34, color: palette.navy, margin: '0 auto', maxWidth: '24ch', ...balance }}>We believe demand begins long before distribution.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.78)', margin: 'clamp(13px,2vh,18px) auto 0', maxWidth: '34ch', ...balance }}>A great product is just the beginning.</p>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.48, color: 'rgba(122,94,52,0.85)', margin: 'clamp(15px,2.3vh,21px) auto 0', maxWidth: '32ch', ...balance }}>What makes people care? What makes them curious? What makes them want to share something they&rsquo;ve discovered?</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.68)', margin: 'clamp(5px,0.9vh,9px) auto 0', maxWidth: '30ch', ...balance }}>Those are the questions we love exploring.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.82)', margin: 'clamp(16px,2.6vh,23px) auto 0', maxWidth: '50ch', ...pretty }}>At Believe Studio, we look beyond getting products onto shelves. We look for the stories, connections, experiences, and unexpected opportunities that make a brand matter to people.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.82)', margin: 'clamp(14px,2.2vh,20px) auto 0', maxWidth: '46ch', ...pretty }}>Because the most powerful conversation with a retailer isn&rsquo;t simply, &ldquo;We have a great product.&rdquo;</p>
+            <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.34, color: palette.navy, margin: 'clamp(5px,0.9vh,9px) auto 0', maxWidth: '26ch', ...balance }}>It&rsquo;s, &ldquo;People are already asking for us.&rdquo;</p>
+            <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(24px,3.1vw,42px)', lineHeight: 1.16, color: palette.navy, margin: 'clamp(22px,3.5vh,34px) auto 0', maxWidth: '22ch', ...balance }}>That&rsquo;s where possibility becomes momentum.</p>
+          </div>
           {/* the tangible method — set apart as an editorial centrepiece (the
               same vertical-rule motif used by the Studio's defining question),
               so the approach reads as something concrete, not a slogan. This
@@ -103,7 +121,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
               said the same thing less tangibly. */}
           <div style={{ marginTop: 'clamp(40px,6.5vh,74px)' }}>
             <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.5), transparent)' }} />
-            <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(25px,3.6vw,46px)', lineHeight: 1.16, color: palette.navy, margin: '0 auto', maxWidth: '20ch', textAlign: 'center', ...balance }}>Find the places where your brand&rsquo;s differences will really matter to the customer.</p>
+            <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(25px,3.6vw,46px)', lineHeight: 1.16, color: palette.navy, margin: '0 auto', maxWidth: '27ch', textAlign: 'center', ...balance }}>Find the places where your brand&rsquo;s differences will really matter to the customer.</p>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', margin: 'clamp(28px,4.5vh,44px) auto 0', maxWidth: '50ch', ...pretty }}>We look closely at what makes your brand distinctive, who could value it, and when it could become part of their lives. Then we develop the ideas, introductions, and partnerships that give them a reason to try it, and come back.</p>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.82)', margin: 'clamp(16px,2.6vh,24px) auto 0', maxWidth: '46ch', textAlign: 'center', ...balance }}>A caf&eacute;. A hotel. A collaboration nobody had considered. Each opportunity starts with a thoughtful connection and a clear reason to pursue it.</p>
           </div>
