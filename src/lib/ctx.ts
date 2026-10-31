@@ -15,6 +15,8 @@ export interface Ctx {
   openStudio: Handler; closeStudio: Handler
   /** The Studio — the workshop page (distinct from In Residence / Resident Experts) */
   openStudioPage: Handler; closeStudioPage: Handler
+  /** Open the Studio page scrolled to a section anchor (e.g. 'demand-before-distribution'). */
+  openStudioPageAt: (anchor: string) => Handler
   openAdvisory: Handler; closeAdvisory: Handler
   openStage: Handler; closeStage: Handler
   openPeople: Handler; closePeople: Handler

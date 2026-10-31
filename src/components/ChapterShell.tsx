@@ -45,13 +45,17 @@ export function Divider({ h = 'clamp(52px,9vh,96px)', m = 'clamp(56px,9vh,100px)
   return <div style={{ width: 1, height: h, margin: m, background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 }
 
-/** The small brass arch mark used to head chapters. */
-export function ArchMark({ size = 26, stroke = '#9c7a3f', width = 1.8, opacity = 0.8, margin = '0 auto 1.5em' }: { size?: number; stroke?: string; width?: number; opacity?: number; margin?: string }) {
-  return (
-    <svg width={size} height={(size * 30) / 26} viewBox="0 0 48 56" fill="none" style={{ display: 'block', margin, opacity }}>
-      <path d="M9 55 L9 24 A15 15 0 0 1 39 24 L39 55" stroke={stroke} strokeWidth={width} fill="none" strokeLinecap="round" />
-    </svg>
-  )
+/**
+ * ArchMark — RETIRED. The standalone brass arch that used to head chapters is a
+ * retired decorative symbol; the new Believe Studio logo now carries the brand
+ * mark in the header. The component is neutralised at its source so every
+ * instance across the House stops rendering and its wrapper spacing closes up
+ * uniformly, without leaving a gap. (Call sites are now inert.) This is distinct
+ * from the approved thin-line B monogram, the House Index plaque crest, the
+ * townhouse doorway, and the fine vertical dividers — all of which are kept.
+ */
+export function ArchMark(_props?: { size?: number; stroke?: string; width?: number; opacity?: number; margin?: string }) {
+  return null
 }
 
 /** The "Back to the building" pill button used at the foot of chapters. */

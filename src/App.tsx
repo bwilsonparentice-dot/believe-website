@@ -72,6 +72,9 @@ interface State {
   birdLanded: boolean
   /** when the People page is opened from a Foyer portrait, the person to scroll to */
   peopleAnchor?: string
+  /** when the Studio page is opened from the homepage "Explore our approach"
+      link (or a /studio#… deep link), the section to scroll to */
+  studioAnchor?: string
 }
 
 // the founder philosophy, engraved in stone — the House's emotional anchor
@@ -184,6 +187,11 @@ function redirectSlugFor(pathname: string): string | undefined {
 const BUILDING_ANCHORS = new Set(['threshold', 'founding-wall'])
 
 const rawPath = (pathname: string) => pathname.replace(/^\/+|\/+$/g, '')
+/** the URL hash as a bare, sanitised element id (letters, digits, dashes), or '' */
+function hashAnchorFromUrl(): string {
+  if (typeof window === 'undefined') return ''
+  try { return (window.location.hash || '').replace(/^#/, '').replace(/[^a-zA-Z0-9-]/g, '') } catch { return '' }
+}
 
 /** the slug for the overlay currently open, or null for the building itself */
 function overlaySlugOf(s: State): string | null {
@@ -197,6 +205,9 @@ function pathForState(s: State): string {
   const slug = overlaySlugOf(s)
   if (!slug) return '/'
   if (slug === 'journal' && s.openArticle) return '/journal/' + s.openArticle
+  // the Studio page, opened to a named section, keeps the anchor in the URL so
+  // the link is shareable and the browser history entry is self-describing
+  if (slug === 'studio' && s.studioAnchor) return '/studio#' + s.studioAnchor
   return '/' + slug
 }
 /** the article slug named by a /journal/<slug> path, or '' */
@@ -219,6 +230,7 @@ const CLOSED_OVERLAYS: Partial<State> = {
   showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
   showJournal: false, openArticle: null,
   showDirectory: false, activeDoorway: null,
+  studioAnchor: undefined,
 }
 /** the state that opens the overlay a slug names (all others closed). For the
     journal, an optional article slug opens that piece directly. */
@@ -260,7 +272,14 @@ function makeInitialState(): State {
     return redirect ? { ...entered, ...openStateForSlug(redirect) } : entered
   }
   const slug = overlaySlugFromPath(path)
-  if (slug) { rememberEnteredSession(); return { ...entered, ...openStateForSlug(slug, articleSlugFromPath(path)) } }
+  if (slug) {
+    rememberEnteredSession()
+    // a /studio#<section> deep link opens the Studio page already scrolled to
+    // that section; the anchor is carried in state (not read live from the URL)
+    // so the scroll is reliable even after the address bar is normalised
+    const hashAnchor = slug === 'studio' ? hashAnchorFromUrl() : ''
+    return { ...entered, ...openStateForSlug(slug, articleSlugFromPath(path)), ...(hashAnchor ? { studioAnchor: hashAnchor } : {}) }
+  }
   if (BUILDING_ANCHORS.has(rawPath(path))) { rememberEnteredSession(); return entered }
   // The Door plays on every fresh load of the home root. Only two cases skip
   // it: a reduced-motion visitor (who has asked their OS for less motion, so we
@@ -310,7 +329,8 @@ export class App extends React.Component<Record<string, never>, State> {
       // "Resident Experts" is the doorway; In Residence is the room inside it
       openStudio: this.openChapter('showStudio'), closeStudio: this.closeChapter('showStudio'),
       // The Studio — the workshop page, reached from the brass directory
-      openStudioPage: this.openChapter('showStudioPage'), closeStudioPage: this.closeChapter('showStudioPage'),
+      openStudioPage: this.openStudioPagePlain, closeStudioPage: this.closeChapter('showStudioPage'),
+      openStudioPageAt: this.openStudioPageAt,
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openPeoplePlain, closePeople: this.closeChapter('showPeople'),
@@ -353,7 +373,8 @@ export class App extends React.Component<Record<string, never>, State> {
 
     // reflect the entry URL, and honor a deep link into a specific room
     this.lastSlug = pathForState(this.state)
-    try { window.history.replaceState({ path: this.lastSlug }, '', window.location.pathname) } catch { /* ignore */ }
+    // keep any section hash (e.g. /studio#demand-before-distribution) in the bar
+    try { window.history.replaceState({ path: this.lastSlug }, '', window.location.pathname + window.location.hash) } catch { /* ignore */ }
     const deepLinked = this.state.phase === 'map'
     if (deepLinked && BUILDING_ANCHORS.has(rawPath(window.location.pathname)) && rawPath(window.location.pathname) === 'founding-wall') {
       setTimeout(() => this.scrollToWall(), 320)
@@ -497,6 +518,15 @@ export class App extends React.Component<Record<string, never>, State> {
     this.setState({ peopleAnchor: id })
     this.openChapter('showPeople')(e)
   }
+  // The Studio — opened plainly (from the Directory/plaque, no target), or
+  // opened to a named section (from the homepage "Explore our approach" link).
+  private openStudioPagePlain = (e?: React.MouseEvent) => this.openChapter('showStudioPage')(e)
+  private openStudioPageAt = (anchor: string) => (e?: React.MouseEvent) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    // one setState so the anchor is applied last and survives the closedChapters
+    // spread (which otherwise resets studioAnchor to undefined)
+    this.setState({ ...this.closedChapters(), showStudioPage: true, studioAnchor: anchor } as unknown as Pick<State, keyof State>)
+  }
   private replay = () => {
     this.audio.fadeAmbient(1)
     this.setState({ ...this.closedChapters(), phase: 'overture', opening: false, activeId: null, roomsRevealed: false, birdLanded: false, prologueSeen: false } as unknown as Pick<State, keyof State>)
@@ -558,7 +588,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -654,7 +684,7 @@ export class App extends React.Component<Record<string, never>, State> {
         {this.state.showStage && <StageChapter ctx={this.ctx} />}
         {this.state.showWhyBelieve && <WhyBelieveChapter ctx={this.ctx} />}
         {this.state.showPeople && <PeopleChapter ctx={this.ctx} anchor={this.state.peopleAnchor} />}
-        {this.state.showStudioPage && <StudioChapter ctx={this.ctx} />}
+        {this.state.showStudioPage && <StudioChapter ctx={this.ctx} anchor={this.state.studioAnchor} />}
         {this.state.showDirectory && <DirectoryOverlay ctx={this.ctx} onClose={this.closeDirectory} />}
         {this.state.showObservatory && <ObservatoryChapter ctx={this.ctx} />}
         {this.state.showAbout && <AboutChapter ctx={this.ctx} />}

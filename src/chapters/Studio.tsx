@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useEffect } from 'react'
 import type { Ctx } from '../lib/ctx'
 import { ChapterShell } from '../components/ChapterShell'
 import { RoomNav } from '../components/RoomNav'
@@ -14,6 +14,12 @@ const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
 const label: CSSProperties = {
   fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em',
   textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)',
+}
+
+/** the URL hash as a bare, sanitised element id, or '' */
+function hashAnchorFromUrl(): string {
+  if (typeof window === 'undefined') return ''
+  try { return (window.location.hash || '').replace(/^#/, '').replace(/[^a-zA-Z0-9-]/g, '') } catch { return '' }
 }
 
 /** A gentle scroll-linked reveal — the atelier waking slowly in morning light. */
@@ -50,15 +56,34 @@ const CONDITIONS: [string, string][] = [
  * lives: demand before distribution, and belonging over audience. Not a
  * portfolio or a catalogue of tools. (ctx.openStudioPage.)
  */
-export function StudioChapter({ ctx }: { ctx: Ctx }) {
+export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
+  // When the page is opened to a named section (from the homepage "Explore our
+  // approach" link or a /studio#… deep link), scroll to it once the section has
+  // rendered. We wait for layout with requestAnimationFrame rather than an
+  // arbitrary timeout, and honour reduced-motion by jumping instead of gliding.
+  useEffect(() => {
+    const target = anchor || hashAnchorFromUrl()
+    if (!target) return
+    let raf1 = 0, raf2 = 0
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        const el = document.getElementById(target)
+        if (!el) return
+        let reduce = false
+        try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch { /* default to motion */ }
+        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+      })
+    })
+    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2) }
+  }, [anchor])
   return (
     <ChapterShell onClose={ctx.closeStudioPage} background="#efe6d3" z={120}>
       <div style={{ position: 'relative', maxWidth: 880, margin: '0 auto', padding: 'clamp(90px,16vh,190px) 7vw clamp(42px,7.5vh,92px)', textAlign: 'center', color: palette.ink, animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
         {/* ── the hero ──────────────────────────────────────────────────── */}
         <div style={{ ...label, marginBottom: '1.5em' }}>The Studio</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(42px,6.4vw,94px)', lineHeight: 1.0, margin: '0 0 0.42em' }}>The Studio</h2>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.34, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '24ch', ...balance }}>Creative strategy and brand worlds.</p>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.72)', margin: 'clamp(26px,4vh,40px) auto 0', maxWidth: '34ch', ...balance }}>Where a founder&rsquo;s positioning, brand, and next move are built.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.34, color: 'rgba(122,94,52,0.84)', margin: '0 auto', maxWidth: '30ch', ...balance }}>Creative strategy. Meaningful&nbsp;connections. New possibilities.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.72)', margin: 'clamp(26px,4vh,40px) auto 0', maxWidth: '38ch', ...balance }}>Where we uncover what makes your brand matter, understand where it fits into people&rsquo;s lives, and shape your next move.</p>
       </div>
 
       {/* ── the workbench — an editorial still life ─────────────────────── */}
@@ -78,7 +103,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
               as a quiet editorial centerpiece rather than another paragraph */}
           <div style={{ marginTop: 'clamp(32px,5.5vh,64px)', ...surface('entry 0% cover 22%') }}>
             <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.5), transparent)' }} />
-            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(25px,3.6vw,48px)', lineHeight: 1.3, letterSpacing: '0.005em', color: palette.navy, margin: '0 auto', maxWidth: '21ch', ...balance }}>If we removed your logo, packaging, product category, and marketing language, what would remain that makes your brand uniquely yours?</p>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(21px,2.6vw,33px)', lineHeight: 1.38, letterSpacing: '0.005em', color: palette.navy, margin: '0 auto', maxWidth: '26ch', ...balance }}>Beyond your logo and packaging, what makes your brand unmistakably yours?</p>
           </div>
 
           <div style={{ marginTop: 'clamp(32px,5.5vh,64px)', display: 'flex', flexDirection: 'column', gap: 'clamp(18px,3vh,30px)', ...surface() }}>
@@ -92,7 +117,7 @@ export function StudioChapter({ ctx }: { ctx: Ctx }) {
         </div>
 
         {/* ══ the point of view — demand before distribution ═══════════════ */}
-        <div style={{ marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
+        <div id="demand-before-distribution" style={{ scrollMarginTop: 'clamp(80px,12vh,120px)', marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
           <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The Believe approach</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.2vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '16ch', textAlign: 'center', ...balance }}>Demand before distribution.</p>
           {/* The point of view in Believe's own voice: demand begins before

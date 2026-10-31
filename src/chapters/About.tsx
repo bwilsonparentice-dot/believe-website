@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 import type { Ctx } from '../lib/ctx'
-import { ChapterShell, BackPill, ArchMark, Divider } from '../components/ChapterShell'
+import { ChapterShell, BackPill, Divider } from '../components/ChapterShell'
 import { El } from '../lib/El'
 
 const serif = "'Cormorant Garamond',serif"
@@ -29,8 +29,10 @@ export function AboutChapter({ ctx }: { ctx: Ctx }) {
   ]
   return (
     <ChapterShell onClose={ctx.closeAbout} background="#efe6d3" backLabel={<>&larr;&nbsp;Back</>}>
-      <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(100px,18vh,230px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
-        <ArchMark width={2.2} margin="0 auto 1.5em" />
+      {/* The retired standalone arch that used to sit above this eyebrow has
+          been removed; its wrapper spacing closes up and the top padding is
+          eased a little so the introduction stays balanced without it. */}
+      <div style={{ position: 'relative', maxWidth: 760, margin: '0 auto', padding: 'clamp(84px,15vh,200px) 7vw clamp(80px,14vh,170px)', textAlign: 'center', color: '#2b2723', animation: 'contentFocus 950ms cubic-bezier(.2,.7,.2,1) both' }}>
         <div style={{ ...label, marginBottom: '1.4em' }}>About Believe</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5.2vw,70px)', lineHeight: 1.05, margin: '0 auto', maxWidth: '20ch', ...balance }}>A creative strategy studio for ambitious founders, built by a founder.</h2>
 

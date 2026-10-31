@@ -17,7 +17,7 @@ import type { Ctx, Handler } from '../lib/ctx'
 // All six rooms as one continuous directory — each equally part of the House,
 // with no "Beyond the Studio" distinction between them.
 const ROOMS: { name: string; desc: string; open: (c: Ctx) => Handler }[] = [
-  { name: 'The Studio', desc: 'Creative strategy & brand worlds.', open: (c) => c.openStudioPage },
+  { name: 'The Studio', desc: 'Creative strategy & meaningful connections.', open: (c) => c.openStudioPage },
   { name: 'The Library', desc: 'Founder stories, insights & NOW WHAT?', open: (c) => c.openLibrary },
   { name: 'The Drawing Room', desc: 'Founder conversations and advisory.', open: (c) => c.openAdvisory },
   { name: 'The Observatory', desc: 'Believe Radar and retail intelligence.', open: (c) => c.openObservatory },
