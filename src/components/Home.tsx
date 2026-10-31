@@ -1,7 +1,6 @@
 import React, { CSSProperties } from 'react'
 import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
-import { ArchMark } from './ChapterShell'
 import { ImageSlot } from './ImageSlot'
 import { CORE_TEAM, PHOTOS } from '../data'
 import { GoodCompany } from './GoodCompany'
@@ -111,17 +110,15 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
       {/* ── Moment 1 · Hero — simple and emotionally compelling. The eyebrow
           carries the category clarity; the headline carries the feeling. The
-          hero's top padding is reduced because the welcome above now carries
-          the space below the fixed header; it is tightened further so the arch
-          and descriptor sit closer to the greeting as one composition. ── */}
-      <Section className="home-hero" style={{ paddingTop: 'clamp(14px,2.6vh,30px)' }}>
-        <ArchMark width={2.2} margin="0 auto 1.4em" />
+          standalone arch was removed now the new logo anchors the header; the
+          opening reads as one compact composition flowing from the welcome. ── */}
+      <Section className="home-hero" style={{ paddingTop: 'clamp(18px,3vh,34px)' }}>
         <div style={eyebrow}>Believe Studio &middot; Creative Strategy &amp; Advisory for Consumer Brands</div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px,2.1vw,22px)', color: palette.gold, margin: 'clamp(21px,3.3vh,33px) 0 0' }}>For those who see what could be.</p>
-        <h1 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,6.4vw,74px)', lineHeight: 1.03, color: palette.ink, margin: '0.22em auto 0', maxWidth: '16ch', ...balance }}>You&rsquo;ve built the brand. But what could it become?</h1>
-        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(18px,2.4vw,27px)', lineHeight: 1.45, color: 'rgba(43,39,35,0.72)', margin: '0.9em auto 0', maxWidth: '38ch', ...balance }}>You&rsquo;ve made the decisions, taken the risks, opened the doors, and carried the responsibility of building something from nothing.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(16px,2.1vw,22px)', color: palette.gold, margin: 'clamp(14px,2.2vh,22px) 0 0' }}>For those who see what could be.</p>
+        <h1 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(32px,5.5vw,64px)', lineHeight: 1.05, color: palette.ink, margin: '0.3em auto 0', maxWidth: '17ch', ...balance }}>You&rsquo;ve built the brand. But what could it become?</h1>
+        <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(18px,2.4vw,27px)', lineHeight: 1.45, color: 'rgba(43,39,35,0.72)', margin: '0.85em auto 0', maxWidth: '38ch', ...balance }}>You&rsquo;ve made the decisions, taken the risks, opened the doors, and carried the responsibility of building something from nothing.</p>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '18px 26px', margin: 'clamp(36px,5.5vh,58px) auto 0' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '18px 26px', margin: 'clamp(28px,4.2vh,46px) auto 0' }}>
           <El as="button" onClick={ctx.openConversation} style={navyCta} hover={{ background: palette.navyDeep }}>Start a Conversation</El>
           <El as="button" className="home-cta-teal" onClick={ctx.openDirectory} style={ghostTeal} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Explore the House &rarr;</El>
         </div>
