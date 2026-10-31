@@ -159,9 +159,11 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
           {/* the shift — a quiet reframe, left to right */}
           <div className="home-shift" style={{ margin: 'clamp(40px,7vh,72px) 0 0', background: 'rgba(250,246,236,0.6)' }}>
             <div className="home-srow" style={{ background: 'rgba(240,232,214,0.7)' }}>
-              <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.6)' }}>Traditional thinking</div>
+              {/* the comparison heading row, carried in the house's deep muted
+                  teal so the reframe reads as its own quiet accent */}
+              <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: palette.teal }}>The familiar questions</div>
               <div className="srow-ar" />
-              <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.6)' }}>The Believe approach</div>
+              <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: palette.teal }}>The Believe approach</div>
             </div>
             {SHIFT.map(([t, b], i) => (
               <div className="home-srow" key={i}>
@@ -176,7 +178,7 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.66)', margin: 'clamp(40px,6vh,70px) auto clamp(18px,2.6vh,26px)', maxWidth: '44ch', textAlign: 'center', ...balance }}>Demand can be built wherever a brand is experienced, with retail as one channel among many:</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '9px 10px', justifyContent: 'center' }}>
             {CHANNELS.map((c) => (
-              <span key={c} style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.66)', border: '1px solid rgba(43,39,35,0.22)', borderRadius: 20, padding: '6px 13px' }}>{c}</span>
+              <span key={c} style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', background: 'rgba(250,246,236,0.7)', border: '1px solid rgba(45,92,89,0.42)', borderRadius: 20, padding: '6px 13px' }}>{c}</span>
             ))}
           </div>
         </div>
@@ -185,7 +187,7 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
         <div style={{ marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
           <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The deeper aim</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(26px,4vw,52px)', lineHeight: 1.1, color: palette.ink, margin: '0 auto', maxWidth: '18ch', textAlign: 'center', ...balance }}>Don&rsquo;t just build an audience. Build belonging.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', margin: 'clamp(34px,5.5vh,60px) auto 0', maxWidth: '52ch', ...pretty }}>A single viral moment can be useful, but it is not a brand. The brands that last are the ones people identify with, talk about, and want to be part of. We can&rsquo;t manufacture a cult following, and we wouldn&rsquo;t try. What we can do is help founders intentionally create the conditions for a passionate following to form.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', margin: 'clamp(34px,5.5vh,60px) auto 0', maxWidth: '52ch', ...pretty }}>A single viral moment can be useful, but it is not a brand. The brands that last are the ones people identify with, talk about, and want to be part of. We help founders give people meaningful reasons to connect, participate, return, and introduce the brand to others.</p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 'clamp(12px,1.8vw,18px)', margin: 'clamp(40px,7vh,72px) 0 0' }}>
             {CONDITIONS.map(([t, d]) => (
@@ -200,7 +202,7 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
         {/* ══ tied to the three pillars ════════════════════════════════════ */}
         <div style={{ marginTop: 'clamp(94px,17vh,198px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(22px,3vw,34px)', lineHeight: 1.3, color: palette.navy, margin: '0 auto', maxWidth: '34ch', ...balance }}>Creativity imagines what&rsquo;s possible. Commerce brings it to life. Connection gives it meaning.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.68)', margin: 'clamp(26px,4vh,40px) auto 0', maxWidth: '46ch', ...pretty }}>Demand gives a brand reach. Belonging gives it roots. The work that changes a company happens where all three meet.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.68)', margin: 'clamp(26px,4vh,40px) auto 0', maxWidth: '46ch', ...pretty }}>Demand gives a brand reach. Belonging gives it roots. At Believe Studio, we bring these ideas together to help founders build brands people choose, return to, and share.</p>
         </div>
 
         {/* ── the closing ───────────────────────────────────────────────── */}
