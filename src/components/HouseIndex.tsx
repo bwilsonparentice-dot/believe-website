@@ -18,6 +18,7 @@ import type { Ctx, Handler } from '../lib/ctx'
 // with no "Beyond the Studio" distinction between them.
 const ROOMS: { name: string; desc: string; open: (c: Ctx) => Handler }[] = [
   { name: 'The Studio', desc: 'Creative strategy & meaningful connections.', open: (c) => c.openStudioPage },
+  { name: 'Build in Public', desc: 'Founder storytelling & consumer connection.', open: (c) => c.openBuildInPublic },
   { name: 'The Library', desc: 'Founder stories, insights & NOW WHAT?', open: (c) => c.openLibrary },
   { name: 'The Drawing Room', desc: 'Founder conversations and advisory.', open: (c) => c.openAdvisory },
   { name: 'The Observatory', desc: 'Believe Radar and retail intelligence.', open: (c) => c.openObservatory },

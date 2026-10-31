@@ -1,5 +1,6 @@
 import React, { CSSProperties, useEffect } from 'react'
 import type { Ctx } from '../lib/ctx'
+import { El } from '../lib/El'
 import { ChapterShell } from '../components/ChapterShell'
 import { RoomNav } from '../components/RoomNav'
 import { ImageSlot } from '../components/ImageSlot'
@@ -196,6 +197,14 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
                 <div style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(15px,1.8vw,19px)', lineHeight: 1.36, color: palette.ink, marginTop: 6 }}>{d}</div>
               </div>
             ))}
+          </div>
+
+          {/* a quiet extension of the philosophy, not a CTA or service card:
+              belonging begins by letting people in, which is the idea behind
+              Build in Public. A subtle teal door to that page. */}
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.72)', margin: 'clamp(46px,7.5vh,88px) auto 0', maxWidth: '40ch', textAlign: 'center', ...balance }}>Belonging often begins by letting people in, sharing the real experience of building a brand as it unfolds.</p>
+          <div style={{ textAlign: 'center', marginTop: 'clamp(22px,3.4vh,32px)' }}>
+            <El as="button" className="home-cta-teal" onClick={ctx.openBuildInPublic} style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.3em', textTransform: 'uppercase', color: palette.teal, background: 'transparent', border: 'none', borderBottom: '1px solid rgba(45,92,89,0.55)', padding: '0 0 7px', cursor: 'pointer' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Build in Public &rarr;</El>
           </div>
         </div>
 

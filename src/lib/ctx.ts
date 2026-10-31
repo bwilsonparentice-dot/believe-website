@@ -17,6 +17,8 @@ export interface Ctx {
   openStudioPage: Handler; closeStudioPage: Handler
   /** Open the Studio page scrolled to a section anchor (e.g. 'demand-before-distribution'). */
   openStudioPageAt: (anchor: string) => Handler
+  /** Build in Public (BIP) — the founder-storytelling methodology page. */
+  openBuildInPublic: Handler; closeBuildInPublic: Handler
   openAdvisory: Handler; closeAdvisory: Handler
   openStage: Handler; closeStage: Handler
   openPeople: Handler; closePeople: Handler

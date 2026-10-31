@@ -188,6 +188,17 @@ export function Home({ ctx }: { ctx: Ctx }) {
         <El as="button" className="home-cta-teal" onClick={ctx.openStudioPageAt('demand-before-distribution')} style={{ ...ghostTeal, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Explore our approach &rarr;</El>
       </Section>
 
+      {/* ── Build in Public — a compact editorial moment, not a service card or
+          banner. It leads with the storytelling philosophy and opens a quiet
+          teal door to the dedicated Build in Public page. Placed inside the
+          approach-to-founder-growth flow, well clear of BITY near the closing,
+          so the two frameworks never read as an acronym pair. ── */}
+      <Section style={{ paddingTop: 'clamp(96px,16vh,208px)', paddingBottom: 'clamp(48px,8.5vh,112px)' }}>
+        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,56px)', lineHeight: 1.1, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a story.</p>
+        <p style={{ ...body, maxWidth: '42ch', margin: 'clamp(26px,4vh,42px) auto 0' }}>Some of the most meaningful moments in building a brand happen long before a product reaches the shelf. We help founders find approachable, authentic ways to bring people into the journey.</p>
+        <El as="button" className="home-cta-teal" onClick={ctx.openBuildInPublic} style={{ ...ghostTeal, marginTop: 'clamp(28px,4.6vh,46px)' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Build in Public &rarr;</El>
+      </Section>
+
       {/* ── 4 · The people & experience — the human difference, personal and credible ── */}
       <Section style={{ paddingBottom: 'clamp(56px,10vh,122px)' }}>
         {/* The dramatic editorial moment of the People section: an oversized,
