@@ -39,6 +39,8 @@ export function BuildInPublic({ ctx }: { ctx: Ctx }) {
         <div style={{ ...label, marginBottom: '1.6em' }}>The BIP Method</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.4vw,88px)', lineHeight: 1.03, color: palette.navy, margin: '0 auto', maxWidth: '16ch', ...balance }}>Let people into the story.</h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.84)', margin: 'clamp(22px,3.4vh,34px) auto 0' }}>BIP. Build in Public.</p>
+        {/* a short teal signature rule — a quiet spark of colour under the hero */}
+        <div aria-hidden="true" style={{ width: 'clamp(42px,7vw,62px)', height: 2, borderRadius: 1, background: palette.teal, margin: 'clamp(26px,4vh,40px) auto 0' }} />
 
         {/* the editorial opening — the proposed copy, as a calm descent */}
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.8)', margin: 'clamp(40px,6.5vh,72px) auto 0', maxWidth: '34ch', ...balance }}>Some of the most meaningful moments in building a brand happen long before a product reaches the shelf.</p>
@@ -49,11 +51,11 @@ export function BuildInPublic({ ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.78)', margin: 'clamp(12px,1.8vh,18px) auto 0', maxWidth: '40ch', ...balance }}>You just have to be willing to let people see a little more of what you&rsquo;re building.</p>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(20px,2.5vw,32px)', lineHeight: 1.3, color: palette.navy, margin: 'clamp(30px,4.6vh,50px) auto 0', maxWidth: '26ch', ...balance }}>Because sometimes, the most powerful way to grow a brand is to give people something to believe in along the way.</p>
 
-        <p style={{ ...label, letterSpacing: '0.34em', color: 'rgba(45,92,89,0.85)', margin: 'clamp(34px,5.5vh,58px) auto 0' }}>Founder storytelling &middot; Consumer connection &middot; Meaningful growth</p>
+        <p style={{ ...label, letterSpacing: '0.34em', color: 'rgba(21,106,102,0.85)', margin: 'clamp(34px,5.5vh,58px) auto 0' }}>Founder storytelling &middot; Consumer connection &middot; Meaningful growth</p>
 
         {/* ── the guiding statement — set apart with the house's vertical rule ── */}
         <div style={{ marginTop: 'clamp(70px,13vh,150px)' }}>
-          <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(45,92,89,0.55), transparent)' }} />
+          <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(21,106,102,0.55), transparent)' }} />
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,58px)', lineHeight: 1.12, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a story.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.68)', margin: 'clamp(24px,3.8vh,38px) auto 0', maxWidth: '30ch', ...balance }}>You don&rsquo;t have to be an influencer to invite people into your story.</p>
         </div>
@@ -65,14 +67,14 @@ export function BuildInPublic({ ctx }: { ctx: Ctx }) {
 
           <div style={{ maxWidth: 720, margin: 'clamp(36px,6vh,66px) auto 0', textAlign: 'left' }}>
             {STEPS.map((s, i) => (
-              <div key={s.n} style={{ padding: 'clamp(26px,4.6vh,46px) 0', borderTop: '1px solid rgba(45,92,89,0.22)', ...(i === STEPS.length - 1 ? { borderBottom: '1px solid rgba(45,92,89,0.22)' } : {}) }}>
+              <div key={s.n} style={{ padding: 'clamp(26px,4.6vh,46px) 0', borderTop: '1px solid rgba(21,106,102,0.34)', ...(i === STEPS.length - 1 ? { borderBottom: '1px solid rgba(21,106,102,0.34)' } : {}) }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 'clamp(14px,2.6vw,28px)' }}>
                   <span style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.24em', color: palette.gold, flex: 'none' }}>{s.n}</span>
                   <h3 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(24px,3vw,38px)', lineHeight: 1.08, color: palette.navy, margin: 0 }}>{s.t}</h3>
                 </div>
                 <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.62, color: 'rgba(43,39,35,0.78)', margin: 'clamp(12px,2vh,18px) 0 0', maxWidth: '54ch', ...pretty }}>{s.d}</p>
                 {s.note && (
-                  <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(45,92,89,0.78)', margin: 'clamp(12px,1.8vh,16px) 0 0' }}>{s.note}</p>
+                  <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(21,106,102,0.78)', margin: 'clamp(12px,1.8vh,16px) 0 0' }}>{s.note}</p>
                 )}
               </div>
             ))}

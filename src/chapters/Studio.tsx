@@ -121,6 +121,8 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
         <div id="demand-before-distribution" style={{ scrollMarginTop: 'clamp(80px,12vh,120px)', marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
           <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The Believe approach</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.2vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '16ch', textAlign: 'center', ...balance }}>Demand before distribution.</p>
+          {/* a short teal signature rule beneath the centerpiece heading */}
+          <div aria-hidden="true" style={{ width: 'clamp(42px,7vw,62px)', height: 2, borderRadius: 1, background: palette.teal, margin: 'clamp(20px,3.2vh,30px) auto 0' }} />
           {/* The point of view in Believe's own voice: demand begins before
               distribution. This replaces the earlier, more clinical
               "not anti-retail / omnichannel" paragraph; the retail-positive
@@ -179,7 +181,7 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.66)', margin: 'clamp(40px,6vh,70px) auto clamp(18px,2.6vh,26px)', maxWidth: '44ch', textAlign: 'center', ...balance }}>Demand can be built wherever a brand is experienced, with retail as one channel among many:</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '9px 10px', justifyContent: 'center' }}>
             {CHANNELS.map((c) => (
-              <span key={c} style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.72)', background: 'rgba(250,246,236,0.7)', border: '1px solid rgba(45,92,89,0.42)', borderRadius: 20, padding: '6px 13px' }}>{c}</span>
+              <span key={c} style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(31,61,59,0.82)', background: 'rgba(21,106,102,0.1)', border: '1px solid rgba(21,106,102,0.5)', borderRadius: 20, padding: '6px 13px' }}>{c}</span>
             ))}
           </div>
         </div>
@@ -204,7 +206,7 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
               Build in Public. A subtle teal door to that page. */}
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.72)', margin: 'clamp(46px,7.5vh,88px) auto 0', maxWidth: '40ch', textAlign: 'center', ...balance }}>Belonging often begins by letting people in, sharing the real experience of building a brand as it unfolds.</p>
           <div style={{ textAlign: 'center', marginTop: 'clamp(22px,3.4vh,32px)' }}>
-            <El as="button" className="home-cta-teal" onClick={ctx.openBuildInPublic} style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.3em', textTransform: 'uppercase', color: palette.teal, background: 'transparent', border: 'none', borderBottom: '1px solid rgba(45,92,89,0.55)', padding: '0 0 7px', cursor: 'pointer' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Build in Public &rarr;</El>
+            <El as="button" className="home-cta-teal" onClick={ctx.openBuildInPublic} style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.3em', textTransform: 'uppercase', color: palette.teal, background: 'transparent', border: 'none', borderBottom: '1px solid rgba(21,106,102,0.55)', padding: '0 0 7px', cursor: 'pointer' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(16,79,75,0.95)' }}>Build in Public &rarr;</El>
           </div>
         </div>
 

@@ -652,9 +652,10 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   private birdsAllowed() {
-    if (this.state.phase !== 'map') return false
-    if (typeof document !== 'undefined' && document.hidden) return false
-    return motionAllowed(LIGHT_MOTION)
+    // The ambient birds that crossed the sky over the homepage were removed at
+    // the user's request. The breeze (threshold photo) is unaffected. Returning
+    // false here stops any bird from being scheduled or spawned.
+    return false
   }
 
   // ── render ───────────────────────────────────────────────────────────

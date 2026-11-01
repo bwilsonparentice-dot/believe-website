@@ -26,7 +26,7 @@ const ghost: CSSProperties = {
 // The one teal wayfinding link (Explore the House): deep muted teal text and
 // underline; hover/focus deepen it (hover below, keyboard focus ring in
 // index.css at .home-cta-teal:focus-visible). Other ghost links stay as-is.
-const ghostTeal: CSSProperties = { ...ghost, color: palette.teal, borderBottom: '1px solid rgba(45,92,89,0.55)' }
+const ghostTeal: CSSProperties = { ...ghost, color: palette.teal, borderBottom: '1px solid rgba(21,106,102,0.55)' }
 const navyCta: CSSProperties = {
   fontFamily: sans, fontWeight: 500, fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase',
   color: palette.linen, background: palette.navy, border: `1px solid ${palette.navy}`, borderRadius: 2,
@@ -120,7 +120,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '18px 26px', margin: 'clamp(28px,4.2vh,46px) auto 0' }}>
           <El as="button" onClick={ctx.openConversation} style={navyCta} hover={{ background: palette.navyDeep }}>Start a Conversation</El>
-          <El as="button" className="home-cta-teal" onClick={ctx.openDirectory} style={ghostTeal} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Explore the House &rarr;</El>
+          <El as="button" className="home-cta-teal" onClick={ctx.openDirectory} style={ghostTeal} hover={{ color: palette.tealDeep, borderColor: 'rgba(16,79,75,0.95)' }}>Explore the House &rarr;</El>
         </div>
       </Section>
 
@@ -133,7 +133,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
         {/* second, restrained teal touch: this fine divider (a proposal to show
             the accent on one existing detail) — easy to revert to gold */}
-        <div aria-hidden="true" style={{ width: 48, height: 1, background: 'rgba(45,92,89,0.5)', margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
+        <div aria-hidden="true" style={{ width: 58, height: 2, background: palette.teal, borderRadius: 1, margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(30px,4.6vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>Sometimes it begins with a different conversation.</p>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '36ch', ...balance }}>One that challenges assumptions, opens new perspectives, and changes what happens next.</p>
         <El as="button" onClick={ctx.openConversation} style={{ ...ghost, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Start a Conversation &rarr;</El>
@@ -185,7 +185,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
             before distribution" manifesto and the consumer-behaviour method on
             the Studio page. Same deep-teal text-link treatment as "Explore the
             House" (hover + keyboard focus via .home-cta-teal in index.css). */}
-        <El as="button" className="home-cta-teal" onClick={ctx.openStudioPageAt('demand-before-distribution')} style={{ ...ghostTeal, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Explore our approach &rarr;</El>
+        <El as="button" className="home-cta-teal" onClick={ctx.openStudioPageAt('demand-before-distribution')} style={{ ...ghostTeal, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(16,79,75,0.95)' }}>Explore our approach &rarr;</El>
       </Section>
 
       {/* ── Build in Public — a compact editorial moment, not a service card or
@@ -196,7 +196,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
       <Section style={{ paddingTop: 'clamp(96px,16vh,208px)', paddingBottom: 'clamp(48px,8.5vh,112px)' }}>
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,56px)', lineHeight: 1.1, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a story.</p>
         <p style={{ ...body, maxWidth: '42ch', margin: 'clamp(26px,4vh,42px) auto 0' }}>Some of the most meaningful moments in building a brand happen long before a product reaches the shelf. We help founders find approachable, authentic ways to bring people into the journey.</p>
-        <El as="button" className="home-cta-teal" onClick={ctx.openBuildInPublic} style={{ ...ghostTeal, marginTop: 'clamp(28px,4.6vh,46px)' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(35,74,71,0.95)' }}>Build in Public &rarr;</El>
+        <El as="button" className="home-cta-teal" onClick={ctx.openBuildInPublic} style={{ ...ghostTeal, marginTop: 'clamp(28px,4.6vh,46px)' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(16,79,75,0.95)' }}>Build in Public &rarr;</El>
       </Section>
 
       {/* ── 4 · The people & experience — the human difference, personal and credible ── */}

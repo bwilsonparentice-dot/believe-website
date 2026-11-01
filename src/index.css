@@ -591,7 +591,7 @@ a:hover { color: #b08a4a; }
 
 /* the teal wayfinding link (Explore the House): a clearly visible keyboard
    focus ring in the same deep teal, so focus state is obvious without a mouse */
-.home-cta-teal:focus-visible { outline: 2px solid #2d5c59; outline-offset: 4px; border-radius: 2px; }
+.home-cta-teal:focus-visible { outline: 2px solid #156a66; outline-offset: 4px; border-radius: 2px; }
 
 /* ── Moment 2 · How We Help as an editorial index. Titles set large to the
    left, descriptions in a measured column to the right, aligned on a shared
