@@ -174,7 +174,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
 
       {/* ── 3 · What makes our approach different — one point of view as a large editorial statement ── */}
       <Section style={{ paddingBottom: 'clamp(44px,7.5vh,96px)' }}>
-        <div style={eyebrow}>Our point of view</div>
+        <div style={{ ...eyebrow, color: palette.teal }}>Our point of view</div>
         {/* a quiet editorial lead-in, then the point of view as a large but
             calm serif statement — sized for a longer line so it breathes as a
             philosophy rather than a slogan; the support names the substance */}
@@ -194,7 +194,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
           approach-to-founder-growth flow, well clear of BITY near the closing,
           so the two frameworks never read as an acronym pair. ── */}
       <Section style={{ paddingTop: 'clamp(96px,16vh,208px)', paddingBottom: 'clamp(48px,8.5vh,112px)' }}>
-        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,56px)', lineHeight: 1.1, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a story.</p>
+        <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,56px)', lineHeight: 1.1, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a <span style={{ color: palette.teal, fontStyle: 'italic' }}>story</span>.</p>
         <p style={{ ...body, maxWidth: '42ch', margin: 'clamp(26px,4vh,42px) auto 0' }}>Some of the most meaningful moments in building a brand happen long before a product reaches the shelf. We help founders find approachable, authentic ways to bring people into the journey.</p>
         <El as="button" className="home-cta-teal" onClick={ctx.openBuildInPublic} style={{ ...ghostTeal, marginTop: 'clamp(28px,4.6vh,46px)' }} hover={{ color: palette.tealDeep, borderColor: 'rgba(16,79,75,0.95)' }}>Build in Public &rarr;</El>
       </Section>

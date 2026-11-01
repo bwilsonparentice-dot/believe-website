@@ -36,7 +36,7 @@ export function BuildInPublic({ ctx }: { ctx: Ctx }) {
       <div style={{ position: 'relative', maxWidth: 820, margin: '0 auto', padding: 'clamp(96px,17vh,210px) 7vw clamp(80px,14vh,180px)', textAlign: 'center', color: palette.ink, animation: 'contentFocus 1000ms cubic-bezier(.2,.7,.2,1) both' }}>
 
         {/* ── the opening ──────────────────────────────────────────────── */}
-        <div style={{ ...label, marginBottom: '1.6em' }}>The BIP Method</div>
+        <div style={{ ...label, color: palette.teal, marginBottom: '1.6em' }}>The BIP Method</div>
         <h2 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(40px,6.4vw,88px)', lineHeight: 1.03, color: palette.navy, margin: '0 auto', maxWidth: '16ch', ...balance }}>Let people into the story.</h2>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.4vw,30px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.84)', margin: 'clamp(22px,3.4vh,34px) auto 0' }}>BIP. Build in Public.</p>
         {/* a short teal signature rule — a quiet spark of colour under the hero */}
@@ -53,16 +53,17 @@ export function BuildInPublic({ ctx }: { ctx: Ctx }) {
 
         <p style={{ ...label, letterSpacing: '0.34em', color: 'rgba(21,106,102,0.85)', margin: 'clamp(34px,5.5vh,58px) auto 0' }}>Founder storytelling &middot; Consumer connection &middot; Meaningful growth</p>
 
-        {/* ── the guiding statement — set apart with the house's vertical rule ── */}
+        {/* ── the guiding statement — set apart with the house's vertical rule,
+            with a single teal word-accent on the signature line ── */}
         <div style={{ marginTop: 'clamp(70px,13vh,150px)' }}>
-          <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(21,106,102,0.55), transparent)' }} />
-          <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,58px)', lineHeight: 1.12, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a story.</p>
+          <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(21,106,102,0.6), transparent)' }} />
+          <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,58px)', lineHeight: 1.12, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a <span style={{ color: palette.teal, fontStyle: 'italic' }}>story</span>.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.68)', margin: 'clamp(24px,3.8vh,38px) auto 0', maxWidth: '30ch', ...balance }}>You don&rsquo;t have to be an influencer to invite people into your story.</p>
         </div>
 
         {/* ── the four parts — a quiet numbered index, left-aligned ──────── */}
         <div style={{ marginTop: 'clamp(80px,15vh,180px)' }}>
-          <div style={{ ...label, marginBottom: 'clamp(10px,1.6vh,18px)' }}>The method</div>
+          <div style={{ ...label, color: palette.teal, marginBottom: 'clamp(10px,1.6vh,18px)' }}>The method</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.66)', margin: '0 auto', maxWidth: '30ch', ...balance }}>Four interconnected parts, shaped around each founder.</p>
 
           <div style={{ maxWidth: 720, margin: 'clamp(36px,6vh,66px) auto 0', textAlign: 'left' }}>

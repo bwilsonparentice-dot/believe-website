@@ -119,7 +119,7 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
 
         {/* ══ the point of view — demand before distribution ═══════════════ */}
         <div id="demand-before-distribution" style={{ scrollMarginTop: 'clamp(80px,12vh,120px)', marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
-          <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The Believe approach</div>
+          <div style={{ ...label, color: palette.teal, marginBottom: '1.4em', textAlign: 'center' }}>The Believe approach</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.2vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '16ch', textAlign: 'center', ...balance }}>Demand before distribution.</p>
           {/* a short teal signature rule beneath the centerpiece heading */}
           <div aria-hidden="true" style={{ width: 'clamp(42px,7vw,62px)', height: 2, borderRadius: 1, background: palette.teal, margin: 'clamp(20px,3.2vh,30px) auto 0' }} />
@@ -188,7 +188,7 @@ export function StudioChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
 
         {/* ══ build belonging ══════════════════════════════════════════════ */}
         <div style={{ marginTop: 'clamp(100px,18vh,212px)', textAlign: 'left', ...surface('entry 0% cover 22%') }}>
-          <div style={{ ...label, marginBottom: '1.4em', textAlign: 'center' }}>The deeper aim</div>
+          <div style={{ ...label, color: palette.teal, marginBottom: '1.4em', textAlign: 'center' }}>The deeper aim</div>
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(26px,4vw,52px)', lineHeight: 1.1, color: palette.ink, margin: '0 auto', maxWidth: '18ch', textAlign: 'center', ...balance }}>Don&rsquo;t just build an audience. Build belonging.</p>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', margin: 'clamp(34px,5.5vh,60px) auto 0', maxWidth: '52ch', ...pretty }}>A single viral moment can be useful, but it is not a brand. The brands that last are the ones people identify with, talk about, and want to be part of. We help founders give people meaningful reasons to connect, participate, return, and introduce the brand to others.</p>
 
