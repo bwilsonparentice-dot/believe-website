@@ -593,6 +593,10 @@ a:hover { color: #b08a4a; }
    focus ring in the same deep teal, so focus state is obvious without a mouse */
 .home-cta-teal:focus-visible { outline: 2px solid #156a66; outline-offset: 4px; border-radius: 2px; }
 
+/* Find Your Next Possibility (/possibilities) — accessible teal focus rings for
+   the interactive controls, scoped to this experience only. */
+.poss-opt:focus-visible, .poss-btn:focus-visible, .poss-link:focus-visible { outline: 2px solid #156a66; outline-offset: 3px; border-radius: 8px; }
+
 /* ── Moment 2 · How We Help as an editorial index. Titles set large to the
    left, descriptions in a measured column to the right, aligned on a shared
    top line like a contents spread. Hairline ledger rules appear only BETWEEN

@@ -22,6 +22,7 @@ import { LibraryChapter } from './chapters/Library'
 import { StudioChapter } from './chapters/Studio'
 import { BuildInPublic } from './chapters/BuildInPublic'
 import { LetsTalk } from './components/LetsTalk'
+import { Possibilities } from './components/Possibilities'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
@@ -67,6 +68,7 @@ interface State {
   showStudioPage: boolean
   showBuildInPublic: boolean
   showLetsTalk: boolean
+  showPossibilities: boolean
   showJournal: boolean; openArticle: string | null
   showDirectory: boolean
   showObservatory: boolean; showConversation: boolean; showAbout: boolean
@@ -155,6 +157,7 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showStudioPage: 'studio',
   showBuildInPublic: 'build-in-public',
   showLetsTalk: 'lets-talk',
+  showPossibilities: 'possibilities',
   showLibrary: 'library',
   showJournal: 'journal',
   showPeople: 'people',
@@ -231,7 +234,7 @@ function overlaySlugFromPath(pathname: string): string | null {
 // every overlay flag/doorway, closed — the neutral ground a route opens from
 const CLOSED_OVERLAYS: Partial<State> = {
   showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
-  showBuildInPublic: false, showLetsTalk: false,
+  showBuildInPublic: false, showLetsTalk: false, showPossibilities: false,
   showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
   showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
@@ -257,7 +260,7 @@ function makeInitialState(): State {
     showHouses: false, showPeople: false, showStudio: false,
     showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showJournal: false, openArticle: null, showDirectory: false,
+    showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showJournal: false, openArticle: null, showDirectory: false,
     showObservatory: false, showConversation: false, showAbout: false,
     showPrivacy: false, showTerms: false, showAccessibility: false,
     showKey: false, facadeReady: false, birdLanded: false,
@@ -340,6 +343,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openStudioPageAt: this.openStudioPageAt,
       openBuildInPublic: this.openChapter('showBuildInPublic'), closeBuildInPublic: this.closeChapter('showBuildInPublic'),
       openLetsTalk: this.openChapter('showLetsTalk'), closeLetsTalk: this.closeChapter('showLetsTalk'),
+      openPossibilities: this.openChapter('showPossibilities'), closePossibilities: this.closeChapter('showPossibilities'),
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openPeoplePlain, closePeople: this.closeChapter('showPeople'),
@@ -597,7 +601,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -674,8 +678,9 @@ export class App extends React.Component<Record<string, never>, State> {
     return (
       <>
         {phase === 'overture' && this.renderOverture(opening)}
-        {phase === 'map' && !this.state.showLetsTalk && this.renderBuilding(alive, sunShiftAnim)}
+        {phase === 'map' && !this.state.showLetsTalk && !this.state.showPossibilities && this.renderBuilding(alive, sunShiftAnim)}
         {phase === 'map' && this.state.showLetsTalk && this.renderLetsTalk()}
+        {phase === 'map' && this.state.showPossibilities && this.renderPossibilities()}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
 
         {this.state.showKey && <ReceiveKey ctx={this.ctx} onClose={this.closeKey} />}
@@ -787,6 +792,18 @@ export class App extends React.Component<Record<string, never>, State> {
       <div style={{ position: 'relative', background: '#efe6d3', minHeight: '100vh', animation: 'veilIn 650ms ease both' }}>
         {this.renderHeader()}
         <LetsTalk ctx={this.ctx} />
+        <Footer ctx={this.ctx} />
+      </div>
+    )
+  }
+
+  // ── Find Your Next Possibility — a standalone interactive page
+  // (reached at /possibilities) that reuses the House header and footer.
+  private renderPossibilities() {
+    return (
+      <div style={{ position: 'relative', background: '#efe6d3', minHeight: '100vh', animation: 'veilIn 650ms ease both' }}>
+        {this.renderHeader()}
+        <Possibilities ctx={this.ctx} />
         <Footer ctx={this.ctx} />
       </div>
     )

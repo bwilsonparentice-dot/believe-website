@@ -21,6 +21,8 @@ export interface Ctx {
   openBuildInPublic: Handler; closeBuildInPublic: Handler
   /** Let's Talk It Through — the LinkedIn conversation landing page (/lets-talk). */
   openLetsTalk: Handler; closeLetsTalk: Handler
+  /** Find Your Next Possibility — the interactive experience (/possibilities). */
+  openPossibilities: Handler; closePossibilities: Handler
   openAdvisory: Handler; closeAdvisory: Handler
   openStage: Handler; closeStage: Handler
   openPeople: Handler; closePeople: Handler
