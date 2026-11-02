@@ -19,6 +19,8 @@ export interface Ctx {
   openStudioPageAt: (anchor: string) => Handler
   /** Build in Public (BIP) — the founder-storytelling methodology page. */
   openBuildInPublic: Handler; closeBuildInPublic: Handler
+  /** Let's Talk It Through — the LinkedIn conversation landing page (/lets-talk). */
+  openLetsTalk: Handler; closeLetsTalk: Handler
   openAdvisory: Handler; closeAdvisory: Handler
   openStage: Handler; closeStage: Handler
   openPeople: Handler; closePeople: Handler

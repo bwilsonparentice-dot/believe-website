@@ -21,6 +21,7 @@ import { TableChapter } from './chapters/Table'
 import { LibraryChapter } from './chapters/Library'
 import { StudioChapter } from './chapters/Studio'
 import { BuildInPublic } from './chapters/BuildInPublic'
+import { LetsTalk } from './components/LetsTalk'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
@@ -65,6 +66,7 @@ interface State {
   showStories: boolean; showTable: boolean; showWork: boolean; showAdvisory: boolean; showStage: boolean
   showStudioPage: boolean
   showBuildInPublic: boolean
+  showLetsTalk: boolean
   showJournal: boolean; openArticle: string | null
   showDirectory: boolean
   showObservatory: boolean; showConversation: boolean; showAbout: boolean
@@ -152,6 +154,7 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showWork: 'work',
   showStudioPage: 'studio',
   showBuildInPublic: 'build-in-public',
+  showLetsTalk: 'lets-talk',
   showLibrary: 'library',
   showJournal: 'journal',
   showPeople: 'people',
@@ -228,7 +231,7 @@ function overlaySlugFromPath(pathname: string): string | null {
 // every overlay flag/doorway, closed — the neutral ground a route opens from
 const CLOSED_OVERLAYS: Partial<State> = {
   showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
-  showBuildInPublic: false,
+  showBuildInPublic: false, showLetsTalk: false,
   showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
   showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
@@ -254,7 +257,7 @@ function makeInitialState(): State {
     showHouses: false, showPeople: false, showStudio: false,
     showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showStudioPage: false, showBuildInPublic: false, showJournal: false, openArticle: null, showDirectory: false,
+    showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showJournal: false, openArticle: null, showDirectory: false,
     showObservatory: false, showConversation: false, showAbout: false,
     showPrivacy: false, showTerms: false, showAccessibility: false,
     showKey: false, facadeReady: false, birdLanded: false,
@@ -336,6 +339,7 @@ export class App extends React.Component<Record<string, never>, State> {
       openStudioPage: this.openStudioPagePlain, closeStudioPage: this.closeChapter('showStudioPage'),
       openStudioPageAt: this.openStudioPageAt,
       openBuildInPublic: this.openChapter('showBuildInPublic'), closeBuildInPublic: this.closeChapter('showBuildInPublic'),
+      openLetsTalk: this.openChapter('showLetsTalk'), closeLetsTalk: this.closeChapter('showLetsTalk'),
       openAdvisory: this.openDoorway('private-advisory'), closeAdvisory: this.closeDoorway,
       openStage: this.openChapter('showStage'), closeStage: this.closeChapter('showStage'),
       openPeople: this.openPeoplePlain, closePeople: this.closeChapter('showPeople'),
@@ -593,7 +597,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -670,7 +674,8 @@ export class App extends React.Component<Record<string, never>, State> {
     return (
       <>
         {phase === 'overture' && this.renderOverture(opening)}
-        {phase === 'map' && this.renderBuilding(alive, sunShiftAnim)}
+        {phase === 'map' && !this.state.showLetsTalk && this.renderBuilding(alive, sunShiftAnim)}
+        {phase === 'map' && this.state.showLetsTalk && this.renderLetsTalk()}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
 
         {this.state.showKey && <ReceiveKey ctx={this.ctx} onClose={this.closeKey} />}
@@ -772,6 +777,18 @@ export class App extends React.Component<Record<string, never>, State> {
           </button>
         </div>
       </header>
+    )
+  }
+
+  // ── Let's Talk It Through — a standalone landing page (reached at /lets-talk)
+  // that reuses the House header and footer, so it reads as part of the site.
+  private renderLetsTalk() {
+    return (
+      <div style={{ position: 'relative', background: '#efe6d3', minHeight: '100vh', animation: 'veilIn 650ms ease both' }}>
+        {this.renderHeader()}
+        <LetsTalk ctx={this.ctx} />
+        <Footer ctx={this.ctx} />
+      </div>
     )
   }
 
