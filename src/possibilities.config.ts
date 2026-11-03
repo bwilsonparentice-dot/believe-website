@@ -6,18 +6,21 @@
  * component. The matching is fully deterministic (no AI, no scoring):
  *
  *   Question 1  → selects the primary result (discovery | purchases |
- *                 partnerships | focus) and the "hoping for" phrase.
+ *                 partnerships | focus), its headline, takeaway, example and
+ *                 fresh question, and the "hoping for" phrase.
  *   Question 2  → acknowledged (Q2_SHARED) and then given a GOAL-SPECIFIC
  *                 observation (Q2_OBSERVATION[result][answer]).
- *   Question 3  → adds a GOAL-SPECIFIC adjustment to the suggested next move
- *                 (Q3_ADJUSTMENT[result][answer]).
+ *   Question 3  → shapes the single experiment the founder is offered, by
+ *                 choosing a GOAL-SPECIFIC "what to try" (EXPERIMENT_TRY[result]
+ *                 [answer]). "What to notice" (EXPERIMENT_NOTICE[result]) is
+ *                 goal-level. Q3 is woven into one coherent experiment, never
+ *                 appended as a sentence that repeats the core instruction.
  *   Question 4  → tailors the closing invitation.
  *
- * Q2 and Q3 copy is keyed by the result first, so every combination supports
- * one coherent experiment anchored to the founder's stated goal.
- *
- * Copy avoids diagnosing the business: it uses "You shared…" and "One
- * possibility worth testing…" rather than stating verified facts. No em dashes.
+ * Copy is tentative and faithful: it acknowledges only what the founder told us
+ * and never assumes product category, customer identity, pricing, performance
+ * or buying behavior we have not collected. No timeframes are prescribed, no
+ * outcome is promised, and there are no em dashes.
  */
 
 export type ResultKey = 'discovery' | 'purchases' | 'partnerships' | 'focus'
@@ -84,42 +87,39 @@ export const Q1_HOPE: Record<string, string> = {
   focus: 'get clearer about where to focus',
 }
 
-export interface Result { headline: string; nextMove: string; example: string; freshQuestion: string }
+export interface Result { headline: string; example: string; freshQuestion: string }
 
 export const RESULTS: Record<ResultKey, Result> = {
   discovery: {
     headline: 'Find a setting where your difference matters.',
-    nextMove: 'List three places where your product’s difference would matter to the customer. Choose one and propose a small sampling test. Notice what people ask, try and buy before expanding.',
     example: 'A travel snack might explore a walking-tour company, a boutique hotel welcome bag or a local adventure group.',
     freshQuestion: 'Where could someone experience your product and immediately understand why it belongs there?',
   },
   purchases: {
     headline: 'Explore the step between interest and purchase.',
-    nextMove: 'Pick the one moment where interested people tend to pause before buying. Make a single small change there, such as a clearer first line, a sample or an easier way to begin, and watch whether more people move forward.',
     example: 'A skincare brand might try a trial size, a short “how to use it” card or clear information about delivery and returns, changing only one thing at a time to see which one eases the decision.',
     freshQuestion: 'What might someone need to feel confident enough to try your product?',
   },
   partnerships: {
     headline: 'Create a connection worth exploring.',
-    nextMove: 'Name three businesses that already reach the customer you would love to meet, without competing with you. Choose one and sketch a small shared offer that gives their customer something genuinely useful, then suggest a short trial before anything bigger.',
     example: 'A small coffee roaster might approach a neighborhood bookshop, a cycling club or a weekend market about a limited pairing or a short pop-up.',
     freshQuestion: 'Who already has a relationship with the people you would love to reach?',
   },
   focus: {
     headline: 'Give one promising idea room to prove itself.',
-    // Default wording, used when the founder's answers suggest they already have
-    // some customer feedback to lean on (see FOCUS_NEXT_MOVE_NO_FEEDBACK below).
-    nextMove: 'Write down the few directions competing for your attention. Choose the one with the clearest sign of customer interest that you can realistically test. Give it two weeks with a clear question you want answered. Decide now what result would tell you to keep going, adjust or set it aside.',
     example: 'A brand weighing wholesale, a pop-up and a new online bundle might compare the effort, the cost and what each could teach them about customer interest, then try the one with the least effort and the most useful learning.',
     freshQuestion: 'Which small experiment could help you make your next decision with more clarity?',
   },
 }
 
-// Focus path, alternate "next move" used when the founder's answers indicate they
-// do not yet have customer feedback to lean on (Question 2 = "We are still
-// learning"). The surrounding two-week experiment and the continue/adjust/stop
-// decision are kept identical to the default above.
-export const FOCUS_NEXT_MOVE_NO_FEEDBACK = 'Write down the few directions competing for your attention. Choose one idea you can realistically test to learn whether customers are interested. Give it two weeks with a clear question you want answered. Decide now what result would tell you to keep going, adjust or set it aside.'
+// One memorable, editorial takeaway per goal: Believe Studio's perspective, not
+// a personalized finding or a proven conclusion about the founder's brand.
+export const TAKEAWAY: Record<ResultKey, string> = {
+  discovery: 'Where someone meets your brand can help them see why it matters.',
+  purchases: 'Understanding your product and feeling ready to buy are two different moments.',
+  partnerships: 'A useful partnership starts with something valuable for the customer you share.',
+  focus: 'Give your next move a clear question to answer.',
+}
 
 // Question 2 answer id → a neutral paraphrase of what the founder told us,
 // used to acknowledge their answer in the explanation. It only restates their
@@ -163,35 +163,45 @@ export const Q2_OBSERVATION: Record<ResultKey, Record<string, string>> = {
   },
 }
 
-// Goal-specific adjustment that follows the result's experiment (nextMove).
-// Keyed by the Q1 result FIRST, then the Q3 answer, so the adjustment tailors
-// the SAME experiment to how the founder is choosing where to grow, rather than
-// a universal sentence appended to every result.
-export const Q3_ADJUSTMENT: Record<ResultKey, Record<string, string>> = {
+// The single experiment, split into a scannable "what to try" and "what to
+// notice". "What to try" is keyed by the Q1 result FIRST, then the Q3 answer, so
+// how the founder is choosing where to grow shapes the ONE experiment rather
+// than being appended as a repetitive extra sentence. "What to notice" is
+// goal-level. No timeframe is prescribed and no outcome is promised.
+export const EXPERIMENT_TRY: Record<ResultKey, Record<string, string>> = {
   discovery: {
-    signals: 'Begin with a place that resembles where you already see interest, so you build on something real.',
-    approach: 'Treat the place you believe could fit as a first test, and use what people do there to judge the fit before you expand.',
-    ascome: 'If places tend to come to you, give yourself a simple way to compare them so you sample the one with the clearest fit first.',
-    fresh: 'For a fresh angle, try a setting you have not considered before and watch what people actually do, not only what you expect.',
+    signals: 'Starting from where you already see interest, pick one place that resembles it and put the product in front of people there in a small, low-commitment way.',
+    approach: 'Pick one place you believe could fit and put the product in front of people there in a small, low-commitment way, before committing to more.',
+    ascome: 'From the places that have come your way, pick the one that fits best and put the product in front of people there in a small, low-commitment way.',
+    fresh: 'Pick one place you have not tried before and put the product in front of people there in a small, low-commitment way, to see how it lands.',
   },
   purchases: {
-    signals: 'Since you can already see where interest shows up, follow those interested people one step further to find where fewer of them continue.',
-    approach: 'Start with the step you suspect is the sticking point, and treat your change as a small test of whether that is really what holds people back.',
-    ascome: 'Since opportunities arrive as they come, start by mapping the main paths people take toward buying, then improve the one step most of them reach.',
-    fresh: 'For a fresh angle, ask a few recent buyers and non-buyers what nearly stopped them, and test the change their answers point to.',
+    signals: 'Follow the people who already show interest and pick one point where fewer of them continue. Try one small change there, such as offering a sample, answering a common question or making the first purchase easier.',
+    approach: 'Choose one point where you suspect interested people hesitate before buying. Try one small change, such as offering a sample, answering a common question or making the first purchase easier.',
+    ascome: 'Look at the main way people reach a purchase and pick the one step where some stop. Try one small change there, such as offering a sample, answering a common question or making the first purchase easier.',
+    fresh: 'Ask a few recent buyers and non-buyers where they nearly stopped, and pick the point they name. Try one small change there, such as offering a sample, answering a common question or making the first purchase easier.',
   },
   partnerships: {
-    signals: 'Start with a partner whose audience overlaps with where you already see interest, so the match is grounded in something real.',
-    approach: 'With the partner you believe could fit, use their customers’ responses to assess whether the fit is there before going further.',
-    ascome: 'If partnership ideas arrive as they come, give yourself a simple way to compare them so you pursue the one with the clearest shared benefit first.',
-    fresh: 'For a fresh angle, consider a partner outside your usual circles whose audience would still value what you make.',
+    signals: 'Pick one business whose audience overlaps with where you already see interest, and sketch a small shared offer that gives their customers something genuinely useful, then propose a short first run.',
+    approach: 'Pick one business you believe could fit and sketch a small shared offer that gives their customers something genuinely useful, then propose a short first run to see whether the fit is there.',
+    ascome: 'From the partnership ideas that have come your way, pick the one with the clearest shared benefit and sketch a small shared offer for their customers, then propose a short first run.',
+    fresh: 'Pick one business outside your usual circles whose audience would still value what you make, and sketch a small shared offer for their customers, then propose a short first run.',
   },
   focus: {
-    signals: 'Let the interest you have already noticed shape the question your test should answer, not only which direction you choose.',
-    approach: 'Take the direction you believe could fit and treat this as a test of whether it earns more of your attention.',
-    ascome: 'If opportunities arrive as they come, list them side by side first so your time goes to the most promising one.',
-    fresh: 'For a fresh angle, compare the options by what each could teach you about customers, rather than how exciting or familiar it feels.',
+    signals: 'Let the interest you have already noticed point to one direction, and give it a small, real test built around one clear question you want answered.',
+    approach: 'Take the one direction you believe could fit and give it a small, real test built around one clear question you want answered.',
+    ascome: 'List the directions that have come your way side by side, pick the most promising one, and give it a small, real test built around one clear question you want answered.',
+    fresh: 'Compare the directions by what each could teach you about customers. Choose one you can realistically test, and build the experiment around one clear question you want answered.',
   },
+}
+
+// Goal-level "what to notice": what the founder should watch for, phrased as
+// observation rather than measurement, and never promising a result.
+export const EXPERIMENT_NOTICE: Record<ResultKey, string> = {
+  discovery: 'Which settings make people stop, look closer and ask about it, and where it seems to belong most naturally.',
+  purchases: 'Whether more people buy, what questions they ask and what you can learn from those who don’t.',
+  partnerships: 'How their customers respond, whether the shared offer feels useful to them, and whether the fit seems real on both sides.',
+  focus: 'What the test teaches you about customer interest, and whether it gives you a clear reason to keep going, adjust or set it aside.',
 }
 
 // Question 4 answer id → the closing invitation (collaborative, curious,
@@ -203,4 +213,7 @@ export const Q4_INVITATION: Record<string, string> = {
   alongside: 'At Believe Studio, we work as a committed partner beside founders, creative thinking paired with practical follow-through. If you would like someone in it with you, we would be glad to begin.',
 }
 
+// A quiet honesty note shown below the fresh question: this is a starting point
+// from four answers, not a finding about the founder's brand.
 export const RESULT_NOTE = 'A starting point based on your answers, ready to explore further.'
+
