@@ -3,13 +3,13 @@ import { ImageSlot } from './ImageSlot'
 import { palette } from '../lib/palette'
 
 /**
- * Good Company — the brands in our orbit. A refined editorial gallery: six
- * authentic product photographs on consistent warm backdrops, presented as a
- * three-column, two-row collection with gentle column offsets. Beneath, the two
- * founder testimonials (Snehee of Gallivant, Michelle of Date Better) sit with
- * their circular portraits beside their words. Imagery is authentic and
- * unaltered; both quotes are verbatim. Replaces the single testimonial that
- * used to close the People & Experience moment.
+ * Good Company — the brands in our orbit. A refined editorial gallery of nine
+ * product images on consistent warm backdrops, presented as a three-column
+ * collection with gentle column offsets. Most are authentic product
+ * photographs; a few catalog product shots are set on a matching warm backdrop
+ * so the grid reads as one. Beneath, the two founder testimonials (Snehee of
+ * Gallivant, Michelle of Date Better) sit with their circular portraits beside
+ * their words; both quotes are verbatim.
  */
 const serif = "'Cormorant Garamond',serif"
 const sans = "'Jost',sans-serif"
@@ -23,6 +23,9 @@ const BRANDS: Brand[] = [
   { name: 'Maia Yogurt', file: '/photos/gc-maia.webp', alt: 'Maia grass-fed Greek yogurt' },
   { name: 'Tamalitoz', file: '/photos/gc-tamalitoz.webp', alt: 'Tamalitoz by Sugarox candy' },
   { name: 'Fizzy Wizzie’s', file: '/photos/gc-fizzy.webp', alt: 'Fizzy Wizzie’s sparkling fresh brewed tea' },
+  { name: 'Deadless', file: '/photos/gc-deadless.webp', alt: 'Deadless non-alcoholic sparkling adaptogenic elixir' },
+  { name: 'Windsong Bliss', file: '/photos/gc-windsong.webp', alt: 'Windsong Bliss lemon dressing and marinade' },
+  { name: 'NIU', file: '/photos/gc-niu.webp', alt: 'NIU tropical juice beverage' },
 ]
 
 export function GoodCompany() {
