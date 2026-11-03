@@ -3,7 +3,7 @@ import { El } from '../lib/El'
 import type { Ctx } from '../lib/ctx'
 import { palette } from '../lib/palette'
 import {
-  QUESTIONS, RESULTS, RESULT_BY_Q1, Q1_HOPE, Q2_OBSERVATION, Q3_ADJUSTMENT, Q4_INVITATION, RESULT_NOTE,
+  QUESTIONS, RESULTS, RESULT_BY_Q1, Q1_HOPE, Q2_SHARED, Q2_OBSERVATION, Q3_ADJUSTMENT, Q4_INVITATION, RESULT_NOTE,
   FOCUS_NEXT_MOVE_NO_FEEDBACK,
 } from '../possibilities.config'
 
@@ -114,11 +114,13 @@ export function Possibilities({ ctx }: { ctx: Ctx }) {
   if (step === 5) {
     const key = RESULT_BY_Q1[answers[1]]
     const r = RESULTS[key]
-    const explanation = `You shared that you’d love to ${Q1_HOPE[answers[1]]}. ${Q2_OBSERVATION[answers[2]]}`
+    // Acknowledge the goal (Q1) and what they shared (Q2), then add a
+    // goal-specific observation so the explanation never drifts off the goal.
+    const explanation = `You shared that you’d love to ${Q1_HOPE[answers[1]]}, and that ${Q2_SHARED[answers[2]]}. ${Q2_OBSERVATION[key][answers[2]]}`
     // Focus path: when the founder is still learning how people respond (Q2),
     // use the wording that does not assume existing customer feedback.
     const baseMove = key === 'focus' && answers[2] === 'learning' ? FOCUS_NEXT_MOVE_NO_FEEDBACK : r.nextMove
-    const nextMove = `${baseMove} ${Q3_ADJUSTMENT[answers[3]]}`
+    const nextMove = `${baseMove} ${Q3_ADJUSTMENT[key][answers[3]]}`
     const invitation = Q4_INVITATION[answers[4]]
     const block: CSSProperties = { margin: '0 auto', maxWidth: '46ch', textAlign: 'left' }
     const blockP: CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.95vw,22px)', lineHeight: 1.62, color: 'rgba(43,39,35,0.82)', margin: 'clamp(8px,1.4vh,12px) 0 0', ...pretty }
