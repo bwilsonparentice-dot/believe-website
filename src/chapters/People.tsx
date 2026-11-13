@@ -114,7 +114,7 @@ export function PeopleChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
               <div style={{ flex: '1 1 210px', minWidth: 190, textAlign: 'left' }}>
                 <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(25px,2.9vw,33px)', lineHeight: 1.05 }}>{m.name || m.role}</div>
                 <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', margin: '13px 0 0' }}>{m.role}</div>
-                <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.64)', margin: '13px 0 0', maxWidth: '26ch', ...pretty }}>{m.values}</p>
+                <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.74)', margin: '13px 0 0', maxWidth: '26ch', ...pretty }}>{m.values}</p>
                 {m.bio && <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(14.5px,1.6vw,17px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.8)', margin: 'clamp(14px,2vh,20px) 0 0', maxWidth: '32ch', ...pretty }}>{m.bio}</p>}
               </div>
             </div>
@@ -122,7 +122,7 @@ export function PeopleChapter({ ctx, anchor }: { ctx: Ctx; anchor?: string }) {
         </div>
 
         <div style={{ width: 1, height: 'clamp(48px,8vh,90px)', margin: 'clamp(72px,12vh,150px) auto clamp(40px,6vh,64px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.7)', textAlign: 'center', maxWidth: '24ch', margin: '0 auto clamp(44px,7vh,72px)', ...balance }}>This is the House that gathers around you.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.74)', textAlign: 'center', maxWidth: '24ch', margin: '0 auto clamp(44px,7vh,72px)', ...balance }}>This is the House that gathers around you.</p>
         <div style={{ textAlign: 'center' }}><BackPill onClose={ctx.closePeople} /></div>
       </div>
     </ChapterShell>

@@ -57,7 +57,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ width: 1, height: 'clamp(40px,7vh,80px)', margin: 'clamp(46px,8vh,92px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 
         {/* the definition — arriving last, as explanation, not introduction */}
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.56)', maxWidth: '34ch', margin: '0 auto', textWrap: pretty }}>In the language of business, Believe is a founder transformation ecosystem. In the language of founders, it is simply the place where someone believes in you first.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', margin: '0 auto', textWrap: pretty }}>In the language of business, Believe is a founder transformation ecosystem. In the language of founders, it is simply the place where someone believes in you first.</p>
 
         <Divider h="clamp(56px,10vh,120px)" m="clamp(64px,11vh,130px) auto" />
 
@@ -66,7 +66,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 'clamp(28px,5vw,72px)', maxWidth: 680, margin: 'clamp(36px,6vh,64px) auto 0', textAlign: 'left' }}>
           <div>
             <div style={{ ...label, fontSize: 10, marginBottom: '0.9em' }}>Traditional consulting</div>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.66)', margin: 0 }}>Delivers recommendations.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', margin: 0 }}>Delivers recommendations.</p>
           </div>
           <div>
             <div style={{ ...label, fontSize: 10, marginBottom: '0.9em' }}>Believe</div>
@@ -124,7 +124,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
             <div key={i}>
               <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,23px)', color: 'rgba(122,94,52,0.72)', marginBottom: '0.4em' }}>{t.q}</div>
               <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.6vw,46px)', lineHeight: 1.08, marginBottom: '0.4em' }}>{t.a}</div>
-              <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.66)', margin: 0, maxWidth: '44ch', marginInline: 'auto', textWrap: pretty }}>{t.note}</p>
+              <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', margin: 0, maxWidth: '44ch', marginInline: 'auto', textWrap: pretty }}>{t.note}</p>
             </div>
           ))}
         </div>
@@ -133,7 +133,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
 
         {/* The reframe */}
         <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 11, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '1.2em' }}>For a while we said</p>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3vw,40px)', lineHeight: 1.2, color: 'rgba(43,39,35,0.5)', margin: '0 0 0.7em' }}>A House for Founders.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3vw,40px)', lineHeight: 1.2, color: 'rgba(43,39,35,0.74)', margin: '0 0 0.7em' }}>A House for Founders.</p>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,5.2vw,68px)', lineHeight: 1.05, color: '#2b2723', margin: 0, textWrap: balance }}>A House Where Founders<br /><span style={{ fontStyle: 'italic' }}>Become Guides.</span></p>
 
         <Divider h="clamp(56px,10vh,120px)" m="clamp(64px,11vh,130px) auto" />
@@ -152,7 +152,7 @@ export function HouseChapter({ ctx }: { ctx: Ctx }) {
         <Divider h="clamp(48px,8vh,88px)" m="clamp(56px,9vh,100px) auto" />
 
         {/* the standard, kept quietly — the last thing the house says */}
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.7)', margin: '0 auto clamp(6px,1.5vh,14px)', maxWidth: '26ch', textWrap: balance }}>You may forget the door, the light, the small map that brought you here.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.74)', margin: '0 auto clamp(6px,1.5vh,14px)', maxWidth: '26ch', textWrap: balance }}>You may forget the door, the light, the small map that brought you here.</p>
         <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(23px,3vw,40px)', lineHeight: 1.28, color: '#2b2723', margin: '0 auto', maxWidth: '26ch', textWrap: balance }}>We hope you remember how it felt to be understood. And that, one day, you become the one who understands.</p>
 
         <Divider h="clamp(48px,8vh,88px)" m="clamp(56px,9vh,100px) auto clamp(40px,6vh,70px)" />

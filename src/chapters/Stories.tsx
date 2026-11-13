@@ -79,7 +79,7 @@ function BrandPlaque({ title, brands, intro }: { title: string; brands: string[]
       <ArchMark width={1.8} margin="0 auto 1.6em" opacity={0.66} />
       <div style={{ ...label, fontSize: 10, letterSpacing: '0.4em', color: 'rgba(122,94,52,0.7)' }}>{title}</div>
       {intro && (
-        <p style={{ fontFamily: serif, fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.66)', margin: 'clamp(28px,4.5vh,44px) auto 0', maxWidth: '40ch', ...balance }}>{intro}</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: 'clamp(28px,4.5vh,44px) auto 0', maxWidth: '40ch', ...balance }}>{intro}</p>
       )}
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'baseline', gap: 'clamp(28px,4.5vw,64px)', maxWidth: 760, margin: 'clamp(38px,6vh,66px) auto 0' }}>
         {brands.map((b, i) => (
@@ -130,7 +130,7 @@ export function StoriesChapter({ ctx }: { ctx: Ctx }) {
             {OPENING.map((p, i) => (
               <p key={i} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.82)', margin: 0, maxWidth: '26ch', marginLeft: 'auto', marginRight: 'auto', ...balance }}>{p}</p>
             ))}
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.62)', margin: 'clamp(14px,2.4vh,26px) auto 0', maxWidth: '38ch', ...pretty }}>Some arrived searching for clarity. Some needed confidence. Some needed a strategy. Some simply needed someone who believed in them before they fully believed in themselves.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.65, color: 'rgba(43,39,35,0.74)', margin: 'clamp(14px,2.4vh,26px) auto 0', maxWidth: '38ch', ...pretty }}>Some arrived searching for clarity. Some needed confidence. Some needed a strategy. Some simply needed someone who believed in them before they fully believed in themselves.</p>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: 'clamp(8px,1.6vh,18px) auto 0' }}>These are a few of their stories.</p>
           </div>
         </div>
@@ -173,7 +173,7 @@ export function StoriesChapter({ ctx }: { ctx: Ctx }) {
         {/* ── the closing — the empty frame ─────────────────────────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(120px,22vh,260px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(21px,2.6vw,34px)', lineHeight: 1.4, color: '#2b2723', margin: '0 auto', maxWidth: '24ch', ...balance }}>Every portrait in this gallery began with a conversation.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', margin: 'clamp(28px,4.5vh,44px) auto 0', maxWidth: '22ch', ...balance }}>The next frame is still empty.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(20px,2.4vw,30px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: 'clamp(28px,4.5vh,44px) auto 0', maxWidth: '22ch', ...balance }}>The next frame is still empty.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.9)', margin: 'clamp(14px,2.4vh,24px) auto clamp(48px,8vh,88px)', maxWidth: '20ch', ...balance }}>Perhaps it’s waiting for yours.</p>
           <El
             onClick={openBooking}

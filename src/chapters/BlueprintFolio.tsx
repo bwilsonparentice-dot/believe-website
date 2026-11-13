@@ -63,7 +63,7 @@ function DrawingSheet({ d, variant, sketch }: { d: Drawing; variant: 'center' | 
     <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,29px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.86)', margin: variant === 'split' ? 0 : 'clamp(18px,2.6vh,28px) auto 0', maxWidth: '30ch', ...balance }}>{d.meaning}</p>
   )
   const narrative = (
-    <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.85vw,23px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.66)', margin: variant === 'split' ? 'clamp(18px,2.6vh,26px) 0 0' : 'clamp(22px,3.4vh,40px) auto 0', maxWidth: variant === 'center' ? '40ch' : '44ch', marginLeft: align === 'center' ? 'auto' : 0, marginRight: align === 'center' ? 'auto' : 0, ...pretty }}>{d.narrative}</p>
+    <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.85vw,23px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.74)', margin: variant === 'split' ? 'clamp(18px,2.6vh,26px) 0 0' : 'clamp(22px,3.4vh,40px) auto 0', maxWidth: variant === 'center' ? '40ch' : '44ch', marginLeft: align === 'center' ? 'auto' : 0, marginRight: align === 'center' ? 'auto' : 0, ...pretty }}>{d.narrative}</p>
   )
 
   return (
@@ -104,7 +104,7 @@ function DrawingSheet({ d, variant, sketch }: { d: Drawing; variant: 'center' | 
       {/* the title block, in the corner of every sheet */}
       <div style={{ position: 'absolute', right: 0, bottom: 0, borderLeft: `1px solid ${graphite}0.16)`, borderTop: `1px solid ${graphite}0.16)`, padding: 'clamp(8px,1vw,11px) clamp(12px,1.6vw,18px)', display: 'flex', alignItems: 'baseline', gap: 'clamp(12px,1.6vw,20px)', textAlign: 'left' }}>
         <span style={{ fontFamily: sans, fontWeight: 400, fontSize: 8.5, letterSpacing: '0.36em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.55)' }}>The Believe Blueprint</span>
-        <span style={{ fontFamily: sans, fontWeight: 500, fontSize: 11, letterSpacing: '0.18em', color: 'rgba(43,39,35,0.6)' }}>{d.sheet}</span>
+        <span style={{ fontFamily: sans, fontWeight: 500, fontSize: 11, letterSpacing: '0.18em', color: 'rgba(43,39,35,0.74)' }}>{d.sheet}</span>
         <span aria-hidden="true" style={{ fontFamily: sans, fontWeight: 400, fontSize: 8.5, letterSpacing: '0.2em', color: 'rgba(122,94,52,0.42)' }}>REV △</span>
       </div>
     </article>
@@ -225,7 +225,7 @@ export function BlueprintFolio({ ctx }: { ctx: Ctx }) {
         <ArchRule m="clamp(100px,18vh,214px) auto clamp(52px,9vh,102px)" />
         <div style={{ textAlign: 'center' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.8vw,52px)', lineHeight: 1.16, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance, ...surface('entry 2% cover 26%') }}>{x.joinLead}</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.7)', maxWidth: '44ch', margin: 'clamp(40px,7vh,72px) auto 0', ...pretty, ...surface() }}>{x.joinBody}</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.74)', maxWidth: '44ch', margin: 'clamp(40px,7vh,72px) auto 0', ...pretty, ...surface() }}>{x.joinBody}</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.3, color: 'rgba(122,94,52,0.9)', maxWidth: '22ch', margin: 'clamp(70px,13vh,160px) auto 0', ...balance, ...surface() }}>{x.closing}</p>
 
           <El

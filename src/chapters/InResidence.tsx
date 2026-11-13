@@ -163,7 +163,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
             />
           </figure>
 
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>The workshop begins with something real a founder is carrying. Chef MoWils works through it live with the room, not performed, but worked through together in real time. What is learned enters the Library, so its value reaches beyond the founders who were present.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', margin: 'clamp(44px,7vh,84px) auto 0', ...pretty }}>The workshop begins with something real a founder is carrying. Chef MoWils works through it live with the room, not performed, but worked through together in real time. What is learned enters the Library, so its value reaches beyond the founders who were present.</p>
 
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(22px,3vw,40px)', lineHeight: 1.32, color: indigo, maxWidth: '20ch', margin: 'clamp(56px,9vh,110px) auto 0', ...balance }}>This workshop is not about AI. It is about what you would do with twenty hours.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', margin: 'clamp(20px,3vh,32px) auto 0' }}>AI does the prep. You do the judgment.</p>
@@ -197,7 +197,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
 
           <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,5vw,66px)', lineHeight: 1.04, margin: '0 0 0.6em', color: indigo }}>{R.artifact}</h3>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.74)', maxWidth: '36ch', margin: '0 auto', ...pretty }}>A practical handbook documenting the AI employees every founder can begin building immediately.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.62)', maxWidth: '38ch', margin: 'clamp(28px,4.5vh,44px) auto 0', ...pretty }}>It becomes part of the Believe Library, so founders Chef MoWils may never meet can keep learning from her residency long after it ends.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.66, color: 'rgba(43,39,35,0.74)', maxWidth: '38ch', margin: 'clamp(28px,4.5vh,44px) auto 0', ...pretty }}>It becomes part of the Believe Library, so founders Chef MoWils may never meet can keep learning from her residency long after it ends.</p>
 
           {/* a small archival marker — added to the Library */}
           <El onClick={ctx.openLibrary} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.8em', margin: 'clamp(40px,7vh,80px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', border: '1px solid rgba(122,94,52,0.32)', borderRadius: 2, padding: '10px 20px', cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }} hover={{ color: indigo, borderColor: indigoSoft }}>
@@ -209,7 +209,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         {/* ── the closing — a quiet reflection, then the door ───────────── */}
         <div style={{ textAlign: 'center', marginTop: 'var(--space-lg)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.36, color: indigo, maxWidth: '24ch', margin: '0 auto', ...balance }}>Every residency leaves the House a little richer.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '30ch', margin: 'clamp(34px,5.5vh,60px) auto 0', ...pretty }}>Every founder leaves with something they didn’t have before. Sometimes that’s clarity. Sometimes it’s confidence. Sometimes it’s simply twenty hours they never thought they’d get back.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: 'clamp(34px,5.5vh,60px) auto 0', ...pretty }}>Every founder leaves with something they didn’t have before. Sometimes that’s clarity. Sometimes it’s confidence. Sometimes it’s simply twenty hours they never thought they’d get back.</p>
 
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.8)', margin: 'clamp(48px,8vh,96px) auto 0' }}>{R.hook[0]} {R.hook[1]}</p>
           <div style={{ marginTop: 'clamp(40px,7vh,80px)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(22px,3.4vh,34px)' }}>
@@ -222,7 +222,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
             {/* a quieter path — for founders who'd rather talk before they register */}
             <El
               onClick={openBooking}
-              style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.5)', borderBottom: '1px solid rgba(43,39,35,0.24)', paddingBottom: 4, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }}
+              style={{ fontFamily: sans, fontWeight: 400, fontSize: 10, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.74)', borderBottom: '1px solid rgba(43,39,35,0.24)', paddingBottom: 4, cursor: 'pointer', transition: 'color 400ms ease, border-color 400ms ease' }}
               hover={{ color: indigo, borderColor: indigoSoft }}
             >
               Or come in and say hello first
@@ -233,7 +233,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         {/* ── while you're here — the Founder's Room, very quietly ───────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(150px,28vh,340px)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: '1.8em' }}>While you’re here</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.62)', maxWidth: '30ch', margin: '0 auto', ...pretty }}>Founder’s Room members gather privately with each resident during their residency month.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: '0 auto', ...pretty }}>Founder’s Room members gather privately with each resident during their residency month.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.6, color: 'rgba(122,94,52,0.76)', margin: 'clamp(28px,4.5vh,48px) auto 0' }}>Eight founders. One hour. Off the record.</p>
         </div>
 
@@ -241,7 +241,7 @@ export function InResidenceChapter({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center', marginTop: 'clamp(150px,28vh,340px)', ...surface() }}>
           <div style={{ ...label, fontSize: 11, letterSpacing: '0.46em', marginBottom: '1.8em' }}>Soon</div>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.32, color: indigo, maxWidth: '20ch', margin: '0 auto', ...balance }}>Another resident will enter the House.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.5)', maxWidth: '24ch', margin: 'clamp(30px,5vh,56px) auto 0' }}>The Library is just beginning.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '24ch', margin: 'clamp(30px,5vh,56px) auto 0' }}>The Library is just beginning.</p>
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 'clamp(110px,20vh,240px)' }}><BackPill onClose={ctx.closeStudio} label="← Back" /></div>

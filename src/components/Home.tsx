@@ -135,7 +135,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
             the accent on one existing detail) — easy to revert to gold */}
         <div aria-hidden="true" style={{ width: 58, height: 2, background: palette.teal, borderRadius: 1, margin: 'clamp(44px,7.5vh,84px) auto clamp(30px,5vh,52px)' }} />
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(30px,4.6vw,56px)', lineHeight: 1.08, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>Sometimes it begins with a different conversation.</p>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '36ch', ...balance }}>One that challenges assumptions, opens new perspectives, and changes what happens next.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: 'clamp(30px,5vh,52px) auto 0', maxWidth: '36ch', ...balance }}>One that challenges assumptions, opens new perspectives, and changes what happens next.</p>
         <El as="button" onClick={ctx.openConversation} style={{ ...ghost, marginTop: 'clamp(30px,5vh,48px)' }} hover={{ color: palette.ink, borderColor: 'rgba(43,39,35,0.8)' }}>Start a Conversation &rarr;</El>
 
         {/* a quiet architectural rule into the concrete "how we help" */}
@@ -178,7 +178,7 @@ export function Home({ ctx }: { ctx: Ctx }) {
         {/* a quiet editorial lead-in, then the point of view as a large but
             calm serif statement — sized for a longer line so it breathes as a
             philosophy rather than a slogan; the support names the substance */}
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.6)', margin: 'clamp(22px,3.2vh,34px) auto 0', maxWidth: '34ch', ...balance }}>Every remarkable brand begins as something only its founder can imagine.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: 'clamp(22px,3.2vh,34px) auto 0', maxWidth: '34ch', ...balance }}>Every remarkable brand begins as something only its founder can imagine.</p>
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(40px,6.6vw,78px)', lineHeight: 1.05, letterSpacing: '-0.01em', color: palette.navy, margin: 'clamp(30px,4.6vh,52px) auto 0', maxWidth: '15ch', ...balance }}>A new way of seeing what&rsquo;s possible.</p>
         <p style={{ ...body, maxWidth: '44ch', margin: 'clamp(30px,4.4vh,48px) auto 0' }}>We connect ideas, people, and opportunities in unexpected ways, bringing entrepreneurial experience and commercial judgment to what comes next.</p>
         {/* a quiet wayfinding link into the fuller point of view — the "Demand

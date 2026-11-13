@@ -50,7 +50,7 @@ export function GoodCompany() {
       <div className="gc-head">
         <div style={eyebrow}>The brands in our orbit</div>
         <h3 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(44px,7.4vw,86px)', lineHeight: 0.98, letterSpacing: '-0.01em', color: palette.navy, margin: 'clamp(16px,2.4vh,26px) 0 0' }}>Good company.</h3>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.66)', maxWidth: '34ch', margin: 'clamp(20px,3vh,30px) auto 0' }}>Different founders. Different ambitions. A shared belief in what could be.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', margin: 'clamp(20px,3vh,30px) auto 0' }}>Different founders. Different ambitions. A shared belief in what could be.</p>
       </div>
 
       <div className="gc-grid" ref={gridRef}>

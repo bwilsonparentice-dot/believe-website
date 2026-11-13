@@ -42,7 +42,7 @@ export function ObservatoryChapter({ ctx }: { ctx: Ctx }) {
         <Divider h="clamp(32px,5vh,58px)" m="clamp(38px,6vh,68px) auto clamp(24px,4vh,38px)" />
 
         <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,27px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.8)', maxWidth: '40ch', margin: '0 auto', ...balance }}>From the Observatory, a founder can see the landscape clearly: where the brand stands, where its people are, and which moves are worth making next.</p>
-        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.66)', maxWidth: '46ch', margin: 'clamp(26px,4vh,40px) auto 0', ...pretty }}>Believe Radar replaces guesswork with clarity. It lives on its own, and the work continues there.</p>
+        <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '46ch', margin: 'clamp(26px,4vh,40px) auto 0', ...pretty }}>Believe Radar replaces guesswork with clarity. It lives on its own, and the work continues there.</p>
 
         <a
           href={BELIEVE_RADAR_URL}

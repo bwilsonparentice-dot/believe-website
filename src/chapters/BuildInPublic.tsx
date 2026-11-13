@@ -58,13 +58,13 @@ export function BuildInPublic({ ctx }: { ctx: Ctx }) {
         <div style={{ marginTop: 'clamp(70px,13vh,150px)' }}>
           <div aria-hidden="true" style={{ width: 1, height: 'clamp(26px,4vh,44px)', margin: '0 auto clamp(20px,3.2vh,32px)', background: 'linear-gradient(180deg, rgba(21,106,102,0.6), transparent)' }} />
           <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(28px,4.4vw,58px)', lineHeight: 1.12, color: palette.navy, margin: '0 auto', maxWidth: '18ch', ...balance }}>The founder sees a task. We see a <span style={{ color: palette.teal, fontStyle: 'italic' }}>story</span>.</p>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.68)', margin: 'clamp(24px,3.8vh,38px) auto 0', maxWidth: '30ch', ...balance }}>You don&rsquo;t have to be an influencer to invite people into your story.</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,25px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: 'clamp(24px,3.8vh,38px) auto 0', maxWidth: '30ch', ...balance }}>You don&rsquo;t have to be an influencer to invite people into your story.</p>
         </div>
 
         {/* ── the four parts — a quiet numbered index, left-aligned ──────── */}
         <div style={{ marginTop: 'clamp(80px,15vh,180px)' }}>
           <div style={{ ...label, color: palette.teal, marginBottom: 'clamp(10px,1.6vh,18px)' }}>The method</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.66)', margin: '0 auto', maxWidth: '30ch', ...balance }}>Four interconnected parts, shaped around each founder.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: '0 auto', maxWidth: '30ch', ...balance }}>Four interconnected parts, shaped around each founder.</p>
 
           <div style={{ maxWidth: 720, margin: 'clamp(36px,6vh,66px) auto 0', textAlign: 'left' }}>
             {STEPS.map((s, i) => (

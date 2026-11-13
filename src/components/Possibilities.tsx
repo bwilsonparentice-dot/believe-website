@@ -27,7 +27,7 @@ const navyCta: CSSProperties = {
 }
 const ghostBtn: CSSProperties = {
   fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.26em', textTransform: 'uppercase',
-  color: 'rgba(43,39,35,0.6)', background: 'transparent', border: 'none', padding: '8px 4px', cursor: 'pointer',
+  color: 'rgba(43,39,35,0.74)', background: 'transparent', border: 'none', padding: '8px 4px', cursor: 'pointer',
 }
 
 function prefersReducedMotion(): boolean {
@@ -113,7 +113,7 @@ export function Possibilities({ ctx }: { ctx: Ctx }) {
         <div style={{ margin: 'clamp(26px,4vh,42px) auto 0' }}>
           <El as="button" className="poss-btn" onClick={() => setStep(1)} style={navyCta} hover={{ background: palette.navyDeep }}>Let&rsquo;s take a look</El>
         </div>
-        <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.5)', margin: 'clamp(16px,2.2vh,22px) auto 0' }}>Four quick questions. No email required.</p>
+        <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.74)', margin: 'clamp(16px,2.2vh,22px) auto 0' }}>Four quick questions. No email required.</p>
       </div>,
     )
   }
@@ -206,19 +206,19 @@ export function Possibilities({ ctx }: { ctx: Ctx }) {
             <span role="status" aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0 0 0 0)', whiteSpace: 'nowrap', border: 0 }}>{copied ? 'Copied to clipboard' : ''}</span>
             {copyFailed && (
               <div style={{ marginTop: 'clamp(10px,1.6vh,14px)' }}>
-                <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, lineHeight: 1.5, color: 'rgba(43,39,35,0.7)', margin: '0 0 8px' }}>Copying is not available here. Select the text below to copy it.</p>
+                <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: '0 0 8px' }}>Copying is not available here. Select the text below to copy it.</p>
                 <textarea readOnly value={summaryText} rows={8} aria-label="Your next move, ready to copy" style={{ width: '100%', fontFamily: sans, fontSize: 13, lineHeight: 1.5, color: palette.ink, background: 'rgba(250,246,236,0.75)', border: '1px solid rgba(43,39,35,0.22)', borderRadius: 8, padding: '12px 14px', resize: 'vertical' }} />
               </div>
             )}
           </div>
           <div style={{ ...block, borderTop: '1px solid rgba(122,94,52,0.22)', paddingTop: 'clamp(20px,3.2vh,30px)' }}>
             <div style={{ ...smallLabel, color: 'rgba(122,94,52,0.85)' }}>An illustrative example</div>
-            <p style={{ ...blockP, color: 'rgba(43,39,35,0.68)' }}>{r.example}</p>
+            <p style={{ ...blockP, color: 'rgba(43,39,35,0.74)' }}>{r.example}</p>
           </div>
           <div style={{ ...block, borderTop: '1px solid rgba(21,106,102,0.28)', paddingTop: 'clamp(20px,3.2vh,30px)' }}>
             <div style={{ ...smallLabel, color: 'rgba(21,106,102,0.9)' }}>A fresh question to consider</div>
             <p style={{ ...blockP, fontStyle: 'italic', color: palette.navy }}>{r.freshQuestion}</p>
-            <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.42)', margin: 'clamp(14px,2vh,18px) 0 0', lineHeight: 1.7 }}>{RESULT_NOTE}</p>
+            <p style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.74)', margin: 'clamp(14px,2vh,18px) 0 0', lineHeight: 1.7 }}>{RESULT_NOTE}</p>
           </div>
         </div>
 

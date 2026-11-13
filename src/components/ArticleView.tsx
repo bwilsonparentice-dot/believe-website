@@ -72,7 +72,7 @@ function BlockView({ b }: { b: Block }) {
           <div style={{ width: '100%', borderRadius: 4, overflow: 'hidden', boxShadow: '0 40px 80px -56px rgba(60,44,20,0.5)' }}>
             <ImageSlot src={b.src} alt={b.alt} fit="cover" style={{ display: 'block', width: '100%', height: 'auto' }} />
           </div>
-          {b.caption && <figcaption style={{ fontFamily: sans, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(12px,1.4vw,14px)', color: 'rgba(43,39,35,0.6)', textAlign: 'center', marginTop: 'clamp(12px,1.8vh,18px)', letterSpacing: '0.02em' }}>{b.caption}</figcaption>}
+          {b.caption && <figcaption style={{ fontFamily: sans, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(12px,1.4vw,14px)', color: 'rgba(43,39,35,0.74)', textAlign: 'center', marginTop: 'clamp(12px,1.8vh,18px)', letterSpacing: '0.02em' }}>{b.caption}</figcaption>}
         </figure>
       )
     case 'brandLink':

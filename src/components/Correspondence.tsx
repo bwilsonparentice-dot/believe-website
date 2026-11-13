@@ -23,7 +23,7 @@ function Row({ item, index, open, onToggle }: { item: Faq; index: number; open: 
       </El>
       <div style={{ display: 'grid', gridTemplateRows: open ? '1fr' : '0fr', transition: 'grid-template-rows 640ms cubic-bezier(.22,.7,.2,1)' }}>
         <div style={{ overflow: 'hidden' }}>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.85vw,22px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.62)', margin: 'clamp(14px,2vh,20px) 0 0', marginLeft: 'clamp(38px,6vw,74px)', maxWidth: '48ch', opacity: open ? 1 : 0, transition: 'opacity 700ms ease 120ms', ...pretty }}>{item.a}</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.85vw,22px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', margin: 'clamp(14px,2vh,20px) 0 0', marginLeft: 'clamp(38px,6vw,74px)', maxWidth: '48ch', opacity: open ? 1 : 0, transition: 'opacity 700ms ease 120ms', ...pretty }}>{item.a}</p>
         </div>
       </div>
     </div>

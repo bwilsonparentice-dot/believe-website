@@ -26,7 +26,7 @@ const pretty = { textWrap: 'pretty' as React.CSSProperties['textWrap'] }
 
 const h3: React.CSSProperties = { fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.04, margin: '0 0 0.5em' }
 const sub: React.CSSProperties = { fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(17px,1.9vw,24px)', color: 'rgba(122,94,52,0.78)', margin: '0 auto' }
-const body: React.CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '42ch', margin: '0 auto', ...pretty }
+const body: React.CSSProperties = { fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.74)', maxWidth: '42ch', margin: '0 auto', ...pretty }
 
 function Divider({ tight }: { tight?: boolean }) {
   return <div aria-hidden="true" style={{ width: 1, height: tight ? 'clamp(36px,5.5vh,64px)' : 'clamp(44px,7vh,88px)', margin: tight ? 'clamp(28px,4.5vh,56px) auto' : 'clamp(56px,9vh,112px) auto', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
@@ -89,7 +89,7 @@ export function LibraryChapter({ ctx }: { ctx: Ctx }) {
           <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(24px,3vw,38px)', lineHeight: 1.14 }}>The Creative Act: A Way of Being</div>
           <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.62)', margin: '0.7em 0 0' }}>Rick Rubin</div>
         </div>
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.7vw,20px)', color: 'rgba(43,39,35,0.55)', margin: 'clamp(34px,5.5vh,56px) auto 0' }}>The first of a growing collection.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(15px,1.7vw,20px)', color: 'rgba(43,39,35,0.74)', margin: 'clamp(34px,5.5vh,56px) auto 0' }}>The first of a growing collection.</p>
 
         <div aria-hidden="true" style={{ width: 1, height: 'clamp(44px,7vh,88px)', margin: 'clamp(56px,9vh,112px) auto clamp(28px,4.5vh,48px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
 

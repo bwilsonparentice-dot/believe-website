@@ -93,7 +93,7 @@ function Chapter({ ctx, id }: { ctx: Ctx; id: string }) {
         <>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.45, color: 'rgba(122,94,52,0.84)', margin: 'clamp(28px,4.6vh,44px) auto 0', maxWidth: '26ch', ...balance }}>{d.intro}</p>
           {stories.length === 0 && (
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,21px)', lineHeight: 1.6, letterSpacing: '0.02em', color: 'rgba(43,39,35,0.6)', margin: 'clamp(26px,4vh,38px) auto 0', ...balance }}>Arriving {d.date}.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,21px)', lineHeight: 1.6, letterSpacing: '0.02em', color: 'rgba(43,39,35,0.74)', margin: 'clamp(26px,4vh,38px) auto 0', ...balance }}>Arriving {d.date}.</p>
           )}
         </>
       )}
@@ -143,7 +143,7 @@ export function Journal({ ctx, articleSlug }: { ctx: Ctx; articleSlug?: string |
 
         {/* a quiet line home — one subtle connection back to the studio */}
         <div aria-hidden="true" style={{ width: 1, height: 'clamp(48px,8vh,88px)', margin: 'clamp(80px,13vh,160px) auto clamp(34px,5.5vh,56px)', background: 'linear-gradient(180deg, rgba(122,94,52,0.4), transparent)' }} />
-        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.66)', margin: '0 auto clamp(26px,4vh,36px)', maxWidth: '30ch', ...balance }}>An editorial journal from Believe Studio.</p>
+        <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2.1vw,26px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.74)', margin: '0 auto clamp(26px,4vh,36px)', maxWidth: '30ch', ...balance }}>An editorial journal from Believe Studio.</p>
         <El as="button" onClick={ctx.openLibrary} style={{ background: 'none', border: 'none', cursor: 'pointer', ...label, color: 'rgba(122,94,52,0.8)' }} hover={{ color: '#2b2723' }}>&larr;&nbsp;Return to The Library</El>
       </div>
     </ChapterShell>

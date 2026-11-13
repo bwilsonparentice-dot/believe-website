@@ -29,14 +29,14 @@ export function AdvisoryChapter({ ctx }: { ctx: Ctx }) {
         {/* why it exists */}
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(20px,2.3vw,29px)', lineHeight: 1.8, color: 'rgba(43,39,35,0.72)', maxWidth: '32ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Some conversations should never become case studies. Not every decision belongs in a board meeting. Not every question belongs on LinkedIn. Some of the most important moments in a founder’s journey happen quietly, before the announcement, before the funding, before the launch, before anyone else knows.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.82)', margin: '1.6em auto 0', maxWidth: '28ch' }}>Private Advisory exists for those moments, when the stakes are unusually high, when clarity matters more than speed, when you need someone who can hold both the business and the person building it.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: '1.4em auto 0' }}>No audience. No performance. No templates. Just thoughtful conversation, honest perspective, and decisions made with care.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.74)', maxWidth: '26ch', margin: '1.4em auto 0' }}>No audience. No performance. No templates. Just thoughtful conversation, honest perspective, and decisions made with care.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 400, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.82)', maxWidth: '30ch', margin: '1.8em auto 0' }}>Plainly: what you say here stays here. It is never a pitch, and it is never used to sell you anything. It is a conversation between people. Nothing more, and nothing less.</p>
 
         <Divider h="clamp(50px,9vh,100px)" m="clamp(56px,10vh,110px) auto" />
 
         {/* what happens here */}
         <div style={{ ...eyebrow, marginBottom: '1.4em' }}>Every founder arrives differently</div>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.7)', maxWidth: '30ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Sometimes it’s growth. Sometimes uncertainty. Sometimes a difficult retailer conversation. Sometimes preparing for Target. Sometimes rebuilding after success. Sometimes deciding whether to walk away.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Sometimes it’s growth. Sometimes uncertainty. Sometimes a difficult retailer conversation. Sometimes preparing for Target. Sometimes rebuilding after success. Sometimes deciding whether to walk away.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(19px,2.2vw,28px)', color: 'rgba(122,94,52,0.8)', margin: '1.4em auto 0' }}>Every conversation is different, because every founder is.</p>
 
         <Divider h="clamp(50px,9vh,100px)" m="clamp(56px,10vh,110px) auto" />
@@ -67,7 +67,7 @@ export function AdvisoryChapter({ ctx }: { ctx: Ctx }) {
         {/* who it's for */}
         <div style={{ ...eyebrow, marginBottom: '1.4em' }}>Who it’s for</div>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.72)', maxWidth: '32ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Private Advisory is designed for founders leading meaningful companies who want an experienced strategic partner close to the business, not another outside voice.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.6)', maxWidth: '28ch', margin: '1.4em auto 0' }}>Some engagements last a single day. Others continue for years. There is no standard timeline. The work determines the pace.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.74)', maxWidth: '28ch', margin: '1.4em auto 0' }}>Some engagements last a single day. Others continue for years. There is no standard timeline. The work determines the pace.</p>
 
         <Divider h="clamp(50px,9vh,100px)" m="clamp(56px,10vh,110px) auto" />
 

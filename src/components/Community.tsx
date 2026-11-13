@@ -69,7 +69,7 @@ export function Community({ ctx }: { ctx: Ctx }) {
             <div style={{ ...label, fontSize: 10, letterSpacing: '0.42em', marginBottom: '1.2em' }}>Founder</div>
             <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(30px,4vw,54px)', lineHeight: 1.02, margin: '0 0 0.5em', color: ink }}>Beth Wilson-Parentice</h3>
             <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.78)', maxWidth: '30ch', ...balance }}>Building the place she wished had existed when she was building alone.</p>
-            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.6)', maxWidth: '34ch', margin: '1.4em 0 0', ...pretty }}>Around her, a small circle of residents, advisors, builders, and collaborators, each known by what they contribute to the House.</p>
+            <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', margin: '1.4em 0 0', ...pretty }}>Around her, a small circle of residents, advisors, builders, and collaborators, each known by what they contribute to the House.</p>
             <Enter onClick={ctx.openPeople}>Meet the People</Enter>
           </div>
         </div>

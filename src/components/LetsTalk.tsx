@@ -35,7 +35,7 @@ const navyCta: CSSProperties = {
 }
 const fine: CSSProperties = {
   fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase',
-  color: 'rgba(43,39,35,0.55)',
+  color: 'rgba(43,39,35,0.74)',
 }
 
 function Section({ children, style, id }: { children: React.ReactNode; style?: CSSProperties; id?: string }) {
@@ -114,7 +114,7 @@ export function LetsTalk({ ctx: _ctx }: { ctx: Ctx }) {
         <div style={eyebrow}>An invitation for founders</div>
         <h1 style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(42px,7vw,92px)', lineHeight: 1.02, color: palette.navy, margin: 'clamp(18px,3vh,30px) auto 0', maxWidth: '14ch', ...balance }}>Let&rsquo;s Talk It Through.</h1>
         <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.6vw,32px)', lineHeight: 1.35, color: 'rgba(122,94,52,0.84)', margin: 'clamp(20px,3.2vh,32px) auto 0', maxWidth: '26ch', ...balance }}>Sometimes a fresh perspective can change everything.</p>
-        <p style={{ ...fine, fontSize: 11.5, letterSpacing: '0.2em', color: 'rgba(43,39,35,0.6)', margin: 'clamp(16px,2.4vh,24px) auto 0' }}>A complimentary 30-minute conversation, founder to founder</p>
+        <p style={{ ...fine, fontSize: 11.5, letterSpacing: '0.2em', color: 'rgba(43,39,35,0.74)', margin: 'clamp(16px,2.4vh,24px) auto 0' }}>A complimentary 30-minute conversation, founder to founder</p>
 
         <div style={{ margin: 'clamp(30px,4.6vh,52px) auto 0', display: 'flex', flexDirection: 'column', gap: 'clamp(16px,2.6vh,24px)' }}>
           <p style={{ ...body }}>Building a brand is exciting. It&rsquo;s also full of decisions, unexpected challenges, and moments when you&rsquo;re not quite sure what comes next.</p>
@@ -183,7 +183,7 @@ export function LetsTalk({ ctx: _ctx }: { ctx: Ctx }) {
         <p style={{ fontFamily: serif, fontWeight: 500, fontSize: 'clamp(34px,5.4vw,66px)', lineHeight: 1.05, color: palette.navy, margin: '0 auto', maxWidth: '16ch', ...balance }}>What&rsquo;s on your mind?</p>
         <p style={{ ...body, maxWidth: '34ch', margin: 'clamp(24px,3.8vh,38px) auto 0' }}>Whatever you&rsquo;re working through, let&rsquo;s start with a conversation.</p>
         <BookButton label="Let&rsquo;s Talk It Through" />
-        <p style={{ ...fine, textTransform: 'none', letterSpacing: '0.04em', fontSize: 13, color: 'rgba(43,39,35,0.6)', margin: 'clamp(18px,2.8vh,26px) auto 0', maxWidth: '40ch', lineHeight: 1.6 }}>Complimentary 30-minute conversation. No sales pitch. No obligation.</p>
+        <p style={{ ...fine, textTransform: 'none', letterSpacing: '0.04em', fontSize: 13, color: 'rgba(43,39,35,0.74)', margin: 'clamp(18px,2.8vh,26px) auto 0', maxWidth: '40ch', lineHeight: 1.6 }}>Complimentary 30-minute conversation. No sales pitch. No obligation.</p>
       </Section>
     </div>
   )

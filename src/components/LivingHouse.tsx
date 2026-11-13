@@ -71,7 +71,7 @@ export function LivingHouse({ ctx }: { ctx: Ctx }) {
             <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(34px,4.8vw,64px)', lineHeight: 1.0, margin: '0 0 0.3em', color: ink }}>Chef MoWils</h3>
             <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(18px,2vw,26px)', color: brass, margin: '0 0 1.3em' }}>Resident AI Strategist</p>
             <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.34, color: ink, margin: '0 0 0.5em', ...balance }}>Founder Workshop No. 001 &middot; Buy Back 20 Hours</p>
-            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.68)', maxWidth: '28ch', ...pretty }}>Five AI teammates. One founder. Twenty hours returned.</p>
+            <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', maxWidth: '28ch', ...pretty }}>Five AI teammates. One founder. Twenty hours returned.</p>
             <Enter onClick={ctx.openStudio}>Meet the Current Resident</Enter>
           </div>
         </div>
@@ -108,7 +108,7 @@ export function LivingHouse({ ctx }: { ctx: Ctx }) {
         <div style={{ textAlign: 'center', marginTop: 'clamp(120px,22vh,300px)', ...reveal() }}>
           <div style={{ ...label, marginBottom: '1.9em' }}>The Visionary Collective</div>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.9vw,38px)', lineHeight: 1.36, color: ink, maxWidth: '24ch', margin: '0 auto', ...balance }}>Some founders enter through a workshop. Some through a conversation. Some simply want to stay close to what the House is learning.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.64)', maxWidth: '34ch', margin: 'clamp(26px,4vh,44px) auto 0', ...pretty }}>A way to remain close to the ideas, people, and work unfolding inside Believe Studio.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.9vw,24px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', margin: 'clamp(26px,4vh,44px) auto 0', ...pretty }}>A way to remain close to the ideas, people, and work unfolding inside Believe Studio.</p>
           <Enter onClick={ctx.openDoorway('visionary-collective')}>Stay Close to the House</Enter>
         </div>
 

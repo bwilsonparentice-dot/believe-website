@@ -81,7 +81,7 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
             <div style={{ ...label, paddingTop: '0.7em', textAlign: 'left' }}>Who it’s for</div>
             <div style={{ textAlign: 'left' }}>
               <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(24px,3vw,40px)', lineHeight: 1.4, color: '#2b2723', margin: 0, maxWidth: '22ch', ...balance }}>{x.whoFor}</p>
-              {x.whoNotFor && <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.5)', margin: 'clamp(26px,4vh,40px) 0 0', maxWidth: '30ch', ...pretty }}>{x.whoNotFor}</p>}
+              {x.whoNotFor && <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(17px,1.9vw,23px)', lineHeight: 1.55, color: 'rgba(43,39,35,0.74)', margin: 'clamp(26px,4vh,40px) 0 0', maxWidth: '30ch', ...pretty }}>{x.whoNotFor}</p>}
             </div>
           </div>
         </section>
@@ -146,7 +146,7 @@ export function DoorwayChapter({ ctx, id }: { ctx: Ctx; id: string }) {
         {/* ══ Chapter Eight — joining · the words do the convincing ═══════ */}
         <section style={{ margin: 'clamp(130px,24vh,300px) auto 0', textAlign: 'center' }}>
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(32px,4.6vw,66px)', lineHeight: 1.12, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance, ...surface('entry 2% cover 26%') }}>{x.joinLead}</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.7)', maxWidth: '44ch', margin: 'clamp(40px,7vh,72px) auto 0', ...pretty, ...surface() }}>{x.joinBody}</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.72, color: 'rgba(43,39,35,0.74)', maxWidth: '44ch', margin: 'clamp(40px,7vh,72px) auto 0', ...pretty, ...surface() }}>{x.joinBody}</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 400, fontSize: 'clamp(24px,3vw,40px)', lineHeight: 1.28, color: 'rgba(122,94,52,0.9)', maxWidth: '20ch', margin: 'clamp(80px,15vh,180px) auto 0', ...balance, ...surface() }}>{x.closing}</p>
 
           {/* the invitation, kept deliberately quiet — a line, not a billboard */}

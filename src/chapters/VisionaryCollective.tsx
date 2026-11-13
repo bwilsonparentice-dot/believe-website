@@ -56,9 +56,9 @@ export function VisionaryCollectiveChapter({ ctx }: { ctx: Ctx }) {
         {/* ── who it's for — no single readiness required ───────────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(90px,16vh,200px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.38, color: '#2b2723', maxWidth: '24ch', margin: '0 auto', ...balance }}>Not every founder is ready for the same conversation.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.95, color: 'rgba(43,39,35,0.64)', maxWidth: '34ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>Some are building their first product.<br />Some are preparing for retail.<br />Some are rebuilding after a difficult season.<br />Some simply want to stay close to people who understand the journey.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.95, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>Some are building their first product.<br />Some are preparing for retail.<br />Some are rebuilding after a difficult season.<br />Some simply want to stay close to people who understand the journey.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(20px,2.3vw,29px)', lineHeight: 1.44, color: 'rgba(122,94,52,0.82)', margin: 'clamp(40px,7vh,80px) auto 0', maxWidth: '24ch', ...balance }}>The Visionary Collective exists for all of them.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.62)', maxWidth: '30ch', margin: 'clamp(36px,6vh,64px) auto 0', ...pretty }}>It is where the wider Believe Studio community gathers between conversations, workshops and rooms.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: 'clamp(36px,6vh,64px) auto 0', ...pretty }}>It is where the wider Believe Studio community gathers between conversations, workshops and rooms.</p>
         </div>
 
         {/* ── an image — the entrance hall, conversations always nearby ──── */}
@@ -79,7 +79,7 @@ export function VisionaryCollectiveChapter({ ctx }: { ctx: Ctx }) {
                 <>
                   <h3 style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(28px,3.4vw,42px)', lineHeight: 1.04, margin: '0 0 0.7em', color: '#2b2723' }}>{c.title}{go && <span style={{ fontFamily: sans, fontSize: 13, letterSpacing: 0, color: 'rgba(122,94,52,0.5)', marginLeft: '0.5em', verticalAlign: 'middle' }}>→</span>}</h3>
                   {c.lines.map((l, k) => (
-                    <p key={k} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.85vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.66)', margin: k === 0 ? 0 : '0.5em 0 0' }}>{l}</p>
+                    <p key={k} style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(17px,1.85vw,22px)', lineHeight: 1.5, color: 'rgba(43,39,35,0.74)', margin: k === 0 ? 0 : '0.5em 0 0' }}>{l}</p>
                   ))}
                 </>
               )
@@ -96,7 +96,7 @@ export function VisionaryCollectiveChapter({ ctx }: { ctx: Ctx }) {
         {/* ── the house has many rooms — no expected path ───────────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(130px,24vh,300px)', ...surface() }}>
           <div style={{ ...label, fontSize: 10, marginBottom: '2em' }}>The House has many rooms</div>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.7)', maxWidth: '30ch', margin: '0 auto' }}>Some founders begin here.<br />Some eventually request a Conversation.<br />Some step into a Believe Blueprint.<br />Some join a Founder’s Room.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: '0 auto' }}>Some founders begin here.<br />Some eventually request a Conversation.<br />Some step into a Believe Blueprint.<br />Some join a Founder’s Room.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(21px,2.5vw,32px)', lineHeight: 1.4, color: 'rgba(122,94,52,0.82)', margin: 'clamp(44px,7vh,84px) auto 0', maxWidth: '22ch', ...balance }}>There is no expected path.<br />Only the one that’s right for you.</p>
         </div>
 

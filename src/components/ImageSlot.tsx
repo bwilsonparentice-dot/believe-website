@@ -92,7 +92,7 @@ export function ImageSlot({
             fontWeight: 300,
             fontSize: 'clamp(14px,1.5vw,19px)',
             lineHeight: 1.5,
-            color: 'rgba(43,39,35,0.42)',
+            color: 'rgba(43,39,35,0.74)',
           }}
         >
           {placeholder}

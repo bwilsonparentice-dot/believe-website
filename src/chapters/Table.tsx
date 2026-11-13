@@ -64,7 +64,7 @@ export function TableChapter({ ctx }: { ctx: Ctx }) {
 
         {/* opening */}
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(24px,3.2vw,44px)', lineHeight: 1.4, color: 'rgba(43,39,35,0.9)', maxWidth: '24ch', margin: '0 auto 1.1em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>They begin around a table. In a conversation. Through an experience that makes people feel something.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.68)', maxWidth: '36ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>We imagine and produce extraordinary moments that bring consumer brands together with chefs, creators, tastemakers, and the cultural voices who shape what people discover, love, and remember.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(19px,2.1vw,27px)', lineHeight: 1.75, color: 'rgba(43,39,35,0.74)', maxWidth: '36ch', margin: '0 auto', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>We imagine and produce extraordinary moments that bring consumer brands together with chefs, creators, tastemakers, and the cultural voices who shape what people discover, love, and remember.</p>
 
         <Divider h="clamp(30px,4vh,52px)" m="clamp(26px,4vh,46px) auto" />
 
@@ -84,7 +84,7 @@ export function TableChapter({ ctx }: { ctx: Ctx }) {
         {/* beyond the experience */}
         <div style={{ ...eyebrow, marginBottom: '1.4em' }}>Beyond the experience</div>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.45, color: 'rgba(43,39,35,0.9)', maxWidth: '26ch', margin: '0 auto 1.1em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>The right gathering can introduce a brand to new audiences, spark conversations, and create stories worth retelling.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', color: 'rgba(43,39,35,0.6)', margin: '0 auto 0.7em' }}>Not simply more visibility.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', color: 'rgba(43,39,35,0.74)', margin: '0 auto 0.7em' }}>Not simply more visibility.</p>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(30px,4.4vw,58px)', lineHeight: 1.1, color: 'rgba(43,39,35,0.94)', margin: 0 }}>A reason to care.</p>
 
         <Divider h="clamp(30px,4vh,52px)" m="clamp(26px,4vh,46px) auto" />

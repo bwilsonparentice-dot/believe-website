@@ -44,7 +44,7 @@ function Answer({ a }: { a: FounderAnswer }) {
       {a.fromExperience && (
         <div style={{ borderTop: '1px solid rgba(122,94,52,0.22)', marginTop: 'clamp(26px,4.4vh,44px)', paddingTop: 'clamp(16px,2.6vh,24px)' }}>
           <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 9, letterSpacing: '0.42em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '1em' }}>From experience</div>
-          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.62)', margin: 0, ...pretty }}>{a.fromExperience}</p>
+          <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(16px,1.8vw,22px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.74)', margin: 0, ...pretty }}>{a.fromExperience}</p>
         </div>
       )}
     </div>

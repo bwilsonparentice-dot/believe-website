@@ -945,7 +945,7 @@ export class App extends React.Component<Record<string, never>, State> {
     return (
       <section aria-label="A pause before the Founding Wall" style={{ position: 'relative', background: '#dccfb2', padding: 'clamp(120px,26vh,340px) clamp(24px,8vw,120px)', textAlign: 'center' }}>
         <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(24px,3.4vw,48px)', lineHeight: 1.3, color: 'rgba(43,39,35,0.86)', maxWidth: '26ch', margin: '0 auto', textWrap: 'balance' as React.CSSProperties['textWrap'], ...reveal('entry 4% cover 28%') }}>No founder walks the same path, yet every room leads toward greater clarity.</p>
-        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(16px,1.9vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.6)', maxWidth: '32ch', margin: 'clamp(28px,5vh,52px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'], ...reveal('entry 2% cover 26%') }}>Come in. We&rsquo;ve been waiting for you. The door has never been locked.</p>
+        <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(16px,1.9vw,24px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '32ch', margin: 'clamp(28px,5vh,52px) auto 0', textWrap: 'pretty' as React.CSSProperties['textWrap'], ...reveal('entry 2% cover 26%') }}>Come in. We&rsquo;ve been waiting for you. The door has never been locked.</p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5em 2.6em', alignItems: 'baseline', justifyContent: 'center', margin: 'clamp(52px,9vh,120px) auto 0', ...reveal('entry 0% cover 24%') }}>
           {PRINCIPLES.map((pr) => (
             <span key={pr} style={{ fontFamily: "'Jost',sans-serif", fontWeight: 300, fontSize: 11, letterSpacing: '0.52em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.66)' }}>{pr}</span>
@@ -1096,7 +1096,7 @@ export class App extends React.Component<Record<string, never>, State> {
                 ))}
               </div>
               <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(18px,1.9vw,24px)', color: 'rgba(43,39,35,0.85)', margin: '0 0 1.8em' }}>{active.oneLine}</p>
-              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.85vw,23px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.6)', maxWidth: '34ch', margin: '0 auto 1.4em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Some ideas are shaped quietly at the worktable. Others become clearer through conversation.</p>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(17px,1.85vw,23px)', lineHeight: 1.7, color: 'rgba(43,39,35,0.74)', maxWidth: '34ch', margin: '0 auto 1.4em', textWrap: 'pretty' as React.CSSProperties['textWrap'] }}>Some ideas are shaped quietly at the worktable. Others become clearer through conversation.</p>
               <El onClick={this.ctx.openStudioPage} style={{ display: 'inline-block', fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 11, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', cursor: 'pointer', borderBottom: '1px solid rgba(122,94,52,0.32)', paddingBottom: 3, transition: 'color 400ms ease' }} hover={{ color: '#2b2723' }}>Step Inside the Studio &rarr;</El>
             </>
           )}
@@ -1127,7 +1127,7 @@ export class App extends React.Component<Record<string, never>, State> {
               <div style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.6)', marginBottom: '0.5em' }}>The people of Believe Studio</div>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontSize: 'clamp(24px,2.6vw,32px)', lineHeight: 1 }}>{active.person.name}</div>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(122,94,52,0.72)', marginTop: '0.3em' }}>{active.person.role}</div>
-              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(43,39,35,0.6)', marginTop: '0.7em', fontStyle: 'italic' }}>You&rsquo;ll likely be welcomed by {active.person.first} if you come by.</div>
+              <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(43,39,35,0.74)', marginTop: '0.7em', fontStyle: 'italic' }}>You&rsquo;ll likely be welcomed by {active.person.first} if you come by.</div>
             </div>
           )}
 
@@ -1172,7 +1172,7 @@ export class App extends React.Component<Record<string, never>, State> {
             )}
 
             <El onClick={this.closeRoom} style={{ marginTop: '2.4em', display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 12, cursor: 'pointer' }} hover={{}}>
-              <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.6)', transition: 'color 500ms ease' }}>{active.continueLabel}</span>
+              <span style={{ fontFamily: "'Jost',sans-serif", fontWeight: 400, fontSize: 12, letterSpacing: '0.4em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.74)', transition: 'color 500ms ease' }}>{active.continueLabel}</span>
               <span style={{ width: 1, height: 38, background: 'linear-gradient(180deg, rgba(43,39,35,0.5), transparent)', animation: 'cueBreath 3.6s ease-in-out infinite' }} />
             </El>
           </div>

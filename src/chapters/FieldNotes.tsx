@@ -77,7 +77,7 @@ function Note({ fn, i }: { fn: FieldNote; i: number }) {
         <div style={{ position: 'relative', marginBottom: 'clamp(24px,3.2vw,38px)' }}>
           <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 8.5, letterSpacing: '0.52em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.5)' }}>Field Note</div>
           <div style={{ fontFamily: sans, fontWeight: 400, fontSize: 10.5, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.72)', marginTop: '0.55em' }}>No. {fn.n}</div>
-          {fn.title && <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(43,39,35,0.44)', marginTop: '0.7em' }}>{fn.title}</div>}
+          {fn.title && <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 'clamp(15px,1.6vw,20px)', color: 'rgba(43,39,35,0.74)', marginTop: '0.7em' }}>{fn.title}</div>}
         </div>
 
         {/* the observation — the hero, given room to breathe */}
@@ -90,7 +90,7 @@ function Note({ fn, i }: { fn: FieldNote; i: number }) {
         {(fn.trace || fn.to) && <div style={{ position: 'relative', ...label, fontSize: 9, letterSpacing: '0.32em', color: 'rgba(122,94,52,0.56)', marginTop: 'clamp(28px,3.6vh,40px)' }}>{fn.trace || `This one became ${fn.to}.`}</div>}
 
         {/* provenance — a tiny archival caption, never explained */}
-        {fn.where && <div style={{ position: 'relative', fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(43,39,35,0.4)', marginTop: followed ? 'clamp(14px,1.8vh,22px)' : 'clamp(26px,3.2vh,36px)' }}>{fn.where}</div>}
+        {fn.where && <div style={{ position: 'relative', fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(14px,1.5vw,18px)', color: 'rgba(43,39,35,0.74)', marginTop: followed ? 'clamp(14px,1.8vh,22px)' : 'clamp(26px,3.2vh,36px)' }}>{fn.where}</div>}
 
         {/* cataloged by the Library — printed almost too lightly to notice */}
         <div aria-hidden="true" style={{ position: 'absolute', right: 'clamp(22px,3vw,36px)', bottom: 'clamp(18px,2.4vw,28px)', textAlign: 'right', opacity: 0.32, transform: 'rotate(-1.1deg)', pointerEvents: 'none' }}>
@@ -127,9 +127,9 @@ export function FieldNotesChapter({ ctx }: { ctx: Ctx }) {
         {/* ── the passage ───────────────────────────────────────────────── */}
         <div style={{ textAlign: 'center', marginTop: 'clamp(100px,18vh,220px)', ...surface() }}>
           <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(22px,2.8vw,38px)', lineHeight: 1.42, color: 'rgba(43,39,35,0.88)', maxWidth: '22ch', margin: '0 auto', ...balance }}>Not every lesson becomes a framework. Some arrive quietly.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.66)', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>During a founder conversation.<br />Across a conference table.<br />Late at night, after everyone else has gone home.</p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,25px)', lineHeight: 1.9, color: 'rgba(43,39,35,0.74)', maxWidth: '30ch', margin: 'clamp(40px,7vh,80px) auto 0' }}>During a founder conversation.<br />Across a conference table.<br />Late at night, after everyone else has gone home.</p>
           <p style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 300, fontSize: 'clamp(19px,2.2vw,28px)', lineHeight: 1.5, color: 'rgba(122,94,52,0.8)', maxWidth: '26ch', margin: 'clamp(36px,6vh,64px) auto 0', ...balance }}>Or years later, when someone finally understands what really happened.</p>
-          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.6)', maxWidth: '26ch', margin: 'clamp(44px,8vh,88px) auto 0', ...balance }}>These are those moments. Collected one conversation at a time. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.78)' }}>Still growing.</span></p>
+          <p style={{ fontFamily: serif, fontWeight: 300, fontSize: 'clamp(18px,2vw,24px)', lineHeight: 1.6, color: 'rgba(43,39,35,0.74)', maxWidth: '26ch', margin: 'clamp(44px,8vh,88px) auto 0', ...balance }}>These are those moments. Collected one conversation at a time. <span style={{ fontStyle: 'italic', color: 'rgba(122,94,52,0.78)' }}>Still growing.</span></p>
         </div>
 
         {/* ── the notes — discovered, alternating, never a feed ─────────── */}
@@ -144,7 +144,7 @@ export function FieldNotesChapter({ ctx }: { ctx: Ctx }) {
           <p style={{ fontFamily: serif, fontWeight: 400, fontSize: 'clamp(26px,3.4vw,46px)', lineHeight: 1.24, color: '#2b2723', maxWidth: '18ch', margin: '0 auto', ...balance, ...surface() }}>The work continues.<br />So do the notes.</p>
           <El
             onClick={toNotes}
-            style={{ display: 'inline-block', margin: 'clamp(48px,9vh,96px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.6)', borderBottom: '1px solid rgba(122,94,52,0.42)', paddingBottom: 6, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
+            style={{ display: 'inline-block', margin: 'clamp(48px,9vh,96px) auto 0', fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.74)', borderBottom: '1px solid rgba(122,94,52,0.42)', paddingBottom: 6, cursor: 'pointer', transition: 'color 500ms ease, border-color 500ms ease' }}
             hover={{ color: '#2b2723', borderColor: 'rgba(43,39,35,0.7)' }}
           >
             Continue Reading

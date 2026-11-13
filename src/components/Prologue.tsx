@@ -68,7 +68,7 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
 
   // the "Continue" invitation — a breathing cue, never a hard button
   const Continue = ({ label = 'Continue', onClick }: { label?: string; onClick: () => void }) => (
-    <El onClick={onClick} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: '0.6em', marginTop: 'clamp(32px,6vh,68px)', cursor: 'pointer', color: 'rgba(43,39,35,0.62)', transition: 'color 500ms ease' }} hover={{ color: '#2b2723' }}>
+    <El onClick={onClick} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: '0.6em', marginTop: 'clamp(32px,6vh,68px)', cursor: 'pointer', color: 'rgba(43,39,35,0.74)', transition: 'color 500ms ease' }} hover={{ color: '#2b2723' }}>
       <span style={{ fontFamily: sans, fontWeight: 400, fontSize: 12, letterSpacing: '0.34em', textTransform: 'uppercase' }}>{label}</span>
       <svg width="16" height="12" viewBox="0 0 16 12" fill="none" style={{ opacity: 0.7, animation: alive ? 'hint 3.4s ease-in-out infinite' : 'none' }}>
         <path d="M2 3 L8 9 L14 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
@@ -133,7 +133,7 @@ export function Prologue({ onEnter, motionOn }: { onEnter: () => void; motionOn:
           reads "Enter the house", so this corner exit steps aside to avoid two
           identical ways out on the same screen. */}
       {step < LAST && (
-        <El onClick={onEnter} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: sans, fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.32)', cursor: 'pointer', transition: 'color 400ms ease' }} hover={{ color: 'rgba(43,39,35,0.7)' }}>
+        <El onClick={onEnter} style={{ position: 'absolute', right: 'clamp(20px,3vw,40px)', bottom: 'clamp(18px,3vh,32px)', fontFamily: sans, fontWeight: 300, fontSize: 10, letterSpacing: '0.34em', textTransform: 'uppercase', color: 'rgba(43,39,35,0.74)', cursor: 'pointer', transition: 'color 400ms ease' }} hover={{ color: 'rgba(43,39,35,0.74)' }}>
           Enter the house&nbsp;&rarr;
         </El>
       )}

@@ -37,7 +37,7 @@
   border-bottom:1px solid rgba(43,39,35,.16); transition:background .35s ease, border-color .35s ease; }
 .wndr-rheader.on-cover { background:linear-gradient(180deg, rgba(14,18,28,.5), transparent); border-bottom-color:transparent; -webkit-backdrop-filter:none; backdrop-filter:none; }
 .wndr-rh-left { display:flex; align-items:baseline; gap:12px; min-width:0; }
-.wndr-rh-iss { font-family:'Jost',sans-serif; font-size:9.5px; letter-spacing:.3em; text-transform:uppercase; color:rgba(43,39,35,.5); white-space:nowrap; }
+.wndr-rh-iss { font-family:'Jost',sans-serif; font-size:9.5px; letter-spacing:.3em; text-transform:uppercase; color:rgba(43,39,35,0.74); white-space:nowrap; }
 .wndr-rheader.on-cover .wndr-rh-iss { color:rgba(246,239,224,.82); }
 .wndr-rh-mark-img { height:16px; width:auto; display:block; }
 .wndr-rh-mark-img.ivory { display:none; }
@@ -86,11 +86,11 @@
 .wndr-sheet { max-width:780px; margin:0 auto; padding:clamp(28px,4.5vw,50px) clamp(24px,5vw,44px) clamp(56px,8vw,80px); }
 .wndr-toc-wordmark { text-align:center; margin:clamp(8px,2vw,18px) 0 clamp(22px,4vw,34px); }
 .wndr-toc-wordmark img { width:min(56%,300px); height:auto; margin:0 auto; display:block; }
-.wndr-runhead { display:flex; justify-content:space-between; align-items:baseline; font-family:'Jost',sans-serif; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:rgba(43,39,35,.5); border-bottom:1px solid rgba(43,39,35,.16); padding-bottom:12px; }
+.wndr-runhead { display:flex; justify-content:space-between; align-items:baseline; font-family:'Jost',sans-serif; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:rgba(43,39,35,0.74); border-bottom:1px solid rgba(43,39,35,.16); padding-bottom:12px; }
 .wndr-toc-h { font-family:'Playfair Display',serif; font-weight:500; font-size:clamp(30px,6vw,46px); margin:clamp(22px,4vw,34px) 0 2px; text-wrap:balance; }
 .wndr-toc-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(17px,2.4vw,22px); color:#9c7a3f; }
 .wndr-toc { list-style:none; padding:0; margin:clamp(26px,4vw,38px) 0 0; display:grid; gap:0; }
-.wndr-toc-section { margin:clamp(30px,5vw,48px) 0 clamp(2px,1vw,8px); font-family:'Jost',sans-serif; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:rgba(43,39,35,.5); }
+.wndr-toc-section { margin:clamp(30px,5vw,48px) 0 clamp(2px,1vw,8px); font-family:'Jost',sans-serif; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:rgba(43,39,35,0.74); }
 .wndr-toc li { cursor:default; }
 .wndr-entry { display:grid; grid-template-columns:1fr auto; gap:10px 18px; align-items:baseline; padding:clamp(15px,2.4vw,20px) 0; border-top:1px solid rgba(43,39,35,.16); }
 .wndr-toc li:last-child .wndr-entry { border-bottom:1px solid rgba(43,39,35,.16); }
@@ -104,7 +104,7 @@
 .wndr-tocfeat:focus-visible { outline:2px solid #9c7a3f; outline-offset:4px; border-radius:3px; }
 /* forthcoming items — clearly marked, non-interactive until published */
 .wndr-fc .wndr-ttl { color:rgba(43,39,35,.74); }
-.wndr-fc .wndr-byl { color:rgba(43,39,35,.5); }
+.wndr-fc .wndr-byl { color:rgba(43,39,35,0.74); }
 .wndr-status { font-family:'Jost',sans-serif; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:#9c7a3f; border:1px solid rgba(156,122,63,.38); border-radius:30px; padding:5px 11px; align-self:center; white-space:nowrap; }
 /* Forthcoming list — quieter and more compact so the one available essay reads
    as the clear centerpiece. The "In development" heading already marks these as
@@ -114,8 +114,8 @@
 .wndr-fc-list li .wndr-entry { grid-template-columns:1fr; padding:clamp(9px,1.5vw,13px) 0; }
 .wndr-fc-list .wndr-dept { font-size:9px; letter-spacing:.26em; color:rgba(156,122,63,.8); margin-bottom:.35em; }
 .wndr-fc-list .wndr-ttl { font-size:clamp(16px,2vw,18px); font-weight:400; line-height:1.14; color:rgba(43,39,35,.72); }
-.wndr-fc-list .wndr-byl { font-size:clamp(13px,1.5vw,14px); color:rgba(43,39,35,.46); margin-top:.2em; }
-.wndr-colophon { margin-top:clamp(30px,5vw,46px); padding-top:16px; border-top:1px solid rgba(43,39,35,.16); font-family:'Cormorant Garamond',serif; font-weight:300; font-size:14px; color:rgba(43,39,35,.5); text-align:center; line-height:1.7; }
+.wndr-fc-list .wndr-byl { font-size:clamp(13px,1.5vw,14px); color:rgba(43,39,35,0.74); margin-top:.2em; }
+.wndr-colophon { margin-top:clamp(30px,5vw,46px); padding-top:16px; border-top:1px solid rgba(43,39,35,.16); font-family:'Cormorant Garamond',serif; font-weight:300; font-size:14px; color:rgba(43,39,35,0.74); text-align:center; line-height:1.7; }
 .wndr-colophon b { font-weight:500; color:rgba(43,39,35,.74); letter-spacing:.02em; }
 
 /* ── ESSAY ── */
@@ -127,7 +127,7 @@
 .wndr-essay .ek { font-family:'Jost',sans-serif; font-size:11px; letter-spacing:.36em; text-transform:uppercase; color:#9c7a3f; }
 .wndr-essay .et { font-family:'Playfair Display',serif; font-weight:500; font-size:clamp(38px,6.4vw,66px); line-height:1.03; margin:.3em 0 0; text-wrap:balance; }
 .wndr-essay .ed { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:clamp(20px,2.8vw,27px); line-height:1.32; color:#4a443b; margin:.56em 0 0; max-width:34ch; text-wrap:pretty; }
-.wndr-essay .eby { font-family:'Jost',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(43,39,35,.5); margin-top:1.6em; }
+.wndr-essay .eby { font-family:'Jost',sans-serif; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:rgba(43,39,35,0.74); margin-top:1.6em; }
 .wndr-ebody { max-width:620px; margin:0 auto; padding:clamp(32px,4.5vw,50px) clamp(24px,6vw,48px) clamp(20px,3vw,30px); }
 .wndr-ebody p { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:clamp(19px,1.35vw,22px); line-height:1.82; color:#2b2723; margin:0 0 1.3em; text-wrap:pretty; }
 .wndr-ebody p.drop::first-letter { font-family:'Playfair Display',serif; font-weight:500; float:left; font-size:3.5em; line-height:.76; padding:.04em .1em 0 0; color:#172234; }
@@ -135,7 +135,7 @@
 .wndr-pull::before, .wndr-pull::after { content:""; display:block; width:42px; height:1px; background:#9c7a3f; margin:20px auto; }
 .wndr-efig { margin:clamp(28px,4vw,40px) 0; }
 .wndr-efig img { width:100%; border-radius:2px; display:block; }
-.wndr-efig figcaption { font-family:'Jost',sans-serif; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(43,39,35,.5); margin-top:11px; text-align:center; }
+.wndr-efig figcaption { font-family:'Jost',sans-serif; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:rgba(43,39,35,0.74); margin-top:11px; text-align:center; }
 .wndr-esig { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(21px,2.6vw,25px); color:#172234; margin-top:.5em; }
 .wndr-ebbb { margin-top:clamp(34px,5vw,48px); border-top:1px solid rgba(43,39,35,.16); padding-top:clamp(24px,3.5vw,32px); display:flex; gap:20px; align-items:center; }
 .wndr-ebbb img { width:132px; flex:none; border-radius:2px; display:block; }
@@ -143,7 +143,7 @@
 .wndr-ebbb .t { font-family:'Playfair Display',serif; font-size:clamp(19px,2.4vw,23px); margin:.28em 0 .22em; }
 .wndr-ebbb .d { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:15px; color:rgba(43,39,35,.74); line-height:1.55; }
 .wndr-eend { max-width:620px; margin:0 auto; padding:clamp(30px,4.5vw,44px) clamp(24px,6vw,48px) clamp(64px,10vw,96px); text-align:center; }
-.wndr-esub { margin-bottom:clamp(26px,4vw,40px); font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(15px,1.7vw,18px); color:rgba(43,39,35,.5); }
+.wndr-esub { margin-bottom:clamp(26px,4vw,40px); font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(15px,1.7vw,18px); color:rgba(43,39,35,0.74); }
 .wndr-esub a { font-style:normal; font-family:'Jost',sans-serif; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:#9c7a3f; text-decoration:none; border-bottom:1px solid rgba(156,122,63,.4); padding-bottom:2px; margin-left:.4em; cursor:pointer; }
 .wndr-eend-back { font-family:'Jost',sans-serif; font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#172234; background:none; border:1px solid rgba(43,39,35,.16); border-radius:30px; padding:14px 28px; cursor:pointer; transition:.25s; }
 .wndr-eend-back:hover { background:#172234; color:#f7f1e6; border-color:#172234; }
