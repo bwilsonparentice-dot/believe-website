@@ -44,7 +44,7 @@ preview. GitHub Pages already serves them that way in production.
 2. **The door opens.** The leaf swings on its hinge and the scene steps
    forward, about 2.8 seconds in all. The candlelit table is visible through
    the doorway before the scene dissolves into it.
-3. **Welcome home.** "We've saved you a seat."
+3. **Welcome home.** The room is revealed first. "Welcome home." arrives alone, then after a held breath "We've saved you a seat.", then the name of the gathering, then a quiet "Read your invitation" cue. With reduced motion, or when the animation is skipped, everything is shown at once.
 4. **The invitation.** The approved copy, in order, with two quiet photographs.
 5. **The invitation to connect.** The interest form and a link to book a
    conversation with Beth.
@@ -108,10 +108,11 @@ All in `public/the-unpaved-path/index.html`:
 | --- | --- |
 | Invitation wording | the `<main>` section; each passage is plain text in order |
 | Dates or venue, once confirmed | the line `England. Three days. An intimate founding circle.` (marked with a comment) |
-| The dining room photograph | replace `/photos/photo-table.webp` (used twice: `.ent-room` in the styles and the `welcome-photo` image) |
+| The dining room photograph | currently `/photos/unpaved-dining-country.webp` (used three times: the preload link, `.ent-room` in the styles, and the `welcome-photo` image). The earlier London room is `/photos/photo-table.webp`; swap the name back in those three places to return to it. `--room-pos` on `.welcome-photo` sets which part of the photograph stays in frame. |
 | The other two photographs | the `<img>` tags for `photo-closing.webp` and `photo-conversation.webp`; update the `alt` text to match |
 | The booking link | the Calendly link just above `</main>` |
-| Door timing | the three numbers in the `enter` function (`1650`, `2800`) and the `1700ms` leaf transition |
+| Door timing | the two numbers in the `enter` function (`1650`, `2800`) and the `1750ms` leaf transition |
+| Welcome message timing | the `animation-delay` values under "Each welcome has its own moment" in the styles (counted from the click on the door) |
 
 ## Copy review against the approved invitation
 
@@ -143,9 +144,10 @@ Suggestions for approval, not implemented:
 
 ## Assets still needed
 
-- **An English country house dining room.** The current photograph is the
-  House's own candlelit table, and its windows look onto a London street. It
-  carries the mood well, but the copy says countryside.
+- The dining room is now a country house room supplied by Beth
+  (`unpaved-dining-country.webp`). It is nearly square, so wide desktop
+  screens show a horizontal band of it; a wider version of the same scene
+  would show more of the windows and ceiling.
 - One or two country house images (an exterior or approach, a garden or
   landscape) to replace the hallway and fireside photographs if wanted.
 - A dedicated link-preview image. The page currently uses the site's
