@@ -66,35 +66,37 @@ words stand to the left of the door.
 
 ## The interest form
 
-**Status: not yet connected to a destination.** The page is built to submit
-directly and show a confirmation, but it needs an endpoint. Until one is set,
-"I'd love to learn more" falls back to opening a ready-to-send email to
-`hello@believestudio.co` in the founder's own mail app, and says so plainly.
+**Status: connected to Formspree** (`https://formspree.io/f/myeweeor`, free
+plan). Notifications go to `hello@believestudio.co`, which forwards to Beth's
+inbox. Formspree keeps each submission in the account's history.
 
-The site is static (GitHub Pages) and has no backend of its own, so direct
-submission needs a service to receive the note and pass it on.
+**How it behaves**
 
-**To connect it (Formspree, free plan):**
-
-1. Create a free account at formspree.io using the address inquiries should
-   arrive at, and confirm that address.
-2. Create a form. Copy its endpoint, which looks like
-   `https://formspree.io/f/abcdwxyz`. It is not a secret.
-3. In `public/welcome-home/index.html`, find `CONFIG` near the bottom and set
-   `formEndpoint` to that address.
-
-Any other endpoint that accepts a JSON `POST` and answers `2xx` works the same
-way.
+- The form posts JSON to Formspree from the page; the founder never leaves
+  the invitation.
+- While it sends, the button is disabled and reads "Sending your note". A
+  second click or Enter does nothing.
+- The thank-you (addressed by first name) appears only after Formspree
+  confirms receipt.
+- If the send fails, the page says so kindly, keeps everything typed, and
+  offers the email address. Trying again works.
 
 **What is sent:** `firstName`, `lastName`, `name`, `email`, `brand`,
 `message`, `source` and a subject line. Nothing financial is ever asked.
 
-**What the founder sees:** the button reads "Sending your note", then the form
-is replaced by a thank-you addressed to them by first name. That appears only
-after the endpoint confirms receipt. If the send fails, the page says so,
-keeps what they typed, and offers the email address.
+**Settings** are in `CONFIG` near the bottom of
+`public/welcome-home/index.html`: `formEndpoint` (the Formspree address) and
+`contactEmail` (shown if a send fails, and to visitors without JavaScript).
+If `formEndpoint` is ever blanked, the form falls back to preparing an email
+in the founder's own mail app.
 
-`contactEmail` in the same `CONFIG` block sets the fallback address.
+**If a real submission fails:** in Formspree's form settings, check that a
+CAPTCHA is not required (it can block a form that submits in place), and that
+`believestudio.co` is allowed if a domain restriction is on. The free plan
+also stops accepting submissions once its monthly allowance is used.
+
+**Before or at launch:** the site's Privacy page says the website has no
+contact forms. That needs updating to mention this form and Formspree.
 
 ## Privacy
 

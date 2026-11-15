@@ -769,7 +769,7 @@
                       founder's own mail app, and says so plainly.
        See docs/THE_UNPAVED_PATH.md for the steps. */
     var CONFIG = {
-      formEndpoint: '',
+      formEndpoint: 'https://formspree.io/f/myeweeor',
       contactEmail: 'hello@believestudio.co'
     }
 
@@ -888,8 +888,10 @@
     })
     function setStatus(html, isError) { statusEl.className = 'status' + (isError ? ' is-error' : ''); statusEl.innerHTML = html }
 
+    var sending = false   // one request at a time: a second click or Enter while sending does nothing
     form.addEventListener('submit', function (e) {
       e.preventDefault()
+      if (sending) return
       setStatus('')
       var firstBad = null
       rules.forEach(function (rule) { if (!check(rule) && !firstBad) firstBad = document.getElementById(rule.id) })
@@ -923,7 +925,8 @@
         return
       }
 
-      sendBtn.disabled = true
+      sending = true
+      sendBtn.disabled = true; sendBtn.setAttribute('aria-busy', 'true')
       var label = sendBtn.textContent
       sendBtn.textContent = 'Sending your note'
       fetch(CONFIG.formEndpoint, {
@@ -945,8 +948,9 @@
         focusQuietly(box)
         try { box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }) } catch (e) {}
       }).catch(function () {
-        sendBtn.disabled = false; sendBtn.textContent = label
-        setStatus('Something went wrong and your note was not sent. Please try again, or write to ' + mailLink + ' and we will pick it up from there.', true)
+        sending = false
+        sendBtn.disabled = false; sendBtn.removeAttribute('aria-busy'); sendBtn.textContent = label
+        setStatus('We\u2019re sorry, your note didn\u2019t go through. Everything you wrote is still here, so please try again in a moment. Or write to ' + mailLink + ' and we\u2019ll pick it up from there.', true)
       })
     })
   })()
