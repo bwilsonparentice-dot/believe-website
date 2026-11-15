@@ -108,7 +108,7 @@ All in `public/the-unpaved-path/index.html`:
 | --- | --- |
 | Invitation wording | the `<main>` section; each passage is plain text in order |
 | Dates or venue, once confirmed | the line `England. Three days. An intimate founding circle.` (marked with a comment) |
-| The dining room photograph | currently `/photos/unpaved-dining-country.webp` (used three times: the preload link, `.ent-room` in the styles, and the `welcome-photo` image). The earlier London room is `/photos/photo-table.webp`; swap the name back in those three places to return to it. `--room-pos` on `.welcome-photo` sets which part of the photograph stays in frame. |
+| The dining room photograph | see "The dining room" below |
 | The other two photographs | the `<img>` tags for `photo-closing.webp` and `photo-conversation.webp`; update the `alt` text to match |
 | The booking link | the Calendly link just above `</main>` |
 | Door timing | the two numbers in the `enter` function (`1650`, `2800`) and the `1750ms` leaf transition |
@@ -152,33 +152,38 @@ Suggestions for approval, not implemented:
 - A dedicated link-preview image. The page currently uses the site's
   townhouse image, `og-believe.jpg`.
 
-## The dining room: two framings
+## The dining room
 
-| Screen | Photograph |
-| --- | --- |
-| Phones and portrait screens | `public/photos/unpaved-dining-country.webp` (the approved original, 1199 x 1312) |
-| Wide screens (desktop, landscape tablet) | `public/photos/unpaved-dining-country-wide.webp` (16:9, 1672 x 941) |
+One photograph serves every screen:
+`public/photos/unpaved-dining-country-wide.webp` (16:9, 1672 x 941).
 
-The two are different photographs of the same kind of room, not one picture
-cropped two ways, so a founder on a phone and a founder on a laptop see
-slightly different rooms.
+- **Wide screens** show essentially all of it.
+- **Phones and portrait screens** show a portrait framing taken from its
+  centre: the chandelier, the hydrangeas, the table and the navy curtain. The
+  fireplace and most of the chairs fall outside a phone-shaped frame, and
+  because a narrow slice of the file is enlarged, it is soft on phones.
 
-On wide screens the chandelier hangs in the middle of the picture, so the
+The chandelier hangs in the middle of the picture, so on every screen the
 welcome is set around it: "Welcome home." above the lampshades, "We've saved
 you a seat." just beneath the brass ring, the naming lines clear of the candle
-flames. The sizes are tied to screen height so this holds at any desktop size.
-The glimpse through the opening door uses the same photograph as the scene it
-opens onto.
+flames. Sizes are tied to screen height so this holds at any size. The glimpse
+through the opening door uses the same photograph.
 
-**Rollback to the approved original on wide screens** (all in
-`public/the-unpaved-path/index.html`, each marked `ROLLBACK`):
+**A true portrait master for phones (recommended).** A portrait photograph of
+this same room, composed for a phone, would be sharper and could show the
+fireplace and more seats. Aim for about 1290 x 2796 or larger, with the
+chandelier in the upper third, the table and chairs in the lower half, and
+calm wall between them for the words. Save it as
+`public/photos/unpaved-dining-country-portrait.webp` and remove the comment
+marks around the portrait `<source>` line in the `<picture>` element. The
+text positions in the portrait style block will then need re-checking against
+the new picture.
 
-1. Delete the `<source>` line inside the `<picture>` element.
-2. Delete the `.ent-room` line inside the wide-screen door rules.
-3. In the wide-screen welcome rules, use the values listed in the comment
-   above them.
-
-The earlier London room (`photo-table.webp`) also remains in the repo.
+**Rollback.** The earlier square photograph
+(`unpaved-dining-country.webp`) and the London room (`photo-table.webp`)
+remain in the repo. The comment inside the `<picture>` element lists the
+three places to change the file name, and the two welcome style blocks note
+the values that suited the square photograph.
 
 ## The personal email
 

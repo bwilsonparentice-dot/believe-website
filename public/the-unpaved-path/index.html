@@ -28,8 +28,7 @@
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="preload" as="image" href="/photos/entrance49-base.webp">
   <link rel="preload" as="image" href="/photos/entrance49-leaf.webp">
-  <link rel="preload" as="image" href="/photos/unpaved-dining-country.webp" media="(max-aspect-ratio: 5/4)">
-  <link rel="preload" as="image" href="/photos/unpaved-dining-country-wide.webp" media="(min-aspect-ratio: 5/4)">
+  <link rel="preload" as="image" href="/photos/unpaved-dining-country-wide.webp">
 
   <script>
     /* The door is a progressive enhancement. Without JavaScript the page is a
@@ -118,7 +117,7 @@
     /* what waits behind the door: the candlelit table, glimpsed through the opening */
     .ent-room, .ent-spill, .ent-leaf { position: absolute; left: 42.76%; top: 27.42%; width: 14.53%; height: 49.95%; }
     .ent-room {
-      z-index: 1; background: url('/photos/unpaved-dining-country.webp') 52% 46% / cover no-repeat;
+      z-index: 1; background: url('/photos/unpaved-dining-country-wide.webp') 50% 50% / cover no-repeat;
       box-shadow: inset 0 0 26px rgba(8, 6, 3, 0.6);
     }
     .ent-spill {
@@ -225,7 +224,6 @@
       .door-stage { align-items: center; }
       .ent { width: max(100vw, calc(var(--vh) * 177.7)); }
       .ent-plate { display: block; }
-      .ent-room { background-image: url('/photos/unpaved-dining-country-wide.webp'); background-position: 50% 50%; }   /* ROLLBACK: delete this line */
       .door-scrim {
         background:
           linear-gradient(90deg, rgba(22,32,58,0.95) 0%, rgba(22,32,58,0.91) 22%, rgba(22,32,58,0.55) 32%, rgba(22,32,58,0) 42%),
@@ -262,10 +260,11 @@
       padding: clamp(76px, calc(var(--vh) * 12), 150px) var(--gutter) clamp(120px, calc(var(--vh) * 18), 180px);
     }
     /* THE DINING ROOM
-       Phones and portrait screens use the approved photograph. Wide screens
-       use the 16:9 photograph; see the <picture> element in the markup.
+       One photograph serves every screen: wide screens show all of it,
+       phones show a portrait framing from its centre. See the <picture>
+       element in the markup for how to give phones their own portrait file.
        --room-pos chooses which part of the photograph stays in frame. */
-    .welcome-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--room-pos, 46% 50%); }
+    .welcome-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--room-pos, 50% 50%); }
     /* The shade is gathered behind the words and gone before the table: the
        chairs, flowers, place settings and fire stay in the light. */
     .welcome::before {
@@ -292,28 +291,44 @@
       display: block; margin-top: 7px; font-family: var(--serif); font-weight: 400; font-size: clamp(21px, 2.3vw, 28px);
       letter-spacing: 0; text-indent: 0; text-transform: none; line-height: 1.26; text-wrap: balance;
     }
-    /* taller phones: "We've saved you a seat." drops just below the chandelier ring */
-    @media (max-aspect-ratio: 5/4) and (min-height: 740px) { .welcome-seat { margin-top: calc(var(--vh) * 6.4); } .welcome { padding-top: calc(var(--vh) * 10.5); } }
+    /* Phones and portrait screens: a portrait framing of the same room,
+       centred on the chandelier, the hydrangeas and the table. The words are
+       set around the chandelier exactly as on wide screens, and tied to the
+       height of the screen so they hold their place against the photograph.
+       (Values that suited the earlier square photograph: padding-top 10.5;
+       no title line-height; seat margin-top 6.4; --room-pos 46% 50%.) */
+    @media (max-aspect-ratio: 5/4) {
+      .welcome { padding-top: calc(var(--vh) * 6.3); }
+      .welcome::before {
+        background:
+          radial-gradient(130% 13% at 50% 9.5%, rgba(22, 15, 8, 0.46), rgba(22, 15, 8, 0) 100%),
+          radial-gradient(130% 17% at 50% 41%, rgba(22, 15, 8, 0.62), rgba(22, 15, 8, 0.34) 60%, rgba(22, 15, 8, 0) 100%),
+          linear-gradient(180deg, rgba(22,15,8,0.46) 0%, rgba(22,15,8,0.24) 20%, rgba(22,15,8,0.22) 44%, rgba(22,15,8,0) 54%, rgba(22,32,58,0) 80%, rgba(22,32,58,0.62) 100%);
+      }
+      .welcome-title { font-size: min(12.4vw, calc(var(--vh) * 6.4)); line-height: calc(var(--vh) * 6.6); }
+      .welcome-seat { font-size: clamp(24px, min(7vw, calc(var(--vh) * 3.3)), 44px); margin-top: calc(var(--vh) * 20.2); }
+      .welcome-rule { margin: calc(var(--vh) * 1.3) auto calc(var(--vh) * 1.2); }
+      .welcome-name span { font-size: clamp(17px, min(5.4vw, calc(var(--vh) * 2.55)), 28px); margin-top: calc(var(--vh) * 0.6); }
+    }
     /* Wide screens, with the 16:9 photograph. The chandelier hangs in the
        middle of that picture, so the welcome is set around it, not on it:
        "Welcome home." above the lampshades, "We've saved you a seat." just
        beneath the brass ring, and the naming lines clear of the candle
        flames. Every size is tied to the height of the screen, so the words
        keep their place against the photograph at any desktop size.
-       ROLLBACK to the approved original on wide screens: use these values
-       instead: padding-top 7.6; title min(9vw, 14.2); seat margin-top 2;
-       rule margins 2 and 1.7; --room-pos 50% 47%. */
+       (Values that suited the earlier square photograph: padding-top 7.6;
+       title min(9vw, 14.2); seat margin-top 2; rule margins 2 and 1.7;
+       --room-pos 50% 47%.) */
     @media (min-aspect-ratio: 5/4) {
-      .welcome { padding-top: calc(var(--vh) * 2.6); }
+      .welcome { padding-top: calc(var(--vh) * 4.5); }
       .welcome::before {
         background:
           radial-gradient(58% 16% at 50% 9%, rgba(22, 15, 8, 0.42), rgba(22, 15, 8, 0) 100%),
           radial-gradient(52% 20% at 50% 42%, rgba(22, 15, 8, 0.6), rgba(22, 15, 8, 0.3) 60%, rgba(22, 15, 8, 0) 100%),
           linear-gradient(180deg, rgba(22,15,8,0.44) 0%, rgba(22,15,8,0.26) 20%, rgba(22,15,8,0.2) 44%, rgba(22,15,8,0) 56%, rgba(22,32,58,0) 80%, rgba(22,32,58,0.62) 100%);
       }
-      .welcome-photo { --room-pos: 50% 50%; }
-      .welcome-title { font-size: clamp(38px, min(8.2vw, calc(var(--vh) * 12.6)), 124px); }
-      .welcome-seat { font-size: clamp(22px, min(3.4vw, calc(var(--vh) * 5.1)), 48px); margin-top: calc(var(--vh) * 18); }
+      .welcome-title { font-size: clamp(34px, min(7.4vw, calc(var(--vh) * 11.3)), 112px); }
+      .welcome-seat { font-size: clamp(22px, min(3.4vw, calc(var(--vh) * 5.1)), 48px); margin-top: calc(var(--vh) * 17.4); }
       .welcome-rule { margin: calc(var(--vh) * 1.5) auto calc(var(--vh) * 1.3); }
       .welcome-name { font-size: clamp(10.5px, min(1.25vw, calc(var(--vh) * 1.5)), 14px); }
       .welcome-name span { font-size: clamp(17px, min(2.1vw, calc(var(--vh) * 3.1)), 28px); margin-top: calc(var(--vh) * 0.7); }
@@ -542,14 +557,19 @@
     <!-- ══ SCENE THREE · WELCOME HOME ═════════════════════════════════ -->
     <section class="welcome" id="welcome" aria-labelledby="welcome-title">
       <picture>
-        <!-- THE DINING ROOM, TWO FRAMINGS
-             Wide screens use the 16:9 photograph named in the <source> line.
-             Phones and portrait screens use the approved original in <img>.
-             ROLLBACK: delete the <source> line (or wrap it in comment marks)
-             and wide screens return to the approved original at once. Then
-             also remove the two "wide" rules marked ROLLBACK in the styles. -->
-        <source media="(min-aspect-ratio: 5/4)" srcset="/photos/unpaved-dining-country-wide.webp" width="1672" height="941">
-      <img class="welcome-photo" src="/photos/unpaved-dining-country.webp" width="1199" height="1312" alt="A country house dining room at golden hour: a long wooden table set with candles, flowers and linen, cream armchairs drawn up to every place, a fire lit, and tall windows looking out over green hills.">
+        <!-- THE DINING ROOM
+             One photograph (the 16:9 room) serves every screen.
+             A TRUE PORTRAIT MASTER FOR PHONES: when a portrait photograph of
+             this same room exists, save it as
+             public/photos/unpaved-dining-country-portrait.webp and remove the
+             comment marks around the <source> line below. Phones then use it
+             and wide screens keep the 16:9 photograph.
+        <source media="(max-aspect-ratio: 5/4)" srcset="/photos/unpaved-dining-country-portrait.webp">
+             ROLLBACK to the earlier square photograph: change the file name in
+             <img> below, in .ent-room in the styles and in the preload link at
+             the top to unpaved-dining-country.webp (width 1199, height 1312),
+             and use the earlier values noted in the two welcome style blocks. -->
+      <img class="welcome-photo" src="/photos/unpaved-dining-country-wide.webp" width="1672" height="941" alt="A country house dining room at golden hour: a long wooden table set with candles, hydrangeas and linen, cream chairs drawn up to every place, a fire lit, and tall windows looking out over green hills.">
       </picture>
       <div class="welcome-inner">
         <h2 class="welcome-title" id="welcome-title" tabindex="-1">Welcome home.</h2>
