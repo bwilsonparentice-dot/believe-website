@@ -6,9 +6,10 @@ dates, venue, attendees or partners, because none of those are confirmed.
 
 | | |
 | --- | --- |
-| Live URL | `https://believestudio.co/the-unpaved-path/` |
-| File | `public/the-unpaved-path/index.html` (one self-contained file: markup, styles, script) |
-| Local preview | `npm run dev`, then open `http://localhost:5173/the-unpaved-path/` |
+| Live URL | `https://believestudio.co/welcome-home/` |
+| File | `public/welcome-home/index.html` (one self-contained file: markup, styles, script) |
+| Local preview | `npm run dev`, then open `http://localhost:5173/welcome-home/` |
+| Why this address | The public event page lives at `/the-unpaved-path/live`, so the invitation sits at an address that cannot be guessed by trimming that link. Nothing is served at `/the-unpaved-path/` itself. |
 | Skip the door | add `#invitation` or `#interest` to the URL |
 
 ## How it is built, and why
@@ -63,27 +64,37 @@ words stand to the left of the door.
 - "Skip the animation" is always visible on the door.
 - If the door photograph fails to load, the page opens by itself.
 
-## The interest form: what is and is not connected
+## The interest form
 
-**No form backend exists on this site, so none has been invented.** Today the
-button "I'd love to learn more" checks the fields, then opens a ready-to-send
-email to `hello@believestudio.co` in the founder's own mail app. The page says
-this plainly and never claims the note was sent or saved.
+**Status: not yet connected to a destination.** The page is built to submit
+directly and show a confirmation, but it needs an endpoint. Until one is set,
+"I'd love to learn more" falls back to opening a ready-to-send email to
+`hello@believestudio.co` in the founder's own mail app, and says so plainly.
 
-To collect submissions directly instead:
+The site is static (GitHub Pages) and has no backend of its own, so direct
+submission needs a service to receive the note and pass it on.
 
-1. Create an endpoint that accepts a JSON `POST` and answers `2xx` on success.
-   Formspree or Basin work with no code; a Supabase Edge Function or a CRM
-   webhook also work.
-2. In `public/the-unpaved-path/index.html`, find `CONFIG` near the bottom and
-   set `formEndpoint` to that URL.
+**To connect it (Formspree, free plan):**
 
-The page then posts `firstName`, `lastName`, `email`, `brand`, `message` and
-`source`, and shows the thank-you message only after the endpoint confirms
-receipt. A failed send is reported, with the email address as a fallback.
+1. Create a free account at formspree.io using the address inquiries should
+   arrive at, and confirm that address.
+2. Create a form. Copy its endpoint, which looks like
+   `https://formspree.io/f/abcdwxyz`. It is not a secret.
+3. In `public/welcome-home/index.html`, find `CONFIG` near the bottom and set
+   `formEndpoint` to that address.
+
+Any other endpoint that accepts a JSON `POST` and answers `2xx` works the same
+way.
+
+**What is sent:** `firstName`, `lastName`, `name`, `email`, `brand`,
+`message`, `source` and a subject line. Nothing financial is ever asked.
+
+**What the founder sees:** the button reads "Sending your note", then the form
+is replaced by a thank-you addressed to them by first name. That appears only
+after the endpoint confirms receipt. If the send fails, the page says so,
+keeps what they typed, and offers the email address.
+
 `contactEmail` in the same `CONFIG` block sets the fallback address.
-
-The form never asks for revenue, funding, distribution or anything financial.
 
 ## Privacy
 
@@ -102,7 +113,7 @@ linked from the navigation, directory, footer or any sitemap, and it is marked
 
 ## Updating it later
 
-All in `public/the-unpaved-path/index.html`:
+All in `public/welcome-home/index.html`:
 
 | To change | Where |
 | --- | --- |
@@ -299,7 +310,7 @@ Rather than trying to explain it all in an email, I wanted to invite you to
 experience the idea for yourself.
 
 Open your invitation
-https://believestudio.co/the-unpaved-path/
+https://believestudio.co/welcome-home/
 
 I'd love to hear what you think.
 

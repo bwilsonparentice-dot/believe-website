@@ -8,7 +8,7 @@
     Not linked from the site navigation, directory or sitemap, and marked
     noindex below. Unlisted is not private: anyone with the URL can open it,
     so nothing invitee-specific belongs in this file or in its URL.
-    Editing guide: docs/THE_UNPAVED_PATH.md
+    Lives at /welcome-home/. Editing guide: docs/THE_UNPAVED_PATH.md
   -->
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="googlebot" content="noindex, nofollow">
@@ -511,9 +511,13 @@
     .status { margin: 26px auto 0; max-width: 34em; text-align: center; font-size: clamp(20px, 2.1vw, 24px); line-height: 1.5; color: var(--ivory); }
     .status:empty { display: none; }
     .status.is-error { color: #f6c9b8; }
-    .thanks { max-width: 640px; margin: clamp(40px, 6.5vh, 64px) auto 0; padding: clamp(30px, 5vh, 48px) clamp(22px, 4vw, 44px); border: 1px solid rgba(226, 201, 146, 0.5); border-radius: 2px; }
-    .thanks h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.12; }
-    .thanks p { margin-top: 14px; font-size: clamp(20px, 2.1vw, 24px); line-height: 1.55; color: rgba(250, 244, 234, 0.9); }
+    .thanks { max-width: 620px; margin: clamp(40px, 6.5vh, 64px) auto 0; padding: clamp(8px, 2vh, 20px) 0; text-align: center; animation: fadeOnly 1200ms ease both; }
+    .thanks:focus { outline: none; }
+    .thanks-rule { width: 64px; height: 1px; background: var(--gold-light); margin: 0 auto clamp(26px, 4vh, 40px); }
+    .thanks h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.1; color: var(--ivory); text-wrap: balance; }
+    .thanks p { margin-top: 14px; font-size: clamp(20px, 2.1vw, 25px); line-height: 1.55; color: rgba(250, 244, 234, 0.92); text-wrap: balance; }
+    .thanks .thanks-lead { margin-top: clamp(18px, 3vh, 28px); }
+    .thanks .thanks-sign { margin-top: clamp(22px, 3.6vh, 34px); font-style: italic; font-size: clamp(22px, 2.6vw, 31px); color: var(--gold-light); }
     .or { margin-top: clamp(44px, 7vh, 72px); }
     .or a { font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; text-decoration: none; color: var(--gold-light); border-bottom: 1px solid rgba(226, 201, 146, 0.6); padding: 15px 0 10px; display: inline-block; line-height: 1.6; }
     .or a:hover { color: #fff; border-color: #fff; }
@@ -549,6 +553,7 @@
       .door.is-opening .door-stage { animation: none; }
       .door.is-leaving { transition: opacity 300ms ease; }
       .arriving .welcome-inner > *, .arriving .welcome-cue, .arriving .welcome-photo { animation: none; opacity: 1; }
+      .thanks { animation: none; }
       .entered .welcome-cue-arrow { animation: none; }
       .reveal-on .reveal { opacity: 1; transform: none; transition: none; }
     }
@@ -754,13 +759,14 @@
 
     /* ── CONFIGURATION ───────────────────────────────────────────────────
        formEndpoint: where "I'd love to learn more" is sent.
-         ''  (blank)  No backend is connected. The form then prepares an
-                      email to contactEmail in the founder's own mail app,
-                      and says so plainly. Nothing is stored anywhere.
-         'https://…'  Any endpoint that accepts a JSON POST and answers 2xx
-                      on success (Formspree, Basin, a Supabase Edge Function,
-                      a CRM webhook). The thank-you message is shown only
-                      after the endpoint confirms it received the note.
+         'https://…'  The form submits directly from this page: a JSON POST to
+                      the endpoint, which must answer 2xx on success (a
+                      Formspree form address works as it is). The thank-you is
+                      shown only after the endpoint confirms receipt; a failed
+                      send says so and keeps what the founder typed.
+         ''  (blank)  NOT CONNECTED. Until an endpoint is set, the form falls
+                      back to preparing an email to contactEmail in the
+                      founder's own mail app, and says so plainly.
        See docs/THE_UNPAVED_PATH.md for the steps. */
     var CONFIG = {
       formEndpoint: '',
@@ -896,7 +902,9 @@
         email: form.elements['email'].value.trim(),
         brand: form.elements['brand'].value.trim(),
         message: form.elements['message'].value.trim(),
-        source: 'The Unpaved Path invitation'
+        source: 'The Unpaved Path invitation',
+        name: form.elements['firstName'].value.trim() + ' ' + form.elements['lastName'].value.trim(),
+        _subject: 'The Unpaved Path: ' + form.elements['firstName'].value.trim() + ' ' + form.elements['lastName'].value.trim() + ' would love to learn more'
       }
 
       if (!connected) {
@@ -917,7 +925,7 @@
 
       sendBtn.disabled = true
       var label = sendBtn.textContent
-      sendBtn.textContent = 'Sending'
+      sendBtn.textContent = 'Sending your note'
       fetch(CONFIG.formEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -927,11 +935,15 @@
         // confirmed by the endpoint: only now do we say thank you
         var box = document.createElement('div')
         box.className = 'thanks'; box.setAttribute('role', 'status'); box.tabIndex = -1
-        var h = document.createElement('h3'); h.textContent = 'Thank you, ' + data.firstName + '.'
-        var p = document.createElement('p'); p.textContent = 'Your note is with Beth, and she will be in touch personally. We are so glad this spoke to you.'
-        box.appendChild(h); box.appendChild(p)
+        var add = function (tag, cls, text) { var el = document.createElement(tag); if (cls) el.className = cls; el.textContent = text; box.appendChild(el); return el }
+        add('div', 'thanks-rule', '').setAttribute('aria-hidden', 'true')
+        add('h3', '', 'Thank you, ' + data.firstName + '.')
+        add('p', 'thanks-lead', 'Your note is on its way to Beth.')
+        add('p', '', 'She reads every one herself, and she will write back to you personally.')
+        add('p', 'thanks-sign', 'We are so glad this found you.')
         form.parentNode.replaceChild(box, form)
         focusQuietly(box)
+        try { box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }) } catch (e) {}
       }).catch(function () {
         sendBtn.disabled = false; sendBtn.textContent = label
         setStatus('Something went wrong and your note was not sent. Please try again, or write to ' + mailLink + ' and we will pick it up from there.', true)
