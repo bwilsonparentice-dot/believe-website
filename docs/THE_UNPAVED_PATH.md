@@ -179,6 +179,13 @@ marks around the portrait `<source>` line in the `<picture>` element. The
 text positions in the portrait style block will then need re-checking against
 the new picture.
 
+**Colour.** The photograph carries the approved "Study 1 Refined" grade: the
+orange and yellow cast is eased, the fire, candles, hydrangeas and mauve
+napkins keep their original colour, and the curtains read as navy. The
+ungraded file is kept as `unpaved-dining-country-wide-original.webp`; to
+return to it, copy it over `unpaved-dining-country-wide.webp`. The portrait
+for phones should be generated from the graded photograph so the two match.
+
 **Rollback.** The earlier square photograph
 (`unpaved-dining-country.webp`) and the London room (`photo-table.webp`)
 remain in the repo. The comment inside the `<picture>` element lists the
@@ -193,8 +200,9 @@ of the seating. A dedicated portrait photograph of the same room replaces it.
 
 **How to generate it (ChatGPT Images)**
 
-1. Attach the approved desktop photograph
-   (`public/photos/unpaved-dining-country-wide.webp`) as the reference image.
+1. Attach the approved, graded desktop photograph
+   (`public/photos/unpaved-dining-country-wide.webp`, Study 1 Refined) as the
+   reference image.
 2. Ask for a portrait image at the tallest size offered (1024 x 1536, 2:3).
 3. Paste the prompt below.
 4. If an upscale option is offered, upscale 2x. Send the result as a file.
@@ -268,11 +276,8 @@ comment marks around the portrait `<source>` line in the `<picture>` element,
 give the doorway glimpse (`.ent-room`) the same file on portrait screens, and
 re-check the welcome text positions, contrast and the 21 regression checks.
 
-**Colour.** If the portrait is generated cooler than the desktop photograph,
-the two will not match. Either generate the portrait to match the desktop as
-it is, or apply the same gentle grade to the desktop photograph (a study was
-prepared; it eases the golden cast and deepens the navy while keeping the
-fire and candle glow).
+**Colour.** Use the graded desktop photograph (Study 1 Refined) as the
+reference image, so the portrait inherits the same colour.
 
 ## The personal email
 
