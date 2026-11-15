@@ -23,6 +23,7 @@ import { StudioChapter } from './chapters/Studio'
 import { BuildInPublic } from './chapters/BuildInPublic'
 import { LetsTalk } from './components/LetsTalk'
 import { Possibilities } from './components/Possibilities'
+import { UnpavedPathLive } from './components/UnpavedPathLive'
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
@@ -69,6 +70,7 @@ interface State {
   showBuildInPublic: boolean
   showLetsTalk: boolean
   showPossibilities: boolean
+  showUnpavedPathLive: boolean
   showJournal: boolean; openArticle: string | null
   showDirectory: boolean
   showObservatory: boolean; showConversation: boolean; showAbout: boolean
@@ -158,6 +160,7 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showBuildInPublic: 'build-in-public',
   showLetsTalk: 'lets-talk',
   showPossibilities: 'possibilities',
+  showUnpavedPathLive: 'the-unpaved-path/live',
   showLibrary: 'library',
   showJournal: 'journal',
   showPeople: 'people',
@@ -234,7 +237,7 @@ function overlaySlugFromPath(pathname: string): string | null {
 // every overlay flag/doorway, closed — the neutral ground a route opens from
 const CLOSED_OVERLAYS: Partial<State> = {
   showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
-  showBuildInPublic: false, showLetsTalk: false, showPossibilities: false,
+  showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false,
   showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
   showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
@@ -260,7 +263,7 @@ function makeInitialState(): State {
     showHouses: false, showPeople: false, showStudio: false,
     showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showJournal: false, openArticle: null, showDirectory: false,
+    showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false, showJournal: false, openArticle: null, showDirectory: false,
     showObservatory: false, showConversation: false, showAbout: false,
     showPrivacy: false, showTerms: false, showAccessibility: false,
     showKey: false, facadeReady: false, birdLanded: false,
@@ -601,7 +604,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -678,9 +681,10 @@ export class App extends React.Component<Record<string, never>, State> {
     return (
       <>
         {phase === 'overture' && this.renderOverture(opening)}
-        {phase === 'map' && !this.state.showLetsTalk && !this.state.showPossibilities && this.renderBuilding(alive, sunShiftAnim)}
+        {phase === 'map' && !this.state.showLetsTalk && !this.state.showPossibilities && !this.state.showUnpavedPathLive && this.renderBuilding(alive, sunShiftAnim)}
         {phase === 'map' && this.state.showLetsTalk && this.renderLetsTalk()}
         {phase === 'map' && this.state.showPossibilities && this.renderPossibilities()}
+        {phase === 'map' && this.state.showUnpavedPathLive && this.renderUnpavedPathLive()}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
 
         {this.state.showKey && <ReceiveKey ctx={this.ctx} onClose={this.closeKey} />}
@@ -804,6 +808,18 @@ export class App extends React.Component<Record<string, never>, State> {
       <div style={{ position: 'relative', background: '#efe6d3', minHeight: '100vh', animation: 'veilIn 650ms ease both' }}>
         {this.renderHeader()}
         <Possibilities ctx={this.ctx} />
+        <Footer ctx={this.ctx} />
+      </div>
+    )
+  }
+
+  // ── The Unpaved Path with Beth & Kendra — the event registration landing
+  // page (reached at /the-unpaved-path/live), with the House header and footer.
+  private renderUnpavedPathLive() {
+    return (
+      <div className="up-page" style={{ position: 'relative', background: '#efe6d3', minHeight: '100vh', animation: 'veilIn 650ms ease both' }}>
+        {this.renderHeader()}
+        <UnpavedPathLive ctx={this.ctx} />
         <Footer ctx={this.ctx} />
       </div>
     )

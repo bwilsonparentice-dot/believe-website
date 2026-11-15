@@ -857,3 +857,76 @@ a:hover { color: #b08a4a; }
   .bs-ent-leaf, .bs-ent-leaf::after, .bs-ent-spill { transition: none; }
   .bs-ent-walk { animation: none; }
 }
+
+/* ── The Unpaved Path with Beth & Kendra (/the-unpaved-path/live) ──────────
+   A straightforward event page: a deep-navy hero matched to the event artwork
+   (#02122d), then the invitation on the House's ivory. Scoped to .up-page. */
+.up-page { --up-navy: #02122d; --up-gold: #d9b45c; --up-ivory: #f6efe4; }
+/* over the navy hero the header's cream fade would read as haze, so on this
+   page it is a solid cream bar with a fine gold rule */
+.up-page .bs-header { background: rgba(239,230,211,0.97); border-bottom: 1px solid rgba(156,122,63,0.32); }
+.up-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.up-hero { background: var(--up-navy); color: var(--up-ivory); padding: clamp(96px,13vh,150px) clamp(22px,6vw,80px) clamp(48px,9vh,104px); }
+.up-hero-grid { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: clamp(36px,6vh,56px); align-items: center; }
+.up-h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(34px,4.6vw,62px); line-height: 1.06; margin: 0; text-wrap: balance; }
+.up-h1 span { display: block; }
+.up-h1-gold { color: var(--up-gold); font-style: italic; font-weight: 400; }
+.up-rule { width: 64px; height: 1px; background: var(--up-gold); margin: clamp(20px,3vh,30px) 0; }
+.up-event { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(23px,2.4vw,31px); line-height: 1.2; margin: 0; }
+.up-event em, .up-final .up-h2 em { font-weight: 400; }
+.up-intro { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(19px,1.7vw,23px); line-height: 1.5; color: rgba(246,239,228,0.88); margin: 12px 0 0; max-width: 34ch; text-wrap: pretty; }
+
+.up-details { margin: clamp(22px,3.4vh,32px) 0 0; display: flex; flex-direction: column; gap: 8px; }
+.up-date { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(22px,2.1vw,28px); line-height: 1.2; }
+.up-meta { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.7; }
+.up-details--dark .up-date { color: var(--up-gold); }
+.up-details--dark .up-meta { color: rgba(246,239,228,0.9); }
+.up-details--light { align-items: center; }
+.up-details--light .up-date { color: #1e2a44; }
+.up-details--light .up-meta { color: rgba(43,39,35,0.8); }
+
+.up-action { margin-top: clamp(24px,3.8vh,36px); }
+.up-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 44px; border-radius: 999px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.24em; text-transform: uppercase; text-decoration: none; transition: background 240ms ease, box-shadow 240ms ease; }
+.up-btn--dark { background: var(--up-gold); color: var(--up-navy); }
+.up-btn--dark:hover { background: #e9cb80; color: var(--up-navy); }
+.up-btn--dark:focus-visible { outline: 2px solid var(--up-ivory); outline-offset: 4px; }
+.up-btn--light { background: #1e2a44; color: #faf4ea; }
+.up-btn--light:hover { background: #16203a; color: #faf4ea; box-shadow: inset 0 0 0 1px rgba(217,180,92,0.6); }
+.up-btn--light:focus-visible { outline: 2px solid #9c7a3f; outline-offset: 4px; }
+.up-note { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 14px; letter-spacing: 0.02em; line-height: 1.6; margin: 14px 0 0; }
+.up-note--dark { color: rgba(246,239,228,0.82); }
+.up-note--light { color: rgba(43,39,35,0.78); }
+
+/* the artwork: always whole and in proportion (1122 × 1402), never cropped */
+.up-art { margin: 0 auto; width: min(100%, 440px); }
+.up-art img { display: block; width: 100%; height: auto; object-fit: contain; }
+
+@media (min-width: 900px) {
+  .up-hero-grid { grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr); gap: clamp(40px,5vw,84px); }
+  .up-art { width: min(100%, 480px); margin: 0 0 0 auto; }
+}
+
+.up-main { background: linear-gradient(176deg,#f1e9d8 0%,#efe6d3 50%,#e9dfc9 100%); color: #2b2723; }
+.up-sec { max-width: 760px; margin: 0 auto; padding: clamp(44px,8vh,92px) clamp(22px,7vw,60px) 0; text-align: center; }
+.up-sec--wide { max-width: 940px; }
+.up-hair { width: 58px; height: 1px; background: rgba(156,122,63,0.7); margin: 0 auto clamp(40px,7vh,80px); }
+.up-h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(29px,3.8vw,48px); line-height: 1.12; color: #1e2a44; margin: 0 auto; max-width: 22ch; text-wrap: balance; }
+.up-body { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(19px,1.9vw,23px); line-height: 1.6; color: rgba(43,39,35,0.86); margin: clamp(20px,3.2vh,30px) auto 0; max-width: 46ch; text-wrap: pretty; }
+.up-sec > .up-body:first-child { margin-top: 0; }
+.up-sec > .up-body + .up-h2 { margin-top: clamp(30px,5vh,48px); }
+.up-body--lead { font-style: italic; color: #7a5e34; max-width: 40ch; }
+.up-eyebrow { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.42em; text-transform: uppercase; color: #7a5e34; margin: 0; }
+
+.up-topics { list-style: none; padding: 0; margin: clamp(30px,5vh,52px) auto clamp(34px,5.4vh,56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(26px,3.4vh,40px) clamp(28px,4vw,52px); text-align: left; }
+.up-topics li { border-top: 1px solid rgba(156,122,63,0.5); padding-top: 18px; }
+.up-num { display: block; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.28em; color: #7a5e34; margin-bottom: 12px; }
+.up-topic { display: block; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(22px,2.2vw,27px); line-height: 1.22; color: #1e2a44; text-wrap: balance; }
+
+.up-hosts { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: clamp(30px,5vh,44px) clamp(30px,5vw,64px); margin-top: clamp(28px,4.6vh,44px); }
+.up-host h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(26px,2.8vw,34px); line-height: 1.12; color: #1e2a44; margin: 0; }
+.up-host ul { list-style: none; padding: 0; margin: 14px 0 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: clamp(18px,1.8vw,21px); line-height: 1.5; color: rgba(43,39,35,0.84); }
+
+.up-final { max-width: 860px; padding-top: clamp(60px,11vh,120px); padding-bottom: clamp(70px,13vh,150px); }
+.up-card { border: 1px solid rgba(156,122,63,0.55); background: rgba(250,244,234,0.6); padding: clamp(36px,6vh,64px) clamp(22px,5vw,60px); }
+.up-final .up-action { margin-top: clamp(26px,4vh,38px); }
