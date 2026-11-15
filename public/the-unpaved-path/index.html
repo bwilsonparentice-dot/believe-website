@@ -328,18 +328,36 @@
        title min(9vw, 14.2); seat margin-top 2; rule margins 2 and 1.7;
        --room-pos 50% 47%.) */
     @media (min-aspect-ratio: 5/4) {
-      .welcome { padding-top: calc(var(--vh) * 4.5); }
+      /* --ih is one hundredth of the photograph's height as shown. Up to a
+         16:9 screen the photograph fills the height, so that is the same as
+         the screen's. On screens wider than 9:5 (a phone turned sideways, an ultrawide
+         monitor) the photograph is cut at the bottom only and --ih follows its
+         true height, so the words stay beside the chandelier and candles. */
+      .welcome { --ih: var(--vh); padding-top: calc(var(--ih) * 4.5); }
       .welcome::before {
         background:
           radial-gradient(58% 16% at 50% 9%, rgba(22, 15, 8, 0.42), rgba(22, 15, 8, 0) 100%),
           radial-gradient(52% 20% at 50% 42%, rgba(22, 15, 8, 0.6), rgba(22, 15, 8, 0.3) 60%, rgba(22, 15, 8, 0) 100%),
           linear-gradient(180deg, rgba(22,15,8,0.44) 0%, rgba(22,15,8,0.26) 20%, rgba(22,15,8,0.2) 44%, rgba(22,15,8,0) 56%, rgba(22,32,58,0) 80%, rgba(22,32,58,0.62) 100%);
       }
-      .welcome-title { font-size: clamp(34px, min(7.4vw, calc(var(--vh) * 11.3)), 112px); }
-      .welcome-seat { font-size: clamp(22px, min(3.4vw, calc(var(--vh) * 5.1)), 48px); margin-top: calc(var(--vh) * 17.4); }
-      .welcome-rule { margin: calc(var(--vh) * 1.5) auto calc(var(--vh) * 1.3); }
-      .welcome-name { font-size: clamp(10.5px, min(1.25vw, calc(var(--vh) * 1.5)), 14px); }
-      .welcome-name span { font-size: clamp(17px, min(2.1vw, calc(var(--vh) * 3.1)), 28px); margin-top: calc(var(--vh) * 0.7); }
+      .welcome-title { font-size: clamp(34px, min(7.4vw, calc(var(--ih) * 11.3)), 112px); }
+      .welcome-seat { font-size: clamp(22px, min(3.4vw, calc(var(--ih) * 5.1)), 48px); margin-top: calc(var(--ih) * 17.4); }
+      .welcome-rule { margin: calc(var(--ih) * 1.5) auto calc(var(--ih) * 1.3); }
+      .welcome-name { font-size: clamp(10.5px, min(1.25vw, calc(var(--ih) * 1.5)), 14px); }
+      .welcome-name span { font-size: clamp(17px, min(2.1vw, calc(var(--ih) * 3.1)), 28px); margin-top: calc(var(--ih) * 0.7); }
+    }
+    @media (min-aspect-ratio: 9/5) {
+      .welcome { --ih: 0.5628vw; }
+      .welcome-photo { --room-pos: 50% 0%; }
+    }
+    /* very large monitors: the headline stops growing at 112px, so its line
+       keeps the photograph's measure and the seat line stays below the ring */
+    @media (min-aspect-ratio: 5/4) and (min-height: 1150px) { .welcome-title { line-height: calc(var(--ih) * 11.3); } }
+    /* very small phones: a little less air so the naming lines stay above the candles */
+    @media (max-aspect-ratio: 5/4) and (max-height: 620px) {
+      .welcome-seat { font-size: 21px; margin-top: calc(var(--vh) * 15.8); }
+      .welcome-rule { margin: calc(var(--vh) * 0.7) auto calc(var(--vh) * 0.6); }
+      .welcome-name span { font-size: 15.5px; }
     }
     /* the way onward: a quiet line of type, a rule and a small arrow */
     .welcome-cue {
@@ -497,7 +515,7 @@
     .thanks h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.12; }
     .thanks p { margin-top: 14px; font-size: clamp(20px, 2.1vw, 24px); line-height: 1.55; color: rgba(250, 244, 234, 0.9); }
     .or { margin-top: clamp(44px, 7vh, 72px); }
-    .or a { font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; text-decoration: none; color: var(--gold-light); border-bottom: 1px solid rgba(226, 201, 146, 0.6); padding: 14px 0 8px; display: inline-block; line-height: 1.6; }
+    .or a { font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; text-decoration: none; color: var(--gold-light); border-bottom: 1px solid rgba(226, 201, 146, 0.6); padding: 15px 0 10px; display: inline-block; line-height: 1.6; }
     .or a:hover { color: #fff; border-color: #fff; }
 
     .foot {
@@ -505,7 +523,7 @@
       padding: clamp(40px, 6vh, 64px) var(--gutter) clamp(44px, 7vh, 72px);
       font-family: var(--sans); font-weight: 400; font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; line-height: 2.1;
     }
-    .foot .mark { display: inline-block; padding: 10px 12px; font-family: var(--serif); font-size: 17px; letter-spacing: 0.26em; line-height: 1.4; color: var(--ivory); text-decoration: none; }
+    .foot .mark { display: inline-block; padding: 11px 12px; font-family: var(--serif); font-size: 17px; letter-spacing: 0.26em; line-height: 1.4; color: var(--ivory); text-decoration: none; }
     .foot a:hover { color: #fff; }
     .foot small { display: block; font-size: 11.5px; margin-top: 8px; color: rgba(250, 244, 234, 0.72); }
 
@@ -588,7 +606,7 @@
          Approved invitation copy (brief, Section 10). Edit wording here. -->
     <section class="band band-ivory" id="invitation" aria-labelledby="invitation-title">
       <div class="col">
-        <h2 class="letter-title reveal" id="invitation-title" tabindex="-1">The Unpaved Path</h2>
+        <h1 class="letter-title reveal" id="invitation-title" tabindex="-1">The Unpaved Path</h1>
         <p class="letter-sub reveal">For the person behind the brand.</p>
         <div class="hairline reveal space-lg" aria-hidden="true"></div>
         <p class="display reveal space-lg">You&rsquo;ve poured everything into building your brand.</p>
