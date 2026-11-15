@@ -391,7 +391,7 @@
 
     /* ══ SCENE FOUR · THE INVITATION ═════════════════════════════════════ */
     .band { position: relative; padding: clamp(84px, 15vh, 190px) var(--gutter); text-align: center; }
-    .band-ivory { background: var(--ivory); }
+    .band-ivory { background: var(--ivory); padding-top: clamp(63px, 11.25vh, 142px); padding-bottom: clamp(63px, 11.25vh, 142px); }
     .band-cream { background: linear-gradient(180deg, var(--cream), #ebe1cc); }
     .band-navy { background: var(--navy); color: var(--ivory); }
     .col { max-width: 760px; margin: 0 auto; }
@@ -441,8 +441,10 @@
       border-radius: clamp(120px, 22vw, 320px) clamp(120px, 22vw, 320px) 6px 6px;
       box-shadow: 0 40px 80px -50px rgba(40, 28, 10, 0.6);
     }
-    .band-photo { padding-top: 0; padding-bottom: 0; background: var(--ivory); }
-    .band-photo + .band { padding-top: clamp(64px, 11vh, 130px); }
+    /* On wide screens the hallway photograph keeps the tall look it launched with. */
+    @media (min-width: 900px) { .plate img { height: 916px; aspect-ratio: auto; } }
+    .band.band-photo { padding-top: 0; padding-bottom: 0; background: var(--ivory); }
+    .band-photo + .band { padding-top: clamp(48px, 8.25vh, 98px); }
 
     /* an invitation to something different: words beside a room */
     .different { max-width: 1120px; margin: 0 auto; display: grid; gap: clamp(40px, 6vw, 84px); align-items: center; }
@@ -662,6 +664,7 @@
           <div class="hairline-gold reveal" aria-hidden="true"></div>
           <p class="body reveal">The Unpaved Path is an intimate, three-day experience in the English countryside, bringing together a small circle of founders who believe there&rsquo;s more than one path forward.</p>
           <p class="gifts reveal">Thoughtful conversations. Beautiful shared experiences. Genuine connections. And space to simply be yourself.</p>
+          <p class="body reveal">And around a table like this, an honest conversation can become an idea, a friendship, or a new way of seeing your brand.</p>
         </div>
       </div>
 
@@ -687,7 +690,7 @@
       </ol>
       <div class="col space-lg">
         <p class="body reveal">Not because three days will solve every challenge.</p>
-        <p class="lift reveal">But because sometimes stepping away gives you the perspective, encouragement, and courage to see a different way forward.</p>
+        <p class="body reveal">But because sometimes stepping away gives you the perspective, encouragement, and courage to see a different way forward.</p>
       </div>
     </section>
 

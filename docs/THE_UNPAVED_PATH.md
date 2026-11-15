@@ -122,7 +122,7 @@ All in `public/welcome-home/index.html`:
 | Invitation wording | the `<main>` section; each passage is plain text in order |
 | Dates or venue, once confirmed | the line `England. Three days. An intimate founding circle.` (marked with a comment) |
 | The dining room photograph | see "The dining room" below |
-| The other two photographs | the `<img>` tags for `photo-closing.webp` and `photo-conversation.webp`; update the `alt` text to match |
+| The other two photographs | the `<img>` tags for `photo-closing.webp` (the hallway with arched doors) and `unpaved-fireside-gathering.webp` (beside "An invitation to something different"); update the `alt` text to match. The hallway photograph is 16:9 on phones and tablets and keeps a fixed tall look on wide screens (`.plate img`). The gathering photograph is 4:5 in its arch, framed by `object-position` on `.different img.gathering`. |
 | The booking link | the Calendly link just above `</main>`. It opens the dedicated event "The Unpaved Path \| A Founder Conversation", not the site-wide booking event. |
 | Door timing | the two numbers in the `enter` function (`1650`, `2800`) and the `1750ms` leaf transition |
 | Welcome message timing | the `animation-delay` values under "Each welcome has its own moment" in the styles (counted from the click on the door) |
