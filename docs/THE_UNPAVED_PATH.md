@@ -144,14 +144,49 @@ Suggestions for approval, not implemented:
 
 ## Assets still needed
 
-- The dining room is now a country house room supplied by Beth
-  (`unpaved-dining-country.webp`). It is nearly square, so wide desktop
-  screens show a horizontal band of it; a wider version of the same scene
-  would show more of the windows and ceiling.
+- **A true 16:9 version of the approved dining room, for desktop.** Still
+  needed; see "The 16:9 desktop photograph" below.
 - One or two country house images (an exterior or approach, a garden or
   landscape) to replace the hallway and fireside photographs if wanted.
 - A dedicated link-preview image. The page currently uses the site's
   townhouse image, `og-believe.jpg`.
+
+## The 16:9 desktop photograph
+
+The approved dining room (`public/photos/unpaved-dining-country.webp`,
+1199 x 1312) is nearly square. Phones show almost all of it. Wide desktop
+screens can only show a horizontal band, so the chandelier is cut off and less
+of the windows shows.
+
+The fix is a wider version of the *same* photograph, made with a generative
+"expand" or "outpaint" tool so the new areas are painted in to match. It was
+not created in this workspace because no outpainting tool is available here,
+and stretching or mirroring the picture would look wrong.
+
+**Brief for whoever makes it**
+
+- Start from the cleanest, largest original of the approved image.
+- Expand the canvas to 16:9, ideally 2560 x 1440 or larger.
+- Keep the original untouched in the middle, placed slightly low so there is
+  a little new headroom above the brass chandelier.
+- New areas only: more of the leaded windows and countryside on the left, more
+  of the wall beside the fireplace on the right, a little more ceiling and
+  beam above.
+- Nothing new in the room: no added furniture, decoration or architecture.
+  Same light, same perspective, same textures. It should read as the same room
+  through a slightly wider lens.
+
+**To switch it on**
+
+1. Save it as `public/photos/unpaved-dining-country-wide.webp`.
+2. In `public/the-unpaved-path/index.html`, find the `<picture>` element in
+   the welcome section and remove the comment marks around its `<source>`
+   line. Wide screens then use the new file; phones keep the original.
+3. In the styles, under "Wide screens", set `--room-pos` to `50% 50%` and
+   check that the words still sit above the candle flames.
+
+To roll back, put the comment marks back. The earlier London room
+(`photo-table.webp`) also remains in the repo.
 
 ## The personal email
 
