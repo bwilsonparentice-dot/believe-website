@@ -106,7 +106,7 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
             </h1>
             <div className="up-rule" aria-hidden="true" />
             <p className="up-event">The Unpaved Path <em>with Beth &amp; Kendra</em></p>
-            <p className="up-intro">A live, interactive conversation about growing your food or beverage brand beyond traditional retail.</p>
+            <p className="up-intro">A free, guided conversation for food and beverage founders asking: where else could your brand belong?</p>
             <EventDetails tone="dark" />
             <SaveMySeat tone="dark" />
           </div>
@@ -132,7 +132,7 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
       <section className="up-sec" aria-labelledby="up-invite">
         <p className="up-body">When Sipp Sparkling Organics plateaued in specialty stores, Beth started looking beyond retail buyers and calling hotel food and beverage executives. One was looking for a welcome amenity. That call changed the company&rsquo;s trajectory.</p>
         <h2 id="up-invite" className="up-h2">This hour is about finding your version of that call.</h2>
-        <p className="up-body">Join founders Beth Wilson-Parentice and Kendra Bennett for a free, guided conversation for food and beverage founders with products already in market.</p>
+        <p className="up-body">Join Beth and Kendra for a free, guided conversation with food and beverage founders whose products are already in market.</p>
         <p className="up-body">We&rsquo;ll each share one short story about an unexpected route to growth. Then we&rsquo;ll open the conversation to real founder questions, drawing on our experience and what others in the room have learned.</p>
       </section>
 
