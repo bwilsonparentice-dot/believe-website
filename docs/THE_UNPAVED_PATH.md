@@ -154,49 +154,49 @@ Suggestions for approval, not implemented:
 
 ## The dining room
 
-One photograph serves every screen:
-`public/photos/unpaved-dining-country-wide.webp` (16:9, 1672 x 941).
+One home in two photographs:
 
-- **Wide screens** show essentially all of it.
-- **Phones and portrait screens** show a portrait framing taken from its
-  centre: the chandelier, the hydrangeas, the table and the navy curtain. The
-  fireplace and most of the chairs fall outside a phone-shaped frame, and
-  because a narrow slice of the file is enlarged, it is soft on phones.
+| Screen | Photograph |
+| --- | --- |
+| Wide screens (desktop, landscape tablet) | `public/photos/unpaved-dining-country-wide.webp` (16:9, 1672 x 941, Study 1 Refined colour) |
+| Phones and portrait screens | `public/photos/unpaved-dining-country-portrait.webp` (2:3, 1024 x 1536) |
 
-The chandelier hangs in the middle of the picture, so on every screen the
-welcome is set around it: "Welcome home." above the lampshades, "We've saved
-you a seat." just beneath the brass ring, the naming lines clear of the candle
-flames. Sizes are tied to screen height so this holds at any size. The glimpse
-through the opening door uses the same photograph.
+The `<picture>` element in the welcome section chooses between them, and the
+glimpse through the opening door (`.ent-room`) uses the same photograph as the
+scene it opens onto.
 
-**A true portrait master for phones (recommended).** A portrait photograph of
-this same room, composed for a phone, would be sharper and could show the
-fireplace and more seats. Aim for about 1290 x 2796 or larger, with the
-chandelier in the upper third, the table and chairs in the lower half, and
-calm wall between them for the words. Save it as
-`public/photos/unpaved-dining-country-portrait.webp` and remove the comment
-marks around the portrait `<source>` line in the `<picture>` element. The
-text positions in the portrait style block will then need re-checking against
-the new picture.
+On every screen the welcome is set around the chandelier: "Welcome home."
+above the lampshades, "We've saved you a seat." in the calm wall beneath the
+brass ring, the naming lines ending before the candle flames. Sizes are tied
+to screen height so the words keep their place against the photograph. Each
+photograph has its own style block ("Wide screens" and "Phones and portrait
+screens"), because the chandelier and candles sit at different heights in
+each.
 
-**Colour.** The photograph carries the approved "Study 1 Refined" grade: the
-orange and yellow cast is eased, the fire, candles, hydrangeas and mauve
-napkins keep their original colour, and the curtains read as navy. The
-ungraded file is kept as `unpaved-dining-country-wide-original.webp`; to
+Narrow phones show about the middle 70% of the portrait's width. The framing
+leans right (`--room-pos: 62% 42%`) so a phone holds both the navy curtain and
+the glow of the fire; the countryside window at the far left is only seen on
+wider phones and tablets.
+
+**Colour.** The wide photograph carries the approved "Study 1 Refined" grade.
+The ungraded file is kept as `unpaved-dining-country-wide-original.webp`; to
 return to it, copy it over `unpaved-dining-country-wide.webp`. The portrait
-for phones should be generated from the graded photograph so the two match.
+was generated from the graded photograph and is used as received.
 
-**Rollback.** The earlier square photograph
-(`unpaved-dining-country.webp`) and the London room (`photo-table.webp`)
-remain in the repo. The comment inside the `<picture>` element lists the
-three places to change the file name, and the two welcome style blocks note
-the values that suited the square photograph.
+**Rollback.**
+- Phones back to a centre framing of the 16:9 photograph: delete the portrait
+  `<source>` line and the portrait `.ent-room` rule; the portrait style block
+  notes the values that suited that framing.
+- Earlier photographs still in the repo: `unpaved-dining-country.webp` (the
+  first, nearly square room) and `photo-table.webp` (the London room).
 
-## Brief for the portrait dining room (phones)
+**Sharper masters, if ever available.** Both files are below the density of
+the best screens (a 3x phone shows about 0.6 image pixels per screen pixel).
+Larger masters of the same pictures can be dropped in under the same names.
 
-Status: **needed**. Phones currently show a narrow slice of the 16:9
-photograph. It keeps continuity but is soft and loses the fireplace and most
-of the seating. A dedicated portrait photograph of the same room replaces it.
+## Brief used for the portrait dining room (phones)
+
+Status: **done**. Kept for reference in case the portrait is ever remade.
 
 **How to generate it (ChatGPT Images)**
 
