@@ -116,13 +116,15 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
             <EventDetails tone="dark" />
             <SaveMySeat tone="dark" />
           </div>
+          {/* the event artwork cropped just below the host credentials: its date
+              strip is carried by the live text beside it, not the image */}
           <figure className="up-art">
             <img
-              src="/photos/unpaved-path-live.webp"
-              srcSet="/photos/unpaved-path-live-720.webp 720w, /photos/unpaved-path-live.webp 1122w"
+              src="/photos/unpaved-path-live-hosts.webp"
+              srcSet="/photos/unpaved-path-live-hosts-720.webp 720w, /photos/unpaved-path-live-hosts.webp 1122w"
               sizes="(max-width: 899px) min(88vw, 440px), min(40vw, 480px)"
               width={1122}
-              height={1402}
+              height={1110}
               alt="The Unpaved Path event graphic featuring hosts Beth Wilson-Parentice and Kendra Bennett."
               decoding="async"
               // @ts-expect-error React 18 expects the lowercase attribute name

@@ -899,7 +899,7 @@ a:hover { color: #b08a4a; }
 .up-note--dark { color: rgba(246,239,228,0.82); }
 .up-note--light { color: rgba(43,39,35,0.78); }
 
-/* the artwork: always whole and in proportion (1122 × 1402), never cropped */
+/* the artwork: always whole and in proportion (1122 × 1110), never cropped by CSS */
 .up-art { margin: 0 auto; width: min(100%, 440px); }
 .up-art img { display: block; width: 100%; height: auto; object-fit: contain; }
 
