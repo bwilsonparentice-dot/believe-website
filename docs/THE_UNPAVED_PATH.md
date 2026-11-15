@@ -185,6 +185,95 @@ remain in the repo. The comment inside the `<picture>` element lists the
 three places to change the file name, and the two welcome style blocks note
 the values that suited the square photograph.
 
+## Brief for the portrait dining room (phones)
+
+Status: **needed**. Phones currently show a narrow slice of the 16:9
+photograph. It keeps continuity but is soft and loses the fireplace and most
+of the seating. A dedicated portrait photograph of the same room replaces it.
+
+**How to generate it (ChatGPT Images)**
+
+1. Attach the approved desktop photograph
+   (`public/photos/unpaved-dining-country-wide.webp`) as the reference image.
+2. Ask for a portrait image at the tallest size offered (1024 x 1536, 2:3).
+3. Paste the prompt below.
+4. If an upscale option is offered, upscale 2x. Send the result as a file.
+
+**Prompt**
+
+> Using the attached photograph as the exact reference, create a new portrait
+> (2:3, vertical) photograph of this same English country-house dining room,
+> as if the same photographer took a second picture in the same room, at the
+> same moment, standing at the near end of the table and turning the camera
+> upright. Same room, same furniture, same objects, same architecture. Do not
+> redesign anything.
+>
+> Keep exactly: the long vintage wooden dining table with its worn, planked
+> top and turned legs; the cream upholstered dining chairs; the botanical
+> cushions; the low, loose arrangement of garden hydrangeas and roses in a
+> simple aged ceramic bowl, with natural colour variation within the petals;
+> the relaxed place settings with softly folded mauve linen napkins and
+> minimal glassware; the brass ring chandelier with cream linen shades; the
+> deep navy curtains; the tall dark-framed leaded windows looking onto rolling
+> green English countryside; the carved pale stone fireplace with a lit fire;
+> the exposed oak ceiling beams; the warm plaster walls.
+>
+> Composition, top to bottom:
+> - Top 12 percent: calm ceiling and a beam, nothing busy.
+> - From about 12 to 30 percent: the brass chandelier, centred, complete, and
+>   noticeably smaller in the frame than the table. It supports the scene and
+>   does not dominate it.
+> - From about 30 to 48 percent: a calm, plain band of warm plaster wall
+>   across the centre of the image, with no lamps, artwork, flowers or candle
+>   flames in it. Lettering will be placed here.
+> - From about 50 percent down: the table running away from the camera, with
+>   plenty of the wooden tabletop visible. The flowers sit low on the table,
+>   their tops no higher than the halfway line. Any candle flames stay below
+>   the halfway line.
+> - Four to six chairs clearly recognisable along both sides, some only partly
+>   in frame. They are not perfectly aligned: one or two are pulled slightly
+>   away from the table, and the nearest chair in the foreground is turned a
+>   little toward the camera, as if left for someone about to sit down.
+> - Left side: the navy curtain and a tall window with the countryside beyond.
+>   Right side, if it fits naturally: a glimpse of the fireplace and its glow.
+> - Keep everything important within the central 70 percent of the width. The
+>   outer edges may be cropped on narrow screens.
+>
+> Light and colour: late afternoon. Soft natural daylight from the windows,
+> with the fire and candles giving a gentle glow. Warm, but not orange or
+> golden overall: walls a soft warm ivory, wood a natural mid brown. The
+> curtains a rich, deep, elegant navy. Mauve and blush accents understated.
+> Not dark, not cold, not grey, not dramatic.
+>
+> Mood: a beautiful, lived-in English home prepared with care for a small
+> gathering of friends. Thoughtfully prepared, never staged. Not a hotel, not
+> an event venue, not an advertisement. Do not add flowers, candles, branches,
+> greenery, accessories or decorations beyond those in the reference.
+>
+> No people. No text or lettering. Photographic realism with authentic
+> material textures. Eye level, natural lens, no wide-angle distortion.
+
+**Checklist before sending it**
+
+- Is it plainly the same room as the desktop photograph?
+- Can you count four to six chairs, with at least one pulled out?
+- Is there a clear band of plain wall between the chandelier and the flowers?
+- Are the flower tops and candle flames at or below the halfway line?
+- Is the chandelier smaller than it is in the current phone view?
+
+**When the file arrives**
+
+Save it as `public/photos/unpaved-dining-country-portrait.webp`, remove the
+comment marks around the portrait `<source>` line in the `<picture>` element,
+give the doorway glimpse (`.ent-room`) the same file on portrait screens, and
+re-check the welcome text positions, contrast and the 21 regression checks.
+
+**Colour.** If the portrait is generated cooler than the desktop photograph,
+the two will not match. Either generate the portrait to match the desktop as
+it is, or apply the same gentle grade to the desktop photograph (a study was
+prepared; it eases the golden cast and deepens the navy while keeping the
+fire and candle glow).
+
 ## The personal email
 
 Send individually, never as a bulk campaign. Personalise the greeting and,
