@@ -144,49 +144,41 @@ Suggestions for approval, not implemented:
 
 ## Assets still needed
 
-- **A true 16:9 version of the approved dining room, for desktop.** Still
-  needed; see "The 16:9 desktop photograph" below.
+- A larger master of the 16:9 dining room. The current file is 1672 pixels
+  wide, which is slightly soft on large or high-density desktop screens;
+  2560 pixels or more would be crisp.
 - One or two country house images (an exterior or approach, a garden or
   landscape) to replace the hallway and fireside photographs if wanted.
 - A dedicated link-preview image. The page currently uses the site's
   townhouse image, `og-believe.jpg`.
 
-## The 16:9 desktop photograph
+## The dining room: two framings
 
-The approved dining room (`public/photos/unpaved-dining-country.webp`,
-1199 x 1312) is nearly square. Phones show almost all of it. Wide desktop
-screens can only show a horizontal band, so the chandelier is cut off and less
-of the windows shows.
+| Screen | Photograph |
+| --- | --- |
+| Phones and portrait screens | `public/photos/unpaved-dining-country.webp` (the approved original, 1199 x 1312) |
+| Wide screens (desktop, landscape tablet) | `public/photos/unpaved-dining-country-wide.webp` (16:9, 1672 x 941) |
 
-The fix is a wider version of the *same* photograph, made with a generative
-"expand" or "outpaint" tool so the new areas are painted in to match. It was
-not created in this workspace because no outpainting tool is available here,
-and stretching or mirroring the picture would look wrong.
+The two are different photographs of the same kind of room, not one picture
+cropped two ways, so a founder on a phone and a founder on a laptop see
+slightly different rooms.
 
-**Brief for whoever makes it**
+On wide screens the chandelier hangs in the middle of the picture, so the
+welcome is set around it: "Welcome home." above the lampshades, "We've saved
+you a seat." just beneath the brass ring, the naming lines clear of the candle
+flames. The sizes are tied to screen height so this holds at any desktop size.
+The glimpse through the opening door uses the same photograph as the scene it
+opens onto.
 
-- Start from the cleanest, largest original of the approved image.
-- Expand the canvas to 16:9, ideally 2560 x 1440 or larger.
-- Keep the original untouched in the middle, placed slightly low so there is
-  a little new headroom above the brass chandelier.
-- New areas only: more of the leaded windows and countryside on the left, more
-  of the wall beside the fireplace on the right, a little more ceiling and
-  beam above.
-- Nothing new in the room: no added furniture, decoration or architecture.
-  Same light, same perspective, same textures. It should read as the same room
-  through a slightly wider lens.
+**Rollback to the approved original on wide screens** (all in
+`public/the-unpaved-path/index.html`, each marked `ROLLBACK`):
 
-**To switch it on**
+1. Delete the `<source>` line inside the `<picture>` element.
+2. Delete the `.ent-room` line inside the wide-screen door rules.
+3. In the wide-screen welcome rules, use the values listed in the comment
+   above them.
 
-1. Save it as `public/photos/unpaved-dining-country-wide.webp`.
-2. In `public/the-unpaved-path/index.html`, find the `<picture>` element in
-   the welcome section and remove the comment marks around its `<source>`
-   line. Wide screens then use the new file; phones keep the original.
-3. In the styles, under "Wide screens", set `--room-pos` to `50% 50%` and
-   check that the words still sit above the candle flames.
-
-To roll back, put the comment marks back. The earlier London room
-(`photo-table.webp`) also remains in the repo.
+The earlier London room (`photo-table.webp`) also remains in the repo.
 
 ## The personal email
 
