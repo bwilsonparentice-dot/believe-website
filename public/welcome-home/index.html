@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+    THE UNPAVED PATH · an unlisted, invitation-only page.
+    Not linked from the site navigation, directory or sitemap, and marked
+    noindex below. Unlisted is not private: anyone with the URL can open it,
+    so nothing invitee-specific belongs in this file or in its URL.
+    Lives at /welcome-home/. Editing guide: docs/THE_UNPAVED_PATH.md
+  -->
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title>The Unpaved Path | A Believe Studio Experience</title>
+  <meta name="description" content="A personal invitation from Believe Studio. For the person behind the brand.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Believe Studio">
+  <meta property="og:title" content="The Unpaved Path">
+  <meta property="og:description" content="A personal invitation. For the person behind the brand.">
+  <meta property="og:image" content="https://believestudio.co/og-believe.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#16203a">
+
+  <link rel="icon" href="/logo/believe-mark.svg" type="image/svg+xml">
+  <link rel="icon" href="/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/logo/apple-touch-icon.png">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="preload" as="image" href="/photos/entrance49-base.webp">
+  <link rel="preload" as="image" href="/photos/entrance49-leaf.webp">
+  <link rel="preload" as="image" href="/photos/unpaved-dining-country-wide.webp" media="(min-aspect-ratio: 5/4)">
+  <link rel="preload" as="image" href="/photos/unpaved-dining-country-portrait.webp" media="(max-aspect-ratio: 5/4)">
+
+  <script>
+    /* The door is a progressive enhancement. Without JavaScript the page is a
+       plain, fully readable document with the closed door as its first image.
+       With it, the door becomes a threshold that opens on request. A direct
+       link to a section (#invitation, #interest) goes straight inside. */
+    (function () {
+      var d = document.documentElement
+      var direct = false
+      try { direct = !!location.hash && location.hash !== '#door' } catch (e) {}
+      d.className = 'js ' + (direct ? 'entered' : 'gated')
+    })()
+  </script>
+
+  <style>
+    /* ── Believe Studio tokens (mirrors src/lib/palette.ts) ─────────────── */
+    :root {
+      --navy: #1e2a44;
+      --navy-deep: #16203a;
+      --ivory: #faf4ea;
+      --cream: #efe6d3;
+      --stone: #e7dcc4;
+      --ink: #2b2723;
+      --ink-soft: rgba(43, 39, 35, 0.8);
+      --gold: #9c7a3f;
+      --gold-text: #7a5e34;      /* gold that passes contrast as small text on ivory */
+      --gold-light: #e2c992;     /* gold on navy */
+      --teal: #156a66;
+      --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+      --vh: 1vh;
+      --gutter: clamp(24px, 7vw, 96px);
+    }
+    @supports (height: 1svh) { :root { --vh: 1svh; } }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--ivory); color: var(--ink);
+      font-family: var(--serif); font-weight: 300;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      overflow-x: clip;
+    }
+    img { display: block; max-width: 100%; }
+    p, h1, h2, h3 { margin: 0; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+    .on-dark :focus-visible, .door :focus-visible { outline-color: var(--gold-light); }
+    [tabindex="-1"]:focus { outline: none; }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+    }
+    .skip-link {
+      position: fixed; left: 16px; top: -80px; z-index: 100;
+      font-family: var(--sans); font-weight: 400; font-size: 13px; letter-spacing: 0.08em;
+      background: var(--ivory); color: var(--navy); padding: 12px 18px; border-radius: 2px;
+      text-decoration: none; transition: top 200ms ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* ══ SCENE ONE · THE DOOR ═════════════════════════════════════════════
+       The same photographic door as the Believe Studio homepage arrival
+       (entrance49-base + entrance49-leaf): the facade stays whole and only
+       the door leaf swings on its left hinge. Here it opens onto the table. */
+    .door {
+      position: relative; min-height: calc(var(--vh) * 100); overflow: hidden;
+      background: var(--navy-deep); color: var(--ivory);
+    }
+    .gated .door { position: fixed; inset: 0; z-index: 50; min-height: 0; cursor: pointer; }
+    .gated body { overflow: hidden; }
+    .entered.js .door[hidden] { display: none; }
+    [data-before-send][hidden] { display: none !important; }
+
+    .door-stage {
+      position: absolute; inset: 0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      transform-origin: 50% 50%; will-change: transform;
+    }
+    .ent {
+      position: relative; flex: none; overflow: hidden;
+      perspective: 1900px; transform-style: preserve-3d;
+      aspect-ratio: 1672 / 941; width: max(100vw, calc(var(--vh) * 177.7));
+    }
+    .ent-base { position: absolute; inset: 0; background: url('/photos/entrance49-base.webp') center / cover no-repeat; }
+    /* what waits behind the door: the candlelit table, glimpsed through the opening */
+    .ent-room, .ent-spill, .ent-leaf { position: absolute; left: 42.76%; top: 27.42%; width: 14.53%; height: 49.95%; }
+    .ent-room {
+      z-index: 1; background: url('/photos/unpaved-dining-country-wide.webp') 50% 50% / cover no-repeat;
+      box-shadow: inset 0 0 26px rgba(8, 6, 3, 0.6);
+    }
+    @media (max-aspect-ratio: 5/4) { .ent-room { background-image: url('/photos/unpaved-dining-country-portrait.webp'); background-position: 56% 46%; } }
+    .ent-spill {
+      z-index: 1; pointer-events: none; opacity: 0;
+      background: radial-gradient(60% 54% at 52% 50%, rgba(255, 226, 170, 0.34), rgba(255, 226, 170, 0) 72%);
+      transition: opacity 1500ms ease 200ms;
+    }
+    .ent-leaf {
+      z-index: 2; background: url('/photos/entrance49-leaf.webp') left top / 100% 100% no-repeat;
+      transform-origin: left center; transform-style: preserve-3d; backface-visibility: hidden;
+      box-shadow: 1px 0 3px rgba(0, 0, 0, 0.16);
+      transition: transform 1750ms cubic-bezier(0.5, 0.02, 0.18, 1) 120ms;
+    }
+    .ent-leaf::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(264deg, rgba(20, 13, 7, 0.6), rgba(20, 13, 7, 0.04) 70%);
+      opacity: 0; transition: opacity 1300ms ease 120ms;
+    }
+    .door.is-opening .ent-leaf { transform: rotateY(66deg); }
+    .door.is-opening .ent-leaf::after { opacity: 0.6; }
+    .door.is-opening .ent-spill { opacity: 1; }
+    .door.is-opening .door-stage { animation: entWalk 2600ms cubic-bezier(0.45, 0, 0.25, 1) 200ms forwards; }
+    @keyframes entWalk { to { transform: scale(1.14); } }
+
+    /* the aged-brass nameplate beside the door, engraved for this gathering */
+    .ent-plate {
+      position: absolute; z-index: 3; display: none; container-type: inline-size;
+      left: 62.3%; top: 36.8%; width: 8.25%; aspect-ratio: 138 / 74;
+    }
+    .ent-plate-face {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; border-radius: 2cqw; padding: 3cqw 4cqw;
+      background:
+        radial-gradient(circle at 6% 16%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+        radial-gradient(circle at 94% 16%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+        radial-gradient(circle at 6% 84%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+        radial-gradient(circle at 94% 84%, rgba(60,42,15,0.8) 0 0.9cqw, rgba(255,243,208,0.55) 1.3cqw 1.9cqw, rgba(0,0,0,0) 2.2cqw),
+        radial-gradient(130% 120% at 28% 16%, rgba(255,248,218,0.5), rgba(255,248,218,0) 54%),
+        linear-gradient(150deg, #c6a360 0%, #ac8541 44%, #8c6931 76%, #ad8746 100%);
+      box-shadow:
+        2px 3px 8px rgba(40,26,7,0.4), 1px 1px 2px rgba(40,26,7,0.3),
+        inset 0 1px 1px rgba(255,248,218,0.55), inset 0 -1.5px 2px rgba(46,29,6,0.5);
+    }
+    .ent-plate span span {
+      font-family: var(--serif); font-weight: 500; line-height: 1; white-space: nowrap;
+      letter-spacing: 0.16em; text-indent: 0.16em; font-size: 11.6cqw; color: #453211;
+      text-shadow: 0 0.6px 0 rgba(255,247,214,0.42), 0 -0.4px 0.3px rgba(38,24,5,0.5);
+    }
+    .ent-plate span span + span { margin-top: 0.5em; letter-spacing: 0.34em; text-indent: 0.34em; }
+
+    /* scrims that seat the words without dimming the door itself */
+    .door-scrim { position: absolute; inset: 0; pointer-events: none; }
+    .door-scrim {
+      background:
+        linear-gradient(180deg, rgba(22,32,58,0.5) 0%, rgba(22,32,58,0) 16%),
+        linear-gradient(180deg, rgba(22,32,58,0) 55%, rgba(22,32,58,0.88) 68%, var(--navy-deep) 77%);
+    }
+    .door-mark {
+      position: absolute; left: 0; right: 0; top: clamp(14px, calc(var(--vh) * 2.6), 30px); text-align: center;
+      font-family: var(--sans); font-weight: 400; font-size: 10.5px; letter-spacing: 0.46em; text-indent: 0.46em;
+      text-transform: uppercase; color: rgba(250, 244, 234, 0.92); text-shadow: 0 1px 10px rgba(14, 20, 36, 0.7);
+    }
+    .door-words {
+      position: absolute; left: 0; right: 0; bottom: 0; text-align: center;
+      padding: 0 24px clamp(18px, calc(var(--vh) * 3.4), 40px);
+    }
+    .door-title {
+      font-family: var(--serif); font-weight: 400; text-transform: uppercase;
+      font-size: clamp(17px, 5vw, 30px); letter-spacing: 0.24em; text-indent: 0.24em; line-height: 1.12;
+      color: var(--ivory); text-shadow: 0 1px 18px rgba(14, 20, 36, 0.8); white-space: nowrap;
+    }
+    .door-rule { width: 44px; height: 1px; background: var(--gold-light); opacity: 0.85; margin: clamp(12px, calc(var(--vh) * 2.2), 22px) auto clamp(14px, calc(var(--vh) * 2.6), 26px); }
+    .door-line {
+      font-style: italic; font-weight: 300; font-size: clamp(22px, 6.1vw, 31px); line-height: 1.26;
+      color: var(--ivory); max-width: 17em; margin: 0 auto; text-wrap: balance; text-shadow: 0 1px 16px rgba(14, 20, 36, 0.6);
+    }
+    .door-line span { display: block; margin-top: 0.22em; }
+    .door-cta {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 50px;
+      margin-top: clamp(18px, calc(var(--vh) * 3.4), 36px); padding: 14px 30px;
+      font-family: var(--sans); font-weight: 500; font-size: 12px; letter-spacing: 0.3em; text-indent: 0.3em;
+      text-transform: uppercase; text-decoration: none; color: var(--navy-deep); white-space: nowrap;
+      background: var(--ivory); border: 1px solid var(--ivory); border-radius: 2px;
+      transition: background 400ms ease, color 400ms ease, box-shadow 400ms ease;
+    }
+    .door-cta:hover, .door-cta:focus-visible { background: #fff; box-shadow: 0 0 0 1px var(--gold-light), 0 10px 34px -14px rgba(0,0,0,0.6); }
+    .door-skip {
+      display: none; margin: clamp(10px, calc(var(--vh) * 1.6), 16px) auto 0; padding: 8px 10px; width: max-content;
+      font-family: var(--sans); font-weight: 400; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(250, 244, 234, 0.82); text-decoration: underline; text-underline-offset: 5px;
+      text-decoration-color: rgba(226, 201, 146, 0.6); background: none; border: 0; cursor: pointer;
+    }
+    .gated .door-skip { display: block; }
+    .door-skip:hover { color: #fff; }
+
+    /* portrait and narrow screens: the facade sits in the upper part of the
+       screen with more of the house in view; the words gather on navy below */
+    .door-stage { align-items: flex-start; }
+    .ent { width: max(100vw, calc(var(--vh) * 138.6)); }
+
+    /* wide screens: the house fills the frame and the words stand to its left,
+       like the cover of a magazine, leaving the door clear */
+    @media (min-aspect-ratio: 5/4) {
+      .door-stage { align-items: center; }
+      .ent { width: max(100vw, calc(var(--vh) * 177.7)); }
+      .ent-plate { display: block; }
+      .door-scrim {
+        background:
+          linear-gradient(90deg, rgba(22,32,58,0.95) 0%, rgba(22,32,58,0.91) 22%, rgba(22,32,58,0.55) 32%, rgba(22,32,58,0) 42%),
+          linear-gradient(180deg, rgba(22,32,58,0.35) 0%, rgba(22,32,58,0) 14%);
+      }
+      .door-mark { text-align: left; left: clamp(22px, 4.2vw, 72px); right: auto; }
+      .door-words {
+        left: clamp(22px, 4.2vw, 72px); right: auto; top: 0; bottom: 0; padding: 0;
+        width: min(28.5vw, 430px); text-align: left;
+        display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      }
+      .door-title { font-size: clamp(14px, 1.5vw, 22px); letter-spacing: 0.3em; text-indent: 0; }
+      .door-rule { margin: clamp(14px, 2.4vh, 26px) 0 clamp(18px, 3.2vh, 34px); width: 56px; }
+      .door-line { font-size: clamp(20px, 2.08vw, 32px); line-height: 1.24; margin: 0; }
+      .door-cta { margin-top: clamp(20px, 4.4vh, 46px); padding: 14px 26px; letter-spacing: 0.26em; text-indent: 0.26em; }
+      .door-skip { margin-left: -10px; }
+    }
+    @media (min-aspect-ratio: 5/4) and (max-height: 520px) {
+      .door-title { font-size: 13px; }
+      .door-line { font-size: 19px; }
+      .door-rule { margin: 8px 0 10px; }
+      .door-cta { margin-top: 12px; min-height: 44px; padding: 10px 18px; font-size: 11px; letter-spacing: 0.18em; text-indent: 0.18em; }
+    }
+
+    /* leaving the doorstep: the scene dissolves into the room it opened onto */
+    .door.is-leaving { opacity: 0; transition: opacity 1150ms cubic-bezier(0.4, 0, 0.6, 1); pointer-events: none; }
+    .door.is-opening .door-words, .door.is-opening .door-mark, .door.is-opening .door-scrim { opacity: 0; transition: opacity 600ms ease; }
+
+    /* ══ SCENE THREE · WELCOME HOME ══════════════════════════════════════ */
+    .welcome {
+      position: relative; min-height: calc(var(--vh) * 100); overflow: hidden;
+      display: flex; align-items: flex-start; justify-content: center; text-align: center;
+      background: #1a140d; color: var(--ivory);
+      padding: clamp(76px, calc(var(--vh) * 12), 150px) var(--gutter) clamp(120px, calc(var(--vh) * 18), 180px);
+    }
+    /* THE DINING ROOM
+       One home in two photographs: wide screens use the 16:9 picture,
+       phones and portrait screens the portrait. See the <picture> element.
+       --room-pos chooses which part of the photograph stays in frame. */
+    .welcome-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--room-pos, 50% 50%); }
+    /* The shade is gathered behind the words and gone before the table: the
+       chairs, flowers, place settings and fire stay in the light. */
+    .welcome::before {
+      content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(120% 30% at 50% 24%, rgba(22, 15, 8, 0.5), rgba(22, 15, 8, 0.28) 60%, rgba(22, 15, 8, 0) 100%),
+        linear-gradient(180deg, rgba(22,15,8,0.62) 0%, rgba(22,15,8,0.5) 30%, rgba(22,15,8,0.16) 43%, rgba(22,15,8,0) 52%, rgba(22,32,58,0) 80%, rgba(22,32,58,0.62) 100%);
+    }
+    .welcome-inner { position: relative; z-index: 2; max-width: 880px; }
+    .welcome-title {
+      font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 12.4vw, 132px); line-height: 1; white-space: nowrap;
+      letter-spacing: -0.005em; text-shadow: 0 2px 30px rgba(14, 9, 4, 0.8), 0 1px 3px rgba(14, 9, 4, 0.5);
+    }
+    .welcome-seat {
+      font-style: italic; font-weight: 400; font-size: clamp(27px, 4.1vw, 48px); line-height: 1.2;
+      color: #f3e0b4; margin-top: clamp(12px, 2.2vh, 24px); text-shadow: 0 1px 20px rgba(14, 9, 4, 0.95), 0 1px 2px rgba(14, 9, 4, 0.65);
+    }
+    .welcome-rule { width: 56px; height: 1px; margin: clamp(16px, 2.4vh, 26px) auto clamp(14px, 2vh, 22px); background: rgba(243, 224, 180, 0.9); }
+    .welcome-name {
+      font-family: var(--sans); font-weight: 500; font-size: clamp(12px, 1.25vw, 14px); letter-spacing: 0.42em; text-indent: 0.42em;
+      text-transform: uppercase; line-height: 1.5; color: var(--ivory); text-shadow: 0 1px 12px rgba(14, 9, 4, 1), 0 0 3px rgba(14, 9, 4, 0.8);
+    }
+    .welcome-name span {
+      display: block; margin-top: 7px; font-family: var(--serif); font-weight: 400; font-size: clamp(21px, 2.3vw, 28px);
+      letter-spacing: 0; text-indent: 0; text-transform: none; line-height: 1.26; text-wrap: balance;
+    }
+    /* Phones and portrait screens, with the portrait photograph.
+       In that picture the chandelier fills the band from about 15% to 28% of
+       the height, the wall beneath it is calm, and the candle flames begin at
+       about 44%. So: "Welcome home." sits above the lampshades, "We've saved
+       you a seat." in the calm wall just under the brass ring, and the naming
+       lines end before the flames. Everything is tied to the height of the
+       screen, so the words keep their place against the photograph.
+       --room-pos leans right so a phone holds both the navy curtain and the
+       glow of the fire.
+       (Values that suited the centre framing of the 16:9 photograph:
+       padding-top 6.3; seat margin-top 20.2; rule 1.3 and 1.2; name span 2.55
+       and 0.6; second shade pool at 41%; --room-pos 50% 50%.) */
+    @media (max-aspect-ratio: 5/4) {
+      .welcome { padding-top: calc(var(--vh) * 5.6); }
+      .welcome-photo { --room-pos: 62% 42%; }
+      .welcome::before {
+        background:
+          radial-gradient(130% 12% at 50% 9%, rgba(22, 15, 8, 0.5), rgba(22, 15, 8, 0) 100%),
+          radial-gradient(120% 14% at 50% 36%, rgba(22, 15, 8, 0.58), rgba(22, 15, 8, 0.3) 62%, rgba(22, 15, 8, 0) 100%),
+          linear-gradient(180deg, rgba(22,15,8,0.42) 0%, rgba(22,15,8,0.2) 18%, rgba(22,15,8,0.2) 40%, rgba(22,15,8,0) 50%, rgba(22,32,58,0) 82%, rgba(22,32,58,0.6) 100%);
+      }
+      .welcome-title { font-size: min(12.4vw, calc(var(--vh) * 6.4)); line-height: calc(var(--vh) * 6.6); }
+      .welcome-seat { font-size: clamp(24px, min(7vw, calc(var(--vh) * 3.3)), 44px); margin-top: calc(var(--vh) * 16.4); }
+      .welcome-rule { margin: calc(var(--vh) * 1.0) auto calc(var(--vh) * 0.9); }
+      .welcome-name span { font-size: clamp(17px, min(5.4vw, calc(var(--vh) * 2.45)), 28px); margin-top: calc(var(--vh) * 0.5); }
+    }
+    /* Wide screens, with the 16:9 photograph. The chandelier hangs in the
+       middle of that picture, so the welcome is set around it, not on it:
+       "Welcome home." above the lampshades, "We've saved you a seat." just
+       beneath the brass ring, and the naming lines clear of the candle
+       flames. Every size is tied to the height of the screen, so the words
+       keep their place against the photograph at any desktop size.
+       (Values that suited the earlier square photograph: padding-top 7.6;
+       title min(9vw, 14.2); seat margin-top 2; rule margins 2 and 1.7;
+       --room-pos 50% 47%.) */
+    @media (min-aspect-ratio: 5/4) {
+      /* --ih is one hundredth of the photograph's height as shown. Up to a
+         16:9 screen the photograph fills the height, so that is the same as
+         the screen's. On screens wider than 9:5 (a phone turned sideways, an ultrawide
+         monitor) the photograph is cut at the bottom only and --ih follows its
+         true height, so the words stay beside the chandelier and candles. */
+      .welcome { --ih: var(--vh); padding-top: calc(var(--ih) * 4.5); }
+      .welcome::before {
+        background:
+          radial-gradient(58% 16% at 50% 9%, rgba(22, 15, 8, 0.42), rgba(22, 15, 8, 0) 100%),
+          radial-gradient(52% 20% at 50% 42%, rgba(22, 15, 8, 0.6), rgba(22, 15, 8, 0.3) 60%, rgba(22, 15, 8, 0) 100%),
+          linear-gradient(180deg, rgba(22,15,8,0.44) 0%, rgba(22,15,8,0.26) 20%, rgba(22,15,8,0.2) 44%, rgba(22,15,8,0) 56%, rgba(22,32,58,0) 80%, rgba(22,32,58,0.62) 100%);
+      }
+      .welcome-title { font-size: clamp(34px, min(7.4vw, calc(var(--ih) * 11.3)), 112px); }
+      .welcome-seat { font-size: clamp(22px, min(3.4vw, calc(var(--ih) * 5.1)), 48px); margin-top: calc(var(--ih) * 17.4); }
+      .welcome-rule { margin: calc(var(--ih) * 1.5) auto calc(var(--ih) * 1.3); }
+      .welcome-name { font-size: clamp(10.5px, min(1.25vw, calc(var(--ih) * 1.5)), 14px); }
+      .welcome-name span { font-size: clamp(17px, min(2.1vw, calc(var(--ih) * 3.1)), 28px); margin-top: calc(var(--ih) * 0.7); }
+    }
+    @media (min-aspect-ratio: 9/5) {
+      .welcome { --ih: 0.5628vw; }
+      .welcome-photo { --room-pos: 50% 0%; }
+    }
+    /* very large monitors: the headline stops growing at 112px, so its line
+       keeps the photograph's measure and the seat line stays below the ring */
+    @media (min-aspect-ratio: 5/4) and (min-height: 1150px) { .welcome-title { line-height: calc(var(--ih) * 11.3); } }
+    /* very small phones: a little less air so the naming lines stay above the candles */
+    @media (max-aspect-ratio: 5/4) and (max-height: 620px) {
+      .welcome-seat { font-size: 21px; margin-top: calc(var(--vh) * 15.8); }
+      .welcome-rule { margin: calc(var(--vh) * 0.7) auto calc(var(--vh) * 0.6); }
+      .welcome-name span { font-size: 15.5px; }
+    }
+    /* the way onward: a quiet line of type, a rule and a small arrow */
+    .welcome-cue {
+      position: absolute; z-index: 2; left: 50%; bottom: clamp(18px, calc(var(--vh) * 3.6), 38px); transform: translateX(-50%);
+      display: inline-flex; flex-direction: column; align-items: center; padding: 10px 16px 4px;
+      font-family: var(--sans); font-weight: 500; font-size: clamp(12px, 1.2vw, 13.5px); letter-spacing: 0.34em; text-indent: 0.34em;
+      text-transform: uppercase; text-decoration: none; color: var(--ivory); white-space: nowrap;
+      text-shadow: 0 1px 10px rgba(14, 20, 36, 0.9);
+    }
+    /* its own small pool of shade, so it reads on bright wood without dimming the table */
+    .welcome-cue::before {
+      content: ""; position: absolute; z-index: -1; left: -70px; right: -70px; top: -26px; bottom: -40px; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(18, 22, 38, 0.72), rgba(18, 22, 38, 0.5) 55%, rgba(18, 22, 38, 0) 100%);
+    }
+    .welcome-cue-text { padding-bottom: 9px; border-bottom: 1px solid rgba(240, 220, 174, 0.75); transition: border-color 300ms ease; }
+    .welcome-cue:hover .welcome-cue-text, .welcome-cue:focus-visible .welcome-cue-text { border-color: #fff; }
+    .welcome-cue-arrow { position: relative; width: 14px; height: 30px; margin-top: 10px; }
+    .welcome-cue-arrow::before { content: ""; position: absolute; left: 50%; top: 0; width: 1px; height: 26px; margin-left: -0.5px; background: #f0dcae; }
+    .welcome-cue-arrow::after {
+      content: ""; position: absolute; left: 50%; top: 17px; width: 9px; height: 9px; margin-left: -5px;
+      border-right: 1px solid #f0dcae; border-bottom: 1px solid #f0dcae; transform: rotate(45deg);
+    }
+    .entered .welcome-cue-arrow { animation: nudge 2800ms ease-in-out 1200ms infinite; }
+    @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+
+    /* ══ SCENE FOUR · THE INVITATION ═════════════════════════════════════ */
+    .band { position: relative; padding: clamp(84px, 15vh, 190px) var(--gutter); text-align: center; }
+    .band-ivory { background: var(--ivory); }
+    .band-cream { background: linear-gradient(180deg, var(--cream), #ebe1cc); }
+    .band-navy { background: var(--navy); color: var(--ivory); }
+    .col { max-width: 760px; margin: 0 auto; }
+    .col > * + * { margin-top: clamp(24px, 3.8vh, 40px); }
+
+    .eyebrow {
+      font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.44em; text-indent: 0.44em;
+      text-transform: uppercase; color: var(--gold-text);
+    }
+    .band-navy .eyebrow { color: var(--gold-light); }
+    .letter-title {
+      font-family: var(--serif); font-weight: 400; text-transform: uppercase; color: var(--navy);
+      font-size: clamp(20px, 2.5vw, 30px); letter-spacing: 0.3em; text-indent: 0.3em; line-height: 1.3;
+    }
+    .letter-sub { font-style: italic; font-size: clamp(20px, 2.3vw, 27px); color: var(--gold-text); margin-top: 10px !important; }
+    .hairline { width: 58px; height: 2px; border-radius: 1px; background: var(--teal); margin-left: auto; margin-right: auto; }
+    .hairline-gold { width: 64px; height: 1px; background: var(--gold); opacity: 0.8; margin-left: auto; margin-right: auto; }
+    .band-navy .hairline-gold { background: var(--gold-light); }
+
+    .display {
+      font-family: var(--serif); font-weight: 400; color: var(--navy);
+      font-size: clamp(34px, 5.4vw, 68px); line-height: 1.08; text-wrap: balance; max-width: 15em; margin-left: auto; margin-right: auto;
+    }
+    .band-navy .display { color: var(--ivory); }
+    .display-q {
+      font-style: italic; font-weight: 300; color: var(--gold-text);
+      font-size: clamp(25px, 3.5vw, 42px); line-height: 1.24; text-wrap: balance; max-width: 17em; margin-left: auto; margin-right: auto;
+    }
+    .body {
+      font-size: clamp(20px, 2.1vw, 25px); line-height: 1.62; color: var(--ink-soft);
+      max-width: 31em; margin-left: auto; margin-right: auto; text-wrap: pretty;
+    }
+    .band-navy .body { color: rgba(250, 244, 234, 0.9); }
+    .lift {
+      font-family: var(--serif); font-weight: 500; color: var(--navy);
+      font-size: clamp(25px, 3.2vw, 38px); line-height: 1.24; text-wrap: balance; max-width: 19em; margin-left: auto; margin-right: auto;
+    }
+    .band-navy .lift { color: var(--ivory); font-weight: 400; }
+    .nots { list-style: none; padding: 0; margin-left: auto; margin-right: auto; }
+    .nots li { font-style: italic; font-size: clamp(21px, 2.5vw, 30px); line-height: 1.5; color: rgba(43, 39, 35, 0.74); }
+    .space-lg { margin-top: clamp(44px, 7.5vh, 84px) !important; }
+
+    /* a quiet photograph between passages, arched like the rooms of the House */
+    .plate { margin: 0 auto; max-width: 1180px; }
+    .plate img {
+      width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+      border-radius: clamp(120px, 22vw, 320px) clamp(120px, 22vw, 320px) 6px 6px;
+      box-shadow: 0 40px 80px -50px rgba(40, 28, 10, 0.6);
+    }
+    .band-photo { padding-top: 0; padding-bottom: 0; background: var(--ivory); }
+    .band-photo + .band { padding-top: clamp(64px, 11vh, 130px); }
+
+    /* an invitation to something different: words beside a room */
+    .different { max-width: 1120px; margin: 0 auto; display: grid; gap: clamp(40px, 6vw, 84px); align-items: center; }
+    .different figure { margin: 0 auto; width: min(100%, 420px); }
+    .different img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 999px 999px 6px 6px; box-shadow: 0 40px 70px -40px rgba(4, 8, 20, 0.9); }
+    .different .col { margin: 0; }
+    .gifts { font-style: italic; font-size: clamp(22px, 2.6vw, 31px); line-height: 1.46; color: var(--gold-light); max-width: 18em; margin-left: auto; margin-right: auto; text-wrap: balance; }
+    @media (min-width: 900px) {
+      .different { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); text-align: left; }
+      .different .display, .different .body, .different .gifts { margin-left: 0; margin-right: 0; }
+      .different .hairline-gold { margin-left: 0; }
+    }
+
+    /* the three days */
+    .arc { position: relative; list-style: none; padding: 0; max-width: 1040px; margin: clamp(64px, 11vh, 130px) auto 0; display: grid; gap: clamp(30px, 4.5vh, 44px); }
+    .arc li { position: relative; padding-top: clamp(30px, 4.4vh, 40px); }
+    .arc li::before { content: ""; position: absolute; left: 50%; top: 0; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--gold-light); }
+    .arc li + li::after { content: ""; position: absolute; left: 50%; top: calc(-1 * clamp(30px, 4.5vh, 44px) + 8px); width: 1px; height: calc(clamp(30px, 4.5vh, 44px) - 16px); background: rgba(226, 201, 146, 0.5); }
+    .arc .day { font-family: var(--sans); font-weight: 400; font-size: 11.5px; letter-spacing: 0.4em; text-indent: 0.4em; text-transform: uppercase; color: var(--gold-light); }
+    .arc .word { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.1; margin-top: 14px; color: var(--ivory); }
+    .arc .feel { font-style: italic; font-size: clamp(19px, 2vw, 23px); line-height: 1.4; margin-top: 10px; color: rgba(250, 244, 234, 0.88); }
+    @media (min-width: 760px) {
+      .arc { grid-template-columns: repeat(3, 1fr); gap: 0; }
+      .arc::before { content: ""; position: absolute; left: 16.66%; right: 16.66%; top: 3px; height: 1px; background: rgba(226, 201, 146, 0.5); }
+      .arc li { padding-left: 14px; padding-right: 14px; }
+      .arc li + li::after { display: none; }
+    }
+
+    /* what will you take home */
+    .takes { list-style: none; padding: 0; max-width: 1080px; margin: clamp(48px, 8vh, 90px) auto 0; display: grid; gap: clamp(40px, 6vh, 56px); text-align: left; }
+    .takes li { position: relative; padding-top: 26px; border-top: 1px solid rgba(156, 122, 63, 0.45); }
+    .takes .n { font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.3em; color: var(--teal); }
+    .takes p { font-size: clamp(20px, 2vw, 23px); line-height: 1.56; color: var(--ink-soft); margin-top: 14px; text-wrap: pretty; }
+    .takes strong { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(29px, 3vw, 38px); line-height: 1.12; color: var(--navy); margin-bottom: 10px; }
+    @media (min-width: 860px) { .takes { grid-template-columns: repeat(3, 1fr); gap: clamp(30px, 4vw, 60px); } }
+
+    /* ══ SCENE FIVE · THE INVITATION TO CONNECT ══════════════════════════ */
+    .closing-name { font-family: var(--serif); font-weight: 400; text-transform: uppercase; font-size: clamp(27px, 4.4vw, 54px); letter-spacing: 0.22em; text-indent: 0.22em; line-height: 1.16; }
+    .closing-facts { font-family: var(--sans); font-weight: 400; font-size: clamp(12px, 1.3vw, 13.5px); letter-spacing: 0.3em; text-indent: 0.3em; text-transform: uppercase; line-height: 2; color: rgba(250, 244, 234, 0.92); }
+    .ask { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.12; text-wrap: balance; }
+    .ask + .body { margin-top: 18px; }
+    .ask-note { font-style: italic; font-size: clamp(22px, 2.6vw, 31px); line-height: 1.4; color: var(--gold-light); margin-top: clamp(18px, 2.8vh, 28px) !important; }
+
+    .form { max-width: 640px; margin: clamp(40px, 6.5vh, 64px) auto 0; text-align: left; }
+    .no-js .form { display: none; }
+    .fields { display: grid; gap: 22px 20px; }
+    @media (min-width: 620px) { .fields { grid-template-columns: 1fr 1fr; } .field-wide { grid-column: 1 / -1; } }
+    .field label { display: block; font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(250, 244, 234, 0.92); margin-bottom: 9px; }
+    .field label em { font-style: normal; letter-spacing: 0.12em; text-transform: none; color: rgba(250, 244, 234, 0.72); }
+    .field input, .field textarea {
+      width: 100%; font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.4; color: var(--ivory);
+      background: rgba(250, 244, 234, 0.07); border: 1px solid rgba(250, 244, 234, 0.42); border-radius: 2px; padding: 13px 15px;
+      transition: border-color 300ms ease, background 300ms ease; -webkit-appearance: none; appearance: none;
+    }
+    .field textarea { min-height: 132px; resize: vertical; }
+    .field input:hover, .field textarea:hover { border-color: rgba(250, 244, 234, 0.7); }
+    .field input:focus, .field textarea:focus { outline: 2px solid var(--gold-light); outline-offset: 2px; background: rgba(250, 244, 234, 0.11); }
+    .field [aria-invalid="true"] { border-color: #f0b9a4; }
+    .field .err { display: block; min-height: 0; font-family: var(--sans); font-weight: 400; font-size: 13.5px; letter-spacing: 0.02em; color: #f6c9b8; margin-top: 7px; }
+    .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .send {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 54px; margin-top: 30px; padding: 16px 40px;
+      font-family: var(--sans); font-weight: 500; font-size: 12.5px; letter-spacing: 0.28em; text-indent: 0.28em; text-transform: uppercase;
+      color: var(--navy-deep); background: var(--ivory); border: 1px solid var(--ivory); border-radius: 2px; cursor: pointer;
+      transition: background 400ms ease, box-shadow 400ms ease, opacity 300ms ease;
+    }
+    .send:hover { background: #fff; box-shadow: 0 0 0 1px var(--gold-light); }
+    .send[disabled] { opacity: 0.6; cursor: default; }
+    .form-actions { text-align: center; }
+    .fine { font-family: var(--sans); font-weight: 400; font-size: 13.5px; line-height: 1.7; letter-spacing: 0.02em; color: rgba(250, 244, 234, 0.82); max-width: 34em; margin: 18px auto 0; text-align: center; }
+    .fine a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(226, 201, 146, 0.7); }
+    .fine a:hover { color: #fff; }
+    .fine .fine-link { display: inline-block; padding: 12px 6px; }
+    .status { margin: 26px auto 0; max-width: 34em; text-align: center; font-size: clamp(20px, 2.1vw, 24px); line-height: 1.5; color: var(--ivory); }
+    .status:empty { display: none; }
+    .status.is-error { color: #f6c9b8; }
+    .thanks { max-width: 620px; margin: clamp(40px, 6.5vh, 64px) auto 0; padding: clamp(8px, 2vh, 20px) 0; text-align: center; animation: fadeOnly 1200ms ease both; }
+    .thanks:focus { outline: none; }
+    .thanks-rule { width: 64px; height: 1px; background: var(--gold-light); margin: 0 auto clamp(26px, 4vh, 40px); }
+    .thanks h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.1; color: var(--ivory); text-wrap: balance; }
+    .thanks p { margin-top: 14px; font-size: clamp(20px, 2.1vw, 25px); line-height: 1.55; color: rgba(250, 244, 234, 0.92); text-wrap: balance; }
+    .thanks .thanks-lead { margin-top: clamp(18px, 3vh, 28px); }
+    .thanks .thanks-sign { margin-top: clamp(22px, 3.6vh, 34px); font-style: italic; font-size: clamp(22px, 2.6vw, 31px); color: var(--gold-light); }
+    .or { margin-top: clamp(44px, 7vh, 72px); }
+    .or a { font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; text-decoration: none; color: var(--gold-light); border-bottom: 1px solid rgba(226, 201, 146, 0.6); padding: 15px 0 10px; display: inline-block; line-height: 1.6; }
+    .or a:hover { color: #fff; border-color: #fff; }
+
+    .foot {
+      background: var(--navy-deep); color: rgba(250, 244, 234, 0.82); text-align: center;
+      padding: clamp(40px, 6vh, 64px) var(--gutter) clamp(44px, 7vh, 72px);
+      font-family: var(--sans); font-weight: 400; font-size: 11.5px; letter-spacing: 0.26em; text-transform: uppercase; line-height: 2.1;
+    }
+    .foot .mark { display: inline-block; padding: 11px 12px; font-family: var(--serif); font-size: 17px; letter-spacing: 0.26em; line-height: 1.4; color: var(--ivory); text-decoration: none; }
+    .foot a:hover { color: #fff; }
+    .foot small { display: block; font-size: 11.5px; margin-top: 8px; color: rgba(250, 244, 234, 0.72); }
+
+    /* ── motion: all of it optional ─────────────────────────────────────── */
+    .reveal-on .reveal { opacity: 0; transform: translateY(16px); transition: opacity 1100ms ease, transform 1100ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .reveal-on .reveal.is-in { opacity: 1; transform: none; }
+    .gated .welcome-inner > *, .gated .welcome-cue { opacity: 0; }
+    /* Each welcome has its own moment. Times count from the click on the door:
+       the room is in view by about 2.6s, then the words arrive one at a time. */
+    .arriving .welcome-inner > *, .arriving .welcome-cue { animation: fadeOnly 1500ms ease both; }
+    .arriving .welcome-title { animation-delay: 2500ms; }                         /* Welcome home. */
+    .arriving .welcome-seat { animation-delay: 3900ms; animation-duration: 1700ms; } /* a held breath, then: We've saved you a seat. */
+    .arriving .welcome-rule { animation-delay: 5500ms; animation-duration: 1200ms; }
+    .arriving .welcome-name { animation-delay: 5700ms; }                          /* the gathering is named last */
+    .arriving .welcome-cue { animation-delay: 6900ms; animation-duration: 1200ms; }
+    .arriving .welcome-photo { animation: settle 10s cubic-bezier(0.2, 0.6, 0.2, 1) both; }
+    @keyframes fadeOnly { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes settle { from { transform: scale(1.06); } to { transform: scale(1); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ent-leaf, .ent-leaf::after, .ent-spill { transition: none; }
+      .door.is-opening .door-stage { animation: none; }
+      .door.is-leaving { transition: opacity 300ms ease; }
+      .arriving .welcome-inner > *, .arriving .welcome-cue, .arriving .welcome-photo { animation: none; opacity: 1; }
+      .thanks { animation: none; }
+      .entered .welcome-cue-arrow { animation: none; }
+      .reveal-on .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#invitation" data-skip>Skip to the invitation</a>
+
+  <!-- ══ SCENE ONE · THE DOOR ══════════════════════════════════════════ -->
+  <section class="door" id="door" aria-label="Your invitation">
+    <div class="door-stage">
+      <div class="ent">
+        <div class="ent-base" role="img" aria-label="The entrance of a restored London Georgian townhouse in warm evening light: a dusty rose panelled front door beneath a glowing fanlight and lantern, pale stone, sash windows, black iron railings and two clipped topiaries."></div>
+        <div class="ent-room" aria-hidden="true"></div>
+        <div class="ent-spill" aria-hidden="true"></div>
+        <div class="ent-leaf" aria-hidden="true"></div>
+        <div class="ent-plate" aria-hidden="true"><span class="ent-plate-face"><span>THE UNPAVED</span><span>PATH</span></span></div>
+      </div>
+    </div>
+    <div class="door-scrim" aria-hidden="true"></div>
+    <p class="door-mark">Believe Studio</p>
+    <div class="door-words">
+      <h1 class="door-title">The Unpaved Path</h1>
+      <div class="door-rule" aria-hidden="true"></div>
+      <p class="door-line">You&rsquo;ve spent so much time opening doors for your brand. <span>This one is for you.</span></p>
+      <a class="door-cta" href="#welcome" data-open>Open your invitation</a>
+      <a class="door-skip" href="#invitation" data-skip>Skip the animation</a>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- ══ SCENE THREE · WELCOME HOME ═════════════════════════════════ -->
+    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+      <picture>
+        <!-- THE DINING ROOM, ONE HOME IN TWO PHOTOGRAPHS
+             Phones and portrait screens: the dedicated portrait photograph.
+             Wide screens: the 16:9 photograph (Study 1 Refined colour).
+             ROLLBACK for phones: delete the <source> line below and the
+             portrait .ent-room rule in the styles. Phones then return to a
+             centre framing of the 16:9 photograph; the portrait welcome style
+             block notes the values that suited it. -->
+        <source media="(max-aspect-ratio: 5/4)" srcset="/photos/unpaved-dining-country-portrait.webp" width="1024" height="1536">
+      <img class="welcome-photo" src="/photos/unpaved-dining-country-wide.webp" width="1672" height="941" alt="A country house dining room at golden hour: a long wooden table set with candles, hydrangeas and linen, cream chairs drawn up to every place, a fire lit, and tall windows looking out over green hills.">
+      </picture>
+      <div class="welcome-inner">
+        <h2 class="welcome-title" id="welcome-title" tabindex="-1">Welcome home.</h2>
+        <p class="welcome-seat">We&rsquo;ve saved you a seat.</p>
+        <div class="welcome-rule" aria-hidden="true"></div>
+        <p class="welcome-name">The Unpaved Path. <span>A gathering for the person behind the brand.</span></p>
+      </div>
+      <a class="welcome-cue" href="#invitation"><span class="welcome-cue-text">Read your invitation</span><span class="welcome-cue-arrow" aria-hidden="true"></span></a>
+    </section>
+
+    <!-- ══ SCENE FOUR · THE INVITATION UNFOLDS ════════════════════════
+         Approved invitation copy (brief, Section 10). Edit wording here. -->
+    <section class="band band-ivory" id="invitation" aria-labelledby="invitation-title">
+      <div class="col">
+        <h1 class="letter-title reveal" id="invitation-title" tabindex="-1">The Unpaved Path</h1>
+        <p class="letter-sub reveal">For the person behind the brand.</p>
+        <div class="hairline reveal space-lg" aria-hidden="true"></div>
+        <p class="display reveal space-lg">You&rsquo;ve poured everything into building your brand.</p>
+        <p class="display-q reveal">But when was the last time you did something for the person building it?</p>
+        <p class="body reveal space-lg">You started with an idea. A dream. Something you believed in enough to take a chance when others might not have understood.</p>
+        <p class="body reveal">Since then, you&rsquo;ve experienced the extraordinary highs and the difficult lows. The small victories nobody sees. The rejections that make you question everything. The moments when you wonder if you&rsquo;re doing enough, moving fast enough, or even heading in the right direction.</p>
+        <p class="lift reveal">And through it all, you&rsquo;ve kept going.</p>
+      </div>
+    </section>
+
+    <div class="band band-photo">
+      <figure class="plate reveal">
+        <img src="/photos/photo-closing.webp" width="1717" height="916" loading="lazy" alt="A quiet hallway in soft daylight, its tall arched doors standing open onto a garden.">
+      </figure>
+    </div>
+
+    <section class="band band-ivory" aria-label="Permission to step away">
+      <div class="col">
+        <p class="display reveal">But what if, just for three days, you gave yourself permission to step away?</p>
+        <ul class="nots reveal space-lg">
+          <li>Not to pitch your business.</li>
+          <li>Not to compare accomplishments.</li>
+          <li>Not to chase the next retailer.</li>
+        </ul>
+        <p class="lift reveal">But to reconnect with yourself and the reason you started.</p>
+        <p class="body reveal space-lg">To gather around a table with other founders who understand the journey because they&rsquo;re living it, too.</p>
+        <p class="body reveal">To share stories, laugh, explore, discover unexpected possibilities, and remember that you don&rsquo;t have to figure everything out alone.</p>
+      </div>
+    </section>
+
+    <section class="band band-navy on-dark" aria-labelledby="different-title">
+      <div class="different">
+        <figure class="reveal">
+          <img src="/photos/photo-conversation.webp" width="1400" height="933" loading="lazy" alt="Two armchairs drawn close by a fireplace in a deep navy panelled room, an open notebook and a cup of tea on the table between them.">
+        </figure>
+        <div class="col">
+          <h2 class="display reveal" id="different-title">An invitation to something different.</h2>
+          <div class="hairline-gold reveal" aria-hidden="true"></div>
+          <p class="body reveal">The Unpaved Path is an intimate, three-day experience in the English countryside, bringing together a small circle of founders who believe there&rsquo;s more than one path forward.</p>
+          <p class="gifts reveal">Thoughtful conversations. Beautiful shared experiences. Genuine connections. And space to simply be yourself.</p>
+        </div>
+      </div>
+
+      <!-- The three days. The one passage that is not in the Section 10 copy:
+           its words come from the brief's own arc (Section 8). Remove this
+           <ol> to return to the approved copy exactly. -->
+      <ol class="arc" aria-label="The three days">
+        <li class="reveal"><p class="day">Day One</p><p class="word">Belonging</p><p class="feel">Arrive as you are.</p></li>
+        <li class="reveal"><p class="day">Day Two</p><p class="word">Possibility</p><p class="feel">Discover what you haven&rsquo;t considered.</p></li>
+        <li class="reveal"><p class="day">Day Three</p><p class="word">Courage</p><p class="feel">Take the next step.</p></li>
+      </ol>
+    </section>
+
+    <section class="band band-ivory" aria-labelledby="takes-title">
+      <div class="col">
+        <h2 class="display reveal" id="takes-title">What will you take home?</h2>
+        <p class="display-q reveal">Our hope is that you&rsquo;ll return with:</p>
+      </div>
+      <ol class="takes">
+        <li class="reveal"><span class="n" aria-hidden="true">01</span><p><strong>Renewed belief</strong> in yourself and a fresh perspective on how far you&rsquo;ve come.</p></li>
+        <li class="reveal"><span class="n" aria-hidden="true">02</span><p><strong>Meaningful relationships</strong> with founders who understand your journey and can continue supporting you long after the experience.</p></li>
+        <li class="reveal"><span class="n" aria-hidden="true">03</span><p><strong>New possibilities</strong> and at least one practical idea or next step to explore in your business.</p></li>
+      </ol>
+      <div class="col space-lg">
+        <p class="body reveal">Not because three days will solve every challenge.</p>
+        <p class="lift reveal">But because sometimes stepping away gives you the perspective, encouragement, and courage to see a different way forward.</p>
+      </div>
+    </section>
+
+    <section class="band band-cream" aria-label="An investment in yourself">
+      <div class="col">
+        <div class="hairline-gold reveal" aria-hidden="true"></div>
+        <p class="display reveal">Step away from the business you&rsquo;ve been building. Reconnect with the person who&rsquo;s been building it.</p>
+        <p class="display-q reveal">Because sometimes the most important investment you can make in your brand is an investment in yourself.</p>
+      </div>
+    </section>
+
+    <!-- ══ SCENE FIVE · THE INVITATION TO CONNECT ═════════════════════ -->
+    <section class="band band-navy on-dark" id="interest" aria-labelledby="interest-title">
+      <div class="col">
+        <p class="closing-name reveal">The Unpaved Path</p>
+        <p class="eyebrow reveal">A Believe Studio Experience</p>
+        <!-- Dates and venue: when confirmed, add them to this line. -->
+        <p class="closing-facts reveal">England. Three days. An intimate founding circle.</p>
+        <div class="hairline-gold reveal space-lg" aria-hidden="true"></div>
+        <!-- The invitation to write. Shown until a note has been sent; the
+             thank-you then takes its place. -->
+        <h2 class="ask reveal space-lg" id="interest-title" tabindex="-1" data-before-send>Does this feel like your kind of gathering?</h2>
+        <p class="body reveal" data-before-send>We&rsquo;d love to hear from you. Tell us a little about yourself and your brand, and Beth will be in touch personally to explore whether it feels right for you.</p>
+        <p class="ask-note reveal" data-before-send>No commitment. Just a conversation.</p>
+      </div>
+
+      <form class="form reveal" id="interest-form" novalidate>
+        <div class="fields">
+          <div class="field">
+            <label for="f-first">First name</label>
+            <input id="f-first" name="firstName" type="text" autocomplete="given-name" required aria-describedby="e-first">
+            <span class="err" id="e-first" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="f-last">Last name</label>
+            <input id="f-last" name="lastName" type="text" autocomplete="family-name" required aria-describedby="e-last">
+            <span class="err" id="e-last" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="e-email">
+            <span class="err" id="e-email" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="f-brand">Brand or company</label>
+            <input id="f-brand" name="brand" type="text" autocomplete="organization" required aria-describedby="e-brand">
+            <span class="err" id="e-brand" role="alert"></span>
+          </div>
+          <div class="field field-wide">
+            <label for="f-message">What about this experience speaks to you? <em>(optional)</em></label>
+            <textarea id="f-message" name="message" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="trap" aria-hidden="true">
+          <label for="f-website">Leave this field empty</label>
+          <input id="f-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-actions">
+          <button class="send" type="submit">I&rsquo;d love to learn more</button>
+          <p class="fine" id="form-note"></p>
+        </div>
+        <p class="status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <noscript>
+        <p class="body" style="margin-top:40px">To let us know you&rsquo;d love to learn more, write to <a href="mailto:hello@believestudio.co?subject=The%20Unpaved%20Path%3A%20I%27d%20love%20to%20learn%20more">hello@believestudio.co</a>.</p>
+      </noscript>
+
+      <p class="or reveal" data-before-send><a href="https://calendly.com/beth-believeagency/the-unpaved-path-founder-conversation" target="_blank" rel="noopener noreferrer">Or find a time to talk with Beth<span class="visually-hidden"> (opens Calendly in a new tab)</span></a></p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <a class="mark" href="/">BELIEVE STUDIO</a>
+    <small>A House for Founders</small>
+    <small>This is a personal invitation, shared with a small circle of founders.</small>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict'
+
+    /* ── CONFIGURATION ───────────────────────────────────────────────────
+       formEndpoint: where "I'd love to learn more" is sent.
+         'https://…'  The form submits directly from this page: a JSON POST to
+                      the endpoint, which must answer 2xx on success (a
+                      Formspree form address works as it is). The thank-you is
+                      shown only after the endpoint confirms receipt; a failed
+                      send says so and keeps what the founder typed.
+         ''  (blank)  NOT CONNECTED. Until an endpoint is set, the form falls
+                      back to preparing an email to contactEmail in the
+                      founder's own mail app, and says so plainly.
+       See docs/THE_UNPAVED_PATH.md for the steps. */
+    var CONFIG = {
+      formEndpoint: 'https://formspree.io/f/myeweeor',
+      contactEmail: 'hello@believestudio.co'
+    }
+
+    var root = document.documentElement
+    var reduce = false
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches } catch (e) {}
+
+    /* ── The door ─────────────────────────────────────────────────────── */
+    var door = document.getElementById('door')
+    var main = document.getElementById('main')
+    var foot = document.querySelector('.foot')
+    var busy = false
+    var gated = root.classList.contains('gated')
+
+    function setInert(on) {
+      [main, foot].forEach(function (el) {
+        if (!el) return
+        if (on) { el.setAttribute('inert', ''); el.setAttribute('aria-hidden', 'true') }
+        else { el.removeAttribute('inert'); el.removeAttribute('aria-hidden') }
+      })
+    }
+    function focusQuietly(el) { if (el) { try { el.focus({ preventScroll: true }) } catch (e) { el.focus() } } }
+
+    /* step inside. animate=false is the skip path: no swing, no dissolve. */
+    function enter(animate, targetId) {
+      if (!gated || busy) return
+      busy = true
+      var swing = animate && !reduce
+      var finish = function () {
+        gated = false
+        door.hidden = true
+        door.classList.remove('is-opening', 'is-leaving')
+        root.classList.remove('gated'); root.classList.add('entered')
+        setInert(false)
+        var target = document.getElementById(targetId || 'welcome')
+        if (targetId && target) target.scrollIntoView()
+        focusQuietly(target ? (target.querySelector('[tabindex="-1"]') || target) : null)
+        try { history.replaceState(null, '', targetId ? '#' + targetId : location.pathname + location.search) } catch (e) {}
+      }
+      if (!animate) { finish(); return }
+      root.classList.add('arriving')
+      if (swing) {
+        door.classList.add('is-opening')                                  // 0.0s  the door swings, we step forward
+        setTimeout(function () { door.classList.add('is-leaving') }, 1650) // 1.65s the doorstep dissolves into the room
+        setTimeout(finish, 2800)                                           // 2.8s  inside
+      } else {
+        door.classList.add('is-leaving')                                   // reduced motion: a short, still fade
+        setTimeout(finish, 320)
+      }
+    }
+
+    if (gated && door) {
+      try { history.scrollRestoration = 'manual' } catch (e) {}
+      window.scrollTo(0, 0)
+      setInert(true)
+      door.addEventListener('click', function (e) {
+        var skip = e.target.closest && e.target.closest('[data-skip]')
+        e.preventDefault()
+        if (skip) enter(false, 'invitation'); else enter(true)
+      })
+      door.addEventListener('keydown', function (e) {
+        if ((e.key === ' ' || e.key === 'Spacebar') && e.target.matches && e.target.matches('[data-open]')) { e.preventDefault(); enter(true) }
+      })
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') enter(false) })
+      var skipLink = document.querySelector('.skip-link')
+      if (skipLink) skipLink.addEventListener('click', function (e) { if (gated) { e.preventDefault(); enter(false, 'invitation') } })
+      // if the door photograph cannot load, do not leave anyone on the step
+      var probe = new Image()
+      probe.onerror = function () { enter(false) }
+      probe.src = '/photos/entrance49-base.webp'
+    }
+
+    /* ── Passages surface as they are reached (never required to read) ── */
+    if (!reduce && 'IntersectionObserver' in window) {
+      var items = document.querySelectorAll('.reveal')
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target) } })
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 })
+      root.classList.add('reveal-on')
+      items.forEach(function (el) { io.observe(el) })
+      // a safety net: nothing stays hidden if the observer never reports
+      setTimeout(function () { if (!document.querySelector('.reveal.is-in')) root.classList.remove('reveal-on') }, 6000)
+    }
+
+    /* ── The interest form ────────────────────────────────────────────── */
+    var form = document.getElementById('interest-form')
+    if (!form) return
+    var statusEl = document.getElementById('form-status')
+    var noteEl = document.getElementById('form-note')
+    var sendBtn = form.querySelector('.send')
+    var connected = /^https:\/\/\S+/.test(CONFIG.formEndpoint)
+    var mailLink = '<a href="mailto:' + CONFIG.contactEmail + '">' + CONFIG.contactEmail + '</a>'
+
+    noteEl.innerHTML = connected
+      ? 'Your details are used only to reply to you about The Unpaved Path. <a class="fine-link" href="/privacy" target="_blank" rel="noopener">Privacy<span class="visually-hidden"> policy (opens in a new tab)</span></a>'
+      : 'This opens a ready-to-send note in your own email app, addressed to Beth. Nothing is stored on this page.'
+
+    var rules = [
+      { id: 'f-first', err: 'e-first', msg: 'Please share your first name.' },
+      { id: 'f-last', err: 'e-last', msg: 'Please share your last name.' },
+      { id: 'f-email', err: 'e-email', msg: 'Please enter an email address we can reply to.', email: true },
+      { id: 'f-brand', err: 'e-brand', msg: 'Please tell us the name of your brand or company.' }
+    ]
+    function check(rule) {
+      var input = document.getElementById(rule.id), err = document.getElementById(rule.err)
+      var v = input.value.trim()
+      var ok = v.length > 0 && (!rule.email || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v))
+      input.setAttribute('aria-invalid', ok ? 'false' : 'true')
+      err.textContent = ok ? '' : rule.msg
+      return ok
+    }
+    rules.forEach(function (rule) {
+      var input = document.getElementById(rule.id)
+      input.addEventListener('blur', function () { if (input.value.trim() || input.getAttribute('aria-invalid') === 'true') check(rule) })
+      input.addEventListener('input', function () { if (input.getAttribute('aria-invalid') === 'true') check(rule) })
+    })
+    function setStatus(html, isError) { statusEl.className = 'status' + (isError ? ' is-error' : ''); statusEl.innerHTML = html }
+
+    var sending = false   // one request at a time: a second click or Enter while sending does nothing
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+      if (sending) return
+      setStatus('')
+      var firstBad = null
+      rules.forEach(function (rule) { if (!check(rule) && !firstBad) firstBad = document.getElementById(rule.id) })
+      if (firstBad) { firstBad.focus(); return }
+      if (form.elements['_gotcha'].value) return // a bot filled the hidden field
+
+      var data = {
+        firstName: form.elements['firstName'].value.trim(),
+        lastName: form.elements['lastName'].value.trim(),
+        email: form.elements['email'].value.trim(),
+        brand: form.elements['brand'].value.trim(),
+        message: form.elements['message'].value.trim(),
+        source: 'The Unpaved Path invitation',
+        name: form.elements['firstName'].value.trim() + ' ' + form.elements['lastName'].value.trim(),
+        _subject: 'The Unpaved Path: ' + form.elements['firstName'].value.trim() + ' ' + form.elements['lastName'].value.trim() + ' would love to learn more'
+      }
+
+      if (!connected) {
+        // No backend: hand the note to the founder's own email app. This is
+        // not a confirmation, because nothing has been sent until they send it.
+        var body = 'Hi Beth,\n\nI\'d love to learn more about The Unpaved Path.\n\n' +
+          'Name: ' + data.firstName + ' ' + data.lastName + '\n' +
+          'Email: ' + data.email + '\n' +
+          'Brand or company: ' + data.brand + '\n' +
+          (data.message ? '\nWhat speaks to me about this experience:\n' + data.message + '\n' : '')
+        var href = 'mailto:' + CONFIG.contactEmail +
+          '?subject=' + encodeURIComponent('The Unpaved Path: I\'d love to learn more') +
+          '&body=' + encodeURIComponent(body)
+        window.location.href = href
+        setStatus('Your email app should now be open with your note to Beth, ready for you to send. If nothing opened, you can write to ' + mailLink + ' directly.')
+        return
+      }
+
+      sending = true
+      sendBtn.disabled = true; sendBtn.setAttribute('aria-busy', 'true')
+      var label = sendBtn.textContent
+      sendBtn.textContent = 'Sending your note'
+      fetch(CONFIG.formEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status)
+        // confirmed by the endpoint: only now do we say thank you
+        var box = document.createElement('div')
+        box.className = 'thanks'; box.setAttribute('role', 'status'); box.tabIndex = -1
+        var add = function (tag, cls, text) { var el = document.createElement(tag); if (cls) el.className = cls; el.textContent = text; box.appendChild(el); return el }
+        add('h3', '', 'Thank you, ' + data.firstName + '.')
+        add('p', 'thanks-lead', 'Your note has arrived.')
+        add('p', '', 'Beth reads every message personally, and she\u2019ll be in touch.')
+        add('p', 'thanks-sign', 'We\u2019re so glad this found you.')
+        box.querySelector('h3').id = 'thanks-title'
+        form.parentNode.replaceChild(box, form)
+        // the thank-you becomes the focus: the invitation to write steps aside
+        var section = document.getElementById('interest')
+        Array.prototype.forEach.call(section.querySelectorAll('[data-before-send]'), function (el) { el.hidden = true })
+        section.setAttribute('aria-labelledby', 'thanks-title')
+        focusQuietly(box)
+        try { box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }) } catch (e) {}
+      }).catch(function () {
+        sending = false
+        sendBtn.disabled = false; sendBtn.removeAttribute('aria-busy'); sendBtn.textContent = label
+        setStatus('We\u2019re sorry, your note didn\u2019t go through. Everything you wrote is still here, so please try again in a moment. Or write to ' + mailLink + ' and we\u2019ll pick it up from there.', true)
+      })
+    })
+  })()
+  </script>
+</body>
+</html>

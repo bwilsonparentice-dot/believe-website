@@ -8,7 +8,7 @@ const balance = { textWrap: 'balance' as CSSProperties['textWrap'] }
 const pretty = { textWrap: 'pretty' as CSSProperties['textWrap'] }
 
 /** Effective date for the initial pages — update to the real publication date. */
-const EFFECTIVE = 'October 11, 2026'
+const EFFECTIVE = 'November 15, 2026'
 
 const label: CSSProperties = { fontFamily: sans, fontWeight: 400, fontSize: 11, letterSpacing: '0.5em', textTransform: 'uppercase', color: 'rgba(122,94,52,0.7)' }
 const h3: CSSProperties = { fontFamily: serif, fontWeight: 500, fontSize: 'clamp(21px,2.3vw,30px)', lineHeight: 1.2, color: '#2b2723', margin: 'clamp(44px,7vh,76px) 0 0.7em' }
@@ -56,7 +56,7 @@ export function PrivacyPage({ ctx }: { ctx: Ctx }) {
       <p style={{ ...body, margin: 0 }}>Believe Studio (&ldquo;we,&rdquo; &ldquo;us&rdquo;) respects your privacy. This website is a simple, informational space, and it collects very little. This policy explains what happens when you visit believestudio.co and when you reach out to us.</p>
 
       <h3 style={h3}>What this website collects</h3>
-      <p style={body}>The website itself has no contact forms, no email sign-ups, and no advertising or analytics trackers, and it does not set cookies. We do not build profiles of visitors or sell any information.</p>
+      <p style={body}>Apart from one inquiry form on an invitation-only page, described below, the website has no contact forms, no email sign-ups, and no advertising or analytics trackers, and it does not set cookies. We do not build profiles of visitors or sell any information.</p>
       <p style={body}>The site stores a few small preferences in your browser&rsquo;s local storage, for example, whether you&rsquo;ve already seen the opening animation. This information stays on your own device, is not transmitted to us, and you can clear it at any time through your browser.</p>
 
       <h3 style={h3}>Technical information through our host</h3>
@@ -68,6 +68,11 @@ export function PrivacyPage({ ctx }: { ctx: Ctx }) {
       <h3 style={h3}>Booking a conversation (Calendly)</h3>
       <p style={body}>When you choose to start a conversation, you are taken to Calendly, an independent scheduling service, to book a time. Any details you enter there, such as your name, email address, and appointment details, are collected and processed by Calendly under its own privacy policy.</p>
       <p style={body}>Believe Studio may receive and retain the contact information and appointment details you submit through Calendly, so that we can schedule, prepare for, and follow up on our conversation with you. We use that information to correspond with you about working together, and we do not sell it.</p>
+
+      <h3 style={h3}>Sending an inquiry (Formspree)</h3>
+      <p style={body}>One invitation page on this site includes a short inquiry form. If you choose to complete it, we collect the details you enter: your name, your email address, the name of your brand or company, and any message you include.</p>
+      <p style={body}>The form is delivered by Formspree, an independent form service, which processes your submission on our behalf under its own privacy policy and sends it to us by email. We use this information only to reply to you and to correspond with you about the gathering you asked about. We do not sell it or add you to a mailing list.</p>
+      <p style={body}>If you would like to see, correct, or delete the information you sent, write to <ContactEmail /> and we will take care of it.</p>
 
       <h3 style={h3}>Links to other sites</h3>
       <p style={body}>We link to other websites, including Believe Radar and third-party services. Those sites are operated independently and have their own privacy practices, which we don&rsquo;t control and aren&rsquo;t responsible for.</p>
