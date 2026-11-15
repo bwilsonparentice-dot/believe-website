@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="preload" as="image" href="/photos/entrance49-base.webp">
   <link rel="preload" as="image" href="/photos/entrance49-leaf.webp">
+  <link rel="preload" as="image" href="/photos/unpaved-entry-hall.webp">
   <link rel="preload" as="image" href="/photos/unpaved-dining-country-wide.webp" media="(min-aspect-ratio: 5/4)">
   <link rel="preload" as="image" href="/photos/unpaved-dining-country-portrait.webp" media="(max-aspect-ratio: 5/4)">
 
@@ -116,13 +117,16 @@
       aspect-ratio: 1672 / 941; width: max(100vw, calc(var(--vh) * 177.7));
     }
     .ent-base { position: absolute; inset: 0; background: url('/photos/entrance49-base.webp') center / cover no-repeat; }
-    /* what waits behind the door: the candlelit table, glimpsed through the opening */
+    /* what waits behind the door */
     .ent-room, .ent-spill, .ent-leaf { position: absolute; left: 42.76%; top: 27.42%; width: 14.53%; height: 49.95%; }
+    /* Through the doorway: the entry hall, with the dining room beyond it.
+       ROLLBACK to the earlier glimpse of the dining room itself: use
+       unpaved-dining-country-wide.webp here, and add back
+       @media (max-aspect-ratio: 5/4) { .ent-room { background-image: url('/photos/unpaved-dining-country-portrait.webp'); background-position: 56% 46%; } } */
     .ent-room {
-      z-index: 1; background: url('/photos/unpaved-dining-country-wide.webp') 50% 50% / cover no-repeat;
+      z-index: 1; background: url('/photos/unpaved-entry-hall.webp') 50% 50% / cover no-repeat;
       box-shadow: inset 0 0 26px rgba(8, 6, 3, 0.6);
     }
-    @media (max-aspect-ratio: 5/4) { .ent-room { background-image: url('/photos/unpaved-dining-country-portrait.webp'); background-position: 56% 46%; } }
     .ent-spill {
       z-index: 1; pointer-events: none; opacity: 0;
       background: radial-gradient(60% 54% at 52% 50%, rgba(255, 226, 170, 0.34), rgba(255, 226, 170, 0) 72%);
@@ -145,7 +149,7 @@
     .door.is-opening .door-stage { animation: entWalk 2600ms cubic-bezier(0.45, 0, 0.25, 1) 200ms forwards; }
     @keyframes entWalk { to { transform: scale(1.14); } }
 
-    /* the aged-brass nameplate beside the door, engraved for this gathering */
+    /* the aged-brass nameplate beside the door */
     .ent-plate {
       position: absolute; z-index: 3; display: none; container-type: inline-size;
       left: 62.3%; top: 36.8%; width: 8.25%; aspect-ratio: 138 / 74;
@@ -164,12 +168,13 @@
         2px 3px 8px rgba(40,26,7,0.4), 1px 1px 2px rgba(40,26,7,0.3),
         inset 0 1px 1px rgba(255,248,218,0.55), inset 0 -1.5px 2px rgba(46,29,6,0.5);
     }
+    /* the lettering matches the Believe Studio plaque on the homepage */
     .ent-plate span span {
       font-family: var(--serif); font-weight: 500; line-height: 1; white-space: nowrap;
-      letter-spacing: 0.16em; text-indent: 0.16em; font-size: 11.6cqw; color: #453211;
+      letter-spacing: 0.14em; text-indent: 0.14em; font-size: 19cqw; color: #453211;
       text-shadow: 0 0.6px 0 rgba(255,247,214,0.42), 0 -0.4px 0.3px rgba(38,24,5,0.5);
     }
-    .ent-plate span span + span { margin-top: 0.5em; letter-spacing: 0.34em; text-indent: 0.34em; }
+    .ent-plate span span + span { margin-top: 0.42em; letter-spacing: 0.34em; text-indent: 0.34em; font-size: 11.5cqw; color: #4a3512; text-shadow: 0 0.5px 0 rgba(255,247,214,0.4), 0 -0.3px 0.3px rgba(38,24,5,0.45); }
 
     /* scrims that seat the words without dimming the door itself */
     .door-scrim { position: absolute; inset: 0; pointer-events: none; }
@@ -573,7 +578,7 @@
         <div class="ent-room" aria-hidden="true"></div>
         <div class="ent-spill" aria-hidden="true"></div>
         <div class="ent-leaf" aria-hidden="true"></div>
-        <div class="ent-plate" aria-hidden="true"><span class="ent-plate-face"><span>THE UNPAVED</span><span>PATH</span></span></div>
+        <div class="ent-plate" aria-hidden="true"><span class="ent-plate-face"><span>BELIEVE</span><span>STUDIO</span></span></div>
       </div>
     </div>
     <div class="door-scrim" aria-hidden="true"></div>
