@@ -391,7 +391,7 @@
 
     /* ══ SCENE FOUR · THE INVITATION ═════════════════════════════════════ */
     .band { position: relative; padding: clamp(84px, 15vh, 190px) var(--gutter); text-align: center; }
-    .band-ivory { background: var(--ivory); }
+    .band-ivory { background: var(--ivory); padding-top: clamp(63px, 11.25vh, 142px); padding-bottom: clamp(63px, 11.25vh, 142px); }
     .band-cream { background: linear-gradient(180deg, var(--cream), #ebe1cc); }
     .band-navy { background: var(--navy); color: var(--ivory); }
     .col { max-width: 760px; margin: 0 auto; }
@@ -437,17 +437,21 @@
     /* a quiet photograph between passages, arched like the rooms of the House */
     .plate { margin: 0 auto; max-width: 1180px; }
     .plate img {
-      width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+      width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
       border-radius: clamp(120px, 22vw, 320px) clamp(120px, 22vw, 320px) 6px 6px;
       box-shadow: 0 40px 80px -50px rgba(40, 28, 10, 0.6);
     }
-    .band-photo { padding-top: 0; padding-bottom: 0; background: var(--ivory); }
-    .band-photo + .band { padding-top: clamp(64px, 11vh, 130px); }
+    /* On wide screens the hallway photograph keeps the tall look it launched with. */
+    @media (min-width: 900px) { .plate img { height: 916px; aspect-ratio: auto; } }
+    .band.band-photo { padding-top: 0; padding-bottom: 0; background: var(--ivory); }
+    .band-photo + .band { padding-top: clamp(48px, 8.25vh, 98px); }
 
     /* an invitation to something different: words beside a room */
     .different { max-width: 1120px; margin: 0 auto; display: grid; gap: clamp(40px, 6vw, 84px); align-items: center; }
     .different figure { margin: 0 auto; width: min(100%, 420px); }
-    .different img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 999px 999px 6px 6px; box-shadow: 0 40px 70px -40px rgba(4, 8, 20, 0.9); }
+    .different img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 999px 999px 6px 6px; box-shadow: 0 40px 70px -40px rgba(4, 8, 20, 0.9); }
+    /* the fireside photograph: framed so the faces sit below the curve of the arch and the flowers stay in view */
+    .different img.gathering { object-position: 34% 50%; }
     .different .col { margin: 0; }
     .gifts { font-style: italic; font-size: clamp(22px, 2.6vw, 31px); line-height: 1.46; color: var(--gold-light); max-width: 18em; margin-left: auto; margin-right: auto; text-wrap: balance; }
     @media (min-width: 900px) {
@@ -653,13 +657,14 @@
     <section class="band band-navy on-dark" aria-labelledby="different-title">
       <div class="different">
         <figure class="reveal">
-          <img src="/photos/photo-conversation.webp" width="1400" height="933" loading="lazy" alt="Two armchairs drawn close by a fireplace in a deep navy panelled room, an open notebook and a cup of tea on the table between them.">
+          <img class="gathering" src="/photos/unpaved-fireside-gathering.webp" width="1199" height="1312" loading="lazy" alt="A small group of women in easy conversation around a low table by the fire: one speaking with her hands, the others listening and smiling, with candles and a bowl of hydrangeas between them.">
         </figure>
         <div class="col">
           <h2 class="display reveal" id="different-title">An invitation to something different.</h2>
           <div class="hairline-gold reveal" aria-hidden="true"></div>
           <p class="body reveal">The Unpaved Path is an intimate, three-day experience in the English countryside, bringing together a small circle of founders who believe there&rsquo;s more than one path forward.</p>
           <p class="gifts reveal">Thoughtful conversations. Beautiful shared experiences. Genuine connections. And space to simply be yourself.</p>
+          <p class="body reveal">And around a table like this, an honest conversation can become an idea, a friendship, or a new way of seeing your brand.</p>
         </div>
       </div>
 
@@ -685,7 +690,7 @@
       </ol>
       <div class="col space-lg">
         <p class="body reveal">Not because three days will solve every challenge.</p>
-        <p class="lift reveal">But because sometimes stepping away gives you the perspective, encouragement, and courage to see a different way forward.</p>
+        <p class="body reveal">But because sometimes stepping away gives you the perspective, encouragement, and courage to see a different way forward.</p>
       </div>
     </section>
 
