@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="/fonts/fonts.css">
   <link rel="preload" as="image" href="/photos/entrance49-base.webp">
   <link rel="preload" as="image" href="/photos/entrance49-leaf.webp">
+  <link rel="preload" as="image" href="/photos/unpaved-entry-hall.webp">
   <link rel="preload" as="image" href="/photos/unpaved-dining-country-wide.webp" media="(min-aspect-ratio: 5/4)">
   <link rel="preload" as="image" href="/photos/unpaved-dining-country-portrait.webp" media="(max-aspect-ratio: 5/4)">
 
@@ -116,13 +117,16 @@
       aspect-ratio: 1672 / 941; width: max(100vw, calc(var(--vh) * 177.7));
     }
     .ent-base { position: absolute; inset: 0; background: url('/photos/entrance49-base.webp') center / cover no-repeat; }
-    /* what waits behind the door: the candlelit table, glimpsed through the opening */
+    /* what waits behind the door */
     .ent-room, .ent-spill, .ent-leaf { position: absolute; left: 42.76%; top: 27.42%; width: 14.53%; height: 49.95%; }
+    /* Through the doorway: the entry hall, with the dining room beyond it.
+       ROLLBACK to the earlier glimpse of the dining room itself: use
+       unpaved-dining-country-wide.webp here, and add back
+       @media (max-aspect-ratio: 5/4) { .ent-room { background-image: url('/photos/unpaved-dining-country-portrait.webp'); background-position: 56% 46%; } } */
     .ent-room {
-      z-index: 1; background: url('/photos/unpaved-dining-country-wide.webp') 50% 50% / cover no-repeat;
+      z-index: 1; background: url('/photos/unpaved-entry-hall.webp') 50% 50% / cover no-repeat;
       box-shadow: inset 0 0 26px rgba(8, 6, 3, 0.6);
     }
-    @media (max-aspect-ratio: 5/4) { .ent-room { background-image: url('/photos/unpaved-dining-country-portrait.webp'); background-position: 56% 46%; } }
     .ent-spill {
       z-index: 1; pointer-events: none; opacity: 0;
       background: radial-gradient(60% 54% at 52% 50%, rgba(255, 226, 170, 0.34), rgba(255, 226, 170, 0) 72%);

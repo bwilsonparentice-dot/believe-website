@@ -191,6 +191,13 @@ leans right (`--room-pos: 62% 42%`) so a phone holds both the navy curtain and
 the glow of the fire; the countryside window at the far left is only seen on
 wider phones and tablets.
 
+**Through the doorway.** The opening door reveals an entry hall with the
+dining room beyond it (`public/photos/unpaved-entry-hall.webp`, 1:2), on every
+screen. It is the `.ent-room` panel in the page's styles; the comment above
+that rule gives the rollback to the earlier direct glimpse of the dining room.
+The open door covers the left 40% of the panel, so only the right-hand part of
+any image placed there is seen.
+
 **Colour.** The wide photograph carries the approved "Study 1 Refined" grade.
 The ungraded file is kept as `unpaved-dining-country-wide-original.webp`; to
 return to it, copy it over `unpaved-dining-country-wide.webp`. The portrait
