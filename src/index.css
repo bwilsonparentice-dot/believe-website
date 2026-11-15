@@ -861,7 +861,7 @@ a:hover { color: #b08a4a; }
 /* ── The Unpaved Path with Beth & Kendra (/the-unpaved-path/live) ──────────
    A straightforward event page: a deep-navy hero matched to the event artwork
    (#02122d), then the invitation on the House's ivory. Scoped to .up-page. */
-.up-page { --up-navy: #02122d; --up-gold: #d9b45c; --up-ivory: #f6efe4; }
+.up-page { --up-navy: #02122d; --up-gold: #d9b45c; --up-ivory: #f6efe4; --up-for-gap: clamp(16px,2.4vh,24px); }
 /* over the navy hero the header's cream fade would read as haze, so on this
    page it is a solid cream bar with a fine gold rule */
 .up-page .bs-header { background: rgba(239,230,211,0.97); border-bottom: 1px solid rgba(156,122,63,0.32); }
@@ -869,7 +869,7 @@ a:hover { color: #b08a4a; }
 
 .up-hero { background: var(--up-navy); color: var(--up-ivory); padding: clamp(96px,13vh,150px) clamp(22px,6vw,80px) clamp(48px,9vh,104px); }
 .up-hero-grid { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: clamp(36px,6vh,56px); align-items: center; }
-.up-for { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.7; color: var(--up-gold); margin: 0 0 clamp(16px,2.4vh,24px); max-width: 44ch; }
+.up-for { font-family: 'Jost', sans-serif; font-weight: 400; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.7; color: var(--up-gold); margin: 0 0 var(--up-for-gap); max-width: 44ch; }
 .up-h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(34px,4.6vw,62px); line-height: 1.06; margin: 0; text-wrap: balance; }
 .up-h1 span { display: block; }
 .up-h1-gold { color: var(--up-gold); font-style: italic; font-weight: 400; }
@@ -905,7 +905,11 @@ a:hover { color: #b08a4a; }
 
 @media (min-width: 900px) {
   .up-hero-grid { grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr); gap: clamp(40px,5vw,84px); }
-  .up-art { width: min(100%, 480px); margin: 0 0 0 auto; }
+  /* the artwork starts level with the headline, not centred on the column: its
+     top margin steps past the audience line above the h1 (two 22px lines plus
+     the gap), less 6px so the artwork's first visible detail (its logo sits
+     about 3% below the image edge) meets the headline's cap line */
+  .up-art { width: min(100%, 480px); margin: calc(38px + var(--up-for-gap)) 0 0 auto; align-self: start; }
 }
 
 .up-main { background: linear-gradient(176deg,#f1e9d8 0%,#efe6d3 50%,#e9dfc9 100%); color: #2b2723; }
