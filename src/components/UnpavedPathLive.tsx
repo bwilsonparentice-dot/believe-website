@@ -25,6 +25,9 @@ const EVENT_TIME_LABEL = '2–3 p.m. Eastern'
 const PAGE_TITLE = 'The Unpaved Path with Beth & Kendra | Believe Studio'
 const PAGE_DESC = `A free, live Zoom conversation for food and beverage founders about growing your brand beyond traditional retail. ${EVENT_DATE_LABEL}, ${EVENT_TIME_LABEL}.`
 const PAGE_URL = 'https://believestudio.co/the-unpaved-path/live'
+// the 1200×630 link-preview card (rendered by scripts/make-unpaved-path-og.mjs)
+const PAGE_IMAGE = 'https://believestudio.co/og-unpaved-path-live.jpg'
+const PAGE_IMAGE_ALT = 'The Unpaved Path with Beth & Kendra. Friday, November 20, 2–3 p.m. ET, free on Zoom. Believe Studio.'
 
 const REGISTER_NOTE = 'Register through Zoom to receive your joining link by email.'
 
@@ -86,6 +89,9 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
       setAttr('meta[property="og:title"]', 'content', PAGE_TITLE),
       setAttr('meta[property="og:description"]', 'content', PAGE_DESC),
       setAttr('meta[property="og:url"]', 'content', PAGE_URL),
+      setAttr('meta[property="og:image"]', 'content', PAGE_IMAGE),
+      setAttr('meta[property="og:image:alt"]', 'content', PAGE_IMAGE_ALT),
+      setAttr('meta[name="twitter:image"]', 'content', PAGE_IMAGE),
       setAttr('meta[name="twitter:title"]', 'content', PAGE_TITLE),
       setAttr('meta[name="twitter:description"]', 'content', PAGE_DESC),
     ]
@@ -99,6 +105,7 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
       <section className="up-hero" aria-labelledby="up-headline">
         <div className="up-hero-grid">
           <div className="up-hero-copy">
+            <p className="up-for">For food and beverage founders with products already in market.</p>
             <h1 id="up-headline" className="up-h1">
               <span>You built something different.</span>{' '}
               <span className="up-h1-gold">Why chase the same shelves?</span>
@@ -154,6 +161,7 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
         <h2 id="up-question" className="up-h2">Bring your brand. Bring your biggest growth question.</h2>
         <p className="up-body">When you register, tell us a little about your brand and submit a question you&rsquo;d love us to explore. We&rsquo;ll cover as many questions as time allows, with room for live discussion, too.</p>
         <p className="up-body up-body--lead">Leave with fresh possibilities and a clearer sense of which path could be worth exploring for your business.</p>
+        <SaveMySeat tone="light" />
       </section>
 
       {/* ── 5 · The hosts ───────────────────────────────────────────────── */}
