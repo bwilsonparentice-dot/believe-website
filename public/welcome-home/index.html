@@ -938,9 +938,9 @@
         var add = function (tag, cls, text) { var el = document.createElement(tag); if (cls) el.className = cls; el.textContent = text; box.appendChild(el); return el }
         add('div', 'thanks-rule', '').setAttribute('aria-hidden', 'true')
         add('h3', '', 'Thank you, ' + data.firstName + '.')
-        add('p', 'thanks-lead', 'Your note is on its way to Beth.')
-        add('p', '', 'She reads every one herself, and she will write back to you personally.')
-        add('p', 'thanks-sign', 'We are so glad this found you.')
+        add('p', 'thanks-lead', 'Your note has arrived.')
+        add('p', '', 'Beth reads every message personally, and she\u2019ll be in touch.')
+        add('p', 'thanks-sign', 'We\u2019re so glad this found you.')
         form.parentNode.replaceChild(box, form)
         focusQuietly(box)
         try { box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }) } catch (e) {}
