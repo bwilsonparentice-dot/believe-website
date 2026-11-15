@@ -508,6 +508,7 @@
     .fine { font-family: var(--sans); font-weight: 400; font-size: 13.5px; line-height: 1.7; letter-spacing: 0.02em; color: rgba(250, 244, 234, 0.82); max-width: 34em; margin: 18px auto 0; text-align: center; }
     .fine a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(226, 201, 146, 0.7); }
     .fine a:hover { color: #fff; }
+    .fine .fine-link { display: inline-block; padding: 12px 6px; }
     .status { margin: 26px auto 0; max-width: 34em; text-align: center; font-size: clamp(20px, 2.1vw, 24px); line-height: 1.5; color: var(--ivory); }
     .status:empty { display: none; }
     .status.is-error { color: #f6c9b8; }
@@ -864,7 +865,7 @@
     var mailLink = '<a href="mailto:' + CONFIG.contactEmail + '">' + CONFIG.contactEmail + '</a>'
 
     noteEl.innerHTML = connected
-      ? 'Your details are used only to reply to you about The Unpaved Path.'
+      ? 'Your details are used only to reply to you about The Unpaved Path. <a class="fine-link" href="/privacy" target="_blank" rel="noopener">Privacy<span class="visually-hidden"> policy (opens in a new tab)</span></a>'
       : 'This opens a ready-to-send note in your own email app, addressed to Beth. Nothing is stored on this page.'
 
     var rules = [
