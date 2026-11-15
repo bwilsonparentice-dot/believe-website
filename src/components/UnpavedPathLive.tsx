@@ -56,12 +56,6 @@ function SaveMySeat({ tone }: { tone: 'dark' | 'light' }) {
   )
 }
 
-const TOPICS = [
-  'Three places to look for growth beyond the grocery shelf.',
-  'How to recognize opportunities that fit your product and customer.',
-  'How to approach a potential partner and take the first step.',
-]
-
 /**
  * The Unpaved Path with Beth & Kendra: the registration landing page for the
  * live Zoom conversation, reached at /the-unpaved-path/live. A straightforward
@@ -134,39 +128,24 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
         </div>
       </section>
 
-      {/* ── 2 · The invitation and the Sipp story ───────────────────────── */}
+      {/* ── 2 · The Sipp story and the invitation ───────────────────────── */}
       <section className="up-sec" aria-labelledby="up-invite">
-        <p className="up-body">You&rsquo;ve put everything into creating a product that stands apart. But when it comes to growth, it&rsquo;s easy to follow the same route: pitch buyers, pursue shelf space, repeat.</p>
-        <h2 id="up-invite" className="up-h2">What if your next opportunity is somewhere you haven&rsquo;t looked yet?</h2>
-        <p className="up-body">When sales of Sipp Sparkling Organics were plateauing in specialty stores, founder Beth Wilson-Parentice started reaching out to hotel food and beverage executives. One was searching for a beverage to offer as a welcome amenity. That connection, together with persistent follow-through, changed the trajectory of her company.</p>
-        <p className="up-body">Join Beth and fellow founder and CPG growth strategist Kendra Bennett for real stories, practical ideas, and an open conversation about where your brand could belong next.</p>
+        <p className="up-body">When Sipp Sparkling Organics plateaued in specialty stores, Beth started looking beyond retail buyers and calling hotel food and beverage executives. One was looking for a welcome amenity. That call changed the company&rsquo;s trajectory.</p>
+        <h2 id="up-invite" className="up-h2">This hour is about finding your version of that call.</h2>
+        <p className="up-body">Join founders Beth Wilson-Parentice and Kendra Bennett for a free, guided conversation for food and beverage founders with products already in market.</p>
+        <p className="up-body">We&rsquo;ll each share one short story about an unexpected route to growth. Then we&rsquo;ll open the conversation to real founder questions, drawing on our experience and what others in the room have learned.</p>
       </section>
 
-      {/* ── 3 · Three topics ────────────────────────────────────────────── */}
-      <section className="up-sec up-sec--wide" aria-labelledby="up-explore">
+      {/* ── 3 · The shared question ─────────────────────────────────────── */}
+      <section className="up-sec" aria-labelledby="up-belong">
         <div className="up-hair" aria-hidden="true" />
-        <h2 id="up-explore" className="up-h2">Together, we&rsquo;ll explore:</h2>
-        <ol className="up-topics">
-          {TOPICS.map((t, i) => (
-            <li key={i}>
-              <span className="up-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-              <span className="up-topic">{t}</span>
-            </li>
-          ))}
-        </ol>
-        <p className="up-body">We&rsquo;ll share lessons from building our own brands: what we tried, what we learned, and what we would consider differently.</p>
-      </section>
-
-      {/* ── 4 · Bring a question ────────────────────────────────────────── */}
-      <section className="up-sec" aria-labelledby="up-question">
-        <div className="up-hair" aria-hidden="true" />
-        <h2 id="up-question" className="up-h2">Bring your brand. Bring your biggest growth question.</h2>
-        <p className="up-body">When you register, tell us a little about your brand and submit a question you&rsquo;d love us to explore. We&rsquo;ll cover as many questions as time allows, with room for live discussion, too.</p>
-        <p className="up-body up-body--lead">Leave with fresh possibilities and a clearer sense of which path could be worth exploring for your business.</p>
+        <p className="up-body">Building a brand can feel lonely when the familiar routes stop working. Come sit with founders asking the same question:</p>
+        <h2 id="up-belong" className="up-h2 up-h2--after">Where else could this belong?</h2>
+        <p className="up-body">Bring a challenge, share something you&rsquo;ve learned, or simply listen. Expect honest conversation, practical experience, and founders helping founders find a next step.</p>
         <SaveMySeat tone="light" />
       </section>
 
-      {/* ── 5 · The hosts ───────────────────────────────────────────────── */}
+      {/* ── 4 · The hosts ───────────────────────────────────────────────── */}
       <section className="up-sec up-sec--wide" aria-labelledby="up-hosts">
         <div className="up-hair" aria-hidden="true" />
         <h2 id="up-hosts" className="up-eyebrow">Your hosts</h2>
@@ -189,11 +168,11 @@ export function UnpavedPathLive({ ctx: _ctx }: { ctx: Ctx }) {
         </div>
       </section>
 
-      {/* ── 6 · Register ────────────────────────────────────────────────── */}
+      {/* ── 5 · Register ────────────────────────────────────────────────── */}
       <section className="up-sec up-final" aria-labelledby="up-register">
         <div className="up-card">
-          <h2 id="up-register" className="up-h2">The Unpaved Path <em>with Beth &amp; Kendra</em></h2>
-          <p className="up-body">For food and beverage founders with products already in market.</p>
+          <h2 id="up-register" className="up-h2">Bring your brand. Bring your biggest growth question.</h2>
+          <p className="up-body">When you register, tell us a little about your brand and the question you&rsquo;d love us to explore.</p>
           <EventDetails tone="light" />
           <SaveMySeat tone="light" />
         </div>
