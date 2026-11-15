@@ -103,6 +103,7 @@
     .gated .door { position: fixed; inset: 0; z-index: 50; min-height: 0; cursor: pointer; }
     .gated body { overflow: hidden; }
     .entered.js .door[hidden] { display: none; }
+    [data-before-send][hidden] { display: none !important; }
 
     .door-stage {
       position: absolute; inset: 0; overflow: hidden;
@@ -477,7 +478,8 @@
     .closing-name { font-family: var(--serif); font-weight: 400; text-transform: uppercase; font-size: clamp(27px, 4.4vw, 54px); letter-spacing: 0.22em; text-indent: 0.22em; line-height: 1.16; }
     .closing-facts { font-family: var(--sans); font-weight: 400; font-size: clamp(12px, 1.3vw, 13.5px); letter-spacing: 0.3em; text-indent: 0.3em; text-transform: uppercase; line-height: 2; color: rgba(250, 244, 234, 0.92); }
     .ask { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.12; text-wrap: balance; }
-    .ask + .body { margin-top: 14px; }
+    .ask + .body { margin-top: 18px; }
+    .ask-note { font-style: italic; font-size: clamp(22px, 2.6vw, 31px); line-height: 1.4; color: var(--gold-light); margin-top: clamp(18px, 2.8vh, 28px) !important; }
 
     .form { max-width: 640px; margin: clamp(40px, 6.5vh, 64px) auto 0; text-align: left; }
     .no-js .form { display: none; }
@@ -698,8 +700,11 @@
         <!-- Dates and venue: when confirmed, add them to this line. -->
         <p class="closing-facts reveal">England. Three days. An intimate founding circle.</p>
         <div class="hairline-gold reveal space-lg" aria-hidden="true"></div>
-        <h2 class="ask reveal space-lg" id="interest-title" tabindex="-1">Interested in joining us?</h2>
-        <p class="body reveal">We&rsquo;d love to start a conversation.</p>
+        <!-- The invitation to write. Shown until a note has been sent; the
+             thank-you then takes its place. -->
+        <h2 class="ask reveal space-lg" id="interest-title" tabindex="-1" data-before-send>Does this feel like your kind of gathering?</h2>
+        <p class="body reveal" data-before-send>We&rsquo;d love to hear from you. Tell us a little about yourself and your brand, and Beth will be in touch personally to explore whether it feels right for you.</p>
+        <p class="ask-note reveal" data-before-send>No commitment. Just a conversation.</p>
       </div>
 
       <form class="form reveal" id="interest-form" novalidate>
@@ -744,7 +749,7 @@
         <p class="body" style="margin-top:40px">To let us know you&rsquo;d love to learn more, write to <a href="mailto:hello@believestudio.co?subject=The%20Unpaved%20Path%3A%20I%27d%20love%20to%20learn%20more">hello@believestudio.co</a>.</p>
       </noscript>
 
-      <p class="or reveal"><a href="https://calendly.com/beth-believeagency/elite-brand-visibility-call-clone" target="_blank" rel="noopener noreferrer">Or find a time to talk with Beth<span class="visually-hidden"> (opens Calendly in a new tab)</span></a></p>
+      <p class="or reveal" data-before-send><a href="https://calendly.com/beth-believeagency/elite-brand-visibility-call-clone" target="_blank" rel="noopener noreferrer">Or find a time to talk with Beth<span class="visually-hidden"> (opens Calendly in a new tab)</span></a></p>
     </section>
   </main>
 
@@ -940,12 +945,16 @@
         var box = document.createElement('div')
         box.className = 'thanks'; box.setAttribute('role', 'status'); box.tabIndex = -1
         var add = function (tag, cls, text) { var el = document.createElement(tag); if (cls) el.className = cls; el.textContent = text; box.appendChild(el); return el }
-        add('div', 'thanks-rule', '').setAttribute('aria-hidden', 'true')
         add('h3', '', 'Thank you, ' + data.firstName + '.')
         add('p', 'thanks-lead', 'Your note has arrived.')
         add('p', '', 'Beth reads every message personally, and she\u2019ll be in touch.')
         add('p', 'thanks-sign', 'We\u2019re so glad this found you.')
+        box.querySelector('h3').id = 'thanks-title'
         form.parentNode.replaceChild(box, form)
+        // the thank-you becomes the focus: the invitation to write steps aside
+        var section = document.getElementById('interest')
+        Array.prototype.forEach.call(section.querySelectorAll('[data-before-send]'), function (el) { el.hidden = true })
+        section.setAttribute('aria-labelledby', 'thanks-title')
         focusQuietly(box)
         try { box.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }) } catch (e) {}
       }).catch(function () {
