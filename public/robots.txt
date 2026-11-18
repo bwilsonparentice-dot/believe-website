@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# Private and unlisted Create Believers pages
+Disallow: /create-believers/workspace
+Disallow: /create-believers/recap/
+Disallow: /create-believers/g/

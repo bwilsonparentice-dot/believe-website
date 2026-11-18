@@ -24,6 +24,8 @@ import { BuildInPublic } from './chapters/BuildInPublic'
 import { LetsTalk } from './components/LetsTalk'
 import { Possibilities } from './components/Possibilities'
 import { UnpavedPathLive } from './components/UnpavedPathLive'
+// Create Believers is its own small section of the site; it loads only when visited.
+const CreateBelievers = React.lazy(() => import('./create-believers/CreateBelievers'))
 import { AdvisoryChapter } from './chapters/Advisory'
 import { StageChapter } from './chapters/Stage'
 import { PeopleChapter } from './chapters/People'
@@ -71,6 +73,7 @@ interface State {
   showLetsTalk: boolean
   showPossibilities: boolean
   showUnpavedPathLive: boolean
+  showCreateBelievers: boolean
   showJournal: boolean; openArticle: string | null
   showDirectory: boolean
   showObservatory: boolean; showConversation: boolean; showAbout: boolean
@@ -161,6 +164,7 @@ const FLAG_SLUG: Partial<Record<keyof State, string>> = {
   showLetsTalk: 'lets-talk',
   showPossibilities: 'possibilities',
   showUnpavedPathLive: 'the-unpaved-path/live',
+  showCreateBelievers: 'create-believers',
   showLibrary: 'library',
   showJournal: 'journal',
   showPeople: 'people',
@@ -199,6 +203,8 @@ function redirectSlugFor(pathname: string): string | undefined {
 const BUILDING_ANCHORS = new Set(['threshold', 'founding-wall'])
 
 const rawPath = (pathname: string) => pathname.replace(/^\/+|\/+$/g, '')
+/** /create-believers and every page beneath it */
+const isCreateBelieversPath = (pathname: string) => { const raw = rawPath(pathname); return raw === 'create-believers' || raw.startsWith('create-believers/') }
 /** the URL hash as a bare, sanitised element id (letters, digits, dashes), or '' */
 function hashAnchorFromUrl(): string {
   if (typeof window === 'undefined') return ''
@@ -220,6 +226,9 @@ function pathForState(s: State): string {
   // the Studio page, opened to a named section, keeps the anchor in the URL so
   // the link is shareable and the browser history entry is self-describing
   if (slug === 'studio' && s.studioAnchor) return '/studio#' + s.studioAnchor
+  // Create Believers moves between its own pages (/create-believers/host, …);
+  // while it is open, the address it has set is the one to keep.
+  if (slug === 'create-believers' && typeof window !== 'undefined' && isCreateBelieversPath(window.location.pathname)) return window.location.pathname.replace(/\/+$/, '')
   return '/' + slug
 }
 /** the article slug named by a /journal/<slug> path, or '' */
@@ -230,6 +239,7 @@ function articleSlugFromPath(pathname: string): string {
 /** the overlay slug named by a path, or null if the path is the building/unknown */
 function overlaySlugFromPath(pathname: string): string | null {
   const raw = rawPath(pathname)
+  if (isCreateBelieversPath(pathname)) return 'create-believers'
   if (raw === 'journal' || raw.startsWith('journal/')) return 'journal'
   return ALL_ROUTE_SLUGS.has(raw) ? raw : null
 }
@@ -237,7 +247,7 @@ function overlaySlugFromPath(pathname: string): string | null {
 // every overlay flag/doorway, closed — the neutral ground a route opens from
 const CLOSED_OVERLAYS: Partial<State> = {
   showHouses: false, showPeople: false, showStudio: false, showStudioPage: false,
-  showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false,
+  showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false, showCreateBelievers: false,
   showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false,
   showFieldNotes: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
   showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false,
@@ -263,7 +273,7 @@ function makeInitialState(): State {
     showHouses: false, showPeople: false, showStudio: false,
     showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false,
     showStories: false, showTable: false, showWork: false, showAdvisory: false, showStage: false,
-    showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false, showJournal: false, openArticle: null, showDirectory: false,
+    showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false, showCreateBelievers: false, showJournal: false, openArticle: null, showDirectory: false,
     showObservatory: false, showConversation: false, showAbout: false,
     showPrivacy: false, showTerms: false, showAccessibility: false,
     showKey: false, facadeReady: false, birdLanded: false,
@@ -604,7 +614,7 @@ export class App extends React.Component<Record<string, never>, State> {
   }
 
   private closedChapters(): Partial<State> {
-    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
+    return { showHouses: false, showPeople: false, showStudio: false, showStudioPage: false, showBuildInPublic: false, showLetsTalk: false, showPossibilities: false, showUnpavedPathLive: false, showCreateBelievers: false, showStories: false, showWhyBelieve: false, showLibrary: false, showBlueprint: false, showFieldNotes: false, showJournal: false, openArticle: null, showTable: false, showWork: false, showAdvisory: false, showStage: false, showObservatory: false, showAbout: false, showPrivacy: false, showTerms: false, showAccessibility: false, showDirectory: false, activeDoorway: null, studioAnchor: undefined }
   }
   private openChapter = (key: keyof State): Handler => (e?: React.MouseEvent) => {
     if (e && e.stopPropagation) e.stopPropagation()
@@ -681,10 +691,11 @@ export class App extends React.Component<Record<string, never>, State> {
     return (
       <>
         {phase === 'overture' && this.renderOverture(opening)}
-        {phase === 'map' && !this.state.showLetsTalk && !this.state.showPossibilities && !this.state.showUnpavedPathLive && this.renderBuilding(alive, sunShiftAnim)}
+        {phase === 'map' && !this.state.showLetsTalk && !this.state.showPossibilities && !this.state.showUnpavedPathLive && !this.state.showCreateBelievers && this.renderBuilding(alive, sunShiftAnim)}
         {phase === 'map' && this.state.showLetsTalk && this.renderLetsTalk()}
         {phase === 'map' && this.state.showPossibilities && this.renderPossibilities()}
         {phase === 'map' && this.state.showUnpavedPathLive && this.renderUnpavedPathLive()}
+        {phase === 'map' && this.state.showCreateBelievers && this.renderCreateBelievers()}
         {this.state.activeId && this.renderRoomOverlay(veilBg, sunShiftAnim, roomPhotoAnim, alive)}
 
         {this.state.showKey && <ReceiveKey ctx={this.ctx} onClose={this.closeKey} />}
@@ -822,6 +833,17 @@ export class App extends React.Component<Record<string, never>, State> {
         <UnpavedPathLive ctx={this.ctx} />
         <Footer ctx={this.ctx} />
       </div>
+    )
+  }
+
+  // ── Create Believers — the managed gatherings service (reached at
+  // /create-believers and the pages beneath it). Its public pages wear the
+  // House header and footer; its private and guest pages supply their own.
+  private renderCreateBelievers() {
+    return (
+      <React.Suspense fallback={<div style={{ background: '#faf4ea', minHeight: '100vh' }} />}>
+        <CreateBelievers header={this.renderHeader()} footer={<Footer ctx={this.ctx} />} />
+      </React.Suspense>
     )
   }
 

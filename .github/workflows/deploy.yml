@@ -33,6 +33,12 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          # Create Believers: the private tracker's address and publishable key
+          # (repository variables, not secrets; both are safe to publish). When
+          # they are not set, the Create Believers forms show as not yet open.
+          VITE_CB_SUPABASE_URL: ${{ vars.CB_SUPABASE_URL }}
+          VITE_CB_SUPABASE_KEY: ${{ vars.CB_SUPABASE_KEY }}
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -8,9 +8,12 @@
     "dev": "vite",
     "build": "tsc -b && vite build && cp dist/index.html dist/404.html && node scripts/build-lets-talk-og.mjs && node scripts/build-possibilities-og.mjs && node scripts/build-unpaved-path-live-og.mjs",
     "build:preview": "vite build --config vite.preview.config.ts",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:create-believers": "esbuild src/create-believers/logic.test.ts --bundle --platform=node --format=esm --outfile=.vite/cb-logic.test.mjs --log-level=warning && node --test .vite/cb-logic.test.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
+    "qrcode-generator": "^1.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
