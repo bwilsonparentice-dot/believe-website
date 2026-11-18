@@ -170,5 +170,14 @@ paste a link), and guest email sign-up (no mailing list is connected).
   in `.env.local`; for the live site as the GitHub repository variables
   `CB_SUPABASE_URL` and `CB_SUPABASE_KEY` (Settings → Secrets and variables →
   Actions → Variables). Without them, the forms show as not yet open.
-- First-time database setup: apply `supabase/migrations/0001_create_believers.sql`,
-  then follow `supabase/first_setup.sql`.
+- The database is the `create-believers` project in the Believe Studio Supabase
+  organization (US East), separate from Content Studio's two projects. The
+  schema in `supabase/migrations/0001_create_believers.sql` was applied on
+  18 November 2026 and checked against a locally tested copy. To add a team
+  member, follow `supabase/first_setup.sql`. Public sign-ups should be switched
+  off in that project (Authentication → Sign In / Providers).
+- Connected test, 18 November 2026: a real team sign-in and one application
+  taken from the public form through review, founder approval, approval, guest
+  page, and recap, with an outside visitor and a signed-in non-team account
+  refused on every private table throughout. All test records and both test
+  accounts were removed afterwards.
