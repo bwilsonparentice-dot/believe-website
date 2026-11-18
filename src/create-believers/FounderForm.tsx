@@ -66,7 +66,6 @@ export function FounderForm() {
         {!done && (
           <>
             <p className="cb-lead">Create Believers helps your brand find its people through thoughtfully matched gatherings and memorable product experiences.</p>
-            <p className="intro">We help founders explore relevant gatherings, thoughtful collaborations, and new ways for people to experience their products—with a clear plan for what happens afterward.</p>
             <p className="intro">Tell us a little to begin. If there’s a fit, we’ll build the detail together.</p>
             {MODE === 'unavailable' ? (
               <div className="cb-notice" role="status">
