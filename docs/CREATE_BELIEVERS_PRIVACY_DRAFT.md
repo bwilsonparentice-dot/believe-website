@@ -50,8 +50,8 @@ draft deliberately contains no retention promise. See "Outstanding decision" at 
 > where it is sold, and what you would like to explore.
 >
 > **If you send a recap after a gathering,** we collect the attendance and
-> serving details you report, your observations, any link to photos you choose
-> to share.
+> serving details you report, your observations, and any link to photos you
+> choose to share.
 >
 > **Photos.** Sharing a photo with us does not give permission to publish or
 > reuse it. We ask two separate questions, and each is your choice: whether
