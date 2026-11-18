@@ -23,15 +23,22 @@ insert into auth.users (id, email) values
   ('00000000-0000-0000-0000-00000000000b', 'stranger@example.test');
 insert into cb_admins (user_id, email) values ('00000000-0000-0000-0000-00000000000a', 'team@example.test');
 insert into cb_brands (id, name, slug, state, is_public, category, public_description, occasions, geography_served,
-                       internal_notes, campaign_budget, contact_email, founder_story, serving_idea, purchase_links)
+                       internal_notes, campaign_budget, contact_email, founder_story, serving_idea, purchase_links, founder_approved_on)
 values
   ('10000000-0000-0000-0000-000000000001', 'Test Live Brand', 'test-live', 'approved', true, 'beverages', 'A public description',
    '{book_club}', '{Virginia}', 'PRIVATE NOTE', 500, 'founder@example.test', 'Story', 'Serve chilled',
    '[{"label":"Shop online","url":"https://example.test/shop","kind":"online","verified_on":"2026-11-01"},
      {"label":"Unverified shop","url":"https://example.test/unverified","kind":"retailer","verified_on":""},
-     {"label":"Bad link","url":"javascript:alert(1)","kind":"online","verified_on":"2026-11-01"}]'),
-  ('10000000-0000-0000-0000-000000000002', 'Test Draft Brand', 'test-draft', 'draft', false, 'sweet_snacks', 'Draft', '{}', '{}', null, null, null, null, null, '[]'),
-  ('10000000-0000-0000-0000-000000000003', 'Approved But Unpublished', 'test-unpublished', 'approved', false, 'beverages', 'Hidden', '{}', '{}', null, null, null, null, null, '[]');
+     {"label":"Bad link","url":"javascript:alert(1)","kind":"online","verified_on":"2026-11-01"}]', current_date),
+  ('10000000-0000-0000-0000-000000000002', 'Test Draft Brand', 'test-draft', 'draft', false, 'sweet_snacks', 'Draft', '{}', '{}', null, null, null, null, null, '[]', null),
+  ('10000000-0000-0000-0000-000000000003', 'Approved But Unpublished', 'test-unpublished', 'approved', false, 'beverages', 'Hidden', '{}', '{}', null, null, null, null, null, '[]', current_date);
+do $$ begin
+  begin
+    insert into cb_brands (name, slug, state, is_public) values ('No founder yes', 'no-founder-yes', 'approved', true);
+  exception when check_violation then raise notice 'ok - a brand cannot be made public before the founder approves'; return;
+  end;
+  raise exception 'FAILED: a brand was made public without founder approval';
+end $$;
 
 -- ── a visitor ────────────────────────────────────────────────────────────
 set role anon;
@@ -66,6 +73,7 @@ create or replace function pg_temp.app(extra jsonb default '{}') returns jsonb l
     'city','Richmond','region','Virginia','country','United States','postal_code','23220',
     'guest_count','12','audience','Neighbours who read','recap_ack',true,'contact_consent',true,
     'categories', '["beverages","not-a-category"]'::jsonb,
+    'shipping_preference','needs_quote','photo_use_offered','ask_first','discovery','["host_introduction","qr_link"]'::jsonb,'photos_willing','yes',
     'preferred_brand_id','10000000-0000-0000-0000-000000000002',
     'idempotency_key','20000000-0000-0000-0000-000000000001') || extra;
 $$;
@@ -96,6 +104,9 @@ select pg_temp.ok((select count(*) from cb_hosts) = 1, 'stored: one host for bot
 select pg_temp.ok((select bool_and(preferred_brand_id is null and open_to_suggestions) from cb_gatherings), 'stored: an unpublished brand cannot be named as a preference');
 select pg_temp.ok((select categories from cb_gatherings where name = 'Autumn book club') = '{beverages}', 'stored: unknown option values are dropped');
 select pg_temp.ok((select count(*) from cb_status_log where record_type = 'gathering') = 2, 'stored: status log written');
+select pg_temp.ok((select shipping_preference = 'needs_quote' and photo_use_offered = 'ask_first' and not reuse_permission and photos_willing = 'yes' and recap_ack
+                     and discovery @> '{host_introduction,qr_link}' from cb_gatherings where name = 'Autumn book club'),
+                  'stored: shipping preference and the visibility, recap, and photo-use permissions offered');
 
 -- ── a signed-in user who is not on the team ──────────────────────────────
 set role authenticated;
@@ -137,7 +148,14 @@ update cb_gatherings set campaign_published = true where campaign_slug = 'autumn
 set role anon;
 select pg_temp.ok(jsonb_array_length(cb_get_campaign('autumn-book-club') -> 'brands') = 0, 'guest page: a brand still under review is not shown');
 reset role;
-update cb_partnerships set status = 'approved' where id = '30000000-0000-0000-0000-000000000001';
+do $$ begin
+  begin
+    update cb_partnerships set status = 'approved' where id = '30000000-0000-0000-0000-000000000001';
+  exception when check_violation then raise notice 'ok - a partnership cannot be approved before the founder approves it'; return;
+  end;
+  raise exception 'FAILED: a partnership was approved without founder approval';
+end $$;
+update cb_partnerships set status = 'approved', founder_approved_on = current_date where id = '30000000-0000-0000-0000-000000000001';
 set role anon;
 select pg_temp.ok(jsonb_array_length(cb_get_campaign('Autumn-Book-Club ') -> 'brands') = 1, 'guest page: approved brand shown');
 select pg_temp.ok(jsonb_array_length(cb_get_campaign('autumn-book-club') -> 'brands' -> 0 -> 'links') = 1, 'guest page: only verified https purchase links');

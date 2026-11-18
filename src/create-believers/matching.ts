@@ -61,7 +61,8 @@ export function evaluate(
 
   // 1 — the profile itself
   if (brand.state !== 'approved') add('profile', 'Brand profile', 'fail', 'The profile is not approved yet.')
-  else add('profile', 'Brand profile', 'pass', 'Approved.')
+  else if (!brand.founder_approved_on) add('profile', 'Brand profile', 'fail', 'The founder has not yet approved taking part.')
+  else add('profile', 'Brand profile', 'pass', 'Approved, and the founder has agreed to take part.')
 
   // 2 — category the host asked for, and conflicts with brands already at this gathering
   if (g.categories.length && brand.category && !g.categories.includes(brand.category)) {

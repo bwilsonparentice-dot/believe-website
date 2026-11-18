@@ -8,6 +8,7 @@ export interface PurchaseLink { label: string; url: string; kind?: string; verif
 export interface Brand {
   id: string; created_at: string; updated_at?: string
   name: string; slug: string; state: string; is_public: boolean
+  founder_approved_on: string | null; founder_approval_note: string | null
   category: string | null; public_description: string | null
   occasions: string[]; geography_served: string[]; dietary_verified: string[]
   image_url: string | null; logo_url: string | null; founder_story: string | null; serving_idea: string | null
@@ -38,6 +39,7 @@ export interface Gathering {
   categories: string[]; preferred_brand_id: string | null; open_to_suggestions: boolean; roles: string[]
   requested_quantity: number | null; dietary: string | null; dietary_unknown: boolean
   serving_plan: string[]; capabilities: string[]; delivery_notes: string | null
+  shipping_preference: string | null; photo_use_offered: string | null
   discovery: string[]; recap_ack: boolean; photos_willing: string | null; reuse_permission: boolean
   extra: string | null; contact_consent: boolean
   audience_interests: string[]; tags: string[]; owner: string | null
@@ -53,6 +55,7 @@ export interface Partnership {
   cost_estimate: number | null; cost_actual: number | null
   fit_audience: number | null; fit_occasion: number | null; fit_market: number | null; fit_extras: number | null
   internal_notes: string | null; recap_token: string
+  founder_approved_on: string | null; founder_approval_note: string | null
 }
 export interface Recap {
   id: string; partnership_id: string; created_at: string

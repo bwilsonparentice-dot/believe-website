@@ -46,7 +46,7 @@ test('founder and recap forms', () => {
 
 // ── matching ──
 const brand = (o: Partial<Brand> = {}): Brand => ({
-  id: 'b1', created_at: '', name: 'Sample Brand', slug: 'sample', state: 'approved', is_public: true, category: 'beverages',
+  id: 'b1', created_at: '', name: 'Sample Brand', slug: 'sample', state: 'approved', is_public: true, founder_approved_on: '2026-11-01', founder_approval_note: null, category: 'beverages',
   public_description: '', occasions: ['book_club'], geography_served: ['Virginia'], dietary_verified: [], image_url: null, logo_url: null,
   founder_story: null, serving_idea: null, purchase_links: [], founder_name: null, contact_email: null, website: null, internal_notes: null,
   audiences: ['reading', 'gardening'], rituals: null, why_belongs: null, priority_markets: ['Richmond'],
@@ -64,7 +64,7 @@ const gathering = (o: Partial<Gathering> = {}): Gathering => ({
   date_status: 'confirmed', event_date: '2026-12-18', event_time: '6pm', timezone: 'America/New_York',
   city: 'Richmond', region: 'VA', country: 'United States', postal_code: '23220', venue_type: 'home', guest_count: 12, audience: '',
   repeats: false, frequency: null, delivery_by: '2026-12-14', categories: ['beverages'], preferred_brand_id: null, open_to_suggestions: true,
-  roles: [], requested_quantity: 20, dietary: null, dietary_unknown: false, serving_plan: [], capabilities: [], delivery_notes: null,
+  roles: [], requested_quantity: 20, dietary: null, dietary_unknown: false, serving_plan: [], capabilities: [], delivery_notes: null, shipping_preference: null, photo_use_offered: null,
   discovery: ['host_introduction'], recap_ack: true, photos_willing: null, reuse_permission: false, extra: null, contact_consent: true,
   audience_interests: ['Reading', 'wine'], tags: [], owner: null, next_action: null, next_action_date: null, internal_notes: null,
   campaign_slug: null, campaign_published: false, ...o,
@@ -105,12 +105,13 @@ test('matching: a failed requirement cannot be outweighed by fit', () => {
   assert.equal(evaluate(g, brand({ required_visibility: ['qr_link'] }), [product()], TODAY).verdict, 'not_eligible')
   assert.equal(evaluate(g, brand({ category: 'sweet_snacks' }), [product()], TODAY).verdict, 'not_eligible')
   assert.equal(evaluate(g, brand({ state: 'draft' }), [product()], TODAY).verdict, 'not_eligible')
+  assert.equal(evaluate(g, brand({ founder_approved_on: null }), [product()], TODAY).verdict, 'not_eligible', 'no match is suggested before the founder agrees to take part')
   assert.equal(evaluate(g, brand({ available_to: '2026-12-01' }), [product()], TODAY).verdict, 'not_eligible')
 })
 test('matching: stock and budget already promised elsewhere are counted; conflicts are checked per brand', () => {
   const other: Partnership = { id: 'pt', gathering_id: 'g2', brand_id: 'b1', product_id: null, created_at: '', status: 'approved', approved_quantity: 190,
     fulfilment: 'ship', shipment_info: null, owner: null, next_action: null, next_action_date: null, commitments: null, permissions: null,
-    cost_estimate: 400, cost_actual: null, fit_audience: null, fit_occasion: null, fit_market: null, fit_extras: null, internal_notes: null, recap_token: 't' }
+    cost_estimate: 400, cost_actual: null, fit_audience: null, fit_occasion: null, fit_market: null, fit_extras: null, internal_notes: null, recap_token: 't', founder_approved_on: '2026-11-01', founder_approval_note: null }
   const e = evaluate(gathering(), brand(), [product()], TODAY, [other], [])
   assert.equal(check(e, 'quantity'), 'fail')
   assert.equal(check(e, 'budget'), 'fail')

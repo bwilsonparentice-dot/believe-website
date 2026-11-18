@@ -163,6 +163,8 @@ function liveStore(): Store {
 function friendly(message: string): string {
   if (/cb_brands_slug_key|campaign_slug_key/.test(message)) return 'That web address name is already in use. Please choose another.'
   if (/slug.*check|campaign_slug_check/.test(message)) return 'Web address names use lowercase letters, numbers, and dashes only.'
+  if (/cb_brands_public_needs_founder/.test(message)) return 'A profile can only be shown publicly once the founder’s approval date is recorded.'
+  if (/cb_partnerships_needs_founder/.test(message)) return 'Record the date the founder approved this gathering before moving it to Approved or beyond.'
   if (/gathering_id_brand_id_key/.test(message)) return 'That brand is already linked to this gathering.'
   if (/delivery_before_event/.test(message)) return 'The delivery date needs to be before the day of the gathering.'
   if (/foreign key|violates/.test(message) && /restrict|still referenced/.test(message)) return 'This record is linked to others and cannot be removed. Archive or close it instead.'

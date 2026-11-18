@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { MODE, CONTACT_EMAIL, listPublicBrands, submitHostApplication } from './backend'
-import { CAPABILITIES, CATEGORIES, DISCOVERY, GATHERING_TYPES, HOST_ROLES, PHOTOS_WILLING, ROLES, SERVING_PLANS, TIMEZONES, VENUE_TYPES, type Opt } from './options'
+import { CAPABILITIES, CATEGORIES, DISCOVERY, GATHERING_TYPES, HOST_ROLES, PHOTOS_WILLING, PHOTO_USE, ROLES, SERVING_PLANS, SHIPPING_PREFS, TIMEZONES, VENUE_TYPES, type Opt } from './options'
 import type { PublicBrand, Values } from './types'
 import { HOST_STEPS, isoToday, validateHost, validateHostStep } from './validate'
 import { Area, Check, Checks, Decoy, ErrorSummary, Link, Radios, Select, Text, newKey, useForm, useHeadingFocus, useMeta } from './ui'
@@ -24,8 +24,8 @@ const blank = (): Values => ({
   full_name: '', email: '', organization: '', host_role: '', website: '', name: '', type: '', description: '',
   date_status: 'confirmed', event_date: '', event_time: '', timezone: detectedZone(), city: '', region: '', country: 'United States', postal_code: '',
   venue_type: '', guest_count: '', audience: '', repeats: false, frequency: '', delivery_by: '',
-  categories: [], preferred_brand_id: '', roles: [], requested_quantity: '', dietary: '', dietary_unknown: false, serving_plan: [], capabilities: [], delivery_notes: '',
-  discovery: [], recap_ack: false, photos_willing: '', reuse_permission: false, extra: '', contact_consent: false, marketing_opt_in: false, company_website: '',
+  categories: [], preferred_brand_id: '', roles: [], requested_quantity: '', dietary: '', dietary_unknown: false, serving_plan: [], capabilities: [], delivery_notes: '', shipping_preference: '',
+  discovery: [], recap_ack: false, photos_willing: '', photo_use_offered: '', extra: '', contact_consent: false, marketing_opt_in: false, company_website: '',
 })
 
 export function HostForm({ brandSlug }: { brandSlug: string | null }) {
@@ -217,6 +217,8 @@ export function HostForm({ brandSlug }: { brandSlug: string | null }) {
                       {showServing && <Checks f={f} name="capabilities" label="What will you have on hand?" optional options={CAPABILITIES} />}
                       <Text f={f} name="delivery_notes" label="Anything we should know about receiving a delivery?" optional
                         help="For example, the days or hours someone can accept a package. No address needed yet." />
+                      <Radios f={f} name="shipping_preference" one label="How would you like to handle shipping?" optional
+                        help="This helps us plan. Nothing is charged or promised at this stage." options={SHIPPING_PREFS} />
                     </fieldset>
                   )}
 
@@ -226,7 +228,10 @@ export function HostForm({ brandSlug }: { brandSlug: string | null }) {
                       <h2 aria-hidden="true">{HOST_STEPS[3]}</h2>
                       <Checks f={f} name="discovery" label="How could guests find out about the brand?" optional help="Choose any that feel natural for your gathering." options={DISCOVERY} />
                       <Radios f={f} name="photos_willing" label="Would you be willing to share a few photos of the product in use?" optional options={PHOTOS_WILLING} />
-                      <Check f={f} name="reuse_permission" label="I’m open to Believe and the brand reusing photos I share. (Optional. The specifics are agreed with you after approval, and sharing a photo never grants this by itself.)" />
+                      {f.v.photos_willing === 'yes' && (
+                        <Radios f={f} name="photo_use_offered" one label="If you share photos, how may they be used?" optional
+                          help="Choose what you’re comfortable offering. We confirm it with you again before anything is used, and sharing a photo never grants permission by itself." options={PHOTO_USE} />
+                      )}
                       <Area f={f} name="extra" label="Anything else you need, or an idea you’d like to try?" optional style={{ minHeight: 84 }} />
                       <hr className="cb-rule" />
                       <Check f={f} name="recap_ack" required label="If a partnership goes ahead, I can share a short recap afterwards, including how many people actually came." />

@@ -53,9 +53,12 @@ date. **Export this view (CSV)** downloads exactly what is listed.
    blank means "unknown", never "none". A founder inquiry can be turned into a
    draft from **Founder inquiries → Start a draft brand profile from this**.
 3. Add at least one **Product** (case pack, ingredients, allergens).
-4. To publish: complete the **Public profile**, set **Profile state** to
-   **Approved**, tick **Show this profile on the public brands page**, and save.
-   To take it down, untick the box or set the state to Paused.
+4. Ask the founder to approve taking part and the public profile as written.
+   Record the date under **Founder approved taking part on**. Until that date
+   is set, the profile cannot be shown to visitors and is never suggested as a match.
+5. To publish: set **Profile state** to **Approved**, tick **Show this profile
+   on the public brands page**, and save. To take it down, untick the box or set
+   the state to Paused.
 
 Only the Public profile section is ever shown to visitors. Costs, stock,
 contacts, and notes stay private.
@@ -68,11 +71,17 @@ contacts, and notes stay private.
 2. Press **Link for review** (or choose any brand under *Link a brand yourself*).
    This creates a partnership in **Reviewing**. Nothing is reserved and nobody
    is notified.
-3. On the partnership, read the **Requirements checklist**, confirm stock and
-   budget with the founder, set the approved quantity and the agreed
-   commitments, then set the status to **Approved** and save. If the checklist
-   still has open items you are asked to confirm first.
-4. Move the status by hand as things happen: Preparing → Shipped → Delivered →
+3. On the partnership, **What the host has offered** lists the visibility,
+   recap, photo-use, and shipping commitments from the application. Use **Copy
+   this summary for the founder** to send it (it leaves out the host's name,
+   contact details, and postal code).
+4. When the founder agrees, record the date under **Founder approval**. A
+   partnership cannot be moved to Approved without it.
+5. Read the **Requirements checklist**, confirm stock and budget, set the
+   approved quantity and the agreed commitments, then set the status to
+   **Approved** and save. If the checklist still has open items you are asked
+   to confirm first.
+6. Move the status by hand as things happen: Preparing → Shipped → Delivered →
    Gathered → Recap received → Closed. Local pickup or delivery can skip Shipped.
 
 A gathering can have several brands. Each is its own partnership with its own

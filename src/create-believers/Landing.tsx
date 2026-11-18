@@ -22,7 +22,7 @@ const FAQ: [string, React.ReactNode][] = [
   ['Do I need a large following?',
     'No. We never ask for a follower count. We care about who is gathering, why, and whether a brand would be welcome there.'],
   ['Where are you working first?',
-    'Our first gatherings are in Virginia. If you are somewhere else, you are welcome to tell us about your plans, and we will be straightforward about what is possible.'],
+    'We’re developing our first pilot in Virginia. If you are somewhere else, you are welcome to tell us about your plans, and we will be straightforward about what is possible.'],
   ['What will you ask of me as a host?',
     'If a partnership goes ahead, a short recap afterwards: how many people actually came, how the product was served, and what you noticed. Sharing photos is optional, and any permission to reuse them is agreed with you separately.'],
   ['I’m a founder. How do I take part?',

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { BRAND_STATES, CAPABILITIES, CATEGORIES, DISCOVERY, EXTRAS, GATHERING_STATUSES, GATHERING_TYPES, HOST_INTEREST, HOST_ROLES, INQUIRY_STATUSES, OPEN_PARTNERSHIP, ACTIVE_PARTNERSHIP, PARTNERSHIP_STATUSES, PHOTOS_WILLING, PHOTO_PERMISSION, ROLES, SERVING_PLANS, TIMEZONES, VENUE_TYPES, labelOf, labelsOf, type Opt } from './options'
+import { BRAND_STATES, CAPABILITIES, CATEGORIES, DISCOVERY, EXTRAS, GATHERING_STATUSES, GATHERING_TYPES, HOST_INTEREST, HOST_ROLES, INQUIRY_STATUSES, OPEN_PARTNERSHIP, ACTIVE_PARTNERSHIP, PARTNERSHIP_STATUSES, PHOTOS_WILLING, PHOTO_PERMISSION, PHOTO_USE, ROLES, SERVING_PLANS, SHIPPING_PREFS, TIMEZONES, VENUE_TYPES, labelOf, labelsOf, type Opt } from './options'
 import { evaluate, fitTotal, money, suggest, type Evaluation } from './matching'
 import { ATTENDANCE_BANDS, attendanceBand, distinct, inRange, matches, toCsv } from './search'
 import type { Brand, Gathering, Host, Inquiry, Partnership, Product, Recap } from './types'
@@ -243,10 +243,11 @@ function GatheringDetail({ ws, g }: { ws: WS; g: Gathering }) {
           ['Requested quantity', g.requested_quantity ?? 'No estimate given (do not assume one per guest)'],
           ['Dietary and allergies', g.dietary_unknown ? `Host does not know yet${g.dietary ? ' · ' + g.dietary : ''}` : g.dietary],
           ['Serving plan', labelsOf(SERVING_PLANS, g.serving_plan)], ['On hand', labelsOf(CAPABILITIES, g.capabilities)],
-          ['Receiving a delivery', g.delivery_notes], ['How guests could discover the brand', labelsOf(DISCOVERY, g.discovery)],
+          ['Receiving a delivery', g.delivery_notes], ['Shipping preference', labelOf(SHIPPING_PREFS, g.shipping_preference)],
+          ['How guests could discover the brand', labelsOf(DISCOVERY, g.discovery)],
           ['Will share a recap and attendance', g.recap_ack ? 'Yes' : 'Not confirmed'],
           ['Willing to share photos', labelOf(PHOTOS_WILLING, g.photos_willing)],
-          ['Open to photo reuse', g.reuse_permission ? 'Yes, in principle. Specific rights still to be agreed.' : 'Not given'],
+          ['Photo use offered', g.photo_use_offered ? labelOf(PHOTO_USE, g.photo_use_offered) : 'None offered'],
           ['Other needs or ideas', g.extra],
         ]} />
       </section>
@@ -339,7 +340,7 @@ export function PartnershipsTab({ ws }: { ws: WS }) {
     ['Gathering', (p) => g(p)?.name], ['Brand', (p) => b(p)?.name], ['Status', (p) => labelOf(PARTNERSHIP_STATUSES, p.status)],
     ['Gathering date', (p) => g(p)?.event_date ?? 'Not confirmed'], ['Product needed by', (p) => g(p)?.delivery_by], ['City', (p) => g(p)?.city], ['State or region', (p) => g(p)?.region],
     ['Product', (p) => data.products.find((x) => x.id === p.product_id)?.name], ['Approved quantity', (p) => p.approved_quantity],
-    ['Estimated cost', (p) => p.cost_estimate], ['Actual cost', (p) => p.cost_actual], ['Fit score (of 10)', (p) => fitTotal(p)],
+    ['Founder approved on', (p) => p.founder_approved_on], ['Estimated cost', (p) => p.cost_estimate], ['Actual cost', (p) => p.cost_actual], ['Fit score (of 10)', (p) => fitTotal(p)],
     ['Owner', (p) => p.owner], ['Next action', (p) => p.next_action], ['Next action date', (p) => p.next_action_date],
     ['Recap received', (p) => (data.recaps.some((r) => r.partnership_id === p.id) ? 'Yes' : 'No')], ['Internal notes', (p) => p.internal_notes],
   ]))
@@ -369,6 +370,7 @@ function PartnershipDetail({ ws, p }: { ws: WS; p: Partnership }) {
   const brand = data.brands.find((x) => x.id === p.brand_id)
   const recap = data.recaps.find((r) => r.partnership_id === p.id)
   const [copied, setCopied] = useState(false)
+  const [copiedOffer, setCopiedOffer] = useState(false)
   if (!g || !brand) return <p className="ws-none">This partnership’s gathering or brand is missing.</p>
   const e = evaluate(g, brand, data.products, today, data.partnerships, data.brands)
   const products: Opt[] = data.products.filter((x) => x.brand_id === brand.id).map((x) => [x.id, x.name])
@@ -378,6 +380,11 @@ function PartnershipDetail({ ws, p }: { ws: WS; p: Partnership }) {
   const verdict = e.verdict === 'eligible' ? 'All requirements met on file' : e.verdict === 'needs_information' ? 'Needs information' : 'A requirement is not met'
 
   const save = async (patch: Record<string, unknown>) => {
+    const status = String(patch.status ?? p.status)
+    const founderDate = 'founder_approved_on' in patch ? patch.founder_approved_on : p.founder_approved_on
+    if (['approved', 'preparing', 'shipped', 'delivered', 'gathered', 'recap_received'].includes(status) && !founderDate) {
+      throw new Error('Not saved. Record the date the founder approved this gathering first (under “Founder approval”).')
+    }
     // approving is always a person's decision; if the checklist is not clear, say so first
     if (patch.status === 'approved' && e.verdict !== 'eligible') {
       const issues = e.checks.filter((c) => c.result === 'fail' || c.result === 'unknown').map((c) => `• ${c.label}: ${c.detail}`).join('\n')
@@ -385,6 +392,20 @@ function PartnershipDetail({ ws, p }: { ws: WS; p: Partnership }) {
     }
     await ws.save('partnerships', p.id, patch)
   }
+  const offer: [string, string][] = [
+    ['Gathering', `${labelOf(GATHERING_TYPES, g.type)} in ${g.city}, ${g.region}, about ${g.guest_count} guests`],
+    ['When', g.event_date ? `${fmtDate(g.event_date)}; product needed by ${fmtDate(g.delivery_by) || 'a date to be agreed'}` : 'Date not confirmed'],
+    ['Who is coming', g.audience],
+    ['Role for the product', labelsOf(ROLES, g.roles) || 'Not specified'],
+    ['Quantity requested', g.requested_quantity ? String(g.requested_quantity) : 'No estimate given'],
+    ['Visibility offered', labelsOf(DISCOVERY, g.discovery) || 'None offered yet'],
+    ['Recap offered', g.recap_ack ? 'A short recap afterwards, including actual attendance' : 'Not confirmed'],
+    ['Photos', g.photos_willing === 'yes' ? 'Willing to share photos of the product in use' : g.photos_willing === 'no' ? 'Not sharing photos' : 'Not sure yet'],
+    ['Photo use offered', g.photo_use_offered ? labelOf(PHOTO_USE, g.photo_use_offered) : 'None offered'],
+    ['Shipping', labelOf(SHIPPING_PREFS, g.shipping_preference) || 'Not specified'],
+    ['Dietary and allergies', g.dietary_unknown ? 'Host does not know yet' : g.dietary || 'None stated'],
+  ]
+  const offerText = `${brand.name} at a ${offer[0][1]}\n` + offer.slice(1).map(([k, v]) => `${k}: ${v}`).join('\n')
   return (
     <article>
       <header className="ws-dhead">
@@ -399,6 +420,12 @@ function PartnershipDetail({ ws, p }: { ws: WS; p: Partnership }) {
           ['Host’s requested quantity', g.requested_quantity ?? 'No estimate given'],
           ['Guest page', g.campaign_slug ? `${g.campaign_published ? 'Open' : 'Closed'} · /g/${g.campaign_slug}` : 'Not set up (see the gathering)'],
         ]} />
+      </section>
+      <section>
+        <h3>What the host has offered {p.founder_approved_on ? <StatusTag label={`Founder approved ${fmtDate(p.founder_approved_on)}`} tone="teal" /> : <StatusTag label="Awaiting founder approval" tone="alert" />}</h3>
+        <p className="ws-note">These are the commitments the host offered in their application. Share them with the founder when you ask for approval. The summary leaves out the host’s name, contact details, and postal code.</p>
+        <Facts rows={offer.slice(1)} />
+        <p style={{ marginTop: 10 }}><button type="button" className="cb-textlink" onClick={() => navigator.clipboard?.writeText(offerText).then(() => setCopiedOffer(true)).catch(() => undefined)}>{copiedOffer ? 'Copied' : 'Copy this summary for the founder'}</button></p>
       </section>
       <section>
         <h3>Requirements checklist <StatusTag label={verdict} tone={e.verdict === 'eligible' ? 'teal' : 'alert'} /></h3>
@@ -452,7 +479,7 @@ export function BrandsTab({ ws }: { ws: WS }) {
   const { data } = ws
   const filters = useFilters({ q: '', state: '', category: '', visible: '', place: '', sort: 'name' })
   const { f } = filters
-  const visible = (b: Brand) => b.state === 'approved' && b.is_public
+  const visible = (b: Brand) => b.state === 'approved' && b.is_public && !!b.founder_approved_on
   const rows = useMemo(() => {
     const out = data.brands.filter((b) =>
       matches(f.q, b.name, b.founder_name, labelOf(CATEGORIES, b.category), b.public_description, b.occasions.map((o) => labelOf(GATHERING_TYPES, o)), b.audiences, b.priority_markets, b.geography_served, b.internal_notes)
@@ -471,7 +498,7 @@ export function BrandsTab({ ws }: { ws: WS }) {
     } catch (e) { setError(e instanceof Error ? e.message : 'The brand could not be added.') }
   }
   const exportCsv = () => download(`create-believers-brands-${stamp()}.csv`, toCsv(rows, [
-    ['Brand', (b) => b.name], ['State', (b) => labelOf(BRAND_STATES, b.state)], ['On the public page', (b) => (visible(b) ? 'Yes' : 'No')],
+    ['Brand', (b) => b.name], ['State', (b) => labelOf(BRAND_STATES, b.state)], ['On the public page', (b) => (visible(b) ? 'Yes' : 'No')], ['Founder approved on', (b) => b.founder_approved_on],
     ['Category', (b) => labelOf(CATEGORIES, b.category)], ['Founder or contact', (b) => b.founder_name], ['Email', (b) => b.contact_email],
     ['Available in', (b) => b.geography_served], ['Priority markets', (b) => b.priority_markets], ['Gatherings', (b) => b.occasions.map((o) => labelOf(GATHERING_TYPES, o))],
     ['Units available', (b) => b.inventory_available], ['Units reserved', (b) => b.inventory_reserved], ['Minimum lead time (days)', (b) => b.min_lead_days],
@@ -503,11 +530,13 @@ function BrandDetail({ ws, b }: { ws: WS; b: Brand }) {
   const products = data.products.filter((p) => p.brand_id === b.id)
   const links = data.partnerships.filter((p) => p.brand_id === b.id)
   const promised = links.filter((p) => ACTIVE_PARTNERSHIP.includes(p.status) && p.status !== 'closed').reduce((n, p) => n + (p.approved_quantity ?? 0), 0)
-  const visible = b.state === 'approved' && b.is_public
+  const visible = b.state === 'approved' && b.is_public && !!b.founder_approved_on
   const [error, setError] = useState('')
   const save = async (patch: Record<string, unknown>) => {
     if (typeof patch.name === 'string' && !patch.name) throw new Error('A brand needs a name.')
     if ('slug' in patch) patch.slug = slugify(String(patch.slug ?? b.name))
+    const founderDate = 'founder_approved_on' in patch ? patch.founder_approved_on : b.founder_approved_on
+    if (('is_public' in patch ? patch.is_public : b.is_public) === true && !founderDate) throw new Error('Not saved. A profile can only be shown publicly once the founder’s approval date is recorded.')
     await ws.save('brands', b.id, patch)
   }
   const addProduct = async () => {
@@ -519,8 +548,8 @@ function BrandDetail({ ws, b }: { ws: WS; b: Brand }) {
     <article>
       <header className="ws-dhead">
         <h2>{b.name}</h2>
-        <p><StatusTag label={labelOf(BRAND_STATES, b.state)} tone={tone(b.state)} /> {visible ? <StatusTag label="On the public page" tone="teal" /> : <StatusTag label="Not visible to visitors" tone="quiet" />}</p>
-        <p className="ws-note">{visible ? 'Visitors can see the public profile section below.' : 'To publish: complete the public profile, set the state to Approved, tick “Show this profile on the public brands page”, and save.'} A draft or incomplete profile is never suggested as a match.</p>
+        <p><StatusTag label={labelOf(BRAND_STATES, b.state)} tone={tone(b.state)} /> {b.founder_approved_on ? <StatusTag label={`Founder approved ${fmtDate(b.founder_approved_on)}`} tone="teal" /> : <StatusTag label="Awaiting founder approval" tone="alert" />} {visible ? <StatusTag label="On the public page" tone="teal" /> : <StatusTag label="Not visible to visitors" tone="quiet" />}</p>
+        <p className="ws-note">{visible ? 'Visitors can see the public profile section below.' : 'To publish: complete the public profile, record the date the founder approved it, set the state to Approved, tick “Show this profile on the public brands page”, and save.'} A draft or incomplete profile is never suggested as a match.</p>
         <p className="ws-note">Stock is managed by hand. On file: {b.inventory_available ?? 'not known'} available, {b.inventory_reserved ?? 0} reserved elsewhere, {promised} promised to approved gatherings here.</p>
       </header>
       <section><Editor id={`b-${b.id}`} record={b as never} groups={BRAND_GROUPS} onSave={save} /></section>

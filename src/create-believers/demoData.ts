@@ -16,7 +16,7 @@ const day = (offset: number) => {
 const stamp = (offset: number) => day(offset) + 'T15:00:00Z'
 
 const brand = (o: Partial<Brand> & Pick<Brand, 'id' | 'name' | 'slug'>): Brand => ({
-  created_at: stamp(-40), state: 'approved', is_public: true, category: null, public_description: null,
+  created_at: stamp(-40), state: 'approved', is_public: true, founder_approved_on: day(-35), founder_approval_note: null, category: null, public_description: null,
   occasions: [], geography_served: [], dietary_verified: [], image_url: null, logo_url: null, founder_story: null, serving_idea: null,
   purchase_links: [], founder_name: null, contact_email: null, website: null, internal_notes: null, audiences: [], rituals: null,
   why_belongs: null, priority_markets: [], inventory_available: null, inventory_reserved: null, sampling_allowance: null,
@@ -57,7 +57,7 @@ const BRANDS: Brand[] = [
     serving_idea: 'An example serving idea: small bowls along the work table.',
   }),
   brand({
-    id: 'demo-brand-4', name: 'Example Draft Brand', slug: 'example-draft-brand', category: 'beverages', state: 'draft', is_public: false,
+    id: 'demo-brand-4', name: 'Example Draft Brand', slug: 'example-draft-brand', category: 'beverages', state: 'draft', is_public: false, founder_approved_on: null,
     internal_notes: 'Example of a profile still being set up. It does not appear to visitors and cannot be matched.',
   }),
 ]
@@ -76,7 +76,7 @@ const gathering = (o: Partial<Gathering> & Pick<Gathering, 'id' | 'host_id' | 'n
   city: 'Richmond', region: 'Virginia', country: 'United States', postal_code: '00000', venue_type: 'home', guest_count: 12,
   audience: 'An example description of who is coming and why.', repeats: false, frequency: null, delivery_by: day(25),
   categories: ['beverages'], preferred_brand_id: null, open_to_suggestions: true, roles: ['welcome_drink'], requested_quantity: 24,
-  dietary: null, dietary_unknown: false, serving_plan: ['poured_servings'], capabilities: ['ice', 'glassware'], delivery_notes: null,
+  dietary: null, dietary_unknown: false, serving_plan: ['poured_servings'], capabilities: ['ice', 'glassware'], delivery_notes: null, shipping_preference: 'needs_quote', photo_use_offered: 'ask_first',
   discovery: ['host_introduction', 'menu_place_card'], recap_ack: true, photos_willing: 'yes', reuse_permission: false, extra: null,
   contact_consent: true, audience_interests: [], tags: [], owner: null, next_action: null, next_action_date: null, internal_notes: null,
   campaign_slug: null, campaign_published: false, ...o,
@@ -97,13 +97,13 @@ const GATHERINGS: Gathering[] = [
 const partnership = (o: Partial<Partnership> & Pick<Partnership, 'id' | 'gathering_id' | 'brand_id' | 'status'>): Partnership => ({
   product_id: null, created_at: stamp(-10), approved_quantity: null, fulfilment: 'ship', shipment_info: null, owner: null, next_action: null,
   next_action_date: null, commitments: null, permissions: null, cost_estimate: null, cost_actual: null, fit_audience: null, fit_occasion: null,
-  fit_market: null, fit_extras: null, internal_notes: null, recap_token: 'preview-' + o.id, ...o,
+  fit_market: null, fit_extras: null, internal_notes: null, founder_approved_on: null, founder_approval_note: null, recap_token: 'preview-' + o.id, ...o,
 })
 const PARTNERSHIPS: Partnership[] = [
-  partnership({ id: 'demo-partnership-1', gathering_id: 'demo-gathering-1', brand_id: 'demo-brand-1', product_id: 'demo-product-1', status: 'preparing',
+  partnership({ id: 'demo-partnership-1', gathering_id: 'demo-gathering-1', brand_id: 'demo-brand-1', product_id: 'demo-product-1', status: 'preparing', founder_approved_on: day(-4), founder_approval_note: 'Example: approved by email.',
     approved_quantity: 24, owner: 'Beth', next_action: 'Send host brief', next_action_date: day(1), commitments: 'Host introduction and a place card.',
     cost_estimate: 71, fit_audience: 2, fit_occasion: 3, fit_market: 2, fit_extras: 2 }),
-  partnership({ id: 'demo-partnership-2', gathering_id: 'demo-gathering-4', brand_id: 'demo-brand-1', product_id: 'demo-product-1', status: 'recap_received',
+  partnership({ id: 'demo-partnership-2', gathering_id: 'demo-gathering-4', brand_id: 'demo-brand-1', product_id: 'demo-product-1', status: 'recap_received', founder_approved_on: day(-30),
     approved_quantity: 24, cost_estimate: 71, cost_actual: 68.4, fit_audience: 2, fit_occasion: 3, fit_market: 2, fit_extras: 1 }),
 ]
 const RECAPS: Recap[] = [
@@ -124,7 +124,7 @@ export function demoData(): Data {
   }))
 }
 export const demoPublicBrands = (): PublicBrand[] =>
-  BRANDS.filter((b) => b.state === 'approved' && b.is_public).map((b) => ({
+  BRANDS.filter((b) => b.state === 'approved' && b.is_public && b.founder_approved_on).map((b) => ({
     id: b.id, slug: b.slug, name: b.name, category: b.category, description: b.public_description, occasions: b.occasions,
     geography: b.geography_served, dietary_verified: b.dietary_verified, image_url: b.image_url, illustrative: true,
   }))
@@ -137,7 +137,7 @@ export const demoCampaign = (): Campaign => ({
 
 /** What the database fills in for a new record; the preview store has to do the same by hand. */
 export const DEMO_DEFAULTS: Record<string, object> = {
-  brands: brand({ id: '', name: '', slug: '' }),
+  brands: brand({ id: '', name: '', slug: '', state: 'draft', is_public: false, founder_approved_on: null }),
   products: { sku: null, category: null, format: null, serving_size: null, case_pack: null, ingredients: null, allergens_status: 'unknown', allergens: null, dietary: [], storage: null, shipping: null, notes: null },
   partnerships: partnership({ id: '', gathering_id: '', brand_id: '', status: 'reviewing' }),
 }

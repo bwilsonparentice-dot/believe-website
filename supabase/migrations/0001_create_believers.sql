@@ -48,6 +48,10 @@ create table if not exists public.cb_brands (
   slug text not null unique check (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'),
   state text not null default 'draft' check (state in ('draft','needs_information','approved','paused','archived')),
   is_public boolean not null default false,
+  -- the founder's own agreement to take part; a profile cannot be shown to visitors without it
+  founder_approved_on date,
+  founder_approval_note text,
+  constraint cb_brands_public_needs_founder check (not is_public or founder_approved_on is not null),
   -- public profile
   category text,
   public_description text,
@@ -150,10 +154,12 @@ create table if not exists public.cb_gatherings (
   serving_plan text[] not null default '{}',
   capabilities text[] not null default '{}',
   delivery_notes text,
+  shipping_preference text check (shipping_preference is null or shipping_preference in ('host_covers','needs_quote','needs_sponsored')),
   -- step 4
   discovery text[] not null default '{}',
   recap_ack boolean not null default false,
   photos_willing text check (photos_willing is null or photos_willing in ('yes','no','unsure')),
+  photo_use_offered text check (photo_use_offered is null or photo_use_offered in ('internal_only','ask_first','may_share')),
   reuse_permission boolean not null default false,
   extra text,
   contact_consent boolean not null default false,
@@ -197,8 +203,13 @@ create table if not exists public.cb_partnerships (
   fit_market smallint check (fit_market is null or fit_market between 0 and 2),
   fit_extras smallint check (fit_extras is null or fit_extras between 0 and 2),
   internal_notes text,
+  -- the founder's agreement to this particular gathering; required before the partnership can be approved
+  founder_approved_on date,
+  founder_approval_note text,
   recap_token uuid not null unique default gen_random_uuid(),
-  unique (gathering_id, brand_id)
+  unique (gathering_id, brand_id),
+  constraint cb_partnerships_needs_founder check (
+    status not in ('approved','preparing','shipped','delivered','gathered','recap_received') or founder_approved_on is not null)
 );
 create index if not exists cb_partnerships_brand_idx on public.cb_partnerships (brand_id);
 
@@ -398,6 +409,8 @@ declare
   v_role text := cb__txt(p, 'host_role', 40);
   v_venue text := cb__txt(p, 'venue_type', 40);
   v_photos text := cb__txt(p, 'photos_willing', 10);
+  v_photo_use text := cb__txt(p, 'photo_use_offered', 20);
+  v_shipping text := cb__txt(p, 'shipping_preference', 20);
   v_brand uuid := cb__uuid(p, 'preferred_brand_id');
   v_host uuid;
   v_id uuid;
@@ -454,6 +467,8 @@ begin
     errs := errs || jsonb_build_object('requested_quantity', 'invalid');
   end if;
   if v_photos is not null and v_photos not in ('yes', 'no', 'unsure') then v_photos := null; end if;
+  if v_photo_use is not null and v_photo_use not in ('internal_only', 'ask_first', 'may_share') then v_photo_use := null; end if;
+  if v_shipping is not null and v_shipping not in ('host_covers', 'needs_quote', 'needs_sponsored') then v_shipping := null; end if;
   if coalesce((p ->> 'recap_ack')::boolean, false) is not true then errs := errs || jsonb_build_object('recap_ack', 'required'); end if;
   if coalesce((p ->> 'contact_consent')::boolean, false) is not true then errs := errs || jsonb_build_object('contact_consent', 'required'); end if;
 
@@ -469,7 +484,7 @@ begin
   end if;
 
   -- only a brand that is approved and published can be named as a preference
-  if v_brand is not null and not exists (select 1 from cb_brands b where b.id = v_brand and b.state = 'approved' and b.is_public) then
+  if v_brand is not null and not exists (select 1 from cb_brands b where b.id = v_brand and b.state = 'approved' and b.is_public and b.founder_approved_on is not null) then
     v_brand := null;
   end if;
 
@@ -494,8 +509,8 @@ begin
     date_status, event_date, event_time, timezone, city, region, country, postal_code, venue_type,
     guest_count, audience, repeats, frequency, delivery_by,
     categories, preferred_brand_id, open_to_suggestions, roles, requested_quantity, dietary, dietary_unknown,
-    serving_plan, capabilities, delivery_notes,
-    discovery, recap_ack, photos_willing, reuse_permission, extra, contact_consent
+    serving_plan, capabilities, delivery_notes, shipping_preference,
+    discovery, recap_ack, photos_willing, photo_use_offered, reuse_permission, extra, contact_consent
   ) values (
     v_host, v_key, 'application', 'applied', v_gname, v_type, v_desc,
     v_date_status, v_event, cb__txt(p, 'event_time', 80), v_tz, v_city, v_region, v_country, v_postal, v_venue,
@@ -506,10 +521,10 @@ begin
     v_qty, cb__txt(p, 'dietary', 1000), coalesce((p ->> 'dietary_unknown')::boolean, false),
     cb__arr(p, 'serving_plan', array['original_packaging','poured_servings','recipe_mocktail','sampling','other']),
     cb__arr(p, 'capabilities', array['cold_storage','ice','glassware','serving_help']),
-    cb__txt(p, 'delivery_notes', 600),
+    cb__txt(p, 'delivery_notes', 600), v_shipping,
     cb__arr(p, 'discovery', array['host_introduction','menu_place_card','story_display','qr_link','welcome_bag',
                                   'follow_up_email','social_content','sampling_only','other']),
-    true, v_photos, coalesce((p ->> 'reuse_permission')::boolean, false), cb__txt(p, 'extra', 2000), true
+    true, v_photos, v_photo_use, coalesce(v_photo_use = 'may_share', false), cb__txt(p, 'extra', 2000), true
   ) returning id into v_id;
 
   return jsonb_build_object('ok', true);
@@ -567,7 +582,7 @@ language sql stable security definer set search_path = public, pg_temp as $$
   select b.id, b.slug, b.name, b.category, b.public_description,
          b.occasions, b.geography_served, b.dietary_verified, b.image_url
   from cb_brands b
-  where b.state = 'approved' and b.is_public
+  where b.state = 'approved' and b.is_public and b.founder_approved_on is not null
   order by b.name;
 $$;
 
@@ -592,7 +607,7 @@ language sql stable security definer set search_path = public, pg_temp as $$
         'founder_story', b.founder_story, 'serving_idea', b.serving_idea, 'image_url', b.image_url,
         'links', cb__confirmed_links(b.purchase_links)) order by b.name)
       from cb_partnerships pt join cb_brands b on b.id = pt.brand_id
-      where pt.gathering_id = g.id and b.state = 'approved'
+      where pt.gathering_id = g.id and b.state = 'approved' and b.founder_approved_on is not null and pt.founder_approved_on is not null
         and pt.status in ('approved','preparing','shipped','delivered','gathered','recap_received','closed')
     ), '[]'::jsonb)
   ) end

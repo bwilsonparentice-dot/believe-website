@@ -42,6 +42,14 @@ export const DISCOVERY: Opt[] = [
   ['follow_up_email', 'A follow-up email or link from the host'], ['social_content', 'Social content'],
   ['sampling_only', 'Sampling only'], ['other', 'Other'],
 ]
+export const SHIPPING_PREFS: Opt[] = [
+  ['host_covers', 'I can cover shipping'], ['needs_quote', 'I’d need a shipping quote first'], ['needs_sponsored', 'I’d need shipping to be sponsored'],
+]
+/** how the host says photos they share may be used; recorded at application and confirmed again with each recap */
+export const PHOTO_USE: Opt[] = [
+  ['internal_only', 'For Believe and the brand to see only'], ['ask_first', 'Ask me before anything is used publicly'],
+  ['may_share', 'Believe and the brand may share them publicly'],
+]
 export const PHOTOS_WILLING: Opt[] = [['yes', 'Yes'], ['no', 'No'], ['unsure', 'Not sure yet']]
 
 export const GATHERING_STATUSES: Opt[] = [

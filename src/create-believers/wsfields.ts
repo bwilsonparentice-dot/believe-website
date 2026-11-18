@@ -5,7 +5,9 @@ import type { FieldDef, Group } from './wsui'
 export const BRAND_GROUPS: Group[] = [
   { title: 'Status', fields: [
     { key: 'state', label: 'Profile state', type: 'select', req: true, options: BRAND_STATES },
-    { key: 'is_public', label: 'Show this profile on the public brands page', type: 'bool', help: 'Visitors see it only when the state is Approved and this box is ticked.' },
+    { key: 'founder_approved_on', label: 'Founder approved taking part on', type: 'date', help: 'The date the founder agreed to take part and to this public profile. Until this is set, the profile stays private and is never suggested as a match.' },
+    { key: 'founder_approval_note', label: 'How the founder approved', type: 'text', help: 'For example: by email, 12 January.' },
+    { key: 'is_public', label: 'Show this profile on the public brands page', type: 'bool', help: 'Visitors see it only when the state is Approved, the founder’s approval date is set, and this box is ticked.' },
   ] },
   { title: 'Public profile', note: 'Visitors can see everything in this section once the profile is published. Use only details the founder has confirmed.', fields: [
     { key: 'name', label: 'Brand name', type: 'text' },
@@ -101,6 +103,10 @@ export const partnershipGroups = (products: Opt[]): Group[] => [
     { key: 'owner', label: 'Owner at Believe', type: 'text' },
     { key: 'next_action', label: 'Next action', type: 'text' },
     { key: 'next_action_date', label: 'Next action date', type: 'date' },
+  ] },
+  { title: 'Founder approval', note: 'Share the host’s offer above with the founder. Record their decision here before setting the status to Approved.', fields: [
+    { key: 'founder_approved_on', label: 'Founder approved this gathering on', type: 'date' },
+    { key: 'founder_approval_note', label: 'How the founder approved, and any conditions', type: 'area' },
   ] },
   { title: 'Product and delivery', fields: [
     { key: 'product_id', label: 'Product', type: 'select', options: products },
