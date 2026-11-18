@@ -39,8 +39,8 @@ export interface Gathering {
   categories: string[]; preferred_brand_id: string | null; open_to_suggestions: boolean; roles: string[]
   requested_quantity: number | null; dietary: string | null; dietary_unknown: boolean
   serving_plan: string[]; capabilities: string[]; delivery_notes: string | null
-  shipping_preference: string | null; photo_use_offered: string | null
-  discovery: string[]; recap_ack: boolean; photos_willing: string | null; reuse_permission: boolean
+  shipping_preference: string | null; photo_public_offered: boolean; photo_reuse_offered: boolean
+  discovery: string[]; recap_ack: boolean; photos_willing: string | null
   extra: string | null; contact_consent: boolean
   audience_interests: string[]; tags: string[]; owner: string | null
   next_action: string | null; next_action_date: string | null; internal_notes: string | null
@@ -56,6 +56,7 @@ export interface Partnership {
   fit_audience: number | null; fit_occasion: number | null; fit_market: number | null; fit_extras: number | null
   internal_notes: string | null; recap_token: string
   founder_approved_on: string | null; founder_approval_note: string | null
+  host_sharing_permission_on: string | null; host_sharing_details: string | null
 }
 export interface Recap {
   id: string; partnership_id: string; created_at: string
@@ -63,7 +64,7 @@ export interface Recap {
   units_served: number | null; units_taken_home: number | null; units_remaining: number | null
   served_how: string | null; introduced_how: string | null; reactions: string | null
   worked: string | null; improve: string | null; photo_links: string | null
-  photo_permission: string; photo_permission_notes: string | null
+  photo_public_ok: boolean; photo_reuse_ok: boolean; photo_permission_notes: string | null
   host_interest: string | null; purchases_self_reported: string | null; internal_notes: string | null
 }
 export interface Inquiry {

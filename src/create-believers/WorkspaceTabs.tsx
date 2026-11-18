@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { BRAND_STATES, CAPABILITIES, CATEGORIES, DISCOVERY, EXTRAS, GATHERING_STATUSES, GATHERING_TYPES, HOST_INTEREST, HOST_ROLES, INQUIRY_STATUSES, OPEN_PARTNERSHIP, ACTIVE_PARTNERSHIP, PARTNERSHIP_STATUSES, PHOTOS_WILLING, PHOTO_PERMISSION, PHOTO_USE, ROLES, SERVING_PLANS, SHIPPING_PREFS, TIMEZONES, VENUE_TYPES, labelOf, labelsOf, type Opt } from './options'
+import { BRAND_STATES, CAPABILITIES, CATEGORIES, DISCOVERY, EXTRAS, GATHERING_STATUSES, GATHERING_TYPES, HOST_INTEREST, HOST_ROLES, INQUIRY_STATUSES, OPEN_PARTNERSHIP, ACTIVE_PARTNERSHIP, PARTNERSHIP_STATUSES, PHOTOS_WILLING, ROLES, SERVING_PLANS, SHIPPING_PREFS, TIMEZONES, VENUE_TYPES, labelOf, labelsOf, type Opt } from './options'
 import { evaluate, fitTotal, money, suggest, type Evaluation } from './matching'
 import { ATTENDANCE_BANDS, attendanceBand, distinct, inRange, matches, toCsv } from './search'
 import type { Brand, Gathering, Host, Inquiry, Partnership, Product, Recap } from './types'
@@ -247,7 +247,8 @@ function GatheringDetail({ ws, g }: { ws: WS; g: Gathering }) {
           ['How guests could discover the brand', labelsOf(DISCOVERY, g.discovery)],
           ['Will share a recap and attendance', g.recap_ack ? 'Yes' : 'Not confirmed'],
           ['Willing to share photos', labelOf(PHOTOS_WILLING, g.photos_willing)],
-          ['Photo use offered', g.photo_use_offered ? labelOf(PHOTO_USE, g.photo_use_offered) : 'None offered'],
+          ['Photos may be shown publicly', g.photo_public_offered ? 'Offered' : 'Not offered'],
+          ['Photos may be reused in marketing', g.photo_reuse_offered ? 'Offered, for Believe Studio and the brand' : 'Not offered'],
           ['Other needs or ideas', g.extra],
         ]} />
       </section>
@@ -401,7 +402,8 @@ function PartnershipDetail({ ws, p }: { ws: WS; p: Partnership }) {
     ['Visibility offered', labelsOf(DISCOVERY, g.discovery) || 'None offered yet'],
     ['Recap offered', g.recap_ack ? 'A short recap afterwards, including actual attendance' : 'Not confirmed'],
     ['Photos', g.photos_willing === 'yes' ? 'Willing to share photos of the product in use' : g.photos_willing === 'no' ? 'Not sharing photos' : 'Not sure yet'],
-    ['Photo use offered', g.photo_use_offered ? labelOf(PHOTO_USE, g.photo_use_offered) : 'None offered'],
+    ['Showing photos publicly', g.photo_public_offered ? 'Offered' : 'Not offered'],
+    ['Reuse of photos in marketing by Believe Studio or the brand', g.photo_reuse_offered ? 'Offered' : 'Not offered'],
     ['Shipping', labelOf(SHIPPING_PREFS, g.shipping_preference) || 'Not specified'],
     ['Dietary and allergies', g.dietary_unknown ? 'Host does not know yet' : g.dietary || 'None stated'],
   ]
@@ -423,7 +425,7 @@ function PartnershipDetail({ ws, p }: { ws: WS; p: Partnership }) {
       </section>
       <section>
         <h3>What the host has offered {p.founder_approved_on ? <StatusTag label={`Founder approved ${fmtDate(p.founder_approved_on)}`} tone="teal" /> : <StatusTag label="Awaiting founder approval" tone="alert" />}</h3>
-        <p className="ws-note">These are the commitments the host offered in their application. Share them with the founder when you ask for approval. The summary leaves out the host’s name, contact details, and postal code.</p>
+        <p className="ws-note">These are the commitments the host offered in their application. Share them with the founder when you ask for approval. The summary leaves out the host’s name, contact details, and postal code, so it can be sent to a founder who has no workspace access. Photo permissions are offers only; nothing is granted until confirmed in writing.</p>
         <Facts rows={offer.slice(1)} />
         <p style={{ marginTop: 10 }}><button type="button" className="cb-textlink" onClick={() => navigator.clipboard?.writeText(offerText).then(() => setCopiedOffer(true)).catch(() => undefined)}>{copiedOffer ? 'Copied' : 'Copy this summary for the founder'}</button></p>
       </section>
@@ -466,7 +468,8 @@ function RecapView({ ws, recap }: { ws: WS; recap: Recap }) {
         ['What worked', recap.worked], ['What to improve', recap.improve],
         ['Purchases or interest (self-reported)', recap.purchases_self_reported],
         ['Photos', recap.photo_links ? <a href={/^https:\/\//.test(recap.photo_links.trim()) ? recap.photo_links.trim() : undefined} target="_blank" rel="noopener noreferrer">{recap.photo_links}</a> : ''],
-        ['Photo permission', recap.photo_links ? labelOf(PHOTO_PERMISSION, recap.photo_permission) : 'No photos shared'],
+        ['Photos may be shown publicly', !recap.photo_links ? 'No photos shared' : recap.photo_public_ok ? 'Yes, permission given' : 'No'],
+        ['Photos may be reused in marketing by Believe Studio or the brand', !recap.photo_links ? 'No photos shared' : recap.photo_reuse_ok ? 'Yes, permission given' : 'No'],
         ['Photo notes', recap.photo_permission_notes], ['Would host again', labelOf(HOST_INTEREST, recap.host_interest)],
       ]} />
       <Editor id={`r-${recap.id}`} record={recap as never} groups={RECAP_GROUPS} onSave={(patch) => ws.save('recaps', recap.id, patch)} saveLabel="Save notes" />

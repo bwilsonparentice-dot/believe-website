@@ -43,12 +43,7 @@ export const DISCOVERY: Opt[] = [
   ['sampling_only', 'Sampling only'], ['other', 'Other'],
 ]
 export const SHIPPING_PREFS: Opt[] = [
-  ['host_covers', 'I can cover shipping'], ['needs_quote', 'I’d need a shipping quote first'], ['needs_sponsored', 'I’d need shipping to be sponsored'],
-]
-/** how the host says photos they share may be used; recorded at application and confirmed again with each recap */
-export const PHOTO_USE: Opt[] = [
-  ['internal_only', 'For Believe and the brand to see only'], ['ask_first', 'Ask me before anything is used publicly'],
-  ['may_share', 'Believe and the brand may share them publicly'],
+  ['host_covers', 'I can cover shipping'], ['needs_quote', 'I need a shipping quote before deciding'], ['needs_sponsored', 'I need sponsored shipping'],
 ]
 export const PHOTOS_WILLING: Opt[] = [['yes', 'Yes'], ['no', 'No'], ['unsure', 'Not sure yet']]
 
@@ -78,12 +73,6 @@ export const EXTRAS: Opt[] = [
 ]
 export const INQUIRY_STATUSES: Opt[] = [
   ['new', 'New'], ['in_conversation', 'In conversation'], ['became_brand', 'Became a brand profile'], ['not_now', 'Not now'], ['closed', 'Closed'],
-]
-export const PHOTO_PERMISSION: Opt[] = [
-  ['not_shared', 'I am not sharing photos'],
-  ['internal_only', 'For Believe and the brand to see only. Not for publication.'],
-  ['ask_first', 'Ask me before any photo is used publicly.'],
-  ['may_share', 'These photos may be shared publicly by Believe and the brand.'],
 ]
 export const HOST_INTEREST: Opt[] = [['yes', 'Yes'], ['maybe', 'Maybe'], ['no', 'Not right now']]
 

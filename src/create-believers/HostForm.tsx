@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { MODE, CONTACT_EMAIL, listPublicBrands, submitHostApplication } from './backend'
-import { CAPABILITIES, CATEGORIES, DISCOVERY, GATHERING_TYPES, HOST_ROLES, PHOTOS_WILLING, PHOTO_USE, ROLES, SERVING_PLANS, SHIPPING_PREFS, TIMEZONES, VENUE_TYPES, type Opt } from './options'
+import { CAPABILITIES, CATEGORIES, DISCOVERY, GATHERING_TYPES, HOST_ROLES, PHOTOS_WILLING, ROLES, SERVING_PLANS, SHIPPING_PREFS, TIMEZONES, VENUE_TYPES, type Opt } from './options'
 import type { PublicBrand, Values } from './types'
 import { HOST_STEPS, isoToday, validateHost, validateHostStep } from './validate'
 import { Area, Check, Checks, Decoy, ErrorSummary, Link, Radios, Select, Text, newKey, useForm, useHeadingFocus, useMeta } from './ui'
@@ -8,13 +8,13 @@ import { Area, Check, Checks, Decoy, ErrorSummary, Link, Radios, Select, Text, n
 const LABELS: Record<string, string> = {
   full_name: 'Your name', email: 'Email', name: 'Gathering name', type: 'Type of gathering', description: 'Description',
   event_date: 'Date', event_time: 'Time', timezone: 'Time zone', delivery_by: 'Product delivery date', city: 'City', region: 'State or region',
-  country: 'Country', postal_code: 'Postal code', guest_count: 'Guest count', audience: 'Who is coming', requested_quantity: 'Quantity',
+  country: 'Country', postal_code: 'Postal code', guest_count: 'Guest count', audience: 'Who is coming', requested_quantity: 'Quantity', shipping_preference: 'Shipping',
   recap_ack: 'Recap', contact_consent: 'Permission to contact you',
 }
 const STEP_OF: Record<string, number> = {
   full_name: 1, email: 1, name: 1, type: 1, description: 1,
   date_status: 2, event_date: 2, event_time: 2, timezone: 2, delivery_by: 2, city: 2, region: 2, country: 2, postal_code: 2, guest_count: 2, audience: 2,
-  requested_quantity: 3, recap_ack: 4, contact_consent: 4,
+  requested_quantity: 3, shipping_preference: 3, recap_ack: 4, contact_consent: 4,
 }
 
 function detectedZone(): string {
@@ -25,7 +25,7 @@ const blank = (): Values => ({
   date_status: 'confirmed', event_date: '', event_time: '', timezone: detectedZone(), city: '', region: '', country: 'United States', postal_code: '',
   venue_type: '', guest_count: '', audience: '', repeats: false, frequency: '', delivery_by: '',
   categories: [], preferred_brand_id: '', roles: [], requested_quantity: '', dietary: '', dietary_unknown: false, serving_plan: [], capabilities: [], delivery_notes: '', shipping_preference: '',
-  discovery: [], recap_ack: false, photos_willing: '', photo_use_offered: '', extra: '', contact_consent: false, marketing_opt_in: false, company_website: '',
+  discovery: [], recap_ack: false, photos_willing: '', photo_public_offered: false, photo_reuse_offered: false, extra: '', contact_consent: false, marketing_opt_in: false, company_website: '',
 })
 
 export function HostForm({ brandSlug }: { brandSlug: string | null }) {
@@ -217,7 +217,7 @@ export function HostForm({ brandSlug }: { brandSlug: string | null }) {
                       {showServing && <Checks f={f} name="capabilities" label="What will you have on hand?" optional options={CAPABILITIES} />}
                       <Text f={f} name="delivery_notes" label="Anything we should know about receiving a delivery?" optional
                         help="For example, the days or hours someone can accept a package. No address needed yet." />
-                      <Radios f={f} name="shipping_preference" one label="How would you like to handle shipping?" optional
+                      <Radios f={f} name="shipping_preference" one label="How would you like to handle shipping?"
                         help="This helps us plan. Nothing is charged or promised at this stage." options={SHIPPING_PREFS} />
                     </fieldset>
                   )}
@@ -229,8 +229,12 @@ export function HostForm({ brandSlug }: { brandSlug: string | null }) {
                       <Checks f={f} name="discovery" label="How could guests find out about the brand?" optional help="Choose any that feel natural for your gathering." options={DISCOVERY} />
                       <Radios f={f} name="photos_willing" label="Would you be willing to share a few photos of the product in use?" optional options={PHOTOS_WILLING} />
                       {f.v.photos_willing === 'yes' && (
-                        <Radios f={f} name="photo_use_offered" one label="If you share photos, how may they be used?" optional
-                          help="Choose what you’re comfortable offering. We confirm it with you again before anything is used, and sharing a photo never grants permission by itself." options={PHOTO_USE} />
+                        <fieldset className="cb-field">
+                          <legend>If you share photos, what would you allow? <span className="cb-opt">(optional)</span></legend>
+                          <p className="cb-help">These are two separate choices. Sharing a photo with us grants neither. If you tick nothing, your photos are only for Believe Studio and the participating brand to see privately. We confirm the details with you in writing before anything is used.</p>
+                          <Check f={f} name="photo_public_offered" label="Photos I share may be shown publicly, for example on social media or a website." />
+                          <Check f={f} name="photo_reuse_offered" label="Believe Studio and the participating brand may reuse photos I share in their own marketing." />
+                        </fieldset>
                       )}
                       <Area f={f} name="extra" label="Anything else you need, or an idea you’d like to try?" optional style={{ minHeight: 84 }} />
                       <hr className="cb-rule" />

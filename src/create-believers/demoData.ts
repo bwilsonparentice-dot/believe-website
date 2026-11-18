@@ -76,8 +76,8 @@ const gathering = (o: Partial<Gathering> & Pick<Gathering, 'id' | 'host_id' | 'n
   city: 'Richmond', region: 'Virginia', country: 'United States', postal_code: '00000', venue_type: 'home', guest_count: 12,
   audience: 'An example description of who is coming and why.', repeats: false, frequency: null, delivery_by: day(25),
   categories: ['beverages'], preferred_brand_id: null, open_to_suggestions: true, roles: ['welcome_drink'], requested_quantity: 24,
-  dietary: null, dietary_unknown: false, serving_plan: ['poured_servings'], capabilities: ['ice', 'glassware'], delivery_notes: null, shipping_preference: 'needs_quote', photo_use_offered: 'ask_first',
-  discovery: ['host_introduction', 'menu_place_card'], recap_ack: true, photos_willing: 'yes', reuse_permission: false, extra: null,
+  dietary: null, dietary_unknown: false, serving_plan: ['poured_servings'], capabilities: ['ice', 'glassware'], delivery_notes: null, shipping_preference: 'needs_quote', photo_public_offered: true, photo_reuse_offered: false,
+  discovery: ['host_introduction', 'menu_place_card'], recap_ack: true, photos_willing: 'yes', extra: null,
   contact_consent: true, audience_interests: [], tags: [], owner: null, next_action: null, next_action_date: null, internal_notes: null,
   campaign_slug: null, campaign_published: false, ...o,
 })
@@ -97,7 +97,7 @@ const GATHERINGS: Gathering[] = [
 const partnership = (o: Partial<Partnership> & Pick<Partnership, 'id' | 'gathering_id' | 'brand_id' | 'status'>): Partnership => ({
   product_id: null, created_at: stamp(-10), approved_quantity: null, fulfilment: 'ship', shipment_info: null, owner: null, next_action: null,
   next_action_date: null, commitments: null, permissions: null, cost_estimate: null, cost_actual: null, fit_audience: null, fit_occasion: null,
-  fit_market: null, fit_extras: null, internal_notes: null, founder_approved_on: null, founder_approval_note: null, recap_token: 'preview-' + o.id, ...o,
+  fit_market: null, fit_extras: null, internal_notes: null, founder_approved_on: null, founder_approval_note: null, host_sharing_permission_on: null, host_sharing_details: null, recap_token: 'preview-' + o.id, ...o,
 })
 const PARTNERSHIPS: Partnership[] = [
   partnership({ id: 'demo-partnership-1', gathering_id: 'demo-gathering-1', brand_id: 'demo-brand-1', product_id: 'demo-product-1', status: 'preparing', founder_approved_on: day(-4), founder_approval_note: 'Example: approved by email.',
@@ -110,7 +110,7 @@ const RECAPS: Recap[] = [
   { id: 'demo-recap-1', partnership_id: 'demo-partnership-2', created_at: stamp(-17), actual_attendance: 11, tried_count: 9, units_served: 18, units_taken_home: 4, units_remaining: 2,
     served_how: 'Example: poured over ice as people arrived.', introduced_how: 'Example: the host said a few words and set out a place card.',
     reactions: 'Example reactions would be written here.', worked: 'Example: the welcome pour.', improve: 'Example: more ice.',
-    photo_links: null, photo_permission: 'not_shared', photo_permission_notes: null, host_interest: 'yes',
+    photo_links: null, photo_public_ok: false, photo_reuse_ok: false, photo_permission_notes: null, host_interest: 'yes',
     purchases_self_reported: 'Example: two guests said they would look for it.', internal_notes: null },
 ]
 

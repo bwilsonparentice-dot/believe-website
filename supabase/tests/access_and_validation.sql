@@ -61,7 +61,7 @@ select pg_temp.ok((select to_jsonb(b) from cb_public_brands() b)::text !~ 'PRIVA
 -- invalid submission: every problem reported, nothing stored
 select pg_temp.ok(
   (cb_submit_host_application('{"email":"not-an-email","guest_count":"0"}'::jsonb) -> 'errors')
-    ?& array['full_name','email','name','type','description','event_date','delivery_by','city','guest_count','audience','recap_ack','contact_consent'],
+    ?& array['full_name','email','name','type','description','event_date','delivery_by','city','guest_count','audience','shipping_preference','recap_ack','contact_consent'],
   'host application: invalid input is rejected field by field');
 
 create or replace function pg_temp.app(extra jsonb default '{}') returns jsonb language sql as $$
@@ -73,7 +73,7 @@ create or replace function pg_temp.app(extra jsonb default '{}') returns jsonb l
     'city','Richmond','region','Virginia','country','United States','postal_code','23220',
     'guest_count','12','audience','Neighbours who read','recap_ack',true,'contact_consent',true,
     'categories', '["beverages","not-a-category"]'::jsonb,
-    'shipping_preference','needs_quote','photo_use_offered','ask_first','discovery','["host_introduction","qr_link"]'::jsonb,'photos_willing','yes',
+    'shipping_preference','needs_quote','photo_public_offered',true,'photo_reuse_offered',false,'discovery','["host_introduction","qr_link"]'::jsonb,'photos_willing','yes',
     'preferred_brand_id','10000000-0000-0000-0000-000000000002',
     'idempotency_key','20000000-0000-0000-0000-000000000001') || extra;
 $$;
@@ -84,6 +84,8 @@ select pg_temp.ok((cb_submit_host_application(pg_temp.app('{"event_date":"2001-0
                   'host application: event date cannot be in the past');
 select pg_temp.ok((cb_submit_host_application(pg_temp.app('{"requested_quantity":"-4"}')) -> 'errors' ->> 'requested_quantity') = 'invalid',
                   'host application: quantity must be a positive number');
+select pg_temp.ok((cb_submit_host_application(pg_temp.app('{"shipping_preference":""}')) -> 'errors' ->> 'shipping_preference') = 'required',
+                  'host application: a shipping preference is required');
 select pg_temp.ok((cb_submit_host_application(pg_temp.app('{"contact_consent":"maybe"}')) ->> 'ok') = 'false',
                   'host application: malformed values fail cleanly');
 select pg_temp.ok((cb_submit_host_application(pg_temp.app('{"company_website":"http://spam"}')) ->> 'ok') = 'true',
@@ -91,7 +93,7 @@ select pg_temp.ok((cb_submit_host_application(pg_temp.app('{"company_website":"h
 select pg_temp.ok((cb_submit_host_application(pg_temp.app()) ->> 'ok') = 'true', 'host application: valid submission accepted');
 select pg_temp.ok((cb_submit_host_application(pg_temp.app()) ->> 'ok') = 'true', 'host application: repeat submission answered');
 select pg_temp.ok((cb_submit_host_application(pg_temp.app(jsonb_build_object(
-    'idempotency_key','20000000-0000-0000-0000-000000000002','date_status','not_confirmed','event_date','','delivery_by','','name','Spring supper'))) ->> 'ok') = 'true',
+    'idempotency_key','20000000-0000-0000-0000-000000000002','date_status','not_confirmed','event_date','','delivery_by','','name','Spring supper','photos_willing','unsure','photo_public_offered',true,'photo_reuse_offered',true))) ->> 'ok') = 'true',
   'host application: "date not confirmed" needs no dates');
 select pg_temp.ok((cb_submit_founder_inquiry('{"email":"x"}'::jsonb) -> 'errors') ?& array['founder_name','email','brand_name','description','explore','contact_consent'],
                   'founder inquiry: invalid input rejected');
@@ -100,11 +102,12 @@ select pg_temp.ok((cb_submit_founder_inquiry('{"founder_name":"Bo","email":"bo@e
 reset role;
 
 select pg_temp.ok((select count(*) from cb_gatherings) = 2, 'stored: two gatherings (decoy and repeat kept out)');
+select pg_temp.ok((select not photo_public_offered and not photo_reuse_offered from cb_gatherings where name = 'Spring supper'), 'stored: photo permissions are not recorded unless the host is sharing photos');
 select pg_temp.ok((select count(*) from cb_hosts) = 1, 'stored: one host for both gatherings (matched by email)');
 select pg_temp.ok((select bool_and(preferred_brand_id is null and open_to_suggestions) from cb_gatherings), 'stored: an unpublished brand cannot be named as a preference');
 select pg_temp.ok((select categories from cb_gatherings where name = 'Autumn book club') = '{beverages}', 'stored: unknown option values are dropped');
 select pg_temp.ok((select count(*) from cb_status_log where record_type = 'gathering') = 2, 'stored: status log written');
-select pg_temp.ok((select shipping_preference = 'needs_quote' and photo_use_offered = 'ask_first' and not reuse_permission and photos_willing = 'yes' and recap_ack
+select pg_temp.ok((select shipping_preference = 'needs_quote' and photo_public_offered and not photo_reuse_offered and photos_willing = 'yes' and recap_ack
                      and discovery @> '{host_introduction,qr_link}' from cb_gatherings where name = 'Autumn book club'),
                   'stored: shipping preference and the visibility, recap, and photo-use permissions offered');
 
@@ -166,11 +169,11 @@ select cb_track('autumn-book-club', 'verified_sale');
 select cb_track('no-such-campaign', 'page_view');
 select pg_temp.ok(cb_get_recap_context('40000000-0000-0000-0000-00000000dead') is null, 'recap: unknown link returns nothing');
 select pg_temp.ok((cb_submit_recap('40000000-0000-0000-0000-000000000001', '{"actual_attendance":"","served_how":""}') -> 'errors') ?& array['actual_attendance','served_how'], 'recap: required fields enforced');
-select pg_temp.ok((cb_submit_recap('40000000-0000-0000-0000-000000000001', '{"actual_attendance":"10","served_how":"Poured","photo_links":"https://photos.example.test/a"}') -> 'errors' ->> 'photo_permission') = 'required', 'recap: photos need an explicit permission choice');
-select pg_temp.ok((cb_submit_recap('40000000-0000-0000-0000-000000000001', '{"actual_attendance":"10","tried_count":"8","served_how":"Poured","photo_links":"https://photos.example.test/a","photo_permission":"internal_only"}') ->> 'ok') = 'true', 'recap: valid recap accepted');
+select pg_temp.ok((cb_submit_recap('40000000-0000-0000-0000-000000000001', '{"actual_attendance":"10","tried_count":"8","served_how":"Poured","photo_links":"https://photos.example.test/a","photo_public_ok":true}') ->> 'ok') = 'true', 'recap: valid recap accepted');
 select pg_temp.ok((cb_submit_recap('40000000-0000-0000-0000-000000000001', '{"actual_attendance":"99","served_how":"Again"}') -> 'errors' ->> 'form') = 'already_submitted', 'recap: cannot be overwritten');
 reset role;
 select pg_temp.ok((select actual_attendance = 10 and tried_count = 8 from cb_recaps), 'recap stored with attendance and tried counts kept separate');
+select pg_temp.ok((select photo_public_ok and not photo_reuse_ok from cb_recaps), 'recap: public sharing and marketing reuse are stored as separate permissions; providing photos grants neither by itself');
 select pg_temp.ok((select status from cb_partnerships where id = '30000000-0000-0000-0000-000000000001') = 'approved', 'recap does not change the partnership status by itself');
 select pg_temp.ok((select count(*) from cb_campaign_events) = 2, 'guest page: only page views and clicks on a live campaign are counted');
 \echo ALL CHECKS PASSED

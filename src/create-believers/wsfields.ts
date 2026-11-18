@@ -108,6 +108,10 @@ export const partnershipGroups = (products: Opt[]): Group[] => [
     { key: 'founder_approved_on', label: 'Founder approved this gathering on', type: 'date' },
     { key: 'founder_approval_note', label: 'How the founder approved, and any conditions', type: 'area' },
   ] },
+  { title: 'Sharing the host’s details', note: 'The host’s name, contact, and delivery details stay private during matching. Before giving any of them to the brand or a fulfilment partner, tell the host exactly what will be shared and with whom, and record their permission here first.', fields: [
+    { key: 'host_sharing_permission_on', label: 'Host gave permission on', type: 'date' },
+    { key: 'host_sharing_details', label: 'What may be shared, and with whom', type: 'area', help: 'For example: name, delivery address, and phone number, with the brand’s fulfilment partner, for this shipment only.' },
+  ] },
   { title: 'Product and delivery', fields: [
     { key: 'product_id', label: 'Product', type: 'select', options: products },
     { key: 'approved_quantity', label: 'Approved quantity (units)', type: 'int' },

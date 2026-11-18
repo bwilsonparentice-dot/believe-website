@@ -26,7 +26,18 @@ is stored in the website's files, in this repository, or in a visitor's browser.
 - **Team members** sign in at `/create-believers/workspace`. The database itself
   checks that the signed-in person is on the team list before returning anything,
   so the page address and the page's code give no access on their own.
-- **To add or remove a team member**, see `supabase/first_setup.sql`.
+- **To add or remove a team member**, see `supabase/first_setup.sql`. For the
+  pilot, access is limited to Beth and the people she explicitly authorizes.
+  Founders and hosts never need a sign-in: founders are sent a copied summary,
+  and hosts use the public form and a private recap link.
+- **A host's contact and delivery details stay private during matching.** Before
+  giving any of them to a brand or a fulfilment partner, tell the host exactly
+  what will be shared and with whom, get their permission, and record it on the
+  partnership under **Sharing the host's details**.
+- **Photos:** showing photos publicly and reuse in marketing by Believe Studio
+  or the brand are two separate permissions, asked on the application (as an
+  offer) and again on the recap (for the actual photos). Receiving photos
+  grants neither.
 
 The site is built with two settings, the database's address and its *publishable*
 key. Both are designed to be public. The secret key is never used by the website.

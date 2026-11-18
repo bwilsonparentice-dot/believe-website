@@ -154,13 +154,15 @@ create table if not exists public.cb_gatherings (
   serving_plan text[] not null default '{}',
   capabilities text[] not null default '{}',
   delivery_notes text,
+  -- required on the public form; may be empty only on a record the team adds by hand
   shipping_preference text check (shipping_preference is null or shipping_preference in ('host_covers','needs_quote','needs_sponsored')),
   -- step 4
   discovery text[] not null default '{}',
   recap_ack boolean not null default false,
   photos_willing text check (photos_willing is null or photos_willing in ('yes','no','unsure')),
-  photo_use_offered text check (photo_use_offered is null or photo_use_offered in ('internal_only','ask_first','may_share')),
-  reuse_permission boolean not null default false,
+  -- two separate offers; neither follows from the other, or from being willing to share photos
+  photo_public_offered boolean not null default false,
+  photo_reuse_offered boolean not null default false,
   extra text,
   contact_consent boolean not null default false,
   -- Believe's own working fields
@@ -206,6 +208,9 @@ create table if not exists public.cb_partnerships (
   -- the founder's agreement to this particular gathering; required before the partnership can be approved
   founder_approved_on date,
   founder_approval_note text,
+  -- the host's permission to pass any of their contact or delivery details to the brand or a fulfilment partner
+  host_sharing_permission_on date,
+  host_sharing_details text,
   recap_token uuid not null unique default gen_random_uuid(),
   unique (gathering_id, brand_id),
   constraint cb_partnerships_needs_founder check (
@@ -228,8 +233,9 @@ create table if not exists public.cb_recaps (
   worked text,
   improve text,
   photo_links text,
-  photo_permission text not null default 'not_shared'
-    check (photo_permission in ('not_shared','internal_only','ask_first','may_share')),
+  -- two separate, explicit permissions; providing photos grants neither
+  photo_public_ok boolean not null default false,
+  photo_reuse_ok boolean not null default false,
   photo_permission_notes text,
   host_interest text check (host_interest is null or host_interest in ('yes','maybe','no')),
   purchases_self_reported text,
@@ -409,7 +415,7 @@ declare
   v_role text := cb__txt(p, 'host_role', 40);
   v_venue text := cb__txt(p, 'venue_type', 40);
   v_photos text := cb__txt(p, 'photos_willing', 10);
-  v_photo_use text := cb__txt(p, 'photo_use_offered', 20);
+  v_willing boolean;
   v_shipping text := cb__txt(p, 'shipping_preference', 20);
   v_brand uuid := cb__uuid(p, 'preferred_brand_id');
   v_host uuid;
@@ -467,8 +473,10 @@ begin
     errs := errs || jsonb_build_object('requested_quantity', 'invalid');
   end if;
   if v_photos is not null and v_photos not in ('yes', 'no', 'unsure') then v_photos := null; end if;
-  if v_photo_use is not null and v_photo_use not in ('internal_only', 'ask_first', 'may_share') then v_photo_use := null; end if;
-  if v_shipping is not null and v_shipping not in ('host_covers', 'needs_quote', 'needs_sponsored') then v_shipping := null; end if;
+  v_willing := coalesce(v_photos = 'yes', false);
+  if v_shipping is null or v_shipping not in ('host_covers', 'needs_quote', 'needs_sponsored') then
+    errs := errs || jsonb_build_object('shipping_preference', 'required');
+  end if;
   if coalesce((p ->> 'recap_ack')::boolean, false) is not true then errs := errs || jsonb_build_object('recap_ack', 'required'); end if;
   if coalesce((p ->> 'contact_consent')::boolean, false) is not true then errs := errs || jsonb_build_object('contact_consent', 'required'); end if;
 
@@ -510,7 +518,7 @@ begin
     guest_count, audience, repeats, frequency, delivery_by,
     categories, preferred_brand_id, open_to_suggestions, roles, requested_quantity, dietary, dietary_unknown,
     serving_plan, capabilities, delivery_notes, shipping_preference,
-    discovery, recap_ack, photos_willing, photo_use_offered, reuse_permission, extra, contact_consent
+    discovery, recap_ack, photos_willing, photo_public_offered, photo_reuse_offered, extra, contact_consent
   ) values (
     v_host, v_key, 'application', 'applied', v_gname, v_type, v_desc,
     v_date_status, v_event, cb__txt(p, 'event_time', 80), v_tz, v_city, v_region, v_country, v_postal, v_venue,
@@ -524,7 +532,10 @@ begin
     cb__txt(p, 'delivery_notes', 600), v_shipping,
     cb__arr(p, 'discovery', array['host_introduction','menu_place_card','story_display','qr_link','welcome_bag',
                                   'follow_up_email','social_content','sampling_only','other']),
-    true, v_photos, v_photo_use, coalesce(v_photo_use = 'may_share', false), cb__txt(p, 'extra', 2000), true
+    true, v_photos,
+    v_willing and coalesce((p ->> 'photo_public_offered')::boolean, false),
+    v_willing and coalesce((p ->> 'photo_reuse_offered')::boolean, false),
+    cb__txt(p, 'extra', 2000), true
   ) returning id into v_id;
 
   return jsonb_build_object('ok', true);
@@ -643,7 +654,7 @@ language plpgsql security definer set search_path = public, pg_temp as $$
 declare
   v_pt cb_partnerships%rowtype;
   errs jsonb := '{}'::jsonb;
-  v_perm text := coalesce(cb__txt(p, 'photo_permission', 20), 'not_shared');
+  v_has_photos boolean := cb__txt(p, 'photo_links', 2000) is not null;
   v_interest text := cb__txt(p, 'host_interest', 10);
   k text;
 begin
@@ -663,26 +674,26 @@ begin
     if btrim(coalesce(p ->> k, '')) <> '' and cb__int(p, k) is null then errs := errs || jsonb_build_object(k, 'invalid'); end if;
   end loop;
   if cb__txt(p, 'served_how', 2000) is null then errs := errs || jsonb_build_object('served_how', 'required'); end if;
-  if v_perm not in ('not_shared','internal_only','ask_first','may_share') then errs := errs || jsonb_build_object('photo_permission', 'invalid'); end if;
-  -- sharing photos requires an explicit statement of how they may be used
-  if cb__txt(p, 'photo_links', 2000) is not null and v_perm = 'not_shared' then
-    errs := errs || jsonb_build_object('photo_permission', 'required');
-  end if;
   if v_interest is not null and v_interest not in ('yes','maybe','no') then v_interest := null; end if;
   if errs <> '{}'::jsonb then return jsonb_build_object('ok', false, 'errors', errs); end if;
 
   insert into cb_recaps (partnership_id, actual_attendance, tried_count, units_served, units_taken_home, units_remaining,
-                         served_how, introduced_how, reactions, worked, improve, photo_links, photo_permission,
+                         served_how, introduced_how, reactions, worked, improve, photo_links, photo_public_ok, photo_reuse_ok,
                          photo_permission_notes, host_interest, purchases_self_reported)
   values (v_pt.id, cb__int(p, 'actual_attendance'), cb__int(p, 'tried_count'), cb__int(p, 'units_served'),
           cb__int(p, 'units_taken_home'), cb__int(p, 'units_remaining'),
           cb__txt(p, 'served_how', 2000), cb__txt(p, 'introduced_how', 2000), cb__txt(p, 'reactions', 3000),
-          cb__txt(p, 'worked', 3000), cb__txt(p, 'improve', 3000), cb__txt(p, 'photo_links', 2000), v_perm,
+          cb__txt(p, 'worked', 3000), cb__txt(p, 'improve', 3000), cb__txt(p, 'photo_links', 2000),
+          -- a permission only counts when it is ticked and there are photos for it to apply to
+          v_has_photos and coalesce((p ->> 'photo_public_ok')::boolean, false),
+          v_has_photos and coalesce((p ->> 'photo_reuse_ok')::boolean, false),
           cb__txt(p, 'photo_permission_notes', 1000), v_interest, cb__txt(p, 'purchases_self_reported', 2000));
   return jsonb_build_object('ok', true);
 exception
   when unique_violation then
     return jsonb_build_object('ok', false, 'errors', jsonb_build_object('form', 'already_submitted'));
+  when invalid_text_representation then
+    return jsonb_build_object('ok', false, 'errors', jsonb_build_object('form', 'invalid'));
 end $$;
 
 -- ── who may call what ─────────────────────────────────────────────────────

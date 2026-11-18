@@ -47,6 +47,7 @@ export function validateHostStep(step: number, v: Values, today = isoToday()): E
   if (step === 3) {
     const qty = str(v, 'requested_quantity')
     if (qty && (!wholeNumber(qty) || Number(qty) < 1)) e.requested_quantity = 'Please enter a whole number, or leave this blank.'
+    if (!str(v, 'shipping_preference')) e.shipping_preference = 'Please choose how you would like to handle shipping.'
   }
   if (step === 4) {
     if (!yes(v, 'recap_ack')) e.recap_ack = 'Please confirm you can share a short recap afterwards.'
@@ -84,9 +85,6 @@ export function validateRecap(v: Values): Errors {
     if (s && !wholeNumber(s)) e[k] = 'Please enter a whole number, or leave this blank.'
   }
   if (!str(v, 'served_how')) e.served_how = 'Please tell us how the product was served.'
-  if (str(v, 'photo_links') && (str(v, 'photo_permission') || 'not_shared') === 'not_shared') {
-    e.photo_permission = 'Please choose how the photos you are sharing may be used.'
-  }
   return e
 }
 

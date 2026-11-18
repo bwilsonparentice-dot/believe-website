@@ -11,7 +11,7 @@ const goodHost = {
   full_name: 'Ada Example', email: 'ada@example.test', name: 'Autumn book club', type: 'book_club', description: 'Reading',
   date_status: 'confirmed', event_date: '2026-12-18', event_time: '6pm', timezone: 'America/New_York', delivery_by: '2026-12-14',
   city: 'Richmond', region: 'Virginia', country: 'United States', postal_code: '23220', guest_count: '12', audience: 'Neighbours',
-  recap_ack: true, contact_consent: true,
+  shipping_preference: 'needs_quote', recap_ack: true, contact_consent: true,
 }
 
 test('host form: a complete application passes', () => {
@@ -20,7 +20,7 @@ test('host form: a complete application passes', () => {
 test('host form: an empty application is stopped at step one, with every problem listed', () => {
   const r = validateHost({}, TODAY)
   assert.equal(r.firstStep, 1)
-  for (const k of ['full_name', 'email', 'name', 'type', 'description', 'event_date', 'delivery_by', 'city', 'guest_count', 'audience', 'recap_ack', 'contact_consent']) assert.ok(r.errors[k], k)
+  for (const k of ['full_name', 'email', 'name', 'type', 'description', 'event_date', 'delivery_by', 'city', 'guest_count', 'audience', 'shipping_preference', 'recap_ack', 'contact_consent']) assert.ok(r.errors[k], k)
 })
 test('host form: date logic', () => {
   assert.ok(validateHostStep(2, { ...goodHost, delivery_by: '2026-12-18' }, TODAY).delivery_by, 'delivery on the day is too late')
@@ -31,15 +31,15 @@ test('host form: date logic', () => {
 })
 test('host form: quantity and guest count logic', () => {
   for (const bad of ['0', '-3', '2.5', 'ten', '']) assert.ok(validateHostStep(2, { ...goodHost, guest_count: bad }, TODAY).guest_count, `guest count "${bad}"`)
-  assert.deepEqual(validateHostStep(3, { requested_quantity: '' }, TODAY), {}, 'quantity is optional')
+  assert.deepEqual(validateHostStep(3, { requested_quantity: '', shipping_preference: 'host_covers' }, TODAY), {}, 'quantity is optional')
+  assert.ok(validateHostStep(3, { requested_quantity: '' }, TODAY).shipping_preference, 'a shipping preference is required')
   for (const bad of ['0', '-1', 'lots']) assert.ok(validateHostStep(3, { requested_quantity: bad }, TODAY).requested_quantity, `quantity "${bad}"`)
 })
 test('founder and recap forms', () => {
   assert.equal(Object.keys(validateFounder({})).length, 6)
   assert.deepEqual(validateFounder({ founder_name: 'Bo', email: 'bo@example.test', brand_name: 'Bo Tea', description: 'Tea', explore: 'Dinners', contact_consent: true }), {})
   assert.ok(validateRecap({ actual_attendance: '', served_how: '' }).actual_attendance)
-  assert.ok(validateRecap({ actual_attendance: '10', served_how: 'Poured', photo_links: 'https://x.test' }).photo_permission, 'photos need a permission choice')
-  assert.deepEqual(validateRecap({ actual_attendance: '10', served_how: 'Poured', photo_links: 'https://x.test', photo_permission: 'internal_only' }), {})
+  assert.deepEqual(validateRecap({ actual_attendance: '10', served_how: 'Poured', photo_links: 'https://x.test' }), {}, 'photos may be shared with no permission ticked; that grants nothing')
   assert.match(serverErrors({ delivery_by: 'after_event' }).delivery_by, /before the day/)
   assert.ok(serverErrors({ x: 'something-new' }).x)
 })
@@ -64,8 +64,8 @@ const gathering = (o: Partial<Gathering> = {}): Gathering => ({
   date_status: 'confirmed', event_date: '2026-12-18', event_time: '6pm', timezone: 'America/New_York',
   city: 'Richmond', region: 'VA', country: 'United States', postal_code: '23220', venue_type: 'home', guest_count: 12, audience: '',
   repeats: false, frequency: null, delivery_by: '2026-12-14', categories: ['beverages'], preferred_brand_id: null, open_to_suggestions: true,
-  roles: [], requested_quantity: 20, dietary: null, dietary_unknown: false, serving_plan: [], capabilities: [], delivery_notes: null, shipping_preference: null, photo_use_offered: null,
-  discovery: ['host_introduction'], recap_ack: true, photos_willing: null, reuse_permission: false, extra: null, contact_consent: true,
+  roles: [], requested_quantity: 20, dietary: null, dietary_unknown: false, serving_plan: [], capabilities: [], delivery_notes: null, shipping_preference: null, photo_public_offered: false, photo_reuse_offered: false,
+  discovery: ['host_introduction'], recap_ack: true, photos_willing: null, extra: null, contact_consent: true,
   audience_interests: ['Reading', 'wine'], tags: [], owner: null, next_action: null, next_action_date: null, internal_notes: null,
   campaign_slug: null, campaign_published: false, ...o,
 })
@@ -111,7 +111,7 @@ test('matching: a failed requirement cannot be outweighed by fit', () => {
 test('matching: stock and budget already promised elsewhere are counted; conflicts are checked per brand', () => {
   const other: Partnership = { id: 'pt', gathering_id: 'g2', brand_id: 'b1', product_id: null, created_at: '', status: 'approved', approved_quantity: 190,
     fulfilment: 'ship', shipment_info: null, owner: null, next_action: null, next_action_date: null, commitments: null, permissions: null,
-    cost_estimate: 400, cost_actual: null, fit_audience: null, fit_occasion: null, fit_market: null, fit_extras: null, internal_notes: null, recap_token: 't', founder_approved_on: '2026-11-01', founder_approval_note: null }
+    cost_estimate: 400, cost_actual: null, fit_audience: null, fit_occasion: null, fit_market: null, fit_extras: null, internal_notes: null, recap_token: 't', founder_approved_on: '2026-11-01', founder_approval_note: null, host_sharing_permission_on: null, host_sharing_details: null }
   const e = evaluate(gathering(), brand(), [product()], TODAY, [other], [])
   assert.equal(check(e, 'quantity'), 'fail')
   assert.equal(check(e, 'budget'), 'fail')

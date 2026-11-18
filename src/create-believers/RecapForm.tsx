@@ -1,17 +1,17 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { CONTACT_EMAIL, MODE, getRecapContext, submitRecap } from './backend'
-import { HOST_INTEREST, PHOTO_PERMISSION } from './options'
+import { HOST_INTEREST } from './options'
 import type { RecapContext, Values } from './types'
 import { validateRecap } from './validate'
-import { Area, ErrorSummary, Radios, Text, useForm, useMeta } from './ui'
+import { Area, Check, ErrorSummary, Radios, Text, useForm, useMeta } from './ui'
 
 const LABELS: Record<string, string> = {
   actual_attendance: 'How many people came', tried_count: 'How many tried the product', units_served: 'Units served', units_taken_home: 'Units taken home',
-  units_remaining: 'Units left over', served_how: 'How it was served', photo_permission: 'How photos may be used',
+  units_remaining: 'Units left over', served_how: 'How it was served',
 }
 const blank = (): Values => ({
   actual_attendance: '', tried_count: '', units_served: '', units_taken_home: '', units_remaining: '', served_how: '', introduced_how: '',
-  reactions: '', worked: '', improve: '', photo_links: '', photo_permission: 'not_shared', photo_permission_notes: '', host_interest: '', purchases_self_reported: '',
+  reactions: '', worked: '', improve: '', photo_links: '', photo_public_ok: false, photo_reuse_ok: false, photo_permission_notes: '', host_interest: '', purchases_self_reported: '',
 })
 
 /** The short recap a host completes after a gathering, reached by a private link for one brand at one gathering. */
@@ -93,7 +93,12 @@ export function RecapForm({ token }: { token: string }) {
                     <Area f={f} name="purchases_self_reported" label="Did anyone mention buying it, or ask where to find it?" optional help="Only what you saw or heard. We record this as your own account." style={{ minHeight: 84 }} />
                     <hr className="cb-rule" />
                     <Area f={f} name="photo_links" label="Photos of the product in use" optional help="Paste a link to a shared album or folder. Please only share photos you have the right to share." style={{ minHeight: 70 }} />
-                    <Radios f={f} name="photo_permission" one label="How may these photos be used?" help="Sharing a photo with us does not give permission to publish it. Please choose what you are comfortable with." options={PHOTO_PERMISSION} />
+                    <fieldset className="cb-field">
+                      <legend>What may be done with these photos? <span className="cb-opt">(optional)</span></legend>
+                      <p className="cb-help">These are two separate choices, and sharing photos grants neither. If you tick nothing, the photos are only for Believe Studio and the participating brand to see privately.</p>
+                      <Check f={f} name="photo_public_ok" label="These photos may be shown publicly, for example on social media or a website." />
+                      <Check f={f} name="photo_reuse_ok" label="Believe Studio and the participating brand may reuse these photos in their own marketing." />
+                    </fieldset>
                     <Text f={f} name="photo_permission_notes" label="Anything to add about the photos?" optional help="For example, a credit line, or a photo that should stay private." />
                     <hr className="cb-rule" />
                     <Radios f={f} name="host_interest" label="Would you like to host another gathering with a brand partner?" optional options={HOST_INTEREST} />
