@@ -11,15 +11,16 @@ const usesPaths = () => typeof window !== 'undefined' && window.location.pathnam
 
 export function href(to = ''): string {
   const clean = to.replace(/^\/+/, '')
-  return usesPaths() ? BASE + (clean ? '/' + clean : '') : '#/' + clean
+  // without paths, only a plain #name is available: host, brands, g-<name>, recap-<key>
+  return usesPaths() ? BASE + (clean ? '/' + clean : '') : '#' + clean.split('?')[0].replace(/\//g, '-')
 }
 function read(): { path: string; query: URLSearchParams } {
   if (typeof window === 'undefined') return { path: '', query: new URLSearchParams() }
   if (usesPaths()) {
     return { path: window.location.pathname.slice(BASE.length).replace(/^\/+|\/+$/g, ''), query: new URLSearchParams(window.location.search) }
   }
-  const [p, q = ''] = window.location.hash.replace(/^#\/?/, '').split('?')
-  return { path: p.replace(/\/+$/, ''), query: new URLSearchParams(q) }
+  const name = window.location.hash.replace(/^#/, '')
+  return { path: name.replace(/^(g|recap)-/, '$1/'), query: new URLSearchParams() }
 }
 export function go(to = ''): void {
   if (usesPaths()) window.history.pushState({ path: href(to) }, '', href(to))

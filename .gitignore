@@ -31,3 +31,4 @@ dist-preview
 
 # local-only original room image backups (pre-swap), for revert
 .image-originals/
+dist-cb-preview
