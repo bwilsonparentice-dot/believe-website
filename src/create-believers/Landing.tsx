@@ -90,7 +90,7 @@ export function Landing() {
           <div className="cb-path">
             <p className="who">For founders</p>
             <h2>Find the places where your brand’s differences will really matter.</h2>
-            <p>We help founders explore relevant gatherings, thoughtful collaborations, and new ways for people to experience their products—with a clear plan for what happens afterward.</p>
+            <p>Create Believers helps your brand find its people through thoughtfully matched gatherings and memorable product experiences.</p>
             <Link to="founders" className="cb-btn ghost">I’m a brand founder</Link>
           </div>
         </div>
