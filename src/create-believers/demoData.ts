@@ -18,7 +18,7 @@ const stamp = (offset: number) => day(offset) + 'T15:00:00Z'
 const brand = (o: Partial<Brand> & Pick<Brand, 'id' | 'name' | 'slug'>): Brand => ({
   created_at: stamp(-40), state: 'approved', is_public: true, founder_approved_on: day(-35), founder_approval_note: null, category: null, public_description: null,
   occasions: [], geography_served: [], dietary_verified: [], image_url: null, logo_url: null, founder_story: null, serving_idea: null,
-  purchase_links: [], founder_name: null, contact_email: null, website: null, internal_notes: null, audiences: [], rituals: null,
+  purchase_links: [], founder_name: null, contact_email: null, website: null, internal_notes: null, brief_label: null, brief_url: null, audiences: [], rituals: null,
   why_belongs: null, priority_markets: [], inventory_available: null, inventory_reserved: null, sampling_allowance: null,
   available_from: null, available_to: null, ship_origin: null, min_lead_days: null, min_quantity: null, max_quantity: null,
   cold_storage: 'unknown', storage_notes: null, product_cost: null, shipping_estimate: null, host_allowance: null,
@@ -37,7 +37,7 @@ const BRANDS: Brand[] = [
     inventory_available: 480, inventory_reserved: 48, min_lead_days: 10, cold_storage: 'not_required',
     product_cost: 1.5, shipping_estimate: 35, host_allowance: 0, believe_fee: 0, campaign_budget: 1200,
     extras: ['recipe_card', 'founder_story'], rituals: 'A welcome pour', why_belongs: 'Gives the host something to hand a guest at the door.',
-    founder_name: 'Example Founder', contact_email: 'founder@example.com',
+    founder_name: 'Example Founder', contact_email: 'founder@example.com', brief_label: 'Example pilot campaign', brief_url: 'https://example.com/',
   }),
   brand({
     id: 'demo-brand-2', name: 'Example Date Bites', slug: 'example-date-bites', category: 'sweet_snacks',

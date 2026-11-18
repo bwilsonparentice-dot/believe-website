@@ -48,7 +48,7 @@ test('founder and recap forms', () => {
 const brand = (o: Partial<Brand> = {}): Brand => ({
   id: 'b1', created_at: '', name: 'Sample Brand', slug: 'sample', state: 'approved', is_public: true, founder_approved_on: '2026-11-01', founder_approval_note: null, category: 'beverages',
   public_description: '', occasions: ['book_club'], geography_served: ['Virginia'], dietary_verified: [], image_url: null, logo_url: null,
-  founder_story: null, serving_idea: null, purchase_links: [], founder_name: null, contact_email: null, website: null, internal_notes: null,
+  founder_story: null, serving_idea: null, purchase_links: [], founder_name: null, contact_email: null, website: null, internal_notes: null, brief_label: null, brief_url: null,
   audiences: ['reading', 'gardening'], rituals: null, why_belongs: null, priority_markets: ['Richmond'],
   inventory_available: 200, inventory_reserved: 0, sampling_allowance: null, available_from: null, available_to: null, ship_origin: null,
   min_lead_days: 7, min_quantity: null, max_quantity: null, cold_storage: 'not_required', storage_notes: null,

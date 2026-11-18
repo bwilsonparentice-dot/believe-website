@@ -40,6 +40,8 @@ do $$ begin
   raise exception 'FAILED: a brand was made public without founder approval';
 end $$;
 
+update cb_brands set brief_label = 'Pilot campaign', brief_url = 'https://docs.example.test/brief' where slug = 'test-live';
+
 -- ── a visitor ────────────────────────────────────────────────────────────
 set role anon;
 select pg_temp.denied('select 1 from cb_hosts', 'visitor cannot read hosts');
@@ -55,8 +57,8 @@ select pg_temp.denied('select cb_is_admin()', 'visitor cannot call cb_is_admin')
 select pg_temp.denied($$select cb__txt('{}'::jsonb, 'a', 3)$$, 'visitor cannot call internal helpers');
 
 select pg_temp.ok((select count(*) from cb_public_brands()) = 1, 'public brands: only approved and published');
-select pg_temp.ok((select to_jsonb(b) from cb_public_brands() b)::text !~ 'PRIVATE NOTE|founder@example|500',
-                  'public brands: no private fields');
+select pg_temp.ok((select to_jsonb(b) from cb_public_brands() b)::text !~ 'PRIVATE NOTE|founder@example|500|brief|Pilot campaign',
+                  'public brands: no private fields, including the brief link');
 
 -- invalid submission: every problem reported, nothing stored
 select pg_temp.ok(
@@ -162,7 +164,7 @@ update cb_partnerships set status = 'approved', founder_approved_on = current_da
 set role anon;
 select pg_temp.ok(jsonb_array_length(cb_get_campaign('Autumn-Book-Club ') -> 'brands') = 1, 'guest page: approved brand shown');
 select pg_temp.ok(jsonb_array_length(cb_get_campaign('autumn-book-club') -> 'brands' -> 0 -> 'links') = 1, 'guest page: only verified https purchase links');
-select pg_temp.ok(cb_get_campaign('autumn-book-club')::text !~ 'Richmond|23220|Ada|PRIVATE|Neighbours|example\.test/unverified', 'guest page: no gathering, host, or private details');
+select pg_temp.ok(cb_get_campaign('autumn-book-club')::text !~ 'Richmond|23220|Ada|PRIVATE|Neighbours|example\.test/unverified|brief|Pilot campaign', 'guest page: no gathering, host, or private details');
 select cb_track('autumn-book-club', 'page_view');
 select cb_track('autumn-book-club', 'purchase_click', 'https://example.test/shop');
 select cb_track('autumn-book-club', 'verified_sale');

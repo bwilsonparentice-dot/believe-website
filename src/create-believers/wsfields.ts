@@ -28,6 +28,10 @@ export const BRAND_GROUPS: Group[] = [
     { key: 'website', label: 'Website', type: 'text' },
     { key: 'logo_url', label: 'Approved logo (link)', type: 'text' },
   ] },
+  { title: 'Brand experience brief', note: 'Private. The creative direction for the active campaign lives in the brief itself, kept in private storage; this is only a link to it. When a campaign ends, paste its name and link into the notes of each of its partnerships before replacing them here, so the record of which brief guided which gathering is kept.', fields: [
+    { key: 'brief_label', label: 'Campaign name', type: 'text', help: 'The name of the campaign this brief belongs to.' },
+    { key: 'brief_url', label: 'Link to the brief', type: 'text', help: 'A full https:// address to the privately stored document. Share the document itself only with the people who should read it.' },
+  ] },
   { title: 'Where it belongs', note: 'Private. Used for search and for the fit score.', fields: [
     { key: 'audiences', label: 'Best-fit audiences and interests', type: 'tags', help: 'Separated by commas, e.g. reading, gardening.' },
     { key: 'priority_markets', label: 'Priority markets', type: 'tags', help: 'Cities or states the brand most wants to build, separated by commas.' },

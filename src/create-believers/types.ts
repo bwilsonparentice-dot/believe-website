@@ -14,6 +14,7 @@ export interface Brand {
   image_url: string | null; logo_url: string | null; founder_story: string | null; serving_idea: string | null
   purchase_links: PurchaseLink[]
   founder_name: string | null; contact_email: string | null; website: string | null; internal_notes: string | null
+  brief_label: string | null; brief_url: string | null
   audiences: string[]; rituals: string | null; why_belongs: string | null; priority_markets: string[]
   inventory_available: number | null; inventory_reserved: number | null; sampling_allowance: number | null
   available_from: string | null; available_to: string | null; ship_origin: string | null

@@ -420,6 +420,7 @@ function PartnershipDetail({ ws, p }: { ws: WS; p: Partnership }) {
           ['Gathering date', g.event_date ? fmtDate(g.event_date) : 'Not confirmed'], ['Product needed by', fmtDate(g.delivery_by)],
           ['Place', `${g.city}, ${g.region}`], ['Expected guests', g.guest_count],
           ['Host’s requested quantity', g.requested_quantity ?? 'No estimate given'],
+          ['Brand experience brief', brand.brief_url ? <a href={brand.brief_url} target="_blank" rel="noopener noreferrer">{brand.brief_label || 'Open the brief'}</a> : 'No brief linked on the brand yet'],
           ['Guest page', g.campaign_slug ? `${g.campaign_published ? 'Open' : 'Closed'} · /g/${g.campaign_slug}` : 'Not set up (see the gathering)'],
         ]} />
       </section>
@@ -538,6 +539,7 @@ function BrandDetail({ ws, b }: { ws: WS; b: Brand }) {
   const save = async (patch: Record<string, unknown>) => {
     if (typeof patch.name === 'string' && !patch.name) throw new Error('A brand needs a name.')
     if ('slug' in patch) patch.slug = slugify(String(patch.slug ?? b.name))
+    if (typeof patch.brief_url === 'string' && !/^https:\/\/\S+$/.test(patch.brief_url)) throw new Error('Not saved. The link to the brief needs a full address that begins with https://')
     const founderDate = 'founder_approved_on' in patch ? patch.founder_approved_on : b.founder_approved_on
     if (('is_public' in patch ? patch.is_public : b.is_public) === true && !founderDate) throw new Error('Not saved. A profile can only be shown publicly once the founder’s approval date is recorded.')
     await ws.save('brands', b.id, patch)
@@ -553,6 +555,7 @@ function BrandDetail({ ws, b }: { ws: WS; b: Brand }) {
         <h2>{b.name}</h2>
         <p><StatusTag label={labelOf(BRAND_STATES, b.state)} tone={tone(b.state)} /> {b.founder_approved_on ? <StatusTag label={`Founder approved ${fmtDate(b.founder_approved_on)}`} tone="teal" /> : <StatusTag label="Awaiting founder approval" tone="alert" />} {visible ? <StatusTag label="On the public page" tone="teal" /> : <StatusTag label="Not visible to visitors" tone="quiet" />}</p>
         <p className="ws-note">{visible ? 'Visitors can see the public profile section below.' : 'To publish: complete the public profile, record the date the founder approved it, set the state to Approved, tick “Show this profile on the public brands page”, and save.'} A draft or incomplete profile is never suggested as a match.</p>
+        <p>Brand experience brief: {b.brief_url ? <a href={b.brief_url} target="_blank" rel="noopener noreferrer">{b.brief_label || 'Open the brief'}</a> : <span className="ws-blank">no brief linked yet</span>}</p>
         <p className="ws-note">Stock is managed by hand. On file: {b.inventory_available ?? 'not known'} available, {b.inventory_reserved ?? 0} reserved elsewhere, {promised} promised to approved gatherings here.</p>
       </header>
       <section><Editor id={`b-${b.id}`} record={b as never} groups={BRAND_GROUPS} onSave={save} /></section>

@@ -68,6 +68,10 @@ create table if not exists public.cb_brands (
   contact_email text,
   website text,
   internal_notes text,
+  -- the active campaign's Brand Experience Brief: a link to a privately stored document, labelled with the campaign name.
+  -- Never returned by any public function.
+  brief_label text,
+  brief_url text check (brief_url is null or brief_url ~* '^https://'),
   audiences text[] not null default '{}',
   rituals text,
   why_belongs text,

@@ -74,6 +74,17 @@ date. **Export this view (CSV)** downloads exactly what is listed.
 Only the Public profile section is ever shown to visitors. Costs, stock,
 contacts, and notes stay private.
 
+### The Brand Experience Brief
+Each campaign has one brief, completed with the founder and kept in private
+storage (not in this repository, which is public). On the brand profile, under
+**Brand experience brief**, enter the campaign name and the link to the
+document. The link shows on the brand and on each of its partnerships. It is
+private and plays no part in matching.
+
+When a campaign ends, paste its name and brief link into the notes of each of
+its partnerships first, then replace the name and link on the brand with the
+next campaign's.
+
 ### Approve a match
 1. Open the gathering. **Suggestions** lists up to three brands that meet every
    practical requirement on file, each marked *Suggested—awaiting review*, with
