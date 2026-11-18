@@ -49,8 +49,11 @@ export function Editor({ id, record, groups, onSave, saveLabel = 'Save changes' 
   const [draft, setDraft] = useState<Rec>(initial)
   const [state, setState] = useState<'idle' | 'saving' | 'saved'>('idle')
   const [error, setError] = useState('')
-  // a different record was opened, or this one was reloaded: start from what is stored
-  useEffect(() => { setDraft(initial()); setState('idle'); setError('') }, [id, record])   // eslint-disable-line react-hooks/exhaustive-deps
+  // the stored record changed (another record was opened, or this one was just saved): show what is stored
+  useEffect(() => { setDraft(initial()) }, [id, record])   // eslint-disable-line react-hooks/exhaustive-deps
+  // only opening a different record clears the "Saved." confirmation and any error;
+  // a save replaces the record too, and must not wipe its own confirmation
+  useEffect(() => { setState('idle'); setError('') }, [id])
 
   const changed = defs.filter((d) => JSON.stringify(fromDraft(d, draft[d.key])) !== JSON.stringify(fromDraft(d, toDraft(d, record[d.key]))))
   const set = (key: string, value: unknown) => { setDraft((old) => ({ ...old, [key]: value })); setState('idle') }

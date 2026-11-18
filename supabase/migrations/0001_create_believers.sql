@@ -733,3 +733,15 @@ language sql stable security invoker set search_path = public, pg_temp as $$
 $$;
 revoke all on function public.cb_campaign_counts() from public, anon;
 grant execute on function public.cb_campaign_counts() to authenticated;
+
+-- The internal helpers read no tables. Their search path is pinned anyway, so
+-- nothing placed in another schema can ever stand in for a built-in they use.
+do $$
+declare f text;
+begin
+  foreach f in array array[
+    'cb__txt(jsonb, text, integer)', 'cb__int(jsonb, text)', 'cb__date(jsonb, text)', 'cb__uuid(jsonb, text)',
+    'cb__arr(jsonb, text, text[])', 'cb__email_ok(text)', 'cb__confirmed_links(jsonb)'] loop
+    execute format('alter function public.%s set search_path = public, pg_temp', f);
+  end loop;
+end $$;
